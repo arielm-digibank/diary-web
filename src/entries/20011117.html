@@ -3,248 +3,413 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>טאל, נפאל</title>
+  <title>סובב אנאפורנה, יום 3</title>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap" rel="stylesheet">
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background-color: #f8fafc;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0; padding: 20px; color: #334155;
+      background: #ffffff;
+      font-family: 'Heebo', sans-serif;
+      color: #1a1a2e;
+      line-height: 1.9;
     }
-    .container {
-      max-width: 800px; margin: 0 auto; background: #ffffff;
-      padding: 35px; border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06); line-height: 1.8;
+    .top-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #eee;
+      padding: 12px 30px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.9rem;
     }
-    .header {
-      border-bottom: 2px solid #e2e8f0; padding-bottom: 15px;
-      margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center;
+    .top-nav a {
+      color: #1d4ed8; text-decoration: none; font-weight: 600;
     }
-    .header h1 { margin: 0; color: #0f172a; font-size: 1.8rem; }
-    .home-link { color: #2563eb; text-decoration: none; font-weight: 600; }
-    .content img {
-      float: right; margin: 0 0 15px 20px; max-width: 320px; height: auto;
-      border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      cursor: pointer; transition: transform 0.2s;
+    .top-nav a:hover { text-decoration: underline; }
+    .top-nav .nav-links { display: flex; gap: 20px; }
+    .hero {
+      max-width: 900px; margin: 0 auto;
+      padding: 50px 40px 30px;
+      display: flex; align-items: flex-start; gap: 30px;
     }
-    .content img:hover { transform: scale(1.02); }
-    .content::after { content: ""; clear: both; display: table; }
-    a { color: #2563eb; }
+    .hero-text { flex: 1; }
+    .hero-map {
+      width: 120px; height: auto; object-fit: contain;
+      flex-shrink: 0; opacity: 0.85;
+    }
+    .meta-line {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+    }
+    .date-big {
+      font-size: 3.5rem; font-weight: 900; color: #e5e7eb; line-height: 1;
+    }
+    .date-details { font-size: 0.9rem; color: #6b7280; }
+    .country-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      border-radius: 20px; padding: 4px 14px;
+      font-size: 0.8rem; color: #1d4ed8; font-weight: 600;
+    }
+    .title {
+      font-size: 2.2rem; font-weight: 900; color: #111827;
+      margin: 20px 0 8px; line-height: 1.3;
+    }
+    .date-subtitle {
+      font-size: 1.1rem; font-weight: 300; color: #4b5563;
+      margin-bottom: 16px;
+    }
+    .title-divider {
+      width: 60px; height: 4px; background: #1d4ed8; border-radius: 2px;
+    }
+    .content {
+      max-width: 900px; margin: 30px auto; padding: 0 40px; font-size: 1.05rem;
+    }
+    .content p { margin-bottom: 18px; }
+    .content a {
+      color: #1d4ed8; cursor: pointer;
+      text-decoration: underline;
+      text-decoration-color: rgba(29,78,216,0.3);
+    }
+    .photo-block {
+      margin: 30px 0; border-radius: 12px; overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    .photo-block img {
+      width: 100%; display: block; cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .photo-block img:hover { transform: scale(1.01); }
+    .photo-block .caption {
+      padding: 12px 16px; font-size: 0.85rem; color: #6b7280;
+      background: #f9fafb; border-top: 1px solid #f3f4f6;
+    }
+    .photo-pair {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 14px; margin: 30px 0;
+    }
+    .photo-pair .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-pair .photo-item img {
+      width: 100%; height: 200px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-pair .photo-item img:hover { transform: scale(1.03); }
+    .photo-pair .photo-item .caption {
+      padding: 8px 12px; font-size: 0.8rem; color: #6b7280; background: #f9fafb;
+    }
+    .photo-trio {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px; margin: 30px 0;
+    }
+    .photo-trio .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-trio .photo-item img {
+      width: 100%; height: 180px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-trio .photo-item img:hover { transform: scale(1.03); }
+    .photo-trio .photo-item .caption {
+      padding: 8px 10px; font-size: 0.78rem; color: #6b7280; background: #f9fafb;
+    }
+    .nav-cards {
+      max-width: 900px; margin: 50px auto 20px; padding: 0 40px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .nav-card {
+      padding: 20px 24px; border: 1px solid #e5e7eb; border-radius: 12px;
+      text-decoration: none; color: inherit; transition: all 0.2s;
+    }
+    .nav-card:hover {
+      border-color: #1d4ed8; box-shadow: 0 4px 12px rgba(29,78,216,0.1);
+    }
+    .nav-card .label { font-size: 0.8rem; color: #6b7280; margin-bottom: 4px; }
+    .nav-card .card-title { font-weight: 700; font-size: 1rem; color: #1d4ed8; }
+    .supplements {
+      margin-top: 35px; padding: 25px 30px;
+      background: #f9fafb; border-radius: 12px; border: 1px solid #e5e7eb;
+    }
+    .supplements h3 {
+      font-size: 1.1rem; font-weight: 700; margin-bottom: 14px; color: #374151;
+    }
+    .supplements ol { padding-right: 20px; }
+    .supplements li { margin-bottom: 10px; color: #4b5563; }
+    .country-nav {
+      max-width: 900px; margin: 20px auto 40px; padding: 0 40px;
+      display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+    }
+    .country-nav a {
+      padding: 6px 14px; border-radius: 20px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      color: #1d4ed8; text-decoration: none;
+      font-size: 0.82rem; font-weight: 600;
+      transition: all 0.2s;
+    }
+    .country-nav a:hover {
+      background: #1d4ed8; color: white; border-color: #1d4ed8;
+    }
     .lightbox {
       display: none; position: fixed; z-index: 9999;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.9); justify-content: center; align-items: center; cursor: pointer;
+      background: rgba(0,0,0,0.92);
+      justify-content: center; align-items: center; cursor: pointer;
     }
-    .lightbox img { max-width: 90%; max-height: 90%; border-radius: 8px; }
+    .lightbox img { max-width: 92%; max-height: 92%; border-radius: 8px; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h1>טאל, נפאל</h1>
-      <a href="../index.html" class="home-link">🏠 לעמוד הראשי</a>
+  <div class="top-nav">
+    <div class="nav-links">
+      <a href="../index.html">עמוד ראשי</a>
     </div>
-    <div class="content">
-      <body>
-<table cellpadding="0" cellspacing="0" height="1" width="954">
-<tr>
-<td align="center" height="1" width="277">
-<marquee style="font-size: 18pt; color: #800080">17.11.01 - 11:00</marquee></td>
-<td align="center" height="1" width="667">
-<!--webbot bot="Navigation" s-type="banner" s-rendering="graphics" S-Orientation B-Include-Home B-Include-Up U-Page S-Target startspan --><!--webbot bot="Navigation" i-checksum="7362" endspan --></td>
-<td align="center" height="1" width="10">
-
-<img border="0" height="149" onclick="openLightbox(this.src)" src="../images/Nepal.gif" title="לחץ להגדלה" width="149"/></td>
-</tr>
-<tr>
-<td colspan="3" height="1" style=" " width="954"></td>
-</tr>
-</table><table cellpadding="0" cellspacing="0" width="100%">
-<tr>
-<td align="right" style=" ">
-<h4>
-<marquee style="font-size: 24pt; color: #008080">סובב אנאפורנה, יום 3</marquee></h4>
-<p> </p></td>
-</tr>
-</table>
-<table cellpadding="0" cellspacing="0" height="333" width="953">
-<tr>
-<td height="333" rowspan="2" style="       " valign="top" width="140"> <!--webbot bot="Navigation" S-Type="sequence" S-Orientation="vertical" S-Rendering="graphics" S-Theme="blocks 000" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><!--webbot bot="Navigation" i-checksum="23763" endspan --><p style="text-align: center">
-
-<img border="0" height="188" onclick="openLightbox(this.src)" src="../images/eitan&amp;view.jpg" title="לחץ להגדלה" width="112"/></p>
-<p style="text-align: center">
-
-<img border="0" height="190" onclick="openLightbox(this.src)" src="../images/eitan&amp;waterfall.jpg" title="לחץ להגדלה" width="115"/></p>
-<p style="text-align: center">
-
-<img border="0" height="178" onclick="openLightbox(this.src)" src="../images/20011115_eitanzzz.jpg" title="לחץ להגדלה" width="116"/></p>
-<p style="text-align: center"><font color="#660099">איתן מחייך אחרי היום 
-    הקשה שעבר</font></p>
-<p style="text-align: center">
-
-<img border="0" height="180" onclick="openLightbox(this.src)" src="../images/20011115_stopping_at_a_waterfall.jpg" title="לחץ להגדלה" width="120"/></p>
-<p style="text-align: center"><font color="#660099">עצרנו לטבילה באגם</font></p>
-<p style="text-align: center">
-
-<img border="0" height="175" onclick="openLightbox(this.src)" src="../images/20011116_determined_climbers.jpg" title="לחץ להגדלה" width="118"/></p>
-<p style="text-align: center"><font color="#660099">ברית מטפסים</font></p>
-<p style="text-align: center">
-
-<img border="0" height="184" onclick="openLightbox(this.src)" src="../images/20011116_gonen_above_the_river.jpg" title="לחץ להגדלה" width="117"/></p>
-<p style="text-align: center">
-
-<img border="0" height="175" onclick="openLightbox(this.src)" src="../images/20011116_malik_on_the_way.jpg" title="לחץ להגדלה" width="114"/></p>
-</td>
-<td height="333" rowspan="2" style="     " valign="top" width="1"></td>
-<td colspan="2" height="266" style="     " valign="top" width="735">
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הגענו להפסקת הצהריים 
-    ביישוב יפהפה בשם טאל. גובה – כ- 1800 מ'. זהו עמק ישר לאחר עליה גדולה. העמק 
-    נפרס לפניך ונהר עובר דרכו. ממש יפה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">השלמות:</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">ביום הראשון לטרק, כשהגענו 
-    לבולבולה, הלכתי עם איתי לחפש עוד גסט האוס. היה שם גשר ענק וחצינו אותו ומצאנו 
-    מקום טוב להשאר וחזרנו בגשר כשלפתע הגיחו ממולנו חמורים עמוסים במשא שמילאו את 
-    כל רוחב הגשר. אמרתי לאיתי שאנחנו לא חוזרים. הגשר היה ארוך, קרוב ל- 100 מ'. 
-    בקיצור, נאבקנו בכל החמורים. כל חמור עובר ודופק בנו את השק שלו. יצאנו חבוטים 
-    לאחר כ- 30 חמורים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בסוף היום הראשון הלכנו 
-    לישון ממש מוקדם, ב- 21:00. רצינו לקום ולצאת מוקדם.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">ישנו כולם בחדר אחד. אני 
-    מניח שהיה מאד מסריח אם כי כולם התקלחו. אני מרגיש שאני סוחף אותם בזה כי אני 
-    מתקלח תמיד ראשון במים קרים. אני רוצה להמשיך כך בכל הימים. נראה היכן הקור 
-    ישבור אותי.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">קמנו ב- 6:00 והסתדרנו. 
-    האוכל לא היה מוכן ב- 6:30 כמו שקבענו עם המקומיים. הם גם לא העירו אותנו, קמנו 
-    לבד. בקיצור הכל התעכב, יצאנו ב- 8:00.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">עצרנו לאחר עלייה קשה של 
-    400 מטר (כשעה) ביישוב בשם בהונדנדה (</span><span dir="LTR">Bahundanda</span><span lang="HE">). 
-    עצרנו וחיכינו לאיתן ואח"כ עוד שעה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">המשכנו במישור עד שירדנו 
-    לגשר ביישוב בשם סאנג'ה (</span><span dir="LTR">Sange</span><span lang="HE">).</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בכל יום טרק אנחנו חוצים כ- 
-    2-3 גשרים תלויים מעל הנהר. זה כמובן מוסיף לחוויה. חלקם גשרים עם רצפה 
-    מאלומיניום וחבלים חזקים מברזל, חלקם רעועים, בקיצור – חוויה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אחרי סאנג'ה ברחתי לגונן 
-    וציפיתי לעלייה קלה של כשעה עד ל- ג'אגאט (</span><span dir="LTR">Jagat</span><span lang="HE">), 
-    שם נישן.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">ההליכה התארכה והעליה 
-    נהייתה קשה כמו העלייה הראשונה – 400 מטר גובה וכשעה וחצי. בהתחלה התחלתי בקצב 
-    טוב ואח"כ נשברתי ועצרתי כל שניה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">כשהגעתי ל- </span>
-<span dir="LTR">Jagat</span><span lang="HE"> אף אחד לא חיכה לי בפתח הכפר. 
-    ציפיתי שעוז ואיתי, שהלכו קדימה, יחכו. הלכתי עד לאמצע הכפר וחזרתי. שאלתי 
-    מקומיים, אף אחד לא שמע ולא ראה. חזרתי שוב ואז ראיתי אותם. נזפתי בהם והלכתי 
-    חזרה לפתח הכפר לחכות לגונן ואיתן. אח"כ איתי החליף אותי אחרי שהתקלח. הוא מצא 
-    את גונן ואני החלפתי אותו (אחרי שהתקלחתי) וחיכיתי לאיתן. איתן הגיע אחרי כשעה, 
-    אחרי 17:00. כבר היה די חשוך. הוא הגיע עם סבל (</span><span dir="LTR">Porter</span><span lang="HE">) 
-    שהוא לקח בסוף הדרך, עלה לו 100 רופי. אבל סיפור הדרך שלו היה מזעזע. הוא טעה 
-    בדרך, הוא הלך במורד הנהר במקום במעלה הנהר. אח"כ כשהוא התחיל לחזור פתאם תקף 
-    אותו שלשול, לא היה לו זמן להוציא נייר טואלט מהתיק וללכת למקום אחר, וכך על 
-    השביל הוא הוריד מכנס ושלשל לפני עוברים ושבים!!!. אח"כ הוא סיפר לי שניגב עם 
-    אבנים ועם הידיים כי רצה לברוח משם. סיפור מזעזע!!.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בערב היינו עייפים מאד, 
-    אפילו לא הוצאנו את המוזיקה – מיני דיסק ורמקולים שאיתן הביא.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">סה"כ הלכתי היום קרוב ל- 8 
-    שעות. לא הכי קל אבל לא הכי קשה, אפשרי. מה שכן, הרגליים כואבות.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">במהלך ארוחת הערב איתן קם 
-    והקיא כמויות. הוא אמר שזו הפעם הראשונה בחיים שהוא מקיא. קיוויתי שהוא לא חולה 
-    כדי שלא נתעכב או נתפצל.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בהמשך הערב, אחרי שאכלנו 
-    דאל-באט ב- 130 רופי, הוא הרגיש יותר טוב ואמר שימשיך למחרת ללא פורטר.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הלכנו לישון ב- 20:30.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">קמנו ב- 6:20. לא אכלנו 
-    ארוחת בוקר, חבל על הזמן. יצאנו ב- 7:30.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">ציפיתי לירידה לנהר ואח"כ 
-    עליה. בפועל היתה רק עליה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">איתי הלך קדימה ואחריו עוז. 
-    אני הלכתי עם גונן וחשבתי על איתן, כי ככל שהתארכה הדרך המשיכה העליה ועוז 
-    ואיתי לא חיכו באף מקום. התעצבנתי עליהם כי להם זה לא קשה, אבל לאיתן היה יותר 
-    קל אם היו מחכים לו בסוף כל עליה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אני מזיע הרבה אז בכל כפר 
-    שואלים אותי אם אני רוצה פורטר. גונן משתמש בשיטת ההעקה הנגדית, כשהוא מגיע 
-    לכפר הוא שואל אותם אם הם צריכים פורטר, דומה למה שהוא עשה למקומיים שבאים 
-    ורוצים כסף לעצמם או לכל מיני פרוייקטים אמיתיים או לא. גונן מבקש כסף עבור 
-    נפגעי טרור ופצועים בבתי-חולים בישראל. הם פשוט עוזבים אותו. אין ספק שגונן 
-    הראה כאן תושיה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">גונן גם המליץ לי ללכת בלי 
-    תחתונים, כי אתמול התחילה לי שפשפת. עד עכשיו זה באמת עזר.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">עד עכשיו איתן עוד לא הגיע 
-    ואני מפחד שהוא נשבר בדרך. לא נדע זאת אם הוא לא יגיע.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">לפחות מלקחי האתמול הבאנו 
-    לו מפה.</span></b></p>
-<p style="text-align: right">
-     </p></td>
-<td align="center" height="333" rowspan="2" style="     " valign="top" width="187">
-<p>
-
-<img border="0" height="108" onclick="openLightbox(this.src)" src="../images/crossing_the_river.jpg" title="לחץ להגדלה" width="173"/></p>
-<p>
-<font color="#660099">מקומיים עוברים את הנהר ברגל</font></p>
-<p>
-
-<img border="0" height="116" onclick="openLightbox(this.src)" src="../images/20011115_fearless_gonen.jpg" title="לחץ להגדלה" width="177"/></p>
-<p>
-<font color="#660099">אריק פורטר</font></p>
-<p>
-
-<img border="0" height="211" onclick="openLightbox(this.src)" src="../images/20011115_gonen_ready_to_start.jpg" title="לחץ להגדלה" width="117"/></p>
-<p>
-
-<img border="0" height="182" onclick="openLightbox(this.src)" src="../images/20011115_malik&amp;waterfall.jpg" title="לחץ להגדלה" width="121"/></p>
-<p>
-
-<img border="0" height="121" onclick="openLightbox(this.src)" src="../images/20011116_malik_near_river.jpg" title="לחץ להגדלה" width="182"/></p>
-<p>
-<font color="#660099">כל אחד ארגן לעצמו מקל הליכה</font></p>
-<p>
-
-<img border="0" height="201" onclick="openLightbox(this.src)" src="../images/20011115_malik_smoking.jpg" title="לחץ להגדלה" width="125"/></p>
-<p>
-<font color="#660099">מליק נרגע באחת ההפסקות</font></p>
-<p>
-
-<img border="0" height="116" onclick="openLightbox(this.src)" src="../images/20011116_before_big_climb.jpg" title="לחץ להגדלה" width="176"/></p>
-<p>
-<font color="#660099">גונן מתכונן לעוד עליה קשה</font></p>
-<p>
-
-<img border="0" height="183" onclick="openLightbox(this.src)" src="../images/20011116_big_waterfall_1.jpg" title="לחץ להגדלה" width="125"/></p>
-<p>
-
-<img border="0" height="194" onclick="openLightbox(this.src)" src="../images/20011116_big_waterfall_2.jpg" title="לחץ להגדלה" width="124"/></p>
-<p>
-
-<img border="0" height="192" onclick="openLightbox(this.src)" src="../images/20011116_malik&amp;tall_waterfall.jpg" title="לחץ להגדלה" width="121"/></p>
-<p>
-<font color="#660099">לאורך כל הדרך ראינו מפלים מרשימים</font></p>
-<p>
-     </p>
-</td>
-</tr>
-<tr>
-<td height="67" style="     " valign="top" width="314">
-
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button104.gif" title="לחץ להגדלה" width="59"/></td>
-<td height="67" style="     " valign="top" width="421">
-<p align="right">
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button106.gif" title="לחץ להגדלה" width="59"/></p></td>
-</tr>
-</table>
-<p align="center">
-<!--webbot bot="Navigation" S-Type="sequence" S-Orientation="horizontal" S-Rendering="html" S-Bar="Brackets" S-Btn-Nml="[&lt;A HREF=&quot;#URL#&quot; TARGET=&quot;#TARGET#&quot; STYLE=&quot;{text-decoration: none;}&quot;&gt;#LABEL#&lt;/A&gt;]" S-Btn-Sel="[#LABEL#]" S-Btn-Sep="&amp;nbsp;" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><nobr>[<a href="index.html" style="{text-decoration: none;}" target="">התחלה</a>]</nobr> <nobr>[<a href="200110052040.html" style="{text-decoration: none;}" target="">דנמרק</a>]</nobr> <nobr>[<a href="20011006.html" style="{text-decoration: none;}" target="">הודו</a>]</nobr> <nobr>[<a href="20011030.html" style="{text-decoration: none;}" target="">נפאל</a>]</nobr> <nobr>[<a href="20011115.html" style="{text-decoration: none;}" target="">טרק סובב אנאפורנה</a>]</nobr> <nobr>[<a href="20011210.html" style="{text-decoration: none;}" target="">תאילנד</a>]</nobr> <nobr>[<a href="20020108.html" style="{text-decoration: none;}" target="">לאוס</a>]</nobr> <nobr>[<a href="20020123.html" style="{text-decoration: none;}" target="">צפון תאילנד</a>]</nobr> <nobr>[<a href="20020203.html" style="{text-decoration: none;}" target="">אוסטרליה</a>]</nobr> <nobr>[<a href="20020210.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי דרומי</a>]</nobr> <nobr>[<a href="20020326.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי צפוני</a>]</nobr> <nobr>[<a href="20020506.html" style="{text-decoration: none;}" target="">פיליפינים</a>]</nobr> <nobr>[<a href="20020603.html" style="{text-decoration: none;}" target="">קמבודיה</a>]</nobr><!--webbot bot="Navigation" i-checksum="33824" endspan --></p>
-<p><i><small>This site was last updated
-<!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%m/%d/%y" startspan -->07/09/03<!--webbot bot="Timestamp" i-checksum="12746" endspan --> </small></i>
-</p>
-</body>
+    <div class="nav-links">
+      <a href="20011115.html">← הקודם</a>
+      <a href="20011118.html">הבא →</a>
     </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-text">
+      <div class="meta-line">
+        <span class="date-big">17</span>
+        <div>
+          <div class="date-details">נובמבר 2001</div>
+          <span class="country-badge">נפאל</span>
+        </div>
+      </div>
+      <h1 class="title">סובב אנאפורנה, יום 3</h1>
+      <div class="title-divider"></div>
+    </div>
+    <img class="hero-map" src="../images/Nepal.gif" alt="נפאל">
+  </div>
+
+  <div class="content">
+    <p>סובב אנאפורנה, יום 3</p>
+
+    <p>איתן מחייך אחרי היום הקשה שעבר</p>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/eitan&view.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/eitan&waterfall.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011115_eitanzzz.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">איתן מחייך אחרי היום 
+    הקשה שעבר</div>
+      </div>
+    </div>
+
+    <p>הגענו להפסקת הצהריים ביישוב יפהפה בשם טאל. גובה – כ- 1800 מ'. זהו עמק ישר לאחר עליה גדולה. העמק נפרס לפניך ונהר עובר דרכו. ממש יפה.</p>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/20011115_stopping_at_a_waterfall.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">עצרנו לטבילה באגם</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011116_determined_climbers.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">ברית מטפסים</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011116_gonen_above_the_river.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+    </div>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/20011116_malik_on_the_way.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/crossing_the_river.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">מקומיים עוברים את הנהר ברגל</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011115_fearless_gonen.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">אריק פורטר</div>
+      </div>
+    </div>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/20011115_gonen_ready_to_start.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011115_malik&waterfall.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011116_malik_near_river.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">כל אחד ארגן לעצמו מקל הליכה</div>
+      </div>
+    </div>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/20011115_malik_smoking.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">מליק נרגע באחת ההפסקות</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011116_before_big_climb.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">גונן מתכונן לעוד עליה קשה</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011116_big_waterfall_1.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+    </div>
+
+    <div class="photo-pair">
+      <div class="photo-item">
+        <img src="../images/20011116_big_waterfall_2.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011116_malik&tall_waterfall.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">לאורך כל הדרך ראינו מפלים מרשימים</div>
+      </div>
+    </div>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/20011115_stopping_at_a_waterfall.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">עצרנו לטבילה באגם</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011116_determined_climbers.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">ברית מטפסים</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011116_gonen_above_the_river.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+    </div>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/20011116_malik_on_the_way.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/crossing_the_river.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">מקומיים עוברים את הנהר ברגל</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011115_fearless_gonen.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">אריק פורטר</div>
+      </div>
+    </div>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/20011115_gonen_ready_to_start.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011115_malik&waterfall.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011116_malik_near_river.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">כל אחד ארגן לעצמו מקל הליכה</div>
+      </div>
+    </div>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/20011115_malik_smoking.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">מליק נרגע באחת ההפסקות</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011116_before_big_climb.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">גונן מתכונן לעוד עליה קשה</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011116_big_waterfall_1.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+    </div>
+
+    <div class="photo-pair">
+      <div class="photo-item">
+        <img src="../images/20011116_big_waterfall_2.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011116_malik&tall_waterfall.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">לאורך כל הדרך ראינו מפלים מרשימים</div>
+      </div>
+    </div>
+
+    <div class="supplements">
+      <h3>השלמות:</h3>
+      <ol>
+        <li>ביום הראשון לטרק, כשהגענו לבולבולה, הלכתי עם איתי לחפש עוד גסט האוס. היה שם גשר ענק וחצינו אותו ומצאנו מקום טוב להשאר וחזרנו בגשר כשלפתע הגיחו ממולנו חמורים עמוסים במשא שמילאו את כל רוחב הגשר. אמרתי לאיתי שאנחנו לא חוזרים. הגשר היה ארוך, קרוב ל- 100 מ'. בקיצור, נאבקנו בכל החמורים. כל חמור עובר ודופק בנו את השק שלו. יצאנו חבוטים לאחר כ- 30 חמורים.</li>
+        <li>בסוף היום הראשון הלכנו לישון ממש מוקדם, ב- 21:00. רצינו לקום ולצאת מוקדם.</li>
+        <li>ישנו כולם בחדר אחד. אני מניח שהיה מאד מסריח אם כי כולם התקלחו. אני מרגיש שאני סוחף אותם בזה כי אני מתקלח תמיד ראשון במים קרים. אני רוצה להמשיך כך בכל הימים. נראה היכן הקור ישבור אותי.</li>
+        <li>קמנו ב- 6:00 והסתדרנו. האוכל לא היה מוכן ב- 6:30 כמו שקבענו עם המקומיים. הם גם לא העירו אותנו, קמנו לבד. בקיצור הכל התעכב, יצאנו ב- 8:00.</li>
+        <li>עצרנו לאחר עלייה קשה של 400 מטר (כשעה) ביישוב בשם בהונדנדה (Bahundanda). עצרנו וחיכינו לאיתן ואח"כ עוד שעה.</li>
+        <li>המשכנו במישור עד שירדנו לגשר ביישוב בשם סאנג'ה (Sange).</li>
+        <li>בכל יום טרק אנחנו חוצים כ- 2-3 גשרים תלויים מעל הנהר. זה כמובן מוסיף לחוויה. חלקם גשרים עם רצפה מאלומיניום וחבלים חזקים מברזל, חלקם רעועים, בקיצור – חוויה.</li>
+        <li>אחרי סאנג'ה ברחתי לגונן וציפיתי לעלייה קלה של כשעה עד ל- ג'אגאט (Jagat), שם נישן.</li>
+        <li>ההליכה התארכה והעליה נהייתה קשה כמו העלייה הראשונה – 400 מטר גובה וכשעה וחצי. בהתחלה התחלתי בקצב טוב ואח"כ נשברתי ועצרתי כל שניה.</li>
+        <li>כשהגעתי ל- Jagat אף אחד לא חיכה לי בפתח הכפר. ציפיתי שעוז ואיתי, שהלכו קדימה, יחכו. הלכתי עד לאמצע הכפר וחזרתי. שאלתי מקומיים, אף אחד לא שמע ולא ראה. חזרתי שוב ואז ראיתי אותם. נזפתי בהם והלכתי חזרה לפתח הכפר לחכות לגונן ואיתן. אח"כ איתי החליף אותי אחרי שהתקלח. הוא מצא את גונן ואני החלפתי אותו (אחרי שהתקלחתי) וחיכיתי לאיתן. איתן הגיע אחרי כשעה, אחרי 17:00. כבר היה די חשוך. הוא הגיע עם סבל (Porter) שהוא לקח בסוף הדרך, עלה לו 100 רופי. אבל סיפור הדרך שלו היה מזעזע. הוא טעה בדרך, הוא הלך במורד הנהר במקום במעלה הנהר. אח"כ כשהוא התחיל לחזור פתאם תקף אותו שלשול, לא היה לו זמן להוציא נייר טואלט מהתיק וללכת למקום אחר, וכך על השביל הוא הוריד מכנס ושלשל לפני עוברים ושבים!!!. אח"כ הוא סיפר לי שניגב עם אבנים ועם הידיים כי רצה לברוח משם. סיפור מזעזע!!.</li>
+        <li>בערב היינו עייפים מאד, אפילו לא הוצאנו את המוזיקה – מיני דיסק ורמקולים שאיתן הביא.</li>
+        <li>סה"כ הלכתי היום קרוב ל- 8 שעות. לא הכי קל אבל לא הכי קשה, אפשרי. מה שכן, הרגליים כואבות.</li>
+        <li>במהלך ארוחת הערב איתן קם והקיא כמויות. הוא אמר שזו הפעם הראשונה בחיים שהוא מקיא. קיוויתי שהוא לא חולה כדי שלא נתעכב או נתפצל.</li>
+        <li>בהמשך הערב, אחרי שאכלנו דאל-באט ב- 130 רופי, הוא הרגיש יותר טוב ואמר שימשיך למחרת ללא פורטר.</li>
+        <li>הלכנו לישון ב- 20:30.</li>
+        <li>קמנו ב- 6:20. לא אכלנו ארוחת בוקר, חבל על הזמן. יצאנו ב- 7:30.</li>
+        <li>ציפיתי לירידה לנהר ואח"כ עליה. בפועל היתה רק עליה.</li>
+        <li>איתי הלך קדימה ואחריו עוז. אני הלכתי עם גונן וחשבתי על איתן, כי ככל שהתארכה הדרך המשיכה העליה ועוז ואיתי לא חיכו באף מקום. התעצבנתי עליהם כי להם זה לא קשה, אבל לאיתן היה יותר קל אם היו מחכים לו בסוף כל עליה.</li>
+        <li>אני מזיע הרבה אז בכל כפר שואלים אותי אם אני רוצה פורטר. גונן משתמש בשיטת ההעקה הנגדית, כשהוא מגיע לכפר הוא שואל אותם אם הם צריכים פורטר, דומה למה שהוא עשה למקומיים שבאים ורוצים כסף לעצמם או לכל מיני פרוייקטים אמיתיים או לא. גונן מבקש כסף עבור נפגעי טרור ופצועים בבתי-חולים בישראל. הם פשוט עוזבים אותו. אין ספק שגונן הראה כאן תושיה.</li>
+        <li>גונן גם המליץ לי ללכת בלי תחתונים, כי אתמול התחילה לי שפשפת. עד עכשיו זה באמת עזר.</li>
+        <li>עד עכשיו איתן עוד לא הגיע ואני מפחד שהוא נשבר בדרך. לא נדע זאת אם הוא לא יגיע.</li>
+        <li>לפחות מלקחי האתמול הבאנו לו מפה.</li>
+      </ol>
+    </div>
+
+  </div>
+
+  <div class="nav-cards">
+    <a href="20011118.html" class="nav-card">
+      <div class="label">הבא →</div>
+      <div class="card-title">סובב אנאפורנה - יום 4</div>
+    </a>
+    <a href="20011115.html" class="nav-card">
+      <div class="label">← הקודם</div>
+      <div class="card-title">סובב אנאפורנה - יום 1</div>
+    </a>
+  </div>
+
+  <div class="country-nav">
+    <a href="200110052040.html">דנמרק</a>
+    <a href="20011006.html">הודו</a>
+    <a href="20011030.html">נפאל</a>
+    <a href="20011115.html">טרק אנאפורנה</a>
+    <a href="20011210.html">תאילנד</a>
+    <a href="20020108.html">לאוס</a>
+    <a href="20020123.html">צפון תאילנד</a>
+    <a href="20020203.html">אוסטרליה</a>
+    <a href="20020210.html">ניו-זילנד, אי דרומי</a>
+    <a href="20020326.html">ניו-זילנד, אי צפוני</a>
+    <a href="20020506.html">פיליפינים</a>
+    <a href="20020603.html">קמבודיה</a>
   </div>
 
   <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
-    <img id="lightbox-img" src="" alt="Enlarged">
+    <img id="lightbox-img" src="" alt="">
   </div>
-
   <script>
     function openLightbox(src) {
       document.getElementById('lightbox-img').src = src;

@@ -3,237 +3,308 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>חניון ליד אגם טאופו, ניו-זילנד</title>
+  <title>שוכב על שפת האגם</title>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap" rel="stylesheet">
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background-color: #f8fafc;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0; padding: 20px; color: #334155;
+      background: #ffffff;
+      font-family: 'Heebo', sans-serif;
+      color: #1a1a2e;
+      line-height: 1.9;
     }
-    .container {
-      max-width: 800px; margin: 0 auto; background: #ffffff;
-      padding: 35px; border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06); line-height: 1.8;
+    .top-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #eee;
+      padding: 12px 30px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.9rem;
     }
-    .header {
-      border-bottom: 2px solid #e2e8f0; padding-bottom: 15px;
-      margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center;
+    .top-nav a {
+      color: #1d4ed8; text-decoration: none; font-weight: 600;
     }
-    .header h1 { margin: 0; color: #0f172a; font-size: 1.8rem; }
-    .home-link { color: #2563eb; text-decoration: none; font-weight: 600; }
-    .content img {
-      float: right; margin: 0 0 15px 20px; max-width: 320px; height: auto;
-      border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      cursor: pointer; transition: transform 0.2s;
+    .top-nav a:hover { text-decoration: underline; }
+    .top-nav .nav-links { display: flex; gap: 20px; }
+    .hero {
+      max-width: 900px; margin: 0 auto;
+      padding: 50px 40px 30px;
+      display: flex; align-items: flex-start; gap: 30px;
     }
-    .content img:hover { transform: scale(1.02); }
-    .content::after { content: ""; clear: both; display: table; }
-    a { color: #2563eb; }
+    .hero-text { flex: 1; }
+    .hero-map {
+      width: 120px; height: auto; object-fit: contain;
+      flex-shrink: 0; opacity: 0.85;
+    }
+    .meta-line {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+    }
+    .date-big {
+      font-size: 3.5rem; font-weight: 900; color: #e5e7eb; line-height: 1;
+    }
+    .date-details { font-size: 0.9rem; color: #6b7280; }
+    .country-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      border-radius: 20px; padding: 4px 14px;
+      font-size: 0.8rem; color: #1d4ed8; font-weight: 600;
+    }
+    .title {
+      font-size: 2.2rem; font-weight: 900; color: #111827;
+      margin: 20px 0 8px; line-height: 1.3;
+    }
+    .date-subtitle {
+      font-size: 1.1rem; font-weight: 300; color: #4b5563;
+      margin-bottom: 16px;
+    }
+    .title-divider {
+      width: 60px; height: 4px; background: #1d4ed8; border-radius: 2px;
+    }
+    .content {
+      max-width: 900px; margin: 30px auto; padding: 0 40px; font-size: 1.05rem;
+    }
+    .content p { margin-bottom: 18px; }
+    .content a {
+      color: #1d4ed8; cursor: pointer;
+      text-decoration: underline;
+      text-decoration-color: rgba(29,78,216,0.3);
+    }
+    .photo-block {
+      margin: 30px 0; border-radius: 12px; overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    .photo-block img {
+      width: 100%; display: block; cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .photo-block img:hover { transform: scale(1.01); }
+    .photo-block .caption {
+      padding: 12px 16px; font-size: 0.85rem; color: #6b7280;
+      background: #f9fafb; border-top: 1px solid #f3f4f6;
+    }
+    .photo-pair {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 14px; margin: 30px 0;
+    }
+    .photo-pair .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-pair .photo-item img {
+      width: 100%; height: 200px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-pair .photo-item img:hover { transform: scale(1.03); }
+    .photo-pair .photo-item .caption {
+      padding: 8px 12px; font-size: 0.8rem; color: #6b7280; background: #f9fafb;
+    }
+    .photo-trio {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px; margin: 30px 0;
+    }
+    .photo-trio .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-trio .photo-item img {
+      width: 100%; height: 180px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-trio .photo-item img:hover { transform: scale(1.03); }
+    .photo-trio .photo-item .caption {
+      padding: 8px 10px; font-size: 0.78rem; color: #6b7280; background: #f9fafb;
+    }
+    .nav-cards {
+      max-width: 900px; margin: 50px auto 20px; padding: 0 40px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .nav-card {
+      padding: 20px 24px; border: 1px solid #e5e7eb; border-radius: 12px;
+      text-decoration: none; color: inherit; transition: all 0.2s;
+    }
+    .nav-card:hover {
+      border-color: #1d4ed8; box-shadow: 0 4px 12px rgba(29,78,216,0.1);
+    }
+    .nav-card .label { font-size: 0.8rem; color: #6b7280; margin-bottom: 4px; }
+    .nav-card .card-title { font-weight: 700; font-size: 1rem; color: #1d4ed8; }
+    .supplements {
+      margin-top: 35px; padding: 25px 30px;
+      background: #f9fafb; border-radius: 12px; border: 1px solid #e5e7eb;
+    }
+    .supplements h3 {
+      font-size: 1.1rem; font-weight: 700; margin-bottom: 14px; color: #374151;
+    }
+    .supplements ol { padding-right: 20px; }
+    .supplements li { margin-bottom: 10px; color: #4b5563; }
+    .country-nav {
+      max-width: 900px; margin: 20px auto 40px; padding: 0 40px;
+      display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+    }
+    .country-nav a {
+      padding: 6px 14px; border-radius: 20px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      color: #1d4ed8; text-decoration: none;
+      font-size: 0.82rem; font-weight: 600;
+      transition: all 0.2s;
+    }
+    .country-nav a:hover {
+      background: #1d4ed8; color: white; border-color: #1d4ed8;
+    }
     .lightbox {
       display: none; position: fixed; z-index: 9999;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.9); justify-content: center; align-items: center; cursor: pointer;
+      background: rgba(0,0,0,0.92);
+      justify-content: center; align-items: center; cursor: pointer;
     }
-    .lightbox img { max-width: 90%; max-height: 90%; border-radius: 8px; }
+    .lightbox img { max-width: 92%; max-height: 92%; border-radius: 8px; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h1>חניון ליד אגם טאופו, ניו-זילנד</h1>
-      <a href="../index.html" class="home-link">🏠 לעמוד הראשי</a>
+  <div class="top-nav">
+    <div class="nav-links">
+      <a href="../index.html">עמוד ראשי</a>
     </div>
-    <div class="content">
-      <body>
-<table cellpadding="0" cellspacing="0" height="80" width="954">
-<tr>
-<td align="center" height="80" width="277">
-<marquee style="font-size: 18pt; color: #800080">3.4.02 - 16:00</marquee></td>
-<td align="center" height="80" width="667">
-<!--webbot bot="Navigation" s-type="banner" s-rendering="graphics" S-Orientation B-Include-Home B-Include-Up U-Page S-Target startspan --><!--webbot bot="Navigation" i-checksum="10466" endspan --></td>
-<td align="center" height="80" width="10">
-<img border="0" height="2" onclick="openLightbox(this.src)" src="../images/20020322_fishermen.jpg" title="לחץ להגדלה" width="1"/><img border="0" height="166" onclick="openLightbox(this.src)" src="../images/New_Zealand_north_island.gif" title="לחץ להגדלה" width="166"/></td>
-</tr>
-<tr>
-<td colspan="3" height="1" style=" " width="954"></td>
-</tr>
-</table><table cellpadding="0" cellspacing="0" width="100%">
-<tr>
-<td align="right" style=" ">
-<h4>
-<marquee style="font-size: 24pt; color: #008080">שוכב על שפת האגם</marquee></h4>
-<p> </p></td>
-</tr>
-</table>
-<table cellpadding="0" cellspacing="0" height="333" width="953">
-<tr>
-<td height="333" rowspan="2" style="       " valign="top" width="140"> <!--webbot bot="Navigation" S-Type="sequence" S-Orientation="vertical" S-Rendering="graphics" S-Theme="blocks 000" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><!--webbot bot="Navigation" i-checksum="23763" endspan --><p> </p>
-</td>
-<td height="333" rowspan="2" style="     " valign="top" width="1"></td>
-<td colspan="2" height="266" style="     " valign="top" width="735">
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> אגם טאופו הוא האגם הגדול 
-    באגמי ניו-זילנד. להערכתי שטחו גדול פי 10 משטחה של הכנרת. האגם יפה, רחב ידים. 
-    ברקע נראים הרים גבוהים, מושלגים. לא צילמנו כי גונן לא מתלהב כמוני.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אתמול קמנו בחווה. מיהרנו 
-    לנטוש, בעיקר בגלל הישראליות, שהיו בסדר איתנו ואפילו הכינו לנו קפה, אך חברתן 
-    לא נעמה לנו, וזה בלשון המעטה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">נפרדנו לא לפני שהאמא של 
-    המשפחה ניסתה שוב לשכנע אותי לפנות לישוע בכדי להגיע לאמת. האמת, רציתי להגיע 
-    לאגם טאופו, אז הבטחתי לנסות לפנות אליו ולחכות לתשובה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">נסענו ועצרנו ב- טוראנגי, 
-    שם אכלנו צהרים – סנדביצ'ים, לא בורגר קינג שהיה שם, ובכלל, נפוץ הרבה יותר באי 
-    הצפוני מאשר בדרומי. אנחננו קוראים לבורגר קינג "מלך הקציצה" כדי 
-    שנוצרים-יהודים לא יבינו ויחשבו שאנחנו אוכלים חמץ בפסח. הישראלים ששמעו את 
-    הכינוי התלהבו מהביטוי החדש ואימצו אותו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">השמש שלטה בשמים ובאוטו היה 
-    ממש חם, אבל הקרה המשיכה, ובחוץ היתה רוח די חזקה ומאד קרה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">משם נסענו לאגם טאופו, ל-
-    </span><span dir="LTR">Tourist information</span><span lang="HE">, שם 
-    ניתקלתי בדמות מוכרת, בעצם בשתי דמויות מוכרות – הילה ואמא שלה. דיברתי איתן, 
-    אך שמרתי על פאסון של קרירות, לא רציתי שיחברו אלינו מחדש. בעיקר פחדתי להפגיש 
-    אותן עם גונן – שלא יכעס. הן הגיבו בקרירות משלהן, אבל החלפנו חוויות. הן סיפרו 
-    שהיו עם דני ויקירה ועם 2 הבחורות הצפוניות מהסדר, יעל ותמר. הן בדיוק סיימו 
-    לצנוח והן עשו גם את טרק הר הגעש. הן היו בדרכן לנאפייר, עיר במזרח האי הצפוני.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">חזרתי לאוטו וסיפרתי הכל 
-    לגונן. הוא דווקא רצה לפגוש אותן, להשוויץ בפניהן שהכיר בחורה בלעדיהן – להוכיח 
-    להילה שהוא צדק שהיא ייבשה אותנו ובלעדיה יש יותר אקשן. הוא התאכזב כשאמרתי לו 
-    שהן המשיכו לדרכן, אך שמח לשמוע שדני עדיין נשאר כאן כדי לצנוח למחרת.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הסתובבנו בעיר (עוד סניף של 
-    בורגר קינג) ושמנו פעמינו למעיינות החמים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">במעיינות החמים הגענו 
-    לרגיעה. הכניסה עולה 8$</span><span dir="LTR">NZ</span><span lang="HE"> 
-    הרגילים. יש שם 2 בריכות. בחמה מביניהן היו מים די פושרים, כך שיכלנו להשאר שם 
-    שעות בלי קשיי נשימה. ציחקקנו לנו כשעתיים וחזרנו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">שמנו פעמינו לחניון, שם 
-    אנחנו נמצאים עתה. ראינו את המכונית של דני, הוא בדיוק יצא. צפצפנו לו ונפגשנו, 
-    צוחקים כחברים ותיקים שלא נפגשו מזמן. יקירה עזבה עם יתר הבנות, מה ששימח אותנו 
-    מעט יותר – ערב גברים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הצטרפנו אליו לפאב המומלץ – 
-    "</span><span dir="LTR">Holy cow</span><span lang="HE">". אנחנו בכלל חשבנו 
-    לחזור ל- </span><span dir="LTR">Turangi</span><span lang="HE"> כדי להתחיל 
-    מוקדם בבוקר עם טרק הר הגעש, הטונגררו. דני שכנע אותנו לנסות את הפאב ואמר שחיי 
-    הלילה כאן שוקקים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הגענו לפאב, היה די ריק, אך 
-    היה עדיין מוקדם. דני וגונן נרשמו לתחרות </span><span dir="LTR">pool</span><span lang="HE">. 
-    המנצח זוכה ב- 50$</span><span dir="LTR">NZ</span><span lang="HE"> הזמנות 
-    חינם מהבר. המשחק נערך סימולטנית על 2 שולחנות – 2 המשתתפים משחקים לבד ומנסים 
-    לנקות את השולחן כמה שיותר מהר. המנצח הוא כמובן זה שמנקה את השולחן ראשון, 
-    למעט חריגה אחת – מי שמכניס את הכדור השחור לא אחרון – מפסיד.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">דני שיחק היטב אך הפסיד. 
-    גונן הוגרל לשחק מול חנון רציני. גונן הכניס רק את הכדור הראשון כשהודיעו לו 
-    שהוא ניצח – החנון הכניס את הכדור השחור. בסיבוב אח"כ גונן נתן את תורו לדני 
-    שהוגרל לשחק שוב מול השחקן שניצח אותו בסיבוב הראשון. דני שיחק טוב יותר מבפעם 
-    הקודמת אך הפסיד כשנשאר לו רק להכניס את הכדור השחור. הימרתי שהשחקן שניצח את 
-    דני ינצח בתחרות כולה. דני הימר על איזה שחקן עם פוזה ואיכשהו הצלחנו לשכנע את 
-    גונן להשתתף בהימור – הוא הימר על שחקן פורטוריקני קטן. זכיתי בהתערבות וגונן 
-    התמרמר שהוא נכנס להתערבות בניגוד לרצונו ובקושי שילם את חלקו – 2.5 שקל!!</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">עד אז הרחבה התמלאה. באו כל 
-    הישראלים מהחווה, כולל כל הישראליות וכולל דורי, הישראלי הנחמד שנפרד מהבחורות 
-    איתן טייל. התייעצתי עם גונן ונראה לנו שניקח אותו איתנו. אנחנו אמורים לפגוש 
-    אותו היום באותו פאב.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אח"כ יצא לי להכיר מישהי. 
-    הכרתי אותה בשיטה המקומית – הבחורה שרוצה אותך רוקדת לידך עם הגב אליך. אתה 
-    פשוט מצמיד אותה, כשאחוריה נוגעות במבושיך. לאחר כמה דקות ריקוד היא הסתכלה עלי 
-    ואמרתי "היי" בחיוך. ככה זה עובד כאן, בדומה למועדון הפטיש בארץ.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">דיברתי איתה, שמה שרה והיא 
-    מעיר אחרת, </span><span dir="LTR">Palmerston North</span><span lang="HE">. 
-    עיר בדרך בין </span><span dir="LTR">Wellington</span><span lang="HE"> ל-
-    </span><span dir="LTR">Taupo</span><span lang="HE">. הן באו 3 חברות לכאן כי 
-    לאחת מהן יש ראיון עבודה והאחרות הצטרפו כי הן בחופש. היא בת 22, מורה לאנגלית 
-    במקצועה. פרצוף יפה, מעט מנומש, חייכני. די נמוכה, 160 ס"מ.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">דיברנו וצחקנו. התנצלתי על 
-    יכולתי הדלה בריקוד – היא לא הכחישה. רציתי ללכת איתה, היא רצתה לחכות 
-    לחברותיה. חברתה השמנה ניסתה להתחיל עם גונן ודני אך הם אפילו לא התייחסו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">גונן היה די רגוע והתאמן על 
-    פוזות ג'יימס דין ליד הקיר. שרה זיהתה את החיקוי מיד ואני שמתי לב שהוא ממש 
-    נכנס לתוך הדמות. אני מקווה שלא יותר מדי כי הוא הנהג.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בסוף הערב הלכנו – 3 
-    הבחורות ו- 3 גברים שהן אספו לחדרן במלון. השמנה תפסה גבר אנגלי, מפגר ומצחיק. 
-    השלישית, שנראתה טוב תפסה בחור אמריקאי.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">היה די מצחיק כשנכנסנו 
-    לחדרן – 3 גברים, 3 בחורות ו- 2 מיטות. אחת זוגית ואחת רגילה, אחת ליד השניה 
-    באותו החדר.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">זוג אחד ירד לאוטו. אני 
-    ושרה במיטת היחיד והשמנה והאנגלי במיטה הזוגית לידינו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בבוקר הן התעוררו מוקדם 
-    והתארגנו לנסיעה. הן נפרדו מהבנים, ביניהם אני, בחביבות, אך לא ברגשנות מיותרת. 
-    נפרדתי משרה ושמחתי לחזור מוקדם, לפני 9:00 לגונן ודני.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">גונן ודני חזרו בלילה 
-    מהבילוי והגיעו לחניון. דני לפתע גילה ששכח את המפתחות בתוך הוואן. גונן חשד 
-    שזה רק תירוץ כדי שדני יישן איתו באוטו שלנו והיה מוכן לשלם את המחיר. דני 
-    התעקש לפרוץ לוואן והם אילתרו ברזלים מהמטריה שהייתה לנו ושמימלא התפרקה. גונן 
-    ניסה לעזור עם האולר הקפיצי שלו. בעודם מנסים לפרוץ לוואן, עברה ניידת משטרה. 
-    גונן ודני לא הפסיקו בעבודתם והמשטרה לא עצרה אותם ואפילו לא עצרה לידם. הם 
-    נדהמו – משטרת צעצוע. "אולי הם פחדו כי הייתי עם סכין ביד" שיער גונן.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">לא ידעתי מה לעשות עם היום 
-    הזה. את טרק הר הגעש פספסנו בגללי. קיבלנו טיפ על מקומות נחמדים באיזור ונסענו 
-    לשם.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">קודם כל עצרנו ב- </span>
-<span dir="LTR">
-<a href="images/pictures/new-zealand/20020403_huka_falls.jpg" target="_blank">
-    Huka falls</a></span> <span lang="HE">– יש שם מפל שאינו גבוה, פחות מ- 10 מטר 
-    אבל המים שוצפים וקוצפים. מזכיר את מפלי הניאגרה כך שזה מרשים מאד.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">משם המשכנו לאיזור טרמי. יש 
-    מסלול מעגלי בין בורות מעושנים שבתוכם בוץ רותח. ריח ביצים סרוחות באוויר.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הרעב הציק לנו. דיברנו 
-    והחלטנו על עסקת פיצה האט. בקושי סחבתי אותם הלאה ל- </span><span dir="LTR">
-    Aratiatia dam</span> <span lang="HE">– הסכר שנבנה על הנהר הארוך </span>
-<span dir="LTR">Waikata</span><span lang="HE">, הארוך בנהרות ניו-זילנד. הסכר 
-    נפתח מדי יום ב- 12:00. באנו לראות זאת – נחמד. כל המים נשפכים להמשך הנהר 
-    וממלאים אותו במהירות.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">משם נסענו לפיצה האט. גונן 
-    נסע לאט והעיק. אני שיתפתי איתו פעולה. דני נגנב. כשגונן בא לעצור בתחנת דלק 
-    אעפ"י שהמיכל היה ¾ מלא – דני כמעט צעק. הגענו לפיצה האט והתחלנו לטרוף.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">לאחר כחצי שעה נמרחנו 
-    בכסאותנו מפוצצים. גונן פנטז שהוא בכסא גלגלים ושלוקחים אותו למיטה כי הוא לא 
-    יכול לקום. פגשנו שם את אריאל ואפרת.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הלכנו לישון בחניון, תשושים 
-    מרוב אוכל, חסרי אנרגיה, שכן כל טיפת אנרגיה בגופנו התגייסה לסייע בעיכול 
-    כמויות האוכל הנכבדות. כך ישנו מ- 13:30 עד 16:00.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">עתה נשים פעמינו למלא את 
-    הבר שלנו באוטו ואח"כ למעיינות החמים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><span lang="HE"> </span></p></td>
-<td align="center" height="333" rowspan="2" style="     " valign="top" width="187">
-
-<img border="0" height="118" onclick="openLightbox(this.src)" src="../images/20020403_lake_taupo.jpg" title="לחץ להגדלה" width="183"/><p>
-<font color="#660099">אגם טאופו</font></p>
-<p>
-     </p>
-<p>
-
-<img border="0" height="125" onclick="openLightbox(this.src)" src="../images/20020403_huka_falls_2.jpg" title="לחץ להגדלה" width="180"/></p>
-<p>
-
-<img border="0" height="124" onclick="openLightbox(this.src)" src="../images/20020403_huka_falls.jpg" title="לחץ להגדלה" width="180"/></p>
-<p><font color="#660099">מפלי הוקה</font></p>
-<p> </p></td>
-</tr>
-<tr>
-<td height="67" style="     " valign="top" width="314">
-<b>
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button104.gif" title="לחץ להגדלה" width="59"/></b></td>
-<td height="67" style="     " valign="top" width="421">
-<p align="right"><b>
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button106.gif" title="לחץ להגדלה" width="59"/></b></p></td>
-</tr>
-</table>
-<p align="center">
-<!--webbot bot="Navigation" S-Type="sequence" S-Orientation="horizontal" S-Rendering="html" S-Bar="Brackets" S-Btn-Nml="[&lt;A HREF=&quot;#URL#&quot; TARGET=&quot;#TARGET#&quot; STYLE=&quot;{text-decoration: none;}&quot;&gt;#LABEL#&lt;/A&gt;]" S-Btn-Sel="[#LABEL#]" S-Btn-Sep="&amp;nbsp;" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><nobr>[<a href="index.html" style="{text-decoration: none;}" target="">התחלה</a>]</nobr> <nobr>[<a href="200110052040.html" style="{text-decoration: none;}" target="">דנמרק</a>]</nobr> <nobr>[<a href="20011006.html" style="{text-decoration: none;}" target="">הודו</a>]</nobr> <nobr>[<a href="20011030.html" style="{text-decoration: none;}" target="">נפאל</a>]</nobr> <nobr>[<a href="20011115.html" style="{text-decoration: none;}" target="">טרק סובב אנאפורנה</a>]</nobr> <nobr>[<a href="20011210.html" style="{text-decoration: none;}" target="">תאילנד</a>]</nobr> <nobr>[<a href="20020108.html" style="{text-decoration: none;}" target="">לאוס</a>]</nobr> <nobr>[<a href="20020123.html" style="{text-decoration: none;}" target="">צפון תאילנד</a>]</nobr> <nobr>[<a href="20020203.html" style="{text-decoration: none;}" target="">אוסטרליה</a>]</nobr> <nobr>[<a href="20020210.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי דרומי</a>]</nobr> <nobr>[<a href="20020326.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי צפוני</a>]</nobr> <nobr>[<a href="20020506.html" style="{text-decoration: none;}" target="">פיליפינים</a>]</nobr> <nobr>[<a href="20020603.html" style="{text-decoration: none;}" target="">קמבודיה</a>]</nobr><!--webbot bot="Navigation" i-checksum="33824" endspan --></p>
-<p><i><small>This site was last updated
-<!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%m/%d/%y" startspan -->07/17/03<!--webbot bot="Timestamp" i-checksum="12722" endspan --> </small></i>
-</p>
-</body>
+    <div class="nav-links">
+      <a href="20020402.html">← הקודם</a>
+      <a href="20020405.html">הבא →</a>
     </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-text">
+      <div class="meta-line">
+        <span class="date-big">03</span>
+        <div>
+          <div class="date-details">אפריל 2002</div>
+          <span class="country-badge">ניו-זילנד, אי צפוני</span>
+        </div>
+      </div>
+      <h1 class="title">שוכב על שפת האגם</h1>
+      <div class="title-divider"></div>
+    </div>
+    <img class="hero-map" src="../images/New_Zealand_north_island.gif" alt="ניו-זילנד, אי צפוני">
+  </div>
+
+  <div class="content">
+    <p>שוכב על שפת האגם</p>
+
+    <p>אגם טאופו הוא האגם הגדול באגמי ניו-זילנד. להערכתי שטחו גדול פי 10 משטחה של הכנרת. האגם יפה, רחב ידים. ברקע נראים הרים גבוהים, מושלגים. לא צילמנו כי גונן לא מתלהב כמוני.</p>
+
+    <p>אתמול קמנו בחווה. מיהרנו לנטוש, בעיקר בגלל הישראליות, שהיו בסדר איתנו ואפילו הכינו לנו קפה, אך חברתן לא נעמה לנו, וזה בלשון המעטה.</p>
+
+    <p>נפרדנו לא לפני שהאמא של המשפחה ניסתה שוב לשכנע אותי לפנות לישוע בכדי להגיע לאמת. האמת, רציתי להגיע לאגם טאופו, אז הבטחתי לנסות לפנות אליו ולחכות לתשובה.</p>
+
+    <p>נסענו ועצרנו ב- טוראנגי, שם אכלנו צהרים – סנדביצ'ים, לא בורגר קינג שהיה שם, ובכלל, נפוץ הרבה יותר באי הצפוני מאשר בדרומי. אנחננו קוראים לבורגר קינג "מלך הקציצה" כדי שנוצרים-יהודים לא יבינו ויחשבו שאנחנו אוכלים חמץ בפסח. הישראלים ששמעו את הכינוי התלהבו מהביטוי החדש ואימצו אותו.</p>
+
+    <p>השמש שלטה בשמים ובאוטו היה ממש חם, אבל הקרה המשיכה, ובחוץ היתה רוח די חזקה ומאד קרה.</p>
+
+    <p>משם נסענו לאגם טאופו, ל- Tourist information, שם ניתקלתי בדמות מוכרת, בעצם בשתי דמויות מוכרות – הילה ואמא שלה. דיברתי איתן, אך שמרתי על פאסון של קרירות, לא רציתי שיחברו אלינו מחדש. בעיקר פחדתי להפגיש אותן עם גונן – שלא יכעס. הן הגיבו בקרירות משלהן, אבל החלפנו חוויות. הן סיפרו שהיו עם דני ויקירה ועם 2 הבחורות הצפוניות מהסדר, יעל ותמר. הן בדיוק סיימו לצנוח והן עשו גם את טרק הר הגעש. הן היו בדרכן לנאפייר, עיר במזרח האי הצפוני.</p>
+
+    <p>חזרתי לאוטו וסיפרתי הכל לגונן. הוא דווקא רצה לפגוש אותן, להשוויץ בפניהן שהכיר בחורה בלעדיהן – להוכיח להילה שהוא צדק שהיא ייבשה אותנו ובלעדיה יש יותר אקשן. הוא התאכזב כשאמרתי לו שהן המשיכו לדרכן, אך שמח לשמוע שדני עדיין נשאר כאן כדי לצנוח למחרת.</p>
+
+    <p>הסתובבנו בעיר (עוד סניף של בורגר קינג) ושמנו פעמינו למעיינות החמים.</p>
+
+    <p>במעיינות החמים הגענו לרגיעה. הכניסה עולה 8$NZ הרגילים. יש שם 2 בריכות. בחמה מביניהן היו מים די פושרים, כך שיכלנו להשאר שם שעות בלי קשיי נשימה. ציחקקנו לנו כשעתיים וחזרנו.</p>
+
+    <div class="photo-pair">
+      <div class="photo-item">
+        <img src="../images/20020322_fishermen.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020403_lake_taupo.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">אגם טאופו</div>
+      </div>
+    </div>
+
+    <p>שמנו פעמינו לחניון, שם אנחנו נמצאים עתה. ראינו את המכונית של דני, הוא בדיוק יצא. צפצפנו לו ונפגשנו, צוחקים כחברים ותיקים שלא נפגשו מזמן. יקירה עזבה עם יתר הבנות, מה ששימח אותנו מעט יותר – ערב גברים.</p>
+
+    <p>הצטרפנו אליו לפאב המומלץ – "Holy cow". אנחנו בכלל חשבנו לחזור ל- Turangi כדי להתחיל מוקדם בבוקר עם טרק הר הגעש, הטונגררו. דני שכנע אותנו לנסות את הפאב ואמר שחיי הלילה כאן שוקקים.</p>
+
+    <p>הגענו לפאב, היה די ריק, אך היה עדיין מוקדם. דני וגונן נרשמו לתחרות pool. המנצח זוכה ב- 50$NZ הזמנות חינם מהבר. המשחק נערך סימולטנית על 2 שולחנות – 2 המשתתפים משחקים לבד ומנסים לנקות את השולחן כמה שיותר מהר. המנצח הוא כמובן זה שמנקה את השולחן ראשון, למעט חריגה אחת – מי שמכניס את הכדור השחור לא אחרון – מפסיד.</p>
+
+    <p>דני שיחק היטב אך הפסיד. גונן הוגרל לשחק מול חנון רציני. גונן הכניס רק את הכדור הראשון כשהודיעו לו שהוא ניצח – החנון הכניס את הכדור השחור. בסיבוב אח"כ גונן נתן את תורו לדני שהוגרל לשחק שוב מול השחקן שניצח אותו בסיבוב הראשון. דני שיחק טוב יותר מבפעם הקודמת אך הפסיד כשנשאר לו רק להכניס את הכדור השחור. הימרתי שהשחקן שניצח את דני ינצח בתחרות כולה. דני הימר על איזה שחקן עם פוזה ואיכשהו הצלחנו לשכנע את גונן להשתתף בהימור – הוא הימר על שחקן פורטוריקני קטן. זכיתי בהתערבות וגונן התמרמר שהוא נכנס להתערבות בניגוד לרצונו ובקושי שילם את חלקו – 2.5 שקל!!</p>
+
+    <p>עד אז הרחבה התמלאה. באו כל הישראלים מהחווה, כולל כל הישראליות וכולל דורי, הישראלי הנחמד שנפרד מהבחורות איתן טייל. התייעצתי עם גונן ונראה לנו שניקח אותו איתנו. אנחנו אמורים לפגוש אותו היום באותו פאב.</p>
+
+    <p>אח"כ יצא לי להכיר מישהי. הכרתי אותה בשיטה המקומית – הבחורה שרוצה אותך רוקדת לידך עם הגב אליך. אתה פשוט מצמיד אותה, כשאחוריה נוגעות במבושיך. לאחר כמה דקות ריקוד היא הסתכלה עלי ואמרתי "היי" בחיוך. ככה זה עובד כאן, בדומה למועדון הפטיש בארץ.</p>
+
+    <p>דיברתי איתה, שמה שרה והיא מעיר אחרת, Palmerston North. עיר בדרך בין Wellington ל- Taupo. הן באו 3 חברות לכאן כי לאחת מהן יש ראיון עבודה והאחרות הצטרפו כי הן בחופש. היא בת 22, מורה לאנגלית במקצועה. פרצוף יפה, מעט מנומש, חייכני. די נמוכה, 160 ס"מ.</p>
+
+    <p>דיברנו וצחקנו. התנצלתי על יכולתי הדלה בריקוד – היא לא הכחישה. רציתי ללכת איתה, היא רצתה לחכות לחברותיה. חברתה השמנה ניסתה להתחיל עם גונן ודני אך הם אפילו לא התייחסו.</p>
+
+    <p>גונן היה די רגוע והתאמן על פוזות ג'יימס דין ליד הקיר. שרה זיהתה את החיקוי מיד ואני שמתי לב שהוא ממש נכנס לתוך הדמות. אני מקווה שלא יותר מדי כי הוא הנהג.</p>
+
+    <p>בסוף הערב הלכנו – 3 הבחורות ו- 3 גברים שהן אספו לחדרן במלון. השמנה תפסה גבר אנגלי, מפגר ומצחיק. השלישית, שנראתה טוב תפסה בחור אמריקאי.</p>
+
+    <div class="photo-pair">
+      <div class="photo-item">
+        <img src="../images/20020403_huka_falls_2.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020403_huka_falls.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">מפלי הוקה</div>
+      </div>
+    </div>
+
+    <p>היה די מצחיק כשנכנסנו לחדרן – 3 גברים, 3 בחורות ו- 2 מיטות. אחת זוגית ואחת רגילה, אחת ליד השניה באותו החדר.</p>
+
+    <p>זוג אחד ירד לאוטו. אני ושרה במיטת היחיד והשמנה והאנגלי במיטה הזוגית לידינו.</p>
+
+    <p>בבוקר הן התעוררו מוקדם והתארגנו לנסיעה. הן נפרדו מהבנים, ביניהם אני, בחביבות, אך לא ברגשנות מיותרת. נפרדתי משרה ושמחתי לחזור מוקדם, לפני 9:00 לגונן ודני.</p>
+
+    <p>גונן ודני חזרו בלילה מהבילוי והגיעו לחניון. דני לפתע גילה ששכח את המפתחות בתוך הוואן. גונן חשד שזה רק תירוץ כדי שדני יישן איתו באוטו שלנו והיה מוכן לשלם את המחיר. דני התעקש לפרוץ לוואן והם אילתרו ברזלים מהמטריה שהייתה לנו ושמימלא התפרקה. גונן ניסה לעזור עם האולר הקפיצי שלו. בעודם מנסים לפרוץ לוואן, עברה ניידת משטרה. גונן ודני לא הפסיקו בעבודתם והמשטרה לא עצרה אותם ואפילו לא עצרה לידם. הם נדהמו – משטרת צעצוע. "אולי הם פחדו כי הייתי עם סכין ביד" שיער גונן.</p>
+
+    <p>לא ידעתי מה לעשות עם היום הזה. את טרק הר הגעש פספסנו בגללי. קיבלנו טיפ על מקומות נחמדים באיזור ונסענו לשם.</p>
+
+    <p>קודם כל עצרנו ב- <a onclick="openLightbox('../images/20020403_huka_falls.jpg')"> Huka falls</a> – יש שם מפל שאינו גבוה, פחות מ- 10 מטר אבל המים שוצפים וקוצפים. מזכיר את מפלי הניאגרה כך שזה מרשים מאד.</p>
+
+    <p>משם המשכנו לאיזור טרמי. יש מסלול מעגלי בין בורות מעושנים שבתוכם בוץ רותח. ריח ביצים סרוחות באוויר.</p>
+
+    <p>הרעב הציק לנו. דיברנו והחלטנו על עסקת פיצה האט. בקושי סחבתי אותם הלאה ל- Aratiatia dam – הסכר שנבנה על הנהר הארוך Waikata, הארוך בנהרות ניו-זילנד. הסכר נפתח מדי יום ב- 12:00. באנו לראות זאת – נחמד. כל המים נשפכים להמשך הנהר וממלאים אותו במהירות.</p>
+
+    <p>משם נסענו לפיצה האט. גונן נסע לאט והעיק. אני שיתפתי איתו פעולה. דני נגנב. כשגונן בא לעצור בתחנת דלק אעפ"י שהמיכל היה ¾ מלא – דני כמעט צעק. הגענו לפיצה האט והתחלנו לטרוף.</p>
+
+    <p>לאחר כחצי שעה נמרחנו בכסאותנו מפוצצים. גונן פנטז שהוא בכסא גלגלים ושלוקחים אותו למיטה כי הוא לא יכול לקום. פגשנו שם את אריאל ואפרת.</p>
+
+    <p>הלכנו לישון בחניון, תשושים מרוב אוכל, חסרי אנרגיה, שכן כל טיפת אנרגיה בגופנו התגייסה לסייע בעיכול כמויות האוכל הנכבדות. כך ישנו מ- 13:30 עד 16:00.</p>
+
+    <p>עתה נשים פעמינו למלא את הבר שלנו באוטו ואח"כ למעיינות החמים.</p>
+
+
+  </div>
+
+  <div class="nav-cards">
+    <a href="20020405.html" class="nav-card">
+      <div class="label">הבא →</div>
+      <div class="card-title">טרק הר הגעש</div>
+    </a>
+    <a href="20020402.html" class="nav-card">
+      <div class="label">← הקודם</div>
+      <div class="card-title">גונן חולב</div>
+    </a>
+  </div>
+
+  <div class="country-nav">
+    <a href="200110052040.html">דנמרק</a>
+    <a href="20011006.html">הודו</a>
+    <a href="20011030.html">נפאל</a>
+    <a href="20011115.html">טרק אנאפורנה</a>
+    <a href="20011210.html">תאילנד</a>
+    <a href="20020108.html">לאוס</a>
+    <a href="20020123.html">צפון תאילנד</a>
+    <a href="20020203.html">אוסטרליה</a>
+    <a href="20020210.html">ניו-זילנד, אי דרומי</a>
+    <a href="20020326.html">ניו-זילנד, אי צפוני</a>
+    <a href="20020506.html">פיליפינים</a>
+    <a href="20020603.html">קמבודיה</a>
   </div>
 
   <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
-    <img id="lightbox-img" src="" alt="Enlarged">
+    <img id="lightbox-img" src="" alt="">
   </div>
-
   <script>
     function openLightbox(src) {
       document.getElementById('lightbox-img').src = src;

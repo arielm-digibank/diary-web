@@ -3,259 +3,355 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>אצל ברוס המילטון, וואנאקה, ניו-זילנד</title>
+  <title>השיט במילפורד סאונדס</title>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap" rel="stylesheet">
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background-color: #f8fafc;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0; padding: 20px; color: #334155;
+      background: #ffffff;
+      font-family: 'Heebo', sans-serif;
+      color: #1a1a2e;
+      line-height: 1.9;
     }
-    .container {
-      max-width: 800px; margin: 0 auto; background: #ffffff;
-      padding: 35px; border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06); line-height: 1.8;
+    .top-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #eee;
+      padding: 12px 30px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.9rem;
     }
-    .header {
-      border-bottom: 2px solid #e2e8f0; padding-bottom: 15px;
-      margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center;
+    .top-nav a {
+      color: #1d4ed8; text-decoration: none; font-weight: 600;
     }
-    .header h1 { margin: 0; color: #0f172a; font-size: 1.8rem; }
-    .home-link { color: #2563eb; text-decoration: none; font-weight: 600; }
-    .content img {
-      float: right; margin: 0 0 15px 20px; max-width: 320px; height: auto;
-      border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      cursor: pointer; transition: transform 0.2s;
+    .top-nav a:hover { text-decoration: underline; }
+    .top-nav .nav-links { display: flex; gap: 20px; }
+    .hero {
+      max-width: 900px; margin: 0 auto;
+      padding: 50px 40px 30px;
+      display: flex; align-items: flex-start; gap: 30px;
     }
-    .content img:hover { transform: scale(1.02); }
-    .content::after { content: ""; clear: both; display: table; }
-    a { color: #2563eb; }
+    .hero-text { flex: 1; }
+    .hero-map {
+      width: 120px; height: auto; object-fit: contain;
+      flex-shrink: 0; opacity: 0.85;
+    }
+    .meta-line {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+    }
+    .date-big {
+      font-size: 3.5rem; font-weight: 900; color: #e5e7eb; line-height: 1;
+    }
+    .date-details { font-size: 0.9rem; color: #6b7280; }
+    .country-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      border-radius: 20px; padding: 4px 14px;
+      font-size: 0.8rem; color: #1d4ed8; font-weight: 600;
+    }
+    .title {
+      font-size: 2.2rem; font-weight: 900; color: #111827;
+      margin: 20px 0 8px; line-height: 1.3;
+    }
+    .date-subtitle {
+      font-size: 1.1rem; font-weight: 300; color: #4b5563;
+      margin-bottom: 16px;
+    }
+    .title-divider {
+      width: 60px; height: 4px; background: #1d4ed8; border-radius: 2px;
+    }
+    .content {
+      max-width: 900px; margin: 30px auto; padding: 0 40px; font-size: 1.05rem;
+    }
+    .content p { margin-bottom: 18px; }
+    .content a {
+      color: #1d4ed8; cursor: pointer;
+      text-decoration: underline;
+      text-decoration-color: rgba(29,78,216,0.3);
+    }
+    .photo-block {
+      margin: 30px 0; border-radius: 12px; overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    .photo-block img {
+      width: 100%; display: block; cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .photo-block img:hover { transform: scale(1.01); }
+    .photo-block .caption {
+      padding: 12px 16px; font-size: 0.85rem; color: #6b7280;
+      background: #f9fafb; border-top: 1px solid #f3f4f6;
+    }
+    .photo-pair {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 14px; margin: 30px 0;
+    }
+    .photo-pair .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-pair .photo-item img {
+      width: 100%; height: 200px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-pair .photo-item img:hover { transform: scale(1.03); }
+    .photo-pair .photo-item .caption {
+      padding: 8px 12px; font-size: 0.8rem; color: #6b7280; background: #f9fafb;
+    }
+    .photo-trio {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px; margin: 30px 0;
+    }
+    .photo-trio .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-trio .photo-item img {
+      width: 100%; height: 180px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-trio .photo-item img:hover { transform: scale(1.03); }
+    .photo-trio .photo-item .caption {
+      padding: 8px 10px; font-size: 0.78rem; color: #6b7280; background: #f9fafb;
+    }
+    .nav-cards {
+      max-width: 900px; margin: 50px auto 20px; padding: 0 40px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .nav-card {
+      padding: 20px 24px; border: 1px solid #e5e7eb; border-radius: 12px;
+      text-decoration: none; color: inherit; transition: all 0.2s;
+    }
+    .nav-card:hover {
+      border-color: #1d4ed8; box-shadow: 0 4px 12px rgba(29,78,216,0.1);
+    }
+    .nav-card .label { font-size: 0.8rem; color: #6b7280; margin-bottom: 4px; }
+    .nav-card .card-title { font-weight: 700; font-size: 1rem; color: #1d4ed8; }
+    .supplements {
+      margin-top: 35px; padding: 25px 30px;
+      background: #f9fafb; border-radius: 12px; border: 1px solid #e5e7eb;
+    }
+    .supplements h3 {
+      font-size: 1.1rem; font-weight: 700; margin-bottom: 14px; color: #374151;
+    }
+    .supplements ol { padding-right: 20px; }
+    .supplements li { margin-bottom: 10px; color: #4b5563; }
+    .country-nav {
+      max-width: 900px; margin: 20px auto 40px; padding: 0 40px;
+      display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+    }
+    .country-nav a {
+      padding: 6px 14px; border-radius: 20px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      color: #1d4ed8; text-decoration: none;
+      font-size: 0.82rem; font-weight: 600;
+      transition: all 0.2s;
+    }
+    .country-nav a:hover {
+      background: #1d4ed8; color: white; border-color: #1d4ed8;
+    }
     .lightbox {
       display: none; position: fixed; z-index: 9999;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.9); justify-content: center; align-items: center; cursor: pointer;
+      background: rgba(0,0,0,0.92);
+      justify-content: center; align-items: center; cursor: pointer;
     }
-    .lightbox img { max-width: 90%; max-height: 90%; border-radius: 8px; }
+    .lightbox img { max-width: 92%; max-height: 92%; border-radius: 8px; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h1>אצל ברוס המילטון, וואנאקה, ניו-זילנד</h1>
-      <a href="../index.html" class="home-link">🏠 לעמוד הראשי</a>
+  <div class="top-nav">
+    <div class="nav-links">
+      <a href="../index.html">עמוד ראשי</a>
     </div>
-    <div class="content">
-      <body>
-<table cellpadding="0" cellspacing="0" height="80" width="954">
-<tr>
-<td align="center" height="80" width="277">
-<marquee style="font-size: 18pt; color: #800080">8.3.02 - 19:40</marquee></td>
-<td align="center" height="80" width="667">
-<!--webbot bot="Navigation" s-type="banner" s-rendering="graphics" S-Orientation B-Include-Home B-Include-Up U-Page S-Target startspan --><!--webbot bot="Navigation" i-checksum="7309" endspan --></td>
-<td align="center" height="80" width="10">
-
-<img border="0" height="166" onclick="openLightbox(this.src)" src="../images/New_Zealand_south_island.gif" title="לחץ להגדלה" width="165"/></td>
-</tr>
-<tr>
-<td colspan="3" height="1" style=" " width="954"></td>
-</tr>
-</table><table cellpadding="0" cellspacing="0" width="100%">
-<tr>
-<td align="right" style=" ">
-<h4>
-<marquee style="font-size: 24pt; color: #008080">השיט במילפורד סאונדס</marquee></h4>
-<p> </p></td>
-</tr>
-</table>
-<table cellpadding="0" cellspacing="0" height="333" width="953">
-<tr>
-<td height="333" rowspan="2" style="       " valign="top" width="140"> <!--webbot bot="Navigation" S-Type="sequence" S-Orientation="vertical" S-Rendering="graphics" S-Theme="blocks 000" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><!--webbot bot="Navigation" i-checksum="23763" endspan --><p style="text-align: center">
-
-<img border="0" height="190" onclick="openLightbox(this.src)" src="../images/20020307_waterfall.jpg" title="לחץ להגדלה" width="127"/></p>
-<p style="text-align: center">
-<font color="#660099">מפל הצ'אזם</font></p>
-<p style="text-align: center">
-
-<img border="0" height="195" onclick="openLightbox(this.src)" src="../images/20020307_waterfall_2.jpg" title="לחץ להגדלה" width="131"/></p>
-<p style="text-align: center">
-<font color="#660099">אנחנו במפל הצ'אזם</font></p>
-<p style="text-align: center">
-
-<img border="0" height="194" onclick="openLightbox(this.src)" src="../images/20020307_waterfall_3.jpg" title="לחץ להגדלה" width="135"/></p>
-<p style="text-align: center">
-<font color="#660099">מפל הצ'אזם</font></p>
-<p style="text-align: center">
-     </p>
-<p style="text-align: center">
-
-<img border="0" height="207" onclick="openLightbox(this.src)" src="../images/20020307_malik&amp;tall_waterfall.jpg" title="לחץ להגדלה" width="137"/></p>
-<p style="text-align: center">
-
-<img border="0" height="253" onclick="openLightbox(this.src)" src="../images/20020307_waterfall_4.jpg" title="לחץ להגדלה" width="126"/></p>
-<p style="text-align: center">
-<font color="#660099">המפל בהוליפורד</font></p>
-</td>
-<td height="333" rowspan="2" style="     " valign="top" width="1"></td>
-<td colspan="2" height="266" style="     " valign="top" width="735">
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אחרי מקלחת, אחרי 3 ימים 
-    ללא מקלחת, בא יומן.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">כשהייתי בחניון במילפורד, 
-    גונן נטש מוקדם וישן. כמויות השינה שהוא מסוגל לעכל הן מדהימות. אפשר לשאול 
-    אותו למה והוא יביא לך איזה תירוץ לא קשור. אולי הנהיגה מעייפת אותו. ב- 80% 
-    מהדרך הוא נוהג.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אני הסתובבתי עם הילה. היא 
-    כאמור הרגישה לא טוב אך טיפלה בעצמה. היא גם הקיאה וגם ביקרה בשירותים 3 פעמים. 
-    ביתר הערב דיברתי איתה במועדון החמוד (אך המאוכלס ב- 90% גברים) שליד החניון. 
-    היא חבשה משקפים אחרי שהורידה עדשות וביישה אותי. בטח האנשים חשבו שאנחנו יחד.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">נרדמתי באוטו מאוחר. השינה 
-    בשלושה לכאורה לא נוחה – 2 מורידים מעט מושב מקדימה והשלישי מתקפל או מוריד את 
-    המושב שלו מאחור. להפתעתינו, ב- 2 המקרים שניסינו זאת ישנו מצוין וגם עכשיו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">קמנו ב- 8:00, הלכנו לשייט 
-    ב- 9:00.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">היה מעונן, אך לא ירד גשם. 
-    בשייט שטנו החוצה מהמפרץ לים וראינו נוף מדהים ופראי. רוחב המפרץ כ- 300 מטר. 
-    גובה ההרים כ- 1000 מטר בממוצע והשיפוע שלהם כ- 70 מעלות, כלומר ממש צוקים 
-    המתנשאים מעליך. בדר"כ אני לא אוהב שמתנשאים מעלי אבל הפעם זה היה אחרת.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">היו כ- 2 מפלים עמוסי מים 
-    שגובה כל אחד מהם 50 מטר ועוד אחד בגובה מאות מטרים אך דקיק. כשהיינו בפעם 
-    הקודמת וירד גשם – מפלים נפלו מכל הכיוונים. עתה ניתן היה לראות את הקרחות 
-    במדרונות ההרים שמשם מתנקזים המים בזמן גשמים. הגענו לקצה המפרץ והסתובבנו 
-    חזרה. אורך המפרץ הוא כמה קילומטרים אל תוך היבשה. בדרך חזרה עצרנו מתחת למפל 
-    וחטפנו סילוני מים. ראינו כמה כלבי ים נחים על סלע וכמה דולפינים משייטים. סה"כ 
-    היה יפה ושווה את המחיר – 45$</span><span dir="LTR">NZ</span><span lang="HE">.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">משם נסענו לאיטנו ל- </span>
-<span dir="LTR">Te-ano</span><span lang="HE">. עצרנו בדרך ב- </span>
-<span dir="LTR">Chasm</span><span lang="HE">. מפל יפהפה, מרחק 15 דקות 
-    מהכביש. ירדנו ל- </span><span dir="LTR">Hollyford</span><span lang="HE"> 
-    וראינו אגם
-    <a href="images/pictures/new-zealand/20020307_waterfall_4.jpg" target="_blank">
-    ומפל בגובה 100 מטר</a> (17 ק"מ מהכביש הראשי) ותיצפתנו עליו מרחוק, אבל הוא 
-    היה מרשים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">חזרנו והלכנו ל- </span>
-<span dir="LTR">tourist information</span><span lang="HE"> ב- </span>
-<span dir="LTR">Te-ano</span><span lang="HE">. שם ראינו שטרק הקפלר מלא 
-    והתחזית למחרת – גשום.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">מה נעשה?. המשכנו ונסענו 
-    הלאה, כ- 20 ק"מ דרומית מערב ל- </span><span dir="LTR">Manapouri</span><span lang="HE">, 
-    שם יש אגם. אכלנו שם. גונן קנה 2 חתיכות נקניק שינקיין והתלהב מעצמו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">באותו בוקר, לפני ההפלגה 
-    נתתי לגונן ולהילה כדורים נגד בחילה שנשארו עוד מתאילנד. בדיעבד, לא היה בהם 
-    צורך, אך הם פעלו כרגיל, כלומר מיסטלו ועייפו אותם. אני נהגתי וגונן שכב מסטול 
-    עם עיניים חצי עצומות מאחורה ופלט שטויות. לפעמים אני חושב שהוא לא יודע איפה 
-    הוא נמצא ואיפה הוא היה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בלילה חזרנו ל- </span>
-<span dir="LTR">Te-ano</span><span lang="HE"> וישבנו באוטו מול האגם. עשינו 
-    ערב קריאת יומן. זה כבר הערב השני, בקודם קראנו פרק זמן של חודש וחצי – מאמצע 
-    נפאל ועד סוף האיים. בלילה הזה הקראתי את כל הודו, כלומר ההתחלה, ואין ספק שזה 
-    החלק המוצלח ביומן ואולי גם בטיול, ארוע רדף ארוע וצחוק רדף צחוק. אח"כ קראתי 
-    על ניו-זילנד לבקשת הילה וראיתי את ההבדל בשצף הארועים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בבוקר קמנו וניגשנו ל-
-    </span><span dir="LTR">Tourist information</span><span lang="HE">. השמים די 
-    עצרו בעצמם והעננים לא היו כ"כ רציניים. נראה שלא בטוח שירד גשם וחשבתי שאולי 
-    שווה ללכת לטרק הקפלר בכל זאת. כשהגענו ל- </span><span dir="LTR">tourist 
-    information</span><span lang="HE"> היה תור גדול ופתק שאומר שהטרק מלא, 
-    ויתרנו. התחזית זזה קצת וציפתה לגשם למחרת.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">נסענו ל- </span>
-<span dir="LTR">Queenstown</span><span lang="HE">, כ- 170 ק"מ חזרה בדרך ל-
-    </span><span dir="LTR">wanaka</span><span lang="HE">, לברוס ולמקלחת.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">ב- </span><span dir="LTR">
-    Queenstown</span><span lang="HE"> שכנעתי את גונן ללכת לאכול ארוחת צהרים 
-    בפיצה האט, שם הכל חופשי ומסוכן. לא הייתי כ"כ רעב, אך הגזמתי כרגיל, הפעם עם 
-    10 משולשי פיצה, מעט פסטה, סלט וצ'יפס וסיימתי עם 3 קינוחים גדולים – 2 קערות 
-    גלידה עם סירופ שוקולד וצלחת עם 3 חתיכות עוגה קטנות וערימה של מוס.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">התפוצצתי. אח"כ עלינו 
-    לתצפית הרכבל, אבל ברגל. עליה של 500 מטר שעשינו בקושי רב במצבינו. למעלה היתה
-    <a href="images/pictures/new-zealand/20020308_queenstown_top_view.jpg" target="_blank">
-    תצפית יפה על העיר</a>.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">ירדנו עייפים, פגשנו כמה 
-    ישראלים מבוגרים והם שאלו אותנו למה אנחנו עייפים – אמרנו מטירוקים. מה נגיד? 
-    מפיצה האט?.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">כשגונן יצא מפיצה האט הוא 
-    אמר שהוא מרגיש כמו מחבל עם כמות אדירה של חומר נפץ. אני שהרגשתי הרגשה דומה 
-    תהיתי על הדמיון בין חרבון וחורבן, למשל חורבן בית (שימוש) שני...</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">נסענו ל- </span>
-<span dir="LTR">Wanaka</span><span lang="HE">. ברוס שמח לקבל אותנו. היו שם 3 
-    ישראלים, מהיותר איכותיים, אותם פגשנו אצל </span><span dir="LTR">Ross</span><span lang="HE"> 
-    ב- </span><span dir="LTR">Waikaka</span><span lang="HE"> וזה כיף.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">התקלחתי, התגלחתי. גונן 
-    התקלח, התגלח. פניו מאירות. (זאת גם יציאה של גונן כשהוא מסנוור אותך עם פנס 
-    לתוך הפנים ואומר "אני מאיר לך פנים").</span></b></p>
-<p> </p></td>
-<td align="center" height="333" rowspan="2" style="     " valign="top" width="187">
-<p>
-
-<img border="0" height="239" onclick="openLightbox(this.src)" src="../images/20020307_milford_sounds_5.jpg" title="לחץ להגדלה" width="157"/></p>
-<p>
-
-<img border="0" height="127" onclick="openLightbox(this.src)" src="../images/20020305_milford_sounds_1.jpg" title="לחץ להגדלה" width="183"/></p>
-<p>
-
-<img border="0" height="120" onclick="openLightbox(this.src)" src="../images/20020305_milford_sounds_2.jpg" title="לחץ להגדלה" width="181"/></p>
-<p>
-
-<img border="0" height="121" onclick="openLightbox(this.src)" src="../images/20020307_milford_sounds_3.jpg" title="לחץ להגדלה" width="179"/></p>
-<p>
-
-<img border="0" height="122" onclick="openLightbox(this.src)" src="../images/20020307_milford_sounds_4.jpg" title="לחץ להגדלה" width="180"/></p>
-<p>
-
-<img border="0" height="208" onclick="openLightbox(this.src)" src="../images/20020307_big_waterfall_2.jpg" title="לחץ להגדלה" width="137"/></p>
-<p>
-
-<img border="0" height="128" onclick="openLightbox(this.src)" src="../images/20020305_us_at_milford.jpg" title="לחץ להגדלה" width="184"/></p>
-<p>
-<font color="#660099">תמונות מהשייט במילפורד סאונדס</font></p>
-<p>
-     </p>
-<p>
-
-<img border="0" height="123" onclick="openLightbox(this.src)" src="../images/20020308_gonen_in_queenstown.jpg" title="לחץ להגדלה" width="177"/></p>
-<p>
-
-<img border="0" height="123" onclick="openLightbox(this.src)" src="../images/20020308_giant_kiwi.jpg" title="לחץ להגדלה" width="181"/></p>
-<p>
-
-<img border="0" height="122" onclick="openLightbox(this.src)" src="../images/20020308_gonen&amp;giant_kiwi.jpg" title="לחץ להגדלה" width="180"/></p>
-<p>
-<font color="#660099">בובת קיווי בקווינסטאון</font></p>
-<p>
-     </p>
-<p>
-
-<img border="0" height="119" onclick="openLightbox(this.src)" src="../images/20020308_queenstown_from_above.jpg" title="לחץ להגדלה" width="181"/></p>
-<p>
-
-<img border="0" height="117" onclick="openLightbox(this.src)" src="../images/20020308_queenstown_top_view.jpg" title="לחץ להגדלה" width="178"/></p>
-<p>
-
-<img border="0" height="127" onclick="openLightbox(this.src)" src="../images/20020308_queenstown_from_above_2.jpg" title="לחץ להגדלה" width="181"/></p>
-<p><font color="#660099">קווינסטאון במבט מלמעלה</font></p>
-</td>
-</tr>
-<tr>
-<td height="67" style="     " valign="top" width="314">
-<b>
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button104.gif" title="לחץ להגדלה" width="59"/></b></td>
-<td height="67" style="     " valign="top" width="421">
-<p align="right"><b>
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button106.gif" title="לחץ להגדלה" width="59"/></b></p></td>
-</tr>
-</table>
-<p align="center">
-<!--webbot bot="Navigation" S-Type="sequence" S-Orientation="horizontal" S-Rendering="html" S-Bar="Brackets" S-Btn-Nml="[&lt;A HREF=&quot;#URL#&quot; TARGET=&quot;#TARGET#&quot; STYLE=&quot;{text-decoration: none;}&quot;&gt;#LABEL#&lt;/A&gt;]" S-Btn-Sel="[#LABEL#]" S-Btn-Sep="&amp;nbsp;" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><nobr>[<a href="index.html" style="{text-decoration: none;}" target="">התחלה</a>]</nobr> <nobr>[<a href="200110052040.html" style="{text-decoration: none;}" target="">דנמרק</a>]</nobr> <nobr>[<a href="20011006.html" style="{text-decoration: none;}" target="">הודו</a>]</nobr> <nobr>[<a href="20011030.html" style="{text-decoration: none;}" target="">נפאל</a>]</nobr> <nobr>[<a href="20011115.html" style="{text-decoration: none;}" target="">טרק סובב אנאפורנה</a>]</nobr> <nobr>[<a href="20011210.html" style="{text-decoration: none;}" target="">תאילנד</a>]</nobr> <nobr>[<a href="20020108.html" style="{text-decoration: none;}" target="">לאוס</a>]</nobr> <nobr>[<a href="20020123.html" style="{text-decoration: none;}" target="">צפון תאילנד</a>]</nobr> <nobr>[<a href="20020203.html" style="{text-decoration: none;}" target="">אוסטרליה</a>]</nobr> <nobr>[<a href="20020210.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי דרומי</a>]</nobr> <nobr>[<a href="20020326.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי צפוני</a>]</nobr> <nobr>[<a href="20020506.html" style="{text-decoration: none;}" target="">פיליפינים</a>]</nobr> <nobr>[<a href="20020603.html" style="{text-decoration: none;}" target="">קמבודיה</a>]</nobr><!--webbot bot="Navigation" i-checksum="33824" endspan --></p>
-<p><i><small>This site was last updated
-<!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%m/%d/%y" startspan -->07/16/03<!--webbot bot="Timestamp" i-checksum="12706" endspan --> </small></i>
-</p>
-</body>
+    <div class="nav-links">
+      <a href="20020306.html">← הקודם</a>
+      <a href="20020310.html">הבא →</a>
     </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-text">
+      <div class="meta-line">
+        <span class="date-big">08</span>
+        <div>
+          <div class="date-details">מרץ 2002</div>
+          <span class="country-badge">ניו-זילנד, אי דרומי</span>
+        </div>
+      </div>
+      <h1 class="title">השיט במילפורד סאונדס</h1>
+      <div class="title-divider"></div>
+    </div>
+    <img class="hero-map" src="../images/New_Zealand_south_island.gif" alt="ניו-זילנד, אי דרומי">
+  </div>
+
+  <div class="content">
+    <p>השיט במילפורד סאונדס</p>
+
+    <p>אחרי מקלחת, אחרי 3 ימים ללא מקלחת, בא יומן.</p>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/20020307_waterfall.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">מפל הצ'אזם</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020307_waterfall_2.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">אנחנו במפל הצ'אזם</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020307_waterfall_3.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">מפל הצ'אזם</div>
+      </div>
+    </div>
+
+    <p>כשהייתי בחניון במילפורד, גונן נטש מוקדם וישן. כמויות השינה שהוא מסוגל לעכל הן מדהימות. אפשר לשאול אותו למה והוא יביא לך איזה תירוץ לא קשור. אולי הנהיגה מעייפת אותו. ב- 80% מהדרך הוא נוהג.</p>
+
+    <p>אני הסתובבתי עם הילה. היא כאמור הרגישה לא טוב אך טיפלה בעצמה. היא גם הקיאה וגם ביקרה בשירותים 3 פעמים. ביתר הערב דיברתי איתה במועדון החמוד (אך המאוכלס ב- 90% גברים) שליד החניון. היא חבשה משקפים אחרי שהורידה עדשות וביישה אותי. בטח האנשים חשבו שאנחנו יחד.</p>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/20020307_malik&tall_waterfall.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020307_waterfall_4.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">המפל בהוליפורד</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020307_milford_sounds_5.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+    </div>
+
+    <p>נרדמתי באוטו מאוחר. השינה בשלושה לכאורה לא נוחה – 2 מורידים מעט מושב מקדימה והשלישי מתקפל או מוריד את המושב שלו מאחור. להפתעתינו, ב- 2 המקרים שניסינו זאת ישנו מצוין וגם עכשיו.</p>
+
+    <p>קמנו ב- 8:00, הלכנו לשייט ב- 9:00.</p>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/20020305_milford_sounds_1.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020305_milford_sounds_2.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020307_milford_sounds_3.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+    </div>
+
+    <p>היה מעונן, אך לא ירד גשם. בשייט שטנו החוצה מהמפרץ לים וראינו נוף מדהים ופראי. רוחב המפרץ כ- 300 מטר. גובה ההרים כ- 1000 מטר בממוצע והשיפוע שלהם כ- 70 מעלות, כלומר ממש צוקים המתנשאים מעליך. בדר"כ אני לא אוהב שמתנשאים מעלי אבל הפעם זה היה אחרת.</p>
+
+    <p>היו כ- 2 מפלים עמוסי מים שגובה כל אחד מהם 50 מטר ועוד אחד בגובה מאות מטרים אך דקיק. כשהיינו בפעם הקודמת וירד גשם – מפלים נפלו מכל הכיוונים. עתה ניתן היה לראות את הקרחות במדרונות ההרים שמשם מתנקזים המים בזמן גשמים. הגענו לקצה המפרץ והסתובבנו חזרה. אורך המפרץ הוא כמה קילומטרים אל תוך היבשה. בדרך חזרה עצרנו מתחת למפל וחטפנו סילוני מים. ראינו כמה כלבי ים נחים על סלע וכמה דולפינים משייטים. סה"כ היה יפה ושווה את המחיר – 45$NZ.</p>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/20020307_milford_sounds_4.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020307_big_waterfall_2.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020305_us_at_milford.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">תמונות מהשייט במילפורד סאונדס</div>
+      </div>
+    </div>
+
+    <p>משם נסענו לאיטנו ל- Te-ano. עצרנו בדרך ב- Chasm. מפל יפהפה, מרחק 15 דקות מהכביש. ירדנו ל- Hollyford וראינו אגם <a onclick="openLightbox('../images/20020307_waterfall_4.jpg')"> ומפל בגובה 100 מטר</a> (17 ק"מ מהכביש הראשי) ותיצפתנו עליו מרחוק, אבל הוא היה מרשים.</p>
+
+    <p>חזרנו והלכנו ל- tourist information ב- Te-ano. שם ראינו שטרק הקפלר מלא והתחזית למחרת – גשום.</p>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/20020308_gonen_in_queenstown.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020308_giant_kiwi.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020308_gonen&giant_kiwi.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">בובת קיווי בקווינסטאון</div>
+      </div>
+    </div>
+
+    <p>מה נעשה?. המשכנו ונסענו הלאה, כ- 20 ק"מ דרומית מערב ל- Manapouri, שם יש אגם. אכלנו שם. גונן קנה 2 חתיכות נקניק שינקיין והתלהב מעצמו.</p>
+
+    <p>באותו בוקר, לפני ההפלגה נתתי לגונן ולהילה כדורים נגד בחילה שנשארו עוד מתאילנד. בדיעבד, לא היה בהם צורך, אך הם פעלו כרגיל, כלומר מיסטלו ועייפו אותם. אני נהגתי וגונן שכב מסטול עם עיניים חצי עצומות מאחורה ופלט שטויות. לפעמים אני חושב שהוא לא יודע איפה הוא נמצא ואיפה הוא היה.</p>
+
+    <div class="photo-pair">
+      <div class="photo-item">
+        <img src="../images/20020308_queenstown_from_above.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020308_queenstown_top_view.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+    </div>
+
+    <p>בלילה חזרנו ל- Te-ano וישבנו באוטו מול האגם. עשינו ערב קריאת יומן. זה כבר הערב השני, בקודם קראנו פרק זמן של חודש וחצי – מאמצע נפאל ועד סוף האיים. בלילה הזה הקראתי את כל הודו, כלומר ההתחלה, ואין ספק שזה החלק המוצלח ביומן ואולי גם בטיול, ארוע רדף ארוע וצחוק רדף צחוק. אח"כ קראתי על ניו-זילנד לבקשת הילה וראיתי את ההבדל בשצף הארועים.</p>
+
+    <p>בבוקר קמנו וניגשנו ל- Tourist information. השמים די עצרו בעצמם והעננים לא היו כ"כ רציניים. נראה שלא בטוח שירד גשם וחשבתי שאולי שווה ללכת לטרק הקפלר בכל זאת. כשהגענו ל- tourist information היה תור גדול ופתק שאומר שהטרק מלא, ויתרנו. התחזית זזה קצת וציפתה לגשם למחרת.</p>
+
+    <div class="photo-block">
+      <img src="../images/20020308_queenstown_from_above_2.jpg" onclick="openLightbox(this.src)">
+      <div class="caption">קווינסטאון במבט מלמעלה</div>
+    </div>
+
+    <p>נסענו ל- Queenstown, כ- 170 ק"מ חזרה בדרך ל- wanaka, לברוס ולמקלחת.</p>
+
+    <p>ב- Queenstown שכנעתי את גונן ללכת לאכול ארוחת צהרים בפיצה האט, שם הכל חופשי ומסוכן. לא הייתי כ"כ רעב, אך הגזמתי כרגיל, הפעם עם 10 משולשי פיצה, מעט פסטה, סלט וצ'יפס וסיימתי עם 3 קינוחים גדולים – 2 קערות גלידה עם סירופ שוקולד וצלחת עם 3 חתיכות עוגה קטנות וערימה של מוס.</p>
+
+    <p>התפוצצתי. אח"כ עלינו לתצפית הרכבל, אבל ברגל. עליה של 500 מטר שעשינו בקושי רב במצבינו. למעלה היתה <a onclick="openLightbox('../images/20020308_queenstown_top_view.jpg')"> תצפית יפה על העיר</a>.</p>
+
+    <p>ירדנו עייפים, פגשנו כמה ישראלים מבוגרים והם שאלו אותנו למה אנחנו עייפים – אמרנו מטירוקים. מה נגיד? מפיצה האט?.</p>
+
+    <p>כשגונן יצא מפיצה האט הוא אמר שהוא מרגיש כמו מחבל עם כמות אדירה של חומר נפץ. אני שהרגשתי הרגשה דומה תהיתי על הדמיון בין חרבון וחורבן, למשל חורבן בית (שימוש) שני...</p>
+
+    <p>נסענו ל- Wanaka. ברוס שמח לקבל אותנו. היו שם 3 ישראלים, מהיותר איכותיים, אותם פגשנו אצל Ross ב- Waikaka וזה כיף.</p>
+
+    <p>התקלחתי, התגלחתי. גונן התקלח, התגלח. פניו מאירות. (זאת גם יציאה של גונן כשהוא מסנוור אותך עם פנס לתוך הפנים ואומר "אני מאיר לך פנים").</p>
+
+
+  </div>
+
+  <div class="nav-cards">
+    <a href="20020310.html" class="nav-card">
+      <div class="label">הבא →</div>
+      <div class="card-title">מקום קוסם, קוק</div>
+    </a>
+    <a href="20020306.html" class="nav-card">
+      <div class="label">← הקודם</div>
+      <div class="card-title">אשליות</div>
+    </a>
+  </div>
+
+  <div class="country-nav">
+    <a href="200110052040.html">דנמרק</a>
+    <a href="20011006.html">הודו</a>
+    <a href="20011030.html">נפאל</a>
+    <a href="20011115.html">טרק אנאפורנה</a>
+    <a href="20011210.html">תאילנד</a>
+    <a href="20020108.html">לאוס</a>
+    <a href="20020123.html">צפון תאילנד</a>
+    <a href="20020203.html">אוסטרליה</a>
+    <a href="20020210.html">ניו-זילנד, אי דרומי</a>
+    <a href="20020326.html">ניו-זילנד, אי צפוני</a>
+    <a href="20020506.html">פיליפינים</a>
+    <a href="20020603.html">קמבודיה</a>
   </div>
 
   <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
-    <img id="lightbox-img" src="" alt="Enlarged">
+    <img id="lightbox-img" src="" alt="">
   </div>
-
   <script>
     function openLightbox(src) {
       document.getElementById('lightbox-img').src = src;

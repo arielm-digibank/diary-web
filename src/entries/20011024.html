@@ -3,223 +3,319 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>רישיקאש, צפון הודו</title>
+  <title>מגיעים לרישיקאש</title>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap" rel="stylesheet">
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background-color: #f8fafc;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0; padding: 20px; color: #334155;
+      background: #ffffff;
+      font-family: 'Heebo', sans-serif;
+      color: #1a1a2e;
+      line-height: 1.9;
     }
-    .container {
-      max-width: 800px; margin: 0 auto; background: #ffffff;
-      padding: 35px; border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06); line-height: 1.8;
+    .top-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #eee;
+      padding: 12px 30px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.9rem;
     }
-    .header {
-      border-bottom: 2px solid #e2e8f0; padding-bottom: 15px;
-      margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center;
+    .top-nav a {
+      color: #1d4ed8; text-decoration: none; font-weight: 600;
     }
-    .header h1 { margin: 0; color: #0f172a; font-size: 1.8rem; }
-    .home-link { color: #2563eb; text-decoration: none; font-weight: 600; }
-    .content img {
-      float: right; margin: 0 0 15px 20px; max-width: 320px; height: auto;
-      border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      cursor: pointer; transition: transform 0.2s;
+    .top-nav a:hover { text-decoration: underline; }
+    .top-nav .nav-links { display: flex; gap: 20px; }
+    .hero {
+      max-width: 900px; margin: 0 auto;
+      padding: 50px 40px 30px;
+      display: flex; align-items: flex-start; gap: 30px;
     }
-    .content img:hover { transform: scale(1.02); }
-    .content::after { content: ""; clear: both; display: table; }
-    a { color: #2563eb; }
+    .hero-text { flex: 1; }
+    .hero-map {
+      width: 120px; height: auto; object-fit: contain;
+      flex-shrink: 0; opacity: 0.85;
+    }
+    .meta-line {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+    }
+    .date-big {
+      font-size: 3.5rem; font-weight: 900; color: #e5e7eb; line-height: 1;
+    }
+    .date-details { font-size: 0.9rem; color: #6b7280; }
+    .country-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      border-radius: 20px; padding: 4px 14px;
+      font-size: 0.8rem; color: #1d4ed8; font-weight: 600;
+    }
+    .title {
+      font-size: 2.2rem; font-weight: 900; color: #111827;
+      margin: 20px 0 8px; line-height: 1.3;
+    }
+    .date-subtitle {
+      font-size: 1.1rem; font-weight: 300; color: #4b5563;
+      margin-bottom: 16px;
+    }
+    .title-divider {
+      width: 60px; height: 4px; background: #1d4ed8; border-radius: 2px;
+    }
+    .content {
+      max-width: 900px; margin: 30px auto; padding: 0 40px; font-size: 1.05rem;
+    }
+    .content p { margin-bottom: 18px; }
+    .content a {
+      color: #1d4ed8; cursor: pointer;
+      text-decoration: underline;
+      text-decoration-color: rgba(29,78,216,0.3);
+    }
+    .photo-block {
+      margin: 30px 0; border-radius: 12px; overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    .photo-block img {
+      width: 100%; display: block; cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .photo-block img:hover { transform: scale(1.01); }
+    .photo-block .caption {
+      padding: 12px 16px; font-size: 0.85rem; color: #6b7280;
+      background: #f9fafb; border-top: 1px solid #f3f4f6;
+    }
+    .photo-pair {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 14px; margin: 30px 0;
+    }
+    .photo-pair .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-pair .photo-item img {
+      width: 100%; height: 200px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-pair .photo-item img:hover { transform: scale(1.03); }
+    .photo-pair .photo-item .caption {
+      padding: 8px 12px; font-size: 0.8rem; color: #6b7280; background: #f9fafb;
+    }
+    .photo-trio {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px; margin: 30px 0;
+    }
+    .photo-trio .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-trio .photo-item img {
+      width: 100%; height: 180px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-trio .photo-item img:hover { transform: scale(1.03); }
+    .photo-trio .photo-item .caption {
+      padding: 8px 10px; font-size: 0.78rem; color: #6b7280; background: #f9fafb;
+    }
+    .nav-cards {
+      max-width: 900px; margin: 50px auto 20px; padding: 0 40px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .nav-card {
+      padding: 20px 24px; border: 1px solid #e5e7eb; border-radius: 12px;
+      text-decoration: none; color: inherit; transition: all 0.2s;
+    }
+    .nav-card:hover {
+      border-color: #1d4ed8; box-shadow: 0 4px 12px rgba(29,78,216,0.1);
+    }
+    .nav-card .label { font-size: 0.8rem; color: #6b7280; margin-bottom: 4px; }
+    .nav-card .card-title { font-weight: 700; font-size: 1rem; color: #1d4ed8; }
+    .supplements {
+      margin-top: 35px; padding: 25px 30px;
+      background: #f9fafb; border-radius: 12px; border: 1px solid #e5e7eb;
+    }
+    .supplements h3 {
+      font-size: 1.1rem; font-weight: 700; margin-bottom: 14px; color: #374151;
+    }
+    .supplements ol { padding-right: 20px; }
+    .supplements li { margin-bottom: 10px; color: #4b5563; }
+    .country-nav {
+      max-width: 900px; margin: 20px auto 40px; padding: 0 40px;
+      display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+    }
+    .country-nav a {
+      padding: 6px 14px; border-radius: 20px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      color: #1d4ed8; text-decoration: none;
+      font-size: 0.82rem; font-weight: 600;
+      transition: all 0.2s;
+    }
+    .country-nav a:hover {
+      background: #1d4ed8; color: white; border-color: #1d4ed8;
+    }
     .lightbox {
       display: none; position: fixed; z-index: 9999;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.9); justify-content: center; align-items: center; cursor: pointer;
+      background: rgba(0,0,0,0.92);
+      justify-content: center; align-items: center; cursor: pointer;
     }
-    .lightbox img { max-width: 90%; max-height: 90%; border-radius: 8px; }
+    .lightbox img { max-width: 92%; max-height: 92%; border-radius: 8px; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h1>רישיקאש, צפון הודו</h1>
-      <a href="../index.html" class="home-link">🏠 לעמוד הראשי</a>
+  <div class="top-nav">
+    <div class="nav-links">
+      <a href="../index.html">עמוד ראשי</a>
     </div>
-    <div class="content">
-      <body>
-<table cellpadding="0" cellspacing="0" height="80" width="954">
-<tr>
-<td align="center" height="80" width="277">
-<marquee style="font-size: 18pt; color: #800080">24.10.01 - 21:00</marquee></td>
-<td align="center" height="80" width="667">
-<!--webbot bot="Navigation" s-type="banner" s-rendering="graphics" S-Orientation B-Include-Home B-Include-Up U-Page S-Target startspan --><!--webbot bot="Navigation" i-checksum="36608" endspan --></td>
-<td align="center" height="80" width="10">
-<img border="0" height="145" onclick="openLightbox(this.src)" src="../images/India.gif" title="לחץ להגדלה" width="144"/></td>
-</tr>
-<tr>
-<td colspan="3" height="1" style=" " width="954"></td>
-</tr>
-</table><table cellpadding="0" cellspacing="0" width="100%">
-<tr>
-<td align="right" style=" ">
-<h4>
-<marquee style="font-size: 24pt; color: #008080">מגיעים לרישיקאש</marquee></h4>
-<p> </p></td>
-</tr>
-</table>
-<table cellpadding="0" cellspacing="0" height="333" width="953">
-<tr>
-<td height="333" rowspan="2" style="       " valign="top" width="140"> <!--webbot bot="Navigation" S-Type="sequence" S-Orientation="vertical" S-Rendering="graphics" S-Theme="blocks 000" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><!--webbot bot="Navigation" i-checksum="23763" endspan --><p> </p>
-</td>
-<td height="333" rowspan="2" style="     " valign="top" width="1"></td>
-<td colspan="2" height="266" style="     " valign="top" width="735">
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> שוב בחדרנו הדלוח. 
-    גונן מתקלח ואני כותב יומן. הוא צועק לי אבני דרך שעברנו ביומיים האחרונים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בבוקר ה- 23.10 קמנו מאוחר, 
-    אחרי 9:30, ראינו את עוז וחנן עוברים ליד חלונינו אך לא עוצרים בדרכם 
-    למאניקאראן. חשבנו שאולי הם נעלבו ממה שקרה אמש.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">דיברנו עם סיוון והיא אמרה 
-    שחנן התנהג בצורה מוזרה עד מפחידה בלילה לפני-כן.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">התקלחנו (לאחר 3 ימים, אם 
-    לא מחשיבים את הטבילה במעיינות החמים) והרגשנו רעננים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">סידרנו את התיק והלכנו 
-    לאכול.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בערך ב- 16:00 הסתדרנו 
-    בתהלוכה עם התיקים הענקיים על גבינו והלכנו כל השבעה לקאסול, 2 ק"מ עם 20 ק"ג. 
-    אני וגונן פתחנו פער ענק, לא יכלנו לעמוד בקצב של סמדי. התיישבנו במרכז הכפר 
-    והזמנו צ'אי. ישבנו עם סמדי ויניב. נתנו להם כבוד ונפרדנו מהם. הצטרפנו לאחרים 
-    במסעדה </span><span dir="LTR">ever green</span><span lang="HE">.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">נכנסנו למסעדה ופתאם במפתיע 
-    אנחנו רואים את וי יושב עם בחורה ישראלית ואוכל. כל-כך שמחנו לפגוש אותו 
-    שהצטרפנו אליו במקום לעוז וחבורתו. הוא סיפר שהוא עשה קורס מדיטצית </span>
-<span dir="LTR">Z</span><span lang="HE"> וקורס רייקי ואח"כ בא לכאן ושהוא 
-    הגיע בבוקר. הבחורה הישראלית, שנראה כי הוא רק פגש אותה, הזכירה באופן מפתיע את 
-    איריס, הידידה של גונן ושלי.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">נאלצנו להפרד שוב ועלינו על 
-    האוטובוס של 18:00 לבונטאר. העמסנו את התיקים על האוטובוס והצטופפנו איתם 
-    לנסיעה של כשעה (30 ק"מ, 20 רופי).</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בבונטאר היה לנו שעתיים 
-    לחכות עד לאוטובוס (היה צריך להגיע ב- 20:30). חיכינו לאוטובוס עד שהגיע ב- 
-    21:30. הפעם היה זה אוטובוס תיירים – כלומר ללא עצירות באמצע שבו אנשים יורדים 
-    ועולים, והתיקים בתא המטען ולא על הגג או איתך באוטובוס, והמושבים הם 2 בכל צד 
-    ולא 3 ו- 2.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הנסיעה ארכה 7 שעות (200 
-    רופי) במהלכה ישנו שנת ישרים בעיקר.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הגענו לצ'אנדיגר ב- 4:30 
-    בבוקר. העיר עיר מודרנית, מזכירה את עפולה, בהחלט לא הודו, אפילו פרות לא ראינו 
-    שם. אוטובוס הגיע חיש מהר ועלינו עליו. הפעם אוטובוס מקומי, כלומר נסיעת סיוט 
-    (96 רופי). הנהג נסע כמו מטורף. ישבנו אחד ליד השני למעט גונן שישב ליד מה 
-    שנראה כמומיה – דמות אדם ששם על עצמו שמיכה ונראה כמומיה, מפחיד.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">לאחר 4 שעות (במקום 8) 
-    הגענו להארידוואר, שם עלינו על אוטובוס לרישיקאש (24 ק"מ, כשעה). עוד בדרך 
-    נראתה הארידוואר כעיר מעניינת – מאד צבעונית ומלאה במקדשים, גם כן על גדות נהר 
-    הגנגס.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הגענו לרישיקאש, אורי הוביל 
-    אותנו. פגשנו אותו בדרך, מעט שמנמן עם זקן צרפתי, אך נמצא בהודו כבר חודשיים 
-    וחצי ונראה בן-אדם על הכיפאק. הוא הוביל אותנו לגסט האוס שלו על גדות הגנגאס, 
-    ליד הגשר לקסמן (אחד מ- 2 הגשרים מעל הגנגס ברישיקאש). לא היה מקום בגסט האוס 
-    לכולם. אני וגונן חמדנו את החדר היחיד שנשאר. עוז הלך לחפש גסט האוס אחר ומצא 
-    אחד איפה שכל הישראלים (</span><span dir="LTR">norwegien cottage</span><span lang="HE">) 
-    במעלה העיר.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בכדי לפצות אותם, עזרנו להם 
-    לסחוב את הדברים שלהם לגסט האוס, די רחוק מהנהר, כלומר אין נוף, אבל בתמורה יש 
-    תנאים – אמבטיה, חדר שנראה כמו מלון.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אכלנו צהרים וחזרנו לחדר.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הלכנו לטייל בעיר. העיר 
-    שנחשבת מאד רוחנית מלאה במקדשים על גדות הנהר, ו<a href="images/pictures/India/rishikash_parade.jpg" target="_blank">טקסים ופולחנים שנערכים אפילו 
-    בקרן רחוב</a>. כל מיני באבות מחופשים מסתובבים ברחוב. 
-    <a href="images/pictures/India/20011024_rishikash_gonen&amp;baba.jpg" target="_blank">אתה מצטלם איתם ומשלם</a>. 
-    עדיין, אחרי צפון הודו, לא התלהבנו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">ברחוב הרבה פסלים קיטשיים 
-    של האלים שלהם: שיווה, גאנש וכו'.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">מה שמייחד את העיר זה נהר 
-    הגנגס הזורם דרכה. ניתן לחצות ב- 2 גשרים:
-    <a href="images/pictures/India/20011024_eitan_at_laxman_jula_bridge.jpg" target="_blank">
-    לקסמן ג'ולה</a> הצפוני שלידו אנחנו מתארחים, וראם ג'ולה הדרומי והגדול יותר.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">יש הטועים ועושים ראפטינג 
-    בנהר. ממה שראינו זה מגוחך, נראה כמו שייט קיאק כשהודי מצווה על תיירים לחתור 
-    (אולי כנקמה על זה שתמיד התיירים מצווים עליו).</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הלכנו לראות את
-    <a href="images/pictures/India/20011024_fooja_ceremony.jpg" target="_blank">
-    טקס הפוג'ה</a> – טקס שעושים באחד המקדשים על גדות הנהר הגנגס מול פסל של ככל 
-    הנראה שיווה שנמצא בתוך הנהר.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הורדנו נעליים והתיישבנו על 
-    המדרגות, קרוב לטקס.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">העובדה שלא התקלחנו יומיים 
-    בגלל הנסיעות היתה חזק באוויר. ריחמנו על הצופים בטקס, אבל היה חובה עלינו 
-    להוריד נעליים. מרוב צחנה אחד ההודים שם סל עם פרחים על רגליו של גונן. הטקס 
-    כולל מנטרה משעממת של כמה נערים הודים ואח"כ מופע אש לא מרהיב בהשתתפות הרבה 
-    ילדים שרים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">גונן חשב לשכור אופנוע והיה 
-    מעודד מזה שאחת הבחורות הישראליות אמרה שתלך איתו לאחד החופים, אולם מבט על 
-    העיר ועל התחבורה שלה גרמה לו לבחור בחיים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בטקס הפוג'ה ראינו את רועי, 
-    ישראלי שהיה איתנו בדרמקוט, הוא ירד אלינו וישב לידינו. החלפנו חוויות, אח"כ 
-    הוא סיפר ש<a href="images/pictures/India/20011024_eitan_cooking.jpg" target="_blank">איתן 
-    השף עושה שוב ארוחה</a>, כמו שעשה בדרמקוט.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הלכנו במהירות לגסט האוס של 
-    איתן שהיה ממש קרוב לגסט האוס שלנו. בדרך רועי המליץ לנו לאכול וללעוס פאן, שזה 
-    עלה של משהו שמורחים בפנים כל מיני דברים. לעסנו את זה. התמסטלתי, לא הצלחתי 
-    למצוא את הגסט האוס שלנו אעפ"י שהיה ממול.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הארוחה היתה מצויינת: 
-    ספגטי, פשטידה ועוגה וסלטים. אכלנו כמו מטורפים. שתינו גם ויסקי ולגונן נדפק 
-    הראש.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אחרי זה חזרנו להתקלח. אח"כ 
-    נלך לישראלים ב- </span><span dir="LTR">swiss cottage</span><span lang="HE">.</span></b></p>
-<p style="text-align: right">
-<span dir="RTL" lang="HE" style="font-size: 12.0pt; font-family: Times New Roman">
-    .</span></p></td>
-<td align="center" height="333" rowspan="2" style="     " valign="top" width="187">
-
-<img border="0" height="117" onclick="openLightbox(this.src)" src="../images/rishikash_parade.jpg" title="לחץ להגדלה" width="176"/><p>
-<font color="#660099">תהלוכה ברחובות רישיקאש</font></p>
-<p>
-
-<img border="0" height="125" onclick="openLightbox(this.src)" src="../images/20011024_eitan_at_laxman_jula_bridge.jpg" title="לחץ להגדלה" width="172"/></p>
-<p>
-
-<img border="0" height="218" onclick="openLightbox(this.src)" src="../images/20011024_rishikash_ram_jula_2.jpg" title="לחץ להגדלה" width="138"/></p>
-<p>
-
-<img border="0" height="125" onclick="openLightbox(this.src)" src="../images/20011024_rishikash_ram_jula.jpg" title="לחץ להגדלה" width="179"/></p>
-<p>
-<font color="#660099"> גשר הלאקסמן-ג'ולה</font></p>
-<p>
-
-<img border="0" height="219" onclick="openLightbox(this.src)" src="../images/20011024_fooja_ceremony.jpg" title="לחץ להגדלה" width="139"/></p>
-<p><font color="#660099">טקס הפוג'ה. ברקע פסל של שיווה הנמצא בתוך נהר הגנגס</font></p>
-<p>
-
-<img border="0" height="200" onclick="openLightbox(this.src)" src="../images/20011024_eitan_cooking.jpg" title="לחץ להגדלה" width="137"/></p>
-<p><font color="#660099"> איתן מבשל ארוחת-ערב</font><p>
-
-<img border="0" height="193" onclick="openLightbox(this.src)" src="../images/20011023_malik_near_a_temple.jpg" title="לחץ להגדלה" width="123"/><p>
-
-<img border="0" height="206" onclick="openLightbox(this.src)" src="../images/20011024_rishikash_gonen&amp;baba.jpg" title="לחץ להגדלה" width="137"/><p>
-<font color="#660099">גונן מקבל ברכה מאיזה בבא</font><p> </p></p></p></p></p></td>
-</tr>
-<tr>
-<td height="67" style="     " valign="top" width="314">
-
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button104.gif" title="לחץ להגדלה" width="59"/></td>
-<td height="67" style="     " valign="top" width="421">
-<p align="right">
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button106.gif" title="לחץ להגדלה" width="59"/></p></td>
-</tr>
-</table>
-<p align="center">
-<!--webbot bot="Navigation" S-Type="sequence" S-Orientation="horizontal" S-Rendering="html" S-Bar="Brackets" S-Btn-Nml="[&lt;A HREF=&quot;#URL#&quot; TARGET=&quot;#TARGET#&quot; STYLE=&quot;{text-decoration: none;}&quot;&gt;#LABEL#&lt;/A&gt;]" S-Btn-Sel="[#LABEL#]" S-Btn-Sep="&amp;nbsp;" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><nobr>[<a href="index.html" style="{text-decoration: none;}" target="">התחלה</a>]</nobr> <nobr>[<a href="200110052040.html" style="{text-decoration: none;}" target="">דנמרק</a>]</nobr> <nobr>[<a href="20011006.html" style="{text-decoration: none;}" target="">הודו</a>]</nobr> <nobr>[<a href="20011030.html" style="{text-decoration: none;}" target="">נפאל</a>]</nobr> <nobr>[<a href="20011115.html" style="{text-decoration: none;}" target="">טרק סובב אנאפורנה</a>]</nobr> <nobr>[<a href="20011210.html" style="{text-decoration: none;}" target="">תאילנד</a>]</nobr> <nobr>[<a href="20020108.html" style="{text-decoration: none;}" target="">לאוס</a>]</nobr> <nobr>[<a href="20020123.html" style="{text-decoration: none;}" target="">צפון תאילנד</a>]</nobr> <nobr>[<a href="20020203.html" style="{text-decoration: none;}" target="">אוסטרליה</a>]</nobr> <nobr>[<a href="20020210.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי דרומי</a>]</nobr> <nobr>[<a href="20020326.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי צפוני</a>]</nobr> <nobr>[<a href="20020506.html" style="{text-decoration: none;}" target="">פיליפינים</a>]</nobr> <nobr>[<a href="20020603.html" style="{text-decoration: none;}" target="">קמבודיה</a>]</nobr><!--webbot bot="Navigation" i-checksum="33824" endspan --></p>
-<p><i><small>This site was last updated
-<!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%m/%d/%y" startspan -->07/07/03<!--webbot bot="Timestamp" i-checksum="12714" endspan --> </small></i>
-</p>
-</body>
+    <div class="nav-links">
+      <a href="20011022.html">← הקודם</a>
+      <a href="20011025.html">הבא →</a>
     </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-text">
+      <div class="meta-line">
+        <span class="date-big">24</span>
+        <div>
+          <div class="date-details">אוקטובר 2001</div>
+          <span class="country-badge">הודו</span>
+        </div>
+      </div>
+      <h1 class="title">מגיעים לרישיקאש</h1>
+      <div class="title-divider"></div>
+    </div>
+    <img class="hero-map" src="../images/India.gif" alt="הודו">
+  </div>
+
+  <div class="content">
+    <p>מגיעים לרישיקאש</p>
+
+    <p>שוב בחדרנו הדלוח. גונן מתקלח ואני כותב יומן. הוא צועק לי אבני דרך שעברנו ביומיים האחרונים.</p>
+
+    <p>בבוקר ה- 23.10 קמנו מאוחר, אחרי 9:30, ראינו את עוז וחנן עוברים ליד חלונינו אך לא עוצרים בדרכם למאניקאראן. חשבנו שאולי הם נעלבו ממה שקרה אמש.</p>
+
+    <p>דיברנו עם סיוון והיא אמרה שחנן התנהג בצורה מוזרה עד מפחידה בלילה לפני-כן.</p>
+
+    <p>התקלחנו (לאחר 3 ימים, אם לא מחשיבים את הטבילה במעיינות החמים) והרגשנו רעננים.</p>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/rishikash_parade.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">תהלוכה ברחובות רישיקאש</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011024_eitan_at_laxman_jula_bridge.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011024_rishikash_ram_jula_2.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+    </div>
+
+    <p>סידרנו את התיק והלכנו לאכול.</p>
+
+    <p>בערך ב- 16:00 הסתדרנו בתהלוכה עם התיקים הענקיים על גבינו והלכנו כל השבעה לקאסול, 2 ק"מ עם 20 ק"ג. אני וגונן פתחנו פער ענק, לא יכלנו לעמוד בקצב של סמדי. התיישבנו במרכז הכפר והזמנו צ'אי. ישבנו עם סמדי ויניב. נתנו להם כבוד ונפרדנו מהם. הצטרפנו לאחרים במסעדה ever green.</p>
+
+    <p>נכנסנו למסעדה ופתאם במפתיע אנחנו רואים את וי יושב עם בחורה ישראלית ואוכל. כל-כך שמחנו לפגוש אותו שהצטרפנו אליו במקום לעוז וחבורתו. הוא סיפר שהוא עשה קורס מדיטצית Z וקורס רייקי ואח"כ בא לכאן ושהוא הגיע בבוקר. הבחורה הישראלית, שנראה כי הוא רק פגש אותה, הזכירה באופן מפתיע את איריס, הידידה של גונן ושלי.</p>
+
+    <p>נאלצנו להפרד שוב ועלינו על האוטובוס של 18:00 לבונטאר. העמסנו את התיקים על האוטובוס והצטופפנו איתם לנסיעה של כשעה (30 ק"מ, 20 רופי).</p>
+
+    <p>בבונטאר היה לנו שעתיים לחכות עד לאוטובוס (היה צריך להגיע ב- 20:30). חיכינו לאוטובוס עד שהגיע ב- 21:30. הפעם היה זה אוטובוס תיירים – כלומר ללא עצירות באמצע שבו אנשים יורדים ועולים, והתיקים בתא המטען ולא על הגג או איתך באוטובוס, והמושבים הם 2 בכל צד ולא 3 ו- 2.</p>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/20011024_rishikash_ram_jula.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">גשר הלאקסמן-ג'ולה</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011024_fooja_ceremony.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">טקס הפוג'ה. ברקע פסל של שיווה הנמצא בתוך נהר הגנגס</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011024_eitan_cooking.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">איתן מבשל ארוחת-ערב</div>
+      </div>
+    </div>
+
+    <p>הנסיעה ארכה 7 שעות (200 רופי) במהלכה ישנו שנת ישרים בעיקר.</p>
+
+    <p>הגענו לצ'אנדיגר ב- 4:30 בבוקר. העיר עיר מודרנית, מזכירה את עפולה, בהחלט לא הודו, אפילו פרות לא ראינו שם. אוטובוס הגיע חיש מהר ועלינו עליו. הפעם אוטובוס מקומי, כלומר נסיעת סיוט (96 רופי). הנהג נסע כמו מטורף. ישבנו אחד ליד השני למעט גונן שישב ליד מה שנראה כמומיה – דמות אדם ששם על עצמו שמיכה ונראה כמומיה, מפחיד.</p>
+
+    <p>לאחר 4 שעות (במקום 8) הגענו להארידוואר, שם עלינו על אוטובוס לרישיקאש (24 ק"מ, כשעה). עוד בדרך נראתה הארידוואר כעיר מעניינת – מאד צבעונית ומלאה במקדשים, גם כן על גדות נהר הגנגס.</p>
+
+    <p>הגענו לרישיקאש, אורי הוביל אותנו. פגשנו אותו בדרך, מעט שמנמן עם זקן צרפתי, אך נמצא בהודו כבר חודשיים וחצי ונראה בן-אדם על הכיפאק. הוא הוביל אותנו לגסט האוס שלו על גדות הגנגאס, ליד הגשר לקסמן (אחד מ- 2 הגשרים מעל הגנגס ברישיקאש). לא היה מקום בגסט האוס לכולם. אני וגונן חמדנו את החדר היחיד שנשאר. עוז הלך לחפש גסט האוס אחר ומצא אחד איפה שכל הישראלים (norwegien cottage) במעלה העיר.</p>
+
+    <p>בכדי לפצות אותם, עזרנו להם לסחוב את הדברים שלהם לגסט האוס, די רחוק מהנהר, כלומר אין נוף, אבל בתמורה יש תנאים – אמבטיה, חדר שנראה כמו מלון.</p>
+
+    <div class="photo-pair">
+      <div class="photo-item">
+        <img src="../images/20011023_malik_near_a_temple.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011024_rishikash_gonen&baba.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">גונן מקבל ברכה מאיזה בבא</div>
+      </div>
+    </div>
+
+    <p>אכלנו צהרים וחזרנו לחדר.</p>
+
+    <p>הלכנו לטייל בעיר. העיר שנחשבת מאד רוחנית מלאה במקדשים על גדות הנהר, ו<a onclick="openLightbox('../images/rishikash_parade.jpg')">טקסים ופולחנים שנערכים אפילו בקרן רחוב</a>. כל מיני באבות מחופשים מסתובבים ברחוב. <a onclick="openLightbox('../images/20011024_rishikash_gonen&baba.jpg')">אתה מצטלם איתם ומשלם</a>. עדיין, אחרי צפון הודו, לא התלהבנו.</p>
+
+    <p>ברחוב הרבה פסלים קיטשיים של האלים שלהם: שיווה, גאנש וכו'.</p>
+
+    <p>מה שמייחד את העיר זה נהר הגנגס הזורם דרכה. ניתן לחצות ב- 2 גשרים: <a onclick="openLightbox('../images/20011024_eitan_at_laxman_jula_bridge.jpg')"> לקסמן ג'ולה</a> הצפוני שלידו אנחנו מתארחים, וראם ג'ולה הדרומי והגדול יותר.</p>
+
+    <p>יש הטועים ועושים ראפטינג בנהר. ממה שראינו זה מגוחך, נראה כמו שייט קיאק כשהודי מצווה על תיירים לחתור (אולי כנקמה על זה שתמיד התיירים מצווים עליו).</p>
+
+    <p>הלכנו לראות את <a onclick="openLightbox('../images/20011024_fooja_ceremony.jpg')"> טקס הפוג'ה</a> – טקס שעושים באחד המקדשים על גדות הנהר הגנגס מול פסל של ככל הנראה שיווה שנמצא בתוך הנהר.</p>
+
+    <p>הורדנו נעליים והתיישבנו על המדרגות, קרוב לטקס.</p>
+
+    <p>העובדה שלא התקלחנו יומיים בגלל הנסיעות היתה חזק באוויר. ריחמנו על הצופים בטקס, אבל היה חובה עלינו להוריד נעליים. מרוב צחנה אחד ההודים שם סל עם פרחים על רגליו של גונן. הטקס כולל מנטרה משעממת של כמה נערים הודים ואח"כ מופע אש לא מרהיב בהשתתפות הרבה ילדים שרים.</p>
+
+    <p>גונן חשב לשכור אופנוע והיה מעודד מזה שאחת הבחורות הישראליות אמרה שתלך איתו לאחד החופים, אולם מבט על העיר ועל התחבורה שלה גרמה לו לבחור בחיים.</p>
+
+    <p>בטקס הפוג'ה ראינו את רועי, ישראלי שהיה איתנו בדרמקוט, הוא ירד אלינו וישב לידינו. החלפנו חוויות, אח"כ הוא סיפר ש<a onclick="openLightbox('../images/20011024_eitan_cooking.jpg')">איתן השף עושה שוב ארוחה</a>, כמו שעשה בדרמקוט.</p>
+
+    <p>הלכנו במהירות לגסט האוס של איתן שהיה ממש קרוב לגסט האוס שלנו. בדרך רועי המליץ לנו לאכול וללעוס פאן, שזה עלה של משהו שמורחים בפנים כל מיני דברים. לעסנו את זה. התמסטלתי, לא הצלחתי למצוא את הגסט האוס שלנו אעפ"י שהיה ממול.</p>
+
+    <p>הארוחה היתה מצויינת: ספגטי, פשטידה ועוגה וסלטים. אכלנו כמו מטורפים. שתינו גם ויסקי ולגונן נדפק הראש.</p>
+
+    <p>אחרי זה חזרנו להתקלח. אח"כ נלך לישראלים ב- swiss cottage.</p>
+
+
+  </div>
+
+  <div class="nav-cards">
+    <a href="20011025.html" class="nav-card">
+      <div class="label">הבא →</div>
+      <div class="card-title">טרק המפלים</div>
+    </a>
+    <a href="20011022.html" class="nav-card">
+      <div class="label">← הקודם</div>
+      <div class="card-title">קיריגנגה- המעיינות החמים, הצעדה</div>
+    </a>
+  </div>
+
+  <div class="country-nav">
+    <a href="200110052040.html">דנמרק</a>
+    <a href="20011006.html">הודו</a>
+    <a href="20011030.html">נפאל</a>
+    <a href="20011115.html">טרק אנאפורנה</a>
+    <a href="20011210.html">תאילנד</a>
+    <a href="20020108.html">לאוס</a>
+    <a href="20020123.html">צפון תאילנד</a>
+    <a href="20020203.html">אוסטרליה</a>
+    <a href="20020210.html">ניו-זילנד, אי דרומי</a>
+    <a href="20020326.html">ניו-זילנד, אי צפוני</a>
+    <a href="20020506.html">פיליפינים</a>
+    <a href="20020603.html">קמבודיה</a>
   </div>
 
   <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
-    <img id="lightbox-img" src="" alt="Enlarged">
+    <img id="lightbox-img" src="" alt="">
   </div>
-
   <script>
     function openLightbox(src) {
       document.getElementById('lightbox-img').src = src;

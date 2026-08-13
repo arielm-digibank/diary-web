@@ -3,194 +3,284 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>חוף פורפויז, אזור הקטלינז, ניו-זילנד</title>
+  <title>אריה הים מול אריה היבשה</title>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap" rel="stylesheet">
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background-color: #f8fafc;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0; padding: 20px; color: #334155;
+      background: #ffffff;
+      font-family: 'Heebo', sans-serif;
+      color: #1a1a2e;
+      line-height: 1.9;
     }
-    .container {
-      max-width: 800px; margin: 0 auto; background: #ffffff;
-      padding: 35px; border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06); line-height: 1.8;
+    .top-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #eee;
+      padding: 12px 30px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.9rem;
     }
-    .header {
-      border-bottom: 2px solid #e2e8f0; padding-bottom: 15px;
-      margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center;
+    .top-nav a {
+      color: #1d4ed8; text-decoration: none; font-weight: 600;
     }
-    .header h1 { margin: 0; color: #0f172a; font-size: 1.8rem; }
-    .home-link { color: #2563eb; text-decoration: none; font-weight: 600; }
-    .content img {
-      float: right; margin: 0 0 15px 20px; max-width: 320px; height: auto;
-      border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      cursor: pointer; transition: transform 0.2s;
+    .top-nav a:hover { text-decoration: underline; }
+    .top-nav .nav-links { display: flex; gap: 20px; }
+    .hero {
+      max-width: 900px; margin: 0 auto;
+      padding: 50px 40px 30px;
+      display: flex; align-items: flex-start; gap: 30px;
     }
-    .content img:hover { transform: scale(1.02); }
-    .content::after { content: ""; clear: both; display: table; }
-    a { color: #2563eb; }
+    .hero-text { flex: 1; }
+    .hero-map {
+      width: 120px; height: auto; object-fit: contain;
+      flex-shrink: 0; opacity: 0.85;
+    }
+    .meta-line {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+    }
+    .date-big {
+      font-size: 3.5rem; font-weight: 900; color: #e5e7eb; line-height: 1;
+    }
+    .date-details { font-size: 0.9rem; color: #6b7280; }
+    .country-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      border-radius: 20px; padding: 4px 14px;
+      font-size: 0.8rem; color: #1d4ed8; font-weight: 600;
+    }
+    .title {
+      font-size: 2.2rem; font-weight: 900; color: #111827;
+      margin: 20px 0 8px; line-height: 1.3;
+    }
+    .date-subtitle {
+      font-size: 1.1rem; font-weight: 300; color: #4b5563;
+      margin-bottom: 16px;
+    }
+    .title-divider {
+      width: 60px; height: 4px; background: #1d4ed8; border-radius: 2px;
+    }
+    .content {
+      max-width: 900px; margin: 30px auto; padding: 0 40px; font-size: 1.05rem;
+    }
+    .content p { margin-bottom: 18px; }
+    .content a {
+      color: #1d4ed8; cursor: pointer;
+      text-decoration: underline;
+      text-decoration-color: rgba(29,78,216,0.3);
+    }
+    .photo-block {
+      margin: 30px 0; border-radius: 12px; overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    .photo-block img {
+      width: 100%; display: block; cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .photo-block img:hover { transform: scale(1.01); }
+    .photo-block .caption {
+      padding: 12px 16px; font-size: 0.85rem; color: #6b7280;
+      background: #f9fafb; border-top: 1px solid #f3f4f6;
+    }
+    .photo-pair {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 14px; margin: 30px 0;
+    }
+    .photo-pair .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-pair .photo-item img {
+      width: 100%; height: 200px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-pair .photo-item img:hover { transform: scale(1.03); }
+    .photo-pair .photo-item .caption {
+      padding: 8px 12px; font-size: 0.8rem; color: #6b7280; background: #f9fafb;
+    }
+    .photo-trio {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px; margin: 30px 0;
+    }
+    .photo-trio .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-trio .photo-item img {
+      width: 100%; height: 180px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-trio .photo-item img:hover { transform: scale(1.03); }
+    .photo-trio .photo-item .caption {
+      padding: 8px 10px; font-size: 0.78rem; color: #6b7280; background: #f9fafb;
+    }
+    .nav-cards {
+      max-width: 900px; margin: 50px auto 20px; padding: 0 40px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .nav-card {
+      padding: 20px 24px; border: 1px solid #e5e7eb; border-radius: 12px;
+      text-decoration: none; color: inherit; transition: all 0.2s;
+    }
+    .nav-card:hover {
+      border-color: #1d4ed8; box-shadow: 0 4px 12px rgba(29,78,216,0.1);
+    }
+    .nav-card .label { font-size: 0.8rem; color: #6b7280; margin-bottom: 4px; }
+    .nav-card .card-title { font-weight: 700; font-size: 1rem; color: #1d4ed8; }
+    .supplements {
+      margin-top: 35px; padding: 25px 30px;
+      background: #f9fafb; border-radius: 12px; border: 1px solid #e5e7eb;
+    }
+    .supplements h3 {
+      font-size: 1.1rem; font-weight: 700; margin-bottom: 14px; color: #374151;
+    }
+    .supplements ol { padding-right: 20px; }
+    .supplements li { margin-bottom: 10px; color: #4b5563; }
+    .country-nav {
+      max-width: 900px; margin: 20px auto 40px; padding: 0 40px;
+      display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+    }
+    .country-nav a {
+      padding: 6px 14px; border-radius: 20px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      color: #1d4ed8; text-decoration: none;
+      font-size: 0.82rem; font-weight: 600;
+      transition: all 0.2s;
+    }
+    .country-nav a:hover {
+      background: #1d4ed8; color: white; border-color: #1d4ed8;
+    }
     .lightbox {
       display: none; position: fixed; z-index: 9999;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.9); justify-content: center; align-items: center; cursor: pointer;
+      background: rgba(0,0,0,0.92);
+      justify-content: center; align-items: center; cursor: pointer;
     }
-    .lightbox img { max-width: 90%; max-height: 90%; border-radius: 8px; }
+    .lightbox img { max-width: 92%; max-height: 92%; border-radius: 8px; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h1>חוף פורפויז, אזור הקטלינז, ניו-זילנד</h1>
-      <a href="../index.html" class="home-link">🏠 לעמוד הראשי</a>
+  <div class="top-nav">
+    <div class="nav-links">
+      <a href="../index.html">עמוד ראשי</a>
     </div>
-    <div class="content">
-      <body>
-<table cellpadding="0" cellspacing="0" height="80" width="954">
-<tr>
-<td align="center" height="80" width="277">
-<marquee style="font-size: 18pt; color: #800080">27.2.02 - 11:20</marquee></td>
-<td align="center" height="80" width="667">
-<!--webbot bot="Navigation" s-type="banner" s-rendering="graphics" S-Orientation B-Include-Home B-Include-Up U-Page S-Target startspan --><!--webbot bot="Navigation" i-checksum="24388" endspan --></td>
-<td align="center" height="80" width="10">
-
-<img border="0" height="155" onclick="openLightbox(this.src)" src="../images/New_Zealand_south_island.gif" title="לחץ להגדלה" width="156"/></td>
-</tr>
-<tr>
-<td colspan="3" height="1" style=" " width="954"></td>
-</tr>
-</table><table cellpadding="0" cellspacing="0" width="100%">
-<tr>
-<td align="right" style=" ">
-<h4>
-<marquee style="font-size: 24pt; color: #008080">אריה הים מול אריה היבשה</marquee></h4>
-<p> </p></td>
-</tr>
-</table>
-<table cellpadding="0" cellspacing="0" height="333" width="953">
-<tr>
-<td height="333" rowspan="2" style="       " valign="top" width="140"> <!--webbot bot="Navigation" S-Type="sequence" S-Orientation="vertical" S-Rendering="graphics" S-Theme="blocks 000" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><!--webbot bot="Navigation" i-checksum="23763" endspan --><p> </p>
-</td>
-<td height="333" rowspan="2" style="     " valign="top" width="1"></td>
-<td colspan="2" height="266" style="     " valign="top" width="735">
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אני לבד באוטו, בחוץ 
-    זבובונים טורדניים ביותר, עוקצניים. אפילו חומר ששמתי לא עוזר.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">לפני-כן הלכתי לשחות עם 
-    דולפינים כאן. הם חמודים, לא גדולים. בצבע כחול אפור. כשנכנסתי למים הם לא 
-    מיהרו להתקרב ושחו באדישות מעט רחוק יותר.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הילה לא האמינה שאכנס למים, 
-    אבל לי הקור לא כ"כ מפריע, המים היו קרים, אבל נעימים, הרגשתי בנוח ולא רעדתי. 
-    גונן תירץ את זה שהוא לא נכנס בזה שכואב לו הגרון, אבל אין שום סיכוי שהוא היה 
-    נכנס.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אתמול ראינו אריות-ים בשני 
-    מקומות: </span><span dir="LTR">Cannibal bay</span><span lang="HE"> ו- </span>
-<span dir="LTR">Surat bay</span><span lang="HE">. אלו המקומות הידועים למציאת 
-    אריות-ים, והם חיכו לנו שם, רובצים בשמש וזורים חול על עצמם. ענקיים. הזכרים 
-    מגיעים לגודל של 3 מטר, כמו כמעט 2 אנשים, משהו כמו 500 ק"ג לפחות. הנקבות 
-    קטנות יותר, בגודל של כלבי ים – כמטר וחצי.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הם גם גילו את אריה היבשה – 
-    אריה גונן, מתקרב בהתנהגות ישראלית טיפוסית וגורם להם לשאוג ואז בורח. גונן 
-    הטריד אותם כדי להשיג תמונה שלהם מתרוממים, כשכל מה שהם רצו זה לישון ושיניחו 
-    להם לנפשם.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">גונן המשיך בנהיגתו הפרועה 
-    ועלה פעם אחת על השוליים ושמענו דפיקה חזקה מאחורי האוטו. נמאס לי כבר להעיר לו 
-    על נהיגתו. תוסיפו את זה שהוא לא קורא שלטים אף פעם, ולא זוכר אף פעם לאיפה 
-    צריכים לנסוע או איזו פניה הוא אמור לחפש וכך אני לא יכול לנוח או להסתכל בשקט 
-    על צידי הדרך. עלי להיות מרוכז בכביש. הרבה פעמים גונן היה צריך לעשות פרסה כדי 
-    לחזור אחורה לפניה שהוא פספס, בנוסף לזה יש לו חוש כיוון מחורבן וב- 50% 
-    מהמקרים הוא טועה (שזה בערך כמו ניחוש).</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אתמול לאחר אריות-הים 
-    גילינו שחסר לנו אוויר בגלגל בצד השמאלי של האוטו מאחורה. דבר ראשון צעקנו על 
-    הילה ועל משקלה והזזנו אותה לשבת בצד ימין של האוטו. נסענו, מלאנו אוויר בגלגל, 
-    ולבסוף, לאחר הביקור ב- </span><span dir="LTR">Surat bay</span><span lang="HE"> 
-    ראינו שיש לנו בעצם תקר.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">ניגשנו להחליף את הגלגל. 
-    לקח לנו זמן להוציא את הצלחת מהגלגל, אבל הצלחנו. הגלגל הרזרבי נמצא מתחת 
-    לאוטו, ואז גיליתי דבר שתמיד ראיתי אותו אבל לא שמתי לב אליו – גונן עומד בצד, 
-    לא רוצה להתלכלך ומחכה שמישהו אחר ייכנס מתחת לאוטו ויתלכלך. רבנו על זה מעט 
-    והחלטנו להטיל מטבע. תוך כדי זה הילה העלתה השערה שאולי לא צריך להכנס מתחת 
-    לאוטו. היא כבר התלכלכה עם חולצתה הלבנה. בסוף גיליתי איך להוציא את הגלגל 
-    והחלפנו אותו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">גונן חשש מה יקרה אם יהיה 
-    תקר נוסף. השעה היתה כבר אחרי 17:00 והכל היה סגור. פתאם הוא החל לנהוג 
-    באחריות. אני כבר התייאשתי כשהוא מצא מוסכניק פתוח והחלפנו את 2 הצמיגים, כי 
-    הרזרבי היה אליפסי וכל האוטו התנדנד. זה עלה לנו רק 30$</span><span dir="LTR">NZ</span><span lang="HE">.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בגלל טעות של אות אחת:
-    </span><span dir="LTR">Waikaka</span><span lang="HE"> במקום </span>
-<span dir="LTR">Waikawa</span><span lang="HE"> נאלצנו לנסוע 150 ק"מ וללון 
-    אצל 
-    זוג מבוגר – רוס ופיאונה, הגבר בן 50 והאשה בת 43. מסתבר שגם הוא כרבים אחרים 
-    כאן גרוש, אשתו ברחה עם ישראלי שעבד אצלו בחווה. הופתענו שהוא עדיין נחמד 
-    לישראלים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">גונן עדיין מתלהב מזה שהוא 
-    שכב עם אלופת העולם בקפיצות עם סוס. הילה ואני מדגישים את חשיבות שירלי בעניין 
-    – מה אם היא עם מישהו חדש?. "אין סיכוי, אולי עם ספר חדש" אומר גונן. זה משתיק 
-    אותו לכ- 10 דקות.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">היום קמנו מוקדם, לפני 
-    7:00. מיהרנו לנסוע את כל הקילומטראז' חזרה וכמעט נגמר לנו הדלק בדרך, רק כדי 
-    להגיע בשפל (ב- 9:15) ל- </span><span dir="LTR">Curio bay</span><span lang="HE">, 
-    לראות מאובנים. התאכזבנו, יש שם כמה צורות סלע שמראות מאובני עצים, אבל מה זה 
-    מעניין?, מה עם מאובני נוצות או שבלולים שמראים בטלביזיה?. הרגשנו בשפל.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הטבע, בכל נסיעה, גם 
-    מיותרת, מדהים. אתמול כשהגענו לחווה 
-    <a href="images/pictures/new-zealand/20020226_sunset.jpg" target="_blank">ראינו ירח ענקי מצד אחד ושקיעה יפה בצד 
-    השני</a>. בבוקר, ב- 7:00 בבוקר, היתה זריחה אדומה/כתומה מדהימה. בצד המערבי של האי 
-    אנו מצפים לשקיעות אדומות ומאוחרות (לקראת 21:00).</span></b></p>
-<p> </p></td>
-<td align="center" height="333" rowspan="2" style="     " valign="top" width="187">
-
-<img border="0" height="120" onclick="openLightbox(this.src)" src="../images/20020226_cable_sea_lion.jpg" title="לחץ להגדלה" width="179"/><p>
-<font color="#660099">אריה ים בחוף קניבל</font></p>
-<p>
-
-<img border="0" height="125" onclick="openLightbox(this.src)" src="../images/20020225_sea_lion_2.jpg" title="לחץ להגדלה" width="182"/></p>
-<p>
-<font color="#660099">גונן מתקרב, האריה מרגיש באי נוחות</font></p>
-<p>
-
-<img border="0" height="124" onclick="openLightbox(this.src)" src="../images/20020225_sea_lion_1.jpg" title="לחץ להגדלה" width="181"/></p>
-<p>
-<font color="#660099">גונן מתקרב עוד יותר, האריה נוהם</font></p>
-<p>
-
-<img border="0" height="123" onclick="openLightbox(this.src)" src="../images/20020226_surat_sea_lion.jpg" title="לחץ להגדלה" width="182"/></p>
-<p>
-
-<img border="0" height="134" onclick="openLightbox(this.src)" src="../images/20020225_gonen&amp;sea_lions.jpg" title="לחץ להגדלה" width="182"/></p>
-<p><font color="#660099">משפחת אריות ים בחוף סוראט. שימו לב שהגור הוא בצבע 
-    שונה ושהזכר גדול בהרבה מהנקבה</font></p>
-<p>
-     </p>
-<p>
-
-<img border="0" height="127" onclick="openLightbox(this.src)" src="../images/20020226_sunset.jpg" title="לחץ להגדלה" width="181"/></p>
-<p>
-<font color="#660099">השקיעה שראינו מהחווה</font></p>
-</td>
-</tr>
-<tr>
-<td height="67" style="     " valign="top" width="314">
-<b>
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button104.gif" title="לחץ להגדלה" width="59"/></b></td>
-<td height="67" style="     " valign="top" width="421">
-<p align="right"><b>
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button106.gif" title="לחץ להגדלה" width="59"/></b></p></td>
-</tr>
-</table>
-<p align="center">
-<!--webbot bot="Navigation" S-Type="sequence" S-Orientation="horizontal" S-Rendering="html" S-Bar="Brackets" S-Btn-Nml="[&lt;A HREF=&quot;#URL#&quot; TARGET=&quot;#TARGET#&quot; STYLE=&quot;{text-decoration: none;}&quot;&gt;#LABEL#&lt;/A&gt;]" S-Btn-Sel="[#LABEL#]" S-Btn-Sep="&amp;nbsp;" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><nobr>[<a href="index.html" style="{text-decoration: none;}" target="">התחלה</a>]</nobr> <nobr>[<a href="200110052040.html" style="{text-decoration: none;}" target="">דנמרק</a>]</nobr> <nobr>[<a href="20011006.html" style="{text-decoration: none;}" target="">הודו</a>]</nobr> <nobr>[<a href="20011030.html" style="{text-decoration: none;}" target="">נפאל</a>]</nobr> <nobr>[<a href="20011115.html" style="{text-decoration: none;}" target="">טרק סובב אנאפורנה</a>]</nobr> <nobr>[<a href="20011210.html" style="{text-decoration: none;}" target="">תאילנד</a>]</nobr> <nobr>[<a href="20020108.html" style="{text-decoration: none;}" target="">לאוס</a>]</nobr> <nobr>[<a href="20020123.html" style="{text-decoration: none;}" target="">צפון תאילנד</a>]</nobr> <nobr>[<a href="20020203.html" style="{text-decoration: none;}" target="">אוסטרליה</a>]</nobr> <nobr>[<a href="20020210.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי דרומי</a>]</nobr> <nobr>[<a href="20020326.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי צפוני</a>]</nobr> <nobr>[<a href="20020506.html" style="{text-decoration: none;}" target="">פיליפינים</a>]</nobr> <nobr>[<a href="20020603.html" style="{text-decoration: none;}" target="">קמבודיה</a>]</nobr><!--webbot bot="Navigation" i-checksum="33824" endspan --></p>
-<p><i><small>This site was last updated
-<!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%m/%d/%y" startspan -->07/15/03<!--webbot bot="Timestamp" i-checksum="12690" endspan --> </small></i>
-</p>
-</body>
+    <div class="nav-links">
+      <a href="20020226.html">← הקודם</a>
+      <a href="20020228.html">הבא →</a>
     </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-text">
+      <div class="meta-line">
+        <span class="date-big">27</span>
+        <div>
+          <div class="date-details">פברואר 2002</div>
+          <span class="country-badge">ניו-זילנד, אי דרומי</span>
+        </div>
+      </div>
+      <h1 class="title">אריה הים מול אריה היבשה</h1>
+      <div class="title-divider"></div>
+    </div>
+    <img class="hero-map" src="../images/New_Zealand_south_island.gif" alt="ניו-זילנד, אי דרומי">
+  </div>
+
+  <div class="content">
+    <p>אריה הים מול אריה היבשה</p>
+
+    <p>אני לבד באוטו, בחוץ זבובונים טורדניים ביותר, עוקצניים. אפילו חומר ששמתי לא עוזר.</p>
+
+    <p>לפני-כן הלכתי לשחות עם דולפינים כאן. הם חמודים, לא גדולים. בצבע כחול אפור. כשנכנסתי למים הם לא מיהרו להתקרב ושחו באדישות מעט רחוק יותר.</p>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/20020226_cable_sea_lion.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">אריה ים בחוף קניבל</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020225_sea_lion_2.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">גונן מתקרב, האריה מרגיש באי נוחות</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020225_sea_lion_1.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">גונן מתקרב עוד יותר, האריה נוהם</div>
+      </div>
+    </div>
+
+    <p>הילה לא האמינה שאכנס למים, אבל לי הקור לא כ"כ מפריע, המים היו קרים, אבל נעימים, הרגשתי בנוח ולא רעדתי. גונן תירץ את זה שהוא לא נכנס בזה שכואב לו הגרון, אבל אין שום סיכוי שהוא היה נכנס.</p>
+
+    <p>אתמול ראינו אריות-ים בשני מקומות: Cannibal bay ו- Surat bay. אלו המקומות הידועים למציאת אריות-ים, והם חיכו לנו שם, רובצים בשמש וזורים חול על עצמם. ענקיים. הזכרים מגיעים לגודל של 3 מטר, כמו כמעט 2 אנשים, משהו כמו 500 ק"ג לפחות. הנקבות קטנות יותר, בגודל של כלבי ים – כמטר וחצי.</p>
+
+    <p>הם גם גילו את אריה היבשה – אריה גונן, מתקרב בהתנהגות ישראלית טיפוסית וגורם להם לשאוג ואז בורח. גונן הטריד אותם כדי להשיג תמונה שלהם מתרוממים, כשכל מה שהם רצו זה לישון ושיניחו להם לנפשם.</p>
+
+    <div class="photo-pair">
+      <div class="photo-item">
+        <img src="../images/20020226_surat_sea_lion.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020225_gonen&sea_lions.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">משפחת אריות ים בחוף סוראט. שימו לב שהגור הוא בצבע 
+    שונה ושהזכר גדול בהרבה מהנקבה</div>
+      </div>
+    </div>
+
+    <p>גונן המשיך בנהיגתו הפרועה ועלה פעם אחת על השוליים ושמענו דפיקה חזקה מאחורי האוטו. נמאס לי כבר להעיר לו על נהיגתו. תוסיפו את זה שהוא לא קורא שלטים אף פעם, ולא זוכר אף פעם לאיפה צריכים לנסוע או איזו פניה הוא אמור לחפש וכך אני לא יכול לנוח או להסתכל בשקט על צידי הדרך. עלי להיות מרוכז בכביש. הרבה פעמים גונן היה צריך לעשות פרסה כדי לחזור אחורה לפניה שהוא פספס, בנוסף לזה יש לו חוש כיוון מחורבן וב- 50% מהמקרים הוא טועה (שזה בערך כמו ניחוש).</p>
+
+    <p>אתמול לאחר אריות-הים גילינו שחסר לנו אוויר בגלגל בצד השמאלי של האוטו מאחורה. דבר ראשון צעקנו על הילה ועל משקלה והזזנו אותה לשבת בצד ימין של האוטו. נסענו, מלאנו אוויר בגלגל, ולבסוף, לאחר הביקור ב- Surat bay ראינו שיש לנו בעצם תקר.</p>
+
+    <p>ניגשנו להחליף את הגלגל. לקח לנו זמן להוציא את הצלחת מהגלגל, אבל הצלחנו. הגלגל הרזרבי נמצא מתחת לאוטו, ואז גיליתי דבר שתמיד ראיתי אותו אבל לא שמתי לב אליו – גונן עומד בצד, לא רוצה להתלכלך ומחכה שמישהו אחר ייכנס מתחת לאוטו ויתלכלך. רבנו על זה מעט והחלטנו להטיל מטבע. תוך כדי זה הילה העלתה השערה שאולי לא צריך להכנס מתחת לאוטו. היא כבר התלכלכה עם חולצתה הלבנה. בסוף גיליתי איך להוציא את הגלגל והחלפנו אותו.</p>
+
+    <div class="photo-block">
+      <img src="../images/20020226_sunset.jpg" onclick="openLightbox(this.src)">
+      <div class="caption">השקיעה שראינו מהחווה</div>
+    </div>
+
+    <p>גונן חשש מה יקרה אם יהיה תקר נוסף. השעה היתה כבר אחרי 17:00 והכל היה סגור. פתאם הוא החל לנהוג באחריות. אני כבר התייאשתי כשהוא מצא מוסכניק פתוח והחלפנו את 2 הצמיגים, כי הרזרבי היה אליפסי וכל האוטו התנדנד. זה עלה לנו רק 30$NZ.</p>
+
+    <p>בגלל טעות של אות אחת: Waikaka במקום Waikawa נאלצנו לנסוע 150 ק"מ וללון אצל זוג מבוגר – רוס ופיאונה, הגבר בן 50 והאשה בת 43. מסתבר שגם הוא כרבים אחרים כאן גרוש, אשתו ברחה עם ישראלי שעבד אצלו בחווה. הופתענו שהוא עדיין נחמד לישראלים.</p>
+
+    <p>גונן עדיין מתלהב מזה שהוא שכב עם אלופת העולם בקפיצות עם סוס. הילה ואני מדגישים את חשיבות שירלי בעניין – מה אם היא עם מישהו חדש?. "אין סיכוי, אולי עם ספר חדש" אומר גונן. זה משתיק אותו לכ- 10 דקות.</p>
+
+    <p>היום קמנו מוקדם, לפני 7:00. מיהרנו לנסוע את כל הקילומטראז' חזרה וכמעט נגמר לנו הדלק בדרך, רק כדי להגיע בשפל (ב- 9:15) ל- Curio bay, לראות מאובנים. התאכזבנו, יש שם כמה צורות סלע שמראות מאובני עצים, אבל מה זה מעניין?, מה עם מאובני נוצות או שבלולים שמראים בטלביזיה?. הרגשנו בשפל.</p>
+
+    <p>הטבע, בכל נסיעה, גם מיותרת, מדהים. אתמול כשהגענו לחווה <a onclick="openLightbox('../images/20020226_sunset.jpg')">ראינו ירח ענקי מצד אחד ושקיעה יפה בצד השני</a>. בבוקר, ב- 7:00 בבוקר, היתה זריחה אדומה/כתומה מדהימה. בצד המערבי של האי אנו מצפים לשקיעות אדומות ומאוחרות (לקראת 21:00).</p>
+
+    <p>משפחת אריות ים בחוף סוראט. שימו לב שהגור הוא בצבע שונה ושהזכר גדול בהרבה מהנקבה</p>
+
+
+  </div>
+
+  <div class="nav-cards">
+    <a href="20020228.html" class="nav-card">
+      <div class="label">הבא →</div>
+      <div class="card-title">מערות הקתדרלה המסוכנות</div>
+    </a>
+    <a href="20020226.html" class="nav-card">
+      <div class="label">← הקודם</div>
+      <div class="card-title">הקטלינז</div>
+    </a>
+  </div>
+
+  <div class="country-nav">
+    <a href="200110052040.html">דנמרק</a>
+    <a href="20011006.html">הודו</a>
+    <a href="20011030.html">נפאל</a>
+    <a href="20011115.html">טרק אנאפורנה</a>
+    <a href="20011210.html">תאילנד</a>
+    <a href="20020108.html">לאוס</a>
+    <a href="20020123.html">צפון תאילנד</a>
+    <a href="20020203.html">אוסטרליה</a>
+    <a href="20020210.html">ניו-זילנד, אי דרומי</a>
+    <a href="20020326.html">ניו-זילנד, אי צפוני</a>
+    <a href="20020506.html">פיליפינים</a>
+    <a href="20020603.html">קמבודיה</a>
   </div>
 
   <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
-    <img id="lightbox-img" src="" alt="Enlarged">
+    <img id="lightbox-img" src="" alt="">
   </div>
-
   <script>
     function openLightbox(src) {
       document.getElementById('lightbox-img').src = src;

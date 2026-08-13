@@ -3,194 +3,276 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ואנג-ויינג, לאוס</title>
+  <title>ההגעה ללאוס</title>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap" rel="stylesheet">
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background-color: #f8fafc;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0; padding: 20px; color: #334155;
+      background: #ffffff;
+      font-family: 'Heebo', sans-serif;
+      color: #1a1a2e;
+      line-height: 1.9;
     }
-    .container {
-      max-width: 800px; margin: 0 auto; background: #ffffff;
-      padding: 35px; border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06); line-height: 1.8;
+    .top-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #eee;
+      padding: 12px 30px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.9rem;
     }
-    .header {
-      border-bottom: 2px solid #e2e8f0; padding-bottom: 15px;
-      margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center;
+    .top-nav a {
+      color: #1d4ed8; text-decoration: none; font-weight: 600;
     }
-    .header h1 { margin: 0; color: #0f172a; font-size: 1.8rem; }
-    .home-link { color: #2563eb; text-decoration: none; font-weight: 600; }
-    .content img {
-      float: right; margin: 0 0 15px 20px; max-width: 320px; height: auto;
-      border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      cursor: pointer; transition: transform 0.2s;
+    .top-nav a:hover { text-decoration: underline; }
+    .top-nav .nav-links { display: flex; gap: 20px; }
+    .hero {
+      max-width: 900px; margin: 0 auto;
+      padding: 50px 40px 30px;
+      display: flex; align-items: flex-start; gap: 30px;
     }
-    .content img:hover { transform: scale(1.02); }
-    .content::after { content: ""; clear: both; display: table; }
-    a { color: #2563eb; }
+    .hero-text { flex: 1; }
+    .hero-map {
+      width: 120px; height: auto; object-fit: contain;
+      flex-shrink: 0; opacity: 0.85;
+    }
+    .meta-line {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+    }
+    .date-big {
+      font-size: 3.5rem; font-weight: 900; color: #e5e7eb; line-height: 1;
+    }
+    .date-details { font-size: 0.9rem; color: #6b7280; }
+    .country-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      border-radius: 20px; padding: 4px 14px;
+      font-size: 0.8rem; color: #1d4ed8; font-weight: 600;
+    }
+    .title {
+      font-size: 2.2rem; font-weight: 900; color: #111827;
+      margin: 20px 0 8px; line-height: 1.3;
+    }
+    .date-subtitle {
+      font-size: 1.1rem; font-weight: 300; color: #4b5563;
+      margin-bottom: 16px;
+    }
+    .title-divider {
+      width: 60px; height: 4px; background: #1d4ed8; border-radius: 2px;
+    }
+    .content {
+      max-width: 900px; margin: 30px auto; padding: 0 40px; font-size: 1.05rem;
+    }
+    .content p { margin-bottom: 18px; }
+    .content a {
+      color: #1d4ed8; cursor: pointer;
+      text-decoration: underline;
+      text-decoration-color: rgba(29,78,216,0.3);
+    }
+    .photo-block {
+      margin: 30px 0; border-radius: 12px; overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    .photo-block img {
+      width: 100%; display: block; cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .photo-block img:hover { transform: scale(1.01); }
+    .photo-block .caption {
+      padding: 12px 16px; font-size: 0.85rem; color: #6b7280;
+      background: #f9fafb; border-top: 1px solid #f3f4f6;
+    }
+    .photo-pair {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 14px; margin: 30px 0;
+    }
+    .photo-pair .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-pair .photo-item img {
+      width: 100%; height: 200px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-pair .photo-item img:hover { transform: scale(1.03); }
+    .photo-pair .photo-item .caption {
+      padding: 8px 12px; font-size: 0.8rem; color: #6b7280; background: #f9fafb;
+    }
+    .photo-trio {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px; margin: 30px 0;
+    }
+    .photo-trio .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-trio .photo-item img {
+      width: 100%; height: 180px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-trio .photo-item img:hover { transform: scale(1.03); }
+    .photo-trio .photo-item .caption {
+      padding: 8px 10px; font-size: 0.78rem; color: #6b7280; background: #f9fafb;
+    }
+    .nav-cards {
+      max-width: 900px; margin: 50px auto 20px; padding: 0 40px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .nav-card {
+      padding: 20px 24px; border: 1px solid #e5e7eb; border-radius: 12px;
+      text-decoration: none; color: inherit; transition: all 0.2s;
+    }
+    .nav-card:hover {
+      border-color: #1d4ed8; box-shadow: 0 4px 12px rgba(29,78,216,0.1);
+    }
+    .nav-card .label { font-size: 0.8rem; color: #6b7280; margin-bottom: 4px; }
+    .nav-card .card-title { font-weight: 700; font-size: 1rem; color: #1d4ed8; }
+    .supplements {
+      margin-top: 35px; padding: 25px 30px;
+      background: #f9fafb; border-radius: 12px; border: 1px solid #e5e7eb;
+    }
+    .supplements h3 {
+      font-size: 1.1rem; font-weight: 700; margin-bottom: 14px; color: #374151;
+    }
+    .supplements ol { padding-right: 20px; }
+    .supplements li { margin-bottom: 10px; color: #4b5563; }
+    .country-nav {
+      max-width: 900px; margin: 20px auto 40px; padding: 0 40px;
+      display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+    }
+    .country-nav a {
+      padding: 6px 14px; border-radius: 20px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      color: #1d4ed8; text-decoration: none;
+      font-size: 0.82rem; font-weight: 600;
+      transition: all 0.2s;
+    }
+    .country-nav a:hover {
+      background: #1d4ed8; color: white; border-color: #1d4ed8;
+    }
     .lightbox {
       display: none; position: fixed; z-index: 9999;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.9); justify-content: center; align-items: center; cursor: pointer;
+      background: rgba(0,0,0,0.92);
+      justify-content: center; align-items: center; cursor: pointer;
     }
-    .lightbox img { max-width: 90%; max-height: 90%; border-radius: 8px; }
+    .lightbox img { max-width: 92%; max-height: 92%; border-radius: 8px; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h1>ואנג-ויינג, לאוס</h1>
-      <a href="../index.html" class="home-link">🏠 לעמוד הראשי</a>
+  <div class="top-nav">
+    <div class="nav-links">
+      <a href="../index.html">עמוד ראשי</a>
     </div>
-    <div class="content">
-      <body>
-<table cellpadding="0" cellspacing="0" height="80" width="954">
-<tr>
-<td align="center" height="80" width="277">
-<marquee style="font-size: 18pt; color: #800080">8.1.02 - 18:00</marquee></td>
-<td align="center" height="80" width="667">
-<!--webbot bot="Navigation" s-type="banner" s-rendering="graphics" S-Orientation B-Include-Home B-Include-Up U-Page S-Target startspan --><!--webbot bot="Navigation" i-checksum="23537" endspan --></td>
-<td align="center" height="80" width="10">
-
-<img border="0" height="164" onclick="openLightbox(this.src)" src="../images/Laos.gif" title="לחץ להגדלה" width="167"/></td>
-</tr>
-<tr>
-<td colspan="3" height="1" style=" " width="954"></td>
-</tr>
-</table><table cellpadding="0" cellspacing="0" width="100%">
-<tr>
-<td align="right" style=" ">
-<h4>
-<marquee style="font-size: 24pt; color: #008080">ההגעה ללאוס</marquee></h4>
-<p> </p></td>
-</tr>
-</table>
-<table cellpadding="0" cellspacing="0" height="333" width="953">
-<tr>
-<td height="333" rowspan="2" style="       " valign="top" width="140"> <!--webbot bot="Navigation" S-Type="sequence" S-Orientation="vertical" S-Rendering="graphics" S-Theme="blocks 000" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><!--webbot bot="Navigation" i-checksum="21691" endspan --><p> </p>
-</td>
-<td height="333" rowspan="2" style="     " valign="top" width="1"></td>
-<td colspan="2" height="266" style="     " valign="top" width="735">
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">היום לראשונה לאחר 3 חודשים 
-    התגעגעתי הביתה</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">שכבתי בקרון השינה ברכבת 
-    בדרך ללאוס וחשבתי על החתונה של ג'וניור ואיך אנחנו מפתיעים אותו והוא צוחק את 
-    הצחוק המטורף שלו, ואז חשבתי על איך אני מפתיע גם את אמא ויעל כשאנחנו נפגשים 
-    אצל לימור. משום מה חשתי באושר רב מציף אותי. הרגשתי שיש לי נבחרת מנצחת של 
-    חברים ומשפחה בארץ.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">השלמות:</span></b></p>
-<p dir="rtl" style="text-align: right"><b><span lang="HE">בית חב"ד – היו לנו שכנים 
-    בגסט האוס, זוג חמוד, בני 22-23 מחיפה והקריות. אדם ואורלי (אם אינני טועה) הם 
-    חמודים ופתוחים וגם מעט דתיים. הם הזמינו אותנו ביום שישי ה- 4.1 לבית חב"ד. 
-    העדפנו ללכת לסרט במרכז טוקיו, אבל ביום שבת בצהרים התייצבנו שם ב- 12:00 
-    לארוחת צהרים, לצ'ולנט. אכלנו הקדמה של סלטים ואז הגיע זמן השירה. הופתעתי כמה 
-    משירי השבת איני מכיר. רק את השיר "דרור ייקרא.." הכרתי, אבל כשכולם שרו אני 
-    שבתתי. אחרי ששילמנו את חובינו לחב"ד אכלנו צ'ולנט. הרבה מבטים משכו גונן 
-    ושירלי, ברובם זיהיתי דווקא סימפטיה.</span></b></p>
-<p dir="rtl" style="text-align: right">
-<span dir="RTL" lang="HE" style="font-size: 12.0pt; font-weight: 700">
-    תאילנדי בא אלי לאחר שסיפרתי לו שהייתי בקו-פנגן בפול-מון ואמר לי שבעיתון היה 
-    כתוב שמישהו היה שיכור וטבע שם. "אם הוא טבע אז בטוח שהוא שתה יותר מדי" אמרתי 
-    לו.</span></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בפעם האחרונה שכתבתי זה היה 
-    לאחר שהיומן חזר לידי. זהו הכרך החדש והוא מתחיל במקום חדש, בלאוס.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אתמול בבוקר, קמנו, הלכתי 
-    להביא את היומן כאמור. כ"כ שמחתי שהוא נמצא שמייד התחלתי לכתוב בו. פרי עטי 
-    באותה עת זה הפרק האחרון בכרך הקודם.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">איך שסיימתי לכתוב הגיעה 
-    קארין והזמינה אותי לארוחת-בוקר. הסברתי לה שקצת לחוץ ורק אח"כ אוכל לפגוש 
-    אותה, אבל היא לא יכלה, אז נפרדנו בסימפטיה וברצון הדדי להפגש מאוחר יותר בארץ.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">פרידה קשה יותר ציפתה 
-    לגונן.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הלכנו לקנות את הכרטיסים 
-    לניו-זילנד ואוסטרליה. הם עלו לנו 880$ - 620$ לאוסטרליה, פתוח לשנה בחברת 
-    התעופה הפיליפינית, כמובן שנעצור שם בדרכנו חזרה. כמובן שאסור שמלודי תדע את 
-    זה. 260$ זה מחיר הכרטיס לניו-זילנד, לדנידין.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">תאריך הנסיעה: 2.2 למלבורן, 
-    אוסטרליה. משם ב- 8.2 לדנידין, ניו-זילנד. משם אנחנו אמורים לחזור ב- 3.5.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">שמנו את התיקים הגדולים 
-    לשמירה ב"זולה", תמורת 6 באט ליום (במקום 10 באט ליום ב"קשר הישראלי").</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">נתתי לגונן עוד שעתיים 
-    להפרד משירלי שוטטתי באינטרנט ואחרי זה בקוואסן. ישבתי, קורא ספר ושותה שייק, 
-    כשאיזה בחורה ישראלית שאלה אותי איפה בית חב"ד ומיני טורס. קמתי וליוויתי אותה 
-    והסברתי לה והמלצתי לה על מקומות באיים. בקיצור, היא לא ידעה מאיפה נחת עליה 
-    השירות הזה. לי זה עזר להעביר את הזמן.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">כשהגיע הזמן, עליתי, גונן 
-    הלך להתקלח (מעניין למה). אח"כ ב- 17:00 צעדנו רגלית לכיוון תחנת הרכבת, חצי 
-    שעת הליכה. היה לנו רק את התיקים הקטנים, כך שזה לא העיק.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">שירלי ליוותה אותנו עד 
-    <a href="images/pictures/thailand/20011210_gonen&amp;shirley_near_democracy_circus.jpg" target="_blank">כיכר 
-    הדמוקרטיה</a> ושם נערכה הפרידה המרגשת. שירלי, במיטב המסורת הסינית, שלטה ברגשותיה 
-    וניסתה להמעיט מגודל האירוע הפומבי הזה, כשמסביב הומה אדם. גונן דווקא האריך 
-    בפרידה, עוד נשיקה ועוד חיבוק, כמו קטע מאופרת סבון, אבל עלי לאמר שהוא נפרד 
-    היטב.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">מאז, כבר שמעתי עשרות פעמים 
-    כמה הוא מתגעגע אליה וכמה הוא נזכר בה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בכל מקרה יש כאן כוונה 
-    רצינית להפגש לאחר הקטע האוקיאני שלנו (אוסטרליה וניו-זילנד).</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הגענו לרכבת שלנו ולקרון 
-    השינה. בהתחלה יש מושבים ואח"כ המושבים הופכים למיטה התחתונה ומהתקרה יורדת 
-    המיטה העליונה. סדינים נפרשים, כרית ושמיכה. נחמד מאד. הבעיה שזה מעט קצר, כך 
-    שלשכב ישר על הגב יכולתי, אבל לא על הבטן כמו שאני אוהב. הנסיעה עולה 470 באט 
-    ונמשכת לילה. הרכבת עצרה המון פעמים, לא יודע למה, אבל נדמה לי שהיא גם עצרה 
-    באיזה רמזור, מוזר.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בבוקר התעוררתי והיה קר. 
-    טוב שלקחנו ארוך לאחר ששאלתי את קארין על מזג האוויר בלאוס כי אחרת היינו 
-    קופאים מקור. גונן דרש שאשאל זאת.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">עברנו את הגבול, לא שילמנו 
-    500 באט דמי יציאה מתאילנד כמו שחשבנו. הצטרפו אלינו זוג חמוד – מיקי ומירי וגם 
-    ישראלית-אוסטרלית בשם שרון. היא בת 32, נולדה באוסטרליה ובאה לארץ לפני 10 שנים 
-    ועכשיו נמאס לה ואחרי לאוס היא חוזרת לאוסטרליה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">כשהגענו לואנג-ויינג, 3.5 
-    שעות נסיעה מהגבול, ראינו עיירה ציורית שהזכירה את עמק פרבטי בצפון הודו. המקום 
-    מישורי, ברקע הרים מזדקרים בצורה מוזרה כמו קונוסים, מזכיר את הר הסוכר (או הר 
-    הקוקוס, לא זוכר) בריו-דה-ז'נרו. יש גם נהר משמעותי. הרבה גסט האוסים והרבה 
-    מסעדות.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">המחירים כאן זולים להפליא, 
-    חצי מתאילנד, זול יותר מהודו. אכלנו שניצל וסטייק שבאים עם צ'יפס בקרוב ל- 5 
-    שקל כל אחד!</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">יש בלאוס בעיה של פיחות, 
-    לפני 5 שנים היחס בין המטבע המקומי, הקיפ, לדולר היה 1:920. היום זה 1:9500.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">דרך אגב, השטר הגדול כאן זה 
-    5000 קיפ, פחות מ- 2.5 שקל!!!, כך שהחלפנו 100$ וקיבלנו ערימות של מאות שטרות. 
-    מדהים!</span></b></p>
-<p> </p></td>
-<td align="center" height="333" rowspan="2" style="     " valign="top" width="187">
-
-<img border="0" height="192" onclick="openLightbox(this.src)" src="../images/20020108_malik&amp;50_dollar.jpg" title="לחץ להגדלה" width="132"/><p>
-<font color="#660099">מליק עם שטרות מקומיים בשווי 50$</font></p>
-<p>
-<img border="0" height="123" onclick="openLightbox(this.src)" src="../images/20020109_feeling_rich.jpg" title="לחץ להגדלה" width="179"/></p>
-<p><font color="#660099">מליק וגונן מרגישים עשירים</font></p>
-<p> </p></td>
-</tr>
-<tr>
-<td height="67" style="     " valign="top" width="314">
-
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button104.gif" title="לחץ להגדלה" width="59"/></td>
-<td height="67" style="     " valign="top" width="421">
-<p align="right">
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button106.gif" title="לחץ להגדלה" width="59"/></p></td>
-</tr>
-</table>
-<p align="center">
-<!--webbot bot="Navigation" S-Type="sequence" S-Orientation="horizontal" S-Rendering="html" S-Bar="Brackets" S-Btn-Nml="[&lt;A HREF=&quot;#URL#&quot; TARGET=&quot;#TARGET#&quot; STYLE=&quot;{text-decoration: none;}&quot;&gt;#LABEL#&lt;/A&gt;]" S-Btn-Sel="[#LABEL#]" S-Btn-Sep="&amp;nbsp;" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><nobr>[<a href="index.html" style="{text-decoration: none;}" target="">התחלה</a>]</nobr> <nobr>[<a href="200110052040.html" style="{text-decoration: none;}" target="">דנמרק</a>]</nobr> <nobr>[<a href="20011006.html" style="{text-decoration: none;}" target="">הודו</a>]</nobr> <nobr>[<a href="20011030.html" style="{text-decoration: none;}" target="">נפאל</a>]</nobr> <nobr>[<a href="20011115.html" style="{text-decoration: none;}" target="">טרק סובב אנאפורנה</a>]</nobr> <nobr>[<a href="20011210.html" style="{text-decoration: none;}" target="">תאילנד</a>]</nobr> <nobr>[לאוס]</nobr> <nobr>[<a href="20020123.html" style="{text-decoration: none;}" target="">צפון תאילנד</a>]</nobr> <nobr>[<a href="20020203.html" style="{text-decoration: none;}" target="">אוסטרליה</a>]</nobr> <nobr>[<a href="20020210.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי דרומי</a>]</nobr> <nobr>[<a href="20020326.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי צפוני</a>]</nobr> <nobr>[<a href="20020506.html" style="{text-decoration: none;}" target="">פיליפינים</a>]</nobr> <nobr>[<a href="20020603.html" style="{text-decoration: none;}" target="">קמבודיה</a>]</nobr><!--webbot bot="Navigation" i-checksum="8489" endspan --></p>
-<p><i><small>This site was last updated
-<!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%m/%d/%y" startspan -->07/12/03<!--webbot bot="Timestamp" i-checksum="12642" endspan --> </small></i>
-</p>
-</body>
+    <div class="nav-links">
+      <a href="20020107.html">← הקודם</a>
+      <a href="20020109.html">הבא →</a>
     </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-text">
+      <div class="meta-line">
+        <span class="date-big">08</span>
+        <div>
+          <div class="date-details">ינואר 2002</div>
+          <span class="country-badge">לאוס</span>
+        </div>
+      </div>
+      <h1 class="title">ההגעה ללאוס</h1>
+      <div class="title-divider"></div>
+    </div>
+    <img class="hero-map" src="../images/Laos.gif" alt="לאוס">
+  </div>
+
+  <div class="content">
+    <p>ההגעה ללאוס</p>
+
+    <p>היום לראשונה לאחר 3 חודשים התגעגעתי הביתה</p>
+
+    <p>שכבתי בקרון השינה ברכבת בדרך ללאוס וחשבתי על החתונה של ג'וניור ואיך אנחנו מפתיעים אותו והוא צוחק את הצחוק המטורף שלו, ואז חשבתי על איך אני מפתיע גם את אמא ויעל כשאנחנו נפגשים אצל לימור. משום מה חשתי באושר רב מציף אותי. הרגשתי שיש לי נבחרת מנצחת של חברים ומשפחה בארץ.</p>
+
+    <div class="photo-pair">
+      <div class="photo-item">
+        <img src="../images/20020108_malik&50_dollar.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">מליק עם שטרות מקומיים בשווי 50$</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020109_feeling_rich.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">מליק וגונן מרגישים עשירים</div>
+      </div>
+    </div>
+
+    <div class="photo-pair">
+      <div class="photo-item">
+        <img src="../images/20020108_malik&50_dollar.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">מליק עם שטרות מקומיים בשווי 50$</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020109_feeling_rich.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">מליק וגונן מרגישים עשירים</div>
+      </div>
+    </div>
+
+    <div class="supplements">
+      <h3>השלמות:</h3>
+      <ol>
+        <li>בית חב"ד – היו לנו שכנים בגסט האוס, זוג חמוד, בני 22-23 מחיפה והקריות. אדם ואורלי (אם אינני טועה) הם חמודים ופתוחים וגם מעט דתיים. הם הזמינו אותנו ביום שישי ה- 4.1 לבית חב"ד. העדפנו ללכת לסרט במרכז טוקיו, אבל ביום שבת בצהרים התייצבנו שם ב- 12:00 לארוחת צהרים, לצ'ולנט. אכלנו הקדמה של סלטים ואז הגיע זמן השירה. הופתעתי כמה משירי השבת איני מכיר. רק את השיר "דרור ייקרא.." הכרתי, אבל כשכולם שרו אני שבתתי. אחרי ששילמנו את חובינו לחב"ד אכלנו צ'ולנט. הרבה מבטים משכו גונן ושירלי, ברובם זיהיתי דווקא סימפטיה.</li>
+        <li>תאילנדי בא אלי לאחר שסיפרתי לו שהייתי בקו-פנגן בפול-מון ואמר לי שבעיתון היה כתוב שמישהו היה שיכור וטבע שם. "אם הוא טבע אז בטוח שהוא שתה יותר מדי" אמרתי לו.</li>
+        <li>בפעם האחרונה שכתבתי זה היה לאחר שהיומן חזר לידי. זהו הכרך החדש והוא מתחיל במקום חדש, בלאוס.</li>
+        <li>אתמול בבוקר, קמנו, הלכתי להביא את היומן כאמור. כ"כ שמחתי שהוא נמצא שמייד התחלתי לכתוב בו. פרי עטי באותה עת זה הפרק האחרון בכרך הקודם.</li>
+        <li>איך שסיימתי לכתוב הגיעה קארין והזמינה אותי לארוחת-בוקר. הסברתי לה שקצת לחוץ ורק אח"כ אוכל לפגוש אותה, אבל היא לא יכלה, אז נפרדנו בסימפטיה וברצון הדדי להפגש מאוחר יותר בארץ.</li>
+        <li>פרידה קשה יותר ציפתה לגונן.</li>
+        <li>הלכנו לקנות את הכרטיסים לניו-זילנד ואוסטרליה. הם עלו לנו 880$ - 620$ לאוסטרליה, פתוח לשנה בחברת התעופה הפיליפינית, כמובן שנעצור שם בדרכנו חזרה. כמובן שאסור שמלודי תדע את זה. 260$ זה מחיר הכרטיס לניו-זילנד, לדנידין.</li>
+        <li>תאריך הנסיעה: 2.2 למלבורן, אוסטרליה. משם ב- 8.2 לדנידין, ניו-זילנד. משם אנחנו אמורים לחזור ב- 3.5.</li>
+        <li>שמנו את התיקים הגדולים לשמירה ב"זולה", תמורת 6 באט ליום (במקום 10 באט ליום ב"קשר הישראלי").</li>
+        <li>נתתי לגונן עוד שעתיים להפרד משירלי שוטטתי באינטרנט ואחרי זה בקוואסן. ישבתי, קורא ספר ושותה שייק, כשאיזה בחורה ישראלית שאלה אותי איפה בית חב"ד ומיני טורס. קמתי וליוויתי אותה והסברתי לה והמלצתי לה על מקומות באיים. בקיצור, היא לא ידעה מאיפה נחת עליה השירות הזה. לי זה עזר להעביר את הזמן.</li>
+        <li>כשהגיע הזמן, עליתי, גונן הלך להתקלח (מעניין למה). אח"כ ב- 17:00 צעדנו רגלית לכיוון תחנת הרכבת, חצי שעת הליכה. היה לנו רק את התיקים הקטנים, כך שזה לא העיק.</li>
+        <li>שירלי ליוותה אותנו עד <a onclick="openLightbox('../images/20011210_gonen&shirley_near_democracy_circus.jpg')">כיכר הדמוקרטיה</a> ושם נערכה הפרידה המרגשת. שירלי, במיטב המסורת הסינית, שלטה ברגשותיה וניסתה להמעיט מגודל האירוע הפומבי הזה, כשמסביב הומה אדם. גונן דווקא האריך בפרידה, עוד נשיקה ועוד חיבוק, כמו קטע מאופרת סבון, אבל עלי לאמר שהוא נפרד היטב.</li>
+        <li>מאז, כבר שמעתי עשרות פעמים כמה הוא מתגעגע אליה וכמה הוא נזכר בה.</li>
+        <li>בכל מקרה יש כאן כוונה רצינית להפגש לאחר הקטע האוקיאני שלנו (אוסטרליה וניו-זילנד).</li>
+        <li>הגענו לרכבת שלנו ולקרון השינה. בהתחלה יש מושבים ואח"כ המושבים הופכים למיטה התחתונה ומהתקרה יורדת המיטה העליונה. סדינים נפרשים, כרית ושמיכה. נחמד מאד. הבעיה שזה מעט קצר, כך שלשכב ישר על הגב יכולתי, אבל לא על הבטן כמו שאני אוהב. הנסיעה עולה 470 באט ונמשכת לילה. הרכבת עצרה המון פעמים, לא יודע למה, אבל נדמה לי שהיא גם עצרה באיזה רמזור, מוזר.</li>
+        <li>בבוקר התעוררתי והיה קר. טוב שלקחנו ארוך לאחר ששאלתי את קארין על מזג האוויר בלאוס כי אחרת היינו קופאים מקור. גונן דרש שאשאל זאת.</li>
+        <li>עברנו את הגבול, לא שילמנו 500 באט דמי יציאה מתאילנד כמו שחשבנו. הצטרפו אלינו זוג חמוד – מיקי ומירי וגם ישראלית-אוסטרלית בשם שרון. היא בת 32, נולדה באוסטרליה ובאה לארץ לפני 10 שנים ועכשיו נמאס לה ואחרי לאוס היא חוזרת לאוסטרליה.</li>
+        <li>כשהגענו לואנג-ויינג, 3.5 שעות נסיעה מהגבול, ראינו עיירה ציורית שהזכירה את עמק פרבטי בצפון הודו. המקום מישורי, ברקע הרים מזדקרים בצורה מוזרה כמו קונוסים, מזכיר את הר הסוכר (או הר הקוקוס, לא זוכר) בריו-דה-ז'נרו. יש גם נהר משמעותי. הרבה גסט האוסים והרבה מסעדות.</li>
+        <li>המחירים כאן זולים להפליא, חצי מתאילנד, זול יותר מהודו. אכלנו שניצל וסטייק שבאים עם צ'יפס בקרוב ל- 5 שקל כל אחד!</li>
+        <li>יש בלאוס בעיה של פיחות, לפני 5 שנים היחס בין המטבע המקומי, הקיפ, לדולר היה 1:920. היום זה 1:9500.</li>
+        <li>דרך אגב, השטר הגדול כאן זה 5000 קיפ, פחות מ- 2.5 שקל!!!, כך שהחלפנו 100$ וקיבלנו ערימות של מאות שטרות. מדהים!</li>
+      </ol>
+    </div>
+
+  </div>
+
+  <div class="nav-cards">
+    <a href="20020109.html" class="nav-card">
+      <div class="label">הבא →</div>
+      <div class="card-title">שייט האבובים</div>
+    </a>
+    <a href="20020107.html" class="nav-card">
+      <div class="label">← הקודם</div>
+      <div class="card-title">אבודים בכרך, כרך אבוד</div>
+    </a>
+  </div>
+
+  <div class="country-nav">
+    <a href="200110052040.html">דנמרק</a>
+    <a href="20011006.html">הודו</a>
+    <a href="20011030.html">נפאל</a>
+    <a href="20011115.html">טרק אנאפורנה</a>
+    <a href="20011210.html">תאילנד</a>
+    <a href="20020108.html">לאוס</a>
+    <a href="20020123.html">צפון תאילנד</a>
+    <a href="20020203.html">אוסטרליה</a>
+    <a href="20020210.html">ניו-זילנד, אי דרומי</a>
+    <a href="20020326.html">ניו-זילנד, אי צפוני</a>
+    <a href="20020506.html">פיליפינים</a>
+    <a href="20020603.html">קמבודיה</a>
   </div>
 
   <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
-    <img id="lightbox-img" src="" alt="Enlarged">
+    <img id="lightbox-img" src="" alt="">
   </div>
-
   <script>
     function openLightbox(src) {
       document.getElementById('lightbox-img').src = src;

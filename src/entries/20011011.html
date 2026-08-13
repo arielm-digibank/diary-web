@@ -3,244 +3,349 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>מקלוד-גאנג', צפון הודו</title>
+  <title>המפל בעל המים הקפואים</title>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap" rel="stylesheet">
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background-color: #f8fafc;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0; padding: 20px; color: #334155;
+      background: #ffffff;
+      font-family: 'Heebo', sans-serif;
+      color: #1a1a2e;
+      line-height: 1.9;
     }
-    .container {
-      max-width: 800px; margin: 0 auto; background: #ffffff;
-      padding: 35px; border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06); line-height: 1.8;
+    .top-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #eee;
+      padding: 12px 30px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.9rem;
     }
-    .header {
-      border-bottom: 2px solid #e2e8f0; padding-bottom: 15px;
-      margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center;
+    .top-nav a {
+      color: #1d4ed8; text-decoration: none; font-weight: 600;
     }
-    .header h1 { margin: 0; color: #0f172a; font-size: 1.8rem; }
-    .home-link { color: #2563eb; text-decoration: none; font-weight: 600; }
-    .content img {
-      float: right; margin: 0 0 15px 20px; max-width: 320px; height: auto;
-      border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      cursor: pointer; transition: transform 0.2s;
+    .top-nav a:hover { text-decoration: underline; }
+    .top-nav .nav-links { display: flex; gap: 20px; }
+    .hero {
+      max-width: 900px; margin: 0 auto;
+      padding: 50px 40px 30px;
+      display: flex; align-items: flex-start; gap: 30px;
     }
-    .content img:hover { transform: scale(1.02); }
-    .content::after { content: ""; clear: both; display: table; }
-    a { color: #2563eb; }
+    .hero-text { flex: 1; }
+    .hero-map {
+      width: 120px; height: auto; object-fit: contain;
+      flex-shrink: 0; opacity: 0.85;
+    }
+    .meta-line {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+    }
+    .date-big {
+      font-size: 3.5rem; font-weight: 900; color: #e5e7eb; line-height: 1;
+    }
+    .date-details { font-size: 0.9rem; color: #6b7280; }
+    .country-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      border-radius: 20px; padding: 4px 14px;
+      font-size: 0.8rem; color: #1d4ed8; font-weight: 600;
+    }
+    .title {
+      font-size: 2.2rem; font-weight: 900; color: #111827;
+      margin: 20px 0 8px; line-height: 1.3;
+    }
+    .date-subtitle {
+      font-size: 1.1rem; font-weight: 300; color: #4b5563;
+      margin-bottom: 16px;
+    }
+    .title-divider {
+      width: 60px; height: 4px; background: #1d4ed8; border-radius: 2px;
+    }
+    .content {
+      max-width: 900px; margin: 30px auto; padding: 0 40px; font-size: 1.05rem;
+    }
+    .content p { margin-bottom: 18px; }
+    .content a {
+      color: #1d4ed8; cursor: pointer;
+      text-decoration: underline;
+      text-decoration-color: rgba(29,78,216,0.3);
+    }
+    .photo-block {
+      margin: 30px 0; border-radius: 12px; overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    .photo-block img {
+      width: 100%; display: block; cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .photo-block img:hover { transform: scale(1.01); }
+    .photo-block .caption {
+      padding: 12px 16px; font-size: 0.85rem; color: #6b7280;
+      background: #f9fafb; border-top: 1px solid #f3f4f6;
+    }
+    .photo-pair {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 14px; margin: 30px 0;
+    }
+    .photo-pair .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-pair .photo-item img {
+      width: 100%; height: 200px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-pair .photo-item img:hover { transform: scale(1.03); }
+    .photo-pair .photo-item .caption {
+      padding: 8px 12px; font-size: 0.8rem; color: #6b7280; background: #f9fafb;
+    }
+    .photo-trio {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px; margin: 30px 0;
+    }
+    .photo-trio .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-trio .photo-item img {
+      width: 100%; height: 180px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-trio .photo-item img:hover { transform: scale(1.03); }
+    .photo-trio .photo-item .caption {
+      padding: 8px 10px; font-size: 0.78rem; color: #6b7280; background: #f9fafb;
+    }
+    .nav-cards {
+      max-width: 900px; margin: 50px auto 20px; padding: 0 40px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .nav-card {
+      padding: 20px 24px; border: 1px solid #e5e7eb; border-radius: 12px;
+      text-decoration: none; color: inherit; transition: all 0.2s;
+    }
+    .nav-card:hover {
+      border-color: #1d4ed8; box-shadow: 0 4px 12px rgba(29,78,216,0.1);
+    }
+    .nav-card .label { font-size: 0.8rem; color: #6b7280; margin-bottom: 4px; }
+    .nav-card .card-title { font-weight: 700; font-size: 1rem; color: #1d4ed8; }
+    .supplements {
+      margin-top: 35px; padding: 25px 30px;
+      background: #f9fafb; border-radius: 12px; border: 1px solid #e5e7eb;
+    }
+    .supplements h3 {
+      font-size: 1.1rem; font-weight: 700; margin-bottom: 14px; color: #374151;
+    }
+    .supplements ol { padding-right: 20px; }
+    .supplements li { margin-bottom: 10px; color: #4b5563; }
+    .country-nav {
+      max-width: 900px; margin: 20px auto 40px; padding: 0 40px;
+      display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+    }
+    .country-nav a {
+      padding: 6px 14px; border-radius: 20px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      color: #1d4ed8; text-decoration: none;
+      font-size: 0.82rem; font-weight: 600;
+      transition: all 0.2s;
+    }
+    .country-nav a:hover {
+      background: #1d4ed8; color: white; border-color: #1d4ed8;
+    }
     .lightbox {
       display: none; position: fixed; z-index: 9999;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.9); justify-content: center; align-items: center; cursor: pointer;
+      background: rgba(0,0,0,0.92);
+      justify-content: center; align-items: center; cursor: pointer;
     }
-    .lightbox img { max-width: 90%; max-height: 90%; border-radius: 8px; }
+    .lightbox img { max-width: 92%; max-height: 92%; border-radius: 8px; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h1>מקלוד-גאנג', צפון הודו</h1>
-      <a href="../index.html" class="home-link">🏠 לעמוד הראשי</a>
+  <div class="top-nav">
+    <div class="nav-links">
+      <a href="../index.html">עמוד ראשי</a>
     </div>
-    <div class="content">
-      <body>
-<table cellpadding="0" cellspacing="0" height="80" width="954">
-<tr>
-<td align="center" height="80" width="256">
-<marquee style="font-size: 18pt; color: #800080">11.10.01</marquee></td>
-<td align="center" height="80" width="688">
-<!--webbot bot="Navigation" s-type="banner" s-rendering="graphics" S-Orientation B-Include-Home B-Include-Up U-Page S-Target startspan --><!--webbot bot="Navigation" i-checksum="12035" endspan --></td>
-<td align="center" height="80" width="10">
-<img border="0" height="141" onclick="openLightbox(this.src)" src="../images/India.gif" title="לחץ להגדלה" width="144"/></td>
-</tr>
-<tr>
-<td colspan="3" height="1" style=" " width="954"></td>
-</tr>
-</table><table cellpadding="0" cellspacing="0" width="100%">
-<tr>
-<td align="right" style=" ">
-<h4>
-<marquee style="font-size: 24pt; color: #008080">המפל בעל המים הקפואים</marquee></h4>
-<p> </p></td>
-</tr>
-</table>
-<table cellpadding="0" cellspacing="0" height="333" width="954">
-<tr>
-<td height="333" rowspan="2" style="       " valign="top" width="140"> <!--webbot bot="Navigation" S-Type="sequence" S-Orientation="vertical" S-Rendering="graphics" S-Theme="blocks 000" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><!--webbot bot="Navigation" i-checksum="23763" endspan --><p style="text-align: center">
-
-<img border="0" height="184" onclick="openLightbox(this.src)" src="../images/20011011_oz.jpg" title="לחץ להגדלה" width="121"/></p>
-<p style="text-align: center">
-<font color="#660099">עוז</font></p>
-<p style="text-align: center">
-
-<img border="0" height="191" onclick="openLightbox(this.src)" src="../images/20011011_mcclod_waterfall.jpg" title="לחץ להגדלה" width="122"/></p>
-<p style="text-align: center">
-<font color="#660099">המפל</font></p>
-<p style="text-align: center">
-
-<img border="0" height="194" onclick="openLightbox(this.src)" src="../images/20011012_gonen&amp;vy.jpg" title="לחץ להגדלה" width="120"/></p>
-<p style="text-align: center"><font color="#660099">וי וגונן מסתדרים טוב</font></p>
-<p style="text-align: right">
-
-<img border="0" height="88" onclick="openLightbox(this.src)" src="../images/20011011_monkey_on_a_tree.jpg" title="לחץ להגדלה" width="137"/></p>
-<p style="text-align: right">
-
-<img border="0" height="93" onclick="openLightbox(this.src)" src="../images/20011011_monkey.jpg" title="לחץ להגדלה" width="140"/></p>
-<p style="text-align: right">
-
-<img border="0" height="99" onclick="openLightbox(this.src)" src="../images/20011011_monkey_in_the_trees.jpg" title="לחץ להגדלה" width="140"/></p>
-<p style="text-align: center"><font color="#660099">קופים במקלודגאנג</font></p>
-</td>
-<td height="333" rowspan="2" style="     " valign="top" width="1"></td>
-<td colspan="2" height="266" style="     " valign="top" width="627">
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אתמול סיימנו את גליל 
-    נייר-הטואלט הראשון שלנו. בקצב הזה יש לנו כ- 35 יום מרופדים. גונן רואה זאת 
-    בחומרה. בהתחלה הצלחתי לשכנע אותו לשימוש של 3</span><span dir="LTR">X</span><span lang="HE">3 
-    לאחר שיכנועים רבים. גונן הקציב לי רק 4</span><span dir="LTR">X</span><span lang="HE">2 
-    אבל ויתר לי בסוף. דרך-אגב, אתם בטח יודעים שהכוונה היא למספר ניגובים </span>
-<span dir="LTR">X</span><span lang="HE"> מס' קוביות.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">לאחר חישוב קל שעשיתי 
-    (מטראז' הגליל כפי שכתוב על העטיפה חלקי גודל הריבוע) הגעתי למסקנה שחסרים כמה 
-    מטרים, איך לא שמתי לב, הפתרון לתעלומה היה ממש מול אפי או יותר נכון מול אפו 
-    של גונן, הקינוחים התכופים שלו, מפירי השלווה ומבריחי התיאבון, הם המטרים 
-    החסרים בגליל.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">לכן חזרתי ל- 4</span><span dir="LTR">X</span><span lang="HE">3 
-    הרגיל שלי, אבל הגלילים אוזלים. אין ספק שזו פצצת זמן מתקתקת, גונן חרד לעתיד. 
-    כמו שהבנתם, אין כאן ניירות טואלט.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">קשה לתאר כמה אנחנו נהנים 
-    כאן – האוכל טעים, גונן במצוקה – בניו-דלהי נראה היה כאילו הוא הולך להוריד את 
-    הכרס בקצב מהיר, אבל כאן כל הזמן אוכלים. האוכל הטיבטי טעים וזול. אנחנו קונים 
-    לדרך תפוחים ובננות ובוטנים ובכל מקום עוצרים לאכול. ארוחה של 150 שקל בארץ לא 
-    מגיעה כאן ל- 10 שקל, לא יאמן. גונן נדלק על הטיבטיות.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הבוקר 
-    <a href="images/pictures/India/20011010_waking_to_a_great_view.jpg" target="_blank">התעוררנו לנוף מדהים</a>. 
-    ישנו עם חלון פתוח ובבוקר הוא נראה כמו גלויה. אני חושב שצילום שעשינו יסביר 
-    זאת.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">התגלחנו אצל ספר מקומי. גונן 
-    ביקש גם מסאג' לראש ולכתפיים (שהיה מאד יקר – 100 רופי) שנמשך 10 דקות שמתוכן 
-    כ- 2 דקות של צ'פחות חזקות מקדימה ומאחורה ועל הראש – הכל להנאתו של מליק שזמם 
-    לעשות זאת מזמן. כך שנינו נהנינו מהמסאג'.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אכלנו ארוחת-בוקר ופגשנו את 
-    וי וג'ני. הלכנו איתם למפל, בדרך פגשנו כמה ישראלים מהאוטובוס אתמול. הצטרף 
-    אלינו <a href="images/pictures/India/20011011_oz.jpg" target="_blank">עוז</a>, בחור בן 29 
-    מראשון – דומה באופיו לאריק פולוקובסקי.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">
-<a href="images/pictures/India/20011011_mcclod_waterfall.jpg" target="_blank">
-    המפל</a> מאכזב – קטן בעונה זו, ירדנו באיזה שביל ו<a href="images/pictures/India/20011011_malik_in_freezing_water_2.jpg" target="_blank">טבלנו 
-    במים הקפואים</a> – 
-    <a href="images/pictures/India/20011011_cold_waters.jpg" target="_blank">זעקותינו הדהדו</a> בכל העמק. טיבטיות תמימות שעסקו בכיבוס ארזו 
-    את מיטלטליהן ועזבו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">חזרנו ואכלנו צהרים במרפסת 
-    אצלנו, דיברנו עם כמה דניות חמודות – ננה, אינה ועוד אחת. וי נדלק על ננה. 
-    ניזכרנו בערגה בקופנהגן וסיפרנו להן על כך.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">גונן אמר להן שהן מסתירות 
-    לנו את הנוף. מליק הרגיע אותן ואמר "אתן הנוף".</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">גונן הגיע למסקנה שהתיירות 
-    שמגיעות להודו חמודות מאד והישראליות פלצניות, מתלבשות כמו הודיות ומנסות להיות 
-    מה שהן לא. שאלנו אחת מה השעה, "מה זה משנה כאן" היא ענתה. אין צורך לציין שכל 
-    טיבטי היה עונה לי מהי השעה עכשיו, אבל הישראלים מבינים טוב יותר רוחניות 
-    (בולשיט).</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">ג'ני הלכה לאיזה שיעור 
-    יוגה. אנחנו המשכנו שלושתינו בדרכינו. ככל שדיברתי יותר עם וי ראיתי עד כמה הוא 
-    דומה לגונן כי כל מה שעניין אותו היה הדנית ננה ומה שהוא יכול לעשות לה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הוא וג'ני מטיילים יחד אבל 
-    לא עושים כלום בקטע הפיזי – הוא אומר שהוא פשוט לא נמשך אליה, אני לא יודע אם 
-    זה נכון. ג'ני בת 37, וי בן 26.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"><a name="chnun"></a>גונן מלמד את וי עברית, הוא 
-    לימד אותו להגיד "חנון" ומשום מה הוא מצביע עלי בכל פעם שהוא אומר את זה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הלכנו למקדש של הדאלי-למה – 
-    מאכזב (כנראה לא משקיעים כאן כי זה לא טיבט). ראינו תפילה מוזרה של טיבטים, 
-    פגשנו
-    <a href="images/pictures/India/20011011_israelis_at_temple.jpg" target="_blank">כמה ישראלים</a> ודיברנו איתם בקול רם ונראה לי שהפרענו לתפילה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">דרך אגב, 
-    <a href="images/pictures/India/20011011_dali_lama_temple.jpg" target="_blank">נזירים טיבטיים 
-    בגלימה יפהפיה בצבע בורדו</a> הולכים כאן כל הזמן, בדיוק כמו הפרות שגם כאן הולכות 
-    באין מפריע (זה ממש פרה-דייז אומר מליק)</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">גם הקופים לפעמים מופיעים 
-    כאן, גונן צילם כמה, גם אצלנו באכסנייה פגשנו כמה. מליק פגש אחד כשיצא 
-    מהשירותים. גם נשרים (או עיטים כמו שמליק חושב), משייטים באוויר ומוסיפים עוד 
-    נופך לנוף.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">שמענו על מסיבה שתערך כאן 
-    ביום שני. כרגע אנחנו מתכננים לעזוב ביום שלישי, עוד לא ידוע לאן (אנו רוצים 
-    להשאר באיזור).</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">פגשנו דוס שסיפר לנו שיש 
-    כאן <a href="images/pictures/India/20011012_beit_habad.jpg" target="_blank">בית חב"ד</a> והחברה שם חוזרים לישראל והזמין אותנו לשם, (בדרמקוט כ- 2 ק"מ 
-    ממקלוד-גאנג', יש שם הרבה ישראלים) למסיבת פרידה (קבלת שבת גם כן) אנחנו שוקלים 
-    זאת.</span></b></p>
-<p style="text-align: right">
-<span dir="RTL" lang="HE" style="font-size: 12.0pt; font-weight: 700">מחר 
-    בבוקר נשכים קום ונלך למנזר – כ- 5  דקות מהמקום שלנו, לשמוע תפילה</span></p>
-<p dir="rtl"> </p></td>
-<td align="center" height="333" rowspan="2" style="     " valign="top" width="186">
-
-<img border="0" height="116" onclick="openLightbox(this.src)" src="../images/20011010_waking_to_a_great_view.jpg" title="לחץ להגדלה" width="173"/><p>
-<font color="#660099">לא רואים כאן. תצטרכו להאמין לנו שהנוף מדהים</font></p>
-<p>
-<img border="0" height="119" onclick="openLightbox(this.src)" src="../images/20011011_cold_waters.jpg" title="לחץ להגדלה" width="176"/></p>
-<p>
-
-<img border="0" height="124" onclick="openLightbox(this.src)" src="../images/20011011_malik_in_freezing_water_1.jpg" title="לחץ להגדלה" width="179"/></p>
-<p>
-
-<img border="0" height="128" onclick="openLightbox(this.src)" src="../images/20011011_malik_in_freezing_water_2.jpg" title="לחץ להגדלה" width="177"/></p>
-<p>
-<font color="#660099">התרחצנו במים הקפואים של המפל</font><img border="0" height="119" onclick="openLightbox(this.src)" src="../images/20011011_waterfall_swim.jpg" title="לחץ להגדלה" width="182"/></p>
-<p>
-
-<img border="0" height="118" onclick="openLightbox(this.src)" src="../images/20011011_waterfall_gang.jpg" title="לחץ להגדלה" width="178"/></p>
-<p>
-<font color="#660099">כל החברה בטרקון למפל: עוז, וי, ג'ני, מליק וגונן</font></p>
-<p>
-
-<img border="0" height="126" onclick="openLightbox(this.src)" src="../images/20011011_dali_lama_temple.jpg" title="לחץ להגדלה" width="177"/></p>
-<p>
-<font color="#660099">נזירים בחצר מקדש הדאלי לאמה</font></p>
-<p>
-
-<img border="0" height="126" onclick="openLightbox(this.src)" src="../images/20011011_israelis_at_temple.jpg" title="לחץ להגדלה" width="178"/></p>
-<p>
-<font color="#660099">חברה ישראלים שפגשנו במקדש: אביעד, אבי ואיתן</font></p>
-<p>
-
-<img border="0" height="129" onclick="openLightbox(this.src)" src="../images/20011012_beit_habad.jpg" title="לחץ להגדלה" width="178"/></p>
-<p>
-<font color="#660099">איתן מציג את בית חב"ד בדרמקוט</font></p>
-<p>
-
-<img border="0" height="132" onclick="openLightbox(this.src)" src="../images/20011012_israelis_at_beit_habad.jpg" title="לחץ להגדלה" width="180"/></p>
-<p>
-<font color="#660099">ישראלים אוכלים בבית חב"ד: אבי, אביעד, עוז, רועי, ???, 
-    יוסי, יניב, סמדי, חנן</font></p>
-</td>
-</tr>
-<tr>
-<td height="67" style="     " valign="top" width="314">
-
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button104.gif" title="לחץ להגדלה" width="59"/></td>
-<td height="67" style="     " valign="top" width="313">
-<p align="right">
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button106.gif" title="לחץ להגדלה" width="59"/></p></td>
-</tr>
-</table>
-<p align="center">
-<!--webbot bot="Navigation" S-Type="sequence" S-Orientation="horizontal" S-Rendering="html" S-Bar="Brackets" S-Btn-Nml="[&lt;A HREF=&quot;#URL#&quot; TARGET=&quot;#TARGET#&quot; STYLE=&quot;{text-decoration: none;}&quot;&gt;#LABEL#&lt;/A&gt;]" S-Btn-Sel="[#LABEL#]" S-Btn-Sep="&amp;nbsp;" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><nobr>[<a href="index.html" style="{text-decoration: none;}" target="">התחלה</a>]</nobr> <nobr>[<a href="200110052040.html" style="{text-decoration: none;}" target="">דנמרק</a>]</nobr> <nobr>[<a href="20011006.html" style="{text-decoration: none;}" target="">הודו</a>]</nobr> <nobr>[<a href="20011030.html" style="{text-decoration: none;}" target="">נפאל</a>]</nobr> <nobr>[<a href="20011115.html" style="{text-decoration: none;}" target="">טרק סובב אנאפורנה</a>]</nobr> <nobr>[<a href="20011210.html" style="{text-decoration: none;}" target="">תאילנד</a>]</nobr> <nobr>[<a href="20020108.html" style="{text-decoration: none;}" target="">לאוס</a>]</nobr> <nobr>[<a href="20020123.html" style="{text-decoration: none;}" target="">צפון תאילנד</a>]</nobr> <nobr>[<a href="20020203.html" style="{text-decoration: none;}" target="">אוסטרליה</a>]</nobr> <nobr>[<a href="20020210.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי דרומי</a>]</nobr> <nobr>[<a href="20020326.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי צפוני</a>]</nobr> <nobr>[<a href="20020506.html" style="{text-decoration: none;}" target="">פיליפינים</a>]</nobr> <nobr>[<a href="20020603.html" style="{text-decoration: none;}" target="">קמבודיה</a>]</nobr><!--webbot bot="Navigation" i-checksum="33824" endspan --></p>
-<p><i><small>This site was last updated
-<!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%m/%d/%y" startspan -->08/01/03<!--webbot bot="Timestamp" i-checksum="12620" endspan --> </small></i>
-</p>
-</body>
+    <div class="nav-links">
+      <a href="20011010.html">← הקודם</a>
+      <a href="20011012.html">הבא →</a>
     </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-text">
+      <div class="meta-line">
+        <span class="date-big">11</span>
+        <div>
+          <div class="date-details">אוקטובר 2001</div>
+          <span class="country-badge">הודו</span>
+        </div>
+      </div>
+      <h1 class="title">המפל בעל המים הקפואים</h1>
+      <div class="title-divider"></div>
+    </div>
+    <img class="hero-map" src="../images/India.gif" alt="הודו">
+  </div>
+
+  <div class="content">
+    <p>המפל בעל המים הקפואים</p>
+
+    <p>אתמול סיימנו את גליל נייר-הטואלט הראשון שלנו. בקצב הזה יש לנו כ- 35 יום מרופדים. גונן רואה זאת בחומרה. בהתחלה הצלחתי לשכנע אותו לשימוש של 3X3 לאחר שיכנועים רבים. גונן הקציב לי רק 4X2 אבל ויתר לי בסוף. דרך-אגב, אתם בטח יודעים שהכוונה היא למספר ניגובים X מס' קוביות.</p>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/20011011_oz.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">עוז</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011011_mcclod_waterfall.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">המפל</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011012_gonen&vy.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">וי וגונן מסתדרים טוב</div>
+      </div>
+    </div>
+
+    <p>לאחר חישוב קל שעשיתי (מטראז' הגליל כפי שכתוב על העטיפה חלקי גודל הריבוע) הגעתי למסקנה שחסרים כמה מטרים, איך לא שמתי לב, הפתרון לתעלומה היה ממש מול אפי או יותר נכון מול אפו של גונן, הקינוחים התכופים שלו, מפירי השלווה ומבריחי התיאבון, הם המטרים החסרים בגליל.</p>
+
+    <p>לכן חזרתי ל- 4X3 הרגיל שלי, אבל הגלילים אוזלים. אין ספק שזו פצצת זמן מתקתקת, גונן חרד לעתיד. כמו שהבנתם, אין כאן ניירות טואלט.</p>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/20011011_monkey_on_a_tree.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011011_monkey.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011011_monkey_in_the_trees.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">קופים במקלודגאנג</div>
+      </div>
+    </div>
+
+    <p>קשה לתאר כמה אנחנו נהנים כאן – האוכל טעים, גונן במצוקה – בניו-דלהי נראה היה כאילו הוא הולך להוריד את הכרס בקצב מהיר, אבל כאן כל הזמן אוכלים. האוכל הטיבטי טעים וזול. אנחנו קונים לדרך תפוחים ובננות ובוטנים ובכל מקום עוצרים לאכול. ארוחה של 150 שקל בארץ לא מגיעה כאן ל- 10 שקל, לא יאמן. גונן נדלק על הטיבטיות.</p>
+
+    <p>הבוקר <a onclick="openLightbox('../images/20011010_waking_to_a_great_view.jpg')">התעוררנו לנוף מדהים</a>. ישנו עם חלון פתוח ובבוקר הוא נראה כמו גלויה. אני חושב שצילום שעשינו יסביר זאת.</p>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/20011010_waking_to_a_great_view.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">לא רואים כאן. תצטרכו להאמין לנו שהנוף מדהים</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011011_cold_waters.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011011_malik_in_freezing_water_1.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+    </div>
+
+    <p>התגלחנו אצל ספר מקומי. גונן ביקש גם מסאג' לראש ולכתפיים (שהיה מאד יקר – 100 רופי) שנמשך 10 דקות שמתוכן כ- 2 דקות של צ'פחות חזקות מקדימה ומאחורה ועל הראש – הכל להנאתו של מליק שזמם לעשות זאת מזמן. כך שנינו נהנינו מהמסאג'.</p>
+
+    <p>אכלנו ארוחת-בוקר ופגשנו את וי וג'ני. הלכנו איתם למפל, בדרך פגשנו כמה ישראלים מהאוטובוס אתמול. הצטרף אלינו <a onclick="openLightbox('../images/20011011_oz.jpg')">עוז</a>, בחור בן 29 מראשון – דומה באופיו לאריק פולוקובסקי.</p>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/20011011_malik_in_freezing_water_2.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">התרחצנו במים הקפואים של המפל</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011011_waterfall_swim.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011011_waterfall_gang.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">כל החברה בטרקון למפל: עוז, וי, ג'ני, מליק וגונן</div>
+      </div>
+    </div>
+
+    <p><a onclick="openLightbox('../images/20011011_mcclod_waterfall.jpg')"> המפל</a> מאכזב – קטן בעונה זו, ירדנו באיזה שביל ו<a onclick="openLightbox('../images/20011011_malik_in_freezing_water_2.jpg')">טבלנו במים הקפואים</a> – <a onclick="openLightbox('../images/20011011_cold_waters.jpg')">זעקותינו הדהדו</a> בכל העמק. טיבטיות תמימות שעסקו בכיבוס ארזו את מיטלטליהן ועזבו.</p>
+
+    <p>חזרנו ואכלנו צהרים במרפסת אצלנו, דיברנו עם כמה דניות חמודות – ננה, אינה ועוד אחת. וי נדלק על ננה. ניזכרנו בערגה בקופנהגן וסיפרנו להן על כך.</p>
+
+    <div class="photo-pair">
+      <div class="photo-item">
+        <img src="../images/20011011_dali_lama_temple.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">נזירים בחצר מקדש הדאלי לאמה</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011011_israelis_at_temple.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">חברה ישראלים שפגשנו במקדש: אביעד, אבי ואיתן</div>
+      </div>
+    </div>
+
+    <p>גונן אמר להן שהן מסתירות לנו את הנוף. מליק הרגיע אותן ואמר "אתן הנוף".</p>
+
+    <p>גונן הגיע למסקנה שהתיירות שמגיעות להודו חמודות מאד והישראליות פלצניות, מתלבשות כמו הודיות ומנסות להיות מה שהן לא. שאלנו אחת מה השעה, "מה זה משנה כאן" היא ענתה. אין צורך לציין שכל טיבטי היה עונה לי מהי השעה עכשיו, אבל הישראלים מבינים טוב יותר רוחניות (בולשיט).</p>
+
+    <div class="photo-pair">
+      <div class="photo-item">
+        <img src="../images/20011012_beit_habad.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">איתן מציג את בית חב"ד בדרמקוט</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011012_israelis_at_beit_habad.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">ישראלים אוכלים בבית חב"ד: אבי, אביעד, עוז, רועי, ???, 
+    יוסי, יניב, סמדי, חנן</div>
+      </div>
+    </div>
+
+    <p>ג'ני הלכה לאיזה שיעור יוגה. אנחנו המשכנו שלושתינו בדרכינו. ככל שדיברתי יותר עם וי ראיתי עד כמה הוא דומה לגונן כי כל מה שעניין אותו היה הדנית ננה ומה שהוא יכול לעשות לה.</p>
+
+    <p>הוא וג'ני מטיילים יחד אבל לא עושים כלום בקטע הפיזי – הוא אומר שהוא פשוט לא נמשך אליה, אני לא יודע אם זה נכון. ג'ני בת 37, וי בן 26.</p>
+
+    <p>גונן מלמד את וי עברית, הוא לימד אותו להגיד "חנון" ומשום מה הוא מצביע עלי בכל פעם שהוא אומר את זה.</p>
+
+    <p>הלכנו למקדש של הדאלי-למה – מאכזב (כנראה לא משקיעים כאן כי זה לא טיבט). ראינו תפילה מוזרה של טיבטים, פגשנו <a onclick="openLightbox('../images/20011011_israelis_at_temple.jpg')">כמה ישראלים</a> ודיברנו איתם בקול רם ונראה לי שהפרענו לתפילה.</p>
+
+    <p>דרך אגב, <a onclick="openLightbox('../images/20011011_dali_lama_temple.jpg')">נזירים טיבטיים בגלימה יפהפיה בצבע בורדו</a> הולכים כאן כל הזמן, בדיוק כמו הפרות שגם כאן הולכות באין מפריע (זה ממש פרה-דייז אומר מליק)</p>
+
+    <p>גם הקופים לפעמים מופיעים כאן, גונן צילם כמה, גם אצלנו באכסנייה פגשנו כמה. מליק פגש אחד כשיצא מהשירותים. גם נשרים (או עיטים כמו שמליק חושב), משייטים באוויר ומוסיפים עוד נופך לנוף.</p>
+
+    <p>שמענו על מסיבה שתערך כאן ביום שני. כרגע אנחנו מתכננים לעזוב ביום שלישי, עוד לא ידוע לאן (אנו רוצים להשאר באיזור).</p>
+
+    <p>פגשנו דוס שסיפר לנו שיש כאן <a onclick="openLightbox('../images/20011012_beit_habad.jpg')">בית חב"ד</a> והחברה שם חוזרים לישראל והזמין אותנו לשם, (בדרמקוט כ- 2 ק"מ ממקלוד-גאנג', יש שם הרבה ישראלים) למסיבת פרידה (קבלת שבת גם כן) אנחנו שוקלים זאת.</p>
+
+    <p>מחר בבוקר נשכים קום ונלך למנזר – כ- 5 דקות מהמקום שלנו, לשמוע תפילה</p>
+
+    <p>ישראלים אוכלים בבית חב"ד: אבי, אביעד, עוז, רועי, ???, יוסי, יניב, סמדי, חנן</p>
+
+
+  </div>
+
+  <div class="nav-cards">
+    <a href="20011012.html" class="nav-card">
+      <div class="label">הבא →</div>
+      <div class="card-title">סיור בסביבה, הגעה לדרמקוט, יקיצה מאוחרת</div>
+    </a>
+    <a href="20011010.html" class="nav-card">
+      <div class="label">← הקודם</div>
+      <div class="card-title">גן-עדן עלי אדמות</div>
+    </a>
+  </div>
+
+  <div class="country-nav">
+    <a href="200110052040.html">דנמרק</a>
+    <a href="20011006.html">הודו</a>
+    <a href="20011030.html">נפאל</a>
+    <a href="20011115.html">טרק אנאפורנה</a>
+    <a href="20011210.html">תאילנד</a>
+    <a href="20020108.html">לאוס</a>
+    <a href="20020123.html">צפון תאילנד</a>
+    <a href="20020203.html">אוסטרליה</a>
+    <a href="20020210.html">ניו-זילנד, אי דרומי</a>
+    <a href="20020326.html">ניו-זילנד, אי צפוני</a>
+    <a href="20020506.html">פיליפינים</a>
+    <a href="20020603.html">קמבודיה</a>
   </div>
 
   <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
-    <img id="lightbox-img" src="" alt="Enlarged">
+    <img id="lightbox-img" src="" alt="">
   </div>
-
   <script>
     function openLightbox(src) {
       document.getElementById('lightbox-img').src = src;

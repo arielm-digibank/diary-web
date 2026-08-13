@@ -3,301 +3,363 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>פינגווין בק פקר, דנידין, ניו-זילנד</title>
+  <title>מבוגרות ומסוכנות</title>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap" rel="stylesheet">
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background-color: #f8fafc;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0; padding: 20px; color: #334155;
+      background: #ffffff;
+      font-family: 'Heebo', sans-serif;
+      color: #1a1a2e;
+      line-height: 1.9;
     }
-    .container {
-      max-width: 800px; margin: 0 auto; background: #ffffff;
-      padding: 35px; border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06); line-height: 1.8;
+    .top-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #eee;
+      padding: 12px 30px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.9rem;
     }
-    .header {
-      border-bottom: 2px solid #e2e8f0; padding-bottom: 15px;
-      margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center;
+    .top-nav a {
+      color: #1d4ed8; text-decoration: none; font-weight: 600;
     }
-    .header h1 { margin: 0; color: #0f172a; font-size: 1.8rem; }
-    .home-link { color: #2563eb; text-decoration: none; font-weight: 600; }
-    .content img {
-      float: right; margin: 0 0 15px 20px; max-width: 320px; height: auto;
-      border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      cursor: pointer; transition: transform 0.2s;
+    .top-nav a:hover { text-decoration: underline; }
+    .top-nav .nav-links { display: flex; gap: 20px; }
+    .hero {
+      max-width: 900px; margin: 0 auto;
+      padding: 50px 40px 30px;
+      display: flex; align-items: flex-start; gap: 30px;
     }
-    .content img:hover { transform: scale(1.02); }
-    .content::after { content: ""; clear: both; display: table; }
-    a { color: #2563eb; }
+    .hero-text { flex: 1; }
+    .hero-map {
+      width: 120px; height: auto; object-fit: contain;
+      flex-shrink: 0; opacity: 0.85;
+    }
+    .meta-line {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+    }
+    .date-big {
+      font-size: 3.5rem; font-weight: 900; color: #e5e7eb; line-height: 1;
+    }
+    .date-details { font-size: 0.9rem; color: #6b7280; }
+    .country-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      border-radius: 20px; padding: 4px 14px;
+      font-size: 0.8rem; color: #1d4ed8; font-weight: 600;
+    }
+    .title {
+      font-size: 2.2rem; font-weight: 900; color: #111827;
+      margin: 20px 0 8px; line-height: 1.3;
+    }
+    .date-subtitle {
+      font-size: 1.1rem; font-weight: 300; color: #4b5563;
+      margin-bottom: 16px;
+    }
+    .title-divider {
+      width: 60px; height: 4px; background: #1d4ed8; border-radius: 2px;
+    }
+    .content {
+      max-width: 900px; margin: 30px auto; padding: 0 40px; font-size: 1.05rem;
+    }
+    .content p { margin-bottom: 18px; }
+    .content a {
+      color: #1d4ed8; cursor: pointer;
+      text-decoration: underline;
+      text-decoration-color: rgba(29,78,216,0.3);
+    }
+    .photo-block {
+      margin: 30px 0; border-radius: 12px; overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    .photo-block img {
+      width: 100%; display: block; cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .photo-block img:hover { transform: scale(1.01); }
+    .photo-block .caption {
+      padding: 12px 16px; font-size: 0.85rem; color: #6b7280;
+      background: #f9fafb; border-top: 1px solid #f3f4f6;
+    }
+    .photo-pair {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 14px; margin: 30px 0;
+    }
+    .photo-pair .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-pair .photo-item img {
+      width: 100%; height: 200px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-pair .photo-item img:hover { transform: scale(1.03); }
+    .photo-pair .photo-item .caption {
+      padding: 8px 12px; font-size: 0.8rem; color: #6b7280; background: #f9fafb;
+    }
+    .photo-trio {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px; margin: 30px 0;
+    }
+    .photo-trio .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-trio .photo-item img {
+      width: 100%; height: 180px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-trio .photo-item img:hover { transform: scale(1.03); }
+    .photo-trio .photo-item .caption {
+      padding: 8px 10px; font-size: 0.78rem; color: #6b7280; background: #f9fafb;
+    }
+    .nav-cards {
+      max-width: 900px; margin: 50px auto 20px; padding: 0 40px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .nav-card {
+      padding: 20px 24px; border: 1px solid #e5e7eb; border-radius: 12px;
+      text-decoration: none; color: inherit; transition: all 0.2s;
+    }
+    .nav-card:hover {
+      border-color: #1d4ed8; box-shadow: 0 4px 12px rgba(29,78,216,0.1);
+    }
+    .nav-card .label { font-size: 0.8rem; color: #6b7280; margin-bottom: 4px; }
+    .nav-card .card-title { font-weight: 700; font-size: 1rem; color: #1d4ed8; }
+    .supplements {
+      margin-top: 35px; padding: 25px 30px;
+      background: #f9fafb; border-radius: 12px; border: 1px solid #e5e7eb;
+    }
+    .supplements h3 {
+      font-size: 1.1rem; font-weight: 700; margin-bottom: 14px; color: #374151;
+    }
+    .supplements ol { padding-right: 20px; }
+    .supplements li { margin-bottom: 10px; color: #4b5563; }
+    .country-nav {
+      max-width: 900px; margin: 20px auto 40px; padding: 0 40px;
+      display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+    }
+    .country-nav a {
+      padding: 6px 14px; border-radius: 20px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      color: #1d4ed8; text-decoration: none;
+      font-size: 0.82rem; font-weight: 600;
+      transition: all 0.2s;
+    }
+    .country-nav a:hover {
+      background: #1d4ed8; color: white; border-color: #1d4ed8;
+    }
     .lightbox {
       display: none; position: fixed; z-index: 9999;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.9); justify-content: center; align-items: center; cursor: pointer;
+      background: rgba(0,0,0,0.92);
+      justify-content: center; align-items: center; cursor: pointer;
     }
-    .lightbox img { max-width: 90%; max-height: 90%; border-radius: 8px; }
+    .lightbox img { max-width: 92%; max-height: 92%; border-radius: 8px; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h1>פינגווין בק פקר, דנידין, ניו-זילנד</h1>
-      <a href="../index.html" class="home-link">🏠 לעמוד הראשי</a>
+  <div class="top-nav">
+    <div class="nav-links">
+      <a href="../index.html">עמוד ראשי</a>
     </div>
-    <div class="content">
-      <body>
-<table cellpadding="0" cellspacing="0" height="80" width="954">
-<tr>
-<td align="center" height="80" width="277">
-<marquee style="font-size: 18pt; color: #800080">10.2.02 - 12:30</marquee></td>
-<td align="center" height="80" width="667">
-<!--webbot bot="Navigation" s-type="banner" s-rendering="graphics" S-Orientation B-Include-Home B-Include-Up U-Page S-Target startspan --><!--webbot bot="Navigation" i-checksum="463" endspan --></td>
-<td align="center" height="80" width="10">
-
-<img border="0" height="165" onclick="openLightbox(this.src)" src="../images/New_Zealand_south_island.gif" title="לחץ להגדלה" width="165"/></td>
-</tr>
-<tr>
-<td colspan="3" height="1" style=" " width="954"></td>
-</tr>
-</table><table cellpadding="0" cellspacing="0" width="100%">
-<tr>
-<td align="right" style=" ">
-<h4>
-<marquee style="font-size: 24pt; color: #008080">מבוגרות ומסוכנות</marquee></h4>
-<p> </p></td>
-</tr>
-</table>
-<table cellpadding="0" cellspacing="0" height="333" width="953">
-<tr>
-<td height="333" rowspan="2" style="       " valign="top" width="140"> <!--webbot bot="Navigation" S-Type="sequence" S-Orientation="vertical" S-Rendering="graphics" S-Theme="blocks 000" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><!--webbot bot="Navigation" i-checksum="38433" endspan --><p style="text-align: center">
-
-<img border="0" height="80" onclick="openLightbox(this.src)" src="../images/contract_highlighter_rolling_md_wht.gif" title="לחץ להגדלה" width="125"/></p>
-</td>
-<td height="333" rowspan="2" style="     " valign="top" width="1"></td>
-<td colspan="2" height="266" style="     " valign="top" width="735">
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">3 ימים לא כתבתי ומה היה 
-    לנו: כמעט הצלחנו לריב עם ניו-זילנדי, ראינו עיר יפהפיה עם גנים בוטנים מדהימים 
-    וכמעט פותינו ע"י חבורה של נשים מבוגרות משתוללות, וכמובן – ארץ חדשה ומבטיחה – 
-    ניו-זילנד.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">מאוסטרליה נפרדנו בקול ענות 
-    חלושה. היה גשם והיינו עייפים אז לא יצאנו. הצלחתי לשים את ידי על הדיסקמן של 
-    אחת הבנות והצלחתי להקליט עד אמצע הלילה. גונן וארז עשו צחוקים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">גונן סרק את הדירה, כמו 
-    בדירה הקודמת, ושם את ידו על קרם לשיער (שמבהיר את השיער), דיאודורנט לנעלים, 
-    בטריות, פלגים לאוטו, מטריה ומקטרת באנג יפהפיה (זה כבר מישהו סתם שכח בסלון 
-    וגונן לקח). הוא לא רחוק מחיטוט בפחים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בלילה בא מישהו וביקש שנהיה 
-    בשקט. היינו בסלון. זה מעצבן כי לילה לפני-כן כשישנו בסלון כולם היו שם ודיברו 
-    עד 5:00 בבוקר.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">ב- 3:00 הלכנו לישון וקמנו 
-    ב- 5:20, שעתיים שינה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">נפרדנו נרגשות מארז ועלינו 
-    למונית שהגיעה בזמן. זאת בעצם יוזמה של ישראלי בשם עמית שמסיע אנשים 
-    לשדה-התעופה. בשלט הפרסומת שלו כתוב 30$</span><span dir="LTR">AU</span><span lang="HE"> 
-    למונית. בפועל הוא רצה 30$</span><span dir="LTR">AU</span><span lang="HE"> 
-    לאחד. שילמנו 25$</span><span dir="LTR">AU</span><span lang="HE"> כ"א 
-    והתעצבנו שישראלי מתכמן אותנו. דווקא ישראלי.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">עלינו למטוס. היינו רעבים 
-    וחיכינו לארוחה במטוס. בחברת התעופה הצעירה, </span><span dir="LTR">Freedom 
-    Airlines</span><span lang="HE">, אין ארוחות אלא שקיות פיצוחים שעולות כסף 
-    וכנ"ל השתיה. על העקרון לא הזמנו כלום – שלא יתרגלו שמשלמים על ארוחות במטוס. 
-    הרעב הטריד.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">נחתנו, ירדנו מהמטוס, פגשנו 
-    עוד כמה ישראלים קיבוצניקים בני 23. עמדנו בתור לדרכונים. הגענו אחרונים. אותי 
-    עצרו לבדיקה. גונן חייך וחשב שאולי אני חשוד בהברחה, אבל הסיפור הוא שיש לי 
-    אוהל והם פתחו אותו לראות אם הבאתי בטעות איזה חיה כמו עכביש לניו-זילנד (וזה 
-    רק כי הייתי בתאילנד בחודש האחרון).</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">נסענו לעיר במיניבוס (15$</span><span dir="LTR">NZ</span><span lang="HE">,כש-  
-    1$</span><span dir="LTR">NZ</span><span lang="HE"> = קצת יותר מ- 2 שקל).</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">כבר במטוס לפני הנחיתה 
-    ראינו כמה ניו-זילנד יפה – אגמים והרים. כשהתקרבנו זיהינו כבשים רועות. הרבה 
-    מאד טבע.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בניו-זילנד יש 3.8 מליון 
-    תושבים והיא גדולה פי 10 מישראל. יש כאן גם 70 מליון כבשים והן, אני מניח, חיות 
-    בצפיפות.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">איך שהגענו לעיר הסתבר לנו 
-    שעכשיו מתקיים טורניר ספורט למבוגרים (נקרא</span><span dir="LTR">מאסטרס), 
-    מתקיים ב</span><span lang="HE"> 2-10 לפברואר, כל שנתיים נערך בדנידין. זה גרם 
-    לבעיית חדרים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">מצאנו חדר במוטל ב- 60$</span><span dir="LTR">NZ</span><span lang="HE">. 
-    התכוונו להצטופף חמישתנו, אנחנו והקיבוצניקים: ארנון הגבוה והמחומצן שיער, יובל 
-    עם הקוקו ועוד אחד.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">היה קר. דיברנו עם האחראי 
-    וקיווינו שייתן לנו חדר ב- 40$</span><span dir="LTR">NZ</span><span lang="HE"> 
-    במקום 60$</span><span dir="LTR">NZ</span><span lang="HE">. ממנו הבנו שלא 
-    אכפת לו שנצטופף 5 בחדר, וזה מה שתיכננו לעשות.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">כשהקיבוצניקים יצאו החוצה 
-    לעשן הם פגשו את האחראי והוא היה עצבני ולא הסכים שנהיה 5 בחדר.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">וכך בלילה, לפני שעמדנו 
-    לישון, כי לא ישנו כמעט בלילה הקודם, היינו צריכים לחפש מקום אחר.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">יצאתי לבדי והשארתי את גונן 
-    לטפל באחראי – הלכתי שעתיים בכל העיר, חרשתי קילומטרים, ביקרתי באיזה 8 גסט 
-    האוסים ומוטלים – חלקם סגורים, בחלקם יש שלט "מלא" ובחלקם היו אנשים בקבלה 
-    שאמרו שהכל מלא.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">חזרתי למלון. היה כבר 
-    24:00. ראינו שלמטה במלון שלנו יש מועדון/פאב מלא באנשים חוגגים, רובם מבוגרים. 
-    דיברנו עם הברמן והוא התקשר לאחראי והרגיע אותנו ואמר שנוכל לישון כולנו יחד. 
-    אבל אנחנו כבר לא רצינו לישון, רצינו לחגוג.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">יצאנו החוצה, בדרך פגשנו 
-    איזה זוג מבוגרים מצחיקים – זוג ידידים כבני 40. הם הצחיקו אותנו. הלכנו למקום 
-    ליד המלון, </span><span dir="LTR">outback</span><span lang="HE">, מתחם גדול 
-    עם פאב ודיסקוטק, מלא בצעירים רוקדים. הצטרפנו לחגיגה. ליטר בירה עולה כאן 6$</span><span dir="LTR">NZ</span><span lang="HE"> 
-    (קצת יותר מ- 12 שקל).</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">רקדנו, על גונן קפצה איזו 
-    מישהי, הוא רקד איתה צמוד ואח"כ היא המשיכה לדרכה. מישהי אחרת שאלה אותנו אם 
-    אנחנו הומואים, באותו הרגע הסתיים אצלי הערב, נגמרה החגיגה. גונן עוד רקד איתה 
-    קצת.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">היינו מבסוטים מחיי הלילה, 
-    חזרנו ב- 3:00.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">ב- 12:00 העיר אותנו האחראי 
-    ושאל אם אנחנו נשארים עוד לילה, לא ידענו, אז קמנו מהר ויצאנו לעיר. מצאנו מקום 
-    ב- </span><span dir="LTR">backpacker</span><span lang="HE"> בשם פינגווין 
-    ועברנו לשם.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בדרך משם ולשם שמענו מוזיקה 
-    חזקה של חמת-חלילים ותופים, וראינו במרכז העיר (נקרא האוקטגון, המתומן) 
-    <a href="images/pictures/new-zealand/20020209_scotish_parade.jpg" target="_blank">תהלוכה 
-    של חברה בחצאיות מילדים ועד זקנים</a>, עם תלבושת אחידה מרהיבה וחמות חלילים, תופים 
-    קטנים ותוף אחד ענק. זקן החבורה מוביל עם שרביט. היו עשרות חבורות כאלו, 
-    והפסטיבל נמשך שעות – זאת היתה תחרות עם שופט קפדן שבודק ומדקדק בכל דבר.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">מסתבר שדנידין זאת עיר 
-    אירית/סקוטית.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">קיבלנו מידע על הליכה טובה 
-    בעיר, לאורך הפארקים. לפני-כן עצרנו בבורגר-קינג שמצאנו בעיר. זה באמת הרבה 
-    יותר טוב ממקדונלדס, הבשר משובח ויש </span><span dir="LTR">refill</span><span lang="HE"> 
-    למשקאות. ארוחת וופר עולה כאן כ- 14 שקל וזה פחות מחצי מהארץ.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">עלינו ברחוב תלול והגענו 
-    ל<a href="images/pictures/new-zealand/20020209_gonen_at_view_point.jpg" target="_blank">נקודת תצפית</a> – משם הלכנו לאורך פארקים יפהפיים. העיר נראית עיר בריטית במובן 
-    החיובי של המילה, אין כאן בתים עם יותר מ- 3 קומות. המון ירוק ופארקים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הלכנו בדרך שנקראת כאן
-    </span><span dir="LTR">queens <span lang="en-us">drive</span></span><span lang="HE"> 
-    ושבעצם אומרת שכדאי לנסוע כאן כי זאת דרך יפה. הלכנו לאורך כביש זה והיה ממש 
-    יפה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הגענו בסוף ל<a href="images/pictures/new-zealand/20020223_dunedin_botanic_gardens.jpg" target="_blank">גנים 
-    הבוטנים</a> – לא הופתענו כבר שהכניסה היתה חינם והגנים היו מדהימים, רק בחלקת 
-    הוורדים היו כ- 20 עד 30 סוגים שונים. נהר עבר באמצע, היו שם שחפים וברווזים 
-    להאכלה. היו עוד איזורים בגנים שלא הספקנו לראות כי כבר היה מאוחר. עוד נחזור 
-    לשם בפעם אחרת.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">המשכנו לכיוון רחוב </span>
-<span dir="LTR">b<span lang="en-us">a</span>ldwin</span><span lang="HE"> שהוא ה<a href="images/pictures/new-zealand/dunedin_tallest_street.jpg" target="_blank">רחוב התלול בעולם</a>. הגענו 
-    והסתכלנו למעלה. גונן באקט אמוציונאלי הציע שנעלה את הרחוב וזה מה שעשינו, 
-    בקושי. לאחר למעלה מ- 15 ק"מ של הליכה זה היה קשה מאד ו<a href="images/pictures/new-zealand/20020209_steepest_road.jpg" target="_blank">הגענו ממוטטים למעלה</a>. 
-    למכוניות אסור להחנות בכביש הזה לאורכו, רק לרוחב בגלל הזווית של הכביש 
-    שלהערכתי היא 45 מעלות.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">חזרנו ואכלנו במקום מדהים – 
-    דג סול וצ'יפס ב- 2.70$</span><span dir="LTR">NZ</span> <span lang="HE">– זה 
-    טוב וזה המון צ'יפס (שעולה פחות מ- 2 שקל!). זה הצ'יפס הכי זול – יותר זול 
-    מלאוס!. זה גם ייכנס לתפריט הקבוע והחסכוני שלנו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">נהיה קר, החלטנו לחזור. לי 
-    היה רק גופיה לעורי.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">פגשנו כמה נערים שהזהירו 
-    אותנו שיש כמה נשים שאורבות לגברים החולפים ברחוב. לא ראינו סיבה להילחץ.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">המשכנו כמה מטרים נוספים 
-    ואיזה מישהי שמנמנה ובלונדינית קראה לנו מהמרפסת להכנס. שאלתי את גונן אם יש לו 
-    משהו אחר לעשות והוא אמר לי שאין לו משהו מיוחד, אז עלינו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">עוד לפני שברכנו לשלום, 
-    לקחה השמנמנה את גונן, הרימה לו את החולצה, ליקקה לו את הבטן, שפכה על זה מלח, 
-    הכניסה לו כוס עם טקילה למכנסיים, חצי כוס בתוך המכנס וחצי בחוץ, והכניסה לו 
-    פלח לימון לפה. מה שקרה היה כדלקמן: היא ליקקה את המלח מבטנו, שלפה את הכוס 
-    ממכנסיו ללא מגע יד! ואח"כ לקחה את הלימון מפיו תוך כדי נשיקה תאוותנית!. זו 
-    קבלת פנים!.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אני הייתי הקורבן הבא בתור 
-    וחוויתי חוויה דומה עם מישהי אחרת, הסתבר לי שאף על פי שלא אני שתיתי את 
-    הטקילה, ראשי היה סחרחר עלי.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אח"כ היה תורינו לשתות 
-    טקילה מגוף של אחת הבחורות האחרות. הליקוק הוא בצוואר והכוס תחובה בחמוק.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">התכבדנו גם בבירה ובמשקאות 
-    אחרים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בחדר היו כ- 10 נשים ו- 2 
-    גברים. הן באו לטורניר המאסטרס וכך רובן היו מבוגרות מאיתנו. היו גם איזה 2 
-    שמנות, כך שבסה"כ היו איזה 3 אטרקטיביות.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">כולן היו שמחות, רעשניות 
-    ומסוכנות.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הן הזמינו אותנו להמשיך 
-    איתן למסיבה של המאסטרס. הסכמנו ברצון. וכך הלכנו בתוך החבורה הרעשנית הזו 
-    למקום המסיבה. התפלחנו פנימה וראינו רחבה עם מאות מבוגרים שמחים ורוקדים 
-    כצעירים למוזיקת רוק'נרול שזמר מבוגר שר בהצלחה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הנשים רקדו ושמחו ופינקו 
-    אותנו במשקאות נוספים. אח"כ נכנסנו לבניין וירדנו למרתף שם שיחקנו פול. שיחקנו 
-    נגד פאולה, מבוגרת גבוהה (180) ובלונדינית, בת 42, מאד נחמדה ומסבירת פנים ונגד 
-    קאתי, שמנמנה ובלונדינית, בת 24 ואנרגטית כמו ציפי שביט וגורמת לבלאגן. הן היו 
-    הרבה יותר טובות מאיתנו אבל הפסידו כי הכניסו את הכדור הלבן בסוף.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">יש כללים מוזרים במשחק ואחד 
-    מהם הוא שניתן לתפוס לך בביצים כשאתה מכה (או לחילופין לבחורה כשהיא מכה).</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">נשארנו שם עד הסוף. 
-    <a href="images/pictures/new-zealand/20020209_paula&amp;gonen&amp;kathy.jpg" target="_blank">פאולה 
-    וקאתי היו איתנו</a>. לפני-כן היתה עוד מישהי די שמנה שחשקה בי, אני שקלתי להחזיר 
-    את החוב על המשקאות בגופי, אבל לא יכלתי להראות התלהבות כלפיה ולכן היא פרשה עם 
-    בחור אחר.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">קאתי ופאולה התעקשו ללוות 
-    אותנו לבק-פקר. לא רצינו כ"כ – גם בקטע גברי וגם כי לא רצינו לסגור ענין עם 
-    השמנמנה או המבוגרת. בסוף הן הלכו לדרכן ואנחנו הגענו לבק-פקר שלנו הרוסים. כל 
-    האחרים בחדר כבר ישנו. אנחנו אפילו לא ראינו עם מי אנחנו בחדר.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בבוקר העירו אותנו, יש 
-    הזמנה לחדר ואנחנו צריכים למצוא מקום חדש – השלישי בשלושה ימים.</span></b></p>
-<p> </p></td>
-<td align="center" height="333" rowspan="2" style="     " valign="top" width="187">
-
-<img border="0" height="212" onclick="openLightbox(this.src)" src="../images/20020208_scotish_parade_3.jpg" title="לחץ להגדלה" width="131"/><p>
-
-<img border="0" height="125" onclick="openLightbox(this.src)" src="../images/20020209_scotish_parade.jpg" title="לחץ להגדלה" width="179"/></p>
-<p>
-
-<img border="0" height="116" onclick="openLightbox(this.src)" src="../images/20020209_scotish_parade_2.jpg" title="לחץ להגדלה" width="180"/></p>
-<p><font color="#660099">תחרות בין חבורות סקוטיות במרכז דנידין</font></p>
-<p> </p>
-<p>
-
-<img border="0" height="116" onclick="openLightbox(this.src)" src="../images/20020208_malik_in_view_point.jpg" title="לחץ להגדלה" width="179"/></p>
-<p>
-
-<img border="0" height="119" onclick="openLightbox(this.src)" src="../images/20020209_gonen_at_view_point.jpg" title="לחץ להגדלה" width="182"/></p>
-<p><font color="#660099">נקודת תצפית על דנידין</font></p>
-<p> </p>
-<p>
-
-<img border="0" height="119" onclick="openLightbox(this.src)" src="../images/20020223_dunedin_botanic_gardens.jpg" title="לחץ להגדלה" width="174"/></p>
-<p>
-<font color="#660099">הגנים הבוטנים בדנידין</font><p>
-     <p>
-
-<img border="0" height="124" onclick="openLightbox(this.src)" src="../images/20020209_steepest_road.jpg" title="לחץ להגדלה" width="177"/><p>
-
-<img border="0" height="194" onclick="openLightbox(this.src)" src="../images/dunedin_tallest_street.jpg" title="לחץ להגדלה" width="129"/><p>
-<font color="#660099">רחוב בלדווין, הרחוב התלול בעולם. אני לא חושב שבתמונה 
-    זאת רואים עד כמה הוא תלול</font><p>
-     <p>
-
-<img border="0" height="124" onclick="openLightbox(this.src)" src="../images/20020209_paula&amp;gonen&amp;kathy.jpg" title="לחץ להגדלה" width="178"/><p>
-<font color="#660099">קאתי, גונן ופאולה</font><p>
-     <p>
-     <p>
-     </p></p></p></p></p></p></p></p></p></p></p></td>
-</tr>
-<tr>
-<td height="67" style="     " valign="top" width="314">
-<b>
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button104.gif" title="לחץ להגדלה" width="59"/></b></td>
-<td height="67" style="     " valign="top" width="421">
-<p align="right"><b>
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button106.gif" title="לחץ להגדלה" width="59"/></b></p></td>
-</tr>
-</table>
-<p align="center">
-<!--webbot bot="Navigation" S-Type="sequence" S-Orientation="horizontal" S-Rendering="html" S-Bar="Brackets" S-Btn-Nml="[&lt;A HREF=&quot;#URL#&quot; TARGET=&quot;#TARGET#&quot; STYLE=&quot;{text-decoration: none;}&quot;&gt;#LABEL#&lt;/A&gt;]" S-Btn-Sel="[#LABEL#]" S-Btn-Sep="&amp;nbsp;" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><nobr>[<a href="index.html" style="{text-decoration: none;}" target="">התחלה</a>]</nobr> <nobr>[<a href="200110052040.html" style="{text-decoration: none;}" target="">דנמרק</a>]</nobr> <nobr>[<a href="20011006.html" style="{text-decoration: none;}" target="">הודו</a>]</nobr> <nobr>[<a href="20011030.html" style="{text-decoration: none;}" target="">נפאל</a>]</nobr> <nobr>[<a href="20011115.html" style="{text-decoration: none;}" target="">טרק סובב אנאפורנה</a>]</nobr> <nobr>[<a href="20011210.html" style="{text-decoration: none;}" target="">תאילנד</a>]</nobr> <nobr>[<a href="20020108.html" style="{text-decoration: none;}" target="">לאוס</a>]</nobr> <nobr>[<a href="20020123.html" style="{text-decoration: none;}" target="">צפון תאילנד</a>]</nobr> <nobr>[<a href="20020203.html" style="{text-decoration: none;}" target="">אוסטרליה</a>]</nobr> <nobr>[ניו-זילנד, אי דרומי]</nobr> <nobr>[<a href="20020326.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי צפוני</a>]</nobr> <nobr>[<a href="20020506.html" style="{text-decoration: none;}" target="">פיליפינים</a>]</nobr> <nobr>[<a href="20020603.html" style="{text-decoration: none;}" target="">קמבודיה</a>]</nobr><!--webbot bot="Navigation" i-checksum="876" endspan --></p>
-<p><i><small>This site was last updated
-<!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%m/%d/%y" startspan -->07/19/03<!--webbot bot="Timestamp" i-checksum="12754" endspan --> </small></i>
-</p>
-</body>
+    <div class="nav-links">
+      <a href="20020207.html">← הקודם</a>
+      <a href="20020211.html">הבא →</a>
     </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-text">
+      <div class="meta-line">
+        <span class="date-big">10</span>
+        <div>
+          <div class="date-details">פברואר 2002</div>
+          <span class="country-badge">ניו-זילנד, אי דרומי</span>
+        </div>
+      </div>
+      <h1 class="title">מבוגרות ומסוכנות</h1>
+      <div class="title-divider"></div>
+    </div>
+    <img class="hero-map" src="../images/New_Zealand_south_island.gif" alt="ניו-זילנד, אי דרומי">
+  </div>
+
+  <div class="content">
+    <p>מבוגרות ומסוכנות</p>
+
+    <p>3 ימים לא כתבתי ומה היה לנו: כמעט הצלחנו לריב עם ניו-זילנדי, ראינו עיר יפהפיה עם גנים בוטנים מדהימים וכמעט פותינו ע"י חבורה של נשים מבוגרות משתוללות, וכמובן – ארץ חדשה ומבטיחה – ניו-זילנד.</p>
+
+    <p>מאוסטרליה נפרדנו בקול ענות חלושה. היה גשם והיינו עייפים אז לא יצאנו. הצלחתי לשים את ידי על הדיסקמן של אחת הבנות והצלחתי להקליט עד אמצע הלילה. גונן וארז עשו צחוקים.</p>
+
+    <p>גונן סרק את הדירה, כמו בדירה הקודמת, ושם את ידו על קרם לשיער (שמבהיר את השיער), דיאודורנט לנעלים, בטריות, פלגים לאוטו, מטריה ומקטרת באנג יפהפיה (זה כבר מישהו סתם שכח בסלון וגונן לקח). הוא לא רחוק מחיטוט בפחים.</p>
+
+    <p>בלילה בא מישהו וביקש שנהיה בשקט. היינו בסלון. זה מעצבן כי לילה לפני-כן כשישנו בסלון כולם היו שם ודיברו עד 5:00 בבוקר.</p>
+
+    <p>ב- 3:00 הלכנו לישון וקמנו ב- 5:20, שעתיים שינה.</p>
+
+    <p>נפרדנו נרגשות מארז ועלינו למונית שהגיעה בזמן. זאת בעצם יוזמה של ישראלי בשם עמית שמסיע אנשים לשדה-התעופה. בשלט הפרסומת שלו כתוב 30$AU למונית. בפועל הוא רצה 30$AU לאחד. שילמנו 25$AU כ"א והתעצבנו שישראלי מתכמן אותנו. דווקא ישראלי.</p>
+
+    <p>עלינו למטוס. היינו רעבים וחיכינו לארוחה במטוס. בחברת התעופה הצעירה, Freedom Airlines, אין ארוחות אלא שקיות פיצוחים שעולות כסף וכנ"ל השתיה. על העקרון לא הזמנו כלום – שלא יתרגלו שמשלמים על ארוחות במטוס. הרעב הטריד.</p>
+
+    <p>נחתנו, ירדנו מהמטוס, פגשנו עוד כמה ישראלים קיבוצניקים בני 23. עמדנו בתור לדרכונים. הגענו אחרונים. אותי עצרו לבדיקה. גונן חייך וחשב שאולי אני חשוד בהברחה, אבל הסיפור הוא שיש לי אוהל והם פתחו אותו לראות אם הבאתי בטעות איזה חיה כמו עכביש לניו-זילנד (וזה רק כי הייתי בתאילנד בחודש האחרון).</p>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/20020208_scotish_parade_3.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020209_scotish_parade.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020209_scotish_parade_2.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">תחרות בין חבורות סקוטיות במרכז דנידין</div>
+      </div>
+    </div>
+
+    <p>נסענו לעיר במיניבוס (15$NZ,כש- 1$NZ = קצת יותר מ- 2 שקל).</p>
+
+    <p>כבר במטוס לפני הנחיתה ראינו כמה ניו-זילנד יפה – אגמים והרים. כשהתקרבנו זיהינו כבשים רועות. הרבה מאד טבע.</p>
+
+    <p>בניו-זילנד יש 3.8 מליון תושבים והיא גדולה פי 10 מישראל. יש כאן גם 70 מליון כבשים והן, אני מניח, חיות בצפיפות.</p>
+
+    <p>איך שהגענו לעיר הסתבר לנו שעכשיו מתקיים טורניר ספורט למבוגרים (נקראמאסטרס), מתקיים ב 2-10 לפברואר, כל שנתיים נערך בדנידין. זה גרם לבעיית חדרים.</p>
+
+    <p>מצאנו חדר במוטל ב- 60$NZ. התכוונו להצטופף חמישתנו, אנחנו והקיבוצניקים: ארנון הגבוה והמחומצן שיער, יובל עם הקוקו ועוד אחד.</p>
+
+    <p>היה קר. דיברנו עם האחראי וקיווינו שייתן לנו חדר ב- 40$NZ במקום 60$NZ. ממנו הבנו שלא אכפת לו שנצטופף 5 בחדר, וזה מה שתיכננו לעשות.</p>
+
+    <p>כשהקיבוצניקים יצאו החוצה לעשן הם פגשו את האחראי והוא היה עצבני ולא הסכים שנהיה 5 בחדר.</p>
+
+    <p>וכך בלילה, לפני שעמדנו לישון, כי לא ישנו כמעט בלילה הקודם, היינו צריכים לחפש מקום אחר.</p>
+
+    <p>יצאתי לבדי והשארתי את גונן לטפל באחראי – הלכתי שעתיים בכל העיר, חרשתי קילומטרים, ביקרתי באיזה 8 גסט האוסים ומוטלים – חלקם סגורים, בחלקם יש שלט "מלא" ובחלקם היו אנשים בקבלה שאמרו שהכל מלא.</p>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/20020208_malik_in_view_point.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020209_gonen_at_view_point.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">נקודת תצפית על דנידין</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020223_dunedin_botanic_gardens.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">הגנים הבוטנים בדנידין</div>
+      </div>
+    </div>
+
+    <p>חזרתי למלון. היה כבר 24:00. ראינו שלמטה במלון שלנו יש מועדון/פאב מלא באנשים חוגגים, רובם מבוגרים. דיברנו עם הברמן והוא התקשר לאחראי והרגיע אותנו ואמר שנוכל לישון כולנו יחד. אבל אנחנו כבר לא רצינו לישון, רצינו לחגוג.</p>
+
+    <p>יצאנו החוצה, בדרך פגשנו איזה זוג מבוגרים מצחיקים – זוג ידידים כבני 40. הם הצחיקו אותנו. הלכנו למקום ליד המלון, outback, מתחם גדול עם פאב ודיסקוטק, מלא בצעירים רוקדים. הצטרפנו לחגיגה. ליטר בירה עולה כאן 6$NZ (קצת יותר מ- 12 שקל).</p>
+
+    <p>רקדנו, על גונן קפצה איזו מישהי, הוא רקד איתה צמוד ואח"כ היא המשיכה לדרכה. מישהי אחרת שאלה אותנו אם אנחנו הומואים, באותו הרגע הסתיים אצלי הערב, נגמרה החגיגה. גונן עוד רקד איתה קצת.</p>
+
+    <p>היינו מבסוטים מחיי הלילה, חזרנו ב- 3:00.</p>
+
+    <p>ב- 12:00 העיר אותנו האחראי ושאל אם אנחנו נשארים עוד לילה, לא ידענו, אז קמנו מהר ויצאנו לעיר. מצאנו מקום ב- backpacker בשם פינגווין ועברנו לשם.</p>
+
+    <p>בדרך משם ולשם שמענו מוזיקה חזקה של חמת-חלילים ותופים, וראינו במרכז העיר (נקרא האוקטגון, המתומן) <a onclick="openLightbox('../images/20020209_scotish_parade.jpg')">תהלוכה של חברה בחצאיות מילדים ועד זקנים</a>, עם תלבושת אחידה מרהיבה וחמות חלילים, תופים קטנים ותוף אחד ענק. זקן החבורה מוביל עם שרביט. היו עשרות חבורות כאלו, והפסטיבל נמשך שעות – זאת היתה תחרות עם שופט קפדן שבודק ומדקדק בכל דבר.</p>
+
+    <p>מסתבר שדנידין זאת עיר אירית/סקוטית.</p>
+
+    <p>קיבלנו מידע על הליכה טובה בעיר, לאורך הפארקים. לפני-כן עצרנו בבורגר-קינג שמצאנו בעיר. זה באמת הרבה יותר טוב ממקדונלדס, הבשר משובח ויש refill למשקאות. ארוחת וופר עולה כאן כ- 14 שקל וזה פחות מחצי מהארץ.</p>
+
+    <p>עלינו ברחוב תלול והגענו ל<a onclick="openLightbox('../images/20020209_gonen_at_view_point.jpg')">נקודת תצפית</a> – משם הלכנו לאורך פארקים יפהפיים. העיר נראית עיר בריטית במובן החיובי של המילה, אין כאן בתים עם יותר מ- 3 קומות. המון ירוק ופארקים.</p>
+
+    <div class="photo-pair">
+      <div class="photo-item">
+        <img src="../images/20020209_steepest_road.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/dunedin_tallest_street.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">רחוב בלדווין, הרחוב התלול בעולם. אני לא חושב שבתמונה 
+    זאת רואים עד כמה הוא תלול</div>
+      </div>
+    </div>
+
+    <p>הלכנו בדרך שנקראת כאן queens drive ושבעצם אומרת שכדאי לנסוע כאן כי זאת דרך יפה. הלכנו לאורך כביש זה והיה ממש יפה.</p>
+
+    <p>הגענו בסוף ל<a onclick="openLightbox('../images/20020223_dunedin_botanic_gardens.jpg')">גנים הבוטנים</a> – לא הופתענו כבר שהכניסה היתה חינם והגנים היו מדהימים, רק בחלקת הוורדים היו כ- 20 עד 30 סוגים שונים. נהר עבר באמצע, היו שם שחפים וברווזים להאכלה. היו עוד איזורים בגנים שלא הספקנו לראות כי כבר היה מאוחר. עוד נחזור לשם בפעם אחרת.</p>
+
+    <p>המשכנו לכיוון רחוב baldwin שהוא ה<a onclick="openLightbox('../images/dunedin_tallest_street.jpg')">רחוב התלול בעולם</a>. הגענו והסתכלנו למעלה. גונן באקט אמוציונאלי הציע שנעלה את הרחוב וזה מה שעשינו, בקושי. לאחר למעלה מ- 15 ק"מ של הליכה זה היה קשה מאד ו<a onclick="openLightbox('../images/20020209_steepest_road.jpg')">הגענו ממוטטים למעלה</a>. למכוניות אסור להחנות בכביש הזה לאורכו, רק לרוחב בגלל הזווית של הכביש שלהערכתי היא 45 מעלות.</p>
+
+    <p>חזרנו ואכלנו במקום מדהים – דג סול וצ'יפס ב- 2.70$NZ – זה טוב וזה המון צ'יפס (שעולה פחות מ- 2 שקל!). זה הצ'יפס הכי זול – יותר זול מלאוס!. זה גם ייכנס לתפריט הקבוע והחסכוני שלנו.</p>
+
+    <p>נהיה קר, החלטנו לחזור. לי היה רק גופיה לעורי.</p>
+
+    <p>פגשנו כמה נערים שהזהירו אותנו שיש כמה נשים שאורבות לגברים החולפים ברחוב. לא ראינו סיבה להילחץ.</p>
+
+    <p>המשכנו כמה מטרים נוספים ואיזה מישהי שמנמנה ובלונדינית קראה לנו מהמרפסת להכנס. שאלתי את גונן אם יש לו משהו אחר לעשות והוא אמר לי שאין לו משהו מיוחד, אז עלינו.</p>
+
+    <p>עוד לפני שברכנו לשלום, לקחה השמנמנה את גונן, הרימה לו את החולצה, ליקקה לו את הבטן, שפכה על זה מלח, הכניסה לו כוס עם טקילה למכנסיים, חצי כוס בתוך המכנס וחצי בחוץ, והכניסה לו פלח לימון לפה. מה שקרה היה כדלקמן: היא ליקקה את המלח מבטנו, שלפה את הכוס ממכנסיו ללא מגע יד! ואח"כ לקחה את הלימון מפיו תוך כדי נשיקה תאוותנית!. זו קבלת פנים!.</p>
+
+    <p>אני הייתי הקורבן הבא בתור וחוויתי חוויה דומה עם מישהי אחרת, הסתבר לי שאף על פי שלא אני שתיתי את הטקילה, ראשי היה סחרחר עלי.</p>
+
+    <div class="photo-block">
+      <img src="../images/20020209_paula&gonen&kathy.jpg" onclick="openLightbox(this.src)">
+      <div class="caption">קאתי, גונן ופאולה</div>
+    </div>
+
+    <p>אח"כ היה תורינו לשתות טקילה מגוף של אחת הבחורות האחרות. הליקוק הוא בצוואר והכוס תחובה בחמוק.</p>
+
+    <p>התכבדנו גם בבירה ובמשקאות אחרים.</p>
+
+    <p>בחדר היו כ- 10 נשים ו- 2 גברים. הן באו לטורניר המאסטרס וכך רובן היו מבוגרות מאיתנו. היו גם איזה 2 שמנות, כך שבסה"כ היו איזה 3 אטרקטיביות.</p>
+
+    <p>כולן היו שמחות, רעשניות ומסוכנות.</p>
+
+    <p>הן הזמינו אותנו להמשיך איתן למסיבה של המאסטרס. הסכמנו ברצון. וכך הלכנו בתוך החבורה הרעשנית הזו למקום המסיבה. התפלחנו פנימה וראינו רחבה עם מאות מבוגרים שמחים ורוקדים כצעירים למוזיקת רוק'נרול שזמר מבוגר שר בהצלחה.</p>
+
+    <p>הנשים רקדו ושמחו ופינקו אותנו במשקאות נוספים. אח"כ נכנסנו לבניין וירדנו למרתף שם שיחקנו פול. שיחקנו נגד פאולה, מבוגרת גבוהה (180) ובלונדינית, בת 42, מאד נחמדה ומסבירת פנים ונגד קאתי, שמנמנה ובלונדינית, בת 24 ואנרגטית כמו ציפי שביט וגורמת לבלאגן. הן היו הרבה יותר טובות מאיתנו אבל הפסידו כי הכניסו את הכדור הלבן בסוף.</p>
+
+    <p>יש כללים מוזרים במשחק ואחד מהם הוא שניתן לתפוס לך בביצים כשאתה מכה (או לחילופין לבחורה כשהיא מכה).</p>
+
+    <p>נשארנו שם עד הסוף. <a onclick="openLightbox('../images/20020209_paula&gonen&kathy.jpg')">פאולה וקאתי היו איתנו</a>. לפני-כן היתה עוד מישהי די שמנה שחשקה בי, אני שקלתי להחזיר את החוב על המשקאות בגופי, אבל לא יכלתי להראות התלהבות כלפיה ולכן היא פרשה עם בחור אחר.</p>
+
+    <p>קאתי ופאולה התעקשו ללוות אותנו לבק-פקר. לא רצינו כ"כ – גם בקטע גברי וגם כי לא רצינו לסגור ענין עם השמנמנה או המבוגרת. בסוף הן הלכו לדרכן ואנחנו הגענו לבק-פקר שלנו הרוסים. כל האחרים בחדר כבר ישנו. אנחנו אפילו לא ראינו עם מי אנחנו בחדר.</p>
+
+    <p>בבוקר העירו אותנו, יש הזמנה לחדר ואנחנו צריכים למצוא מקום חדש – השלישי בשלושה ימים.</p>
+
+    <p>רחוב בלדווין, הרחוב התלול בעולם. אני לא חושב שבתמונה זאת רואים עד כמה הוא תלול</p>
+
+
+  </div>
+
+  <div class="nav-cards">
+    <a href="20020211.html" class="nav-card">
+      <div class="label">הבא →</div>
+      <div class="card-title">בעיות שינה</div>
+    </a>
+    <a href="20020207.html" class="nav-card">
+      <div class="label">← הקודם</div>
+      <div class="card-title">עושים על האש</div>
+    </a>
+  </div>
+
+  <div class="country-nav">
+    <a href="200110052040.html">דנמרק</a>
+    <a href="20011006.html">הודו</a>
+    <a href="20011030.html">נפאל</a>
+    <a href="20011115.html">טרק אנאפורנה</a>
+    <a href="20011210.html">תאילנד</a>
+    <a href="20020108.html">לאוס</a>
+    <a href="20020123.html">צפון תאילנד</a>
+    <a href="20020203.html">אוסטרליה</a>
+    <a href="20020210.html">ניו-זילנד, אי דרומי</a>
+    <a href="20020326.html">ניו-זילנד, אי צפוני</a>
+    <a href="20020506.html">פיליפינים</a>
+    <a href="20020603.html">קמבודיה</a>
   </div>
 
   <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
-    <img id="lightbox-img" src="" alt="Enlarged">
+    <img id="lightbox-img" src="" alt="">
   </div>
-
   <script>
     function openLightbox(src) {
       document.getElementById('lightbox-img').src = src;

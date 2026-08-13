@@ -3,11 +3,13 @@ import { EleventyHtmlBasePlugin } from "@11ty/eleventy";
 export default function(eleventyConfig) {
   eleventyConfig.addPlugin(EleventyHtmlBasePlugin);
 
-  // Pass through images without processing
   eleventyConfig.addPassthroughCopy("src/images");
 
-  // Pass through entry pages as-is for now
-  eleventyConfig.addPassthroughCopy("src/entries");
+  // Keep original .html filenames (don't create /slug/index.html directories)
+  // This preserves existing inter-page links
+  eleventyConfig.addGlobalData("permalink", () => {
+    return (data) => `${data.page.filePathStem}.html`;
+  });
 
   return {
     dir: {

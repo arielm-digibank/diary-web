@@ -3,200 +3,303 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>בית ג'ונאר, מקסיקו אראיאט, האי לוזון, פיליפינים</title>
+  <title>ביקור משפחתי</title>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap" rel="stylesheet">
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background-color: #f8fafc;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0; padding: 20px; color: #334155;
+      background: #ffffff;
+      font-family: 'Heebo', sans-serif;
+      color: #1a1a2e;
+      line-height: 1.9;
     }
-    .container {
-      max-width: 800px; margin: 0 auto; background: #ffffff;
-      padding: 35px; border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06); line-height: 1.8;
+    .top-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #eee;
+      padding: 12px 30px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.9rem;
     }
-    .header {
-      border-bottom: 2px solid #e2e8f0; padding-bottom: 15px;
-      margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center;
+    .top-nav a {
+      color: #1d4ed8; text-decoration: none; font-weight: 600;
     }
-    .header h1 { margin: 0; color: #0f172a; font-size: 1.8rem; }
-    .home-link { color: #2563eb; text-decoration: none; font-weight: 600; }
-    .content img {
-      float: right; margin: 0 0 15px 20px; max-width: 320px; height: auto;
-      border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      cursor: pointer; transition: transform 0.2s;
+    .top-nav a:hover { text-decoration: underline; }
+    .top-nav .nav-links { display: flex; gap: 20px; }
+    .hero {
+      max-width: 900px; margin: 0 auto;
+      padding: 50px 40px 30px;
+      display: flex; align-items: flex-start; gap: 30px;
     }
-    .content img:hover { transform: scale(1.02); }
-    .content::after { content: ""; clear: both; display: table; }
-    a { color: #2563eb; }
+    .hero-text { flex: 1; }
+    .hero-map {
+      width: 120px; height: auto; object-fit: contain;
+      flex-shrink: 0; opacity: 0.85;
+    }
+    .meta-line {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+    }
+    .date-big {
+      font-size: 3.5rem; font-weight: 900; color: #e5e7eb; line-height: 1;
+    }
+    .date-details { font-size: 0.9rem; color: #6b7280; }
+    .country-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      border-radius: 20px; padding: 4px 14px;
+      font-size: 0.8rem; color: #1d4ed8; font-weight: 600;
+    }
+    .title {
+      font-size: 2.2rem; font-weight: 900; color: #111827;
+      margin: 20px 0 8px; line-height: 1.3;
+    }
+    .date-subtitle {
+      font-size: 1.1rem; font-weight: 300; color: #4b5563;
+      margin-bottom: 16px;
+    }
+    .title-divider {
+      width: 60px; height: 4px; background: #1d4ed8; border-radius: 2px;
+    }
+    .content {
+      max-width: 900px; margin: 30px auto; padding: 0 40px; font-size: 1.05rem;
+    }
+    .content p { margin-bottom: 18px; }
+    .content a {
+      color: #1d4ed8; cursor: pointer;
+      text-decoration: underline;
+      text-decoration-color: rgba(29,78,216,0.3);
+    }
+    .photo-block {
+      margin: 30px 0; border-radius: 12px; overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    .photo-block img {
+      width: 100%; display: block; cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .photo-block img:hover { transform: scale(1.01); }
+    .photo-block .caption {
+      padding: 12px 16px; font-size: 0.85rem; color: #6b7280;
+      background: #f9fafb; border-top: 1px solid #f3f4f6;
+    }
+    .photo-pair {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 14px; margin: 30px 0;
+    }
+    .photo-pair .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-pair .photo-item img {
+      width: 100%; height: 200px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-pair .photo-item img:hover { transform: scale(1.03); }
+    .photo-pair .photo-item .caption {
+      padding: 8px 12px; font-size: 0.8rem; color: #6b7280; background: #f9fafb;
+    }
+    .photo-trio {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px; margin: 30px 0;
+    }
+    .photo-trio .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-trio .photo-item img {
+      width: 100%; height: 180px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-trio .photo-item img:hover { transform: scale(1.03); }
+    .photo-trio .photo-item .caption {
+      padding: 8px 10px; font-size: 0.78rem; color: #6b7280; background: #f9fafb;
+    }
+    .nav-cards {
+      max-width: 900px; margin: 50px auto 20px; padding: 0 40px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .nav-card {
+      padding: 20px 24px; border: 1px solid #e5e7eb; border-radius: 12px;
+      text-decoration: none; color: inherit; transition: all 0.2s;
+    }
+    .nav-card:hover {
+      border-color: #1d4ed8; box-shadow: 0 4px 12px rgba(29,78,216,0.1);
+    }
+    .nav-card .label { font-size: 0.8rem; color: #6b7280; margin-bottom: 4px; }
+    .nav-card .card-title { font-weight: 700; font-size: 1rem; color: #1d4ed8; }
+    .supplements {
+      margin-top: 35px; padding: 25px 30px;
+      background: #f9fafb; border-radius: 12px; border: 1px solid #e5e7eb;
+    }
+    .supplements h3 {
+      font-size: 1.1rem; font-weight: 700; margin-bottom: 14px; color: #374151;
+    }
+    .supplements ol { padding-right: 20px; }
+    .supplements li { margin-bottom: 10px; color: #4b5563; }
+    .country-nav {
+      max-width: 900px; margin: 20px auto 40px; padding: 0 40px;
+      display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+    }
+    .country-nav a {
+      padding: 6px 14px; border-radius: 20px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      color: #1d4ed8; text-decoration: none;
+      font-size: 0.82rem; font-weight: 600;
+      transition: all 0.2s;
+    }
+    .country-nav a:hover {
+      background: #1d4ed8; color: white; border-color: #1d4ed8;
+    }
     .lightbox {
       display: none; position: fixed; z-index: 9999;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.9); justify-content: center; align-items: center; cursor: pointer;
+      background: rgba(0,0,0,0.92);
+      justify-content: center; align-items: center; cursor: pointer;
     }
-    .lightbox img { max-width: 90%; max-height: 90%; border-radius: 8px; }
+    .lightbox img { max-width: 92%; max-height: 92%; border-radius: 8px; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h1>בית ג'ונאר, מקסיקו אראיאט, האי לוזון, פיליפינים</h1>
-      <a href="../index.html" class="home-link">🏠 לעמוד הראשי</a>
+  <div class="top-nav">
+    <div class="nav-links">
+      <a href="../index.html">עמוד ראשי</a>
     </div>
-    <div class="content">
-      <body>
-<table cellpadding="0" cellspacing="0" height="80" width="954">
-<tr>
-<td align="center" height="80" width="277">
-<marquee style="font-size: 18pt; color: #800080">6.5.02 - 12:00</marquee></td>
-<td align="center" height="80" width="667">
-<!--webbot bot="Navigation" s-type="banner" s-rendering="graphics" S-Orientation B-Include-Home B-Include-Up U-Page S-Target startspan --><!--webbot bot="Navigation" i-checksum="21541" endspan --></td>
-<td align="center" height="80" width="10">
-<img border="0" height="2" onclick="openLightbox(this.src)" src="../images/20020322_fishermen.jpg" title="לחץ להגדלה" width="1"/><img border="0" height="164" onclick="openLightbox(this.src)" src="../images/Philippines.gif" title="לחץ להגדלה" width="164"/></td>
-</tr>
-<tr>
-<td colspan="3" height="1" style=" " width="954"></td>
-</tr>
-</table><table cellpadding="0" cellspacing="0" width="100%">
-<tr>
-<td align="right" style=" ">
-<h4>
-<marquee style="font-size: 24pt; color: #008080">ביקור משפחתי</marquee></h4>
-<p> </p></td>
-</tr>
-</table>
-<table cellpadding="0" cellspacing="0" height="333" width="1011">
-<tr>
-<td height="333" rowspan="2" style="       " valign="top" width="140"> <!--webbot bot="Navigation" S-Type="sequence" S-Orientation="vertical" S-Rendering="graphics" S-Theme="blocks 000" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><!--webbot bot="Navigation" i-checksum="44106" endspan --><p> </p>
-</td>
-<td height="333" rowspan="2" style="     " valign="top" width="1"></td>
-<td colspan="2" height="266" style="     " valign="top" width="793">
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">התרחשויות מפתיעות הביאנו 
-    עד הלום.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">פחות הפתיעו אותי ויותר את 
-    גונן. אני הייתי שותף לתכנון.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">לפני יומיים, עוד 
-    באוסטרליה, גונן רצה להתקשר לשירלי. בצהרי אותו יום קנינו כרטיס חיוג וכנראה 
-    עבדו עלינו והוא נגמר תוך שניות. אני התקשרתי למלודי לקנדה, לא תפסתי אותה 
-    והכרטיס כמעט נגמר. החלטתי לוותר. גונן לא ויתר על שירלי וקנה כרטיס נוסף, הפעם 
-    מהבק-פקר. הוא התקשר לשירלי וזה עלה בקושי. ביתר מה שנשאר בכרטיס התקשרתי 
-    למלודי, ליעל ולמאיה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">רק שבועיים לפני-כן, ביום 
-    ההולדת של מלודי, התקשרתי אליה לאחל לה מזל-טוב והודעתי לה שאנחנו נוסעים 
-    לפיליפינים. היא הייתה נרגשת. עכשיו היא אמרה לי שהיא סדרה שאחיין שלה, </span>
-<span dir="LTR">Jonar</span><span lang="HE"> (ג'ונאר) ייקח אותנו משדה-התעופה 
-    ויארח אותנו בביתו. שמרתי זאת בסוד. זה היה אמור לחסוך לנו התרוצצויות במנילה 
-    ומה גם שזה אמור היה להיות חצי שעה נסיעה ממנילה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">את הטיסה הארוכה העברתי 
-    בכיף (11 שעות כולל עצירה בסידני) וכרגיל לא הלכתי לשירותים. גונן דווקא הרבה 
-    ללכת לשם ולקראת סוף הטיסה הוא היה חסר סבלנות.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בנחיתה פגשנו עוד ישראלי, 
-    היחידי הנוסף במטוס, בשם ישי. יש לו להעביר 4-5 ימים עד לטיסתו לבנגקוק. הוא בן 
-    23, 8 חודשים בטיול, מתוכם 4 בהודו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">ביציאה משדה התעופה נפנף לי 
-    דרק (</span><span dir="LTR">Derek</span><span lang="HE">), אחיין נוסף של 
-    מלודי, ורק אז נודע לגונן על המזימה. ישי הצטרף אלינו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">נכנסנו למונית הממוזגת, 
-    בחוץ היה חום שונה ממה שהתרגלנו אליו בחודשים האחרונים. נסענו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">מבעד לחלון הטקסי ראינו עיר 
-    מכוערת. הדבר היחידי היפה שתפש את עיני כאן זה ג'יפים ארוכים, משמשים ככל הנראה 
-    כפיק-אפ, כמו מונית שירות, אבל הם מטופחים ומושקעים. כל ג'יפ בסגנון שונה ובצבע 
-    שלו – ממש יפה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">נסענו ונסענו וקלטנו שאנחנו 
-    ממש מתרחקים ממנילה. משהו השתבש. חשבנו להשאיר את התיקים הגדולים במנילה 
-    ולהסתובב בכיף בכל הארץ עם התיקים הקטנים. עכשיו, כה רחוקים ממנילה, באיזה חור. 
-    איפה נשים אותם?. גונן התעצבן. ישי דווקא לא נלחץ, ואני התחרטתי שהסתרתי את 
-    הפרטים מגונן. כך לפחות היינו חולקים באחריות למחדל.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">לאחר כמעט שעתיים נסיעה 
-    הגענו למקום, לבית של ג'ונאר, והכל השתנה. ג'ונאר התעקש לשלם בעצמו על המונית 
-    ובתוך הבית הקטן, אך המקושט והנחמד, חיכתה ארוחת מלכים על השולחן, רק בשבילינו. 
-    אכלנו דגים, עוף, אורז ועוד ועוד, עד שהתפוצצנו. ישי התלהב. התחלנו להבין שזו 
-    תהיה חוויה שונה. ישבנו ודיברנו קצת ועישנו (רק סיגריות ורק ישי והמקומיים). 
-    היה ריחוק בהתחלה, אולם אחרי שהם הציעו ללכת למועדון חשפנות פה קרוב, התקרבנו. 
-    מה מקרב גברים זה לזה? – נשים, ספורט, אלכוהול וסמים. נשים וספורט זה ייחודי רק 
-    לגברים, יתר הנושאים זה יוניסקס.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">עוד לפני שהלכנו למועדון 
-    נפתחו בקבוקי בירה רבים. גם במועדון נפתחו עוד כמה בקבוקים (לכל אחד), נוספו 
-    כמה חברה, חברים של ג'ונאר. נסענו בג'יפ ובתלת-אופן שזה בעצם אופנוע עם סירה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">במועדון החשפנות הנערות 
-    רקדו בצורה נשית לצלילי מוזיקה מערבית. מרוב הבירה הלכנו המון לשירותים, תמיד 
-    הצטרף אלינו אחד המקומיים בתפקיד שומר ראש, להשגיח. כך היה אצל כל אחד מאיתנו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אני חייב גם לחזור לחווית 
-    השירותים בנמל תעופה – הלכתי לשירותים, מיד נער שהיה בפתח והיה אחראי לנקיון 
-    הכניס אותי ובחר לי תא ודאג להכניס לי עוד נייר טואלט מתחת לדלת. את הפרטיות 
-    שאני אוהב היה לי קשה להשיג. כשיצאתי מהתא הוא פתח לי את המים ושפך לי סבון על 
-    הידיים. שירות מוגזם. הוא בטח רצה טיפ.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">נחזור למועדון, נערה ישבה 
-    על גונן, על ישי ואחת ממש התלבשה עלי או שאולי להיפך כי היא הורידה לי את 
-    החולצה ודחפה את הפה שלי למקומות מוצנעים ביותר בגופה. אני מקווה שזה לא נשמע 
-    כאילו אני מתלונן. בכל מקרה, ניסיתי לא להראות יותר מדי התלהבות, בייחוד 
-    כשקרובי משפחתה של מלודי צופים בזה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אח"כ עצרנו באיזה מקום 
-    והוזמנו לכוס מרק ועוד משהו. נהייתי מפוצץ מאוכל ומסוחרר מאלכוהול.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">חזרנו לישון במיטות. כל יתר 
-    המשפחה ישנו על הרצפה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בבוקר קמנו. ארוחת-הבוקר 
-    חיכתה על השולחן. זה נראה יותר כמו ארוחת-ערב עם כל שפע הבשר.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אח"כ יצאנו החוצה ויצא לי 
-    לראות את הכפר. די פרימיטיבי – שביל ראשי, בתים מסביבו. גם לכפר יצא לראות 
-    אותי. הכירו לי את אבא של מלודי ושכנים וכולם העירו ואף החמיאו וצחקו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הלכנו לשחק כדורסל. יש כאן 
-    מגרש וסלים ואפילו רשת!. כל הילדים באו להסתכל.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">שיחקנו 3</span><span dir="LTR">X</span><span lang="HE">3. 
-    גונן היה נגדי והוא ניצח ב- 2 משחקים. ככל הנראה איתגרתי אותו כי הוא התאמץ 
-    והתעייף. אני בכושר קליעה ירוד ביותר, כולל החטאות מתחת לסל, אך לא התאמצתי 
-    ונתתי לגובה לשחק. כשהבאתי גג לשחקן מקומי כל הילדים צחקו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">החום קרע אותנו. חזרנו 
-    והתמוטטנו על המיטות.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">גונן לקח סיבוב על האופנוע 
-    של ג'ונאר. האופנוע נראה טוב אך הוא עגלה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">מלודי התקשרה וסיפרתי לה על 
-    הכל והודיתי לה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">נראה לי שאני אשאיר לג'ונאר 
-    הרבה ציוד שאני לא צריך ואולי כן נוכל להשאיר כאן את התיקים הגדולים כשנסתובב 
-    ברחבי הפיליפינים.</span></b></p>
-<p> </p></td>
-<td align="center" height="333" rowspan="2" style="     " valign="top" width="187">
-
-<img border="0" height="119" onclick="openLightbox(this.src)" src="../images/20020505_dinner.jpg" title="לחץ להגדלה" width="176"/><p>
-<font color="#660099">אוכלים ארוחת ערב: אני, ג'ונאר, שני קרובי משפחה, לאחד 
-    קוראים דרק וגונן</font></p>
-<p>
-<img border="0" height="250" onclick="openLightbox(this.src)" src="../images/20020505_jonar.jpg" title="לחץ להגדלה" width="167"/></p>
-<p><font color="#660099">עדיין באותה ארוחה מפוארת: עומדת ליד ג'ונאר - אשתו</font></p>
-<p>
-
-<img border="0" height="116" onclick="openLightbox(this.src)" src="../images/20020505_drinking.jpg" title="לחץ להגדלה" width="173"/></p>
-<p><font color="#660099">מחוץ לבית אחרי כמה בירות</font></p>
-<p>
-
-<img border="0" height="115" onclick="openLightbox(this.src)" src="../images/20020505_drinking_2.jpg" title="לחץ להגדלה" width="175"/></p>
-<p><font color="#660099">באותו מקום אחרי עוד כמה בירות</font></p></td>
-</tr>
-<tr>
-<td height="67" style="     " valign="top" width="314">
-<b>
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button104.gif" title="לחץ להגדלה" width="59"/></b></td>
-<td height="67" style="     " valign="top" width="479">
-<p align="right"><b>
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button106.gif" title="לחץ להגדלה" width="59"/></b></p></td>
-</tr>
-</table>
-<p align="center">
-<!--webbot bot="Navigation" S-Type="sequence" S-Orientation="horizontal" S-Rendering="html" S-Bar="Brackets" S-Btn-Nml="[&lt;A HREF=&quot;#URL#&quot; TARGET=&quot;#TARGET#&quot; STYLE=&quot;{text-decoration: none;}&quot;&gt;#LABEL#&lt;/A&gt;]" S-Btn-Sel="[#LABEL#]" S-Btn-Sep="&amp;nbsp;" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><nobr>[<a href="index.html" style="{text-decoration: none;}" target="">התחלה</a>]</nobr> <nobr>[<a href="200110052040.html" style="{text-decoration: none;}" target="">דנמרק</a>]</nobr> <nobr>[<a href="20011006.html" style="{text-decoration: none;}" target="">הודו</a>]</nobr> <nobr>[<a href="20011030.html" style="{text-decoration: none;}" target="">נפאל</a>]</nobr> <nobr>[<a href="20011115.html" style="{text-decoration: none;}" target="">טרק סובב אנאפורנה</a>]</nobr> <nobr>[<a href="20011210.html" style="{text-decoration: none;}" target="">תאילנד</a>]</nobr> <nobr>[<a href="20020108.html" style="{text-decoration: none;}" target="">לאוס</a>]</nobr> <nobr>[<a href="20020123.html" style="{text-decoration: none;}" target="">צפון תאילנד</a>]</nobr> <nobr>[<a href="20020203.html" style="{text-decoration: none;}" target="">אוסטרליה</a>]</nobr> <nobr>[<a href="20020210.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי דרומי</a>]</nobr> <nobr>[<a href="20020326.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי צפוני</a>]</nobr> <nobr>[פיליפינים]</nobr> <nobr>[<a href="20020603.html" style="{text-decoration: none;}" target="">קמבודיה</a>]</nobr><!--webbot bot="Navigation" i-checksum="3842" endspan --></p>
-<p><i><small>This site was last updated
-<!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%m/%d/%y" startspan -->08/06/02<!--webbot bot="Timestamp" i-checksum="12572" endspan --> </small></i>
-</p>
-</body>
+    <div class="nav-links">
+      <a href="200205050515.html">← הקודם</a>
+      <a href="20020507.html">הבא →</a>
     </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-text">
+      <div class="meta-line">
+        <span class="date-big">06</span>
+        <div>
+          <div class="date-details">מאי 2002</div>
+          <span class="country-badge">פיליפינים</span>
+        </div>
+      </div>
+      <h1 class="title">ביקור משפחתי</h1>
+      <div class="title-divider"></div>
+    </div>
+    <img class="hero-map" src="../images/Philippines.gif" alt="פיליפינים">
+  </div>
+
+  <div class="content">
+    <p>ביקור משפחתי</p>
+
+    <p>התרחשויות מפתיעות הביאנו עד הלום.</p>
+
+    <p>פחות הפתיעו אותי ויותר את גונן. אני הייתי שותף לתכנון.</p>
+
+    <p>לפני יומיים, עוד באוסטרליה, גונן רצה להתקשר לשירלי. בצהרי אותו יום קנינו כרטיס חיוג וכנראה עבדו עלינו והוא נגמר תוך שניות. אני התקשרתי למלודי לקנדה, לא תפסתי אותה והכרטיס כמעט נגמר. החלטתי לוותר. גונן לא ויתר על שירלי וקנה כרטיס נוסף, הפעם מהבק-פקר. הוא התקשר לשירלי וזה עלה בקושי. ביתר מה שנשאר בכרטיס התקשרתי למלודי, ליעל ולמאיה.</p>
+
+    <p>רק שבועיים לפני-כן, ביום ההולדת של מלודי, התקשרתי אליה לאחל לה מזל-טוב והודעתי לה שאנחנו נוסעים לפיליפינים. היא הייתה נרגשת. עכשיו היא אמרה לי שהיא סדרה שאחיין שלה, Jonar (ג'ונאר) ייקח אותנו משדה-התעופה ויארח אותנו בביתו. שמרתי זאת בסוד. זה היה אמור לחסוך לנו התרוצצויות במנילה ומה גם שזה אמור היה להיות חצי שעה נסיעה ממנילה.</p>
+
+    <p>את הטיסה הארוכה העברתי בכיף (11 שעות כולל עצירה בסידני) וכרגיל לא הלכתי לשירותים. גונן דווקא הרבה ללכת לשם ולקראת סוף הטיסה הוא היה חסר סבלנות.</p>
+
+    <p>בנחיתה פגשנו עוד ישראלי, היחידי הנוסף במטוס, בשם ישי. יש לו להעביר 4-5 ימים עד לטיסתו לבנגקוק. הוא בן 23, 8 חודשים בטיול, מתוכם 4 בהודו.</p>
+
+    <p>ביציאה משדה התעופה נפנף לי דרק (Derek), אחיין נוסף של מלודי, ורק אז נודע לגונן על המזימה. ישי הצטרף אלינו.</p>
+
+    <p>נכנסנו למונית הממוזגת, בחוץ היה חום שונה ממה שהתרגלנו אליו בחודשים האחרונים. נסענו.</p>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/20020322_fishermen.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020505_dinner.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">אוכלים ארוחת ערב: אני, ג'ונאר, שני קרובי משפחה, לאחד 
+    קוראים דרק וגונן</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020505_jonar.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">עדיין באותה ארוחה מפוארת: עומדת ליד ג'ונאר - אשתו</div>
+      </div>
+    </div>
+
+    <p>מבעד לחלון הטקסי ראינו עיר מכוערת. הדבר היחידי היפה שתפש את עיני כאן זה ג'יפים ארוכים, משמשים ככל הנראה כפיק-אפ, כמו מונית שירות, אבל הם מטופחים ומושקעים. כל ג'יפ בסגנון שונה ובצבע שלו – ממש יפה.</p>
+
+    <p>נסענו ונסענו וקלטנו שאנחנו ממש מתרחקים ממנילה. משהו השתבש. חשבנו להשאיר את התיקים הגדולים במנילה ולהסתובב בכיף בכל הארץ עם התיקים הקטנים. עכשיו, כה רחוקים ממנילה, באיזה חור. איפה נשים אותם?. גונן התעצבן. ישי דווקא לא נלחץ, ואני התחרטתי שהסתרתי את הפרטים מגונן. כך לפחות היינו חולקים באחריות למחדל.</p>
+
+    <p>לאחר כמעט שעתיים נסיעה הגענו למקום, לבית של ג'ונאר, והכל השתנה. ג'ונאר התעקש לשלם בעצמו על המונית ובתוך הבית הקטן, אך המקושט והנחמד, חיכתה ארוחת מלכים על השולחן, רק בשבילינו. אכלנו דגים, עוף, אורז ועוד ועוד, עד שהתפוצצנו. ישי התלהב. התחלנו להבין שזו תהיה חוויה שונה. ישבנו ודיברנו קצת ועישנו (רק סיגריות ורק ישי והמקומיים). היה ריחוק בהתחלה, אולם אחרי שהם הציעו ללכת למועדון חשפנות פה קרוב, התקרבנו. מה מקרב גברים זה לזה? – נשים, ספורט, אלכוהול וסמים. נשים וספורט זה ייחודי רק לגברים, יתר הנושאים זה יוניסקס.</p>
+
+    <p>עוד לפני שהלכנו למועדון נפתחו בקבוקי בירה רבים. גם במועדון נפתחו עוד כמה בקבוקים (לכל אחד), נוספו כמה חברה, חברים של ג'ונאר. נסענו בג'יפ ובתלת-אופן שזה בעצם אופנוע עם סירה.</p>
+
+    <p>במועדון החשפנות הנערות רקדו בצורה נשית לצלילי מוזיקה מערבית. מרוב הבירה הלכנו המון לשירותים, תמיד הצטרף אלינו אחד המקומיים בתפקיד שומר ראש, להשגיח. כך היה אצל כל אחד מאיתנו.</p>
+
+    <p>אני חייב גם לחזור לחווית השירותים בנמל תעופה – הלכתי לשירותים, מיד נער שהיה בפתח והיה אחראי לנקיון הכניס אותי ובחר לי תא ודאג להכניס לי עוד נייר טואלט מתחת לדלת. את הפרטיות שאני אוהב היה לי קשה להשיג. כשיצאתי מהתא הוא פתח לי את המים ושפך לי סבון על הידיים. שירות מוגזם. הוא בטח רצה טיפ.</p>
+
+    <p>נחזור למועדון, נערה ישבה על גונן, על ישי ואחת ממש התלבשה עלי או שאולי להיפך כי היא הורידה לי את החולצה ודחפה את הפה שלי למקומות מוצנעים ביותר בגופה. אני מקווה שזה לא נשמע כאילו אני מתלונן. בכל מקרה, ניסיתי לא להראות יותר מדי התלהבות, בייחוד כשקרובי משפחתה של מלודי צופים בזה.</p>
+
+    <p>אח"כ עצרנו באיזה מקום והוזמנו לכוס מרק ועוד משהו. נהייתי מפוצץ מאוכל ומסוחרר מאלכוהול.</p>
+
+    <p>חזרנו לישון במיטות. כל יתר המשפחה ישנו על הרצפה.</p>
+
+    <div class="photo-pair">
+      <div class="photo-item">
+        <img src="../images/20020505_drinking.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">מחוץ לבית אחרי כמה בירות</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020505_drinking_2.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">באותו מקום אחרי עוד כמה בירות</div>
+      </div>
+    </div>
+
+    <p>בבוקר קמנו. ארוחת-הבוקר חיכתה על השולחן. זה נראה יותר כמו ארוחת-ערב עם כל שפע הבשר.</p>
+
+    <p>אח"כ יצאנו החוצה ויצא לי לראות את הכפר. די פרימיטיבי – שביל ראשי, בתים מסביבו. גם לכפר יצא לראות אותי. הכירו לי את אבא של מלודי ושכנים וכולם העירו ואף החמיאו וצחקו.</p>
+
+    <p>הלכנו לשחק כדורסל. יש כאן מגרש וסלים ואפילו רשת!. כל הילדים באו להסתכל.</p>
+
+    <p>שיחקנו 3X3. גונן היה נגדי והוא ניצח ב- 2 משחקים. ככל הנראה איתגרתי אותו כי הוא התאמץ והתעייף. אני בכושר קליעה ירוד ביותר, כולל החטאות מתחת לסל, אך לא התאמצתי ונתתי לגובה לשחק. כשהבאתי גג לשחקן מקומי כל הילדים צחקו.</p>
+
+    <p>החום קרע אותנו. חזרנו והתמוטטנו על המיטות.</p>
+
+    <p>גונן לקח סיבוב על האופנוע של ג'ונאר. האופנוע נראה טוב אך הוא עגלה.</p>
+
+    <p>מלודי התקשרה וסיפרתי לה על הכל והודיתי לה.</p>
+
+    <p>נראה לי שאני אשאיר לג'ונאר הרבה ציוד שאני לא צריך ואולי כן נוכל להשאיר כאן את התיקים הגדולים כשנסתובב ברחבי הפיליפינים.</p>
+
+    <p>אוכלים ארוחת ערב: אני, ג'ונאר, שני קרובי משפחה, לאחד קוראים דרק וגונן</p>
+
+
+  </div>
+
+  <div class="nav-cards">
+    <a href="20020507.html" class="nav-card">
+      <div class="label">הבא →</div>
+      <div class="card-title">הילד של מלודי</div>
+    </a>
+    <a href="200205050515.html" class="nav-card">
+      <div class="label">← הקודם</div>
+      <div class="card-title">ההיט-עלקות האחרונה, מבצע קואלה</div>
+    </a>
+  </div>
+
+  <div class="country-nav">
+    <a href="200110052040.html">דנמרק</a>
+    <a href="20011006.html">הודו</a>
+    <a href="20011030.html">נפאל</a>
+    <a href="20011115.html">טרק אנאפורנה</a>
+    <a href="20011210.html">תאילנד</a>
+    <a href="20020108.html">לאוס</a>
+    <a href="20020123.html">צפון תאילנד</a>
+    <a href="20020203.html">אוסטרליה</a>
+    <a href="20020210.html">ניו-זילנד, אי דרומי</a>
+    <a href="20020326.html">ניו-זילנד, אי צפוני</a>
+    <a href="20020506.html">פיליפינים</a>
+    <a href="20020603.html">קמבודיה</a>
   </div>
 
   <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
-    <img id="lightbox-img" src="" alt="Enlarged">
+    <img id="lightbox-img" src="" alt="">
   </div>
-
   <script>
     function openLightbox(src) {
       document.getElementById('lightbox-img').src = src;

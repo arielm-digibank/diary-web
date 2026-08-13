@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Magazine Design Variations</title>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Heebo', sans-serif;
+      max-width: 600px;
+      margin: 60px auto;
+      padding: 20px;
+      color: #1a1a2e;
+    }
+    h1 { margin-bottom: 10px; }
+    .desc { margin-bottom: 30px; color: #6b7280; }
+    .card {
+      display: block;
+      padding: 24px 28px;
+      margin-bottom: 16px;
+      border: 2px solid #e5e7eb;
+      border-radius: 12px;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.2s;
+    }
+    .card:hover {
+      border-color: #3b82f6;
+      box-shadow: 0 4px 16px rgba(59,130,246,0.12);
+      transform: translateY(-2px);
+    }
+    .card h2 { margin: 0 0 6px; font-size: 1.3rem; }
+    .card p { margin: 0; color: #6b7280; font-size: 0.95rem; }
+    .note {
+      margin-top: 30px;
+      padding: 16px 20px;
+      background: #f0f9ff;
+      border-radius: 10px;
+      border: 1px solid #bfdbfe;
+      font-size: 0.9rem;
+      color: #1e40af;
+    }
+  </style>
+</head>
+<body>
+  <h1>עיצוב מגזין - 3 גרסאות</h1>
+  <p class="desc">אותו תוכן (20011007 - החבר ההודי המלומד) עם כל 16 התמונות מוצגות + כיתוביות. המפה גדולה בצד שמאל של ההדר.</p>
+
+  <a href="design-b-magazine.html" class="card">
+    <h2>V1: תמונות משולבות בטקסט (Inline)</h2>
+    <p>כל תמונה צפה (float) ליד הטקסט הרלוונטי שלה. דומה לעיתון - התמונות מפוזרות לאורך הקריאה. לכל תמונה כיתובית מתחתיה.</p>
+  </a>
+
+  <a href="design-b2-magazine-blocks.html" class="card">
+    <h2>V2: תמונות כבלוקים (Blocks)</h2>
+    <p>התמונות מוצגות ברוחב מלא או בזוגות/שלשות בין קטעי הטקסט. כל בלוק תמונה עם כיתובית ורדיוס עגול. תחושת מגזין נקי.</p>
+  </a>
+
+  <a href="design-b3-magazine-twocol.html" class="card">
+    <h2>V3: שתי עמודות (Two-Column)</h2>
+    <p>טקסט בצד ימין, כל התמונות ברצועה בצד שמאל עם scroll עצמאי (sticky). דומה למקורי אבל במראה מודרני. כל תמונה עם כיתובית.</p>
+  </a>
+
+  <div class="note">
+    <strong>בכל הגרסאות:</strong> המפה גדולה בצד שמאל של ההדר, כל 16 התמונות מוצגות (לא מוסתרות), ולכל תמונה יש כיתובית מתחתיה כשהמקור מספק.
+  </div>
+</body>
+</html>

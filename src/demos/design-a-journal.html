@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Design A: Journal – החבר ההודי המלומד</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Hebrew:wght@400;700&family=Assistant:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #f5efe6;
+      background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      font-family: 'Noto Serif Hebrew', 'David', serif;
+      color: #3d2b1f;
+      line-height: 2;
+      padding: 30px 20px;
+    }
+
+    .page {
+      max-width: 750px;
+      margin: 0 auto;
+      background: #fffcf7;
+      border-radius: 4px;
+      box-shadow: 0 2px 20px rgba(60,40,20,0.08), 0 0 0 1px rgba(60,40,20,0.04);
+      padding: 50px 55px;
+      position: relative;
+    }
+
+    .page::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50px; right: 50px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #c9956b, transparent);
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      font-family: 'Assistant', sans-serif;
+      font-size: 0.85rem;
+    }
+
+    .top-bar a {
+      color: #8b6914;
+      text-decoration: none;
+    }
+    .top-bar a:hover { text-decoration: underline; }
+
+    .map-icon {
+      position: absolute;
+      top: 40px;
+      left: 45px;
+      width: 80px;
+      opacity: 0.15;
+    }
+
+    .date {
+      font-family: 'Assistant', sans-serif;
+      font-size: 0.9rem;
+      color: #8b7355;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+
+    .title {
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: #2c1810;
+      margin-bottom: 30px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid #e8d9c4;
+    }
+
+    .content {
+      font-size: 1.05rem;
+    }
+
+    .content p {
+      margin-bottom: 18px;
+      text-align: justify;
+    }
+
+    .content a {
+      color: #8b6914;
+      text-decoration: underline;
+      text-decoration-color: rgba(139,105,20,0.3);
+      cursor: pointer;
+    }
+
+    .sidebar-photos {
+      float: left;
+      margin: 5px 25px 15px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 180px;
+    }
+
+    .photo-frame {
+      padding: 6px;
+      background: white;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+      transform: rotate(-1deg);
+    }
+
+    .photo-frame:nth-child(even) { transform: rotate(1.2deg); }
+    .photo-frame:nth-child(3n) { transform: rotate(-0.5deg); }
+
+    .photo-frame img {
+      width: 100%;
+      display: block;
+      cursor: pointer;
+    }
+
+    .photo-frame .caption {
+      font-size: 0.72rem;
+      color: #7a6a5a;
+      text-align: center;
+      padding-top: 5px;
+      font-family: 'Assistant', sans-serif;
+    }
+
+    .inline-photos {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 25px 0;
+      justify-content: center;
+    }
+
+    .inline-photos .photo-frame {
+      max-width: 140px;
+      flex-shrink: 0;
+    }
+
+    .supplements {
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px dashed #d4c4a8;
+    }
+
+    .supplements h3 {
+      font-size: 1.1rem;
+      color: #5a3e28;
+      margin-bottom: 12px;
+    }
+
+    .supplements ol {
+      padding-right: 20px;
+    }
+
+    .supplements li {
+      margin-bottom: 10px;
+    }
+
+    .clearfix::after { content: ''; display: table; clear: both; }
+
+    .nav-bottom {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid #e8d9c4;
+      font-family: 'Assistant', sans-serif;
+    }
+
+    .nav-bottom a {
+      color: #8b6914;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 6px;
+      transition: background 0.2s;
+    }
+
+    .nav-bottom a:hover { background: #f0e6d6; }
+
+    .lightbox {
+      display: none; position: fixed; z-index: 9999;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.9); justify-content: center; align-items: center; cursor: pointer;
+    }
+    .lightbox img { max-width: 90%; max-height: 90%; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <img class="map-icon" src="../images/India.gif" alt="">
+
+    <div class="top-bar">
+      <a href="../index.html">← חזרה לעמוד הראשי</a>
+      <span>הודו • ניו דלהי</span>
+    </div>
+
+    <div class="date">7 באוקטובר 2001</div>
+    <h1 class="title">החבר ההודי המלומד</h1>
+
+    <div class="content clearfix">
+      <div class="sidebar-photos">
+        <div class="photo-frame">
+          <img src="../images/20011007_victory_gate.jpg" onclick="openLightbox(this.src)">
+          <div class="caption">שער הודו</div>
+        </div>
+        <div class="photo-frame">
+          <img src="../images/20011007_bahaim_temple.jpg" onclick="openLightbox(this.src)">
+          <div class="caption">מקדש הבאהיים</div>
+        </div>
+        <div class="photo-frame">
+          <img src="../images/20011007_we&prasana.jpg" onclick="openLightbox(this.src)">
+          <div class="caption">אנחנו עם פראסאנה</div>
+        </div>
+        <div class="photo-frame">
+          <img src="../images/20011007_gonen_praying.jpg" onclick="openLightbox(this.src)">
+        </div>
+      </div>
+
+      <p>קמנו מוקדם בבוקר, 8:30 כדי לצאת לטיול הכרות בעיר, טיול מאורגן שנמשך כל היום: 9:30 – 18:00 ועולה 100 רופי.</p>
+
+      <p>מליק, שראה את נעלי הטרק שלו מתפרקים איך שהוא נחת בהודו יום לפני-כן (נעלי דרק לדברי גונן), השתמש בנעלי ההתעמלות שלו. גונן נעל סנדלים – מליק עדיין לא בשל לחשיפה שכזו.</p>
+
+      <p>תוך כדי ההגעה לאוטובוס התחלנו לדבר עם צעיר הודי בעל מבט נבון שהצטרף לטיול המאורגן (כולם היו הודים חוץ מאתנו). הבחור הצעיר, פראסאנה, בן 30, הוא מלמד פילוסופיה הודית (מתמחה בבודהה) בעיר בשם בנגלור בדרום הודו. הוא עכשיו מסיים טיול בן 3 חודשים ברחבי הודו.</p>
+
+      <p>נסענו לראות את ה<a onclick="openLightbox('../images/20011007_red_fortress.jpg')">מבצר האדום</a>, המפורסם באתרי דלהי. הוא היה סגור. זה לא כ"כ נעים לראות שער נעול, "אדום יורד" גונן מוסיף באקט נדיר. אההה, בסוף נסענו באוטובוס ממוזג עבור 150 רופי.</p>
+
+      <p>אתרים בולטים:</p>
+
+      <p><a onclick="openLightbox('../images/20011007_gandy_grave.jpg')">מקום הכתרתו של גנדי</a> – לכל שליט יש כיכר הכתרה באיזה פארק – הכיכר של גנדי נחמדה, יתר הכיכרות פארש.</p>
+
+      <p><a onclick="openLightbox('../images/20011007_parlament_house.jpg')">הארמון ובניין הפרלמנט</a> – יפהפיים או בשמם הרשמי: ראשטראפאטי בהאראן (משכנו של נשיא הודו) ובנייני הסקטרייט (בנייני הממשל הבריטי).</p>
+
+      <p>2 ילדים הפצירו בנו להצטלם עם נחשי קוברה ונחש פיתון מגודל. נעתרנו והצטלמנו. משום מה גונן נלחץ אעפ"י שלנחשים הוציאו את הארס. גונן סינן "מליק, יא מלוכלך, צלם כבר" מיוזע ורועד כולו. הסברתי לו שקוברה בלי ארס זה כמו זינו בלי ידיים – אותו דיבור מאיים אך ללא כיסוי.</p>
+
+      <p>הגענו ל<a onclick="openLightbox('../images/20011007_victory_gate.jpg')">שער הודו</a> (מקום מאד יפה), שוב העיקו עלינו ההודים כמו בכל אתר תיירות. משום מה כולם ניגשו לגונן. הוא חשב שזה התיק, אבל גם כשאני סחבתי אותו כולם ניגשו אליו.</p>
+
+      <p>לאורך כל הדרך חברינו ההודי, פראסאנה, ליווה אותנו והסביר ברצון על סודות כת ההינדו.</p>
+
+      <p>המדריך שאל את גונן אם הוא מגרמניה וגונן שמח מאד, עובדה, הוא רץ לספר לי בחיוך מאוזן לאוזן – גונן או שמא גו נטר נקרא לבחור, הרהרתי.</p>
+
+      <p><a onclick="openLightbox('../images/20011007_bahaim_temple.jpg')">מקדש הבאהיים</a> – בצורת לוטוס – מאד יפה</p>
+
+      <p>מקום גרוע – המוזיאון לזכר אינדירה גנדי – אישה לא יפה במיוחד ששלטה בהודו עד 1984, אז היא נרצחה ע"י הסיקים. They must be sick people to do that אמרתי לפראסאנה.</p>
+
+      <p>מקדש לאקשמי נאריאן – מאד יפה, הפעם העיקו על חברנו ההודי – כנראה שהוא נראה הודי חנון. זהו מקדש לאלה הודית עם 4 ידיים. גונן אמר לי מה היא יכולה לעשות לו עם 4 הידיים. טוב שזה היה בעברית, חברנו המלומד לא היה אוהב את מה ששמעתי.</p>
+
+      <p>שאלתי את פראסאנה למה לא הורגים את הפרות – "כי הפרה מסמלת את האמא שלך ואינך יכול להרוג את אמא שלך" הוא אמר. "אני מסוגל להרוג את מי שקורא לאמא שלי פרה" אמרתי לו והוא נדם.</p>
+
+      <p>היום הוצאנו 40-45 שקל כל אחד. כשבאנו לנתח את הסיבות לעלייה בהוצאות ראינו:</p>
+      <p>1. מליק אוכל יותר בעוד שנינו משלמים שווה בשווה – גונן אמר שהוא יתקזז במסג'ים בתאילנד.</p>
+      <p>2. גונן נוטה להכנע לילדים תועים ולתת להם נדבות – רק היום כ- 20 רופי.</p>
+
+      <p>בערב היינו שוב באינטרנט ואכלנו שוב ב<a onclick="openLightbox('../images/20011007_hari_rama.jpg')">הארי-רמה</a> עם חברנו ההודי. הזיווה היתה מעולה כרגיל אך החומוס גרוע ביותר ולקחו לנו שקל עבור כל פיתה נוספת.</p>
+
+      <p>מחר נחבור שוב לחברנו בדרך לטאג' מאהאל, אגרה.</p>
+
+      <div class="supplements">
+        <h3>השלמות:</h3>
+        <ol>
+          <li>3 פעמים נאלצנו להוריד נעלים – למליק זה לקח כמובן הרבה יותר זמן.</li>
+          <li>ניסו להעיק עלינו להצטלם עם קופים – I don't do monkey business מליק אמר ולהפתעתו זה עבד.</li>
+          <li>גונן התאכזב, הוא רצה להצטלם עם 2 קופים ולקרוא לתמונה "The 3 monkeys".</li>
+          <li>ניגשו אלינו למכור תמונות, סרבנו לתמונות הקמא-סוטרא בתואנה שדתינו לא מרשה לנו דברים כאלה, זה דווקא לא עבד.</li>
+          <li>אחרי ארוחת צהרים דשנה מליק קם ורצה לחזור לאוטובוס, אך אבוי, היכן התיק ? – עירנותו של גונן וטוב ליבם של העובדים במסעדה מנעו אסון – המצלמה, היומן ועוד – כל זה שכן בתיק. מליק הפנים זאת אך הבין שמשהו חמור קרה.</li>
+          <li>בעל זבוב – או יותר נכון בלע זבוב – גונן והפה הגדול שלו. זבוב תמים ליווה אותנו בטיול זה וסייר להנאתו על החלון עד שגונן פער את פיו. קשה בלי(ע)הזבוב אמר מליק.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="inline-photos">
+      <div class="photo-frame">
+        <img src="../images/20011007_red_fortress.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">המבצר האדום</div>
+      </div>
+      <div class="photo-frame">
+        <img src="../images/20011007_gandy_grave.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">קבר גנדי</div>
+      </div>
+      <div class="photo-frame">
+        <img src="../images/20011007_parlament_house.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">בניין הפרלמנט</div>
+      </div>
+      <div class="photo-frame">
+        <img src="../images/20011007_malik_with_cobra_2.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">עם נחשי הקוברה</div>
+      </div>
+      <div class="photo-frame">
+        <img src="../images/20011007_gonen_with_cobra.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">גונן קצת נלחץ</div>
+      </div>
+    </div>
+
+    <div class="nav-bottom">
+      <a href="20011008.html">→ הבא: אגרה, טאג' מאהאל</a>
+      <a href="20011006.html">הקודם: ניו דלהי ←</a>
+    </div>
+  </div>
+
+  <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
+    <img id="lightbox-img" src="" alt="">
+  </div>
+  <script>
+    function openLightbox(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox').style.display = 'flex';
+    }
+  </script>
+</body>
+</html>

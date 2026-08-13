@@ -3,174 +3,264 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>פוקארה, נפאל</title>
+  <title>סובב אנאפורנה, יום 14</title>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap" rel="stylesheet">
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background-color: #f8fafc;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0; padding: 20px; color: #334155;
+      background: #ffffff;
+      font-family: 'Heebo', sans-serif;
+      color: #1a1a2e;
+      line-height: 1.9;
     }
-    .container {
-      max-width: 800px; margin: 0 auto; background: #ffffff;
-      padding: 35px; border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06); line-height: 1.8;
+    .top-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #eee;
+      padding: 12px 30px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.9rem;
     }
-    .header {
-      border-bottom: 2px solid #e2e8f0; padding-bottom: 15px;
-      margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center;
+    .top-nav a {
+      color: #1d4ed8; text-decoration: none; font-weight: 600;
     }
-    .header h1 { margin: 0; color: #0f172a; font-size: 1.8rem; }
-    .home-link { color: #2563eb; text-decoration: none; font-weight: 600; }
-    .content img {
-      float: right; margin: 0 0 15px 20px; max-width: 320px; height: auto;
-      border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      cursor: pointer; transition: transform 0.2s;
+    .top-nav a:hover { text-decoration: underline; }
+    .top-nav .nav-links { display: flex; gap: 20px; }
+    .hero {
+      max-width: 900px; margin: 0 auto;
+      padding: 50px 40px 30px;
+      display: flex; align-items: flex-start; gap: 30px;
     }
-    .content img:hover { transform: scale(1.02); }
-    .content::after { content: ""; clear: both; display: table; }
-    a { color: #2563eb; }
+    .hero-text { flex: 1; }
+    .hero-map {
+      width: 120px; height: auto; object-fit: contain;
+      flex-shrink: 0; opacity: 0.85;
+    }
+    .meta-line {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+    }
+    .date-big {
+      font-size: 3.5rem; font-weight: 900; color: #e5e7eb; line-height: 1;
+    }
+    .date-details { font-size: 0.9rem; color: #6b7280; }
+    .country-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      border-radius: 20px; padding: 4px 14px;
+      font-size: 0.8rem; color: #1d4ed8; font-weight: 600;
+    }
+    .title {
+      font-size: 2.2rem; font-weight: 900; color: #111827;
+      margin: 20px 0 8px; line-height: 1.3;
+    }
+    .date-subtitle {
+      font-size: 1.1rem; font-weight: 300; color: #4b5563;
+      margin-bottom: 16px;
+    }
+    .title-divider {
+      width: 60px; height: 4px; background: #1d4ed8; border-radius: 2px;
+    }
+    .content {
+      max-width: 900px; margin: 30px auto; padding: 0 40px; font-size: 1.05rem;
+    }
+    .content p { margin-bottom: 18px; }
+    .content a {
+      color: #1d4ed8; cursor: pointer;
+      text-decoration: underline;
+      text-decoration-color: rgba(29,78,216,0.3);
+    }
+    .photo-block {
+      margin: 30px 0; border-radius: 12px; overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    .photo-block img {
+      width: 100%; display: block; cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .photo-block img:hover { transform: scale(1.01); }
+    .photo-block .caption {
+      padding: 12px 16px; font-size: 0.85rem; color: #6b7280;
+      background: #f9fafb; border-top: 1px solid #f3f4f6;
+    }
+    .photo-pair {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 14px; margin: 30px 0;
+    }
+    .photo-pair .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-pair .photo-item img {
+      width: 100%; height: 200px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-pair .photo-item img:hover { transform: scale(1.03); }
+    .photo-pair .photo-item .caption {
+      padding: 8px 12px; font-size: 0.8rem; color: #6b7280; background: #f9fafb;
+    }
+    .photo-trio {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px; margin: 30px 0;
+    }
+    .photo-trio .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-trio .photo-item img {
+      width: 100%; height: 180px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-trio .photo-item img:hover { transform: scale(1.03); }
+    .photo-trio .photo-item .caption {
+      padding: 8px 10px; font-size: 0.78rem; color: #6b7280; background: #f9fafb;
+    }
+    .nav-cards {
+      max-width: 900px; margin: 50px auto 20px; padding: 0 40px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .nav-card {
+      padding: 20px 24px; border: 1px solid #e5e7eb; border-radius: 12px;
+      text-decoration: none; color: inherit; transition: all 0.2s;
+    }
+    .nav-card:hover {
+      border-color: #1d4ed8; box-shadow: 0 4px 12px rgba(29,78,216,0.1);
+    }
+    .nav-card .label { font-size: 0.8rem; color: #6b7280; margin-bottom: 4px; }
+    .nav-card .card-title { font-weight: 700; font-size: 1rem; color: #1d4ed8; }
+    .supplements {
+      margin-top: 35px; padding: 25px 30px;
+      background: #f9fafb; border-radius: 12px; border: 1px solid #e5e7eb;
+    }
+    .supplements h3 {
+      font-size: 1.1rem; font-weight: 700; margin-bottom: 14px; color: #374151;
+    }
+    .supplements ol { padding-right: 20px; }
+    .supplements li { margin-bottom: 10px; color: #4b5563; }
+    .country-nav {
+      max-width: 900px; margin: 20px auto 40px; padding: 0 40px;
+      display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+    }
+    .country-nav a {
+      padding: 6px 14px; border-radius: 20px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      color: #1d4ed8; text-decoration: none;
+      font-size: 0.82rem; font-weight: 600;
+      transition: all 0.2s;
+    }
+    .country-nav a:hover {
+      background: #1d4ed8; color: white; border-color: #1d4ed8;
+    }
     .lightbox {
       display: none; position: fixed; z-index: 9999;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.9); justify-content: center; align-items: center; cursor: pointer;
+      background: rgba(0,0,0,0.92);
+      justify-content: center; align-items: center; cursor: pointer;
     }
-    .lightbox img { max-width: 90%; max-height: 90%; border-radius: 8px; }
+    .lightbox img { max-width: 92%; max-height: 92%; border-radius: 8px; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h1>פוקארה, נפאל</h1>
-      <a href="../index.html" class="home-link">🏠 לעמוד הראשי</a>
+  <div class="top-nav">
+    <div class="nav-links">
+      <a href="../index.html">עמוד ראשי</a>
     </div>
-    <div class="content">
-      <body>
-<table cellpadding="0" cellspacing="0" height="1" width="954">
-<tr>
-<td align="center" height="1" width="277">
-<marquee style="font-size: 18pt; color: #800080">28.11.01 - 23:30</marquee></td>
-<td align="center" height="1" width="667">
-<!--webbot bot="Navigation" s-type="banner" s-rendering="graphics" S-Orientation B-Include-Home B-Include-Up U-Page S-Target startspan --><!--webbot bot="Navigation" i-checksum="44641" endspan --></td>
-<td align="center" height="1" width="10">
-
-<img border="0" height="155" onclick="openLightbox(this.src)" src="../images/Nepal.gif" title="לחץ להגדלה" width="158"/></td>
-</tr>
-<tr>
-<td colspan="3" height="1" style=" " width="954"></td>
-</tr>
-</table><table cellpadding="0" cellspacing="0" width="100%">
-<tr>
-<td align="right" style=" ">
-<h4>
-<marquee style="font-size: 24pt; color: #008080">סובב אנאפורנה, יום 14</marquee></h4>
-<p> </p></td>
-</tr>
-</table>
-<table cellpadding="0" cellspacing="0" height="333" width="953">
-<tr>
-<td height="333" rowspan="2" style="       " valign="top" width="140"> <!--webbot bot="Navigation" S-Type="sequence" S-Orientation="vertical" S-Rendering="graphics" S-Theme="blocks 000" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><!--webbot bot="Navigation" i-checksum="23763" endspan --><p> </p>
-</td>
-<td height="333" rowspan="2" style="     " valign="top" width="1"></td>
-<td colspan="2" height="266" style="     " valign="top" width="735">
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">סוף סיפור. אני בחזרה 
-    בפוקארה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">גונן לא איתי, הוא חסר לי. 
-    האמת, הוא לא חסר לי, כל החברה איתי, אבל אני דואג לו. הוא כנראה יגיע מחר, אבל 
-    אני אהיה יותר רגוע כשאני אראה אותו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">ובכן, אתמול הלכנו לישון 
-    בהרגשה שונה מיום לפני-כן. ביום לפני-כן חשבנו שהמעיינות החמים זה המקום הטוב 
-    ביותר למנוחה ולהתפנקות. אפילו עדיף מפוקארה. אני יזמתי שהייה של יום נוסף, אבל 
-    אתמול אחרי שרבנו עם בעלי הגסט האוס שהתעקש לנעול ב- 21:30 את המקום והכריח את 
-    איתן ואיתי לחזור, עמדו בפנינו כמה אפשרויות:</span></b></p>
-<p dir="rtl" style="text-align: right"><b><span lang="HE">1. לעבור לגסט האוס אחר</span></b></p>
-<p dir="rtl" style="text-align: right"><b><span lang="HE">2. להשאר בגסט האוס אבל לאכול 
-    בגסט האוס אחר</span></b></p>
-<p dir="rtl" style="text-align: right"><b><span lang="HE">3. לעזוב מאחר וכל הגסט האוסים 
-    סוגרים מקסימום ב- 22:00, אם כי שלנו הכי פחות נחמדים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בבוקר כשקמתי גמלה בליבי 
-    ההחלטה לעזוב, רציתי כבר להגיע לפוקארה, שם נוכל להתפנק כמו שאנו יודעים. הערתי 
-    את איתי והוא הסכים איתי וכך גם עוז ואיתן. החלטנו גם לא להקשות ולעלות ל-
-    </span><span dir="LTR">Poon hi<span lang="en-us">l</span>l</span><span lang="HE">, אלא ללכת במורד הנהר 
-    ל- </span><span dir="LTR">Beni</span><span lang="HE"> ולקחת משם אוטובוס 
-    לפוקארה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בנוסף לכל אמור לנו מקומיים 
-    שיש בלאגן ב- </span><span dir="LTR">Beni</span><span lang="HE">, שהיו 
-    התפרעויות ושיש נוכחות גדולה של צבא ומשטרה ושלא כדאי לנו ללכת לשם, בטח לא 
-    אחרי החשיכה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">גונן הודיע שיצטרף מאוחר 
-    יותר, הוא ושלי הסינית הלכו לטבילה נוספת במעיינות.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">שכחתי לציין שאחרי 
-    <a href="20011127.htm#oz pass out">המקרה עם 
-    עוז</a> גם המעיינות החמים לא משכו אותי, שכן לא יכלנו לבלות שם כולנו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אם כן יצאנו לדרך ב- 8:30. 
-    הצפי היה ל- 6 שעות הליכה בקצב רגיל. קיווינו שאיתן לא יאיט אותנו בהרבה. הדרך, 
-    די נוחה, על הנוף לא הסתכלתי, היה כ"כ הרבה חרא של חמורים, שהעדפתי להסתכל על 
-    הדרך.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הלכתי עם איתי וכל הזמן 
-    דיברנו וצחקנו. לפי סיפורי הספורט והסקס שלו הוא מבוגר מ- 22 שנותיו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">כל הדרך קניתי קלמנטינות, 
-    סה"כ אכלתי כ- 30. זה סיפק את צרכי המזון והשתיה שלי.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">איתן הלך עם עוז בהתחלה. 
-    אח"כ הוא פגש בבחורה שמנמנה שראינו גם במעיינות החמים יום לפני-כן. את שמה אני 
-    לא זוכר בדיוק, משהו כמו </span><span dir="LTR">Bathony</span><span lang="HE">. 
-    היא שילוב של יהודיה, אמריקאית, דתיה ושמנמנה – שילוב שאני אישית לא אוהב. איתן 
-    דיבר איתה והיא הכתיבה קצב טוב לשניהם. באחד הסיבובים היא מעדה וכמעט נפלה 
-    לתהום, רק גזע עץ עצר אותה, וכך כשהיא ב- 90 מעלות, רגל אחת על השביל ורגל אחת 
-    באוויר, ניגשתי לעזור לה. איתן ו- 2 נפאלים הקדימו אותי. היא, אני חייב לציין, 
-    לא איבדה את קור רוחה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הלכנו יחסית יחדיו והגענו 
-    לתחנה ב- 16:00. חיכינו לאיתן כ- 20 דקות ועלינו על האוטובוס של 17:00.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הנסיעה בשעה הראשונה היתה 
-    מפחידה, על סף תהום. אח"כ נהיה כביש סלול והיה ממש בסדר. כוחות צבא עצרו אותנו, 
-    אבל לא עשו משהו ממשי. גם בדרך, כפר או שניים לפני </span><span dir="LTR">Beni</span><span lang="HE"> 
-    ראינו אנשי צבא ממלאים שקים ומציבים אותם סביב מאחזים שלהם. לא נעים, היה תחושה 
-    שמשהו השתנה, אבל לא ידענו בדיוק מה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">ומה עם גונן ?, הוא הבטיח 
-    להשיג אותנו ולא השיג. עוז ואיתי שמעו את הסינית אומרת שנראה לה מעט צפוף להגיע 
-    באותו יום לפוקארה, כך שאני בטוח שהם יגיעו מחר בצהרים אם הם התקדמו לקראת
-    </span><span dir="LTR">Beni</span><span lang="HE"> או בערב אם הם נשארו 
-    במעיינות החמים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">איתי אמר לי שגונן נראה אחד 
-    שיכול להסחף אחרי בחורה. לא יכלתי להסכים איתו יותר. אך הוא תיקן ואמר שלא נראה 
-    לו שגונן חס וחלילה ינטוש אותנו או ישנה תכניות-על כמו לנסוע לתאילנד, שהיא 
-    כידוע היעד הבא שלנו ולא חזרה להודו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בקיצור, הגענו לפוקארה, 
-    העיר היתה מתה. הלכנו ברגל כחצי-שעה עד לאיזור האגם התיירותי, עצרנו בסוויסה 
-    לראות מה חדש בחדשות, אכלנו בבגטים בגט טונה, ניסינו להתקשר לארץ ללא הצלחה 
-    והגענו לגסט האוס שלנו, למינה, אך לא היה להם חדרים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הבעל של מינה מצא לנו חדרים 
-    בגסט האוס שכן ועכשיו אני בשירותים כותב יומן. תחי האסלה!!! אליה באמת 
-    התגעגעתי.</span></b></p>
-<p style="text-align: right"> </p></td>
-<td align="center" height="333" rowspan="2" style="     " valign="top" width="187">
-     </td>
-</tr>
-<tr>
-<td height="67" style="     " valign="top" width="314">
-
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button104.gif" title="לחץ להגדלה" width="59"/></td>
-<td height="67" style="     " valign="top" width="421">
-<p align="right">
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button106.gif" title="לחץ להגדלה" width="59"/></p></td>
-</tr>
-</table>
-<p align="center">
-<!--webbot bot="Navigation" S-Type="sequence" S-Orientation="horizontal" S-Rendering="html" S-Bar="Brackets" S-Btn-Nml="[&lt;A HREF=&quot;#URL#&quot; TARGET=&quot;#TARGET#&quot; STYLE=&quot;{text-decoration: none;}&quot;&gt;#LABEL#&lt;/A&gt;]" S-Btn-Sel="[#LABEL#]" S-Btn-Sep="&amp;nbsp;" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><nobr>[<a href="index.html" style="{text-decoration: none;}" target="">התחלה</a>]</nobr> <nobr>[<a href="200110052040.html" style="{text-decoration: none;}" target="">דנמרק</a>]</nobr> <nobr>[<a href="20011006.html" style="{text-decoration: none;}" target="">הודו</a>]</nobr> <nobr>[<a href="20011030.html" style="{text-decoration: none;}" target="">נפאל</a>]</nobr> <nobr>[<a href="20011115.html" style="{text-decoration: none;}" target="">טרק סובב אנאפורנה</a>]</nobr> <nobr>[<a href="20011210.html" style="{text-decoration: none;}" target="">תאילנד</a>]</nobr> <nobr>[<a href="20020108.html" style="{text-decoration: none;}" target="">לאוס</a>]</nobr> <nobr>[<a href="20020123.html" style="{text-decoration: none;}" target="">צפון תאילנד</a>]</nobr> <nobr>[<a href="20020203.html" style="{text-decoration: none;}" target="">אוסטרליה</a>]</nobr> <nobr>[<a href="20020210.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי דרומי</a>]</nobr> <nobr>[<a href="20020326.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי צפוני</a>]</nobr> <nobr>[<a href="20020506.html" style="{text-decoration: none;}" target="">פיליפינים</a>]</nobr> <nobr>[<a href="20020603.html" style="{text-decoration: none;}" target="">קמבודיה</a>]</nobr><!--webbot bot="Navigation" i-checksum="33824" endspan --></p>
-<p><i><small>This site was last updated
-<!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%m/%d/%y" startspan -->07/09/03<!--webbot bot="Timestamp" i-checksum="12746" endspan --> </small></i>
-</p>
-</body>
+    <div class="nav-links">
+      <a href="20011127.html">← הקודם</a>
+      <a href="20011201.html">הבא →</a>
     </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-text">
+      <div class="meta-line">
+        <span class="date-big">28</span>
+        <div>
+          <div class="date-details">נובמבר 2001</div>
+          <span class="country-badge">נפאל</span>
+        </div>
+      </div>
+      <h1 class="title">סובב אנאפורנה, יום 14</h1>
+      <div class="title-divider"></div>
+    </div>
+    <img class="hero-map" src="../images/Nepal.gif" alt="נפאל">
+  </div>
+
+  <div class="content">
+    <p>סובב אנאפורנה, יום 14</p>
+
+    <p>סוף סיפור. אני בחזרה בפוקארה.</p>
+
+    <p>גונן לא איתי, הוא חסר לי. האמת, הוא לא חסר לי, כל החברה איתי, אבל אני דואג לו. הוא כנראה יגיע מחר, אבל אני אהיה יותר רגוע כשאני אראה אותו.</p>
+
+    <p>ובכן, אתמול הלכנו לישון בהרגשה שונה מיום לפני-כן. ביום לפני-כן חשבנו שהמעיינות החמים זה המקום הטוב ביותר למנוחה ולהתפנקות. אפילו עדיף מפוקארה. אני יזמתי שהייה של יום נוסף, אבל אתמול אחרי שרבנו עם בעלי הגסט האוס שהתעקש לנעול ב- 21:30 את המקום והכריח את איתן ואיתי לחזור, עמדו בפנינו כמה אפשרויות:</p>
+
+    <p>1. לעבור לגסט האוס אחר</p>
+
+    <p>2. להשאר בגסט האוס אבל לאכול בגסט האוס אחר</p>
+
+    <p>3. לעזוב מאחר וכל הגסט האוסים סוגרים מקסימום ב- 22:00, אם כי שלנו הכי פחות נחמדים.</p>
+
+    <p>בבוקר כשקמתי גמלה בליבי ההחלטה לעזוב, רציתי כבר להגיע לפוקארה, שם נוכל להתפנק כמו שאנו יודעים. הערתי את איתי והוא הסכים איתי וכך גם עוז ואיתן. החלטנו גם לא להקשות ולעלות ל- Poon hill, אלא ללכת במורד הנהר ל- Beni ולקחת משם אוטובוס לפוקארה.</p>
+
+    <p>בנוסף לכל אמור לנו מקומיים שיש בלאגן ב- Beni, שהיו התפרעויות ושיש נוכחות גדולה של צבא ומשטרה ושלא כדאי לנו ללכת לשם, בטח לא אחרי החשיכה.</p>
+
+    <p>גונן הודיע שיצטרף מאוחר יותר, הוא ושלי הסינית הלכו לטבילה נוספת במעיינות.</p>
+
+    <p>שכחתי לציין שאחרי <a href="20011127.htm#oz pass out">המקרה עם עוז</a> גם המעיינות החמים לא משכו אותי, שכן לא יכלנו לבלות שם כולנו.</p>
+
+    <p>אם כן יצאנו לדרך ב- 8:30. הצפי היה ל- 6 שעות הליכה בקצב רגיל. קיווינו שאיתן לא יאיט אותנו בהרבה. הדרך, די נוחה, על הנוף לא הסתכלתי, היה כ"כ הרבה חרא של חמורים, שהעדפתי להסתכל על הדרך.</p>
+
+    <p>הלכתי עם איתי וכל הזמן דיברנו וצחקנו. לפי סיפורי הספורט והסקס שלו הוא מבוגר מ- 22 שנותיו.</p>
+
+    <p>כל הדרך קניתי קלמנטינות, סה"כ אכלתי כ- 30. זה סיפק את צרכי המזון והשתיה שלי.</p>
+
+    <p>איתן הלך עם עוז בהתחלה. אח"כ הוא פגש בבחורה שמנמנה שראינו גם במעיינות החמים יום לפני-כן. את שמה אני לא זוכר בדיוק, משהו כמו Bathony. היא שילוב של יהודיה, אמריקאית, דתיה ושמנמנה – שילוב שאני אישית לא אוהב. איתן דיבר איתה והיא הכתיבה קצב טוב לשניהם. באחד הסיבובים היא מעדה וכמעט נפלה לתהום, רק גזע עץ עצר אותה, וכך כשהיא ב- 90 מעלות, רגל אחת על השביל ורגל אחת באוויר, ניגשתי לעזור לה. איתן ו- 2 נפאלים הקדימו אותי. היא, אני חייב לציין, לא איבדה את קור רוחה.</p>
+
+    <p>הלכנו יחסית יחדיו והגענו לתחנה ב- 16:00. חיכינו לאיתן כ- 20 דקות ועלינו על האוטובוס של 17:00.</p>
+
+    <p>הנסיעה בשעה הראשונה היתה מפחידה, על סף תהום. אח"כ נהיה כביש סלול והיה ממש בסדר. כוחות צבא עצרו אותנו, אבל לא עשו משהו ממשי. גם בדרך, כפר או שניים לפני Beni ראינו אנשי צבא ממלאים שקים ומציבים אותם סביב מאחזים שלהם. לא נעים, היה תחושה שמשהו השתנה, אבל לא ידענו בדיוק מה.</p>
+
+    <p>ומה עם גונן ?, הוא הבטיח להשיג אותנו ולא השיג. עוז ואיתי שמעו את הסינית אומרת שנראה לה מעט צפוף להגיע באותו יום לפוקארה, כך שאני בטוח שהם יגיעו מחר בצהרים אם הם התקדמו לקראת Beni או בערב אם הם נשארו במעיינות החמים.</p>
+
+    <p>איתי אמר לי שגונן נראה אחד שיכול להסחף אחרי בחורה. לא יכלתי להסכים איתו יותר. אך הוא תיקן ואמר שלא נראה לו שגונן חס וחלילה ינטוש אותנו או ישנה תכניות-על כמו לנסוע לתאילנד, שהיא כידוע היעד הבא שלנו ולא חזרה להודו.</p>
+
+    <p>בקיצור, הגענו לפוקארה, העיר היתה מתה. הלכנו ברגל כחצי-שעה עד לאיזור האגם התיירותי, עצרנו בסוויסה לראות מה חדש בחדשות, אכלנו בבגטים בגט טונה, ניסינו להתקשר לארץ ללא הצלחה והגענו לגסט האוס שלנו, למינה, אך לא היה להם חדרים.</p>
+
+    <p>הבעל של מינה מצא לנו חדרים בגסט האוס שכן ועכשיו אני בשירותים כותב יומן. תחי האסלה!!! אליה באמת התגעגעתי.</p>
+
+
+  </div>
+
+  <div class="nav-cards">
+    <a href="20011201.html" class="nav-card">
+      <div class="label">הבא →</div>
+      <div class="card-title">הגענו לקטמנדו</div>
+    </a>
+    <a href="20011127.html" class="nav-card">
+      <div class="label">← הקודם</div>
+      <div class="card-title">סובב אנאפורנה, יום 13, איבוד הכרה זמני</div>
+    </a>
+  </div>
+
+  <div class="country-nav">
+    <a href="200110052040.html">דנמרק</a>
+    <a href="20011006.html">הודו</a>
+    <a href="20011030.html">נפאל</a>
+    <a href="20011115.html">טרק אנאפורנה</a>
+    <a href="20011210.html">תאילנד</a>
+    <a href="20020108.html">לאוס</a>
+    <a href="20020123.html">צפון תאילנד</a>
+    <a href="20020203.html">אוסטרליה</a>
+    <a href="20020210.html">ניו-זילנד, אי דרומי</a>
+    <a href="20020326.html">ניו-זילנד, אי צפוני</a>
+    <a href="20020506.html">פיליפינים</a>
+    <a href="20020603.html">קמבודיה</a>
   </div>
 
   <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
-    <img id="lightbox-img" src="" alt="Enlarged">
+    <img id="lightbox-img" src="" alt="">
   </div>
-
   <script>
     function openLightbox(src) {
       document.getElementById('lightbox-img').src = src;

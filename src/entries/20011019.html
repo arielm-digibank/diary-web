@@ -3,273 +3,334 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>צ'לאל, עמק פרבאטי, צפון הודו</title>
+  <title>הטרק מאלאנה – ראשול – צ'לאל (מאלאנה – ג'ארי – צ'לאל), הפיצול</title>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap" rel="stylesheet">
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background-color: #f8fafc;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0; padding: 20px; color: #334155;
+      background: #ffffff;
+      font-family: 'Heebo', sans-serif;
+      color: #1a1a2e;
+      line-height: 1.9;
     }
-    .container {
-      max-width: 800px; margin: 0 auto; background: #ffffff;
-      padding: 35px; border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06); line-height: 1.8;
+    .top-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #eee;
+      padding: 12px 30px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.9rem;
     }
-    .header {
-      border-bottom: 2px solid #e2e8f0; padding-bottom: 15px;
-      margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center;
+    .top-nav a {
+      color: #1d4ed8; text-decoration: none; font-weight: 600;
     }
-    .header h1 { margin: 0; color: #0f172a; font-size: 1.8rem; }
-    .home-link { color: #2563eb; text-decoration: none; font-weight: 600; }
-    .content img {
-      float: right; margin: 0 0 15px 20px; max-width: 320px; height: auto;
-      border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      cursor: pointer; transition: transform 0.2s;
+    .top-nav a:hover { text-decoration: underline; }
+    .top-nav .nav-links { display: flex; gap: 20px; }
+    .hero {
+      max-width: 900px; margin: 0 auto;
+      padding: 50px 40px 30px;
+      display: flex; align-items: flex-start; gap: 30px;
     }
-    .content img:hover { transform: scale(1.02); }
-    .content::after { content: ""; clear: both; display: table; }
-    a { color: #2563eb; }
+    .hero-text { flex: 1; }
+    .hero-map {
+      width: 120px; height: auto; object-fit: contain;
+      flex-shrink: 0; opacity: 0.85;
+    }
+    .meta-line {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+    }
+    .date-big {
+      font-size: 3.5rem; font-weight: 900; color: #e5e7eb; line-height: 1;
+    }
+    .date-details { font-size: 0.9rem; color: #6b7280; }
+    .country-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      border-radius: 20px; padding: 4px 14px;
+      font-size: 0.8rem; color: #1d4ed8; font-weight: 600;
+    }
+    .title {
+      font-size: 2.2rem; font-weight: 900; color: #111827;
+      margin: 20px 0 8px; line-height: 1.3;
+    }
+    .date-subtitle {
+      font-size: 1.1rem; font-weight: 300; color: #4b5563;
+      margin-bottom: 16px;
+    }
+    .title-divider {
+      width: 60px; height: 4px; background: #1d4ed8; border-radius: 2px;
+    }
+    .content {
+      max-width: 900px; margin: 30px auto; padding: 0 40px; font-size: 1.05rem;
+    }
+    .content p { margin-bottom: 18px; }
+    .content a {
+      color: #1d4ed8; cursor: pointer;
+      text-decoration: underline;
+      text-decoration-color: rgba(29,78,216,0.3);
+    }
+    .photo-block {
+      margin: 30px 0; border-radius: 12px; overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    .photo-block img {
+      width: 100%; display: block; cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .photo-block img:hover { transform: scale(1.01); }
+    .photo-block .caption {
+      padding: 12px 16px; font-size: 0.85rem; color: #6b7280;
+      background: #f9fafb; border-top: 1px solid #f3f4f6;
+    }
+    .photo-pair {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 14px; margin: 30px 0;
+    }
+    .photo-pair .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-pair .photo-item img {
+      width: 100%; height: 200px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-pair .photo-item img:hover { transform: scale(1.03); }
+    .photo-pair .photo-item .caption {
+      padding: 8px 12px; font-size: 0.8rem; color: #6b7280; background: #f9fafb;
+    }
+    .photo-trio {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px; margin: 30px 0;
+    }
+    .photo-trio .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-trio .photo-item img {
+      width: 100%; height: 180px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-trio .photo-item img:hover { transform: scale(1.03); }
+    .photo-trio .photo-item .caption {
+      padding: 8px 10px; font-size: 0.78rem; color: #6b7280; background: #f9fafb;
+    }
+    .nav-cards {
+      max-width: 900px; margin: 50px auto 20px; padding: 0 40px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .nav-card {
+      padding: 20px 24px; border: 1px solid #e5e7eb; border-radius: 12px;
+      text-decoration: none; color: inherit; transition: all 0.2s;
+    }
+    .nav-card:hover {
+      border-color: #1d4ed8; box-shadow: 0 4px 12px rgba(29,78,216,0.1);
+    }
+    .nav-card .label { font-size: 0.8rem; color: #6b7280; margin-bottom: 4px; }
+    .nav-card .card-title { font-weight: 700; font-size: 1rem; color: #1d4ed8; }
+    .supplements {
+      margin-top: 35px; padding: 25px 30px;
+      background: #f9fafb; border-radius: 12px; border: 1px solid #e5e7eb;
+    }
+    .supplements h3 {
+      font-size: 1.1rem; font-weight: 700; margin-bottom: 14px; color: #374151;
+    }
+    .supplements ol { padding-right: 20px; }
+    .supplements li { margin-bottom: 10px; color: #4b5563; }
+    .country-nav {
+      max-width: 900px; margin: 20px auto 40px; padding: 0 40px;
+      display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+    }
+    .country-nav a {
+      padding: 6px 14px; border-radius: 20px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      color: #1d4ed8; text-decoration: none;
+      font-size: 0.82rem; font-weight: 600;
+      transition: all 0.2s;
+    }
+    .country-nav a:hover {
+      background: #1d4ed8; color: white; border-color: #1d4ed8;
+    }
     .lightbox {
       display: none; position: fixed; z-index: 9999;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.9); justify-content: center; align-items: center; cursor: pointer;
+      background: rgba(0,0,0,0.92);
+      justify-content: center; align-items: center; cursor: pointer;
     }
-    .lightbox img { max-width: 90%; max-height: 90%; border-radius: 8px; }
+    .lightbox img { max-width: 92%; max-height: 92%; border-radius: 8px; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h1>צ'לאל, עמק פרבאטי, צפון הודו</h1>
-      <a href="../index.html" class="home-link">🏠 לעמוד הראשי</a>
+  <div class="top-nav">
+    <div class="nav-links">
+      <a href="../index.html">עמוד ראשי</a>
     </div>
-    <div class="content">
-      <body>
-<table cellpadding="0" cellspacing="0" height="80" width="954">
-<tr>
-<td align="center" height="80" width="277">
-<marquee style="font-size: 18pt; color: #800080">19.10.01 - 17:00</marquee></td>
-<td align="center" height="80" width="667">
-<!--webbot bot="Navigation" s-type="banner" s-rendering="graphics" S-Orientation B-Include-Home B-Include-Up U-Page S-Target startspan --><!--webbot bot="Navigation" i-checksum="22171" endspan --></td>
-<td align="center" height="80" width="10">
-<img border="0" height="140" onclick="openLightbox(this.src)" src="../images/India.gif" title="לחץ להגדלה" width="138"/></td>
-</tr>
-<tr>
-<td colspan="3" height="1" style=" " width="954"></td>
-</tr>
-</table><table cellpadding="0" cellspacing="0" width="100%">
-<tr>
-<td align="right" style=" ">
-<h4>
-<marquee style="font-size: 24pt; color: #008080">הטרק מאלאנה – ראשול – צ'לאל (מאלאנה – ג'ארי – צ'לאל), הפיצול</marquee></h4>
-<p> </p></td>
-</tr>
-</table>
-<table cellpadding="0" cellspacing="0" height="333" width="955">
-<tr>
-<td height="333" rowspan="2" style="       " valign="top" width="140"> <!--webbot bot="Navigation" S-Type="sequence" S-Orientation="vertical" S-Rendering="graphics" S-Theme="blocks 000" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><!--webbot bot="Navigation" i-checksum="23763" endspan --><p> </p>
-</td>
-<td height="333" rowspan="2" style="     " valign="top" width="1"></td>
-<td colspan="2" height="266" style="     " valign="top" width="722">
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אדם שוכב כאן ממוטט על 
-    המיטה, כותב בכוחותיו האחרונים את היומן. האדם הזה הוא אני.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">היום דרכינו שלי ושל גונן 
-    התפצלו</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">עברנו לילה מטורף, כל הערב 
-    עישנו עם ה<a href="images/pictures/India/20011018_baba_and_melani.jpg" target="_blank">בבא 
-    ועוד הודי או מלאני</a> (מהכפר) ישבו איתנו. לא יכלנו לנגוע או לעשן עם איש 
-    המאלאנה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הלכנו לישון בחדר המשופע, 3 
-    על מיטה אחת – אני, גונן וחנן,
-    <a href="images/pictures/India/20011018_going_to_sleep.jpg" target="_blank">ו- 2 על 
-    המזרונים על הרצפה – סיוון ועוז</a>. הבבא ההודי ישן על הרצפה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">עוז שיגע את השכל לבבא. 
-    האנרגיות של עוז לא נגמרות. רק הורדנו את הנעלים וזהו, נכנסנו לישון עם כל 
-    הבגדים והתכסינו בשמיכות שהביאו לנו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אכלנו טאלי וצ'פטות.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">נרדמנו, לפחות מי שיכל. יצא 
-    לי להיות ער הרבה בלילה. זה לא כיף לשמוע את עוז נוחר ואת גונן מפליץ. פעם אחת 
-    כשעוז נחר ואף אחד לא יכל לישון אמרתי "זה ממש נחירת חיסול" וגונן צחק בקול.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">קמתי ב- 6:30 והתיישבתי. 
-    הייתי חייב להשתין, עברו 24 שעות מאז הפעם האחרונה שהשתנתי. לאט לאט ניקוצו 
-    כולם. חנן התעקש לחזור מאיפה שבאנו ולא להמשיך לכפר ראשול ומשם לצ'לאל.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">גונן החליט לא להפקיר אותו, 
-    אם כי ניתן היה לראות עליו את הפחד מהעליה שאנו צריכים לעבור.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">התפצלנו, גונן חבר לחנן 
-    בדרך חזרה לסכר, משם לג'ארי ומשם באוטובוס לצ'לאל – כשעתיים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אני חברתי לסיוון ועוז בדרך 
-    לראשול ומשם לצ'לאל ביתינו – כשמונה שעות.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><u><span lang="HE">סיפורו של מליק</span></u><span lang="HE">:</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">ירדנו כחצי שעה מהכפר 
-    מאלאנה אל הנהר ומשם התחלנו בעלייה להר אימתני. כל הדרך ראינו שדות גראס, 
-    הצמחים שם מתנשאים לגובה של שני מטר. כל הזמן הציעו לנו לעשן. סירבנו. עוז 
-    אמר/המחיש שהוא מפחד שהמשטרה תתפוס אותו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">העלייה היתה הפעם רצחנית 
-    עוד יותר מיום האתמול – חבל שאנו מבזבזים יציאות כמו "הר המוות" כשהגרוע עוד 
-    לפנינו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">שעתיים וחצי של טיפוס 
-    בשיפוע של 45 מעלות בממוצע. עוז מצא שיטת עלייה בה הוא מכופף את ברכיו, מחזיק 
-    בשרוולי מכנסיו ועולה כך כמו המקומיים, בלי הפסקה. אני וסיוון התמוטטנו. 
-    התאמצתי לא לבקש הפסקה וחיכיתי שסיוון תיזום. הייתי ממש על סף כוחותי.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">לאחר כשעתיים וחצי של עלייה 
-    בלתי פוסקת הגענו לפסגה, שם נחנו כשעה. התייבשנו, עוז גלגל סיגריה והתחלנו 
-    בירידה. בדרך ראינו בקתות עם חצרות ובהם צמחי הגראס, אותם עיבדו כל המשפחה. 
-    כרגיל הציעו לנו לעשן. השיא היה כשילד בן 3 הציע לי סיגריה בתנועות עישון. אני 
-    חושב שהוא עדיין לא יכול לדבר, אבל הוא כבר סוחר סמים מדופלם.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הציעו לנו גם למולל את 
-    הג'ראס איתם. הם ממוללים את הצמחים בידיהם, כשמהחומר השמנוני שנשאר על הידיים 
-    הם מכינים את הג'ראס האיכותי – הקרם. לא יותר מ- 10 גרם ליום עבודה (נקרא 
-    תולע), כשקרם איכותי במיוחד מכינים לא יותר מ- 3 גרם ליום.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בירידה פתאם גיליתי מחזה 
-    נדיר – עוז משתרך מאחור. בהתחלה אני וסיוון הסתלבטנו עליו ושאלנו אם הוא רוצה 
-    לעצור. אחרי שראינו אותו סובל (יש לו בעיות ברכיים) ריחמנו עליו וירדנו לאיטנו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">החמאתי לסיוון – "אני אספר 
-    לגונן איך את יורדת מהר וטוב, הוא ידע להעריך את זה"</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בהרים רואים כל הזמן עזים, 
-    פרות ולפעמים סוסים. נזכרתי ביציאה שאמרתי לגונן על העזים שראינו בהרים – "אלה 
-    לא עזים רגילות אלא כאלה שעברו קורס תיש".</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הגענו לכפר ראשול, היינו 
-    רעבים, אך לא היה מה לאכול. מסתבר שהכפר דומה למאלאנה וגם שם אסור לגעת בכלום – 
-    לא באנשים ולא ברכושם. המשכנו בירידה והגענו לצ'לאל.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בקושי סחבנו עצמנו לגסט 
-    האוס. יצאנו ב- 9:00 והגענו חזרה ב- 16:15.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">ראיתי את גונן עומד במרפסת, 
-    סומק פשט בפניו. ראיתי שהוא מקולח, הוא ראה אותי והתחיל לצחוק. לא היה לי כח 
-    להגיב והתמוטטתי על הכסא במרפסת.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><u><span lang="HE">סיפורו של גונן</span></u><span lang="HE">:</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">התחלנו לרדת במורד ההר. חנן 
-    נפתח בפני והשתפך בסיפורו האישי והקצר מפאת גילו הצעיר (22). סיפר על חברה 
-    שהיתה לו חצי שנה, בחורה שהוא התאהב בה במנזר ועוד בחורה שהוא רצה באשראם, אך 
-    לא יצא לו כלום מזה. הוא ניסה ללמוד מנסיון החיים שלי. סיפרתי לו על חכמת החיים 
-    שרכשתי במהלך השנים, במיוחד ביחסים שבינו לבינה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בדרך הכרנו 2 צ'כיות פצצות 
-    – קארה וננילדה. צחקנו איתן והצטלמנו איתן מחובקים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">עזרתי לקארה לרדת בירידה 
-    והיא נפלה עלי כשחמוקיה המושלמים נמעכים עלי. אעפ"י שהעדפתי היתה ללכת מאחוריה 
-    ולראות את ישבנה מקפץ במורד הנהר. לא רק הנהר שצף וקצף באותם רגעים, גם אני.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הגענו להפסקת צ'אי נעימה, 
-    הכי טעים בינתיים ששתיתי – בגלל שהחלב מורתח לחוד. זה היה איפה שעצרנו יום לפני 
-    כן, ליד הסכר. מקומי סיפר לי שהעלייה שעשיתי למלאנה אתמול קלה מאד לעומת העלייה 
-    שמליק, עוז וסיוון עושים ברגעים אלה. חיוך רחב התפשט על פני, קראתי לחנן שהלך 
-    להביא מהמטבח ביסקוויטים וסיפרתי לו על כך.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">גמרנו לשתות ולאכול 
-    מהעוגיות, ראיתי ציפור מדהימה ביופיה, ארוכה ובצבעים שחור ולבן, כשהיא פרשה 
-    כנפים, ניתן היה לראות כתמים עגולים לבנים כמו כלב דלמטי.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">ירדנו עד הסכר בקלילות. 
-    בעודנו מדברים על טיב מזלנו. סיפרתי לחנן שאתמול אמרה לי סיוון שאיני בוגר, 
-    אבל בעצם ההחלטה לרדת איתך, חברי הטוב, חנן, הוכחתי כי אני יודע לבחור בצורה 
-    בוגרת.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הציעו לנו לרדת מהסכר למטה 
-    בג'יפ ב- 400 רופי. חנן הצליח להוריד אותו רק עד 150 רופי. בגלל שחנן מטייל כבר 
-    5 חודשים (והוא טורח להזכיר את זה שוב ושוב) זה היה יקר מדי בשבילו. נפרדנו 
-    מהצ'כיות עקב כך למורת רוחי. רטנתי בשקט על כך.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">חנן סיפר להן על 2 מסעדות 
-    בקאסול – </span><span dir="LTR">Little Italy</span><span lang="HE"> ועוד אחת 
-    וקבענו להפגש בערב באחת מהן.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הצ'כיות נסעו בג'יפ, אנחנו 
-    המשכנו ברגל. פגשנו 2 הודים שהראו לנו קיצור דרך. במהלך הירידה 2 ההודים ברחו 
-    לנו. המטען הכבד שסחבו לא הפריע להם לפתוח עלינו פער בלתי ניתן לגישור. בדרכנו 
-    למטה פגשנו אב ובנו על טרקטור שהתכוננו לנסוע למטה. שאלתי אותם בילדותיות אם 
-    אפשר לקחת איתם טרמפ, הם הסכימו בשמחה. ישבנו על העגלה מאחורה. הדרך הייתה 
-    מלווה בזעזועים וקפיצות. במהלך הנסיעה פגשנו את 2 ההודים ממקודם. הם עלו איתנו. 
-    אחד התיישב על הגלגל והשני ישב בעגלה מאחורה. נגנבתי מהקפיצות. האב שראה את 
-    מצוקתי הזמין אותי לשבת על הגלגל. רק שם הצלחתי להינות מהנסיעה. לתדהמתי הבן 
-    הסיע את הטרקטור בעוד אביו משגיח עליו. לא חשתי בטוח בעיקולים החדים. הלב ירד 
-    לי לתחתונים, אך בכל עיקול חישבתי להיכן אני קופץ וניצל אם הטרקטור ידרדר. לחנן 
-    שישב בעגלה לא נתתי הרבה צ'אנס לשרוד את הנפילה. לאחר מכן חנן סיפר שהוא פחד 
-    פחד אימים שהעגלה תדרדר והוא יפול לתהום.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">נ.ב. זיהיתי ציפור מדהימה, 
-    אחת היפות שראיתי בחיי: ציפור אדומה ומרהיבה ביופיה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הגענו למטה. הגענו לשער 
-    הסכר ומחזה מדהים התגלה לפנינו – מאות חיילים הודים, כנראה במדיהם המשובחים 
-    ביותר, חיכו לקבלת ראש הממשלה שהתכוון לבקר באותה עת במקום. לכל אורך השביל 
-    נשים זקנות עם מטאטא של מכשפות מנקות את הדרך. חנן העיק קצת על החיילים בשאלות 
-    לא לעניין. הרהרתי ביני לבין עצמי – טוב שהם מחויכים, כי בהודו כל דבר יכול 
-    לקרות.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">עלינו על האוטובוס לכיוון 
-    קאסול. באמצע הדרך אישה מבוגרת החלה להעלות גזעים על האוטובוס, כשכל הנוסעים 
-    יושבים רגועים ומחכים שתסיים להעלות את כולם. נדהמתי, איך כולם רגועים כ"כ 
-    אעפ"י שהיה כאן עיכוב רציני. אמרתי לחנן "בארץ כבר היו בועטים לה בראש ומעיפים 
-    אותה החוצה מהאוטובוס בקללות".</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הגענו לקאסול, עשינו סיור 
-    בכל הכפר והגענו עד סוף הכפר. חתכנו במורד הנהר, עברנו גשר רעוע והלכנו לאכול 
-    במסעדה </span><span dir="LTR">Little Italy</span><span lang="HE">. עד שהגיע 
-    האוכל חנן לימד אותי משחק קלפים מדליק.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">החלילן וחברתו התאילנדית 
-    (אלו שנסעו איתנו לבונטאר) הצטרפו אלינו. הזמנו אותם אלינו לצ'לאל – התאילנדית 
-    הלכה כל הדרך יחפה ובקלילות לתדהמתי. החלילן אמר שהיא גם מטרקת ככה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הגענו לצ'לאל, נזכרתי במה 
-    שעלי לעשות – לראות מה עלה בגורלו של העכביש. כשחשבתי על גורלי שלי נכנסתי 
-    בזהירות לחדר. חיפשתי בכל פינה, הרמתי חפצים באומץ לב שלא ראו אצלי מזמן. העכביש 
-    לא נראה בשטח. התכוונתי ללכת להתקלח ולקחתי את המגבת. פלטתי צווחה מקפיאת דם – 
-    העכביש היה על המגבת!!!. החלילן והתאילנדית באו, היא נכנסה בחיוך לחדר ואמרה 
-    שעכביש בחדר זה מזל טוב או קארמה טובה. חלקתי עליה. החלילן נחלץ לעזרתי, לקח את 
-    המגבת ועם כמה ענפי קש העיף את העכביש מטה, באותו פולט "העכביש הזה לא נראה 
-    סימפטי וידידותי בכלל".</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">לאחר המחזה המזעזע הזה 
-    התיישבתי על הכסא ונרגעתי.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">מבסוט וטוב לב הלכתי להתקלח 
-    במשך שעה עם מים חמים שהכנתי. גם פירקתי גזעים שיהיו מספיק ענפי עץ קטנים למיחם 
-    בשביל כולם, גם אלה שהיו בטרק הרצחני.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">עליתי לנוח על המרפסת לאחר 
-    המקלחת. חנן נכנס להתקלח לאחר שהאיץ בי לסיים כשהגזמתי.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">התחלתי לדבר עם יניב 
-    (דניאל-סון, כי הוא דומה לנער מקרטה-קיד). מרחוק ראיתי את עוז, מליק וסיוון 
-    מדדים בקושי לעבר הגסט האוס. הם נראו כמו מסדר חולים. כשהם באו סחוטים וגמורים 
-    הם בקושי אמרו לי שלום.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">עד כאן סיפורו של גונן.</span></b></p>
-<p dir="rtl"> </p></td>
-<td align="center" height="333" rowspan="2" style="     " valign="top" width="202">
-     <p>
-
-<img border="0" height="115" onclick="openLightbox(this.src)" src="../images/20011018_baba_and_melani.jpg" title="לחץ להגדלה" width="181"/></p>
-<p>
-<font color="#660099">הבאבא ואורח מקומי</font></p>
-<p>
-
-<img border="0" height="132" onclick="openLightbox(this.src)" src="../images/20011018_smoked.jpg" title="לחץ להגדלה" width="195"/></p>
-<p>
-<font color="#660099">גונן מעשן עם הבבא ועם עוז</font></p>
-<p>
-
-<img border="0" height="114" onclick="openLightbox(this.src)" src="../images/20011018_going_to_sleep.jpg" title="לחץ להגדלה" width="178"/></p>
-<p>
-<font color="#660099">עוז וסיוון הולכים לישון בפינת החדר המעופש</font></p>
-<p>
-
-<img border="0" height="134" onclick="openLightbox(this.src)" src="../images/20011017_hanan&amp;gonen_sleeping.jpg" title="לחץ להגדלה" width="193"/></p>
-<p>
-<font color="#660099">גונן וחנן מתכוננים לשינה</font></p>
-</td>
-</tr>
-<tr>
-<td height="67" style="     " valign="top" width="314">
-
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button104.gif" title="לחץ להגדלה" width="59"/></td>
-<td height="67" style="     " valign="top" width="408">
-<p align="right">
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button106.gif" title="לחץ להגדלה" width="59"/></p></td>
-</tr>
-</table>
-<p align="center">
-<!--webbot bot="Navigation" S-Type="sequence" S-Orientation="horizontal" S-Rendering="html" S-Bar="Brackets" S-Btn-Nml="[&lt;A HREF=&quot;#URL#&quot; TARGET=&quot;#TARGET#&quot; STYLE=&quot;{text-decoration: none;}&quot;&gt;#LABEL#&lt;/A&gt;]" S-Btn-Sel="[#LABEL#]" S-Btn-Sep="&amp;nbsp;" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><nobr>[<a href="index.html" style="{text-decoration: none;}" target="">התחלה</a>]</nobr> <nobr>[<a href="200110052040.html" style="{text-decoration: none;}" target="">דנמרק</a>]</nobr> <nobr>[<a href="20011006.html" style="{text-decoration: none;}" target="">הודו</a>]</nobr> <nobr>[<a href="20011030.html" style="{text-decoration: none;}" target="">נפאל</a>]</nobr> <nobr>[<a href="20011115.html" style="{text-decoration: none;}" target="">טרק סובב אנאפורנה</a>]</nobr> <nobr>[<a href="20011210.html" style="{text-decoration: none;}" target="">תאילנד</a>]</nobr> <nobr>[<a href="20020108.html" style="{text-decoration: none;}" target="">לאוס</a>]</nobr> <nobr>[<a href="20020123.html" style="{text-decoration: none;}" target="">צפון תאילנד</a>]</nobr> <nobr>[<a href="20020203.html" style="{text-decoration: none;}" target="">אוסטרליה</a>]</nobr> <nobr>[<a href="20020210.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי דרומי</a>]</nobr> <nobr>[<a href="20020326.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי צפוני</a>]</nobr> <nobr>[<a href="20020506.html" style="{text-decoration: none;}" target="">פיליפינים</a>]</nobr> <nobr>[<a href="20020603.html" style="{text-decoration: none;}" target="">קמבודיה</a>]</nobr><!--webbot bot="Navigation" i-checksum="33824" endspan --></p>
-<p><i><small>This site was last updated
-<!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%m/%d/%y" startspan -->07/05/03<!--webbot bot="Timestamp" i-checksum="12682" endspan --> </small></i>
-</p>
-</body>
+    <div class="nav-links">
+      <a href="20011018.html">← הקודם</a>
+      <a href="200110201030.html">הבא →</a>
     </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-text">
+      <div class="meta-line">
+        <span class="date-big">19</span>
+        <div>
+          <div class="date-details">אוקטובר 2001</div>
+          <span class="country-badge">הודו</span>
+        </div>
+      </div>
+      <h1 class="title">הטרק מאלאנה – ראשול – צ'לאל (מאלאנה – ג'ארי – צ'לאל), הפיצול</h1>
+      <div class="title-divider"></div>
+    </div>
+    <img class="hero-map" src="../images/India.gif" alt="הודו">
+  </div>
+
+  <div class="content">
+    <p>הטרק מאלאנה – ראשול – צ'לאל (מאלאנה – ג'ארי – צ'לאל), הפיצול</p>
+
+    <p>אדם שוכב כאן ממוטט על המיטה, כותב בכוחותיו האחרונים את היומן. האדם הזה הוא אני.</p>
+
+    <p>היום דרכינו שלי ושל גונן התפצלו</p>
+
+    <p>עברנו לילה מטורף, כל הערב עישנו עם ה<a onclick="openLightbox('../images/20011018_baba_and_melani.jpg')">בבא ועוד הודי או מלאני</a> (מהכפר) ישבו איתנו. לא יכלנו לנגוע או לעשן עם איש המאלאנה.</p>
+
+    <p>הלכנו לישון בחדר המשופע, 3 על מיטה אחת – אני, גונן וחנן, <a onclick="openLightbox('../images/20011018_going_to_sleep.jpg')">ו- 2 על המזרונים על הרצפה – סיוון ועוז</a>. הבבא ההודי ישן על הרצפה.</p>
+
+    <p>עוז שיגע את השכל לבבא. האנרגיות של עוז לא נגמרות. רק הורדנו את הנעלים וזהו, נכנסנו לישון עם כל הבגדים והתכסינו בשמיכות שהביאו לנו.</p>
+
+    <p>אכלנו טאלי וצ'פטות.</p>
+
+    <p>נרדמנו, לפחות מי שיכל. יצא לי להיות ער הרבה בלילה. זה לא כיף לשמוע את עוז נוחר ואת גונן מפליץ. פעם אחת כשעוז נחר ואף אחד לא יכל לישון אמרתי "זה ממש נחירת חיסול" וגונן צחק בקול.</p>
+
+    <p>קמתי ב- 6:30 והתיישבתי. הייתי חייב להשתין, עברו 24 שעות מאז הפעם האחרונה שהשתנתי. לאט לאט ניקוצו כולם. חנן התעקש לחזור מאיפה שבאנו ולא להמשיך לכפר ראשול ומשם לצ'לאל.</p>
+
+    <p>גונן החליט לא להפקיר אותו, אם כי ניתן היה לראות עליו את הפחד מהעליה שאנו צריכים לעבור.</p>
+
+    <p>התפצלנו, גונן חבר לחנן בדרך חזרה לסכר, משם לג'ארי ומשם באוטובוס לצ'לאל – כשעתיים.</p>
+
+    <p>אני חברתי לסיוון ועוז בדרך לראשול ומשם לצ'לאל ביתינו – כשמונה שעות.</p>
+
+    <p>סיפורו של מליק:</p>
+
+    <p>ירדנו כחצי שעה מהכפר מאלאנה אל הנהר ומשם התחלנו בעלייה להר אימתני. כל הדרך ראינו שדות גראס, הצמחים שם מתנשאים לגובה של שני מטר. כל הזמן הציעו לנו לעשן. סירבנו. עוז אמר/המחיש שהוא מפחד שהמשטרה תתפוס אותו.</p>
+
+    <p>העלייה היתה הפעם רצחנית עוד יותר מיום האתמול – חבל שאנו מבזבזים יציאות כמו "הר המוות" כשהגרוע עוד לפנינו.</p>
+
+    <div class="photo-pair">
+      <div class="photo-item">
+        <img src="../images/20011018_baba_and_melani.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">הבאבא ואורח מקומי</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011018_smoked.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">גונן מעשן עם הבבא ועם עוז</div>
+      </div>
+    </div>
+
+    <p>שעתיים וחצי של טיפוס בשיפוע של 45 מעלות בממוצע. עוז מצא שיטת עלייה בה הוא מכופף את ברכיו, מחזיק בשרוולי מכנסיו ועולה כך כמו המקומיים, בלי הפסקה. אני וסיוון התמוטטנו. התאמצתי לא לבקש הפסקה וחיכיתי שסיוון תיזום. הייתי ממש על סף כוחותי.</p>
+
+    <p>לאחר כשעתיים וחצי של עלייה בלתי פוסקת הגענו לפסגה, שם נחנו כשעה. התייבשנו, עוז גלגל סיגריה והתחלנו בירידה. בדרך ראינו בקתות עם חצרות ובהם צמחי הגראס, אותם עיבדו כל המשפחה. כרגיל הציעו לנו לעשן. השיא היה כשילד בן 3 הציע לי סיגריה בתנועות עישון. אני חושב שהוא עדיין לא יכול לדבר, אבל הוא כבר סוחר סמים מדופלם.</p>
+
+    <p>הציעו לנו גם למולל את הג'ראס איתם. הם ממוללים את הצמחים בידיהם, כשמהחומר השמנוני שנשאר על הידיים הם מכינים את הג'ראס האיכותי – הקרם. לא יותר מ- 10 גרם ליום עבודה (נקרא תולע), כשקרם איכותי במיוחד מכינים לא יותר מ- 3 גרם ליום.</p>
+
+    <p>בירידה פתאם גיליתי מחזה נדיר – עוז משתרך מאחור. בהתחלה אני וסיוון הסתלבטנו עליו ושאלנו אם הוא רוצה לעצור. אחרי שראינו אותו סובל (יש לו בעיות ברכיים) ריחמנו עליו וירדנו לאיטנו.</p>
+
+    <p>החמאתי לסיוון – "אני אספר לגונן איך את יורדת מהר וטוב, הוא ידע להעריך את זה"</p>
+
+    <p>בהרים רואים כל הזמן עזים, פרות ולפעמים סוסים. נזכרתי ביציאה שאמרתי לגונן על העזים שראינו בהרים – "אלה לא עזים רגילות אלא כאלה שעברו קורס תיש".</p>
+
+    <p>הגענו לכפר ראשול, היינו רעבים, אך לא היה מה לאכול. מסתבר שהכפר דומה למאלאנה וגם שם אסור לגעת בכלום – לא באנשים ולא ברכושם. המשכנו בירידה והגענו לצ'לאל.</p>
+
+    <p>בקושי סחבנו עצמנו לגסט האוס. יצאנו ב- 9:00 והגענו חזרה ב- 16:15.</p>
+
+    <p>ראיתי את גונן עומד במרפסת, סומק פשט בפניו. ראיתי שהוא מקולח, הוא ראה אותי והתחיל לצחוק. לא היה לי כח להגיב והתמוטטתי על הכסא במרפסת.</p>
+
+    <p>סיפורו של גונן:</p>
+
+    <p>התחלנו לרדת במורד ההר. חנן נפתח בפני והשתפך בסיפורו האישי והקצר מפאת גילו הצעיר (22). סיפר על חברה שהיתה לו חצי שנה, בחורה שהוא התאהב בה במנזר ועוד בחורה שהוא רצה באשראם, אך לא יצא לו כלום מזה. הוא ניסה ללמוד מנסיון החיים שלי. סיפרתי לו על חכמת החיים שרכשתי במהלך השנים, במיוחד ביחסים שבינו לבינה.</p>
+
+    <p>בדרך הכרנו 2 צ'כיות פצצות – קארה וננילדה. צחקנו איתן והצטלמנו איתן מחובקים.</p>
+
+    <p>עזרתי לקארה לרדת בירידה והיא נפלה עלי כשחמוקיה המושלמים נמעכים עלי. אעפ"י שהעדפתי היתה ללכת מאחוריה ולראות את ישבנה מקפץ במורד הנהר. לא רק הנהר שצף וקצף באותם רגעים, גם אני.</p>
+
+    <p>הגענו להפסקת צ'אי נעימה, הכי טעים בינתיים ששתיתי – בגלל שהחלב מורתח לחוד. זה היה איפה שעצרנו יום לפני כן, ליד הסכר. מקומי סיפר לי שהעלייה שעשיתי למלאנה אתמול קלה מאד לעומת העלייה שמליק, עוז וסיוון עושים ברגעים אלה. חיוך רחב התפשט על פני, קראתי לחנן שהלך להביא מהמטבח ביסקוויטים וסיפרתי לו על כך.</p>
+
+    <p>גמרנו לשתות ולאכול מהעוגיות, ראיתי ציפור מדהימה ביופיה, ארוכה ובצבעים שחור ולבן, כשהיא פרשה כנפים, ניתן היה לראות כתמים עגולים לבנים כמו כלב דלמטי.</p>
+
+    <div class="photo-pair">
+      <div class="photo-item">
+        <img src="../images/20011018_going_to_sleep.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">עוז וסיוון הולכים לישון בפינת החדר המעופש</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011017_hanan&gonen_sleeping.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">גונן וחנן מתכוננים לשינה</div>
+      </div>
+    </div>
+
+    <p>ירדנו עד הסכר בקלילות. בעודנו מדברים על טיב מזלנו. סיפרתי לחנן שאתמול אמרה לי סיוון שאיני בוגר, אבל בעצם ההחלטה לרדת איתך, חברי הטוב, חנן, הוכחתי כי אני יודע לבחור בצורה בוגרת.</p>
+
+    <p>הציעו לנו לרדת מהסכר למטה בג'יפ ב- 400 רופי. חנן הצליח להוריד אותו רק עד 150 רופי. בגלל שחנן מטייל כבר 5 חודשים (והוא טורח להזכיר את זה שוב ושוב) זה היה יקר מדי בשבילו. נפרדנו מהצ'כיות עקב כך למורת רוחי. רטנתי בשקט על כך.</p>
+
+    <p>חנן סיפר להן על 2 מסעדות בקאסול – Little Italy ועוד אחת וקבענו להפגש בערב באחת מהן.</p>
+
+    <p>הצ'כיות נסעו בג'יפ, אנחנו המשכנו ברגל. פגשנו 2 הודים שהראו לנו קיצור דרך. במהלך הירידה 2 ההודים ברחו לנו. המטען הכבד שסחבו לא הפריע להם לפתוח עלינו פער בלתי ניתן לגישור. בדרכנו למטה פגשנו אב ובנו על טרקטור שהתכוננו לנסוע למטה. שאלתי אותם בילדותיות אם אפשר לקחת איתם טרמפ, הם הסכימו בשמחה. ישבנו על העגלה מאחורה. הדרך הייתה מלווה בזעזועים וקפיצות. במהלך הנסיעה פגשנו את 2 ההודים ממקודם. הם עלו איתנו. אחד התיישב על הגלגל והשני ישב בעגלה מאחורה. נגנבתי מהקפיצות. האב שראה את מצוקתי הזמין אותי לשבת על הגלגל. רק שם הצלחתי להינות מהנסיעה. לתדהמתי הבן הסיע את הטרקטור בעוד אביו משגיח עליו. לא חשתי בטוח בעיקולים החדים. הלב ירד לי לתחתונים, אך בכל עיקול חישבתי להיכן אני קופץ וניצל אם הטרקטור ידרדר. לחנן שישב בעגלה לא נתתי הרבה צ'אנס לשרוד את הנפילה. לאחר מכן חנן סיפר שהוא פחד פחד אימים שהעגלה תדרדר והוא יפול לתהום.</p>
+
+    <p>נ.ב. זיהיתי ציפור מדהימה, אחת היפות שראיתי בחיי: ציפור אדומה ומרהיבה ביופיה.</p>
+
+    <p>הגענו למטה. הגענו לשער הסכר ומחזה מדהים התגלה לפנינו – מאות חיילים הודים, כנראה במדיהם המשובחים ביותר, חיכו לקבלת ראש הממשלה שהתכוון לבקר באותה עת במקום. לכל אורך השביל נשים זקנות עם מטאטא של מכשפות מנקות את הדרך. חנן העיק קצת על החיילים בשאלות לא לעניין. הרהרתי ביני לבין עצמי – טוב שהם מחויכים, כי בהודו כל דבר יכול לקרות.</p>
+
+    <p>עלינו על האוטובוס לכיוון קאסול. באמצע הדרך אישה מבוגרת החלה להעלות גזעים על האוטובוס, כשכל הנוסעים יושבים רגועים ומחכים שתסיים להעלות את כולם. נדהמתי, איך כולם רגועים כ"כ אעפ"י שהיה כאן עיכוב רציני. אמרתי לחנן "בארץ כבר היו בועטים לה בראש ומעיפים אותה החוצה מהאוטובוס בקללות".</p>
+
+    <p>הגענו לקאסול, עשינו סיור בכל הכפר והגענו עד סוף הכפר. חתכנו במורד הנהר, עברנו גשר רעוע והלכנו לאכול במסעדה Little Italy. עד שהגיע האוכל חנן לימד אותי משחק קלפים מדליק.</p>
+
+    <p>החלילן וחברתו התאילנדית (אלו שנסעו איתנו לבונטאר) הצטרפו אלינו. הזמנו אותם אלינו לצ'לאל – התאילנדית הלכה כל הדרך יחפה ובקלילות לתדהמתי. החלילן אמר שהיא גם מטרקת ככה.</p>
+
+    <p>הגענו לצ'לאל, נזכרתי במה שעלי לעשות – לראות מה עלה בגורלו של העכביש. כשחשבתי על גורלי שלי נכנסתי בזהירות לחדר. חיפשתי בכל פינה, הרמתי חפצים באומץ לב שלא ראו אצלי מזמן. העכביש לא נראה בשטח. התכוונתי ללכת להתקלח ולקחתי את המגבת. פלטתי צווחה מקפיאת דם – העכביש היה על המגבת!!!. החלילן והתאילנדית באו, היא נכנסה בחיוך לחדר ואמרה שעכביש בחדר זה מזל טוב או קארמה טובה. חלקתי עליה. החלילן נחלץ לעזרתי, לקח את המגבת ועם כמה ענפי קש העיף את העכביש מטה, באותו פולט "העכביש הזה לא נראה סימפטי וידידותי בכלל".</p>
+
+    <p>לאחר המחזה המזעזע הזה התיישבתי על הכסא ונרגעתי.</p>
+
+    <p>מבסוט וטוב לב הלכתי להתקלח במשך שעה עם מים חמים שהכנתי. גם פירקתי גזעים שיהיו מספיק ענפי עץ קטנים למיחם בשביל כולם, גם אלה שהיו בטרק הרצחני.</p>
+
+    <p>עליתי לנוח על המרפסת לאחר המקלחת. חנן נכנס להתקלח לאחר שהאיץ בי לסיים כשהגזמתי.</p>
+
+    <p>התחלתי לדבר עם יניב (דניאל-סון, כי הוא דומה לנער מקרטה-קיד). מרחוק ראיתי את עוז, מליק וסיוון מדדים בקושי לעבר הגסט האוס. הם נראו כמו מסדר חולים. כשהם באו סחוטים וגמורים הם בקושי אמרו לי שלום.</p>
+
+    <p>עד כאן סיפורו של גונן.</p>
+
+
+  </div>
+
+  <div class="nav-cards">
+    <a href="200110201030.html" class="nav-card">
+      <div class="label">הבא →</div>
+      <div class="card-title">המנוחה מהטרק</div>
+    </a>
+    <a href="20011018.html" class="nav-card">
+      <div class="label">← הקודם</div>
+      <div class="card-title">טיפוס המוות למאלאנה, עסכביש</div>
+    </a>
+  </div>
+
+  <div class="country-nav">
+    <a href="200110052040.html">דנמרק</a>
+    <a href="20011006.html">הודו</a>
+    <a href="20011030.html">נפאל</a>
+    <a href="20011115.html">טרק אנאפורנה</a>
+    <a href="20011210.html">תאילנד</a>
+    <a href="20020108.html">לאוס</a>
+    <a href="20020123.html">צפון תאילנד</a>
+    <a href="20020203.html">אוסטרליה</a>
+    <a href="20020210.html">ניו-זילנד, אי דרומי</a>
+    <a href="20020326.html">ניו-זילנד, אי צפוני</a>
+    <a href="20020506.html">פיליפינים</a>
+    <a href="20020603.html">קמבודיה</a>
   </div>
 
   <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
-    <img id="lightbox-img" src="" alt="Enlarged">
+    <img id="lightbox-img" src="" alt="">
   </div>
-
   <script>
     function openLightbox(src) {
       document.getElementById('lightbox-img').src = src;

@@ -3,194 +3,282 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>מונג-נוי, לאוס</title>
+  <title>הנסיעה בסירה למפל ולמערה</title>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap" rel="stylesheet">
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background-color: #f8fafc;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0; padding: 20px; color: #334155;
+      background: #ffffff;
+      font-family: 'Heebo', sans-serif;
+      color: #1a1a2e;
+      line-height: 1.9;
     }
-    .container {
-      max-width: 800px; margin: 0 auto; background: #ffffff;
-      padding: 35px; border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06); line-height: 1.8;
+    .top-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #eee;
+      padding: 12px 30px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.9rem;
     }
-    .header {
-      border-bottom: 2px solid #e2e8f0; padding-bottom: 15px;
-      margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center;
+    .top-nav a {
+      color: #1d4ed8; text-decoration: none; font-weight: 600;
     }
-    .header h1 { margin: 0; color: #0f172a; font-size: 1.8rem; }
-    .home-link { color: #2563eb; text-decoration: none; font-weight: 600; }
-    .content img {
-      float: right; margin: 0 0 15px 20px; max-width: 320px; height: auto;
-      border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      cursor: pointer; transition: transform 0.2s;
+    .top-nav a:hover { text-decoration: underline; }
+    .top-nav .nav-links { display: flex; gap: 20px; }
+    .hero {
+      max-width: 900px; margin: 0 auto;
+      padding: 50px 40px 30px;
+      display: flex; align-items: flex-start; gap: 30px;
     }
-    .content img:hover { transform: scale(1.02); }
-    .content::after { content: ""; clear: both; display: table; }
-    a { color: #2563eb; }
+    .hero-text { flex: 1; }
+    .hero-map {
+      width: 120px; height: auto; object-fit: contain;
+      flex-shrink: 0; opacity: 0.85;
+    }
+    .meta-line {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+    }
+    .date-big {
+      font-size: 3.5rem; font-weight: 900; color: #e5e7eb; line-height: 1;
+    }
+    .date-details { font-size: 0.9rem; color: #6b7280; }
+    .country-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      border-radius: 20px; padding: 4px 14px;
+      font-size: 0.8rem; color: #1d4ed8; font-weight: 600;
+    }
+    .title {
+      font-size: 2.2rem; font-weight: 900; color: #111827;
+      margin: 20px 0 8px; line-height: 1.3;
+    }
+    .date-subtitle {
+      font-size: 1.1rem; font-weight: 300; color: #4b5563;
+      margin-bottom: 16px;
+    }
+    .title-divider {
+      width: 60px; height: 4px; background: #1d4ed8; border-radius: 2px;
+    }
+    .content {
+      max-width: 900px; margin: 30px auto; padding: 0 40px; font-size: 1.05rem;
+    }
+    .content p { margin-bottom: 18px; }
+    .content a {
+      color: #1d4ed8; cursor: pointer;
+      text-decoration: underline;
+      text-decoration-color: rgba(29,78,216,0.3);
+    }
+    .photo-block {
+      margin: 30px 0; border-radius: 12px; overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    .photo-block img {
+      width: 100%; display: block; cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .photo-block img:hover { transform: scale(1.01); }
+    .photo-block .caption {
+      padding: 12px 16px; font-size: 0.85rem; color: #6b7280;
+      background: #f9fafb; border-top: 1px solid #f3f4f6;
+    }
+    .photo-pair {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 14px; margin: 30px 0;
+    }
+    .photo-pair .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-pair .photo-item img {
+      width: 100%; height: 200px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-pair .photo-item img:hover { transform: scale(1.03); }
+    .photo-pair .photo-item .caption {
+      padding: 8px 12px; font-size: 0.8rem; color: #6b7280; background: #f9fafb;
+    }
+    .photo-trio {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px; margin: 30px 0;
+    }
+    .photo-trio .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-trio .photo-item img {
+      width: 100%; height: 180px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-trio .photo-item img:hover { transform: scale(1.03); }
+    .photo-trio .photo-item .caption {
+      padding: 8px 10px; font-size: 0.78rem; color: #6b7280; background: #f9fafb;
+    }
+    .nav-cards {
+      max-width: 900px; margin: 50px auto 20px; padding: 0 40px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .nav-card {
+      padding: 20px 24px; border: 1px solid #e5e7eb; border-radius: 12px;
+      text-decoration: none; color: inherit; transition: all 0.2s;
+    }
+    .nav-card:hover {
+      border-color: #1d4ed8; box-shadow: 0 4px 12px rgba(29,78,216,0.1);
+    }
+    .nav-card .label { font-size: 0.8rem; color: #6b7280; margin-bottom: 4px; }
+    .nav-card .card-title { font-weight: 700; font-size: 1rem; color: #1d4ed8; }
+    .supplements {
+      margin-top: 35px; padding: 25px 30px;
+      background: #f9fafb; border-radius: 12px; border: 1px solid #e5e7eb;
+    }
+    .supplements h3 {
+      font-size: 1.1rem; font-weight: 700; margin-bottom: 14px; color: #374151;
+    }
+    .supplements ol { padding-right: 20px; }
+    .supplements li { margin-bottom: 10px; color: #4b5563; }
+    .country-nav {
+      max-width: 900px; margin: 20px auto 40px; padding: 0 40px;
+      display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+    }
+    .country-nav a {
+      padding: 6px 14px; border-radius: 20px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      color: #1d4ed8; text-decoration: none;
+      font-size: 0.82rem; font-weight: 600;
+      transition: all 0.2s;
+    }
+    .country-nav a:hover {
+      background: #1d4ed8; color: white; border-color: #1d4ed8;
+    }
     .lightbox {
       display: none; position: fixed; z-index: 9999;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.9); justify-content: center; align-items: center; cursor: pointer;
+      background: rgba(0,0,0,0.92);
+      justify-content: center; align-items: center; cursor: pointer;
     }
-    .lightbox img { max-width: 90%; max-height: 90%; border-radius: 8px; }
+    .lightbox img { max-width: 92%; max-height: 92%; border-radius: 8px; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h1>מונג-נוי, לאוס</h1>
-      <a href="../index.html" class="home-link">🏠 לעמוד הראשי</a>
+  <div class="top-nav">
+    <div class="nav-links">
+      <a href="../index.html">עמוד ראשי</a>
     </div>
-    <div class="content">
-      <body>
-<table cellpadding="0" cellspacing="0" height="80" width="954">
-<tr>
-<td align="center" height="80" width="277">
-<marquee style="font-size: 18pt; color: #800080">16.1.02 - 19:00</marquee></td>
-<td align="center" height="80" width="667">
-<!--webbot bot="Navigation" s-type="banner" s-rendering="graphics" S-Orientation B-Include-Home B-Include-Up U-Page S-Target startspan --><!--webbot bot="Navigation" i-checksum="52743" endspan --></td>
-<td align="center" height="80" width="10">
-
-<img border="0" height="166" onclick="openLightbox(this.src)" src="../images/Laos.gif" title="לחץ להגדלה" width="165"/></td>
-</tr>
-<tr>
-<td colspan="3" height="1" style=" " width="954"></td>
-</tr>
-</table><table cellpadding="0" cellspacing="0" width="100%">
-<tr>
-<td align="right" style=" ">
-<h4>
-<marquee style="font-size: 24pt; color: #008080">הנסיעה בסירה למפל ולמערה</marquee></h4>
-<p> </p></td>
-</tr>
-</table>
-<table cellpadding="0" cellspacing="0" height="333" width="953">
-<tr>
-<td height="333" rowspan="2" style="       " valign="top" width="140"> <!--webbot bot="Navigation" S-Type="sequence" S-Orientation="vertical" S-Rendering="graphics" S-Theme="blocks 000" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><!--webbot bot="Navigation" i-checksum="23763" endspan --><p> </p>
-</td>
-<td height="333" rowspan="2" style="     " valign="top" width="1"></td>
-<td colspan="2" height="266" style="     " valign="top" width="735">
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> שלא תהיה כאן אי הבנה, 
-    אנחנו נמצאים כאן באחד המקומות הכי יפים בלאוס ובטיול שלנו עד עתה. אין כאן כ"כ 
-    הרבה מה לעשות כמו בוואנג-וויינג והאמת שהיום ראינו כמעט הכל. בכל מקרה המקום 
-    כאן יפה יותר.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בקשר לאתמול בלילה. אין לי 
-    מה להגיד, המקום בית קברות לחיי-לילה. הלכנו פעמיים את הכפר לאורכו. ראינו כמה 
-    זוגות במסעדות, כמה גברים בודדים ואף לא בחורה בודדה. ישבנו במסעדה ואכלנו טוב. 
-    הקפה הלאוסי טוב, בעיקר בגלל החלב הממותק (של נסטלה) שהם משתמשים בו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">האור, שבא מגנרטור, פועל 
-    בכפר בין השעות 18:00-21:00. אחרי זה יש כיבוי אורות וכולם הולכים לישון. אין 
-    חשמל כאן. גם בחדרים יש אור רק בשעות הנ"ל.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בבוקר קמנו ב- 9:00, אכלנו 
-    ארוחת-בוקר במרפסת שלנו והתבוננו בנוף המדהים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">באו דויד האיטלקי ויורגן 
-    ההולנדי והצטרפו אלינו לטיול סירות.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">שניהם לוזרים יחסית למוצאם 
-    – דויד האיטלקי די לבן ושעיר וחסר את הסקס-אפיל של האיטלקים (חוץ מהמבטא 
-    והקללות באיטלקית), יורגן עוד יותר חנון, יש לו שיער שחור עם קצת שיער שיבה 
-    והוא גם קצת מקריח ודואג לשים שם קרם הגנה נגד השמש. לא הולנדי טיפוסי. אבל הם 
-    נחמדים. מצאנו איתם שפה משותפת, בעיקר על כדורגל.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בבוקר היה מעונן. העננים 
-    היו פחות מ- 100 מטר מעלינו. ראינו רק את תחילת ההרים בצד השני של הנהר. מראה 
-    מרהיב.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">לקחנו סירה לראות מפל שנמצא 
-    כאן קרוב, חצי-שעה עם זרם הנהר.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">
-<a href="images/pictures/laos/20020114_gonen_in_long_boat.jpg" target="_blank">נסענו בסירה צרה, 70 ס"מ 
-    רוחב, 7 מטר אורך</a>, מתנדנדת, אך די יציבה. ישבנו אחד אחרי השני, המים היו 10 ס"מ 
-    מקצה הסירה. יכלת להושיט יד בלי להתכופף ולחתוך את המים. גונן עמד והסתיר את 
-    הנוף. נדנדתי את הסירה והושבתי אותו. הסתכלתי בנוף המדהים – ההרים הירוקים 
-    המלאים בצמחיה הפראית, הסירות עם הדייגים שעוברות, 
-    <a href="images/pictures/laos/20020114_small_children_in_the_water.jpg" target="_blank">הילדים המשתכשכים בנהר</a>, 
-    להקת הברווזים ששחתה והג'מוסים על גדות הנהר. שקעתי במחשבות, פילוסופיות.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">ברור לי שתנאי הכרחי לאיכות 
-    חיים זה דלילות של אנשים. אנחנו רגילים לחיות באיזורים צפופים בבני-אדם, קשה 
-    לנו להבין כיצד הלאוסים כל כך חמודים וחייכנים ומברכים אותך לשלום בכנות, וגם 
-    הטבע כ"כ שמור ופראי. התשובה לשני אלה זה שאסור שיהיו יותר מדי אנשים – כך הטבע 
-    נכבש ונהרס ואדם מתעלם מאדם. אין לי כח להרחיב כאן. בכל מקרה המחשבות בבוקר רצו 
-    טוב יותר ויפה יותר. עקרון זה של דלילות בני-אדם או פרו ורבו (אם תפרו – תריבו) 
-    אינו מפותח בעיקר בארץ וחבל.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">החננו את הסירה והלכנו 
-    בשביל דרך הג'ונגל. הופתעתי שאין חיות בכלל בג'ונגל, הרי כשיש צמחיה פראית יש 
-    יתושים וזבובים ויש סכנה של נחשים והמון חרקים. כאן כלום, רק צמחיה פראית. 
-    הלכנו כחצי שעה והגענו למפל. הופתעתי לגלות שהסלעים שהמים עוברים עליהם אינם 
-    חלקים. רק חשבתי על זה ודויד כמעט החליק, בקבוק המים מינרלים שלו נפל. "אני 
-    בסדר" הוא אמר לנו, "</span><span dir="LTR">You’ve lost the bottle but you 
-    won the war</span><span lang="HE">" עניתי לו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">המפל בגובה של כ- 20 מטר, 
-    יפה מאד. 
-    <a href="images/pictures/laos/20020115_under_waterfall.jpg" target="_blank">אני וגונן נכנסנו למים</a>. הופתעתי שעומק המים רק כ- 20 ס"מ, כאילו להקל 
-    עליך להגיע מתחת למפל ולקבל מסאז', במקומות אחרים יש בריכה וצריך לשחות למפל 
-    ולהסתכן.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">חזרנו לסירה, נסענו למעלה 
-    משעה בכיוון השני (נגד הזרם). הגענו לפתח מערה ממש על שפת הנהר, כששובל של מים 
-    נכנס למערה. ירדנו ונכנסנו. בפנים היה בוץ וכשנכנסנו הוא נהיה ממש טובעני. 
-    הורדנו הסנדלים לפני שנאבד אותם בבוץ. דויד כמעט איבד את הסנדל שלו. "</span><span dir="LTR">its 
-    mudness</span><span lang="HE">" אמרתי לו והוא הנהן בהסכמה. נכנסנו יחפים לעוד 
-    אולם. שם היה צריך להכנס קצת למים. המים נהיו מעט עמוקים ודויד ויורגן השתפנו. 
-    להפתעתינו גם המדריך המקומי העדיף לא להרטיב את בגדיו ולא להמשיך. אני וגונן 
-    נכנסנו פנימה, נכנסנו לעוד חדר וזה לא היה הסוף. המשכנו מעט במים ומעט על הבוץ 
-    (כבר לא טובעני) וראינו עוד חדר ועוד חדר. גונן רצה להמשיך והיה בטוח שנגיע 
-    לסוף. אני נלחצתי כי עברנו 5 חדרים ולא כ"כ זכרתי את הדרך חזרה. עצרתי אותו 
-    והתחלנו לחזור. למזלינו לא הסתבכנו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">המדריך סיפר לי שהמערה 
-    ממשיכה עוד הרבה, היא עולה במעלה ההר ויש פתח יציאה על צלע ההר, בהחלט שווה 
-    נסיון.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">חזרנו מרוצים ביותר.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">מחר אנחנו מתכננים טרק של 
-    יומיים בהרים, בעיקר כדי לראות כמה שבטים ולישון שם ולחזור למחרת. דיברנו עם 
-    מקומי שיודע אנגלית טוב, הוא רצה יותר מ- 10$ עבור זה וזה נראה לנו מוגזם, 
-    נסתפק ב- 10$. אני מאד רוצה לעשות את זה. גונן אמר שאני לחוץ על בחורה, כי 
-    המדריך אמר שבחורה אמריקאית נרשמה גם לטרק. כשהגעתי לחדר ראיתי את גונן מתכונן 
-    למקלחת. הוא הזמין דלי חם. מעניין מאד, הוא אמר שהוא לא צריך להתקלח כי הוא 
-    התרחץ במפל. האם זה בגלל הבחורה?</span></b></p>
-<p> </p></td>
-<td align="center" height="333" rowspan="2" style="     " valign="top" width="187">
-
-<img border="0" height="126" onclick="openLightbox(this.src)" src="../images/20020114_gonen_in_long_boat.jpg" title="לחץ להגדלה" width="176"/><p>
-
-<img border="0" height="117" onclick="openLightbox(this.src)" src="../images/20020115_river_view.jpg" title="לחץ להגדלה" width="179"/></p>
-<p><font color="#660099">נוף מהסירה</font></p>
-<p>
-
-<img border="0" height="114" onclick="openLightbox(this.src)" src="../images/20020114_small_children_in_the_water.jpg" title="לחץ להגדלה" width="177"/></p>
-<p><font color="#660099">ילדים מקןמיים רוחצים בנהר</font></p>
-<p> </p>
-<p>
-
-<img border="0" height="217" onclick="openLightbox(this.src)" src="../images/20020115_under_waterfall.jpg" title="לחץ להגדלה" width="139"/></p>
-<p><font color="#660099">אנחנו במפל</font></p>
-<p>
-<img border="0" height="116" onclick="openLightbox(this.src)" src="../images/20020115_rice_fields.jpg" title="לחץ להגדלה" width="180"/></p>
-<p><font color="#660099">חלקות אורז</font></p>
-<p> </p></td>
-</tr>
-<tr>
-<td height="67" style="     " valign="top" width="314">
-
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button104.gif" title="לחץ להגדלה" width="59"/></td>
-<td height="67" style="     " valign="top" width="421">
-<p align="right">
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button106.gif" title="לחץ להגדלה" width="59"/></p></td>
-</tr>
-</table>
-<p align="center">
-<!--webbot bot="Navigation" S-Type="sequence" S-Orientation="horizontal" S-Rendering="html" S-Bar="Brackets" S-Btn-Nml="[&lt;A HREF=&quot;#URL#&quot; TARGET=&quot;#TARGET#&quot; STYLE=&quot;{text-decoration: none;}&quot;&gt;#LABEL#&lt;/A&gt;]" S-Btn-Sel="[#LABEL#]" S-Btn-Sep="&amp;nbsp;" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><nobr>[<a href="index.html" style="{text-decoration: none;}" target="">התחלה</a>]</nobr> <nobr>[<a href="200110052040.html" style="{text-decoration: none;}" target="">דנמרק</a>]</nobr> <nobr>[<a href="20011006.html" style="{text-decoration: none;}" target="">הודו</a>]</nobr> <nobr>[<a href="20011030.html" style="{text-decoration: none;}" target="">נפאל</a>]</nobr> <nobr>[<a href="20011115.html" style="{text-decoration: none;}" target="">טרק סובב אנאפורנה</a>]</nobr> <nobr>[<a href="20011210.html" style="{text-decoration: none;}" target="">תאילנד</a>]</nobr> <nobr>[<a href="20020108.html" style="{text-decoration: none;}" target="">לאוס</a>]</nobr> <nobr>[<a href="20020123.html" style="{text-decoration: none;}" target="">צפון תאילנד</a>]</nobr> <nobr>[<a href="20020203.html" style="{text-decoration: none;}" target="">אוסטרליה</a>]</nobr> <nobr>[<a href="20020210.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי דרומי</a>]</nobr> <nobr>[<a href="20020326.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי צפוני</a>]</nobr> <nobr>[<a href="20020506.html" style="{text-decoration: none;}" target="">פיליפינים</a>]</nobr> <nobr>[<a href="20020603.html" style="{text-decoration: none;}" target="">קמבודיה</a>]</nobr><!--webbot bot="Navigation" i-checksum="33824" endspan --></p>
-<p><i><small>This site was last updated
-<!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%m/%d/%y" startspan -->08/02/03<!--webbot bot="Timestamp" i-checksum="12636" endspan --> </small></i>
-</p>
-</body>
+    <div class="nav-links">
+      <a href="20020115.html">← הקודם</a>
+      <a href="20020118.html">הבא →</a>
     </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-text">
+      <div class="meta-line">
+        <span class="date-big">16</span>
+        <div>
+          <div class="date-details">ינואר 2002</div>
+          <span class="country-badge">לאוס</span>
+        </div>
+      </div>
+      <h1 class="title">הנסיעה בסירה למפל ולמערה</h1>
+      <div class="title-divider"></div>
+    </div>
+    <img class="hero-map" src="../images/Laos.gif" alt="לאוס">
+  </div>
+
+  <div class="content">
+    <p>הנסיעה בסירה למפל ולמערה</p>
+
+    <p>שלא תהיה כאן אי הבנה, אנחנו נמצאים כאן באחד המקומות הכי יפים בלאוס ובטיול שלנו עד עתה. אין כאן כ"כ הרבה מה לעשות כמו בוואנג-וויינג והאמת שהיום ראינו כמעט הכל. בכל מקרה המקום כאן יפה יותר.</p>
+
+    <p>בקשר לאתמול בלילה. אין לי מה להגיד, המקום בית קברות לחיי-לילה. הלכנו פעמיים את הכפר לאורכו. ראינו כמה זוגות במסעדות, כמה גברים בודדים ואף לא בחורה בודדה. ישבנו במסעדה ואכלנו טוב. הקפה הלאוסי טוב, בעיקר בגלל החלב הממותק (של נסטלה) שהם משתמשים בו.</p>
+
+    <p>האור, שבא מגנרטור, פועל בכפר בין השעות 18:00-21:00. אחרי זה יש כיבוי אורות וכולם הולכים לישון. אין חשמל כאן. גם בחדרים יש אור רק בשעות הנ"ל.</p>
+
+    <p>בבוקר קמנו ב- 9:00, אכלנו ארוחת-בוקר במרפסת שלנו והתבוננו בנוף המדהים.</p>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/20020114_gonen_in_long_boat.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020115_river_view.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">נוף מהסירה</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020114_small_children_in_the_water.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">ילדים מקןמיים רוחצים בנהר</div>
+      </div>
+    </div>
+
+    <p>באו דויד האיטלקי ויורגן ההולנדי והצטרפו אלינו לטיול סירות.</p>
+
+    <p>שניהם לוזרים יחסית למוצאם – דויד האיטלקי די לבן ושעיר וחסר את הסקס-אפיל של האיטלקים (חוץ מהמבטא והקללות באיטלקית), יורגן עוד יותר חנון, יש לו שיער שחור עם קצת שיער שיבה והוא גם קצת מקריח ודואג לשים שם קרם הגנה נגד השמש. לא הולנדי טיפוסי. אבל הם נחמדים. מצאנו איתם שפה משותפת, בעיקר על כדורגל.</p>
+
+    <p>בבוקר היה מעונן. העננים היו פחות מ- 100 מטר מעלינו. ראינו רק את תחילת ההרים בצד השני של הנהר. מראה מרהיב.</p>
+
+    <p>לקחנו סירה לראות מפל שנמצא כאן קרוב, חצי-שעה עם זרם הנהר.</p>
+
+    <p><a onclick="openLightbox('../images/20020114_gonen_in_long_boat.jpg')">נסענו בסירה צרה, 70 ס"מ רוחב, 7 מטר אורך</a>, מתנדנדת, אך די יציבה. ישבנו אחד אחרי השני, המים היו 10 ס"מ מקצה הסירה. יכלת להושיט יד בלי להתכופף ולחתוך את המים. גונן עמד והסתיר את הנוף. נדנדתי את הסירה והושבתי אותו. הסתכלתי בנוף המדהים – ההרים הירוקים המלאים בצמחיה הפראית, הסירות עם הדייגים שעוברות, <a onclick="openLightbox('../images/20020114_small_children_in_the_water.jpg')">הילדים המשתכשכים בנהר</a>, להקת הברווזים ששחתה והג'מוסים על גדות הנהר. שקעתי במחשבות, פילוסופיות.</p>
+
+    <div class="photo-pair">
+      <div class="photo-item">
+        <img src="../images/20020115_under_waterfall.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">אנחנו במפל</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020115_rice_fields.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">חלקות אורז</div>
+      </div>
+    </div>
+
+    <p>ברור לי שתנאי הכרחי לאיכות חיים זה דלילות של אנשים. אנחנו רגילים לחיות באיזורים צפופים בבני-אדם, קשה לנו להבין כיצד הלאוסים כל כך חמודים וחייכנים ומברכים אותך לשלום בכנות, וגם הטבע כ"כ שמור ופראי. התשובה לשני אלה זה שאסור שיהיו יותר מדי אנשים – כך הטבע נכבש ונהרס ואדם מתעלם מאדם. אין לי כח להרחיב כאן. בכל מקרה המחשבות בבוקר רצו טוב יותר ויפה יותר. עקרון זה של דלילות בני-אדם או פרו ורבו (אם תפרו – תריבו) אינו מפותח בעיקר בארץ וחבל.</p>
+
+    <p>החננו את הסירה והלכנו בשביל דרך הג'ונגל. הופתעתי שאין חיות בכלל בג'ונגל, הרי כשיש צמחיה פראית יש יתושים וזבובים ויש סכנה של נחשים והמון חרקים. כאן כלום, רק צמחיה פראית. הלכנו כחצי שעה והגענו למפל. הופתעתי לגלות שהסלעים שהמים עוברים עליהם אינם חלקים. רק חשבתי על זה ודויד כמעט החליק, בקבוק המים מינרלים שלו נפל. "אני בסדר" הוא אמר לנו, "You’ve lost the bottle but you won the war" עניתי לו.</p>
+
+    <p>המפל בגובה של כ- 20 מטר, יפה מאד. <a onclick="openLightbox('../images/20020115_under_waterfall.jpg')">אני וגונן נכנסנו למים</a>. הופתעתי שעומק המים רק כ- 20 ס"מ, כאילו להקל עליך להגיע מתחת למפל ולקבל מסאז', במקומות אחרים יש בריכה וצריך לשחות למפל ולהסתכן.</p>
+
+    <p>חזרנו לסירה, נסענו למעלה משעה בכיוון השני (נגד הזרם). הגענו לפתח מערה ממש על שפת הנהר, כששובל של מים נכנס למערה. ירדנו ונכנסנו. בפנים היה בוץ וכשנכנסנו הוא נהיה ממש טובעני. הורדנו הסנדלים לפני שנאבד אותם בבוץ. דויד כמעט איבד את הסנדל שלו. "its mudness" אמרתי לו והוא הנהן בהסכמה. נכנסנו יחפים לעוד אולם. שם היה צריך להכנס קצת למים. המים נהיו מעט עמוקים ודויד ויורגן השתפנו. להפתעתינו גם המדריך המקומי העדיף לא להרטיב את בגדיו ולא להמשיך. אני וגונן נכנסנו פנימה, נכנסנו לעוד חדר וזה לא היה הסוף. המשכנו מעט במים ומעט על הבוץ (כבר לא טובעני) וראינו עוד חדר ועוד חדר. גונן רצה להמשיך והיה בטוח שנגיע לסוף. אני נלחצתי כי עברנו 5 חדרים ולא כ"כ זכרתי את הדרך חזרה. עצרתי אותו והתחלנו לחזור. למזלינו לא הסתבכנו.</p>
+
+    <p>המדריך סיפר לי שהמערה ממשיכה עוד הרבה, היא עולה במעלה ההר ויש פתח יציאה על צלע ההר, בהחלט שווה נסיון.</p>
+
+    <p>חזרנו מרוצים ביותר.</p>
+
+    <p>מחר אנחנו מתכננים טרק של יומיים בהרים, בעיקר כדי לראות כמה שבטים ולישון שם ולחזור למחרת. דיברנו עם מקומי שיודע אנגלית טוב, הוא רצה יותר מ- 10$ עבור זה וזה נראה לנו מוגזם, נסתפק ב- 10$. אני מאד רוצה לעשות את זה. גונן אמר שאני לחוץ על בחורה, כי המדריך אמר שבחורה אמריקאית נרשמה גם לטרק. כשהגעתי לחדר ראיתי את גונן מתכונן למקלחת. הוא הזמין דלי חם. מעניין מאד, הוא אמר שהוא לא צריך להתקלח כי הוא התרחץ במפל. האם זה בגלל הבחורה?</p>
+
+
+  </div>
+
+  <div class="nav-cards">
+    <a href="20020118.html" class="nav-card">
+      <div class="label">הבא →</div>
+      <div class="card-title">הטרק המאכזב</div>
+    </a>
+    <a href="20020115.html" class="nav-card">
+      <div class="label">← הקודם</div>
+      <div class="card-title">הנסיעה למונג-נוי</div>
+    </a>
+  </div>
+
+  <div class="country-nav">
+    <a href="200110052040.html">דנמרק</a>
+    <a href="20011006.html">הודו</a>
+    <a href="20011030.html">נפאל</a>
+    <a href="20011115.html">טרק אנאפורנה</a>
+    <a href="20011210.html">תאילנד</a>
+    <a href="20020108.html">לאוס</a>
+    <a href="20020123.html">צפון תאילנד</a>
+    <a href="20020203.html">אוסטרליה</a>
+    <a href="20020210.html">ניו-זילנד, אי דרומי</a>
+    <a href="20020326.html">ניו-זילנד, אי צפוני</a>
+    <a href="20020506.html">פיליפינים</a>
+    <a href="20020603.html">קמבודיה</a>
   </div>
 
   <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
-    <img id="lightbox-img" src="" alt="Enlarged">
+    <img id="lightbox-img" src="" alt="">
   </div>
-
   <script>
     function openLightbox(src) {
       document.getElementById('lightbox-img').src = src;

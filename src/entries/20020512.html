@@ -3,265 +3,333 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>תחנה מרכזית דרומית, סיבו, האי סיבו, פיליפינים</title>
+  <title>גבעות השוקולד</title>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap" rel="stylesheet">
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background-color: #f8fafc;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0; padding: 20px; color: #334155;
+      background: #ffffff;
+      font-family: 'Heebo', sans-serif;
+      color: #1a1a2e;
+      line-height: 1.9;
     }
-    .container {
-      max-width: 800px; margin: 0 auto; background: #ffffff;
-      padding: 35px; border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06); line-height: 1.8;
+    .top-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #eee;
+      padding: 12px 30px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.9rem;
     }
-    .header {
-      border-bottom: 2px solid #e2e8f0; padding-bottom: 15px;
-      margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center;
+    .top-nav a {
+      color: #1d4ed8; text-decoration: none; font-weight: 600;
     }
-    .header h1 { margin: 0; color: #0f172a; font-size: 1.8rem; }
-    .home-link { color: #2563eb; text-decoration: none; font-weight: 600; }
-    .content img {
-      float: right; margin: 0 0 15px 20px; max-width: 320px; height: auto;
-      border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      cursor: pointer; transition: transform 0.2s;
+    .top-nav a:hover { text-decoration: underline; }
+    .top-nav .nav-links { display: flex; gap: 20px; }
+    .hero {
+      max-width: 900px; margin: 0 auto;
+      padding: 50px 40px 30px;
+      display: flex; align-items: flex-start; gap: 30px;
     }
-    .content img:hover { transform: scale(1.02); }
-    .content::after { content: ""; clear: both; display: table; }
-    a { color: #2563eb; }
+    .hero-text { flex: 1; }
+    .hero-map {
+      width: 120px; height: auto; object-fit: contain;
+      flex-shrink: 0; opacity: 0.85;
+    }
+    .meta-line {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+    }
+    .date-big {
+      font-size: 3.5rem; font-weight: 900; color: #e5e7eb; line-height: 1;
+    }
+    .date-details { font-size: 0.9rem; color: #6b7280; }
+    .country-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      border-radius: 20px; padding: 4px 14px;
+      font-size: 0.8rem; color: #1d4ed8; font-weight: 600;
+    }
+    .title {
+      font-size: 2.2rem; font-weight: 900; color: #111827;
+      margin: 20px 0 8px; line-height: 1.3;
+    }
+    .date-subtitle {
+      font-size: 1.1rem; font-weight: 300; color: #4b5563;
+      margin-bottom: 16px;
+    }
+    .title-divider {
+      width: 60px; height: 4px; background: #1d4ed8; border-radius: 2px;
+    }
+    .content {
+      max-width: 900px; margin: 30px auto; padding: 0 40px; font-size: 1.05rem;
+    }
+    .content p { margin-bottom: 18px; }
+    .content a {
+      color: #1d4ed8; cursor: pointer;
+      text-decoration: underline;
+      text-decoration-color: rgba(29,78,216,0.3);
+    }
+    .photo-block {
+      margin: 30px 0; border-radius: 12px; overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    .photo-block img {
+      width: 100%; display: block; cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .photo-block img:hover { transform: scale(1.01); }
+    .photo-block .caption {
+      padding: 12px 16px; font-size: 0.85rem; color: #6b7280;
+      background: #f9fafb; border-top: 1px solid #f3f4f6;
+    }
+    .photo-pair {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 14px; margin: 30px 0;
+    }
+    .photo-pair .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-pair .photo-item img {
+      width: 100%; height: 200px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-pair .photo-item img:hover { transform: scale(1.03); }
+    .photo-pair .photo-item .caption {
+      padding: 8px 12px; font-size: 0.8rem; color: #6b7280; background: #f9fafb;
+    }
+    .photo-trio {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px; margin: 30px 0;
+    }
+    .photo-trio .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-trio .photo-item img {
+      width: 100%; height: 180px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-trio .photo-item img:hover { transform: scale(1.03); }
+    .photo-trio .photo-item .caption {
+      padding: 8px 10px; font-size: 0.78rem; color: #6b7280; background: #f9fafb;
+    }
+    .nav-cards {
+      max-width: 900px; margin: 50px auto 20px; padding: 0 40px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .nav-card {
+      padding: 20px 24px; border: 1px solid #e5e7eb; border-radius: 12px;
+      text-decoration: none; color: inherit; transition: all 0.2s;
+    }
+    .nav-card:hover {
+      border-color: #1d4ed8; box-shadow: 0 4px 12px rgba(29,78,216,0.1);
+    }
+    .nav-card .label { font-size: 0.8rem; color: #6b7280; margin-bottom: 4px; }
+    .nav-card .card-title { font-weight: 700; font-size: 1rem; color: #1d4ed8; }
+    .supplements {
+      margin-top: 35px; padding: 25px 30px;
+      background: #f9fafb; border-radius: 12px; border: 1px solid #e5e7eb;
+    }
+    .supplements h3 {
+      font-size: 1.1rem; font-weight: 700; margin-bottom: 14px; color: #374151;
+    }
+    .supplements ol { padding-right: 20px; }
+    .supplements li { margin-bottom: 10px; color: #4b5563; }
+    .country-nav {
+      max-width: 900px; margin: 20px auto 40px; padding: 0 40px;
+      display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+    }
+    .country-nav a {
+      padding: 6px 14px; border-radius: 20px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      color: #1d4ed8; text-decoration: none;
+      font-size: 0.82rem; font-weight: 600;
+      transition: all 0.2s;
+    }
+    .country-nav a:hover {
+      background: #1d4ed8; color: white; border-color: #1d4ed8;
+    }
     .lightbox {
       display: none; position: fixed; z-index: 9999;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.9); justify-content: center; align-items: center; cursor: pointer;
+      background: rgba(0,0,0,0.92);
+      justify-content: center; align-items: center; cursor: pointer;
     }
-    .lightbox img { max-width: 90%; max-height: 90%; border-radius: 8px; }
+    .lightbox img { max-width: 92%; max-height: 92%; border-radius: 8px; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h1>תחנה מרכזית דרומית, סיבו, האי סיבו, פיליפינים</h1>
-      <a href="../index.html" class="home-link">🏠 לעמוד הראשי</a>
+  <div class="top-nav">
+    <div class="nav-links">
+      <a href="../index.html">עמוד ראשי</a>
     </div>
-    <div class="content">
-      <body>
-<table cellpadding="0" cellspacing="0" height="80" width="954">
-<tr>
-<td align="center" height="80" width="277">
-<marquee style="font-size: 18pt; color: #800080">12.5.02 - 9:00</marquee></td>
-<td align="center" height="80" width="667">
-<!--webbot bot="Navigation" s-type="banner" s-rendering="graphics" S-Orientation B-Include-Home B-Include-Up U-Page S-Target startspan --><!--webbot bot="Navigation" i-checksum="60806" endspan --></td>
-<td align="center" height="80" width="10">
-<img border="0" height="2" onclick="openLightbox(this.src)" src="../images/20020322_fishermen.jpg" title="לחץ להגדלה" width="1"/><img border="0" height="164" onclick="openLightbox(this.src)" src="../images/Philippines.gif" title="לחץ להגדלה" width="164"/></td>
-</tr>
-<tr>
-<td colspan="3" height="1" style=" " width="954"></td>
-</tr>
-</table><table cellpadding="0" cellspacing="0" width="100%">
-<tr>
-<td align="right" style=" ">
-<h4>
-<marquee style="font-size: 24pt; color: #008080">גבעות השוקולד</marquee></h4>
-<p> </p></td>
-</tr>
-</table>
-<table cellpadding="0" cellspacing="0" height="333" width="953">
-<tr>
-<td height="333" rowspan="2" style="       " valign="top" width="140"> <!--webbot bot="Navigation" S-Type="sequence" S-Orientation="vertical" S-Rendering="graphics" S-Theme="blocks 000" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><!--webbot bot="Navigation" i-checksum="23763" endspan --><p> </p>
-</td>
-<td height="333" rowspan="2" style="     " valign="top" width="1"></td>
-<td colspan="2" height="266" style="     " valign="top" width="735">
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">את רוב היומיים האחרונים 
-    העברתי על אופנוע, אבל במושב האחורי, וזה הדבר השלילי היחידי שהיה בזמן הזה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">קפצתי למים עוד פעם עם 
-    השנורקל. הפעם שחיתי במשך שעתיים. המים לא עמוקים, כ- 2 מטר. המון כוכבי-ים 
-    מנופחים, נראים כמו אוזני המן עם נקודות שחורות כאילו הם שרופים. יש גם המון 
-    כוכבי-ים עם רגלים דקות וסגולות. אלה אמרו לי, לא מסוכנים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">במרחק 50 מטר מהחוף יש 
-    תהום. המים בצבע כחול חזק. בהתחלה, כשאתה שוחה מעל זה, אתה מרגיש כמו בבנג'י, 
-    כאילו אתה הולך ליפול. תהום יפה יותר ראיתי מזמן בראס-מוחמד בסיני. כך שחיתי 
-    לאורך המצוק. לא ראיתי דגים גדולים, מקסימום תוכונים קטנים, אבל היו אלמוגים 
-    וצמחיה יפה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">יצאתי מהמים. גונן כבר ישן 
-    בחדר. אח"כ התחלפנו. הוא לקח את השנורקל ואני נחתי. בערב אכלנו. גונן קבע מסאז' 
-    עם מקומית, שאם יהיה טוב, אני אעשה גם.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בסוף קיבלנו שנינו מסאז' 
-    מעולה תמורת 200 פזו כל אחד (שעה).</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הלכנו באי לחפש חיי לילה. 
-    ראינו קצת אצל הסרטנים, אבל זהו. חזרנו והלכנו לצד השני של החוף, שם מיצינו את 
-    החוף די מהר.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">כמה מקומיים הציעו לנו 
-    להתיישב איתם. ישבנו ושתינו יין שעשוי מקוקוס. היה מגעיל ואמרתי את זה להם. 
-    אכלנו דג שהם שלו מהמים – סאסא, ואיזה קוריאני, לי (</span><span dir="LTR">Lee</span><span lang="HE">), 
-    הציע לנו יין קוריאני שהיה חזק כמו ג'ין.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">החוויות האותנטיות כאן 
-    קורות עם חברה מקומיים, עם משפחות, לא עם בחורות. זה הכיוון שלנו – קל להכיר 
-    כאן בחורות מקומיות, אבל זה במתכונת זנות. החוויה האמיתית זה שאנשים מקומיים 
-    מכניסים אותך לבתיהם.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בבוקר קמנו מוקדם להשיג 
-    אופנוע. לא אגזים אם אגיד שגונן העיר אותי והאיץ בי. הלכנו לנו ב- 7:30, 
-    מתגנבים דרך החוף לבחור שקבענו לשכור ממנו אופנוע. גונן פיזר הרבה הבטחות יום 
-    לפני-כן ופחד להתפס. באמצע הדרך הוא נתפס. גונן גמגם והסס, אך בסוף לקחנו 
-    אופנוע ממי שרצינו, בחור שקט ואמין.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">האופנוע שגונן בחר הוא
-    </span><span dir="LTR">Honda xlr</span><span lang="HE">, נפח 200 סמ"ק, אופנוע 
-    שטח. אין הכנה להרכבה, אין משענת גב ואין ממש איפה להחזיק. לאופנוע יש כח 
-    וכשלוחצים על הגז הוא מזנק קדימה. המורכב, אם הוא לא אוחז היטב, יכול לעוף 
-    אחורה. הפתרון, להחזיק בנהג (בגונן), אולי במתניו, וכך אין סיכוי שהמורכב יעוף. 
-    הכרעה: לא אפשרי, קטע הומואי ביותר. שווה להסתכן ולא לגעת בגבר אחר. ביקשתי 
-    מגונן שייתן גז בקטנה, והוא השתדל. גם באופנוע וגם במכונית יש לו סגנון נסיעה 
-    דומה: בהייה ותוך כדי הבהייה הוא מוריד את הרגל/יד מהגז ואח"כ התעוררות ואז 
-    לחיצה פתאומית על הגז. הוא השתדל ואני לא עפתי, אך החזקתי חזק עד שידי נתפסו 
-    ועד עכשיו רדומה לי קצה האצבע ביד ימין. האופנוע שמור – מד המהירות 
-    והקילומטראז' עובדים ואת זה לא ראיתי באף אופנוע עד כה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">נסענו לעיר הגדולה באי – 
-    טאגבילאראן. צריך לחצות את האי הקטן שלנו, פאנגלאו, לאורכו (כ- 20 ק"מ אורך וכ- 
-    4 ק"מ רוחב).</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בעיר היתה תנועה אדירה, 
-    בעיקר תלת-אופן שנוסעים כמו משוגעים וכמה ילדים העיקו עלינו רציני. השגנו את 
-    שרצינו, כולל כרטיס לשוט חזרה ל- </span><span dir="LTR">cebu</span><span lang="HE"> 
-    לאותו ערב.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">יצאנו לדרכנו – המטרה – 
-    גבעות השוקולד, מרחק 55 ק"מ מהעיר. נסענו וחזינו בנוף פראי – שדות אורז, ברקע 
-    עצי קוקוס ובתי קש בכל מקום – אין ספק, האי מיושב.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">עצרנו ב<a href="images/pictures/philippines/20020512_statue_in_tagbilaran.jpg" target="_blank">פסל ברית הדמים</a> – 
-    בין מי למי? – מגלן ועוד מישהו. פגשנו מדריך תיירים מקומי, מיקי, לוקח את משפחת 
-    איזה סנטור לסיבוב. המשכנו איתם עד לתחנה הבאה – כנסיית </span>
-<span dir="LTR">Baclayon</span><span lang="HE">. השניה הכי עתיקה בפיליפינים. 
-    הכי עתיקה נמצאת במנילה, בת כמעט 300 שנה. נחמד, גדול אך לא מרשים. היה שם גם 
-    מוזיאון שקשור לכנסיה – סתם.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">המשכנו עד לעיר </span>
-<span dir="LTR">Loboc</span><span lang="HE">, שם עצרנו לראות את הקוף שנחשב 
-    לקטן בעולם, קוף הטנזיר. נחשב, כי כנראה יש אחד קטן יותר באפריקה. גודלו כאגרוף 
-    עם זנב ארוך. אצבעותיו ארוכות ודקות כגפרור ועיניו גדולות מאד. כשהוא נוגע בך, 
-    ו<a href="images/pictures/philippines/20020512_malik&amp;tiny_monkeys.jpg" target="_blank">שמו לי כמה כאלה על היד</a>, הוא עדין וכשהוא הולך, הוא מקפץ כמו קנגורו. החברה שם 
-    לא דרשו כסף תמורת התמונות עם הקופים, אז שמנו תרומה של 20 פזו כל אחד.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">המשכנו בנסיעה, הדרך נהייתה 
-    מפותלת. באמצע הדרך פתאם צל, קרירות. יש יער מעשה ידי אדם עם עצים גבוהים 
-    המצילים מהשמש ומקרים את הכביש. ממש יפה וארוך – כקילומטר.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אח"כ התחלנו לראות את גבעות 
-    השוקולד. 
-    <a href="images/pictures/philippines/20020512_gonen&amp;motorbike.jpg" target="_blank">עצרנו לנוח ולהצטלם. יצאו אלינו כמה חברה מקומיים</a>. ראו שהם מתלהבים 
-    מתיירים, והזמינו אותנו פנימה. חדר קטן בצריף. 
-    <a href="images/pictures/philippines/20020512_us&amp;family.jpg" target="_blank">נדחסו – אמא, כמה בנות והמון 
-    ילדים</a>. האמא דיברה והסבירה והזמינה אותנו לאכול. אכלנו, הצטלמנו, נחנו והבטחנו 
-    לחזור.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אבולוצית הנחמדות: בהתחלה, 
-    לפני הטיול זה הישראלים (סתם!), אח"כ ההודים – מסבירי פנים, נחמדים יותר הם 
-    הנפאלים – נחמדים ועוזרים, אח"כ נחמדים יותר הלאוסים – חייכנים ולא רוצים 
-    תמורה. אח"כ נחמדים עוד יותר – הניו-זילנדים – מכניסים אותך לבתיהם ונותנים לך 
-    אוכל ומקום לישון ועכשיו הפיליפינים – מכניסים אותך לבתיהם, נותנים לך לאכול, 
-    ואין להם כלום, ממש עניים, מוציאים אוכל מהפה שלהם כדי לתת לך.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">נסענו עוד 7 ק"מ עד לתצפית 
-    על הגבעות. מדהים!. כל האזור שטוח לחלוטין. בכלל, בפיליפינים, להבדיל מהאיים 
-    בתאילנד ובניו-זילנד, יש איים שטוחים. המון שטח ליישוב ולחקלאות. וכך 
-    <a href="images/pictures/philippines/20020512_chocolate_hills.jpg" target="_blank">הכל שטוח 
-    ופתאם יוצאות לך הגבעות האלה מהאדמה, בצורת חצי כדור מושלם, כמו בונבונירות 
-    בקופסה</a>, בהמוניהם. יש 1268 כאלה. גובהם (או הרדיוס שלהם) בין 20 ל- 50 מטר – 
-    תופעת טבע מדהימה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">חזרנו משם ו<a href="images/pictures/philippines/20020512_gonen&amp;local_family.jpg" target="_blank">עצרנו אצל 
-    המשפחה המקומית ממקודם</a>. קנינו לילדים סוכריות ושתינו משקה קוקוס עם חלב מקומי. 
-    גונן אמר שיש לזה טעם של שפיך. אני אישית לא יודע איזה טעם יש לשפיך אז נשאר לי 
-    לסמוך עליו, אבל את המשקה הזה יצא לי לטעום בתאילנד.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">מיהרנו לחזור, נהיה מאוחר. 
-    היה חם ומדי פעם עצרנו. כל הפרצוף שלי נהיה שחור, כאילו מרחתי איפור. כנראה מזה 
-    שהחזקתי באופנוע ואחרי זה ניגבתי זיעה. כשחזרנו, הסתכלתי על עצמי במראה בחדר 
-    וראיתי עד כמה מגוחך נראיתי.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">החזרנו את האופנוע. המשכיר 
-    בדק בחשדנות. עשינו </span><span dir="LTR">check-out</span><span lang="HE"> 
-    ללא בעיות (היה כבר 17:00). הציעו לנו הסעה בוואן לרציף במחיר יקר אז יצאנו 
-    לחפש הסעה אחרת. אני התעכבתי לראות משחק </span><span dir="LTR">NBA</span><span lang="HE"> 
-    והפסדנו את הוואן. גונן ניסה להתעצבן עלי אבל אז שאלתי אותו למה הוא לא נתן לי 
-    לראות את המשחק והלך לקבוע עם הוואן, כמו שאני תמיד עושה כשהוא נשאר 
-    לשמור/לישון על הדברים ואני מתרוצץ. הוא שתק.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בסוף לקחנו 2 אופנועים 
-    באותו מחיר שהוואן רצה. עכשיו שוב הייתי מורכב וגם גונן. כך סגרתי קרוב ל- 200 
-    ק"מ מורכב על אופנוע.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">לקחנו מעבורת בלילה ל-
-    </span><span dir="LTR">Cebu</span><span lang="HE"> ונרדמנו בתאים הפנימיים, 
-    חסרי החלונות.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בבוקר גילינו שאפשר עוד 
-    להשאר לישון. המעבורת הגיעה ל- </span><span dir="LTR">Cebu</span><span lang="HE"> 
-    ב- 3:30. אנחנו נשארנו לישון עד 8:00.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">גילינו שאין היום (יום 
-    ראשון) סירה ל- </span><span dir="LTR">Ilo Ilo</span><span lang="HE">, התחנה 
-    הבאה שלנו, אז אנחנו כאן בתחנת האוטובוס מחכים לאוטובוס לעיר בשם </span>
-<span dir="LTR">Bacolod</span><span lang="HE">, משם נמשיך בסירה ל- </span>
-<span dir="LTR">Ilo Ilo</span><span lang="HE">.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">החום עז ואנחנו עוד בצל. 
-    אני כותב ומזיע. החום מכניע, לופת אותי באחיזת נלסון ואין לי מנוסה. אני מוריד 
-    חולצה ומנפנף. מזיע ומנפנף. אפילו לגונן חם והוא צועק לי שבא לו להסתובב ערום, 
-    לא אכפת לו מאלפי האנשים שמציפים את התחנה.</span></b></p>
-<p> </p></td>
-<td align="center" height="333" rowspan="2" style="     " valign="top" width="187">
-
-<img border="0" height="125" onclick="openLightbox(this.src)" src="../images/20020512_statue_in_tagbilaran.jpg" title="לחץ להגדלה" width="180"/><p>
-<font color="#660099">פסל ברית הדמים</font></p>
-<p> </p>
-<p>
-
-<img border="0" height="141" onclick="openLightbox(this.src)" src="../images/20020512_gonen&amp;tiny_monkeys.jpg" title="לחץ להגדלה" width="182"/></p>
-<p>
-
-<img border="0" height="213" onclick="openLightbox(this.src)" src="../images/20020512_malik&amp;tiny_monkeys.jpg" title="לחץ להגדלה" width="141"/></p>
-<p><font color="#660099">קוף הטנזיר, הקוף הקטן בעולם</font></p>
-<p>
-
-<img border="0" height="128" onclick="openLightbox(this.src)" src="../images/20020512_us_in_loboc.jpg" title="לחץ להגדלה" width="183"/></p>
-<p><font color="#660099">ליד הנחל, ללא הקופים</font></p>
-<p> </p>
-<p>
-
-<img border="0" height="116" onclick="openLightbox(this.src)" src="../images/20020512_gonen&amp;motorbike.jpg" title="לחץ להגדלה" width="180"/></p>
-<p><font color="#660099">עצרנו להצטלם. הגיעו ילדים מקומיים</font></p>
-<p>
-
-<img border="0" height="125" onclick="openLightbox(this.src)" src="../images/20020512_us&amp;family.jpg" title="לחץ להגדלה" width="182"/></p>
-<p><font color="#660099">מיד הזמינו אותנו פנימה לבקתה שלהם</font></p>
-<p> </p>
-<p>
-
-<img border="0" height="125" onclick="openLightbox(this.src)" src="../images/20020512_chocolate_hills.jpg" title="לחץ להגדלה" width="182"/></p>
-<p>
-
-<img border="0" height="125" onclick="openLightbox(this.src)" src="../images/20020512_chocolate_hills_2.jpg" title="לחץ להגדלה" width="183"/></p>
-<p><font color="#660099">גבעות השוקולד. כל אחת בגובה של כ- 50 מטר. יש למעלה 
-    מאלף כאלה באזור</font></p>
-<p> </p>
-<p>
-
-<img border="0" height="126" onclick="openLightbox(this.src)" src="../images/20020512_gonen&amp;local_family.jpg" title="לחץ להגדלה" width="181"/></p>
-<p><font color="#660099">חזרנו ועצרנו אצל המשפחה ממקודם</font></p>
-<p> </p>
-<p> </p>
-<p> </p>
-<p> </p>
-<p> </p></td>
-</tr>
-<tr>
-<td height="67" style="     " valign="top" width="314">
-<b>
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button104.gif" title="לחץ להגדלה" width="59"/></b></td>
-<td height="67" style="     " valign="top" width="421">
-<p align="right"><b>
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button106.gif" title="לחץ להגדלה" width="59"/></b></p></td>
-</tr>
-</table>
-<p align="center">
-<!--webbot bot="Navigation" S-Type="sequence" S-Orientation="horizontal" S-Rendering="html" S-Bar="Brackets" S-Btn-Nml="[&lt;A HREF=&quot;#URL#&quot; TARGET=&quot;#TARGET#&quot; STYLE=&quot;{text-decoration: none;}&quot;&gt;#LABEL#&lt;/A&gt;]" S-Btn-Sel="[#LABEL#]" S-Btn-Sep="&amp;nbsp;" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><nobr>[<a href="index.html" style="{text-decoration: none;}" target="">התחלה</a>]</nobr> <nobr>[<a href="200110052040.html" style="{text-decoration: none;}" target="">דנמרק</a>]</nobr> <nobr>[<a href="20011006.html" style="{text-decoration: none;}" target="">הודו</a>]</nobr> <nobr>[<a href="20011030.html" style="{text-decoration: none;}" target="">נפאל</a>]</nobr> <nobr>[<a href="20011115.html" style="{text-decoration: none;}" target="">טרק סובב אנאפורנה</a>]</nobr> <nobr>[<a href="20011210.html" style="{text-decoration: none;}" target="">תאילנד</a>]</nobr> <nobr>[<a href="20020108.html" style="{text-decoration: none;}" target="">לאוס</a>]</nobr> <nobr>[<a href="20020123.html" style="{text-decoration: none;}" target="">צפון תאילנד</a>]</nobr> <nobr>[<a href="20020203.html" style="{text-decoration: none;}" target="">אוסטרליה</a>]</nobr> <nobr>[<a href="20020210.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי דרומי</a>]</nobr> <nobr>[<a href="20020326.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי צפוני</a>]</nobr> <nobr>[<a href="20020506.html" style="{text-decoration: none;}" target="">פיליפינים</a>]</nobr> <nobr>[<a href="20020603.html" style="{text-decoration: none;}" target="">קמבודיה</a>]</nobr><!--webbot bot="Navigation" i-checksum="33824" endspan --></p>
-<p><i><small>This site was last updated
-<!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%m/%d/%y" startspan -->07/17/03<!--webbot bot="Timestamp" i-checksum="12722" endspan --> </small></i>
-</p>
-</body>
+    <div class="nav-links">
+      <a href="20020510.html">← הקודם</a>
+      <a href="200205122100.html">הבא →</a>
     </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-text">
+      <div class="meta-line">
+        <span class="date-big">12</span>
+        <div>
+          <div class="date-details">מאי 2002</div>
+          <span class="country-badge">פיליפינים</span>
+        </div>
+      </div>
+      <h1 class="title">גבעות השוקולד</h1>
+      <div class="title-divider"></div>
+    </div>
+    <img class="hero-map" src="../images/Philippines.gif" alt="פיליפינים">
+  </div>
+
+  <div class="content">
+    <p>גבעות השוקולד</p>
+
+    <p>את רוב היומיים האחרונים העברתי על אופנוע, אבל במושב האחורי, וזה הדבר השלילי היחידי שהיה בזמן הזה.</p>
+
+    <p>קפצתי למים עוד פעם עם השנורקל. הפעם שחיתי במשך שעתיים. המים לא עמוקים, כ- 2 מטר. המון כוכבי-ים מנופחים, נראים כמו אוזני המן עם נקודות שחורות כאילו הם שרופים. יש גם המון כוכבי-ים עם רגלים דקות וסגולות. אלה אמרו לי, לא מסוכנים.</p>
+
+    <p>במרחק 50 מטר מהחוף יש תהום. המים בצבע כחול חזק. בהתחלה, כשאתה שוחה מעל זה, אתה מרגיש כמו בבנג'י, כאילו אתה הולך ליפול. תהום יפה יותר ראיתי מזמן בראס-מוחמד בסיני. כך שחיתי לאורך המצוק. לא ראיתי דגים גדולים, מקסימום תוכונים קטנים, אבל היו אלמוגים וצמחיה יפה.</p>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/20020322_fishermen.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020512_statue_in_tagbilaran.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">פסל ברית הדמים</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020512_gonen&tiny_monkeys.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+    </div>
+
+    <p>יצאתי מהמים. גונן כבר ישן בחדר. אח"כ התחלפנו. הוא לקח את השנורקל ואני נחתי. בערב אכלנו. גונן קבע מסאז' עם מקומית, שאם יהיה טוב, אני אעשה גם.</p>
+
+    <p>בסוף קיבלנו שנינו מסאז' מעולה תמורת 200 פזו כל אחד (שעה).</p>
+
+    <p>הלכנו באי לחפש חיי לילה. ראינו קצת אצל הסרטנים, אבל זהו. חזרנו והלכנו לצד השני של החוף, שם מיצינו את החוף די מהר.</p>
+
+    <p>כמה מקומיים הציעו לנו להתיישב איתם. ישבנו ושתינו יין שעשוי מקוקוס. היה מגעיל ואמרתי את זה להם. אכלנו דג שהם שלו מהמים – סאסא, ואיזה קוריאני, לי (Lee), הציע לנו יין קוריאני שהיה חזק כמו ג'ין.</p>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/20020512_malik&tiny_monkeys.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">קוף הטנזיר, הקוף הקטן בעולם</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020512_us_in_loboc.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">ליד הנחל, ללא הקופים</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020512_gonen&motorbike.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">עצרנו להצטלם. הגיעו ילדים מקומיים</div>
+      </div>
+    </div>
+
+    <p>החוויות האותנטיות כאן קורות עם חברה מקומיים, עם משפחות, לא עם בחורות. זה הכיוון שלנו – קל להכיר כאן בחורות מקומיות, אבל זה במתכונת זנות. החוויה האמיתית זה שאנשים מקומיים מכניסים אותך לבתיהם.</p>
+
+    <p>בבוקר קמנו מוקדם להשיג אופנוע. לא אגזים אם אגיד שגונן העיר אותי והאיץ בי. הלכנו לנו ב- 7:30, מתגנבים דרך החוף לבחור שקבענו לשכור ממנו אופנוע. גונן פיזר הרבה הבטחות יום לפני-כן ופחד להתפס. באמצע הדרך הוא נתפס. גונן גמגם והסס, אך בסוף לקחנו אופנוע ממי שרצינו, בחור שקט ואמין.</p>
+
+    <p>האופנוע שגונן בחר הוא Honda xlr, נפח 200 סמ"ק, אופנוע שטח. אין הכנה להרכבה, אין משענת גב ואין ממש איפה להחזיק. לאופנוע יש כח וכשלוחצים על הגז הוא מזנק קדימה. המורכב, אם הוא לא אוחז היטב, יכול לעוף אחורה. הפתרון, להחזיק בנהג (בגונן), אולי במתניו, וכך אין סיכוי שהמורכב יעוף. הכרעה: לא אפשרי, קטע הומואי ביותר. שווה להסתכן ולא לגעת בגבר אחר. ביקשתי מגונן שייתן גז בקטנה, והוא השתדל. גם באופנוע וגם במכונית יש לו סגנון נסיעה דומה: בהייה ותוך כדי הבהייה הוא מוריד את הרגל/יד מהגז ואח"כ התעוררות ואז לחיצה פתאומית על הגז. הוא השתדל ואני לא עפתי, אך החזקתי חזק עד שידי נתפסו ועד עכשיו רדומה לי קצה האצבע ביד ימין. האופנוע שמור – מד המהירות והקילומטראז' עובדים ואת זה לא ראיתי באף אופנוע עד כה.</p>
+
+    <p>נסענו לעיר הגדולה באי – טאגבילאראן. צריך לחצות את האי הקטן שלנו, פאנגלאו, לאורכו (כ- 20 ק"מ אורך וכ- 4 ק"מ רוחב).</p>
+
+    <div class="photo-pair">
+      <div class="photo-item">
+        <img src="../images/20020512_us&family.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">מיד הזמינו אותנו פנימה לבקתה שלהם</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020512_chocolate_hills.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+    </div>
+
+    <p>בעיר היתה תנועה אדירה, בעיקר תלת-אופן שנוסעים כמו משוגעים וכמה ילדים העיקו עלינו רציני. השגנו את שרצינו, כולל כרטיס לשוט חזרה ל- cebu לאותו ערב.</p>
+
+    <p>יצאנו לדרכנו – המטרה – גבעות השוקולד, מרחק 55 ק"מ מהעיר. נסענו וחזינו בנוף פראי – שדות אורז, ברקע עצי קוקוס ובתי קש בכל מקום – אין ספק, האי מיושב.</p>
+
+    <p>עצרנו ב<a onclick="openLightbox('../images/20020512_statue_in_tagbilaran.jpg')">פסל ברית הדמים</a> – בין מי למי? – מגלן ועוד מישהו. פגשנו מדריך תיירים מקומי, מיקי, לוקח את משפחת איזה סנטור לסיבוב. המשכנו איתם עד לתחנה הבאה – כנסיית Baclayon. השניה הכי עתיקה בפיליפינים. הכי עתיקה נמצאת במנילה, בת כמעט 300 שנה. נחמד, גדול אך לא מרשים. היה שם גם מוזיאון שקשור לכנסיה – סתם.</p>
+
+    <p>המשכנו עד לעיר Loboc, שם עצרנו לראות את הקוף שנחשב לקטן בעולם, קוף הטנזיר. נחשב, כי כנראה יש אחד קטן יותר באפריקה. גודלו כאגרוף עם זנב ארוך. אצבעותיו ארוכות ודקות כגפרור ועיניו גדולות מאד. כשהוא נוגע בך, ו<a onclick="openLightbox('../images/20020512_malik&tiny_monkeys.jpg')">שמו לי כמה כאלה על היד</a>, הוא עדין וכשהוא הולך, הוא מקפץ כמו קנגורו. החברה שם לא דרשו כסף תמורת התמונות עם הקופים, אז שמנו תרומה של 20 פזו כל אחד.</p>
+
+    <div class="photo-pair">
+      <div class="photo-item">
+        <img src="../images/20020512_chocolate_hills_2.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">גבעות השוקולד. כל אחת בגובה של כ- 50 מטר. יש למעלה 
+    מאלף כאלה באזור</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020512_gonen&local_family.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">חזרנו ועצרנו אצל המשפחה ממקודם</div>
+      </div>
+    </div>
+
+    <p>המשכנו בנסיעה, הדרך נהייתה מפותלת. באמצע הדרך פתאם צל, קרירות. יש יער מעשה ידי אדם עם עצים גבוהים המצילים מהשמש ומקרים את הכביש. ממש יפה וארוך – כקילומטר.</p>
+
+    <p>אח"כ התחלנו לראות את גבעות השוקולד. <a onclick="openLightbox('../images/20020512_gonen&motorbike.jpg')">עצרנו לנוח ולהצטלם. יצאו אלינו כמה חברה מקומיים</a>. ראו שהם מתלהבים מתיירים, והזמינו אותנו פנימה. חדר קטן בצריף. <a onclick="openLightbox('../images/20020512_us&family.jpg')">נדחסו – אמא, כמה בנות והמון ילדים</a>. האמא דיברה והסבירה והזמינה אותנו לאכול. אכלנו, הצטלמנו, נחנו והבטחנו לחזור.</p>
+
+    <p>אבולוצית הנחמדות: בהתחלה, לפני הטיול זה הישראלים (סתם!), אח"כ ההודים – מסבירי פנים, נחמדים יותר הם הנפאלים – נחמדים ועוזרים, אח"כ נחמדים יותר הלאוסים – חייכנים ולא רוצים תמורה. אח"כ נחמדים עוד יותר – הניו-זילנדים – מכניסים אותך לבתיהם ונותנים לך אוכל ומקום לישון ועכשיו הפיליפינים – מכניסים אותך לבתיהם, נותנים לך לאכול, ואין להם כלום, ממש עניים, מוציאים אוכל מהפה שלהם כדי לתת לך.</p>
+
+    <p>נסענו עוד 7 ק"מ עד לתצפית על הגבעות. מדהים!. כל האזור שטוח לחלוטין. בכלל, בפיליפינים, להבדיל מהאיים בתאילנד ובניו-זילנד, יש איים שטוחים. המון שטח ליישוב ולחקלאות. וכך <a onclick="openLightbox('../images/20020512_chocolate_hills.jpg')">הכל שטוח ופתאם יוצאות לך הגבעות האלה מהאדמה, בצורת חצי כדור מושלם, כמו בונבונירות בקופסה</a>, בהמוניהם. יש 1268 כאלה. גובהם (או הרדיוס שלהם) בין 20 ל- 50 מטר – תופעת טבע מדהימה.</p>
+
+    <p>חזרנו משם ו<a onclick="openLightbox('../images/20020512_gonen&local_family.jpg')">עצרנו אצל המשפחה המקומית ממקודם</a>. קנינו לילדים סוכריות ושתינו משקה קוקוס עם חלב מקומי. גונן אמר שיש לזה טעם של שפיך. אני אישית לא יודע איזה טעם יש לשפיך אז נשאר לי לסמוך עליו, אבל את המשקה הזה יצא לי לטעום בתאילנד.</p>
+
+    <p>מיהרנו לחזור, נהיה מאוחר. היה חם ומדי פעם עצרנו. כל הפרצוף שלי נהיה שחור, כאילו מרחתי איפור. כנראה מזה שהחזקתי באופנוע ואחרי זה ניגבתי זיעה. כשחזרנו, הסתכלתי על עצמי במראה בחדר וראיתי עד כמה מגוחך נראיתי.</p>
+
+    <p>החזרנו את האופנוע. המשכיר בדק בחשדנות. עשינו check-out ללא בעיות (היה כבר 17:00). הציעו לנו הסעה בוואן לרציף במחיר יקר אז יצאנו לחפש הסעה אחרת. אני התעכבתי לראות משחק NBA והפסדנו את הוואן. גונן ניסה להתעצבן עלי אבל אז שאלתי אותו למה הוא לא נתן לי לראות את המשחק והלך לקבוע עם הוואן, כמו שאני תמיד עושה כשהוא נשאר לשמור/לישון על הדברים ואני מתרוצץ. הוא שתק.</p>
+
+    <p>בסוף לקחנו 2 אופנועים באותו מחיר שהוואן רצה. עכשיו שוב הייתי מורכב וגם גונן. כך סגרתי קרוב ל- 200 ק"מ מורכב על אופנוע.</p>
+
+    <p>לקחנו מעבורת בלילה ל- Cebu ונרדמנו בתאים הפנימיים, חסרי החלונות.</p>
+
+    <p>בבוקר גילינו שאפשר עוד להשאר לישון. המעבורת הגיעה ל- Cebu ב- 3:30. אנחנו נשארנו לישון עד 8:00.</p>
+
+    <p>גילינו שאין היום (יום ראשון) סירה ל- Ilo Ilo, התחנה הבאה שלנו, אז אנחנו כאן בתחנת האוטובוס מחכים לאוטובוס לעיר בשם Bacolod, משם נמשיך בסירה ל- Ilo Ilo.</p>
+
+    <p>החום עז ואנחנו עוד בצל. אני כותב ומזיע. החום מכניע, לופת אותי באחיזת נלסון ואין לי מנוסה. אני מוריד חולצה ומנפנף. מזיע ומנפנף. אפילו לגונן חם והוא צועק לי שבא לו להסתובב ערום, לא אכפת לו מאלפי האנשים שמציפים את התחנה.</p>
+
+    <p>גבעות השוקולד. כל אחת בגובה של כ- 50 מטר. יש למעלה מאלף כאלה באזור</p>
+
+
+  </div>
+
+  <div class="nav-cards">
+    <a href="200205122100.html" class="nav-card">
+      <div class="label">הבא →</div>
+      <div class="card-title">בדרכים</div>
+    </a>
+    <a href="20020510.html" class="nav-card">
+      <div class="label">← הקודם</div>
+      <div class="card-title">בוהול</div>
+    </a>
+  </div>
+
+  <div class="country-nav">
+    <a href="200110052040.html">דנמרק</a>
+    <a href="20011006.html">הודו</a>
+    <a href="20011030.html">נפאל</a>
+    <a href="20011115.html">טרק אנאפורנה</a>
+    <a href="20011210.html">תאילנד</a>
+    <a href="20020108.html">לאוס</a>
+    <a href="20020123.html">צפון תאילנד</a>
+    <a href="20020203.html">אוסטרליה</a>
+    <a href="20020210.html">ניו-זילנד, אי דרומי</a>
+    <a href="20020326.html">ניו-זילנד, אי צפוני</a>
+    <a href="20020506.html">פיליפינים</a>
+    <a href="20020603.html">קמבודיה</a>
   </div>
 
   <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
-    <img id="lightbox-img" src="" alt="Enlarged">
+    <img id="lightbox-img" src="" alt="">
   </div>
-
   <script>
     function openLightbox(src) {
       document.getElementById('lightbox-img').src = src;

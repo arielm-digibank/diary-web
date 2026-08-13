@@ -3,183 +3,278 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>פוקארה, נפאל</title>
+  <title>הצלה מ(ב)אונס</title>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap" rel="stylesheet">
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background-color: #f8fafc;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0; padding: 20px; color: #334155;
+      background: #ffffff;
+      font-family: 'Heebo', sans-serif;
+      color: #1a1a2e;
+      line-height: 1.9;
     }
-    .container {
-      max-width: 800px; margin: 0 auto; background: #ffffff;
-      padding: 35px; border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06); line-height: 1.8;
+    .top-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #eee;
+      padding: 12px 30px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.9rem;
     }
-    .header {
-      border-bottom: 2px solid #e2e8f0; padding-bottom: 15px;
-      margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center;
+    .top-nav a {
+      color: #1d4ed8; text-decoration: none; font-weight: 600;
     }
-    .header h1 { margin: 0; color: #0f172a; font-size: 1.8rem; }
-    .home-link { color: #2563eb; text-decoration: none; font-weight: 600; }
-    .content img {
-      float: right; margin: 0 0 15px 20px; max-width: 320px; height: auto;
-      border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      cursor: pointer; transition: transform 0.2s;
+    .top-nav a:hover { text-decoration: underline; }
+    .top-nav .nav-links { display: flex; gap: 20px; }
+    .hero {
+      max-width: 900px; margin: 0 auto;
+      padding: 50px 40px 30px;
+      display: flex; align-items: flex-start; gap: 30px;
     }
-    .content img:hover { transform: scale(1.02); }
-    .content::after { content: ""; clear: both; display: table; }
-    a { color: #2563eb; }
+    .hero-text { flex: 1; }
+    .hero-map {
+      width: 120px; height: auto; object-fit: contain;
+      flex-shrink: 0; opacity: 0.85;
+    }
+    .meta-line {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+    }
+    .date-big {
+      font-size: 3.5rem; font-weight: 900; color: #e5e7eb; line-height: 1;
+    }
+    .date-details { font-size: 0.9rem; color: #6b7280; }
+    .country-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      border-radius: 20px; padding: 4px 14px;
+      font-size: 0.8rem; color: #1d4ed8; font-weight: 600;
+    }
+    .title {
+      font-size: 2.2rem; font-weight: 900; color: #111827;
+      margin: 20px 0 8px; line-height: 1.3;
+    }
+    .date-subtitle {
+      font-size: 1.1rem; font-weight: 300; color: #4b5563;
+      margin-bottom: 16px;
+    }
+    .title-divider {
+      width: 60px; height: 4px; background: #1d4ed8; border-radius: 2px;
+    }
+    .content {
+      max-width: 900px; margin: 30px auto; padding: 0 40px; font-size: 1.05rem;
+    }
+    .content p { margin-bottom: 18px; }
+    .content a {
+      color: #1d4ed8; cursor: pointer;
+      text-decoration: underline;
+      text-decoration-color: rgba(29,78,216,0.3);
+    }
+    .photo-block {
+      margin: 30px 0; border-radius: 12px; overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    .photo-block img {
+      width: 100%; display: block; cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .photo-block img:hover { transform: scale(1.01); }
+    .photo-block .caption {
+      padding: 12px 16px; font-size: 0.85rem; color: #6b7280;
+      background: #f9fafb; border-top: 1px solid #f3f4f6;
+    }
+    .photo-pair {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 14px; margin: 30px 0;
+    }
+    .photo-pair .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-pair .photo-item img {
+      width: 100%; height: 200px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-pair .photo-item img:hover { transform: scale(1.03); }
+    .photo-pair .photo-item .caption {
+      padding: 8px 12px; font-size: 0.8rem; color: #6b7280; background: #f9fafb;
+    }
+    .photo-trio {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px; margin: 30px 0;
+    }
+    .photo-trio .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-trio .photo-item img {
+      width: 100%; height: 180px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-trio .photo-item img:hover { transform: scale(1.03); }
+    .photo-trio .photo-item .caption {
+      padding: 8px 10px; font-size: 0.78rem; color: #6b7280; background: #f9fafb;
+    }
+    .nav-cards {
+      max-width: 900px; margin: 50px auto 20px; padding: 0 40px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .nav-card {
+      padding: 20px 24px; border: 1px solid #e5e7eb; border-radius: 12px;
+      text-decoration: none; color: inherit; transition: all 0.2s;
+    }
+    .nav-card:hover {
+      border-color: #1d4ed8; box-shadow: 0 4px 12px rgba(29,78,216,0.1);
+    }
+    .nav-card .label { font-size: 0.8rem; color: #6b7280; margin-bottom: 4px; }
+    .nav-card .card-title { font-weight: 700; font-size: 1rem; color: #1d4ed8; }
+    .supplements {
+      margin-top: 35px; padding: 25px 30px;
+      background: #f9fafb; border-radius: 12px; border: 1px solid #e5e7eb;
+    }
+    .supplements h3 {
+      font-size: 1.1rem; font-weight: 700; margin-bottom: 14px; color: #374151;
+    }
+    .supplements ol { padding-right: 20px; }
+    .supplements li { margin-bottom: 10px; color: #4b5563; }
+    .country-nav {
+      max-width: 900px; margin: 20px auto 40px; padding: 0 40px;
+      display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+    }
+    .country-nav a {
+      padding: 6px 14px; border-radius: 20px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      color: #1d4ed8; text-decoration: none;
+      font-size: 0.82rem; font-weight: 600;
+      transition: all 0.2s;
+    }
+    .country-nav a:hover {
+      background: #1d4ed8; color: white; border-color: #1d4ed8;
+    }
     .lightbox {
       display: none; position: fixed; z-index: 9999;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.9); justify-content: center; align-items: center; cursor: pointer;
+      background: rgba(0,0,0,0.92);
+      justify-content: center; align-items: center; cursor: pointer;
     }
-    .lightbox img { max-width: 90%; max-height: 90%; border-radius: 8px; }
+    .lightbox img { max-width: 92%; max-height: 92%; border-radius: 8px; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h1>פוקארה, נפאל</h1>
-      <a href="../index.html" class="home-link">🏠 לעמוד הראשי</a>
+  <div class="top-nav">
+    <div class="nav-links">
+      <a href="../index.html">עמוד ראשי</a>
     </div>
-    <div class="content">
-      <body>
-<table cellpadding="0" cellspacing="0" height="80" width="954">
-<tr>
-<td align="center" height="80" width="277">
-<marquee style="font-size: 18pt; color: #800080">2.11.01 - 03:30</marquee></td>
-<td align="center" height="80" width="667">
-<!--webbot bot="Navigation" s-type="banner" s-rendering="graphics" S-Orientation B-Include-Home B-Include-Up U-Page S-Target startspan --><!--webbot bot="Navigation" i-checksum="11637" endspan --></td>
-<td align="center" height="80" width="10">
-<img border="0" height="149" onclick="openLightbox(this.src)" src="../images/Nepal.gif" title="לחץ להגדלה" width="150"/></td>
-</tr>
-<tr>
-<td colspan="3" height="1" style=" " width="954"></td>
-</tr>
-</table><table cellpadding="0" cellspacing="0" width="100%">
-<tr>
-<td align="right" style=" ">
-<h4>
-<marquee style="font-size: 24pt; color: #008080">הצלה מ(ב)אונס</marquee></h4>
-<p> </p></td>
-</tr>
-</table>
-<table cellpadding="0" cellspacing="0" height="333" width="953">
-<tr>
-<td height="333" rowspan="2" style="       " valign="top" width="140"> <!--webbot bot="Navigation" S-Type="sequence" S-Orientation="vertical" S-Rendering="graphics" S-Theme="blocks 000" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><!--webbot bot="Navigation" i-checksum="23763" endspan --><p> </p>
-</td>
-<td height="333" rowspan="2" style="     " valign="top" width="1"></td>
-<td colspan="2" height="266" style="     " valign="top" width="735">
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> נמשיך בסיפורנו:</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">התחלנו לחזור לחדר, גונן 
-    היה עייף. אמרו לנו שפיספסנו את מסיבת ה- </span><span dir="LTR">Full Moon</span><span lang="HE"> 
-    מעברו השני של הנהר, שהייתה אתמול.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">איך שחזרנו לגסט האוס, 
-    ראינו את <a href="images/pictures/nepal/einat_and_hanan.jpg" target="_blank">חנן יושב 
-    לאכול עם 2 הבחורות שאין טעם להרחיב עליהן את הדיבור – עינת</a> – קצת פוסטימה, 
-    לא נאה במיוחד, אוהבת לדבר הרבה, במיוחד להתווכח ולהתמקח. השנייה, שירי, "כשאני 
-    איתה היא כמו דג". תמיד שותקת, מיותרת.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הם סיפרו לנו שיש מסיבה גם 
-    היום.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">שאלנו אותם מה עם 
-    <a href="images/pictures/India/20011011_oz.jpg" target="_blank">עוז</a> 
-    כשלפתע עוז מופיע. פגישה נרגשת, נפלנו איש על כתפי רעהו. עוז מייד פתח בסיפורו, 
-    איך היה חולה יומיים ושלשל בלי הפסקה. איך שכר אופנוע וטייל באיזור רישיקאש 
-    ואיזו נסיעה גרועה היתה לו ברכבת מהרידוואר. שכחנו מהכל. עוז אפילו שכח איפה 
-    המלון שלו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">פגשנו שוב את חנן מחכה לקבל 
-    שיחות בחינם מהארץ (שיחות נכנסות, לא יוצאות). כך הם דיברו – כולם מעבירים 
-    להוריהם טלפון של השני כדי להודיע להם שיתקשרו. אני הייתי אחרי גונן אבל הקשר 
-    שם נותק כי הוריו לא היו בבית.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">התעלק עלינו קשות הנפאלי 
-    שהיה אחראי שם, נער שקורא לעצמו אנאפורנה. הוא היה שיכור. איך שאמרנו לו שאנחנו 
-    הולכים למסיבה, הוא רצה לבוא, אז הוא נסחב איתנו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">כך הלכנו לסירות שייקחו 
-    אותנו לצד השני של האגם, למסיבה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">עינת התמקחה בצורה רתחנית 
-    וגסה על המחיר לשיוט הזה. נסענו בסירה ב- 12:30 בלילה למסיבה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הגענו למסיבה. אמרו כי היא 
-    עולה 100 רופי, אעפ"י שכשיצאנו אמרו שזה חינם, אז ישבנו בחוץ. ראינו שאין כ"כ 
-    הרבה אנשים ורצינו לראות להיכן יתפתחו הדברים. לאחר כשעה של התלבטות ראינו לפתע 
-    מחזה מוזר – נערה הגיעה וניסתה לעלות במדרגות למקום. היא לבשה שמלה קרועה 
-    למתניה וחזייה בלבד בחלקה העליון. היא היתה רטובה לגמרי. גונן ועוז קפצו לעזור 
-    לה לעלות במדרגות. הם חשו מייד בריח האלכוהול החריף מגרונה. אחריה בא מדדה ככל 
-    הנראה חבר שלה. אני ועוד מישהו עזרנו לו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">שמנו אותם ליד המדורה. כל 
-    יתר האנשים שם היו אדישים לגמרי. עוז וגונן כיסו את הבחורה בג'קט. ניסינו לדובב 
-    אותם. הם דיברו שטויות או שתקו. הבחור דיבר כמו רובוט.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">עוז וגונן בדקו את הבחורה 
-    וראו שהיא נושמת בסדר ולא קרה מדי. עוז תפס פיקוד ודיבר עם האחראי ואמר שהמצב 
-    הזה הוא באחריות המקום. ניתוח המצב הראה שיש סיכון להשאיר אותה עם האנשים שם, 
-    שרובם נפאלים שיכורים ונראה כי לא היה אכפת להם ממנה וממצבה, כלומר חששנו שהיא 
-    תאנס.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">היא לא יכלה לזוז ולא לדבר 
-    וכנ"ל הבחור.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">עוז וגונן החליטו לקחת אותם 
-    חזרה בסירה לגסט האוס, הם סחבו את הבחורה ואני וחנן את הבחור. הם הלבישו את 
-    הבחורה בחולצה שלה. הנפאלי היחיד שעזר היה להפתעתינו אנאפורנה שהיה כבר מפוכח 
-    לגמרי.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">לקחנו אותם לסירה וחזרנו 
-    איתם לצד השני של האגם. בסירה השנייה חזרו חנן והבחורות.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בשייט הם מילמלו קצת והבנו 
-    שהם אנגלים. לבחורה קוראים שרה ולבחור אנדי.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">גונן הצליח להוציא מאנדי 
-    חרחור של צחוק כמה פעמים כשאמר לו: "</span><span dir="LTR">Andy, you look 
-    like a candy</span><span lang="HE">" ואח"כ שר "</span><span dir="LTR">ke 
-    sera sera</span><span lang="HE">" ושאל את אנדי למה הוא שתה לבד ולא הזמין 
-    אותנו להצטרף. אני רק התלוננתי: "</span><span dir="LTR">Andy, you must be 
-    more handy</span><span lang="HE">". בדרך הם גם הקיאו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">כל הדרך בסירה חשבתי על 
-    הבוץ שמחכה לי בגדה השנייה. בדרך הלוך בקושי חמקתי ממנו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">כשהגענו, הבחורה קצת 
-    התאוששה והצליחה לדדות בעזרת גונן ואנאפורנה וכך הם חמקו מהבוץ. עוז ניסה לעזור 
-    לאנדי לקום. פתאם ראיתי שאנדי הולך ליפול מהסירה, אז נכנסתי לבוץ ותפסתי אותו 
-    לפני שהוא נפל לבוץ. וכך, מבוסס בבוץ עד קרסולי (נעליים וקצת מכנסיים) עזרתי 
-    לאנדי לצאת ליבשה תוך סינון קללות.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אנאפורנה הוביל אותם 
-    למלונם, שהיה קרוב לשם. איך שכולם הגיעו למלון, הבחור והבחורה הראו התאוששות 
-    מופלאה, הם מיהרו לחדרם ונעלו את הדלת. ניתן היה לראות שהם היו בחדר עם עוד 3 
-    בחורות. הם לא אמרו אפילו תודה. עוז התעצבן וגונן הרגיע אותו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">גונן ואני חזרנו עם כולם 
-    למלון שלהם, משם איבדנו את הדרך חזרה עד שנקלענו לחבורת כלבים עצבניים. גונן 
-    הרים אבן ואז הם ברחו. כך אחרי חצי שעה הגענו לחדר עמוסי חוויות.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">גונן אמר לי היום שמה שקורה 
-    כאן בטיול ביום לא קורה בארץ בחודש, ואכן היום הזה המשיך והוכיח זאת.</span></b></p>
-<p>
-<span dir="RTL" lang="HE" style="font-size: 12.0pt; font-family: Times New Roman">
-<br clear="all" style="page-break-before: always"/>
- </span></p></td>
-<td align="center" height="333" rowspan="2" style="     " valign="top" width="187">
-<p>
-
-<img border="0" height="105" onclick="openLightbox(this.src)" src="../images/einat_and_hanan.jpg" title="לחץ להגדלה" width="175"/></p>
-<p>
-<font color="#660099"> חנן ועינת</font></p>
-</td>
-</tr>
-<tr>
-<td height="67" style="     " valign="top" width="314">
-
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button104.gif" title="לחץ להגדלה" width="59"/></td>
-<td height="67" style="     " valign="top" width="421">
-<p align="right">
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button106.gif" title="לחץ להגדלה" width="59"/></p></td>
-</tr>
-</table>
-<p align="center">
-<!--webbot bot="Navigation" S-Type="sequence" S-Orientation="horizontal" S-Rendering="html" S-Bar="Brackets" S-Btn-Nml="[&lt;A HREF=&quot;#URL#&quot; TARGET=&quot;#TARGET#&quot; STYLE=&quot;{text-decoration: none;}&quot;&gt;#LABEL#&lt;/A&gt;]" S-Btn-Sel="[#LABEL#]" S-Btn-Sep="&amp;nbsp;" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><nobr>[<a href="index.html" style="{text-decoration: none;}" target="">התחלה</a>]</nobr> <nobr>[<a href="200110052040.html" style="{text-decoration: none;}" target="">דנמרק</a>]</nobr> <nobr>[<a href="20011006.html" style="{text-decoration: none;}" target="">הודו</a>]</nobr> <nobr>[<a href="20011030.html" style="{text-decoration: none;}" target="">נפאל</a>]</nobr> <nobr>[<a href="20011115.html" style="{text-decoration: none;}" target="">טרק סובב אנאפורנה</a>]</nobr> <nobr>[<a href="20011210.html" style="{text-decoration: none;}" target="">תאילנד</a>]</nobr> <nobr>[<a href="20020108.html" style="{text-decoration: none;}" target="">לאוס</a>]</nobr> <nobr>[<a href="20020123.html" style="{text-decoration: none;}" target="">צפון תאילנד</a>]</nobr> <nobr>[<a href="20020203.html" style="{text-decoration: none;}" target="">אוסטרליה</a>]</nobr> <nobr>[<a href="20020210.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי דרומי</a>]</nobr> <nobr>[<a href="20020326.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי צפוני</a>]</nobr> <nobr>[<a href="20020506.html" style="{text-decoration: none;}" target="">פיליפינים</a>]</nobr> <nobr>[<a href="20020603.html" style="{text-decoration: none;}" target="">קמבודיה</a>]</nobr><!--webbot bot="Navigation" i-checksum="33824" endspan --></p>
-<p><i><small>This site was last updated
-<!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%m/%d/%y" startspan -->08/05/02<!--webbot bot="Timestamp" i-checksum="12556" endspan --> </small></i>
-</p>
-</body>
+    <div class="nav-links">
+      <a href="200111012140.html">← הקודם</a>
+      <a href="200111022140.html">הבא →</a>
     </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-text">
+      <div class="meta-line">
+        <span class="date-big">02</span>
+        <div>
+          <div class="date-details">נובמבר 2001</div>
+          <span class="country-badge">נפאל</span>
+        </div>
+      </div>
+      <h1 class="title">הצלה מ(ב)אונס</h1>
+      <div class="title-divider"></div>
+    </div>
+    <img class="hero-map" src="../images/Nepal.gif" alt="נפאל">
+  </div>
+
+  <div class="content">
+    <p>הצלה מ(ב)אונס</p>
+
+    <p>נמשיך בסיפורנו:</p>
+
+    <p>התחלנו לחזור לחדר, גונן היה עייף. אמרו לנו שפיספסנו את מסיבת ה- Full Moon מעברו השני של הנהר, שהייתה אתמול.</p>
+
+    <p>איך שחזרנו לגסט האוס, ראינו את <a onclick="openLightbox('../images/einat_and_hanan.jpg')">חנן יושב לאכול עם 2 הבחורות שאין טעם להרחיב עליהן את הדיבור – עינת</a> – קצת פוסטימה, לא נאה במיוחד, אוהבת לדבר הרבה, במיוחד להתווכח ולהתמקח. השנייה, שירי, "כשאני איתה היא כמו דג". תמיד שותקת, מיותרת.</p>
+
+    <p>הם סיפרו לנו שיש מסיבה גם היום.</p>
+
+    <p>שאלנו אותם מה עם <a onclick="openLightbox('../images/20011011_oz.jpg')">עוז</a> כשלפתע עוז מופיע. פגישה נרגשת, נפלנו איש על כתפי רעהו. עוז מייד פתח בסיפורו, איך היה חולה יומיים ושלשל בלי הפסקה. איך שכר אופנוע וטייל באיזור רישיקאש ואיזו נסיעה גרועה היתה לו ברכבת מהרידוואר. שכחנו מהכל. עוז אפילו שכח איפה המלון שלו.</p>
+
+    <p>פגשנו שוב את חנן מחכה לקבל שיחות בחינם מהארץ (שיחות נכנסות, לא יוצאות). כך הם דיברו – כולם מעבירים להוריהם טלפון של השני כדי להודיע להם שיתקשרו. אני הייתי אחרי גונן אבל הקשר שם נותק כי הוריו לא היו בבית.</p>
+
+    <p>התעלק עלינו קשות הנפאלי שהיה אחראי שם, נער שקורא לעצמו אנאפורנה. הוא היה שיכור. איך שאמרנו לו שאנחנו הולכים למסיבה, הוא רצה לבוא, אז הוא נסחב איתנו.</p>
+
+    <p>כך הלכנו לסירות שייקחו אותנו לצד השני של האגם, למסיבה.</p>
+
+    <p>עינת התמקחה בצורה רתחנית וגסה על המחיר לשיוט הזה. נסענו בסירה ב- 12:30 בלילה למסיבה.</p>
+
+    <p>הגענו למסיבה. אמרו כי היא עולה 100 רופי, אעפ"י שכשיצאנו אמרו שזה חינם, אז ישבנו בחוץ. ראינו שאין כ"כ הרבה אנשים ורצינו לראות להיכן יתפתחו הדברים. לאחר כשעה של התלבטות ראינו לפתע מחזה מוזר – נערה הגיעה וניסתה לעלות במדרגות למקום. היא לבשה שמלה קרועה למתניה וחזייה בלבד בחלקה העליון. היא היתה רטובה לגמרי. גונן ועוז קפצו לעזור לה לעלות במדרגות. הם חשו מייד בריח האלכוהול החריף מגרונה. אחריה בא מדדה ככל הנראה חבר שלה. אני ועוד מישהו עזרנו לו.</p>
+
+    <p>שמנו אותם ליד המדורה. כל יתר האנשים שם היו אדישים לגמרי. עוז וגונן כיסו את הבחורה בג'קט. ניסינו לדובב אותם. הם דיברו שטויות או שתקו. הבחור דיבר כמו רובוט.</p>
+
+    <p>עוז וגונן בדקו את הבחורה וראו שהיא נושמת בסדר ולא קרה מדי. עוז תפס פיקוד ודיבר עם האחראי ואמר שהמצב הזה הוא באחריות המקום. ניתוח המצב הראה שיש סיכון להשאיר אותה עם האנשים שם, שרובם נפאלים שיכורים ונראה כי לא היה אכפת להם ממנה וממצבה, כלומר חששנו שהיא תאנס.</p>
+
+    <p>היא לא יכלה לזוז ולא לדבר וכנ"ל הבחור.</p>
+
+    <p>עוז וגונן החליטו לקחת אותם חזרה בסירה לגסט האוס, הם סחבו את הבחורה ואני וחנן את הבחור. הם הלבישו את הבחורה בחולצה שלה. הנפאלי היחיד שעזר היה להפתעתינו אנאפורנה שהיה כבר מפוכח לגמרי.</p>
+
+    <p>לקחנו אותם לסירה וחזרנו איתם לצד השני של האגם. בסירה השנייה חזרו חנן והבחורות.</p>
+
+    <p>בשייט הם מילמלו קצת והבנו שהם אנגלים. לבחורה קוראים שרה ולבחור אנדי.</p>
+
+    <p>גונן הצליח להוציא מאנדי חרחור של צחוק כמה פעמים כשאמר לו: "Andy, you look like a candy" ואח"כ שר "ke sera sera" ושאל את אנדי למה הוא שתה לבד ולא הזמין אותנו להצטרף. אני רק התלוננתי: "Andy, you must be more handy". בדרך הם גם הקיאו.</p>
+
+    <p>כל הדרך בסירה חשבתי על הבוץ שמחכה לי בגדה השנייה. בדרך הלוך בקושי חמקתי ממנו.</p>
+
+    <p>כשהגענו, הבחורה קצת התאוששה והצליחה לדדות בעזרת גונן ואנאפורנה וכך הם חמקו מהבוץ. עוז ניסה לעזור לאנדי לקום. פתאם ראיתי שאנדי הולך ליפול מהסירה, אז נכנסתי לבוץ ותפסתי אותו לפני שהוא נפל לבוץ. וכך, מבוסס בבוץ עד קרסולי (נעליים וקצת מכנסיים) עזרתי לאנדי לצאת ליבשה תוך סינון קללות.</p>
+
+    <p>אנאפורנה הוביל אותם למלונם, שהיה קרוב לשם. איך שכולם הגיעו למלון, הבחור והבחורה הראו התאוששות מופלאה, הם מיהרו לחדרם ונעלו את הדלת. ניתן היה לראות שהם היו בחדר עם עוד 3 בחורות. הם לא אמרו אפילו תודה. עוז התעצבן וגונן הרגיע אותו.</p>
+
+    <p>גונן ואני חזרנו עם כולם למלון שלהם, משם איבדנו את הדרך חזרה עד שנקלענו לחבורת כלבים עצבניים. גונן הרים אבן ואז הם ברחו. כך אחרי חצי שעה הגענו לחדר עמוסי חוויות.</p>
+
+    <p>גונן אמר לי היום שמה שקורה כאן בטיול ביום לא קורה בארץ בחודש, ואכן היום הזה המשיך והוכיח זאת.</p>
+
+    <div class="photo-block">
+      <img src="../images/einat_and_hanan.jpg" onclick="openLightbox(this.src)">
+      <div class="caption">חנן ועינת</div>
+    </div>
+
+    <div class="photo-block">
+      <img src="../images/einat_and_hanan.jpg" onclick="openLightbox(this.src)">
+      <div class="caption">חנן ועינת</div>
+    </div>
+
+
+  </div>
+
+  <div class="nav-cards">
+    <a href="200111022140.html" class="nav-card">
+      <div class="label">הבא →</div>
+      <div class="card-title">יום קניות</div>
+    </a>
+    <a href="200111012140.html" class="nav-card">
+      <div class="label">← הקודם</div>
+      <div class="card-title">חגיגות החמישים - דולר</div>
+    </a>
+  </div>
+
+  <div class="country-nav">
+    <a href="200110052040.html">דנמרק</a>
+    <a href="20011006.html">הודו</a>
+    <a href="20011030.html">נפאל</a>
+    <a href="20011115.html">טרק אנאפורנה</a>
+    <a href="20011210.html">תאילנד</a>
+    <a href="20020108.html">לאוס</a>
+    <a href="20020123.html">צפון תאילנד</a>
+    <a href="20020203.html">אוסטרליה</a>
+    <a href="20020210.html">ניו-זילנד, אי דרומי</a>
+    <a href="20020326.html">ניו-זילנד, אי צפוני</a>
+    <a href="20020506.html">פיליפינים</a>
+    <a href="20020603.html">קמבודיה</a>
   </div>
 
   <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
-    <img id="lightbox-img" src="" alt="Enlarged">
+    <img id="lightbox-img" src="" alt="">
   </div>
-
   <script>
     function openLightbox(src) {
       document.getElementById('lightbox-img').src = src;

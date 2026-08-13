@@ -3,208 +3,294 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>האי קו-סמוי, תאילנד</title>
+  <title>בחור כארז</title>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap" rel="stylesheet">
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background-color: #f8fafc;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0; padding: 20px; color: #334155;
+      background: #ffffff;
+      font-family: 'Heebo', sans-serif;
+      color: #1a1a2e;
+      line-height: 1.9;
     }
-    .container {
-      max-width: 800px; margin: 0 auto; background: #ffffff;
-      padding: 35px; border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06); line-height: 1.8;
+    .top-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #eee;
+      padding: 12px 30px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.9rem;
     }
-    .header {
-      border-bottom: 2px solid #e2e8f0; padding-bottom: 15px;
-      margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center;
+    .top-nav a {
+      color: #1d4ed8; text-decoration: none; font-weight: 600;
     }
-    .header h1 { margin: 0; color: #0f172a; font-size: 1.8rem; }
-    .home-link { color: #2563eb; text-decoration: none; font-weight: 600; }
-    .content img {
-      float: right; margin: 0 0 15px 20px; max-width: 320px; height: auto;
-      border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      cursor: pointer; transition: transform 0.2s;
+    .top-nav a:hover { text-decoration: underline; }
+    .top-nav .nav-links { display: flex; gap: 20px; }
+    .hero {
+      max-width: 900px; margin: 0 auto;
+      padding: 50px 40px 30px;
+      display: flex; align-items: flex-start; gap: 30px;
     }
-    .content img:hover { transform: scale(1.02); }
-    .content::after { content: ""; clear: both; display: table; }
-    a { color: #2563eb; }
+    .hero-text { flex: 1; }
+    .hero-map {
+      width: 120px; height: auto; object-fit: contain;
+      flex-shrink: 0; opacity: 0.85;
+    }
+    .meta-line {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+    }
+    .date-big {
+      font-size: 3.5rem; font-weight: 900; color: #e5e7eb; line-height: 1;
+    }
+    .date-details { font-size: 0.9rem; color: #6b7280; }
+    .country-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      border-radius: 20px; padding: 4px 14px;
+      font-size: 0.8rem; color: #1d4ed8; font-weight: 600;
+    }
+    .title {
+      font-size: 2.2rem; font-weight: 900; color: #111827;
+      margin: 20px 0 8px; line-height: 1.3;
+    }
+    .date-subtitle {
+      font-size: 1.1rem; font-weight: 300; color: #4b5563;
+      margin-bottom: 16px;
+    }
+    .title-divider {
+      width: 60px; height: 4px; background: #1d4ed8; border-radius: 2px;
+    }
+    .content {
+      max-width: 900px; margin: 30px auto; padding: 0 40px; font-size: 1.05rem;
+    }
+    .content p { margin-bottom: 18px; }
+    .content a {
+      color: #1d4ed8; cursor: pointer;
+      text-decoration: underline;
+      text-decoration-color: rgba(29,78,216,0.3);
+    }
+    .photo-block {
+      margin: 30px 0; border-radius: 12px; overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    .photo-block img {
+      width: 100%; display: block; cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .photo-block img:hover { transform: scale(1.01); }
+    .photo-block .caption {
+      padding: 12px 16px; font-size: 0.85rem; color: #6b7280;
+      background: #f9fafb; border-top: 1px solid #f3f4f6;
+    }
+    .photo-pair {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 14px; margin: 30px 0;
+    }
+    .photo-pair .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-pair .photo-item img {
+      width: 100%; height: 200px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-pair .photo-item img:hover { transform: scale(1.03); }
+    .photo-pair .photo-item .caption {
+      padding: 8px 12px; font-size: 0.8rem; color: #6b7280; background: #f9fafb;
+    }
+    .photo-trio {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px; margin: 30px 0;
+    }
+    .photo-trio .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-trio .photo-item img {
+      width: 100%; height: 180px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-trio .photo-item img:hover { transform: scale(1.03); }
+    .photo-trio .photo-item .caption {
+      padding: 8px 10px; font-size: 0.78rem; color: #6b7280; background: #f9fafb;
+    }
+    .nav-cards {
+      max-width: 900px; margin: 50px auto 20px; padding: 0 40px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .nav-card {
+      padding: 20px 24px; border: 1px solid #e5e7eb; border-radius: 12px;
+      text-decoration: none; color: inherit; transition: all 0.2s;
+    }
+    .nav-card:hover {
+      border-color: #1d4ed8; box-shadow: 0 4px 12px rgba(29,78,216,0.1);
+    }
+    .nav-card .label { font-size: 0.8rem; color: #6b7280; margin-bottom: 4px; }
+    .nav-card .card-title { font-weight: 700; font-size: 1rem; color: #1d4ed8; }
+    .supplements {
+      margin-top: 35px; padding: 25px 30px;
+      background: #f9fafb; border-radius: 12px; border: 1px solid #e5e7eb;
+    }
+    .supplements h3 {
+      font-size: 1.1rem; font-weight: 700; margin-bottom: 14px; color: #374151;
+    }
+    .supplements ol { padding-right: 20px; }
+    .supplements li { margin-bottom: 10px; color: #4b5563; }
+    .country-nav {
+      max-width: 900px; margin: 20px auto 40px; padding: 0 40px;
+      display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+    }
+    .country-nav a {
+      padding: 6px 14px; border-radius: 20px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      color: #1d4ed8; text-decoration: none;
+      font-size: 0.82rem; font-weight: 600;
+      transition: all 0.2s;
+    }
+    .country-nav a:hover {
+      background: #1d4ed8; color: white; border-color: #1d4ed8;
+    }
     .lightbox {
       display: none; position: fixed; z-index: 9999;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.9); justify-content: center; align-items: center; cursor: pointer;
+      background: rgba(0,0,0,0.92);
+      justify-content: center; align-items: center; cursor: pointer;
     }
-    .lightbox img { max-width: 90%; max-height: 90%; border-radius: 8px; }
+    .lightbox img { max-width: 92%; max-height: 92%; border-radius: 8px; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h1>האי קו-סמוי, תאילנד</h1>
-      <a href="../index.html" class="home-link">🏠 לעמוד הראשי</a>
+  <div class="top-nav">
+    <div class="nav-links">
+      <a href="../index.html">עמוד ראשי</a>
     </div>
-    <div class="content">
-      <body>
-<table cellpadding="0" cellspacing="0" height="80" width="954">
-<tr>
-<td align="center" height="80" width="277">
-<marquee style="font-size: 18pt; color: #800080">1.1.02 - 18:30</marquee></td>
-<td align="center" height="80" width="667">
-<!--webbot bot="Navigation" s-type="banner" s-rendering="graphics" S-Orientation B-Include-Home B-Include-Up U-Page S-Target startspan --><!--webbot bot="Navigation" i-checksum="59396" endspan --></td>
-<td align="center" height="80" width="10">
-
-<img border="0" height="160" onclick="openLightbox(this.src)" src="../images/Thailand.gif" title="לחץ להגדלה" width="161"/></td>
-</tr>
-<tr>
-<td colspan="3" height="1" style=" " width="954"></td>
-</tr>
-</table><table cellpadding="0" cellspacing="0" width="100%">
-<tr>
-<td align="right" style=" ">
-<h4>
-<marquee style="font-size: 24pt; color: #008080">בחור כארז</marquee></h4>
-<p> </p></td>
-</tr>
-</table>
-<table cellpadding="0" cellspacing="0" height="333" width="953">
-<tr>
-<td height="333" rowspan="2" style="       " valign="top" width="140"> <!--webbot bot="Navigation" S-Type="sequence" S-Orientation="vertical" S-Rendering="graphics" S-Theme="blocks 000" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><!--webbot bot="Navigation" i-checksum="23763" endspan --><p> </p>
-</td>
-<td height="333" rowspan="2" style="     " valign="top" width="1"></td>
-<td colspan="2" height="266" style="     " valign="top" width="735">
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">תסתיים שנה וקללותיה, 
-    תחול שנה וברכותיה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אני לא מאמין, סילקו אותי 
-    שוב מהחדר. הייתי על אי, בודד.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אבל אני מעדיף לתאר את רצף 
-    האירועים לפי סדרם הכרונולוגי:</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">ב- 30.12 הייתי תשוש 
-    מעייפות, לא חשבתי לצאת אלא לשמור כוחות. ישבתי עם החברה של ארז. הייתי אמור 
-    לישון על הערסל בחוץ, אבל קיוויתי שהלילה איתם יימשך ככל שיותר כי לישון בחוץ 
-    זה אומר שהיתושים יקרעו אותי. היתושים כאן ענקיים אבל שקטים, אתה לא יודע מתי 
-    הם קרבים אליך. בכל בוקר אני סופר עקיצות חדשות וזה עוד בחדרים סגורים עם 
-    כילות, אז על אחת כמה וכמה בחוץ בערסל.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">ישבתי עם החברה של ארז בחוץ 
-    בקפה ליד הגסט האוס ואח"כ בחדר של ארז. העדפתי לקרוא ספר. הפעם את "זן ואמנות 
-    אחזקת האופנוע" בפעם החמישית שאני קורא אותו. לקחתי אותו מארז. החברה כאן די 
-    משעממים ואני לא רואה איך אני משתלב איתם. האמת, אני חושב שהם גם משעממים את 
-    עצמם, כי אין שום דינמיקה בדיבור שלהם.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">כך קראתי עד שהתמוטטתי 
-    לשינה על אחת המיטות שלהם. ב- 5:00 הם העירו אותי ויצאתי לערסל בחוץ לישון. 
-    ישנתי עד 10:00. איך שהם התעוררו לקחתי את הספר והמשכתי לקרוא. החלטתי שאני 
-    חייב לסיים אותו כי בבוקר של ה- 1 אני לוקח מעבורת לקו-סמוי ונוטש אותם.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">כך ירד לו היום ואני קראתי 
-    וקפצתי פעם אחת לים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בערב ענבל עברה ודיברה איתי 
-    וחשתי אצלה רצון להתפייסות.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">גונן, ליאור ושירלי הגיעו 
-    בדיוק שהייתי לקראת סיום הספר והתבאסתי שהם לא הגיעו טיפה מאוחר יותר. ישר הם 
-    העיפו חזיזים ועשו בלגן ורעש.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"><a name="vanilla sky"></a>הלכנו לאכול ולראות סרט. 
-    הסרט הפעם היה </span><span dir="LTR">Vanilla sky</span><span lang="HE"> עם 
-    טום קרוז, קמרון דיאז ועוד, סרט הזוי. התרכזנו וניסינו לראות מה קורה. בשיא 
-    המתח, ממש דקות מהסיום, הם התחילו סרט אחר. היה חסר להם הדיסק האחרון!!. נגנבנו 
-    והתעצבנו. גונן אמר שזה כמו להזמין במסעדה, לאכול אך לא לשלם. הסכמתי איתו. כך, 
-    עצבניים, חזרנו לחדר. קיוויתי שארז או אחת מ- 2 הבנות יהיו בחדר ואני אוכל 
-    להתקלח לפני מסיבת הסילבסטר. להתנשק איתי במצבי יכול לגרום למוות </span>
-<span dir="LTR">cleany</span><span lang="HE">.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"><a name="get_out"></a>ישבנו מחוץ לחדר ופוצצנו 
-    חזיזים עד שארז הגיע וקרא לי לדיבור איתו בצד. הוא אמר לי שהם לא רוצים אותי 
-    בחדר ואפילו לא רוצים שהדברים שלי יהיו אצלם בחדר כי הם צריכים פרטיות. עוד 
-    לפני-כן חשדתי שאני מפריע להם, אם כי השתדלתי לא להכנס לחדר ורק הייתי במרפסת. 
-    רק התיק שלי, לא גדול, היה מאחורי הדלת, לא מפריע. אבל רותם, ידידה של ארז, לא 
-    דיברה איתי כמה ימים ואמרתי לגונן שהיא עצבנית עלי. ארז היה איתי אז בסדר, כך 
-    שהייתי בטוח שהיא יזמה את המהלך הזה. שאלתי את ארז אם רותם יזמה את הסילוק, אבל 
-    הוא לא הסכים לאשר או לסתור. אמרתי לו שממילא אני עוזב בבוקר ולא מתכוון לישון. 
-    אני צריך רק שהדברים שלי יישארו בחדר למשך מסיבת ה- </span><span dir="LTR">new 
-    year</span><span lang="HE">. הוא סירב, וכך אספתי את הדברים שלי והתכוונתי 
-    ללכת למסיבה עם תיק ושקית. אין ספק שרותם יצאה מלוכלכת. באמת ניסיתי לא להפריע 
-    להם ורק קראתי ספרים בחוץ כל הזמן שהייתי שם. ארז הוכיח מורך-לב בזה שלא עמד 
-    מולה. אבל החלטות שגויות שלו עוד יפגעו בו בעתיד. לא ייצא לו מרותם כלום. גם כך 
-    היא מסתובבת עם חבר שלו, חן.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">"טוב שאין עוד בחור כארז" 
-    אמרתי לגונן וליאור.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בכל מקרה, איך שאני אורז, 
-    הגיעה ענבל. ניצלתי את ידה המושטת לשלום ושמתי את הדברים אצלה והתקלחתי אצלה. 
-    אני לא יודע אם אירית סלחה לי. ניסיתי לעודד אותה בברכת "</span><span dir="LTR">happy 
-    new irit</span><span lang="HE">". האמת היא הייתה מרוכזת ומחשבתה רצה בנסיון 
-    לחפש מישהו לנשק בחצות. השעה היתה כבר 23:00.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">יצאנו לחוף, לדיסקוטקים שם 
-    כל הבלגן. היה פחות אנשים מה- </span><span dir="LTR">full moon</span><span lang="HE">, 
-    כנראה בגלל מסיבת טראנס גדולה שהיתה במפלים ועלתה 50$ ושמשכה אנשים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">שתינו </span>
-<span dir="LTR">buckets</span><span lang="HE"> ורקדתי עם ענבל וכך איבדתי את 
-    גונן, שירלי וליאור.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בחצות התנשקנו. אח"כ נרדמנו 
-    על החוף וחזרנו לרקוד. פגשנו את אירית. היא מצאה בחור ישראלי לנשק, אך הוא נעלם 
-    והיא מצאה בחור הולנדי.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בסוף שכנעתי את ענבל לסור 
-    לחדרה. ליאור ישן בערסל מחוץ לחדר. בחדר סגרתי עניין עם ענבל ואח"כ לקחנו 
-    מזרונים לים. כשחזרנו הזמנו את ליאור פנימה לישון איתנו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בבוקר קמנו בקושי ב- 8:45. 
-    הגעתי עם ליאור למעבורת ודאגתי לגונן. הוא הגיע ברגע האחרון כרגיל. הוא חזר 
-    מהחוף וסיפר שאנשים עדיין רוקדים שם בטירוף. הוא הסתובב כל הלילה וראה חברה 
-    מטורפים, עם חלקם הוא שתה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">עלינו למעבורת לקו-סמוי.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">גם ליאור וגם גונן כעסו מאד 
-    על ארז ועל איך שהוא העיף אותי מהחדר שלו. הם אמרו שהוא היה צריך להדקר. בכלל, 
-    מאז שהם קנו מצית ואולר קפיצי משולבים הם נהיו אנשים מסוכנים. בטחונם האישי גבר 
-    והם נחפזים להציע פתרונות מסוג זה לכל סכסוך או אי-הבנה עם כל אחד.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">גונן גם הפתיע אותי לפני 
-    יומיים עם קעקוע חינה של קרנף. הוא הראה לי את זה כשחיוך של נצחון מרוח על 
-    פניו. הקרנף נראה לא רע, אך הקרן שלו קטנה ובכל מקרה החינה מצויירת בגסות יחסית 
-    לקעקוע ובקווים עבים. אך בסה"כ התרשמתי מהקעקוע.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בקו- סמוי ראיתי את החדר 
-    שבו הם מתאכסנים בבית-הזונות, המתפקד גם כבאר בדומה למקומות רבים כאן. ראיתי 
-    שהם לא הגזימו בסיפורם. האנשים חמודים ומאירי פנים, ראיתי את החדר עם האור 
-    האדום ואת הכלב בכלוב ועוד. המקום שווה אזכור ללא ספק.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">גונן קצת נלחץ כי נכנסה לו 
-    קרפדה לחדר. הראנו לה את הדרך החוצה, אבל אח"כ הוא הודיע לי שהיא חזרה לחדר.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הלכנו לים ולא עשינו כלום 
-    חוץ מלשחק שש-בש. גילינו שיש בעיה להשיג כרטיסים לבנגקוק, כולם רוצים לצאת, הכל 
-    תפוס והמחיר גם גבוה. התעצבנתי שלא הזמנו מראש, "לקינו בתסמונת גונן, להשאיר 
-    הכל לרגע האחרון" אמרתי.</span></b></p>
-<p> </p></td>
-<td align="center" height="333" rowspan="2" style="     " valign="top" width="187">
-
-<img border="0" height="132" onclick="openLightbox(this.src)" src="../images/20020101_kosamoi_huge_statues_2.jpg" title="לחץ להגדלה" width="179"/><p>
-
-<img border="0" height="120" onclick="openLightbox(this.src)" src="../images/20020101_kosamoi_huge_statue.jpg" title="לחץ להגדלה" width="177"/></p>
-<p><font color="#660099">גונן בקו-סמוי</font><p> </p>
-<p>
-
-<img border="0" height="114" onclick="openLightbox(this.src)" src="../images/20011231_silvester_1.jpg" title="לחץ להגדלה" width="174"/></p>
-<p>
-<font color="#660099">ענבל ואני במסיבת הסילבסטר</font></p>
-<p>
-
-<img border="0" height="231" onclick="openLightbox(this.src)" src="../images/20020101_silvester_2.jpg" title="לחץ להגדלה" width="152"/></p>
-<p><font color="#660099">אני וענבל במסיבת הסילבסטר שיכורים</font><p> </p></p></p></td>
-</tr>
-<tr>
-<td height="67" style="     " valign="top" width="314">
-
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button104.gif" title="לחץ להגדלה" width="59"/></td>
-<td height="67" style="     " valign="top" width="421">
-<p align="right">
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button106.gif" title="לחץ להגדלה" width="59"/></p></td>
-</tr>
-</table>
-<p align="center">
-<!--webbot bot="Navigation" S-Type="sequence" S-Orientation="horizontal" S-Rendering="html" S-Bar="Brackets" S-Btn-Nml="[&lt;A HREF=&quot;#URL#&quot; TARGET=&quot;#TARGET#&quot; STYLE=&quot;{text-decoration: none;}&quot;&gt;#LABEL#&lt;/A&gt;]" S-Btn-Sel="[#LABEL#]" S-Btn-Sep="&amp;nbsp;" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><nobr>[<a href="index.html" style="{text-decoration: none;}" target="">התחלה</a>]</nobr> <nobr>[<a href="200110052040.html" style="{text-decoration: none;}" target="">דנמרק</a>]</nobr> <nobr>[<a href="20011006.html" style="{text-decoration: none;}" target="">הודו</a>]</nobr> <nobr>[<a href="20011030.html" style="{text-decoration: none;}" target="">נפאל</a>]</nobr> <nobr>[<a href="20011115.html" style="{text-decoration: none;}" target="">טרק סובב אנאפורנה</a>]</nobr> <nobr>[<a href="20011210.html" style="{text-decoration: none;}" target="">תאילנד</a>]</nobr> <nobr>[<a href="20020108.html" style="{text-decoration: none;}" target="">לאוס</a>]</nobr> <nobr>[<a href="20020123.html" style="{text-decoration: none;}" target="">צפון תאילנד</a>]</nobr> <nobr>[<a href="20020203.html" style="{text-decoration: none;}" target="">אוסטרליה</a>]</nobr> <nobr>[<a href="20020210.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי דרומי</a>]</nobr> <nobr>[<a href="20020326.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי צפוני</a>]</nobr> <nobr>[<a href="20020506.html" style="{text-decoration: none;}" target="">פיליפינים</a>]</nobr> <nobr>[<a href="20020603.html" style="{text-decoration: none;}" target="">קמבודיה</a>]</nobr><!--webbot bot="Navigation" i-checksum="33824" endspan --></p>
-<p><i><small>This site was last updated
-<!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%m/%d/%y" startspan -->07/11/03<!--webbot bot="Timestamp" i-checksum="12626" endspan --> </small></i>
-</p>
-</body>
+    <div class="nav-links">
+      <a href="20011230.html">← הקודם</a>
+      <a href="20020102.html">הבא →</a>
     </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-text">
+      <div class="meta-line">
+        <span class="date-big">01</span>
+        <div>
+          <div class="date-details">ינואר 2002</div>
+          <span class="country-badge">תאילנד</span>
+        </div>
+      </div>
+      <h1 class="title">בחור כארז</h1>
+      <div class="title-divider"></div>
+    </div>
+    <img class="hero-map" src="../images/Thailand.gif" alt="תאילנד">
+  </div>
+
+  <div class="content">
+    <p>בחור כארז</p>
+
+    <p>תסתיים שנה וקללותיה, תחול שנה וברכותיה.</p>
+
+    <p>אני לא מאמין, סילקו אותי שוב מהחדר. הייתי על אי, בודד.</p>
+
+    <p>אבל אני מעדיף לתאר את רצף האירועים לפי סדרם הכרונולוגי:</p>
+
+    <p>ב- 30.12 הייתי תשוש מעייפות, לא חשבתי לצאת אלא לשמור כוחות. ישבתי עם החברה של ארז. הייתי אמור לישון על הערסל בחוץ, אבל קיוויתי שהלילה איתם יימשך ככל שיותר כי לישון בחוץ זה אומר שהיתושים יקרעו אותי. היתושים כאן ענקיים אבל שקטים, אתה לא יודע מתי הם קרבים אליך. בכל בוקר אני סופר עקיצות חדשות וזה עוד בחדרים סגורים עם כילות, אז על אחת כמה וכמה בחוץ בערסל.</p>
+
+    <p>ישבתי עם החברה של ארז בחוץ בקפה ליד הגסט האוס ואח"כ בחדר של ארז. העדפתי לקרוא ספר. הפעם את "זן ואמנות אחזקת האופנוע" בפעם החמישית שאני קורא אותו. לקחתי אותו מארז. החברה כאן די משעממים ואני לא רואה איך אני משתלב איתם. האמת, אני חושב שהם גם משעממים את עצמם, כי אין שום דינמיקה בדיבור שלהם.</p>
+
+    <p>כך קראתי עד שהתמוטטתי לשינה על אחת המיטות שלהם. ב- 5:00 הם העירו אותי ויצאתי לערסל בחוץ לישון. ישנתי עד 10:00. איך שהם התעוררו לקחתי את הספר והמשכתי לקרוא. החלטתי שאני חייב לסיים אותו כי בבוקר של ה- 1 אני לוקח מעבורת לקו-סמוי ונוטש אותם.</p>
+
+    <p>כך ירד לו היום ואני קראתי וקפצתי פעם אחת לים.</p>
+
+    <div class="photo-pair">
+      <div class="photo-item">
+        <img src="../images/20020101_kosamoi_huge_statues_2.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020101_kosamoi_huge_statue.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">גונן בקו-סמוי</div>
+      </div>
+    </div>
+
+    <p>בערב ענבל עברה ודיברה איתי וחשתי אצלה רצון להתפייסות.</p>
+
+    <p>גונן, ליאור ושירלי הגיעו בדיוק שהייתי לקראת סיום הספר והתבאסתי שהם לא הגיעו טיפה מאוחר יותר. ישר הם העיפו חזיזים ועשו בלגן ורעש.</p>
+
+    <p>הלכנו לאכול ולראות סרט. הסרט הפעם היה Vanilla sky עם טום קרוז, קמרון דיאז ועוד, סרט הזוי. התרכזנו וניסינו לראות מה קורה. בשיא המתח, ממש דקות מהסיום, הם התחילו סרט אחר. היה חסר להם הדיסק האחרון!!. נגנבנו והתעצבנו. גונן אמר שזה כמו להזמין במסעדה, לאכול אך לא לשלם. הסכמתי איתו. כך, עצבניים, חזרנו לחדר. קיוויתי שארז או אחת מ- 2 הבנות יהיו בחדר ואני אוכל להתקלח לפני מסיבת הסילבסטר. להתנשק איתי במצבי יכול לגרום למוות cleany.</p>
+
+    <p>ישבנו מחוץ לחדר ופוצצנו חזיזים עד שארז הגיע וקרא לי לדיבור איתו בצד. הוא אמר לי שהם לא רוצים אותי בחדר ואפילו לא רוצים שהדברים שלי יהיו אצלם בחדר כי הם צריכים פרטיות. עוד לפני-כן חשדתי שאני מפריע להם, אם כי השתדלתי לא להכנס לחדר ורק הייתי במרפסת. רק התיק שלי, לא גדול, היה מאחורי הדלת, לא מפריע. אבל רותם, ידידה של ארז, לא דיברה איתי כמה ימים ואמרתי לגונן שהיא עצבנית עלי. ארז היה איתי אז בסדר, כך שהייתי בטוח שהיא יזמה את המהלך הזה. שאלתי את ארז אם רותם יזמה את הסילוק, אבל הוא לא הסכים לאשר או לסתור. אמרתי לו שממילא אני עוזב בבוקר ולא מתכוון לישון. אני צריך רק שהדברים שלי יישארו בחדר למשך מסיבת ה- new year. הוא סירב, וכך אספתי את הדברים שלי והתכוונתי ללכת למסיבה עם תיק ושקית. אין ספק שרותם יצאה מלוכלכת. באמת ניסיתי לא להפריע להם ורק קראתי ספרים בחוץ כל הזמן שהייתי שם. ארז הוכיח מורך-לב בזה שלא עמד מולה. אבל החלטות שגויות שלו עוד יפגעו בו בעתיד. לא ייצא לו מרותם כלום. גם כך היא מסתובבת עם חבר שלו, חן.</p>
+
+    <p>"טוב שאין עוד בחור כארז" אמרתי לגונן וליאור.</p>
+
+    <p>בכל מקרה, איך שאני אורז, הגיעה ענבל. ניצלתי את ידה המושטת לשלום ושמתי את הדברים אצלה והתקלחתי אצלה. אני לא יודע אם אירית סלחה לי. ניסיתי לעודד אותה בברכת "happy new irit". האמת היא הייתה מרוכזת ומחשבתה רצה בנסיון לחפש מישהו לנשק בחצות. השעה היתה כבר 23:00.</p>
+
+    <p>יצאנו לחוף, לדיסקוטקים שם כל הבלגן. היה פחות אנשים מה- full moon, כנראה בגלל מסיבת טראנס גדולה שהיתה במפלים ועלתה 50$ ושמשכה אנשים.</p>
+
+    <p>שתינו buckets ורקדתי עם ענבל וכך איבדתי את גונן, שירלי וליאור.</p>
+
+    <div class="photo-pair">
+      <div class="photo-item">
+        <img src="../images/20011231_silvester_1.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">ענבל ואני במסיבת הסילבסטר</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020101_silvester_2.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">אני וענבל במסיבת הסילבסטר שיכורים</div>
+      </div>
+    </div>
+
+    <p>בחצות התנשקנו. אח"כ נרדמנו על החוף וחזרנו לרקוד. פגשנו את אירית. היא מצאה בחור ישראלי לנשק, אך הוא נעלם והיא מצאה בחור הולנדי.</p>
+
+    <p>בסוף שכנעתי את ענבל לסור לחדרה. ליאור ישן בערסל מחוץ לחדר. בחדר סגרתי עניין עם ענבל ואח"כ לקחנו מזרונים לים. כשחזרנו הזמנו את ליאור פנימה לישון איתנו.</p>
+
+    <p>בבוקר קמנו בקושי ב- 8:45. הגעתי עם ליאור למעבורת ודאגתי לגונן. הוא הגיע ברגע האחרון כרגיל. הוא חזר מהחוף וסיפר שאנשים עדיין רוקדים שם בטירוף. הוא הסתובב כל הלילה וראה חברה מטורפים, עם חלקם הוא שתה.</p>
+
+    <p>עלינו למעבורת לקו-סמוי.</p>
+
+    <p>גם ליאור וגם גונן כעסו מאד על ארז ועל איך שהוא העיף אותי מהחדר שלו. הם אמרו שהוא היה צריך להדקר. בכלל, מאז שהם קנו מצית ואולר קפיצי משולבים הם נהיו אנשים מסוכנים. בטחונם האישי גבר והם נחפזים להציע פתרונות מסוג זה לכל סכסוך או אי-הבנה עם כל אחד.</p>
+
+    <p>גונן גם הפתיע אותי לפני יומיים עם קעקוע חינה של קרנף. הוא הראה לי את זה כשחיוך של נצחון מרוח על פניו. הקרנף נראה לא רע, אך הקרן שלו קטנה ובכל מקרה החינה מצויירת בגסות יחסית לקעקוע ובקווים עבים. אך בסה"כ התרשמתי מהקעקוע.</p>
+
+    <p>בקו- סמוי ראיתי את החדר שבו הם מתאכסנים בבית-הזונות, המתפקד גם כבאר בדומה למקומות רבים כאן. ראיתי שהם לא הגזימו בסיפורם. האנשים חמודים ומאירי פנים, ראיתי את החדר עם האור האדום ואת הכלב בכלוב ועוד. המקום שווה אזכור ללא ספק.</p>
+
+    <p>גונן קצת נלחץ כי נכנסה לו קרפדה לחדר. הראנו לה את הדרך החוצה, אבל אח"כ הוא הודיע לי שהיא חזרה לחדר.</p>
+
+    <p>הלכנו לים ולא עשינו כלום חוץ מלשחק שש-בש. גילינו שיש בעיה להשיג כרטיסים לבנגקוק, כולם רוצים לצאת, הכל תפוס והמחיר גם גבוה. התעצבנתי שלא הזמנו מראש, "לקינו בתסמונת גונן, להשאיר הכל לרגע האחרון" אמרתי.</p>
+
+
+  </div>
+
+  <div class="nav-cards">
+    <a href="20020102.html" class="nav-card">
+      <div class="label">הבא →</div>
+      <div class="card-title">איים אבודים</div>
+    </a>
+    <a href="20011230.html" class="nav-card">
+      <div class="label">← הקודם</div>
+      <div class="card-title">full moon, פול אנשים</div>
+    </a>
+  </div>
+
+  <div class="country-nav">
+    <a href="200110052040.html">דנמרק</a>
+    <a href="20011006.html">הודו</a>
+    <a href="20011030.html">נפאל</a>
+    <a href="20011115.html">טרק אנאפורנה</a>
+    <a href="20011210.html">תאילנד</a>
+    <a href="20020108.html">לאוס</a>
+    <a href="20020123.html">צפון תאילנד</a>
+    <a href="20020203.html">אוסטרליה</a>
+    <a href="20020210.html">ניו-זילנד, אי דרומי</a>
+    <a href="20020326.html">ניו-זילנד, אי צפוני</a>
+    <a href="20020506.html">פיליפינים</a>
+    <a href="20020603.html">קמבודיה</a>
   </div>
 
   <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
-    <img id="lightbox-img" src="" alt="Enlarged">
+    <img id="lightbox-img" src="" alt="">
   </div>
-
   <script>
     function openLightbox(src) {
       document.getElementById('lightbox-img').src = src;

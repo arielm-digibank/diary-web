@@ -3,206 +3,280 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>מול מלון הרמיטז, הר קוק, ניו-זילנד</title>
+  <title>מקום קוסם, קוק</title>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap" rel="stylesheet">
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background-color: #f8fafc;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0; padding: 20px; color: #334155;
+      background: #ffffff;
+      font-family: 'Heebo', sans-serif;
+      color: #1a1a2e;
+      line-height: 1.9;
     }
-    .container {
-      max-width: 800px; margin: 0 auto; background: #ffffff;
-      padding: 35px; border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06); line-height: 1.8;
+    .top-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #eee;
+      padding: 12px 30px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.9rem;
     }
-    .header {
-      border-bottom: 2px solid #e2e8f0; padding-bottom: 15px;
-      margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center;
+    .top-nav a {
+      color: #1d4ed8; text-decoration: none; font-weight: 600;
     }
-    .header h1 { margin: 0; color: #0f172a; font-size: 1.8rem; }
-    .home-link { color: #2563eb; text-decoration: none; font-weight: 600; }
-    .content img {
-      float: right; margin: 0 0 15px 20px; max-width: 320px; height: auto;
-      border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      cursor: pointer; transition: transform 0.2s;
+    .top-nav a:hover { text-decoration: underline; }
+    .top-nav .nav-links { display: flex; gap: 20px; }
+    .hero {
+      max-width: 900px; margin: 0 auto;
+      padding: 50px 40px 30px;
+      display: flex; align-items: flex-start; gap: 30px;
     }
-    .content img:hover { transform: scale(1.02); }
-    .content::after { content: ""; clear: both; display: table; }
-    a { color: #2563eb; }
+    .hero-text { flex: 1; }
+    .hero-map {
+      width: 120px; height: auto; object-fit: contain;
+      flex-shrink: 0; opacity: 0.85;
+    }
+    .meta-line {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+    }
+    .date-big {
+      font-size: 3.5rem; font-weight: 900; color: #e5e7eb; line-height: 1;
+    }
+    .date-details { font-size: 0.9rem; color: #6b7280; }
+    .country-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      border-radius: 20px; padding: 4px 14px;
+      font-size: 0.8rem; color: #1d4ed8; font-weight: 600;
+    }
+    .title {
+      font-size: 2.2rem; font-weight: 900; color: #111827;
+      margin: 20px 0 8px; line-height: 1.3;
+    }
+    .date-subtitle {
+      font-size: 1.1rem; font-weight: 300; color: #4b5563;
+      margin-bottom: 16px;
+    }
+    .title-divider {
+      width: 60px; height: 4px; background: #1d4ed8; border-radius: 2px;
+    }
+    .content {
+      max-width: 900px; margin: 30px auto; padding: 0 40px; font-size: 1.05rem;
+    }
+    .content p { margin-bottom: 18px; }
+    .content a {
+      color: #1d4ed8; cursor: pointer;
+      text-decoration: underline;
+      text-decoration-color: rgba(29,78,216,0.3);
+    }
+    .photo-block {
+      margin: 30px 0; border-radius: 12px; overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    .photo-block img {
+      width: 100%; display: block; cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .photo-block img:hover { transform: scale(1.01); }
+    .photo-block .caption {
+      padding: 12px 16px; font-size: 0.85rem; color: #6b7280;
+      background: #f9fafb; border-top: 1px solid #f3f4f6;
+    }
+    .photo-pair {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 14px; margin: 30px 0;
+    }
+    .photo-pair .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-pair .photo-item img {
+      width: 100%; height: 200px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-pair .photo-item img:hover { transform: scale(1.03); }
+    .photo-pair .photo-item .caption {
+      padding: 8px 12px; font-size: 0.8rem; color: #6b7280; background: #f9fafb;
+    }
+    .photo-trio {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px; margin: 30px 0;
+    }
+    .photo-trio .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-trio .photo-item img {
+      width: 100%; height: 180px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-trio .photo-item img:hover { transform: scale(1.03); }
+    .photo-trio .photo-item .caption {
+      padding: 8px 10px; font-size: 0.78rem; color: #6b7280; background: #f9fafb;
+    }
+    .nav-cards {
+      max-width: 900px; margin: 50px auto 20px; padding: 0 40px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .nav-card {
+      padding: 20px 24px; border: 1px solid #e5e7eb; border-radius: 12px;
+      text-decoration: none; color: inherit; transition: all 0.2s;
+    }
+    .nav-card:hover {
+      border-color: #1d4ed8; box-shadow: 0 4px 12px rgba(29,78,216,0.1);
+    }
+    .nav-card .label { font-size: 0.8rem; color: #6b7280; margin-bottom: 4px; }
+    .nav-card .card-title { font-weight: 700; font-size: 1rem; color: #1d4ed8; }
+    .supplements {
+      margin-top: 35px; padding: 25px 30px;
+      background: #f9fafb; border-radius: 12px; border: 1px solid #e5e7eb;
+    }
+    .supplements h3 {
+      font-size: 1.1rem; font-weight: 700; margin-bottom: 14px; color: #374151;
+    }
+    .supplements ol { padding-right: 20px; }
+    .supplements li { margin-bottom: 10px; color: #4b5563; }
+    .country-nav {
+      max-width: 900px; margin: 20px auto 40px; padding: 0 40px;
+      display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+    }
+    .country-nav a {
+      padding: 6px 14px; border-radius: 20px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      color: #1d4ed8; text-decoration: none;
+      font-size: 0.82rem; font-weight: 600;
+      transition: all 0.2s;
+    }
+    .country-nav a:hover {
+      background: #1d4ed8; color: white; border-color: #1d4ed8;
+    }
     .lightbox {
       display: none; position: fixed; z-index: 9999;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.9); justify-content: center; align-items: center; cursor: pointer;
+      background: rgba(0,0,0,0.92);
+      justify-content: center; align-items: center; cursor: pointer;
     }
-    .lightbox img { max-width: 90%; max-height: 90%; border-radius: 8px; }
+    .lightbox img { max-width: 92%; max-height: 92%; border-radius: 8px; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h1>מול מלון הרמיטז, הר קוק, ניו-זילנד</h1>
-      <a href="../index.html" class="home-link">🏠 לעמוד הראשי</a>
+  <div class="top-nav">
+    <div class="nav-links">
+      <a href="../index.html">עמוד ראשי</a>
     </div>
-    <div class="content">
-      <body>
-<table cellpadding="0" cellspacing="0" height="80" width="954">
-<tr>
-<td align="center" height="80" width="277">
-<marquee style="font-size: 18pt; color: #800080">10.3.02 - 8:00</marquee></td>
-<td align="center" height="80" width="667">
-<!--webbot bot="Navigation" s-type="banner" s-rendering="graphics" S-Orientation B-Include-Home B-Include-Up U-Page S-Target startspan --><!--webbot bot="Navigation" i-checksum="29479" endspan --></td>
-<td align="center" height="80" width="10">
-
-<img border="0" height="168" onclick="openLightbox(this.src)" src="../images/New_Zealand_south_island.gif" title="לחץ להגדלה" width="170"/></td>
-</tr>
-<tr>
-<td colspan="3" height="1" style=" " width="954"></td>
-</tr>
-</table><table cellpadding="0" cellspacing="0" width="100%">
-<tr>
-<td align="right" style=" ">
-<h4>
-<marquee style="font-size: 24pt; color: #008080">מקום קוסם, קוק</marquee></h4>
-<p> </p></td>
-</tr>
-</table>
-<table cellpadding="0" cellspacing="0" height="333" width="953">
-<tr>
-<td height="333" rowspan="2" style="       " valign="top" width="140"> <!--webbot bot="Navigation" S-Type="sequence" S-Orientation="vertical" S-Rendering="graphics" S-Theme="blocks 000" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><!--webbot bot="Navigation" i-checksum="23763" endspan --><p> </p>
-</td>
-<td height="333" rowspan="2" style="     " valign="top" width="1"></td>
-<td colspan="2" height="266" style="     " valign="top" width="735">
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">קמתי משינה משותפת עם גונן 
-    והילה באוטו, מול מלון 5 כוכבים, </span><span dir="LTR">Hermitage</span><span lang="HE">. 
-    לנו יש יותר כוכבים, אבל זה הדמיון היחידי בינינו לבין מלון. איזור </span>
-<span dir="LTR">Mt. Cook</span><span lang="HE"> יפהפה. ההר מושלג, גובהו 3700 
-    מ'. יכול להיות שהוא הכי גבוה בניו-זילנד, אבל אני לא בטוח בזה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אתמול קמנו אצל ברוס ב-
-    </span><span dir="LTR">Wanaka</span><span lang="HE">, כמו בבית. ביתו מוכר 
-    לנו כ"כ. ערב לפני-כן כאילו יצאנו. הגענו לפאב בעיירה, ה- </span>
-<span dir="LTR">Shooters</span><span lang="HE">. הזמנו בירה וראינו משחק 
-    רוגבי. חיש מהרה נשברנו וחזרנו. לא היתה מוזיקה במקום בגלל המשחק ולא היתה 
-    אווירת בלגן, אבל זה הכי קרוב ליציאה בשבועיים האחרונים. רוב הפעמים אנחנו לא 
-    יוצאים כי אנחנו במקומות קטנים או ישנים במכונית, אבל גם כשיש לנו הזדמנות, אין 
-    לנו כח או רצון לצאת. אני נותן לגונן להכתיב את קצב חיי הלילה, כשאני אחראי על 
-    קצב חיי היום, ולכן זה מבטא יותר את הלך רוחו. אני לא איש חיי לילה, אם כי אני 
-    נסחף לפעמים במסיבות טובות.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">נפרדנו מהשלישיה הישראלית 
-    הנחמדה: אהרון ואריק שני חברה ממשפחה דתית ורועי זה שהצטרף אליהם. הם בני 23-24 
-    מירושלים ורועי מפתח-תקוה. יש סיכוי שנפגוש אותם בנלסון או בפיקטון כי יש להם 
-    תאריכי מעבורת דומים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">נסענו ל- </span>
-<span dir="LTR">Mt Cook</span><span lang="HE"> לא לפני שעשינו קניות. הילה 
-    התריעה בפנינו שאין סופר או מכולת ב- </span><span dir="LTR">Mt. Cook</span><span lang="HE"> 
-    אז כדאי שנקנה יותר אוכל. אני פחדתי להסכים כי גונן לא אוהב לקנות הרבה אוכל כי 
-    זה בזבוז של כסף. אז כרגע אנחנו בצמצום אוכל והטלתי הקצבה על הכמויות. אתמול 
-    בבית-המלון ישבנו למטה בסלון והריחות מארוחת הערב שלהם הטריפה אותנו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">נסענו ל- </span>
-<span dir="LTR">Mt. Cook</span><span lang="HE">. בדרך יש נופים שהכי מזכירים 
-    מדבר. כמו הנגב בחודש יוני – בעיקר צהוב, הרים קרחים ומעט ירוק. חם כאן, אולי 
-    30 מעלות. באמצע האי הכי חם בקיץ והכי קר בחורף. הכי מעט משקעים יורדים כאן, 
-    בערך כמו בצפון הארץ שלנו, אבל יש אגמים וההרים שלצידם עדיין קרחים ומדבריים. 
-    ככל הנראה יש עליהם שלג בחורף. זה מזכיר את סיני – ים כחול וברקע הרים מדבריים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הגענו ל- </span>
-<span dir="LTR">Mt. Cook</span><span lang="HE">. מהרגע שהוא נחשף עם השלג שלו 
-    וההרים הצמודים אליו המושלגים גם הם והנוף נראה נפלא: אגם כחול, הרי טרשים (או 
-    כמו שגונן אוהב לאמר לי – "סת'כל, הר טרשים – קירח". אני עונה לו ב- "תזהר שלא 
-    תכנס למבוי – סתום", ויש לנו עוד עשרות יציאות ידועות בסגנון הזה), ומרחוק 
-    מתנשאים הרים מושלגים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הילה ממש מבולבלת. היא ילדה 
-    טובה ומאורגנת לכאורה, אבל בתכלס היא מאבדת את חפציה בקצב מדהים. יש דברים 
-    שנשכחים ונמצאים אח"כ באוטו. היום היא השפריצה על עצמה מים ו- 5 דקות אח"כ היא 
-    נשארה עם הפותחן ריצ'רץ' ביד, הוא יצא מהמסילה כשסגרה בשלומיאליות את הפליז. 
-    וזה עוד אחרי שהיא התקשרה למצוא מקומות שינה ב- </span><span dir="LTR">Hit</span><span lang="HE"> 
-    וכשדיברה איתם התבלבלה בין </span><span dir="LTR">Tuesday</span><span lang="HE"> 
-    ל- </span><span dir="LTR">Thursday</span><span lang="HE"> והיא יודעת אנגלית 
-    יותר טוב ממני. מזל שגונן ואני משתמשים בקריאת "בהה!" שקטה, ללא קול, שכן אם 
-    לא, היינו מעירים את כל באי המלון משם היא התקשרה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">גונן התחיל להאשים אותה 
-    בשבלוניות הטיול שלנו. כלום לא קורה כאן. אני מעט ספקן. לפחות במשך היום אני לא 
-    רואה אותה משפיעה – היא לא מאיטה אותנו ואין לה דרישות מיוחדות. ביציאות המעטות 
-    שאנו עושים בלילה היא באה איתנו ויכול להיות שהיא משפיעה בהרתעה (הרתעת בנות 
-    אחרות) ובהרגעה (מרגיעה אותנו ואנחנו לא יכולים ליזום דברים יותר מטורפים).
-    </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אתמול התחוור לי שאין לנו 
-    מספיק אוכל להיום. הילה אמרה שידעה שזה יקרה. הטלתי הקצבה על האוכל. גונן כבר 
-    השתמש קצת בקצבה שלו. אח"כ כשישבנו בסלון בית המלון בסנדלים וראינו משחק רוגבי, 
-    הרחנו את ריח א</span>ר<span lang="HE">וחת הערב ונגנבנו. אני ירדתי במעלית עם בחורה שהחזיקה צלחת עם 
-    סטייק ותפוחי אדמה אפויים (תפודים) והניחוח שלהם הטריף אותי. אמרתי לה 
-    "בתיאבון" אבל היא לא הביאה לי כלום.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">עכשיו שקמתי אני רואה עננים 
-    נמוכים המסתירים את הר </span><span dir="LTR">Cook</span><span lang="HE">. 
-    אפילו שם ההר גורם לי להזיל ריר. עננים נמוכים זה לא טוב לנוף. נקווה שיתפזרו. 
-    יש להם נטייה להעיק יותר בבוקר.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הילה לא רוצה שנפגוש את חבר 
-    שלה בארץ, ירון, שלא נקלקל אותו ובצדק.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הילה מתגעגעת לירון, גונן 
-    מתגעגע לשירלי ואני נשאר לבד. אז אני חושב על קארין ומתגעגע למלודי.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">ומה עם ניו-זילנד?. כשאני 
-    רואה שאני חוזר ביולי לחתונה של ג'וניור (25.7) ואנחנו נמצאים כאן 3 חדשים, 
-    כלומר עוד כמעט חודשיים, חבל לי על הזמן. יש כ"כ הרבה מקומות להיות בהם, ואני 
-    לא מתכוון אוסטרליה, אני מתכוון לחזור למזרח הרחוק ולטייל בקמבודיה ולחזור 
-    להודו, בעיקר לצפון הודו כי חם ביתר המדינה. אבל יש לנו אוטו למכור וטיסה עם 
-    תאריך קבוע והרבה מקומות לראות כאן, אז נמשיך.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אנחנו לא סובלים כמובן, אבל 
-    לא נהנים יותר מדי.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">כל האחרים ישנים עכשיו ולכן 
-    אני מפליג במחשבותי. אני לא מעיר אותם בגלל העננים, שיושבים נמוך ומסתירים את 
-    הנוף, מטרפדים כל אפשרות להשיג תמונה טובה, אבל התחזיות אמרו שיהיה יפה יותר, 
-    מה החזאי מבין?. כאן אין טעם לתחזיות. הן מופיעות בכל ה- </span>
-<span dir="LTR">Tourist information</span><span lang="HE"> והן טובות בדיוק 
-    כמו ניחוש מקרי ואפילו פחות.</span></b></p>
-<p> </p></td>
-<td align="center" height="333" rowspan="2" style="     " valign="top" width="187">
-<p>
-
-<img border="0" height="121" onclick="openLightbox(this.src)" src="../images/20020309_omarama_lake.jpg" title="לחץ להגדלה" width="179"/></p>
-<p>
-<font color="#660099">אגם אומאראמה, שם אכלנו צהרים</font></p>
-<p>
-
-<img border="0" height="126" onclick="openLightbox(this.src)" src="../images/20020309_us&amp;mount_cook.jpg" title="לחץ להגדלה" width="183"/></p>
-<p>
-
-<img border="0" height="123" onclick="openLightbox(this.src)" src="../images/20020309_way_to_mt_cook.jpg" title="לחץ להגדלה" width="178"/></p>
-<p>
-<font color="#660099">תצפית על הר קוק, בדרך אליו</font></p>
-<p>
-
-<img border="0" height="120" onclick="openLightbox(this.src)" src="../images/20020309_hooker_valley.jpg" title="לחץ להגדלה" width="177"/></p>
-<p><font color="#660099">עמק הוקר, לרגלי הר קוק</font></p>
-<p> </p>
-<p>
-
-<img border="0" height="129" onclick="openLightbox(this.src)" src="../images/20020309_finishing_a_deal.jpg" title="לחץ להגדלה" width="179"/></p>
-<p><font color="#660099">בפוזה של סוגרים עסקה במלון הרמיטז. ברקע - הר קוק</font></p>
-</td>
-</tr>
-<tr>
-<td height="67" style="     " valign="top" width="314">
-<b>
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button104.gif" title="לחץ להגדלה" width="59"/></b></td>
-<td height="67" style="     " valign="top" width="421">
-<p align="right"><b>
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button106.gif" title="לחץ להגדלה" width="59"/></b></p></td>
-</tr>
-</table>
-<p align="center">
-<!--webbot bot="Navigation" S-Type="sequence" S-Orientation="horizontal" S-Rendering="html" S-Bar="Brackets" S-Btn-Nml="[&lt;A HREF=&quot;#URL#&quot; TARGET=&quot;#TARGET#&quot; STYLE=&quot;{text-decoration: none;}&quot;&gt;#LABEL#&lt;/A&gt;]" S-Btn-Sel="[#LABEL#]" S-Btn-Sep="&amp;nbsp;" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><nobr>[<a href="index.html" style="{text-decoration: none;}" target="">התחלה</a>]</nobr> <nobr>[<a href="200110052040.html" style="{text-decoration: none;}" target="">דנמרק</a>]</nobr> <nobr>[<a href="20011006.html" style="{text-decoration: none;}" target="">הודו</a>]</nobr> <nobr>[<a href="20011030.html" style="{text-decoration: none;}" target="">נפאל</a>]</nobr> <nobr>[<a href="20011115.html" style="{text-decoration: none;}" target="">טרק סובב אנאפורנה</a>]</nobr> <nobr>[<a href="20011210.html" style="{text-decoration: none;}" target="">תאילנד</a>]</nobr> <nobr>[<a href="20020108.html" style="{text-decoration: none;}" target="">לאוס</a>]</nobr> <nobr>[<a href="20020123.html" style="{text-decoration: none;}" target="">צפון תאילנד</a>]</nobr> <nobr>[<a href="20020203.html" style="{text-decoration: none;}" target="">אוסטרליה</a>]</nobr> <nobr>[<a href="20020210.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי דרומי</a>]</nobr> <nobr>[<a href="20020326.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי צפוני</a>]</nobr> <nobr>[<a href="20020506.html" style="{text-decoration: none;}" target="">פיליפינים</a>]</nobr> <nobr>[<a href="20020603.html" style="{text-decoration: none;}" target="">קמבודיה</a>]</nobr><!--webbot bot="Navigation" i-checksum="33824" endspan --></p>
-<p><i><small>This site was last updated
-<!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%m/%d/%y" startspan -->07/16/03<!--webbot bot="Timestamp" i-checksum="12706" endspan --> </small></i>
-</p>
-</body>
+    <div class="nav-links">
+      <a href="20020308.html">← הקודם</a>
+      <a href="20020311.html">הבא →</a>
     </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-text">
+      <div class="meta-line">
+        <span class="date-big">10</span>
+        <div>
+          <div class="date-details">מרץ 2002</div>
+          <span class="country-badge">ניו-זילנד, אי דרומי</span>
+        </div>
+      </div>
+      <h1 class="title">מקום קוסם, קוק</h1>
+      <div class="title-divider"></div>
+    </div>
+    <img class="hero-map" src="../images/New_Zealand_south_island.gif" alt="ניו-זילנד, אי דרומי">
+  </div>
+
+  <div class="content">
+    <p>מקום קוסם, קוק</p>
+
+    <p>קמתי משינה משותפת עם גונן והילה באוטו, מול מלון 5 כוכבים, Hermitage. לנו יש יותר כוכבים, אבל זה הדמיון היחידי בינינו לבין מלון. איזור Mt. Cook יפהפה. ההר מושלג, גובהו 3700 מ'. יכול להיות שהוא הכי גבוה בניו-זילנד, אבל אני לא בטוח בזה.</p>
+
+    <p>אתמול קמנו אצל ברוס ב- Wanaka, כמו בבית. ביתו מוכר לנו כ"כ. ערב לפני-כן כאילו יצאנו. הגענו לפאב בעיירה, ה- Shooters. הזמנו בירה וראינו משחק רוגבי. חיש מהרה נשברנו וחזרנו. לא היתה מוזיקה במקום בגלל המשחק ולא היתה אווירת בלגן, אבל זה הכי קרוב ליציאה בשבועיים האחרונים. רוב הפעמים אנחנו לא יוצאים כי אנחנו במקומות קטנים או ישנים במכונית, אבל גם כשיש לנו הזדמנות, אין לנו כח או רצון לצאת. אני נותן לגונן להכתיב את קצב חיי הלילה, כשאני אחראי על קצב חיי היום, ולכן זה מבטא יותר את הלך רוחו. אני לא איש חיי לילה, אם כי אני נסחף לפעמים במסיבות טובות.</p>
+
+    <p>נפרדנו מהשלישיה הישראלית הנחמדה: אהרון ואריק שני חברה ממשפחה דתית ורועי זה שהצטרף אליהם. הם בני 23-24 מירושלים ורועי מפתח-תקוה. יש סיכוי שנפגוש אותם בנלסון או בפיקטון כי יש להם תאריכי מעבורת דומים.</p>
+
+    <p>נסענו ל- Mt Cook לא לפני שעשינו קניות. הילה התריעה בפנינו שאין סופר או מכולת ב- Mt. Cook אז כדאי שנקנה יותר אוכל. אני פחדתי להסכים כי גונן לא אוהב לקנות הרבה אוכל כי זה בזבוז של כסף. אז כרגע אנחנו בצמצום אוכל והטלתי הקצבה על הכמויות. אתמול בבית-המלון ישבנו למטה בסלון והריחות מארוחת הערב שלהם הטריפה אותנו.</p>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/20020309_omarama_lake.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">אגם אומאראמה, שם אכלנו צהרים</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020309_us&mount_cook.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020309_way_to_mt_cook.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">תצפית על הר קוק, בדרך אליו</div>
+      </div>
+    </div>
+
+    <p>נסענו ל- Mt. Cook. בדרך יש נופים שהכי מזכירים מדבר. כמו הנגב בחודש יוני – בעיקר צהוב, הרים קרחים ומעט ירוק. חם כאן, אולי 30 מעלות. באמצע האי הכי חם בקיץ והכי קר בחורף. הכי מעט משקעים יורדים כאן, בערך כמו בצפון הארץ שלנו, אבל יש אגמים וההרים שלצידם עדיין קרחים ומדבריים. ככל הנראה יש עליהם שלג בחורף. זה מזכיר את סיני – ים כחול וברקע הרים מדבריים.</p>
+
+    <p>הגענו ל- Mt. Cook. מהרגע שהוא נחשף עם השלג שלו וההרים הצמודים אליו המושלגים גם הם והנוף נראה נפלא: אגם כחול, הרי טרשים (או כמו שגונן אוהב לאמר לי – "סת'כל, הר טרשים – קירח". אני עונה לו ב- "תזהר שלא תכנס למבוי – סתום", ויש לנו עוד עשרות יציאות ידועות בסגנון הזה), ומרחוק מתנשאים הרים מושלגים.</p>
+
+    <p>הילה ממש מבולבלת. היא ילדה טובה ומאורגנת לכאורה, אבל בתכלס היא מאבדת את חפציה בקצב מדהים. יש דברים שנשכחים ונמצאים אח"כ באוטו. היום היא השפריצה על עצמה מים ו- 5 דקות אח"כ היא נשארה עם הפותחן ריצ'רץ' ביד, הוא יצא מהמסילה כשסגרה בשלומיאליות את הפליז. וזה עוד אחרי שהיא התקשרה למצוא מקומות שינה ב- Hit וכשדיברה איתם התבלבלה בין Tuesday ל- Thursday והיא יודעת אנגלית יותר טוב ממני. מזל שגונן ואני משתמשים בקריאת "בהה!" שקטה, ללא קול, שכן אם לא, היינו מעירים את כל באי המלון משם היא התקשרה.</p>
+
+    <p>גונן התחיל להאשים אותה בשבלוניות הטיול שלנו. כלום לא קורה כאן. אני מעט ספקן. לפחות במשך היום אני לא רואה אותה משפיעה – היא לא מאיטה אותנו ואין לה דרישות מיוחדות. ביציאות המעטות שאנו עושים בלילה היא באה איתנו ויכול להיות שהיא משפיעה בהרתעה (הרתעת בנות אחרות) ובהרגעה (מרגיעה אותנו ואנחנו לא יכולים ליזום דברים יותר מטורפים).</p>
+
+    <p>אתמול התחוור לי שאין לנו מספיק אוכל להיום. הילה אמרה שידעה שזה יקרה. הטלתי הקצבה על האוכל. גונן כבר השתמש קצת בקצבה שלו. אח"כ כשישבנו בסלון בית המלון בסנדלים וראינו משחק רוגבי, הרחנו את ריח ארוחת הערב ונגנבנו. אני ירדתי במעלית עם בחורה שהחזיקה צלחת עם סטייק ותפוחי אדמה אפויים (תפודים) והניחוח שלהם הטריף אותי. אמרתי לה "בתיאבון" אבל היא לא הביאה לי כלום.</p>
+
+    <div class="photo-pair">
+      <div class="photo-item">
+        <img src="../images/20020309_hooker_valley.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">עמק הוקר, לרגלי הר קוק</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020309_finishing_a_deal.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">בפוזה של סוגרים עסקה במלון הרמיטז. ברקע - הר קוק</div>
+      </div>
+    </div>
+
+    <p>עכשיו שקמתי אני רואה עננים נמוכים המסתירים את הר Cook. אפילו שם ההר גורם לי להזיל ריר. עננים נמוכים זה לא טוב לנוף. נקווה שיתפזרו. יש להם נטייה להעיק יותר בבוקר.</p>
+
+    <p>הילה לא רוצה שנפגוש את חבר שלה בארץ, ירון, שלא נקלקל אותו ובצדק.</p>
+
+    <p>הילה מתגעגעת לירון, גונן מתגעגע לשירלי ואני נשאר לבד. אז אני חושב על קארין ומתגעגע למלודי.</p>
+
+    <p>ומה עם ניו-זילנד?. כשאני רואה שאני חוזר ביולי לחתונה של ג'וניור (25.7) ואנחנו נמצאים כאן 3 חדשים, כלומר עוד כמעט חודשיים, חבל לי על הזמן. יש כ"כ הרבה מקומות להיות בהם, ואני לא מתכוון אוסטרליה, אני מתכוון לחזור למזרח הרחוק ולטייל בקמבודיה ולחזור להודו, בעיקר לצפון הודו כי חם ביתר המדינה. אבל יש לנו אוטו למכור וטיסה עם תאריך קבוע והרבה מקומות לראות כאן, אז נמשיך.</p>
+
+    <p>אנחנו לא סובלים כמובן, אבל לא נהנים יותר מדי.</p>
+
+    <p>כל האחרים ישנים עכשיו ולכן אני מפליג במחשבותי. אני לא מעיר אותם בגלל העננים, שיושבים נמוך ומסתירים את הנוף, מטרפדים כל אפשרות להשיג תמונה טובה, אבל התחזיות אמרו שיהיה יפה יותר, מה החזאי מבין?. כאן אין טעם לתחזיות. הן מופיעות בכל ה- Tourist information והן טובות בדיוק כמו ניחוש מקרי ואפילו פחות.</p>
+
+
+  </div>
+
+  <div class="nav-cards">
+    <a href="20020311.html" class="nav-card">
+      <div class="label">הבא →</div>
+      <div class="card-title">תקוע פה בטקאפו</div>
+    </a>
+    <a href="20020308.html" class="nav-card">
+      <div class="label">← הקודם</div>
+      <div class="card-title">השיט במילפורד סאונדס</div>
+    </a>
+  </div>
+
+  <div class="country-nav">
+    <a href="200110052040.html">דנמרק</a>
+    <a href="20011006.html">הודו</a>
+    <a href="20011030.html">נפאל</a>
+    <a href="20011115.html">טרק אנאפורנה</a>
+    <a href="20011210.html">תאילנד</a>
+    <a href="20020108.html">לאוס</a>
+    <a href="20020123.html">צפון תאילנד</a>
+    <a href="20020203.html">אוסטרליה</a>
+    <a href="20020210.html">ניו-זילנד, אי דרומי</a>
+    <a href="20020326.html">ניו-זילנד, אי צפוני</a>
+    <a href="20020506.html">פיליפינים</a>
+    <a href="20020603.html">קמבודיה</a>
   </div>
 
   <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
-    <img id="lightbox-img" src="" alt="Enlarged">
+    <img id="lightbox-img" src="" alt="">
   </div>
-
   <script>
     function openLightbox(src) {
       document.getElementById('lightbox-img').src = src;

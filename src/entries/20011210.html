@@ -3,258 +3,366 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>בנגקוק, תאילנד</title>
+  <title>הלם תרבות, הסופגניה עם הקטשופ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap" rel="stylesheet">
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background-color: #f8fafc;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0; padding: 20px; color: #334155;
+      background: #ffffff;
+      font-family: 'Heebo', sans-serif;
+      color: #1a1a2e;
+      line-height: 1.9;
     }
-    .container {
-      max-width: 800px; margin: 0 auto; background: #ffffff;
-      padding: 35px; border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06); line-height: 1.8;
+    .top-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #eee;
+      padding: 12px 30px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.9rem;
     }
-    .header {
-      border-bottom: 2px solid #e2e8f0; padding-bottom: 15px;
-      margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center;
+    .top-nav a {
+      color: #1d4ed8; text-decoration: none; font-weight: 600;
     }
-    .header h1 { margin: 0; color: #0f172a; font-size: 1.8rem; }
-    .home-link { color: #2563eb; text-decoration: none; font-weight: 600; }
-    .content img {
-      float: right; margin: 0 0 15px 20px; max-width: 320px; height: auto;
-      border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      cursor: pointer; transition: transform 0.2s;
+    .top-nav a:hover { text-decoration: underline; }
+    .top-nav .nav-links { display: flex; gap: 20px; }
+    .hero {
+      max-width: 900px; margin: 0 auto;
+      padding: 50px 40px 30px;
+      display: flex; align-items: flex-start; gap: 30px;
     }
-    .content img:hover { transform: scale(1.02); }
-    .content::after { content: ""; clear: both; display: table; }
-    a { color: #2563eb; }
+    .hero-text { flex: 1; }
+    .hero-map {
+      width: 120px; height: auto; object-fit: contain;
+      flex-shrink: 0; opacity: 0.85;
+    }
+    .meta-line {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+    }
+    .date-big {
+      font-size: 3.5rem; font-weight: 900; color: #e5e7eb; line-height: 1;
+    }
+    .date-details { font-size: 0.9rem; color: #6b7280; }
+    .country-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      border-radius: 20px; padding: 4px 14px;
+      font-size: 0.8rem; color: #1d4ed8; font-weight: 600;
+    }
+    .title {
+      font-size: 2.2rem; font-weight: 900; color: #111827;
+      margin: 20px 0 8px; line-height: 1.3;
+    }
+    .date-subtitle {
+      font-size: 1.1rem; font-weight: 300; color: #4b5563;
+      margin-bottom: 16px;
+    }
+    .title-divider {
+      width: 60px; height: 4px; background: #1d4ed8; border-radius: 2px;
+    }
+    .content {
+      max-width: 900px; margin: 30px auto; padding: 0 40px; font-size: 1.05rem;
+    }
+    .content p { margin-bottom: 18px; }
+    .content a {
+      color: #1d4ed8; cursor: pointer;
+      text-decoration: underline;
+      text-decoration-color: rgba(29,78,216,0.3);
+    }
+    .photo-block {
+      margin: 30px 0; border-radius: 12px; overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    .photo-block img {
+      width: 100%; display: block; cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .photo-block img:hover { transform: scale(1.01); }
+    .photo-block .caption {
+      padding: 12px 16px; font-size: 0.85rem; color: #6b7280;
+      background: #f9fafb; border-top: 1px solid #f3f4f6;
+    }
+    .photo-pair {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 14px; margin: 30px 0;
+    }
+    .photo-pair .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-pair .photo-item img {
+      width: 100%; height: 200px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-pair .photo-item img:hover { transform: scale(1.03); }
+    .photo-pair .photo-item .caption {
+      padding: 8px 12px; font-size: 0.8rem; color: #6b7280; background: #f9fafb;
+    }
+    .photo-trio {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px; margin: 30px 0;
+    }
+    .photo-trio .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-trio .photo-item img {
+      width: 100%; height: 180px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-trio .photo-item img:hover { transform: scale(1.03); }
+    .photo-trio .photo-item .caption {
+      padding: 8px 10px; font-size: 0.78rem; color: #6b7280; background: #f9fafb;
+    }
+    .nav-cards {
+      max-width: 900px; margin: 50px auto 20px; padding: 0 40px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .nav-card {
+      padding: 20px 24px; border: 1px solid #e5e7eb; border-radius: 12px;
+      text-decoration: none; color: inherit; transition: all 0.2s;
+    }
+    .nav-card:hover {
+      border-color: #1d4ed8; box-shadow: 0 4px 12px rgba(29,78,216,0.1);
+    }
+    .nav-card .label { font-size: 0.8rem; color: #6b7280; margin-bottom: 4px; }
+    .nav-card .card-title { font-weight: 700; font-size: 1rem; color: #1d4ed8; }
+    .supplements {
+      margin-top: 35px; padding: 25px 30px;
+      background: #f9fafb; border-radius: 12px; border: 1px solid #e5e7eb;
+    }
+    .supplements h3 {
+      font-size: 1.1rem; font-weight: 700; margin-bottom: 14px; color: #374151;
+    }
+    .supplements ol { padding-right: 20px; }
+    .supplements li { margin-bottom: 10px; color: #4b5563; }
+    .country-nav {
+      max-width: 900px; margin: 20px auto 40px; padding: 0 40px;
+      display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+    }
+    .country-nav a {
+      padding: 6px 14px; border-radius: 20px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      color: #1d4ed8; text-decoration: none;
+      font-size: 0.82rem; font-weight: 600;
+      transition: all 0.2s;
+    }
+    .country-nav a:hover {
+      background: #1d4ed8; color: white; border-color: #1d4ed8;
+    }
     .lightbox {
       display: none; position: fixed; z-index: 9999;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.9); justify-content: center; align-items: center; cursor: pointer;
+      background: rgba(0,0,0,0.92);
+      justify-content: center; align-items: center; cursor: pointer;
     }
-    .lightbox img { max-width: 90%; max-height: 90%; border-radius: 8px; }
+    .lightbox img { max-width: 92%; max-height: 92%; border-radius: 8px; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h1>בנגקוק, תאילנד</h1>
-      <a href="../index.html" class="home-link">🏠 לעמוד הראשי</a>
+  <div class="top-nav">
+    <div class="nav-links">
+      <a href="../index.html">עמוד ראשי</a>
     </div>
-    <div class="content">
-      <body>
-<table cellpadding="0" cellspacing="0" height="80" width="954">
-<tr>
-<td align="center" height="80" width="277">
-<marquee style="font-size: 18pt; color: #800080">10.12.01 - 19:00</marquee></td>
-<td align="center" height="80" width="667">
-<!--webbot bot="Navigation" s-type="banner" s-rendering="graphics" S-Orientation B-Include-Home B-Include-Up U-Page S-Target startspan --><!--webbot bot="Navigation" i-checksum="11380" endspan --></td>
-<td align="center" height="80" width="10">
-
-<img border="0" height="140" onclick="openLightbox(this.src)" src="../images/Thailand.gif" title="לחץ להגדלה" width="144"/></td>
-</tr>
-<tr>
-<td colspan="3" height="1" style=" " width="954"></td>
-</tr>
-</table><table cellpadding="0" cellspacing="0" width="100%">
-<tr>
-<td align="right" style=" ">
-<h4>
-<marquee style="font-size: 24pt; color: #008080">הלם תרבות, הסופגניה עם הקטשופ</marquee></h4>
-<p> </p></td>
-</tr>
-</table>
-<table cellpadding="0" cellspacing="0" height="333" width="953">
-<tr>
-<td height="333" rowspan="2" style="       " valign="top" width="140"> <!--webbot bot="Navigation" S-Type="sequence" S-Orientation="vertical" S-Rendering="graphics" S-Theme="blocks 000" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><!--webbot bot="Navigation" i-checksum="32609" endspan --><p style="text-align: center">
-
-<img border="0" height="92" onclick="openLightbox(this.src)" src="../images/20011209_katmandu_old_city_3.jpg" title="לחץ להגדלה" width="137"/></p>
-<p style="text-align: center">
-
-<img border="0" height="201" onclick="openLightbox(this.src)" src="../images/20011209_gonen_near_big_stupa.jpg" title="לחץ להגדלה" width="125"/></p>
-<p style="text-align: center">
-
-<img border="0" height="186" onclick="openLightbox(this.src)" src="../images/20011209_gonen_on_the_elephant_statue.jpg" title="לחץ להגדלה" width="129"/></p>
-<p style="text-align: center">
-
-<img border="0" height="84" onclick="openLightbox(this.src)" src="../images/20011209_katmandu_colorful_buildings.jpg" title="לחץ להגדלה" width="134"/></p>
-<p style="text-align: center">
-
-<img border="0" height="98" onclick="openLightbox(this.src)" src="../images/20011209_katmandu_old_city.jpg" title="לחץ להגדלה" width="137"/></p>
-<p style="text-align: center">
-
-<img border="0" height="101" onclick="openLightbox(this.src)" src="../images/20011209_katmandu_old_city_2.jpg" title="לחץ להגדלה" width="135"/></p>
-<p style="text-align: center"><font color="#660099">תמונות של גונן משיטוטיו 
-    בעיר</font></p>
-</td>
-<td height="333" rowspan="2" style="     " valign="top" width="1"></td>
-<td colspan="2" height="266" style="     " valign="top" width="735">
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> אמשיך מאיפה שהפסקתי.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הקלטתי 6 דיסקים עד 19:00 
-    בערב, אז הלכתי לג'ני והחזרתי לה את הדיסקמן.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בינתיים פגשתי את גונן 
-    ששיטט בעיר העתיקה עם שירלי, במקומות שלא הייתי בהם ואסף חוויות.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">גם פגשתי את עוז ואיתן, 
-    שאמנם לא שכבו עם הנפאליות, אבל היה להם סרט.
-    <a href="images/pictures/nepal/oz&amp;eitan&amp;local_girls.jpg" target="_blank">הם הלכו איתן 
-    למקדש הקופים</a> ואחרי זה אכלו אצלן ארוחת-ערב.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">קבעתי עם כולם ב- "אור2</span><span dir="LTR">k</span><span lang="HE">".</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">ישבתי שם מ- 19:30 ואכלתי 
-    כרגיל מלאווח מצוין.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">פתאם קלטתי שהיום חנוכה 
-    וכולם מסתלקים להם לבית חב"ד. חשדתי שאולי גונן, עוז ואיתן ילכו לשם, אבל קבעתי 
-    עם ג'ני כאן, במסעדה, אז ישבתי וסיימתי לקרוא את ה"אלכימיסט", הספר הידוע. הספר 
-    לא עשה עלי רושם, אבל הוא דק אז החלטתי לגמור אותו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בינתיים באו סילביה וסופי 
-    להפרד ממני. משום מה החליטה סופי שלא נתראה היום כי היא הולכת לישון, מה שהיא 
-    עשתה כל היום לדבריה. היא באמת אדישה. נפרדנו בנשיקות והבטחנו להשאר בקשר.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אח"כ ג'ני הגיעה, לקחתי 
-    אותה לבית חב"ד. המקום היה מלא מפה לפה, כ- 40-50 איש. פתחו לנו שולחן בפינה. 
-    גם גונן הגיע עם שירלי. איתן ועוז היו שם והם הביאו את מנהל המלון שלנו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הפעם לא עשיתי את הטעות של 
-    יום שישי והגעתי מאוחר, ב- 21:00, בדיוק כשנגמרו השירים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">חילקו סופגניות קטנות 
-    ומכווצות, קשות ולא טעימות. אח"כ מישהו הביא סופגניות גדולות ואמר כי במקום 
-    ריבה הם שמו קטשופ. חשבתי שהוא צוחק וטעמתי, הרגשת גועל מלאה את פי, שכן זה היה 
-    באמת קטשופ. הייתי חייב לאכול עוד סופגניה מכווצת וקשה בכדי להעביר את הטעם – 
-    סיוט.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אח"כ הרב דרש את דרשתו. זהו 
-    בעצם התשלום עבור הארוחה שמחולקת חינם שם. לא חשתי בכשרון מיוחד אצלו, אם כי 
-    הוא ברנש נחמד.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אח"כ שוב החלו לשיר שירה 
-    בציבור וחילקו שירונים. גונן שאל אותי אם אני חש בגעגוע. עניתי לו שאני חש 
-    בזעזוע. האמת לא שווה לחזור לארץ בשביל דברים כאלה. לבסוף הצטרפנו לשירת "תן לי 
-    ארץ אחרת" והלכנו לחדר.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">כשהגענו למלון עשינו 
-    חשבונות בקבלה. פתאם נכנס וי, שיכור קלות. שיערו גדל מאז הפעם האחרונה שראינו 
-    אותו. נפלנו איש על כתפי רעהו. הוא הזמין אותנו אליו למלון, הוא אמר שיש מסיבה 
-    גדולה בחדרו. הלכנו רק לזמן קצר שכן היינו צריכים לארוז וגם צביה ואורלי היו 
-    צריכות להגיע.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בחדרו ראינו קבוצה של 10 
-    גברים ו- 2 בנות מאנגליה ואוסטרליה. הם שתו הרבה ועישנו מעט. הרבה אספקה. שהינו 
-    איתם קצת ואח"כ חזרנו לחדרנו. אחד הברנשים שם, טובי, סיפר שבשמורת ברדיה, איפה 
-    שהיינו, הסתער עליו קרנף זועם והוא היה צריך לברוח. קינאתי בו, 
-    <a href="20011101.htm#dissapointed">לנו לא היו 
-    חוויות משמורת ברדיה</a>.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בערך ב- 23:00 הגיעו צביה 
-    ואורלי והצטרפו אלינו בחדרי. איתן ועוז הביאו תייר מהודו שהם פגשו בעבר 
-    בדרמסאלה בשם ראול. הוא ישב בפינה ורק עישן איתנו. היה לי הרושם שהוא נועץ בי 
-    עיניים, אבל אני לא בטוח.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אורלי כרגיל דיברה הרבה. 
-    צביה סיפרה שהיא בחורה טובה שלא ממהרת לעשות דברים עם בחורים, היא גם קצת שרה 
-    ורקדה ואני החלטתי שהיא ממש דומה למרנינה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">לאט לאט כולם פרשו ואני 
-    נשארתי עם אורלי וצביה. מאחר והייתי צריך לקום ב- 5:30, ניסיתי שהן תשארנה איתי 
-    עד אז, לא רציתי לישון לבד. עם אורלי אפשר לדבר שעות, אבל צביה נשברה והן הלכו 
-    ב- 4:00. אני ישנתי שעה ורבע וקמתי.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">גיליתי שצביה שכחה אצלי את 
-    הגיטרה שלה – אבסורד. אם נוסיף את זה לחזיה שסופי שכחה נראה ששווה לארח בחדר.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">יצאנו לשדה-התעופה. עצרנו 
-    מונית ושילמנו לה 150 רופי. בשדה התעופה צריך להוסיף 1100 רופי מס נמל.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">כמובן שהמטוס עוכב. כך 
-    יצאנו רק ב- 12:00 במקום 8:30. חצי מהזמן הזה חיכינו בתוך המטוס.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">טסנו כ- 3 שעות. הטייס היה 
-    די גרוע, המטוס ממש התנדנד לפני שנגע בקרקע, אבל עשינו את זה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">איך שיצאנו קיבלנו גל חום. 
-    לעבור מ- 20 מעלות ל- 30 מעלות זה שינוי. כשיצאנו, ראינו עיר מערבית לפחות כמו 
-    ישראל.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">נסענו במונית לקוואסן, 
-    האיזור של התיירים. שילמנו 100 באט כל אחד. 10 באט זה בדיוק שקל.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">כל הדרך ראינו בחורות 
-    יפהפיות. הגענו לקוואסאן ושמנו את התיקים שלנו במקום שאיתי המליץ עליו – 
-    "סוואדי סמייל". החדרים קטנטנים, מחירם 240 באט (אני צריך לשלם לבד בינתיים), 
-    אבל כל המתקנים (מקלחת ושירותים) עובדים ומודרניים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">יצאנו לרחוב וחטפנו הלם 
-    תרבות – שפע של מאכלים, המון תיירים, המון דברים שאפשר לקנות.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אני חושב שעיקר השינוי היו 
-    הבחורות – יפהפיות, כולן לובשות קצר. אתה פשוט נגנב. גונן אמר שיש אווירת סקס 
-    באוויר. גם האוכל מגוון ואקזוטי כאן בצורה בלתי רגילה – שיפודים של כל מיני 
-    דברים ברחוב בשקל לשיפוד (10 באט), אגוז קוקוס שפותחים בשבילך ושייקים של 
-    פירות. הרחוב מלא מפה לפה, לא כמו קטמנדו או פוקארה הדועכות.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">זהו, בינתיים זו התרשמות 
-    ראשונית, אני עוד ארחיב. אנחנו כאן 3 שעות בלבד.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אבל חם בטירוף. מאד לח וכל 
-    הזמן מזיעים, וזה עוד רק בלילה, מה יהיה ביום ?</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אני עדיין מצונן. אני נראה 
-    כמו גונן – מקנח את האף בשיא החום !</span></b></p>
-<p> </p></td>
-<td align="center" height="333" rowspan="2" style="     " valign="top" width="187">
-<p>
-
-<img border="0" height="113" onclick="openLightbox(this.src)" src="../images/katmandu_2.jpg" title="לחץ להגדלה" width="176"/></p>
-<p>
-<font color="#660099">רחובות קטמנדו. העיר העתיקה</font></p>
-<p>
-
-<img border="0" height="112" onclick="openLightbox(this.src)" src="../images/katmandu_1.jpg" title="לחץ להגדלה" width="175"/></p>
-<p>
-<font color="#660099">בקטמנדו</font></p>
-<p>
-
-<img border="0" height="206" onclick="openLightbox(this.src)" src="../images/bug_stupa_1.jpg" title="לחץ להגדלה" width="133"/></p>
-<p>
-<font color="#660099">הסטופה הגדולה, העיר העתיקה, קטמנדו</font></p>
-<p>
-
-<img border="0" height="122" onclick="openLightbox(this.src)" src="../images/20011209_big_stupa.jpg" title="לחץ להגדלה" width="178"/></p>
-<p>
-
-<img border="0" height="114" onclick="openLightbox(this.src)" src="../images/bug_stupa_2.jpg" title="לחץ להגדלה" width="171"/></p>
-<p>
-<font color="#660099">שימו לב כמה היא גדולה</font></p>
-<p>
-
-<img border="0" height="119" onclick="openLightbox(this.src)" src="../images/oz&amp;nepali_girls.jpg" title="לחץ להגדלה" width="175"/></p>
-<p>
-<font color="#660099">עוז והמקומיות במקדש הקופים</font></p>
-<p>
-
-<img border="0" height="110" onclick="openLightbox(this.src)" src="../images/oz&amp;eitan&amp;local_girls.jpg" title="לחץ להגדלה" width="175"/></p>
-<p>
-<font color="#660099">עוז, איתן והמקומיות במקדש הקופים</font></p>
-<p>
-
-<img border="0" height="115" onclick="openLightbox(this.src)" src="../images/hanuka_at_beit_habad_1.jpg" title="לחץ להגדלה" width="173"/></p>
-<p>
-<font color="#660099">חנוכה בבית חב"ד בקטמנדו</font></p>
-<p>
-
-<img border="0" height="119" onclick="openLightbox(this.src)" src="../images/hanuka_at_beit_habad_2.jpg" title="לחץ להגדלה" width="170"/></p>
-<p>
-<font color="#660099">חנוכה בבית חב"ד:צביה, עוז, מנהל המלון שלנו, איתן, ג'ני 
-    ואני</font></p>
-<p>
-     </p>
-</td>
-</tr>
-<tr>
-<td height="67" style="     " valign="top" width="314">
-
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button104.gif" title="לחץ להגדלה" width="59"/></td>
-<td height="67" style="     " valign="top" width="421">
-<p align="right">
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button106.gif" title="לחץ להגדלה" width="59"/></p></td>
-</tr>
-</table>
-<p align="center">
-<!--webbot bot="Navigation" S-Type="sequence" S-Orientation="horizontal" S-Rendering="html" S-Bar="Brackets" S-Btn-Nml="[&lt;A HREF=&quot;#URL#&quot; TARGET=&quot;#TARGET#&quot; STYLE=&quot;{text-decoration: none;}&quot;&gt;#LABEL#&lt;/A&gt;]" S-Btn-Sel="[#LABEL#]" S-Btn-Sep="&amp;nbsp;" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><nobr>[<a href="index.html" style="{text-decoration: none;}" target="">התחלה</a>]</nobr> <nobr>[<a href="200110052040.html" style="{text-decoration: none;}" target="">דנמרק</a>]</nobr> <nobr>[<a href="20011006.html" style="{text-decoration: none;}" target="">הודו</a>]</nobr> <nobr>[<a href="20011030.html" style="{text-decoration: none;}" target="">נפאל</a>]</nobr> <nobr>[<a href="20011115.html" style="{text-decoration: none;}" target="">טרק סובב אנאפורנה</a>]</nobr> <nobr>[תאילנד]</nobr> <nobr>[<a href="20020108.html" style="{text-decoration: none;}" target="">לאוס</a>]</nobr> <nobr>[<a href="20020123.html" style="{text-decoration: none;}" target="">צפון תאילנד</a>]</nobr> <nobr>[<a href="20020203.html" style="{text-decoration: none;}" target="">אוסטרליה</a>]</nobr> <nobr>[<a href="20020210.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי דרומי</a>]</nobr> <nobr>[<a href="20020326.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי צפוני</a>]</nobr> <nobr>[<a href="20020506.html" style="{text-decoration: none;}" target="">פיליפינים</a>]</nobr> <nobr>[<a href="20020603.html" style="{text-decoration: none;}" target="">קמבודיה</a>]</nobr><!--webbot bot="Navigation" i-checksum="10520" endspan --></p>
-<p><i><small>This site was last updated
-<!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%m/%d/%y" startspan -->08/02/03<!--webbot bot="Timestamp" i-checksum="12636" endspan --> </small></i>
-</p>
-</body>
+    <div class="nav-links">
+      <a href="20011209.html">← הקודם</a>
+      <a href="20011211.html">הבא →</a>
     </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-text">
+      <div class="meta-line">
+        <span class="date-big">10</span>
+        <div>
+          <div class="date-details">דצמבר 2001</div>
+          <span class="country-badge">תאילנד</span>
+        </div>
+      </div>
+      <h1 class="title">הלם תרבות, הסופגניה עם הקטשופ</h1>
+      <div class="title-divider"></div>
+    </div>
+    <img class="hero-map" src="../images/Thailand.gif" alt="תאילנד">
+  </div>
+
+  <div class="content">
+    <p>הלם תרבות, הסופגניה עם הקטשופ</p>
+
+    <p>תמונות של גונן משיטוטיו בעיר</p>
+
+    <p>אמשיך מאיפה שהפסקתי.</p>
+
+    <p>הקלטתי 6 דיסקים עד 19:00 בערב, אז הלכתי לג'ני והחזרתי לה את הדיסקמן.</p>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/20011209_katmandu_old_city_3.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011209_gonen_near_big_stupa.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011209_gonen_on_the_elephant_statue.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+    </div>
+
+    <p>בינתיים פגשתי את גונן ששיטט בעיר העתיקה עם שירלי, במקומות שלא הייתי בהם ואסף חוויות.</p>
+
+    <p>גם פגשתי את עוז ואיתן, שאמנם לא שכבו עם הנפאליות, אבל היה להם סרט. <a onclick="openLightbox('../images/oz&eitan&local_girls.jpg')">הם הלכו איתן למקדש הקופים</a> ואחרי זה אכלו אצלן ארוחת-ערב.</p>
+
+    <p>קבעתי עם כולם ב- "אור2k".</p>
+
+    <p>ישבתי שם מ- 19:30 ואכלתי כרגיל מלאווח מצוין.</p>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/20011209_katmandu_colorful_buildings.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011209_katmandu_old_city.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011209_katmandu_old_city_2.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">תמונות של גונן משיטוטיו 
+    בעיר</div>
+      </div>
+    </div>
+
+    <p>פתאם קלטתי שהיום חנוכה וכולם מסתלקים להם לבית חב"ד. חשדתי שאולי גונן, עוז ואיתן ילכו לשם, אבל קבעתי עם ג'ני כאן, במסעדה, אז ישבתי וסיימתי לקרוא את ה"אלכימיסט", הספר הידוע. הספר לא עשה עלי רושם, אבל הוא דק אז החלטתי לגמור אותו.</p>
+
+    <p>בינתיים באו סילביה וסופי להפרד ממני. משום מה החליטה סופי שלא נתראה היום כי היא הולכת לישון, מה שהיא עשתה כל היום לדבריה. היא באמת אדישה. נפרדנו בנשיקות והבטחנו להשאר בקשר.</p>
+
+    <p>אח"כ ג'ני הגיעה, לקחתי אותה לבית חב"ד. המקום היה מלא מפה לפה, כ- 40-50 איש. פתחו לנו שולחן בפינה. גם גונן הגיע עם שירלי. איתן ועוז היו שם והם הביאו את מנהל המלון שלנו.</p>
+
+    <p>הפעם לא עשיתי את הטעות של יום שישי והגעתי מאוחר, ב- 21:00, בדיוק כשנגמרו השירים.</p>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/katmandu_2.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">רחובות קטמנדו. העיר העתיקה</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/katmandu_1.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">בקטמנדו</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/bug_stupa_1.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">הסטופה הגדולה, העיר העתיקה, קטמנדו</div>
+      </div>
+    </div>
+
+    <p>חילקו סופגניות קטנות ומכווצות, קשות ולא טעימות. אח"כ מישהו הביא סופגניות גדולות ואמר כי במקום ריבה הם שמו קטשופ. חשבתי שהוא צוחק וטעמתי, הרגשת גועל מלאה את פי, שכן זה היה באמת קטשופ. הייתי חייב לאכול עוד סופגניה מכווצת וקשה בכדי להעביר את הטעם – סיוט.</p>
+
+    <p>אח"כ הרב דרש את דרשתו. זהו בעצם התשלום עבור הארוחה שמחולקת חינם שם. לא חשתי בכשרון מיוחד אצלו, אם כי הוא ברנש נחמד.</p>
+
+    <p>אח"כ שוב החלו לשיר שירה בציבור וחילקו שירונים. גונן שאל אותי אם אני חש בגעגוע. עניתי לו שאני חש בזעזוע. האמת לא שווה לחזור לארץ בשביל דברים כאלה. לבסוף הצטרפנו לשירת "תן לי ארץ אחרת" והלכנו לחדר.</p>
+
+    <p>כשהגענו למלון עשינו חשבונות בקבלה. פתאם נכנס וי, שיכור קלות. שיערו גדל מאז הפעם האחרונה שראינו אותו. נפלנו איש על כתפי רעהו. הוא הזמין אותנו אליו למלון, הוא אמר שיש מסיבה גדולה בחדרו. הלכנו רק לזמן קצר שכן היינו צריכים לארוז וגם צביה ואורלי היו צריכות להגיע.</p>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/20011209_big_stupa.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/bug_stupa_2.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">שימו לב כמה היא גדולה</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/oz&nepali_girls.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">עוז והמקומיות במקדש הקופים</div>
+      </div>
+    </div>
+
+    <p>בחדרו ראינו קבוצה של 10 גברים ו- 2 בנות מאנגליה ואוסטרליה. הם שתו הרבה ועישנו מעט. הרבה אספקה. שהינו איתם קצת ואח"כ חזרנו לחדרנו. אחד הברנשים שם, טובי, סיפר שבשמורת ברדיה, איפה שהיינו, הסתער עליו קרנף זועם והוא היה צריך לברוח. קינאתי בו, <a href="20011101.htm#dissapointed">לנו לא היו חוויות משמורת ברדיה</a>.</p>
+
+    <p>בערך ב- 23:00 הגיעו צביה ואורלי והצטרפו אלינו בחדרי. איתן ועוז הביאו תייר מהודו שהם פגשו בעבר בדרמסאלה בשם ראול. הוא ישב בפינה ורק עישן איתנו. היה לי הרושם שהוא נועץ בי עיניים, אבל אני לא בטוח.</p>
+
+    <p>אורלי כרגיל דיברה הרבה. צביה סיפרה שהיא בחורה טובה שלא ממהרת לעשות דברים עם בחורים, היא גם קצת שרה ורקדה ואני החלטתי שהיא ממש דומה למרנינה.</p>
+
+    <p>לאט לאט כולם פרשו ואני נשארתי עם אורלי וצביה. מאחר והייתי צריך לקום ב- 5:30, ניסיתי שהן תשארנה איתי עד אז, לא רציתי לישון לבד. עם אורלי אפשר לדבר שעות, אבל צביה נשברה והן הלכו ב- 4:00. אני ישנתי שעה ורבע וקמתי.</p>
+
+    <div class="photo-pair">
+      <div class="photo-item">
+        <img src="../images/oz&eitan&local_girls.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">עוז, איתן והמקומיות במקדש הקופים</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/hanuka_at_beit_habad_1.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">חנוכה בבית חב"ד בקטמנדו</div>
+      </div>
+    </div>
+
+    <p>גיליתי שצביה שכחה אצלי את הגיטרה שלה – אבסורד. אם נוסיף את זה לחזיה שסופי שכחה נראה ששווה לארח בחדר.</p>
+
+    <p>יצאנו לשדה-התעופה. עצרנו מונית ושילמנו לה 150 רופי. בשדה התעופה צריך להוסיף 1100 רופי מס נמל.</p>
+
+    <p>כמובן שהמטוס עוכב. כך יצאנו רק ב- 12:00 במקום 8:30. חצי מהזמן הזה חיכינו בתוך המטוס.</p>
+
+    <p>טסנו כ- 3 שעות. הטייס היה די גרוע, המטוס ממש התנדנד לפני שנגע בקרקע, אבל עשינו את זה.</p>
+
+    <div class="photo-block">
+      <img src="../images/hanuka_at_beit_habad_2.jpg" onclick="openLightbox(this.src)">
+      <div class="caption">חנוכה בבית חב"ד:צביה, עוז, מנהל המלון שלנו, איתן, ג'ני 
+    ואני</div>
+    </div>
+
+    <p>איך שיצאנו קיבלנו גל חום. לעבור מ- 20 מעלות ל- 30 מעלות זה שינוי. כשיצאנו, ראינו עיר מערבית לפחות כמו ישראל.</p>
+
+    <p>נסענו במונית לקוואסן, האיזור של התיירים. שילמנו 100 באט כל אחד. 10 באט זה בדיוק שקל.</p>
+
+    <p>כל הדרך ראינו בחורות יפהפיות. הגענו לקוואסאן ושמנו את התיקים שלנו במקום שאיתי המליץ עליו – "סוואדי סמייל". החדרים קטנטנים, מחירם 240 באט (אני צריך לשלם לבד בינתיים), אבל כל המתקנים (מקלחת ושירותים) עובדים ומודרניים.</p>
+
+    <p>יצאנו לרחוב וחטפנו הלם תרבות – שפע של מאכלים, המון תיירים, המון דברים שאפשר לקנות.</p>
+
+    <p>אני חושב שעיקר השינוי היו הבחורות – יפהפיות, כולן לובשות קצר. אתה פשוט נגנב. גונן אמר שיש אווירת סקס באוויר. גם האוכל מגוון ואקזוטי כאן בצורה בלתי רגילה – שיפודים של כל מיני דברים ברחוב בשקל לשיפוד (10 באט), אגוז קוקוס שפותחים בשבילך ושייקים של פירות. הרחוב מלא מפה לפה, לא כמו קטמנדו או פוקארה הדועכות.</p>
+
+    <p>זהו, בינתיים זו התרשמות ראשונית, אני עוד ארחיב. אנחנו כאן 3 שעות בלבד.</p>
+
+    <p>אבל חם בטירוף. מאד לח וכל הזמן מזיעים, וזה עוד רק בלילה, מה יהיה ביום ?</p>
+
+    <p>אני עדיין מצונן. אני נראה כמו גונן – מקנח את האף בשיא החום !</p>
+
+    <p>חנוכה בבית חב"ד:צביה, עוז, מנהל המלון שלנו, איתן, ג'ני ואני</p>
+
+
+  </div>
+
+  <div class="nav-cards">
+    <a href="20011211.html" class="nav-card">
+      <div class="label">הבא →</div>
+      <div class="card-title">מבלים</div>
+    </a>
+    <a href="20011209.html" class="nav-card">
+      <div class="label">← הקודם</div>
+      <div class="card-title">שריפת הגופות, יוחנן המרים</div>
+    </a>
+  </div>
+
+  <div class="country-nav">
+    <a href="200110052040.html">דנמרק</a>
+    <a href="20011006.html">הודו</a>
+    <a href="20011030.html">נפאל</a>
+    <a href="20011115.html">טרק אנאפורנה</a>
+    <a href="20011210.html">תאילנד</a>
+    <a href="20020108.html">לאוס</a>
+    <a href="20020123.html">צפון תאילנד</a>
+    <a href="20020203.html">אוסטרליה</a>
+    <a href="20020210.html">ניו-זילנד, אי דרומי</a>
+    <a href="20020326.html">ניו-זילנד, אי צפוני</a>
+    <a href="20020506.html">פיליפינים</a>
+    <a href="20020603.html">קמבודיה</a>
   </div>
 
   <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
-    <img id="lightbox-img" src="" alt="Enlarged">
+    <img id="lightbox-img" src="" alt="">
   </div>
-
   <script>
     function openLightbox(src) {
       document.getElementById('lightbox-img').src = src;

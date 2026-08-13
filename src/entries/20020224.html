@@ -3,193 +3,280 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>אצל סם בסלון, דנידין, ניו-זילנד</title>
+  <title>עייפים, עייפים</title>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap" rel="stylesheet">
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background-color: #f8fafc;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0; padding: 20px; color: #334155;
+      background: #ffffff;
+      font-family: 'Heebo', sans-serif;
+      color: #1a1a2e;
+      line-height: 1.9;
     }
-    .container {
-      max-width: 800px; margin: 0 auto; background: #ffffff;
-      padding: 35px; border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06); line-height: 1.8;
+    .top-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #eee;
+      padding: 12px 30px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.9rem;
     }
-    .header {
-      border-bottom: 2px solid #e2e8f0; padding-bottom: 15px;
-      margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center;
+    .top-nav a {
+      color: #1d4ed8; text-decoration: none; font-weight: 600;
     }
-    .header h1 { margin: 0; color: #0f172a; font-size: 1.8rem; }
-    .home-link { color: #2563eb; text-decoration: none; font-weight: 600; }
-    .content img {
-      float: right; margin: 0 0 15px 20px; max-width: 320px; height: auto;
-      border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      cursor: pointer; transition: transform 0.2s;
+    .top-nav a:hover { text-decoration: underline; }
+    .top-nav .nav-links { display: flex; gap: 20px; }
+    .hero {
+      max-width: 900px; margin: 0 auto;
+      padding: 50px 40px 30px;
+      display: flex; align-items: flex-start; gap: 30px;
     }
-    .content img:hover { transform: scale(1.02); }
-    .content::after { content: ""; clear: both; display: table; }
-    a { color: #2563eb; }
+    .hero-text { flex: 1; }
+    .hero-map {
+      width: 120px; height: auto; object-fit: contain;
+      flex-shrink: 0; opacity: 0.85;
+    }
+    .meta-line {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+    }
+    .date-big {
+      font-size: 3.5rem; font-weight: 900; color: #e5e7eb; line-height: 1;
+    }
+    .date-details { font-size: 0.9rem; color: #6b7280; }
+    .country-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      border-radius: 20px; padding: 4px 14px;
+      font-size: 0.8rem; color: #1d4ed8; font-weight: 600;
+    }
+    .title {
+      font-size: 2.2rem; font-weight: 900; color: #111827;
+      margin: 20px 0 8px; line-height: 1.3;
+    }
+    .date-subtitle {
+      font-size: 1.1rem; font-weight: 300; color: #4b5563;
+      margin-bottom: 16px;
+    }
+    .title-divider {
+      width: 60px; height: 4px; background: #1d4ed8; border-radius: 2px;
+    }
+    .content {
+      max-width: 900px; margin: 30px auto; padding: 0 40px; font-size: 1.05rem;
+    }
+    .content p { margin-bottom: 18px; }
+    .content a {
+      color: #1d4ed8; cursor: pointer;
+      text-decoration: underline;
+      text-decoration-color: rgba(29,78,216,0.3);
+    }
+    .photo-block {
+      margin: 30px 0; border-radius: 12px; overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    .photo-block img {
+      width: 100%; display: block; cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .photo-block img:hover { transform: scale(1.01); }
+    .photo-block .caption {
+      padding: 12px 16px; font-size: 0.85rem; color: #6b7280;
+      background: #f9fafb; border-top: 1px solid #f3f4f6;
+    }
+    .photo-pair {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 14px; margin: 30px 0;
+    }
+    .photo-pair .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-pair .photo-item img {
+      width: 100%; height: 200px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-pair .photo-item img:hover { transform: scale(1.03); }
+    .photo-pair .photo-item .caption {
+      padding: 8px 12px; font-size: 0.8rem; color: #6b7280; background: #f9fafb;
+    }
+    .photo-trio {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px; margin: 30px 0;
+    }
+    .photo-trio .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-trio .photo-item img {
+      width: 100%; height: 180px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-trio .photo-item img:hover { transform: scale(1.03); }
+    .photo-trio .photo-item .caption {
+      padding: 8px 10px; font-size: 0.78rem; color: #6b7280; background: #f9fafb;
+    }
+    .nav-cards {
+      max-width: 900px; margin: 50px auto 20px; padding: 0 40px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .nav-card {
+      padding: 20px 24px; border: 1px solid #e5e7eb; border-radius: 12px;
+      text-decoration: none; color: inherit; transition: all 0.2s;
+    }
+    .nav-card:hover {
+      border-color: #1d4ed8; box-shadow: 0 4px 12px rgba(29,78,216,0.1);
+    }
+    .nav-card .label { font-size: 0.8rem; color: #6b7280; margin-bottom: 4px; }
+    .nav-card .card-title { font-weight: 700; font-size: 1rem; color: #1d4ed8; }
+    .supplements {
+      margin-top: 35px; padding: 25px 30px;
+      background: #f9fafb; border-radius: 12px; border: 1px solid #e5e7eb;
+    }
+    .supplements h3 {
+      font-size: 1.1rem; font-weight: 700; margin-bottom: 14px; color: #374151;
+    }
+    .supplements ol { padding-right: 20px; }
+    .supplements li { margin-bottom: 10px; color: #4b5563; }
+    .country-nav {
+      max-width: 900px; margin: 20px auto 40px; padding: 0 40px;
+      display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+    }
+    .country-nav a {
+      padding: 6px 14px; border-radius: 20px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      color: #1d4ed8; text-decoration: none;
+      font-size: 0.82rem; font-weight: 600;
+      transition: all 0.2s;
+    }
+    .country-nav a:hover {
+      background: #1d4ed8; color: white; border-color: #1d4ed8;
+    }
     .lightbox {
       display: none; position: fixed; z-index: 9999;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.9); justify-content: center; align-items: center; cursor: pointer;
+      background: rgba(0,0,0,0.92);
+      justify-content: center; align-items: center; cursor: pointer;
     }
-    .lightbox img { max-width: 90%; max-height: 90%; border-radius: 8px; }
+    .lightbox img { max-width: 92%; max-height: 92%; border-radius: 8px; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h1>אצל סם בסלון, דנידין, ניו-זילנד</h1>
-      <a href="../index.html" class="home-link">🏠 לעמוד הראשי</a>
+  <div class="top-nav">
+    <div class="nav-links">
+      <a href="../index.html">עמוד ראשי</a>
     </div>
-    <div class="content">
-      <body>
-<table cellpadding="0" cellspacing="0" height="80" width="954">
-<tr>
-<td align="center" height="80" width="277">
-<marquee style="font-size: 18pt; color: #800080">24.2.02 - 23:30</marquee></td>
-<td align="center" height="80" width="667">
-<!--webbot bot="Navigation" s-type="banner" s-rendering="graphics" S-Orientation B-Include-Home B-Include-Up U-Page S-Target startspan --><!--webbot bot="Navigation" i-checksum="25695" endspan --></td>
-<td align="center" height="80" width="10">
-
-<img border="0" height="163" onclick="openLightbox(this.src)" src="../images/New_Zealand_south_island.gif" title="לחץ להגדלה" width="162"/></td>
-</tr>
-<tr>
-<td colspan="3" height="1" style=" " width="954"></td>
-</tr>
-</table><table cellpadding="0" cellspacing="0" width="100%">
-<tr>
-<td align="right" style=" ">
-<h4>
-<marquee style="font-size: 24pt; color: #008080">עייפים, עייפים</marquee></h4>
-<p> </p></td>
-</tr>
-</table>
-<table cellpadding="0" cellspacing="0" height="333" width="953">
-<tr>
-<td height="333" rowspan="2" style="       " valign="top" width="140"> <!--webbot bot="Navigation" S-Type="sequence" S-Orientation="vertical" S-Rendering="graphics" S-Theme="blocks 000" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><!--webbot bot="Navigation" i-checksum="23763" endspan --><p> </p>
-</td>
-<td height="333" rowspan="2" style="     " valign="top" width="1"></td>
-<td colspan="2" height="266" style="     " valign="top" width="735">
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אני שכוב על שטיח, בתוך 
-    הסק"ש. זה עדיף מבאוטו או באוהל כשקר.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">ובכן, באופן אישי, שלשום 
-    שכבתי עם שרה, אתמול ישנו יחד, אך לא שכבנו. היום כבר נזרקתי לרחוב. גונן הראה 
-    יציבות עם סם והוא ישן כבר לילה שלישי במיטתה. הוא אסף אותי מהרחוב לסלון ביתה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">יום האתמול לא היה יום עמוס 
-    במאורעות. גונן היה עייף כי הוא לא ישן. אני הייתי עייף מאותה סיבה וגם הילה לא 
-    הצליחה לישון.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">גונן ישן תוך כדי שאני נוהג 
-    והילה מנווטת. היכולת שלו להיות אגואיסט מדהימה אותי. אני למשל הייתי מציע 
-    להילה לישון, באקט גברי, לפני שהייתי מתמוטט בסגנון "אני עייף, תעשו מה שאתם 
-    רוצים". גונן אמר שיש לו הנג-אובר, אך מהכרותי איתו, זה לא מה שהכתיב את 
-    התנהגותו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בקיצור, לאחר הגנים הבוטנים 
-    הלכנו לגסט האוס של הילה לעשות כביסה. גונן נשאר באוטו לישון.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אח"כ לקראת השקיעה נסענו 
-    בדרך בה גונן ואני הלכנו לפני שבועיים בביקורינו הראשון בדנידין – </span>
-<span dir="LTR">Queens Road</span><span lang="HE">, שזו דרך יפהפיה. נסענו 
-    לאט ו<a href="images/pictures/new-zealand/20020223_dunedin_top_view.jpg" target="_blank">סיימנו 
-    בנקודת התצפית</a>. כל זה עשינו בשביל הילה והיא נהנתה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הלכנו לאכול בבורגר-קינג. 
-    היום למשל היינו שם 3 פעמים. זה טעים, זה כיף, אבל זה לא טוב ולא בריא. הילה 
-    הייתה עייפה אז שמנו אותה בגסט האוס שלה וקבענו להפגש למחרת בין 10 ל- 12 
-    בבוקר. לא ידעתי מה לעשות, אם להפגש עם החברה (שרה וסם) שוב. פתאם העייפות 
-    היכתה בי. אמרתי לגונן לנהוג ואם הוא רוצה להתקשר אליהן אז שהוא יעשה את זה. 
-    מבחינתי אפשר לישון באוטו. פחדתי ששרה תמשיך בחגיגות ולי לא יהיה מתי לישון.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">לאחר נסיון התקשרות כושל 
-    גונן שכנע אותי לבוא איתו להתקשר. הפעם הן ענו והסבירו לנו איך להגיע. הם היו 
-    בבית אחד החברים, מארק.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הגענו לשם, היו שם כ- 10 
-    חברים והרבה שתייה. ראינו טלוויזיה ואני הוזמנתי למשחק שתיה, אחד המפגרים 
-    ביותר. מעט משחק והרבה שתיה: זורקים 2 קוביות ולפי מה שיוצא שותים. כך, בצורה 
-    סתמית ועם חוקים מוזרים ומיותרים. כולם שותים והמון. שתיתי כ- 3 ליטר בירה 
-    לפחות.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">מרוב העייפות שלי נרדמתי על 
-    הספה בסלון. הלילה נכנס לשעותיו הקטנות. גונן עזב עם סם ולקח את האוטו כמתוכנן 
-    ואפילו לא התעוררתי. שרה העירה אותי, היא היתה שיכורה והחליטה שנישן על השטיח. 
-    הילדים ישנו בחדר אחר. בבוקר הילדים קמו העירו את כולם. העייפות נשארה אצלי. 
-    זכיתי רק ל- 5 שעות שינה ואולי עוד שעה שגנבתי על הספה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">נסענו לסם. שם גונן חבר אלי 
-    להביא את הילה. בהתחלה לא מצאנו אותה בגסט האוס שלה וזה לא מתאים לה. בפעם 
-    השניה שבאנו היא היתה שם וסיפרה שהשעון התקלקל לה ולא הראה את השעה הנכונה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">סם הצטרפה אלינו לאוטו. 
-    התנאי שלה היה שהיא תנהג ולא גונן. אני לא מצליח להזכר במישהו שנכנס לאוטו 
-    כשגונן נהג ולא התלונן על הנהיגה שלו. סם נהגה מעולה ולקחה אותנו לאורך נמל 
-    אוטגו (</span><span dir="LTR">Otago</span><span lang="HE">). כביש יפה עם נוף 
-    למפרץ שמסתיים בחוף שם
-    <a href="images/pictures/new-zealand/20020224_seal.jpg" target="_blank">שכבו 
-    להם כלבי הים</a> המוכרים. 
-    <a href="images/pictures/new-zealand/20020223_an_angry_seal.jpg" target="_blank">גונן הרגיז אותם כרגיל</a> כדי לתפוס תמונה שלהם מרימים 
-    את פלג גופם העליון ושואגים. חזרנו, חברנו לאחרים בברביקיו בבית שרה. לא 
-    הצטרפנו לאכילה כי אכלנו לפני-כן בבורגר קינג. מקץ כמה שעות התפזרו כולם ואז 
-    חשתי לראשונה שאנו לא רצויים. הלכנו משם. גונן חבר לסם והלך לישון אצלה. אני 
-    המשכתי עם הילה וקבעתי עם גונן ב- 21:00 אצל סם. ביקשתי ממנו להיות מוכן אם כי 
-    ידעתי שאני אחכה לו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הלכתי עם הילה לאכול ואח"כ 
-    לחוף. היו נופים יפים לים ולכמה איים שם. אח"כ המשכנו לאיזו טירה. הכל בכבישים 
-    יפים עם בתים של עשירים ונופים לים. בסוף חנינו ליד הים. השכבתי את המושב לשינה 
-    אבל דיברנו. הילה היא בחורה חמודה, אבל שוב, סובלת מחוסר סיפורים ומאורעות 
-    בחייה וכך היא גולשת לסיפורים מהצבא ומהתיכון בנוסף לסיפורים מהמשפחה וממערכת 
-    היחסים הארוכה שלה עם החבר, ירון.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">היה רגע שהרגשתי כאילו 
-    מישהו מנענע את האוטו. חשבתי שזאת הרוח שנשבה בחוזקה. אח"כ אצל סם יספר האח שלה 
-    שהייתה רעידת אדמה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">חזרתי לגונן, היה 21:05 
-    כמתוכנן. היה חושך בחדר של סם. הם ישנו שם. התעצבנתי ביותר. קבענו שהוא יהיה 
-    מוכן. מה הבעיה שלו לחכות לי לבוש בסלון?, הוא לא צריך לחכות לי בחוץ בקור. כל 
-    הזמן אני מחכה לו וזה בלתי נסבל.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">כל כמה זמן מצטבר אצלי כעס 
-    על גונן ואז אני מעמידו בפני מבחן, שאם הוא עומד בו אני משחרר לחץ ואם לא אני 
-    מתפרץ (במסגרת יכולתי לצעוק המוגבלת). בכל מקרה גונן נלחץ ותוך דקה הוא היה 
-    מוכן, אבל הוא נכשל במבחן כך שזה לא משנה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">העניין הוא שאני לא ממש 
-    כועס בצורה שצריך לפייס אותי. העניין הוא מעט חמור יותר. בטיול גיליתי שגונן 
-    קמצן ואגואיסט. קיוויתי שהוא יוציא אותי מהכלל ויתייחס אלי שונה, אבל זה לא כך. 
-    ההשלכה היא חמורת סבר אף יותר. בעבר הייתי נדיב וחלקתי איתו הכל. מעכשיו, גם 
-    כשנחזור ארצה, אני אצטרך להמשיך ולהתחשבן איתו. האמת היא שגונן יפסיד מזה, אבל 
-    גם אני כי אני שונא להתחשבן עם חברים, אבל אני שונא עוד יותר להיות פראייר 
-    וגונן הראה לי שזה מה שיוצא לי להיות כשאני איתו.</span></b></p>
-<p> </p></td>
-<td align="center" height="333" rowspan="2" style="     " valign="top" width="187">
-
-<img border="0" height="123" onclick="openLightbox(this.src)" src="../images/20020223_dunedin_top_view.jpg" title="לחץ להגדלה" width="176"/><p>
-<font color="#660099">הילה בנקודת התצפית</font></p>
-<p> </p>
-<p>
-<img border="0" height="121" onclick="openLightbox(this.src)" src="../images/20020224_seal.jpg" title="לחץ להגדלה" width="178"/></p>
-<p><font color="#660099">כלב ים באוטאגו</font><p>
-
-<img border="0" height="112" onclick="openLightbox(this.src)" src="../images/20020223_an_angry_seal.jpg" title="לחץ להגדלה" width="179"/><p>
-<font color="#660099">ואחרי שגונן הרגיז אותו</font><p> <p>
-
-<img border="0" height="127" onclick="openLightbox(this.src)" src="../images/20020223_us&amp;sam&amp;sara.jpg" title="לחץ להגדלה" width="181"/><p>
-<font color="#660099">שרה, סם, אני וגונן</font></p></p></p></p></p></p></td>
-</tr>
-<tr>
-<td height="67" style="     " valign="top" width="314">
-<b>
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button104.gif" title="לחץ להגדלה" width="59"/></b></td>
-<td height="67" style="     " valign="top" width="421">
-<p align="right"><b>
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button106.gif" title="לחץ להגדלה" width="59"/></b></p></td>
-</tr>
-</table>
-<p align="center">
-<!--webbot bot="Navigation" S-Type="sequence" S-Orientation="horizontal" S-Rendering="html" S-Bar="Brackets" S-Btn-Nml="[&lt;A HREF=&quot;#URL#&quot; TARGET=&quot;#TARGET#&quot; STYLE=&quot;{text-decoration: none;}&quot;&gt;#LABEL#&lt;/A&gt;]" S-Btn-Sel="[#LABEL#]" S-Btn-Sep="&amp;nbsp;" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><nobr>[<a href="index.html" style="{text-decoration: none;}" target="">התחלה</a>]</nobr> <nobr>[<a href="200110052040.html" style="{text-decoration: none;}" target="">דנמרק</a>]</nobr> <nobr>[<a href="20011006.html" style="{text-decoration: none;}" target="">הודו</a>]</nobr> <nobr>[<a href="20011030.html" style="{text-decoration: none;}" target="">נפאל</a>]</nobr> <nobr>[<a href="20011115.html" style="{text-decoration: none;}" target="">טרק סובב אנאפורנה</a>]</nobr> <nobr>[<a href="20011210.html" style="{text-decoration: none;}" target="">תאילנד</a>]</nobr> <nobr>[<a href="20020108.html" style="{text-decoration: none;}" target="">לאוס</a>]</nobr> <nobr>[<a href="20020123.html" style="{text-decoration: none;}" target="">צפון תאילנד</a>]</nobr> <nobr>[<a href="20020203.html" style="{text-decoration: none;}" target="">אוסטרליה</a>]</nobr> <nobr>[<a href="20020210.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי דרומי</a>]</nobr> <nobr>[<a href="20020326.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי צפוני</a>]</nobr> <nobr>[<a href="20020506.html" style="{text-decoration: none;}" target="">פיליפינים</a>]</nobr> <nobr>[<a href="20020603.html" style="{text-decoration: none;}" target="">קמבודיה</a>]</nobr><!--webbot bot="Navigation" i-checksum="33824" endspan --></p>
-<p><i><small>This site was last updated
-<!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%m/%d/%y" startspan -->07/15/03<!--webbot bot="Timestamp" i-checksum="12690" endspan --> </small></i>
-</p>
-</body>
+    <div class="nav-links">
+      <a href="20020223.html">← הקודם</a>
+      <a href="20020226.html">הבא →</a>
     </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-text">
+      <div class="meta-line">
+        <span class="date-big">24</span>
+        <div>
+          <div class="date-details">פברואר 2002</div>
+          <span class="country-badge">ניו-זילנד, אי דרומי</span>
+        </div>
+      </div>
+      <h1 class="title">עייפים, עייפים</h1>
+      <div class="title-divider"></div>
+    </div>
+    <img class="hero-map" src="../images/New_Zealand_south_island.gif" alt="ניו-זילנד, אי דרומי">
+  </div>
+
+  <div class="content">
+    <p>עייפים, עייפים</p>
+
+    <p>אני שכוב על שטיח, בתוך הסק"ש. זה עדיף מבאוטו או באוהל כשקר.</p>
+
+    <p>ובכן, באופן אישי, שלשום שכבתי עם שרה, אתמול ישנו יחד, אך לא שכבנו. היום כבר נזרקתי לרחוב. גונן הראה יציבות עם סם והוא ישן כבר לילה שלישי במיטתה. הוא אסף אותי מהרחוב לסלון ביתה.</p>
+
+    <p>יום האתמול לא היה יום עמוס במאורעות. גונן היה עייף כי הוא לא ישן. אני הייתי עייף מאותה סיבה וגם הילה לא הצליחה לישון.</p>
+
+    <p>גונן ישן תוך כדי שאני נוהג והילה מנווטת. היכולת שלו להיות אגואיסט מדהימה אותי. אני למשל הייתי מציע להילה לישון, באקט גברי, לפני שהייתי מתמוטט בסגנון "אני עייף, תעשו מה שאתם רוצים". גונן אמר שיש לו הנג-אובר, אך מהכרותי איתו, זה לא מה שהכתיב את התנהגותו.</p>
+
+    <p>בקיצור, לאחר הגנים הבוטנים הלכנו לגסט האוס של הילה לעשות כביסה. גונן נשאר באוטו לישון.</p>
+
+    <div class="photo-pair">
+      <div class="photo-item">
+        <img src="../images/20020223_dunedin_top_view.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">הילה בנקודת התצפית</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020224_seal.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">כלב ים באוטאגו</div>
+      </div>
+    </div>
+
+    <p>אח"כ לקראת השקיעה נסענו בדרך בה גונן ואני הלכנו לפני שבועיים בביקורינו הראשון בדנידין – Queens Road, שזו דרך יפהפיה. נסענו לאט ו<a onclick="openLightbox('../images/20020223_dunedin_top_view.jpg')">סיימנו בנקודת התצפית</a>. כל זה עשינו בשביל הילה והיא נהנתה.</p>
+
+    <p>הלכנו לאכול בבורגר-קינג. היום למשל היינו שם 3 פעמים. זה טעים, זה כיף, אבל זה לא טוב ולא בריא. הילה הייתה עייפה אז שמנו אותה בגסט האוס שלה וקבענו להפגש למחרת בין 10 ל- 12 בבוקר. לא ידעתי מה לעשות, אם להפגש עם החברה (שרה וסם) שוב. פתאם העייפות היכתה בי. אמרתי לגונן לנהוג ואם הוא רוצה להתקשר אליהן אז שהוא יעשה את זה. מבחינתי אפשר לישון באוטו. פחדתי ששרה תמשיך בחגיגות ולי לא יהיה מתי לישון.</p>
+
+    <p>לאחר נסיון התקשרות כושל גונן שכנע אותי לבוא איתו להתקשר. הפעם הן ענו והסבירו לנו איך להגיע. הם היו בבית אחד החברים, מארק.</p>
+
+    <p>הגענו לשם, היו שם כ- 10 חברים והרבה שתייה. ראינו טלוויזיה ואני הוזמנתי למשחק שתיה, אחד המפגרים ביותר. מעט משחק והרבה שתיה: זורקים 2 קוביות ולפי מה שיוצא שותים. כך, בצורה סתמית ועם חוקים מוזרים ומיותרים. כולם שותים והמון. שתיתי כ- 3 ליטר בירה לפחות.</p>
+
+    <p>מרוב העייפות שלי נרדמתי על הספה בסלון. הלילה נכנס לשעותיו הקטנות. גונן עזב עם סם ולקח את האוטו כמתוכנן ואפילו לא התעוררתי. שרה העירה אותי, היא היתה שיכורה והחליטה שנישן על השטיח. הילדים ישנו בחדר אחר. בבוקר הילדים קמו העירו את כולם. העייפות נשארה אצלי. זכיתי רק ל- 5 שעות שינה ואולי עוד שעה שגנבתי על הספה.</p>
+
+    <p>נסענו לסם. שם גונן חבר אלי להביא את הילה. בהתחלה לא מצאנו אותה בגסט האוס שלה וזה לא מתאים לה. בפעם השניה שבאנו היא היתה שם וסיפרה שהשעון התקלקל לה ולא הראה את השעה הנכונה.</p>
+
+    <div class="photo-pair">
+      <div class="photo-item">
+        <img src="../images/20020223_an_angry_seal.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">ואחרי שגונן הרגיז אותו</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020223_us&sam&sara.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">שרה, סם, אני וגונן</div>
+      </div>
+    </div>
+
+    <p>סם הצטרפה אלינו לאוטו. התנאי שלה היה שהיא תנהג ולא גונן. אני לא מצליח להזכר במישהו שנכנס לאוטו כשגונן נהג ולא התלונן על הנהיגה שלו. סם נהגה מעולה ולקחה אותנו לאורך נמל אוטגו (Otago). כביש יפה עם נוף למפרץ שמסתיים בחוף שם <a onclick="openLightbox('../images/20020224_seal.jpg')">שכבו להם כלבי הים</a> המוכרים. <a onclick="openLightbox('../images/20020223_an_angry_seal.jpg')">גונן הרגיז אותם כרגיל</a> כדי לתפוס תמונה שלהם מרימים את פלג גופם העליון ושואגים. חזרנו, חברנו לאחרים בברביקיו בבית שרה. לא הצטרפנו לאכילה כי אכלנו לפני-כן בבורגר קינג. מקץ כמה שעות התפזרו כולם ואז חשתי לראשונה שאנו לא רצויים. הלכנו משם. גונן חבר לסם והלך לישון אצלה. אני המשכתי עם הילה וקבעתי עם גונן ב- 21:00 אצל סם. ביקשתי ממנו להיות מוכן אם כי ידעתי שאני אחכה לו.</p>
+
+    <p>הלכתי עם הילה לאכול ואח"כ לחוף. היו נופים יפים לים ולכמה איים שם. אח"כ המשכנו לאיזו טירה. הכל בכבישים יפים עם בתים של עשירים ונופים לים. בסוף חנינו ליד הים. השכבתי את המושב לשינה אבל דיברנו. הילה היא בחורה חמודה, אבל שוב, סובלת מחוסר סיפורים ומאורעות בחייה וכך היא גולשת לסיפורים מהצבא ומהתיכון בנוסף לסיפורים מהמשפחה וממערכת היחסים הארוכה שלה עם החבר, ירון.</p>
+
+    <p>היה רגע שהרגשתי כאילו מישהו מנענע את האוטו. חשבתי שזאת הרוח שנשבה בחוזקה. אח"כ אצל סם יספר האח שלה שהייתה רעידת אדמה.</p>
+
+    <p>חזרתי לגונן, היה 21:05 כמתוכנן. היה חושך בחדר של סם. הם ישנו שם. התעצבנתי ביותר. קבענו שהוא יהיה מוכן. מה הבעיה שלו לחכות לי לבוש בסלון?, הוא לא צריך לחכות לי בחוץ בקור. כל הזמן אני מחכה לו וזה בלתי נסבל.</p>
+
+    <p>כל כמה זמן מצטבר אצלי כעס על גונן ואז אני מעמידו בפני מבחן, שאם הוא עומד בו אני משחרר לחץ ואם לא אני מתפרץ (במסגרת יכולתי לצעוק המוגבלת). בכל מקרה גונן נלחץ ותוך דקה הוא היה מוכן, אבל הוא נכשל במבחן כך שזה לא משנה.</p>
+
+    <p>העניין הוא שאני לא ממש כועס בצורה שצריך לפייס אותי. העניין הוא מעט חמור יותר. בטיול גיליתי שגונן קמצן ואגואיסט. קיוויתי שהוא יוציא אותי מהכלל ויתייחס אלי שונה, אבל זה לא כך. ההשלכה היא חמורת סבר אף יותר. בעבר הייתי נדיב וחלקתי איתו הכל. מעכשיו, גם כשנחזור ארצה, אני אצטרך להמשיך ולהתחשבן איתו. האמת היא שגונן יפסיד מזה, אבל גם אני כי אני שונא להתחשבן עם חברים, אבל אני שונא עוד יותר להיות פראייר וגונן הראה לי שזה מה שיוצא לי להיות כשאני איתו.</p>
+
+
+  </div>
+
+  <div class="nav-cards">
+    <a href="20020226.html" class="nav-card">
+      <div class="label">הבא →</div>
+      <div class="card-title">הקטלינז</div>
+    </a>
+    <a href="20020223.html" class="nav-card">
+      <div class="label">← הקודם</div>
+      <div class="card-title">לילה מטורף בדנידין</div>
+    </a>
+  </div>
+
+  <div class="country-nav">
+    <a href="200110052040.html">דנמרק</a>
+    <a href="20011006.html">הודו</a>
+    <a href="20011030.html">נפאל</a>
+    <a href="20011115.html">טרק אנאפורנה</a>
+    <a href="20011210.html">תאילנד</a>
+    <a href="20020108.html">לאוס</a>
+    <a href="20020123.html">צפון תאילנד</a>
+    <a href="20020203.html">אוסטרליה</a>
+    <a href="20020210.html">ניו-זילנד, אי דרומי</a>
+    <a href="20020326.html">ניו-זילנד, אי צפוני</a>
+    <a href="20020506.html">פיליפינים</a>
+    <a href="20020603.html">קמבודיה</a>
   </div>
 
   <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
-    <img id="lightbox-img" src="" alt="Enlarged">
+    <img id="lightbox-img" src="" alt="">
   </div>
-
   <script>
     function openLightbox(src) {
       document.getElementById('lightbox-img').src = src;

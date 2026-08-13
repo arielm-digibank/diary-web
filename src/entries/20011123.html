@@ -3,351 +3,423 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>מוקטינאט, 3700מ', נפאל</title>
+  <title>סובב אנאפורנה, יום 9</title>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap" rel="stylesheet">
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background-color: #f8fafc;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0; padding: 20px; color: #334155;
+      background: #ffffff;
+      font-family: 'Heebo', sans-serif;
+      color: #1a1a2e;
+      line-height: 1.9;
     }
-    .container {
-      max-width: 800px; margin: 0 auto; background: #ffffff;
-      padding: 35px; border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06); line-height: 1.8;
+    .top-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #eee;
+      padding: 12px 30px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.9rem;
     }
-    .header {
-      border-bottom: 2px solid #e2e8f0; padding-bottom: 15px;
-      margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center;
+    .top-nav a {
+      color: #1d4ed8; text-decoration: none; font-weight: 600;
     }
-    .header h1 { margin: 0; color: #0f172a; font-size: 1.8rem; }
-    .home-link { color: #2563eb; text-decoration: none; font-weight: 600; }
-    .content img {
-      float: right; margin: 0 0 15px 20px; max-width: 320px; height: auto;
-      border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      cursor: pointer; transition: transform 0.2s;
+    .top-nav a:hover { text-decoration: underline; }
+    .top-nav .nav-links { display: flex; gap: 20px; }
+    .hero {
+      max-width: 900px; margin: 0 auto;
+      padding: 50px 40px 30px;
+      display: flex; align-items: flex-start; gap: 30px;
     }
-    .content img:hover { transform: scale(1.02); }
-    .content::after { content: ""; clear: both; display: table; }
-    a { color: #2563eb; }
+    .hero-text { flex: 1; }
+    .hero-map {
+      width: 120px; height: auto; object-fit: contain;
+      flex-shrink: 0; opacity: 0.85;
+    }
+    .meta-line {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+    }
+    .date-big {
+      font-size: 3.5rem; font-weight: 900; color: #e5e7eb; line-height: 1;
+    }
+    .date-details { font-size: 0.9rem; color: #6b7280; }
+    .country-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      border-radius: 20px; padding: 4px 14px;
+      font-size: 0.8rem; color: #1d4ed8; font-weight: 600;
+    }
+    .title {
+      font-size: 2.2rem; font-weight: 900; color: #111827;
+      margin: 20px 0 8px; line-height: 1.3;
+    }
+    .date-subtitle {
+      font-size: 1.1rem; font-weight: 300; color: #4b5563;
+      margin-bottom: 16px;
+    }
+    .title-divider {
+      width: 60px; height: 4px; background: #1d4ed8; border-radius: 2px;
+    }
+    .content {
+      max-width: 900px; margin: 30px auto; padding: 0 40px; font-size: 1.05rem;
+    }
+    .content p { margin-bottom: 18px; }
+    .content a {
+      color: #1d4ed8; cursor: pointer;
+      text-decoration: underline;
+      text-decoration-color: rgba(29,78,216,0.3);
+    }
+    .photo-block {
+      margin: 30px 0; border-radius: 12px; overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    .photo-block img {
+      width: 100%; display: block; cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .photo-block img:hover { transform: scale(1.01); }
+    .photo-block .caption {
+      padding: 12px 16px; font-size: 0.85rem; color: #6b7280;
+      background: #f9fafb; border-top: 1px solid #f3f4f6;
+    }
+    .photo-pair {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 14px; margin: 30px 0;
+    }
+    .photo-pair .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-pair .photo-item img {
+      width: 100%; height: 200px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-pair .photo-item img:hover { transform: scale(1.03); }
+    .photo-pair .photo-item .caption {
+      padding: 8px 12px; font-size: 0.8rem; color: #6b7280; background: #f9fafb;
+    }
+    .photo-trio {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px; margin: 30px 0;
+    }
+    .photo-trio .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-trio .photo-item img {
+      width: 100%; height: 180px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-trio .photo-item img:hover { transform: scale(1.03); }
+    .photo-trio .photo-item .caption {
+      padding: 8px 10px; font-size: 0.78rem; color: #6b7280; background: #f9fafb;
+    }
+    .nav-cards {
+      max-width: 900px; margin: 50px auto 20px; padding: 0 40px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .nav-card {
+      padding: 20px 24px; border: 1px solid #e5e7eb; border-radius: 12px;
+      text-decoration: none; color: inherit; transition: all 0.2s;
+    }
+    .nav-card:hover {
+      border-color: #1d4ed8; box-shadow: 0 4px 12px rgba(29,78,216,0.1);
+    }
+    .nav-card .label { font-size: 0.8rem; color: #6b7280; margin-bottom: 4px; }
+    .nav-card .card-title { font-weight: 700; font-size: 1rem; color: #1d4ed8; }
+    .supplements {
+      margin-top: 35px; padding: 25px 30px;
+      background: #f9fafb; border-radius: 12px; border: 1px solid #e5e7eb;
+    }
+    .supplements h3 {
+      font-size: 1.1rem; font-weight: 700; margin-bottom: 14px; color: #374151;
+    }
+    .supplements ol { padding-right: 20px; }
+    .supplements li { margin-bottom: 10px; color: #4b5563; }
+    .country-nav {
+      max-width: 900px; margin: 20px auto 40px; padding: 0 40px;
+      display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+    }
+    .country-nav a {
+      padding: 6px 14px; border-radius: 20px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      color: #1d4ed8; text-decoration: none;
+      font-size: 0.82rem; font-weight: 600;
+      transition: all 0.2s;
+    }
+    .country-nav a:hover {
+      background: #1d4ed8; color: white; border-color: #1d4ed8;
+    }
     .lightbox {
       display: none; position: fixed; z-index: 9999;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.9); justify-content: center; align-items: center; cursor: pointer;
+      background: rgba(0,0,0,0.92);
+      justify-content: center; align-items: center; cursor: pointer;
     }
-    .lightbox img { max-width: 90%; max-height: 90%; border-radius: 8px; }
+    .lightbox img { max-width: 92%; max-height: 92%; border-radius: 8px; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h1>מוקטינאט, 3700מ', נפאל</h1>
-      <a href="../index.html" class="home-link">🏠 לעמוד הראשי</a>
+  <div class="top-nav">
+    <div class="nav-links">
+      <a href="../index.html">עמוד ראשי</a>
     </div>
-    <div class="content">
-      <body>
-<table cellpadding="0" cellspacing="0" height="1" width="954">
-<tr>
-<td align="center" height="1" width="277">
-<marquee style="font-size: 18pt; color: #800080">23.11.01 - 18:30</marquee></td>
-<td align="center" height="1" width="667">
-<!--webbot bot="Navigation" s-type="banner" s-rendering="graphics" S-Orientation B-Include-Home B-Include-Up U-Page S-Target startspan --><!--webbot bot="Navigation" i-checksum="11917" endspan --></td>
-<td align="center" height="1" width="10">
-
-<img border="0" height="157" onclick="openLightbox(this.src)" src="../images/Nepal.gif" title="לחץ להגדלה" width="157"/></td>
-</tr>
-<tr>
-<td colspan="3" height="1" style=" " width="954"></td>
-</tr>
-</table><table cellpadding="0" cellspacing="0" width="100%">
-<tr>
-<td align="right" style=" ">
-<h4>
-<marquee style="font-size: 24pt; color: #008080">סובב אנאפורנה, יום 9</marquee></h4>
-<p> </p></td>
-</tr>
-</table>
-<table cellpadding="0" cellspacing="0" height="333" width="953">
-<tr>
-<td height="333" rowspan="2" style="       " valign="top" width="140"> <!--webbot bot="Navigation" S-Type="sequence" S-Orientation="vertical" S-Rendering="graphics" S-Theme="blocks 000" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><!--webbot bot="Navigation" i-checksum="23763" endspan --><p style="text-align: center">
-
-<img border="0" height="179" onclick="openLightbox(this.src)" src="../images/20011122_gonen_in_the_high_desrt.jpg" title="לחץ להגדלה" width="129"/></p>
-<p style="text-align: center">
-
-<img border="0" height="182" onclick="openLightbox(this.src)" src="../images/20011123_gonen_professional_climber.jpg" title="לחץ להגדלה" width="129"/></p>
-</td>
-<td height="333" rowspan="2" style="     " valign="top" width="1"></td>
-<td colspan="2" height="266" style="     " valign="top" width="735">
-<p class="MsoNormal" dir="RTL"><span lang="HE">י<b>ש לי לספר על 2 ימי סבל או 
-    יותר נכון יום סבל ויום סיוט.</b></span></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">לפני יומיים עשינו לנו 
-    "קיצור" – כלומר הולכים שעתיים ומתקדמים, כך לא נשברת המנוחה וגם מרוויחים 
-    גובה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הלכנו לגונג-סאנג, 2 כפרים 
-    ממאנאנג.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">ליאור הצטרף אלינו, הוא הלך 
-    איתי ועם גונן ועם איתן. הלכנו מעט קדימה מאיתן. דיברנו עם ליאור על קורס הטיס 
-    ועל מטוסים – מאד מעניין. הבחור ברמה גבוהה מאד. מבין בהרבה נושאים, הוא טייס 
-    פנטום,שזה אומר שהוא סיים בין הטובים בקורס.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הגענו לכפר, התקלחתי שוב 
-    במקלחת קרה. אני חושב שהייתי היחיד. הגובה שם הוא קרוב ל- 3900מ'. ישבנו במסעדה 
-    שם וצחקנו. לכולם היה קר חוץ ממני. אני הייתי יחף.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">המנוחה הסתיימה. למחרת 
-    תכננו לקום ב- 6:00 ולצאת ב- 7:00.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">ליאור העיר אותנו, כי רק לו 
-    היה שעון מעורר, בעצם יש גם לגונן, אבל אף פעם אין לו כח להוציא אותו, כמו עם 
-    הפנס שלו שתקוע תמיד בתיק ואז צריכים ללכת בחושך.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">השכמנו ב- 6:00, הכל היה 
-    קפוא, אין שם מים זורמים, אז יש גיגיות עם מים שמביאים מאיזשהו מקום. למים היתה 
-    שכבת קרח והיה צריך לשבור אותה. הטמפרטורה היתה קרוב לאפס, הפעם מהכיוון 
-    השלילי.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הלכנו משם ל- </span>
-<span dir="LTR">Thong Phedi</span><span lang="HE">, משם נעלה ל- </span>
-<span dir="LTR">Pass</span><span lang="HE">. אופציה נוספת היא להרחיק עד ל-
-    </span><span dir="LTR">High Camp</span><span lang="HE">. ה- </span>
-<span dir="LTR">Thong Phedi</span><span lang="HE"> נקרא גם </span>
-<span dir="LTR">Base camp</span><span lang="HE">, בגובה 4450מ'. ה- </span>
-<span dir="LTR">High camp</span><span lang="HE"> הוא יותר גבוה 4650מ'-4850מ' 
-    (הגרסאות סותרות). בכל מקרה קל יותר להגיע ל</span>מעבר<span lang="HE"> 
-    (5416מ') משם.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הצעתי לעוז ולאיתי לקום 
-    מאוחר יותר כי הם הולכים מהר. בדרך הם יעקפו אותנו (אנחנו הולכים עם איתן מאד 
-    לאט) ויחכו לא יותר מדי בכפר </span><span dir="LTR">Chutti Ladder</span><span lang="HE">, 
-    שם נעצור לצהרים. בפעמים הקודמות הם לא חיכו לנו בצהרים כי היה קר להם לשבת 
-    ולחכות הרבה זמן.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בקיצור, עוז אמר איזו שטות, 
-    קם איתנו ויצא קדימה. איתי יצא אחרי שעה וגם עקף אותנו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בכפר לפני ה- </span>
-<span dir="LTR">Chutti Ladder</span><span lang="HE"> איתן נשבר ורצה לחזור. 
-    לא ידענו מה לעשות. לבסוף החלטתי שאני אסחוב גם את התיק שלו, שהוא יחסית קל, 10 
-    ק"ג. השארנו את ליאור עם איתן וגונן ואני התקדמנו בכדי לפגוש את עוז ואיתי 
-    כמתוכנן. גונן ואני חלקנו במעמסה והגענו תוך כשעה ל- </span><span dir="LTR">
-    Chutti Ladder</span><span lang="HE">. חיפשתי את עוז ואיתי אך הם לא היו שם. 
-    התעצבנתי, הרי אמרתי להם מפורשות שהיום חשוב שנפגש בצהרים כי חששתי שאיתן לא 
-    יסחוב. אח"כ הגיעו איתן וליאור ואכלנו צהרים. גונן ואני המשכנו קדימה עם התיק 
-    של איתן. הפעם, אולי בגלל הגובה (טיפסנו ל- 4450מ') העליות היו קשות מאד. אני 
-    וגונן נקרענו תחת המעמסה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הייתי מופתע עד נרגש מהעזרה 
-    שהגיש לי גונן, הוא לקח את התיק הנוסף ולא החזיר לי אותו עד שלקחתי אותו בכח. 
-    וגם כשאני סחבתי הוא התעקש להחליף אותי כל הזמן.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הגענו באפיסת כוחות ל-
-    </span><span dir="LTR">Thong Phedi</span><span lang="HE">. הקור היה חודר. 
-    אני הייתי עדיין עם מכנס קצר כמדי יום. עברנו בכפר ולא ראיתי את עוז. פחדתי 
-    שאולי הם עלו ל- </span><span dir="LTR">High camp</span><span lang="HE">, 
-    בדיוק כשאנחנו צריכים אותם. בסוף מישהו שלח אותי לחפש אותם בחדר האוכל המחומם. 
-    הם היו שם והתפלאו שלא ראו אותנו מגיעים. סיפרתי להם על מה שקרה ושיחקתי על 
-    המצפון שירגישו לא נעים כי בלעדיהם איתן לא יעבור את ה- </span>
-<span dir="LTR">pass</span><span lang="HE">.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">איתן וליאור הגיעו שעה 
-    אחרינו. איתן היה תשוש. הסתבר שצריך לקום ב- 4:00 בשביל ה- </span>
-<span dir="LTR">pass</span><span lang="HE">. אכלנו, דאל-באט עולה כאן 210 
-    רופי!!.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הפעם לא הלכתי להתקלח. אני 
-    חושב שאין כאן מקלחות כי המים קופאים בצינורות. בכל מקרה כל כך קר כאן שלא 
-    הייתי מתקלח בכל מקרה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בהמשך הערב ירד הענן על 
-    הכפר עצמו כך שהיינו ממש בתוך ערפל.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בדרך לכאן ראינו המון
-    <a href="images/pictures/nepal/yak.jpg" target="_blank">יאקים</a>, סוף סוף!!. הם 
-    ענקיים ופחדנים. גונן תקע גרפס והבריח אחד כזה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">היה גם קרח בדרך, כנראה 
-    מהלילה. כמעט החלקתי על אחד כזה, מאד מסוכן.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">קמנו ב- 4:00. אני ישנתי עם 
-    כל הבגדים שאיתם רציתי לצאת ולכן אמרתי לגונן שיקום קודם כי לוקח לו המון זמן 
-    להסתדר. תמיד הוא מוכן אחרון. הוא לא יצא מהסק"ש ולכן ב- 4:15 קמתי יחד איתו. 
-    אני הייתי מוכן כשהוא הלך לחרבן ויצא לי לחכות לו בקור, מה שרציתי למנוע מראש.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">יצאנו בחושך. הראש שלי דפק, 
-    שזה קורה המון בגבהים האלה. גונן הביא לי כדור אקמול פורטה. אינני לוקח כדורים, 
-    לפחות לא ב- 10-13 שנה האחרונים, אבל עוז אמר שזה עזר לו כשהוא לקח אתמול ואני 
-    עמדתי בפני עלייה של 1000 מ' לגובה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הכדור עשה את שלו והרגשתי 
-    טוב יותר. עלינו כולנו אחרי איתן. מדרבנים אותו. גונן ועוז עשו עבודה טובה 
-    ואיתן התקדם די מהר. לאחר כשעה איתי, גונן ועוז התלוננו שאין להם תחושה ברגליים 
-    מהקור. לי לא היתה תחושה בידיים, אולי בגלל שגונן נתן לי את כפפות האופנוע שלו 
-    בעוד הוא רכש כפפה עבה, דבל-פליז, בפוקארה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">כשהתקרבנו ל- </span>
-<span dir="LTR">High camp</span><span lang="HE">, איתי, עוז וגונן עזבו 
-    אותנו. התקדמו לשם כדי להתחמם, או שכך חשבתי.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">כשהגענו ל- </span>
-<span dir="LTR">High camp</span><span lang="HE">, לאיתן היה כאב ראש. חיפשתי 
-    את גונן ולא מצאתי. קראתי בשמו ובשם עוז ואף אחד לא ענה. כנראה המשיכו הלאה כמו 
-    תמיד, משאירים אותי ואת ליאור עם איתן. המשכנו ללכת, איתן האיט וממש התקשה. קשה 
-    לנשום בגבהים האלה. כל עלייה קטנה ואתה מתחיל להתנשם, ואחרי כמה צעדים אתה עוצר 
-    להחזיר נשימה. איתן ממש בקושי התקדם. צפיתי בעיות אבל אף אחד לא היה חוץ מליאור 
-    כי כולם ברחו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">איתן הלך בלי תיק. את כל 
-    הדברים שלו חילקנו בין כולם. גונן לקח את התיק של איתן ושם שם את הדברים שלו 
-    ודחף את התיק שלו, ריק, לתוך הכיסוי-תיק שלי. התיק שלי נטה הצידה וקרע לי את 
-    הגב, אבל בגלל הקור, לא הרגשתי את האצבעות, ולא יכלתי לעשות דבר.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בשליש השני של העליה 
-    <a href="images/pictures/nepal/20011123_eitanzz_horse.jpg" target="_blank">יש 
-    איזו בקתה</a> שאפשר לשתות שם קפה ולאכול (דאל-באט 250 רופי!!!). שם פגשנו את גונן, 
-    שוכב ומתמכר לשמש ומנמנם. הגענו עם איתן. איתן היה באפיסת כוחות, החלטנו לשתות 
-    שם </span><span dir="LTR">milk tea</span><span lang="HE">. גונן סיפר שהוא 
-    הגיע לשם עם אצבעות רגליים קפואות. הנפאלי שהיה שם הביא לו מים חמים לשפוך על 
-    הרגלים והתחושה חזרה לו. הוא חיכה לנו וזה היה נחמד. עוז ואיתי, שסבלו מאותה 
-    בעיה, כנראה החליטו בכל זאת לברוח.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">התחוור לנו שאיתן לא מסוגל 
-    להמשיך. האמת, לי היה מאד קשה ולא ראיתי איך איתן מסיים. גונן אמר שאפשר לקחת 
-    סוס עד למעבר. גם איתן הבין שזה הפתרון היחידי, הוא לא יכול להשאר שם לילה כי 
-    כל החפצים שלו מפוזרים אצל כולם, וגם אנחנו לא היינו מוסיפים יום לטרק בשבילו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בקיצור איתן שילם 2000 רופי 
-    (120 שקל!!) לרכיבה של שעה (הליכה של שעתיים) עד למעבר.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הלכנו עם ליאור. הוא סוס 
-    בעצמו. לא היה לו כאב ראש ולא נראה שהוא מתעייף מהעליות בגבהים האלה. אני וגונן 
-    בקושי סחבנו את עצמנו. עצרנו כל שניה. ליאור משך אותנו מוראלית. המעבר לא הגיע 
-    ואני וגונן היינו על סף אפיסת כוחות. גונן ניסה להקיא והדאיג אותי.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">לבסוף, לאחר שעתיים הגענו 
-    ל- </span><span dir="LTR">
-<a href="images/pictures/nepal/the_pass.jpg" target="_blank">pass</a></span><span lang="HE">. איתן כבר חיכה שם, הוא עבר אותנו עם הסוס 
-    בדרך.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הגענו למעבר ב- 12:30. 
-    יצאנו ב- 5:30 – 7 שעות !!!</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">גונן ואני הסכמנו פה אחד 
-    שזה היה אחד המאמצים הקשים ביותר בחיינו. חוץ מהגבהים 
-    <a href="images/pictures/nepal/20011123_malik_exahsted_2.jpg" target="_blank">היינו גם באפיסת כוחות</a> 
-    ואני חושב שזה גם בגלל יום האתמול שסחבנו את התיק של איתן בנוסף לשלנו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">כשהגענו ל- </span>
-<span dir="LTR">pass</span><span lang="HE"> הראש שלנו דפק. רצינו להסתלק משם 
-    ולרדת, כדי להרגיש טוב יותר. דפקנו אולי 2 תמונות ו- 5 דקות וירדנו כמעט בריצה, 
-    משאירים את ליאור ואיתן, באישורם. אני ממש מבסוט מליאור, גם כשאנו קמים 
-    ומארגנים מים הוא תמיד עוזר, וגם זה שהוא נשאר עם איתן במעין נאמנות לאיתן. הרי 
-    ליאור הצטרף אלינו רק יומיים לפני-כן.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הירידה שעמדה בפנינו היא של 
-    1700 מ' !!. רצתי אותה עם גונן, אח"כ גונן התחיל ללכת לאט, חיכיתי לו קצת, אבל 
-    הייתי גמור ורציתי רק להגיע לכפר מוקטינאט. כשהגעתי למישור ברחתי לו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אח"כ גונן התבלבל קצת בדרך 
-    ופגש את איתן וליאור והגיע איתם.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">התקלחתי ועכשיו באפיסת 
-    כוחות אני מספר את קורות היום הקשה הזה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אני הגעתי ב- 15:50, גונן 
-    אולי לקראת 17:00 – וזה אומר קרוב ל- 12 שעות הליכה (מתוכם 7 שעות עליה ו- 4 
-    שעות ירידה קשה והכל בגבהים של 5000 מ' ועם כאב ראש)</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">עכשיו אני יכול לפרט ציוד 
-    מומלץ לטרק:</span></b></p>
-<p style="text-align: right"><font face="Arial"><b><span lang="HE"><u>נעלי 
-    הליכה + סנדלים</u> – אותם ניתן ללבוש כשאתה מאוורר את הנעלים או כשיש לך 
-    יבלות. ניתן ללכת עם סנדלים בשלבים הראשונים של הטרק, כשעוד לא קר.</span></b></font></p>
-<p style="text-align: right"><font face="Arial"><b><span lang="HE"><u>גרבי 
-    צמר</u> – טוב לשינה. כשקר בחוץ אתה הולך לישון עם הגרבים האלה ואז חם לך 
-    ברגליים. מחיר מומלץ: 150 רופי.</span></b></font></p>
-<p style="text-align: right"><font face="Arial"><b><span lang="HE"><u>מכנסי 
-    פליז</u> – גם לשינה. אני הלכתי איתם היום, כי היה ממש קר במעבר ובדרך אליו. 
-    בכל מקרה לא קר ברגלים אם לובשים את זה לשינה.</span></b></font></p>
-<p style="text-align: right"><font face="Arial"><b><span lang="HE"><u>פליז</u> 
-    – חלק עליון. יש הישנים איתו. אני הייתי לובש אותו בערב ואח"כ הלכתי איתו 
-    כשנהיה קר. כמובן כדאי להביא שניים כאלה או טרנינג אחד, כי לא כדאי ללבוש פליז 
-    מסריח אחרי מקלחת. מחיר מומלץ: תלוי באיכות, 500 רופי – אבל גם לי וגם לגונן 
-    התחיל להקרע.</span></b></font></p>
-<p style="text-align: right"><font face="Arial"><b><span lang="HE"><u>כפפות 
-    וכובע גרב</u> – ניתן להשיג כפפות מחממות ב- 150-200 רופי. כובע גרב: 100-150 
-    רופי, תלוי בדגם.</span></b></font></p>
-<p dir="rtl" style="text-align: right"><font face="Arial"><b><span lang="HE"><u>פנימית 
-    סק"ש וסק"ש</u> – אני לא השתמשתי וכנראה לא אשתמש בפנימית סק"ש – זה מפליז 
-    ואמור לחמם. מחיר: 425 רופי. סק"ש הוא לא חובה כי בכל מקום יש שמיכות. כדאי 
-    לשקול לא להביא סק"ש כי סק"ש שוקל המון, לפחות הסוג שהבאתי מהארץ. ניתן לשכור 
-    סק"ש קל יותר ומותאם יותר לקור ב- 25 רופי ליום. לקנות סק"ש זה עסק של יותר מ- 
-    2000 רופי.</span></b></font></p>
-<p style="text-align: right"><font face="Arial"><b><span lang="HE"><u>נרות, 
-    מצית, אקמול, פנס ומטהרי מים</u> – חובה</span></b></font></p>
-<p style="text-align: right"><font face="Arial"><b><span lang="HE"><u>
-    מוזיקה, בטריות</u> – אפשר, יכול להוסיף. אני סוחב את הרמקולים של איתן ובערב 
-    אנחנו מחברים לזה מיני דיסק. לפעמים בדרך אני שומע מוזיקה. הרמקולים עובדים גם 
-    על בטריות כמובן.</span></b></font></p>
-<p style="text-align: right"><font face="Arial"><b><span lang="HE"><u>בגדים</u> 
-    – סט לשינה וסט להליכה – בגדים חמים תמיד כדאי – אבל לא יותר מדי. כדאי להביא 
-    הרבה גרבים. גרבים חדשות כל יום זה נחמד. ניתן לעשות כביסה ביום מנוחה, בד"כ 
-    במנאנג.</span></b></font></p>
-<p style="text-align: right"><font face="Arial"><b><span lang="HE"><u>בקבוקי 
-    פלסטיק</u> – כדאי שיהיה 2 ליטר לכל אחד, בגלל שבגבהים מחיר המים עולה עד פי 
-    10!. <a href="images/pictures/nepal/preparing_water.jpg" target="_blank">כדאי לטהר מים</a> ולכן צריך לשמור על הבקבוקים. ניתן לקנות בכמה תחנות מים 
-    רתוחים ב- 20-50 רופי.</span></b></font></p>
-<p style="text-align: right"><font face="Arial"><b><span lang="HE"><u>ממתקים</u> 
-    – דווקא לא כדאי לקנות מראש לטיול. המחיר שלהם עולה רק עד פי 2, לכן כדאי לקנות 
-    הכל בכפרים.</span></b></font></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p></td>
-<td align="center" height="333" rowspan="2" style="     " valign="top" width="187">
-<p>
-
-<img border="0" height="124" onclick="openLightbox(this.src)" src="../images/20011122_exahsted.jpg" title="לחץ להגדלה" width="179"/></p>
-<p>
-<font color="#660099">תשושים לאחר סחיבת התיק של איתן</font></p>
-<p>
-
-<img border="0" height="110" onclick="openLightbox(this.src)" src="../images/yak.jpg" title="לחץ להגדלה" width="172"/></p>
-<p>
-<font color="#660099">גור יאקים</font></p>
-<p>
-
-<img border="0" height="111" onclick="openLightbox(this.src)" src="../images/view.jpg" title="לחץ להגדלה" width="180"/></p>
-<p>
-<font color="#660099">בדרך לבייס-קאמפ</font></p>
-<p>
-
-<img border="0" height="116" onclick="openLightbox(this.src)" src="../images/20011123_base_camp.jpg" title="לחץ להגדלה" width="176"/></p>
-<p><font color="#660099">עוז בבייס-קאמפ (ת'ונג-פאדי). שימו לב שהוא בתוך ענן</font></p>
-<p>
-
-<img border="0" height="126" onclick="openLightbox(this.src)" src="../images/20011122_gonen_at_base_camp.jpg" title="לחץ להגדלה" width="181"/></p>
-<p><font color="#660099">כנ"ל גונן</font><p>
-
-<img border="0" height="111" onclick="openLightbox(this.src)" src="../images/base_camp.jpg" title="לחץ להגדלה" width="176"/></p>
-<p><font color="#660099">כנ"ל איתן</font><p>
-
-<img border="0" height="122" onclick="openLightbox(this.src)" src="../images/20011122_base_camp_2.jpg" title="לחץ להגדלה" width="178"/><p>
-
-<img border="0" height="120" onclick="openLightbox(this.src)" src="../images/20011122_base_camp_3.jpg" title="לחץ להגדלה" width="183"/><p>
-
-<img border="0" height="124" onclick="openLightbox(this.src)" src="../images/20011121_base_camp.jpg" title="לחץ להגדלה" width="177"/><p>
-<font color="#660099">בייס קאמפ</font><p>
-
-<img border="0" height="202" onclick="openLightbox(this.src)" src="../images/20011123_eitanzz_horse.jpg" title="לחץ להגדלה" width="134"/><p>
-<font color="#660099">הסוס של איתן</font><p>
-
-<img border="0" height="210" onclick="openLightbox(this.src)" src="../images/20011123_malik_exahsted.jpg" title="לחץ להגדלה" width="137"/><p>
-
-<img border="0" height="114" onclick="openLightbox(this.src)" src="../images/20011123_malik_exahsted_2.jpg" title="לחץ להגדלה" width="176"/><p>
-<font color="#660099">מליק תשוש לגמרי</font><p>
-
-<img border="0" height="120" onclick="openLightbox(this.src)" src="../images/20011123_malik_at_the_pass.jpg" title="לחץ להגדלה" width="174"/><p>
-
-<img border="0" height="112" onclick="openLightbox(this.src)" src="../images/the_pass.jpg" title="לחץ להגדלה" width="181"/><p>
-<font color="#660099">כך נראה המעבר הגבוה בעולם. סתמי, שלט והרבה דגלים</font><p>
-
-<img border="0" height="112" onclick="openLightbox(this.src)" src="../images/pass_view.jpg" title="לחץ להגדלה" width="179"/><p>
-<font color="#660099">יורדים מהמעבר</font><p>
-
-<img border="0" height="122" onclick="openLightbox(this.src)" src="../images/20011123_to_the_other_side.jpg" title="לחץ להגדלה" width="183"/><p>
-
-<img border="0" height="117" onclick="openLightbox(this.src)" src="../images/20011122_getting_close_to_the_pass.jpg" title="לחץ להגדלה" width="180"/><p>
-
-<img border="0" height="109" onclick="openLightbox(this.src)" src="../images/20011122_snow_and_desert_on_the_other_side.jpg" title="לחץ להגדלה" width="178"/></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></td>
-</tr>
-<tr>
-<td height="67" style="     " valign="top" width="314">
-
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button104.gif" title="לחץ להגדלה" width="59"/></td>
-<td height="67" style="     " valign="top" width="421">
-<p align="right">
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button106.gif" title="לחץ להגדלה" width="59"/></p></td>
-</tr>
-</table>
-<p align="center">
-<!--webbot bot="Navigation" S-Type="sequence" S-Orientation="horizontal" S-Rendering="html" S-Bar="Brackets" S-Btn-Nml="[&lt;A HREF=&quot;#URL#&quot; TARGET=&quot;#TARGET#&quot; STYLE=&quot;{text-decoration: none;}&quot;&gt;#LABEL#&lt;/A&gt;]" S-Btn-Sel="[#LABEL#]" S-Btn-Sep="&amp;nbsp;" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><nobr>[<a href="index.html" style="{text-decoration: none;}" target="">התחלה</a>]</nobr> <nobr>[<a href="200110052040.html" style="{text-decoration: none;}" target="">דנמרק</a>]</nobr> <nobr>[<a href="20011006.html" style="{text-decoration: none;}" target="">הודו</a>]</nobr> <nobr>[<a href="20011030.html" style="{text-decoration: none;}" target="">נפאל</a>]</nobr> <nobr>[<a href="20011115.html" style="{text-decoration: none;}" target="">טרק סובב אנאפורנה</a>]</nobr> <nobr>[<a href="20011210.html" style="{text-decoration: none;}" target="">תאילנד</a>]</nobr> <nobr>[<a href="20020108.html" style="{text-decoration: none;}" target="">לאוס</a>]</nobr> <nobr>[<a href="20020123.html" style="{text-decoration: none;}" target="">צפון תאילנד</a>]</nobr> <nobr>[<a href="20020203.html" style="{text-decoration: none;}" target="">אוסטרליה</a>]</nobr> <nobr>[<a href="20020210.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי דרומי</a>]</nobr> <nobr>[<a href="20020326.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי צפוני</a>]</nobr> <nobr>[<a href="20020506.html" style="{text-decoration: none;}" target="">פיליפינים</a>]</nobr> <nobr>[<a href="20020603.html" style="{text-decoration: none;}" target="">קמבודיה</a>]</nobr><!--webbot bot="Navigation" i-checksum="33824" endspan --></p>
-<p><i><small>This site was last updated
-<!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%m/%d/%y" startspan -->07/09/03<!--webbot bot="Timestamp" i-checksum="12746" endspan --> </small></i>
-</p>
-</body>
+    <div class="nav-links">
+      <a href="20011121.html">← הקודם</a>
+      <a href="20011124.html">הבא →</a>
     </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-text">
+      <div class="meta-line">
+        <span class="date-big">23</span>
+        <div>
+          <div class="date-details">נובמבר 2001</div>
+          <span class="country-badge">נפאל</span>
+        </div>
+      </div>
+      <h1 class="title">סובב אנאפורנה, יום 9</h1>
+      <div class="title-divider"></div>
+    </div>
+    <img class="hero-map" src="../images/Nepal.gif" alt="נפאל">
+  </div>
+
+  <div class="content">
+    <p>סובב אנאפורנה, יום 9</p>
+
+    <p>יש לי לספר על 2 ימי סבל או יותר נכון יום סבל ויום סיוט.</p>
+
+    <p>לפני יומיים עשינו לנו "קיצור" – כלומר הולכים שעתיים ומתקדמים, כך לא נשברת המנוחה וגם מרוויחים גובה.</p>
+
+    <p>הלכנו לגונג-סאנג, 2 כפרים ממאנאנג.</p>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/20011122_gonen_in_the_high_desrt.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011123_gonen_professional_climber.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011122_exahsted.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">תשושים לאחר סחיבת התיק של איתן</div>
+      </div>
+    </div>
+
+    <p>ליאור הצטרף אלינו, הוא הלך איתי ועם גונן ועם איתן. הלכנו מעט קדימה מאיתן. דיברנו עם ליאור על קורס הטיס ועל מטוסים – מאד מעניין. הבחור ברמה גבוהה מאד. מבין בהרבה נושאים, הוא טייס פנטום,שזה אומר שהוא סיים בין הטובים בקורס.</p>
+
+    <p>הגענו לכפר, התקלחתי שוב במקלחת קרה. אני חושב שהייתי היחיד. הגובה שם הוא קרוב ל- 3900מ'. ישבנו במסעדה שם וצחקנו. לכולם היה קר חוץ ממני. אני הייתי יחף.</p>
+
+    <p>המנוחה הסתיימה. למחרת תכננו לקום ב- 6:00 ולצאת ב- 7:00.</p>
+
+    <p>ליאור העיר אותנו, כי רק לו היה שעון מעורר, בעצם יש גם לגונן, אבל אף פעם אין לו כח להוציא אותו, כמו עם הפנס שלו שתקוע תמיד בתיק ואז צריכים ללכת בחושך.</p>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/yak.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">גור יאקים</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/view.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">בדרך לבייס-קאמפ</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011123_base_camp.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">עוז בבייס-קאמפ (ת'ונג-פאדי). שימו לב שהוא בתוך ענן</div>
+      </div>
+    </div>
+
+    <p>השכמנו ב- 6:00, הכל היה קפוא, אין שם מים זורמים, אז יש גיגיות עם מים שמביאים מאיזשהו מקום. למים היתה שכבת קרח והיה צריך לשבור אותה. הטמפרטורה היתה קרוב לאפס, הפעם מהכיוון השלילי.</p>
+
+    <p>הלכנו משם ל- Thong Phedi, משם נעלה ל- Pass. אופציה נוספת היא להרחיק עד ל- High Camp. ה- Thong Phedi נקרא גם Base camp, בגובה 4450מ'. ה- High camp הוא יותר גבוה 4650מ'-4850מ' (הגרסאות סותרות). בכל מקרה קל יותר להגיע למעבר (5416מ') משם.</p>
+
+    <p>הצעתי לעוז ולאיתי לקום מאוחר יותר כי הם הולכים מהר. בדרך הם יעקפו אותנו (אנחנו הולכים עם איתן מאד לאט) ויחכו לא יותר מדי בכפר Chutti Ladder, שם נעצור לצהרים. בפעמים הקודמות הם לא חיכו לנו בצהרים כי היה קר להם לשבת ולחכות הרבה זמן.</p>
+
+    <p>בקיצור, עוז אמר איזו שטות, קם איתנו ויצא קדימה. איתי יצא אחרי שעה וגם עקף אותנו.</p>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/20011122_gonen_at_base_camp.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">כנ"ל גונן</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/base_camp.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">כנ"ל איתן</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011122_base_camp_2.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+    </div>
+
+    <p>בכפר לפני ה- Chutti Ladder איתן נשבר ורצה לחזור. לא ידענו מה לעשות. לבסוף החלטתי שאני אסחוב גם את התיק שלו, שהוא יחסית קל, 10 ק"ג. השארנו את ליאור עם איתן וגונן ואני התקדמנו בכדי לפגוש את עוז ואיתי כמתוכנן. גונן ואני חלקנו במעמסה והגענו תוך כשעה ל- Chutti Ladder. חיפשתי את עוז ואיתי אך הם לא היו שם. התעצבנתי, הרי אמרתי להם מפורשות שהיום חשוב שנפגש בצהרים כי חששתי שאיתן לא יסחוב. אח"כ הגיעו איתן וליאור ואכלנו צהרים. גונן ואני המשכנו קדימה עם התיק של איתן. הפעם, אולי בגלל הגובה (טיפסנו ל- 4450מ') העליות היו קשות מאד. אני וגונן נקרענו תחת המעמסה.</p>
+
+    <p>הייתי מופתע עד נרגש מהעזרה שהגיש לי גונן, הוא לקח את התיק הנוסף ולא החזיר לי אותו עד שלקחתי אותו בכח. וגם כשאני סחבתי הוא התעקש להחליף אותי כל הזמן.</p>
+
+    <p>הגענו באפיסת כוחות ל- Thong Phedi. הקור היה חודר. אני הייתי עדיין עם מכנס קצר כמדי יום. עברנו בכפר ולא ראיתי את עוז. פחדתי שאולי הם עלו ל- High camp, בדיוק כשאנחנו צריכים אותם. בסוף מישהו שלח אותי לחפש אותם בחדר האוכל המחומם. הם היו שם והתפלאו שלא ראו אותנו מגיעים. סיפרתי להם על מה שקרה ושיחקתי על המצפון שירגישו לא נעים כי בלעדיהם איתן לא יעבור את ה- pass.</p>
+
+    <p>איתן וליאור הגיעו שעה אחרינו. איתן היה תשוש. הסתבר שצריך לקום ב- 4:00 בשביל ה- pass. אכלנו, דאל-באט עולה כאן 210 רופי!!.</p>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/20011122_base_camp_3.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011121_base_camp.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">בייס קאמפ</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011123_eitanzz_horse.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">הסוס של איתן</div>
+      </div>
+    </div>
+
+    <p>הפעם לא הלכתי להתקלח. אני חושב שאין כאן מקלחות כי המים קופאים בצינורות. בכל מקרה כל כך קר כאן שלא הייתי מתקלח בכל מקרה.</p>
+
+    <p>בהמשך הערב ירד הענן על הכפר עצמו כך שהיינו ממש בתוך ערפל.</p>
+
+    <p>בדרך לכאן ראינו המון <a onclick="openLightbox('../images/yak.jpg')">יאקים</a>, סוף סוף!!. הם ענקיים ופחדנים. גונן תקע גרפס והבריח אחד כזה.</p>
+
+    <p>היה גם קרח בדרך, כנראה מהלילה. כמעט החלקתי על אחד כזה, מאד מסוכן.</p>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/20011123_malik_exahsted.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011123_malik_exahsted_2.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">מליק תשוש לגמרי</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011123_malik_at_the_pass.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+    </div>
+
+    <p>קמנו ב- 4:00. אני ישנתי עם כל הבגדים שאיתם רציתי לצאת ולכן אמרתי לגונן שיקום קודם כי לוקח לו המון זמן להסתדר. תמיד הוא מוכן אחרון. הוא לא יצא מהסק"ש ולכן ב- 4:15 קמתי יחד איתו. אני הייתי מוכן כשהוא הלך לחרבן ויצא לי לחכות לו בקור, מה שרציתי למנוע מראש.</p>
+
+    <p>יצאנו בחושך. הראש שלי דפק, שזה קורה המון בגבהים האלה. גונן הביא לי כדור אקמול פורטה. אינני לוקח כדורים, לפחות לא ב- 10-13 שנה האחרונים, אבל עוז אמר שזה עזר לו כשהוא לקח אתמול ואני עמדתי בפני עלייה של 1000 מ' לגובה.</p>
+
+    <p>הכדור עשה את שלו והרגשתי טוב יותר. עלינו כולנו אחרי איתן. מדרבנים אותו. גונן ועוז עשו עבודה טובה ואיתן התקדם די מהר. לאחר כשעה איתי, גונן ועוז התלוננו שאין להם תחושה ברגליים מהקור. לי לא היתה תחושה בידיים, אולי בגלל שגונן נתן לי את כפפות האופנוע שלו בעוד הוא רכש כפפה עבה, דבל-פליז, בפוקארה.</p>
+
+    <p>כשהתקרבנו ל- High camp, איתי, עוז וגונן עזבו אותנו. התקדמו לשם כדי להתחמם, או שכך חשבתי.</p>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/the_pass.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">כך נראה המעבר הגבוה בעולם. סתמי, שלט והרבה דגלים</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/pass_view.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">יורדים מהמעבר</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011123_to_the_other_side.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+    </div>
+
+    <p>כשהגענו ל- High camp, לאיתן היה כאב ראש. חיפשתי את גונן ולא מצאתי. קראתי בשמו ובשם עוז ואף אחד לא ענה. כנראה המשיכו הלאה כמו תמיד, משאירים אותי ואת ליאור עם איתן. המשכנו ללכת, איתן האיט וממש התקשה. קשה לנשום בגבהים האלה. כל עלייה קטנה ואתה מתחיל להתנשם, ואחרי כמה צעדים אתה עוצר להחזיר נשימה. איתן ממש בקושי התקדם. צפיתי בעיות אבל אף אחד לא היה חוץ מליאור כי כולם ברחו.</p>
+
+    <p>איתן הלך בלי תיק. את כל הדברים שלו חילקנו בין כולם. גונן לקח את התיק של איתן ושם שם את הדברים שלו ודחף את התיק שלו, ריק, לתוך הכיסוי-תיק שלי. התיק שלי נטה הצידה וקרע לי את הגב, אבל בגלל הקור, לא הרגשתי את האצבעות, ולא יכלתי לעשות דבר.</p>
+
+    <p>בשליש השני של העליה <a onclick="openLightbox('../images/20011123_eitanzz_horse.jpg')">יש איזו בקתה</a> שאפשר לשתות שם קפה ולאכול (דאל-באט 250 רופי!!!). שם פגשנו את גונן, שוכב ומתמכר לשמש ומנמנם. הגענו עם איתן. איתן היה באפיסת כוחות, החלטנו לשתות שם milk tea. גונן סיפר שהוא הגיע לשם עם אצבעות רגליים קפואות. הנפאלי שהיה שם הביא לו מים חמים לשפוך על הרגלים והתחושה חזרה לו. הוא חיכה לנו וזה היה נחמד. עוז ואיתי, שסבלו מאותה בעיה, כנראה החליטו בכל זאת לברוח.</p>
+
+    <p>התחוור לנו שאיתן לא מסוגל להמשיך. האמת, לי היה מאד קשה ולא ראיתי איך איתן מסיים. גונן אמר שאפשר לקחת סוס עד למעבר. גם איתן הבין שזה הפתרון היחידי, הוא לא יכול להשאר שם לילה כי כל החפצים שלו מפוזרים אצל כולם, וגם אנחנו לא היינו מוסיפים יום לטרק בשבילו.</p>
+
+    <div class="photo-pair">
+      <div class="photo-item">
+        <img src="../images/20011122_getting_close_to_the_pass.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011122_snow_and_desert_on_the_other_side.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+    </div>
+
+    <p>בקיצור איתן שילם 2000 רופי (120 שקל!!) לרכיבה של שעה (הליכה של שעתיים) עד למעבר.</p>
+
+    <p>הלכנו עם ליאור. הוא סוס בעצמו. לא היה לו כאב ראש ולא נראה שהוא מתעייף מהעליות בגבהים האלה. אני וגונן בקושי סחבנו את עצמנו. עצרנו כל שניה. ליאור משך אותנו מוראלית. המעבר לא הגיע ואני וגונן היינו על סף אפיסת כוחות. גונן ניסה להקיא והדאיג אותי.</p>
+
+    <p>לבסוף, לאחר שעתיים הגענו ל- <a onclick="openLightbox('../images/the_pass.jpg')">pass</a>. איתן כבר חיכה שם, הוא עבר אותנו עם הסוס בדרך.</p>
+
+    <p>הגענו למעבר ב- 12:30. יצאנו ב- 5:30 – 7 שעות !!!</p>
+
+    <p>גונן ואני הסכמנו פה אחד שזה היה אחד המאמצים הקשים ביותר בחיינו. חוץ מהגבהים <a onclick="openLightbox('../images/20011123_malik_exahsted_2.jpg')">היינו גם באפיסת כוחות</a> ואני חושב שזה גם בגלל יום האתמול שסחבנו את התיק של איתן בנוסף לשלנו.</p>
+
+    <p>כשהגענו ל- pass הראש שלנו דפק. רצינו להסתלק משם ולרדת, כדי להרגיש טוב יותר. דפקנו אולי 2 תמונות ו- 5 דקות וירדנו כמעט בריצה, משאירים את ליאור ואיתן, באישורם. אני ממש מבסוט מליאור, גם כשאנו קמים ומארגנים מים הוא תמיד עוזר, וגם זה שהוא נשאר עם איתן במעין נאמנות לאיתן. הרי ליאור הצטרף אלינו רק יומיים לפני-כן.</p>
+
+    <p>הירידה שעמדה בפנינו היא של 1700 מ' !!. רצתי אותה עם גונן, אח"כ גונן התחיל ללכת לאט, חיכיתי לו קצת, אבל הייתי גמור ורציתי רק להגיע לכפר מוקטינאט. כשהגעתי למישור ברחתי לו.</p>
+
+    <p>אח"כ גונן התבלבל קצת בדרך ופגש את איתן וליאור והגיע איתם.</p>
+
+    <p>התקלחתי ועכשיו באפיסת כוחות אני מספר את קורות היום הקשה הזה.</p>
+
+    <p>אני הגעתי ב- 15:50, גונן אולי לקראת 17:00 – וזה אומר קרוב ל- 12 שעות הליכה (מתוכם 7 שעות עליה ו- 4 שעות ירידה קשה והכל בגבהים של 5000 מ' ועם כאב ראש)</p>
+
+    <p>עכשיו אני יכול לפרט ציוד מומלץ לטרק:</p>
+
+    <p>נעלי הליכה + סנדלים – אותם ניתן ללבוש כשאתה מאוורר את הנעלים או כשיש לך יבלות. ניתן ללכת עם סנדלים בשלבים הראשונים של הטרק, כשעוד לא קר.</p>
+
+    <p>גרבי צמר – טוב לשינה. כשקר בחוץ אתה הולך לישון עם הגרבים האלה ואז חם לך ברגליים. מחיר מומלץ: 150 רופי.</p>
+
+    <p>מכנסי פליז – גם לשינה. אני הלכתי איתם היום, כי היה ממש קר במעבר ובדרך אליו. בכל מקרה לא קר ברגלים אם לובשים את זה לשינה.</p>
+
+    <p>פליז – חלק עליון. יש הישנים איתו. אני הייתי לובש אותו בערב ואח"כ הלכתי איתו כשנהיה קר. כמובן כדאי להביא שניים כאלה או טרנינג אחד, כי לא כדאי ללבוש פליז מסריח אחרי מקלחת. מחיר מומלץ: תלוי באיכות, 500 רופי – אבל גם לי וגם לגונן התחיל להקרע.</p>
+
+    <p>כפפות וכובע גרב – ניתן להשיג כפפות מחממות ב- 150-200 רופי. כובע גרב: 100-150 רופי, תלוי בדגם.</p>
+
+    <p>פנימית סק"ש וסק"ש – אני לא השתמשתי וכנראה לא אשתמש בפנימית סק"ש – זה מפליז ואמור לחמם. מחיר: 425 רופי. סק"ש הוא לא חובה כי בכל מקום יש שמיכות. כדאי לשקול לא להביא סק"ש כי סק"ש שוקל המון, לפחות הסוג שהבאתי מהארץ. ניתן לשכור סק"ש קל יותר ומותאם יותר לקור ב- 25 רופי ליום. לקנות סק"ש זה עסק של יותר מ- 2000 רופי.</p>
+
+    <p>נרות, מצית, אקמול, פנס ומטהרי מים – חובה</p>
+
+    <p>מוזיקה, בטריות – אפשר, יכול להוסיף. אני סוחב את הרמקולים של איתן ובערב אנחנו מחברים לזה מיני דיסק. לפעמים בדרך אני שומע מוזיקה. הרמקולים עובדים גם על בטריות כמובן.</p>
+
+    <p>בגדים – סט לשינה וסט להליכה – בגדים חמים תמיד כדאי – אבל לא יותר מדי. כדאי להביא הרבה גרבים. גרבים חדשות כל יום זה נחמד. ניתן לעשות כביסה ביום מנוחה, בד"כ במנאנג.</p>
+
+    <p>בקבוקי פלסטיק – כדאי שיהיה 2 ליטר לכל אחד, בגלל שבגבהים מחיר המים עולה עד פי 10!. <a onclick="openLightbox('../images/preparing_water.jpg')">כדאי לטהר מים</a> ולכן צריך לשמור על הבקבוקים. ניתן לקנות בכמה תחנות מים רתוחים ב- 20-50 רופי.</p>
+
+    <p>ממתקים – דווקא לא כדאי לקנות מראש לטיול. המחיר שלהם עולה רק עד פי 2, לכן כדאי לקנות הכל בכפרים.</p>
+
+
+  </div>
+
+  <div class="nav-cards">
+    <a href="20011124.html" class="nav-card">
+      <div class="label">הבא →</div>
+      <div class="card-title">סובב אנאפורנה, יום 10</div>
+    </a>
+    <a href="20011121.html" class="nav-card">
+      <div class="label">← הקודם</div>
+      <div class="card-title">סובב אנאפורנה, יום 7</div>
+    </a>
+  </div>
+
+  <div class="country-nav">
+    <a href="200110052040.html">דנמרק</a>
+    <a href="20011006.html">הודו</a>
+    <a href="20011030.html">נפאל</a>
+    <a href="20011115.html">טרק אנאפורנה</a>
+    <a href="20011210.html">תאילנד</a>
+    <a href="20020108.html">לאוס</a>
+    <a href="20020123.html">צפון תאילנד</a>
+    <a href="20020203.html">אוסטרליה</a>
+    <a href="20020210.html">ניו-זילנד, אי דרומי</a>
+    <a href="20020326.html">ניו-זילנד, אי צפוני</a>
+    <a href="20020506.html">פיליפינים</a>
+    <a href="20020603.html">קמבודיה</a>
   </div>
 
   <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
-    <img id="lightbox-img" src="" alt="Enlarged">
+    <img id="lightbox-img" src="" alt="">
   </div>
-
   <script>
     function openLightbox(src) {
       document.getElementById('lightbox-img').src = src;

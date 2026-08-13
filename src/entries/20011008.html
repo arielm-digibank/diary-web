@@ -3,219 +3,310 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ניו-דלהי, הודו</title>
+  <title>טאג' מאהאל, ההולנדיות</title>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap" rel="stylesheet">
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background-color: #f8fafc;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0; padding: 20px; color: #334155;
+      background: #ffffff;
+      font-family: 'Heebo', sans-serif;
+      color: #1a1a2e;
+      line-height: 1.9;
     }
-    .container {
-      max-width: 800px; margin: 0 auto; background: #ffffff;
-      padding: 35px; border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06); line-height: 1.8;
+    .top-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #eee;
+      padding: 12px 30px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.9rem;
     }
-    .header {
-      border-bottom: 2px solid #e2e8f0; padding-bottom: 15px;
-      margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center;
+    .top-nav a {
+      color: #1d4ed8; text-decoration: none; font-weight: 600;
     }
-    .header h1 { margin: 0; color: #0f172a; font-size: 1.8rem; }
-    .home-link { color: #2563eb; text-decoration: none; font-weight: 600; }
-    .content img {
-      float: right; margin: 0 0 15px 20px; max-width: 320px; height: auto;
-      border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      cursor: pointer; transition: transform 0.2s;
+    .top-nav a:hover { text-decoration: underline; }
+    .top-nav .nav-links { display: flex; gap: 20px; }
+    .hero {
+      max-width: 900px; margin: 0 auto;
+      padding: 50px 40px 30px;
+      display: flex; align-items: flex-start; gap: 30px;
     }
-    .content img:hover { transform: scale(1.02); }
-    .content::after { content: ""; clear: both; display: table; }
-    a { color: #2563eb; }
+    .hero-text { flex: 1; }
+    .hero-map {
+      width: 120px; height: auto; object-fit: contain;
+      flex-shrink: 0; opacity: 0.85;
+    }
+    .meta-line {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+    }
+    .date-big {
+      font-size: 3.5rem; font-weight: 900; color: #e5e7eb; line-height: 1;
+    }
+    .date-details { font-size: 0.9rem; color: #6b7280; }
+    .country-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      border-radius: 20px; padding: 4px 14px;
+      font-size: 0.8rem; color: #1d4ed8; font-weight: 600;
+    }
+    .title {
+      font-size: 2.2rem; font-weight: 900; color: #111827;
+      margin: 20px 0 8px; line-height: 1.3;
+    }
+    .date-subtitle {
+      font-size: 1.1rem; font-weight: 300; color: #4b5563;
+      margin-bottom: 16px;
+    }
+    .title-divider {
+      width: 60px; height: 4px; background: #1d4ed8; border-radius: 2px;
+    }
+    .content {
+      max-width: 900px; margin: 30px auto; padding: 0 40px; font-size: 1.05rem;
+    }
+    .content p { margin-bottom: 18px; }
+    .content a {
+      color: #1d4ed8; cursor: pointer;
+      text-decoration: underline;
+      text-decoration-color: rgba(29,78,216,0.3);
+    }
+    .photo-block {
+      margin: 30px 0; border-radius: 12px; overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    .photo-block img {
+      width: 100%; display: block; cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .photo-block img:hover { transform: scale(1.01); }
+    .photo-block .caption {
+      padding: 12px 16px; font-size: 0.85rem; color: #6b7280;
+      background: #f9fafb; border-top: 1px solid #f3f4f6;
+    }
+    .photo-pair {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 14px; margin: 30px 0;
+    }
+    .photo-pair .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-pair .photo-item img {
+      width: 100%; height: 200px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-pair .photo-item img:hover { transform: scale(1.03); }
+    .photo-pair .photo-item .caption {
+      padding: 8px 12px; font-size: 0.8rem; color: #6b7280; background: #f9fafb;
+    }
+    .photo-trio {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px; margin: 30px 0;
+    }
+    .photo-trio .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-trio .photo-item img {
+      width: 100%; height: 180px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-trio .photo-item img:hover { transform: scale(1.03); }
+    .photo-trio .photo-item .caption {
+      padding: 8px 10px; font-size: 0.78rem; color: #6b7280; background: #f9fafb;
+    }
+    .nav-cards {
+      max-width: 900px; margin: 50px auto 20px; padding: 0 40px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .nav-card {
+      padding: 20px 24px; border: 1px solid #e5e7eb; border-radius: 12px;
+      text-decoration: none; color: inherit; transition: all 0.2s;
+    }
+    .nav-card:hover {
+      border-color: #1d4ed8; box-shadow: 0 4px 12px rgba(29,78,216,0.1);
+    }
+    .nav-card .label { font-size: 0.8rem; color: #6b7280; margin-bottom: 4px; }
+    .nav-card .card-title { font-weight: 700; font-size: 1rem; color: #1d4ed8; }
+    .supplements {
+      margin-top: 35px; padding: 25px 30px;
+      background: #f9fafb; border-radius: 12px; border: 1px solid #e5e7eb;
+    }
+    .supplements h3 {
+      font-size: 1.1rem; font-weight: 700; margin-bottom: 14px; color: #374151;
+    }
+    .supplements ol { padding-right: 20px; }
+    .supplements li { margin-bottom: 10px; color: #4b5563; }
+    .country-nav {
+      max-width: 900px; margin: 20px auto 40px; padding: 0 40px;
+      display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+    }
+    .country-nav a {
+      padding: 6px 14px; border-radius: 20px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      color: #1d4ed8; text-decoration: none;
+      font-size: 0.82rem; font-weight: 600;
+      transition: all 0.2s;
+    }
+    .country-nav a:hover {
+      background: #1d4ed8; color: white; border-color: #1d4ed8;
+    }
     .lightbox {
       display: none; position: fixed; z-index: 9999;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.9); justify-content: center; align-items: center; cursor: pointer;
+      background: rgba(0,0,0,0.92);
+      justify-content: center; align-items: center; cursor: pointer;
     }
-    .lightbox img { max-width: 90%; max-height: 90%; border-radius: 8px; }
+    .lightbox img { max-width: 92%; max-height: 92%; border-radius: 8px; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h1>ניו-דלהי, הודו</h1>
-      <a href="../index.html" class="home-link">🏠 לעמוד הראשי</a>
+  <div class="top-nav">
+    <div class="nav-links">
+      <a href="../index.html">עמוד ראשי</a>
     </div>
-    <div class="content">
-      <body>
-<table cellpadding="0" cellspacing="0" height="80" width="959">
-<tr>
-<td align="center" height="80" width="667">
-<marquee style="font-size: 18pt; color: #800080">8.10.01</marquee></td>
-<td align="center" height="80" width="693">
-<!--webbot bot="Navigation" s-type="banner" s-rendering="graphics" S-Orientation B-Include-Home B-Include-Up U-Page S-Target startspan --><!--webbot bot="Navigation" i-checksum="58208" endspan --></td>
-<td align="center" height="80" width="367">
-<img border="0" height="154" onclick="openLightbox(this.src)" src="../images/India.gif" title="לחץ להגדלה" width="156"/></td>
-<td align="center" height="80" width="10">
-     </td>
-</tr>
-<tr>
-<td colspan="3" height="1" style=" " width="954"></td>
-</tr>
-</table><table cellpadding="0" cellspacing="0" width="100%">
-<tr>
-<td align="right" style=" ">
-<h4>
-<marquee style="font-size: 24pt; color: #008080">טאג' מאהאל, ההולנדיות</marquee></h4>
-<p> </p></td>
-</tr>
-</table>
-<table cellpadding="0" cellspacing="0" height="333" width="954">
-<tr>
-<td height="333" rowspan="2" style="       " valign="top" width="140"> <!--webbot bot="Navigation" S-Type="sequence" S-Orientation="vertical" S-Rendering="graphics" S-Theme="blocks 000" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><!--webbot bot="Navigation" i-checksum="23763" endspan --><p> </p>
-</td>
-<td height="333" rowspan="2" style="     " valign="top" width="1"></td>
-<td colspan="2" height="266" style="     " valign="top" width="627">
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הסיור לטאג' מאהאל התחיל ב- 
-    7:00. עקב כך קמנו ב- 6:15 - קשה מאד. עלותו 300 רופי האחד באוטובוס ממוזג. 
-    ידידנו, פראסאנה, חיכה לנו למטה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">יצאנו לאוטובוס, האוויר היה 
-    קריר.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">שמו אותנו בספסל האחורי, 
-    הרגשנו קוליים. לידינו 2 בחורות בהירות שיער, יתר האוטובוס הודים. גונן איבד כל 
-    עניין בטיול ובאתרים הנפלאים שרצינו לראות (הטאג' מאהאל) והתחיל להתעניין בגופן 
-    של הנערות התמימות – "סתכל איך החזה זז להן בכל טלטול של האוטובוס". המחשבה 
-    לישון במחיצתו של גונן לא עשתה לי טוב. יציאות כמו "חיממת אותי" – כשהחלפנו 
-    מקומות והתחכחתי בו בגלל חוסר מקום הדאיגו אותי עוד יותר. חקרנו וגילינו 
-    שהנערות מהולנד והן בנות 18. גונן הציג את עצמו בפניהן "אני אריק" – "פרדריך ?" 
-    הן ענו. טוב שם טוב משמן טוב (בהמשך נראה כי זה לא נכון). נסענו 4 שעות (ו- 210 
-    ק"מ).</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">האתר הראשון (מתוך 4 
-    מתוכננים) היה אגרה פורט – חומה גבוהה קיבלה את פנינו. אולם בבואנו לקופות 
-    ראינו שעלינו לשלם 300 רופי כל אחד – לעומת 20 רופי עבור הודים – ממרמר – עקב 
-    כך לא נכנסנו והפקרנו את גופינו לקבצנים שעטו עלינו בהמוניהם כמו צלמים שעוטים 
-    על סלבריטי. פילסנו דרכינו לאוטובוס וחיכינו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אח"כ הלכנו לאכול – אכלנו 
-    אורז – לגונן היה חריף. הבנות הצטרפו אלינו. אחת מהן אפילו הזמינה עוף.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אח"כ הלכנו ל<a href="images/pictures/India/17.jpg" target="_blank">טאג' 
-    מאהאל</a> – העקות הקבצנים הגיעו לשיאן. הן עטו עלינו כמו זבובים ביום חם במחנה 
-    נועם ביריחו והציעו לנו מכל טוב – גונן ניסה שוט על מליק והתרעם שלא נשארו 
-    סימנים וצלקות על גופו של מליק ממכת השוט והחליט לא לרכוש אותו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הטאג' מאהאל:</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">גרסת מליק – מבנה מדהים בעל 
-    סימטריות מושלמות בצבע לבן ואפור. קשה להאמין שנבנה לפני 350 שנה – הוא כ"כ 
-    שמור – בפנים הוא מאכזב אבל בחוץ תאווה לעינים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">גרסת גונן – כמו בחורה 
-    בלונדינית – יפהפיה מבחוץ אך בפנים ריק – אין מוח אין כלום. גונן אמר שהיה יכול 
-    לחסל את כל המוסלמים יחד עם המסגד הזה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הכניסה עלתה 750 רופי!!. 
-    להודים 20 רופי בלבד וזה ממרמר.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הצטלמנו וסיימנו פילם ראשון 
-    (כולל תמונות עם ההולנדיות) המשכנו למקדש </span><span dir="LTR">Mathura</span>
-<span lang="HE">– המקום שבו נולד הארי קרישנה. גונן שקל להחליף את שם משפחתו 
-    ל- "רישנה". בכל מסגד הורדנו נעליים – מליק עדיין לא הבין איך דבר כזה מסמל על 
-    כבוד ואיים שהאדם שיוריד נעליים אצלו בבית מסתכן בתגובה חמורה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">גונן עדיין מפחד על הסנדלים 
-    שלו אעפ"י שלרוב ההודים יש זוגות סנדלים יפות וחדשות יותר.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">האתר האחרון שבו ביקרנו היה
-    </span><span dir="LTR">Brinbaran</span> <span lang="HE">– כאן קרישנה גדל 
-    והטיף – סתם שכונה עם כל מיני מקדשים שכונתיים – אנחנו התמקדנו בנוף – 
-    <a href="images/pictures/India/20011008_gonen&amp;cow.jpg" target="_blank">גונן 
-    הצטלם עם שור מרשים</a>, ראינו כמויות של שממיות מרוכזות על הקורות (די מגודלות). 
-    מליק רצה להצטלם עם איזו פרה, אבל היא הסתכלה עליו והוא ויתר (</span><span dir="LTR">cow-ard</span><span lang="HE"> 
-    צעק גונן).</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אישה עם תינוקת זעירה 
-    בתת-תזונה הסתערה עלינו כשראתה שנתנו 20 אגורות ישראליות לאיזה מוכר 
-    מאינדונזיה. אסור לתת כסף לקבצנים – הם לא עוזבים אותך ואחרים רואים זאת 
-    ומצטרפים להתנפלות. גונן הועק, אך לא היה לו כסף ולכן ביקש ממליק לתת לה 10 
-    רופי. מליק נלחץ, הוציא את הארנק אך לא מצא שטר של 10 רופי. הוא עמד באמצע 
-    הכביש, אופנים נכנסו בו, האישה עם התינוקת העיקה עליו ביותר וגונן כבר ישב 
-    באוטובוס, שומע מוזיקה ישראלית מרגיעה בדיסקמן. בכוחותיו האחרונים עלה מליק 
-    לאוטובוס, שבור נפשית ופיזית. ראינו הרבה קבצנים קטועי איברים, אך זה היה השיא. 
-    בסוף גונן נתן לה 10 רופי מפראסאנה, אך היא המשיכה להעיק דרך האוטובוס – אין 
-    סיפוק בלתת נדבות – הם פשוט מעיקים עליך יותר.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">באמצע שינה טרופה עצרנו 
-    לאכול ארוחת-ערב באיזה מקום. הזמנו קפה וגונן רצה צ'יפס. האור כבה (הגנרטור) 
-    ואכלנו לאור נרות שהביאו מאות זבובונים. המקום כבר לא מצא-חן עינינו. הקפה היה 
-    טוב (ממכונת </span><span dir="LTR">Nescafe</span><span lang="HE">), אך 
-    הצ'יפס שהגיע היה שרוף עם טעם של שמן מכונות (אמרתי לכם שטוב שמן טוב משם טוב) 
-    – נקווה שלא גרמנו לעצמנו נזק בלתי הפיך.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">חזרנו ב- 24:30. נפרדנו 
-    בצורה מרגשת מפראסאנה, אם כי אולי נפגוש אותו מחר, נראה שהוא נהנה מחברתנו כי 
-    הוא רצה לדחות את הטיול שלו לרישיקאש בכדי לבלות איתנו ביום המחרת.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">שכחנו להגיד שלום 
-    להולנדיות, אנחנו בטוחים שנראה אותן שוב, בחלומותינו. מחר בערב ניסע לדרמסאלה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">היום בזבזנו סכום אסטרונומי 
-    של 145 ₪ כל אחד. (75 מתוך זה – הטאג' מאהאל) אין צורך לציין שגונן בפאניקה. 
-    כבר בזבנו 100$ שנינו תוך 3 ימים. משרתו של מליק כאחראי כספים בסכנה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">גונן מטיל את כובד משקלו אך 
-    רוצה להדק את החגורה "אין יותר אוטובוסים ממוזגים, אין יותר ארוחות שחיתות..." 
-    רוחו של גונן מטילה על מליק אימה, "..אין יותר חדרים מפוארים עם טלוויזיה (יש 
-    לנו בחדר טלוויזיה שחור-לבן שלא קולטים בה כלום)" ממשיך גונן להרעים את קולו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">השלמות:</span></b></p>
-<ol start="1" style="margin-top: 0cm; margin-bottom: 0cm" type="1">
-<li class="MsoNormal" dir="RTL"><b><font color="#000000" face="Arial">
-<span lang="HE">תפוצ'יפס – לפני שהביאו לנו את הצ'יפס המגעיל והמסוכן במסעדה 
-      בה אכלנו ארוחת-ערב, הביאו לנו שקית תפוצ'יפס על צלחת – אחרי שהזמנו צ'יפס – 
-      לא יאומן.</span></font></b></li>
-</ol>
-<p style="text-align: right">
-<span dir="RTL" lang="HE" style="font-size: 12.0pt; font-weight: 700">
-    פראסאנה – אם אינכם יכולים לדמיין אותו – נראה כמו אייל גולן</span><span dir="RTL" lang="HE" style="font-size: 12.0pt">.</span></p>
-<p dir="rtl"> </p></td>
-<td align="center" height="333" rowspan="2" style="     " valign="top" width="186">
-
-<img border="0" height="130" onclick="openLightbox(this.src)" src="../images/17.jpg" title="לחץ להגדלה" width="173"/><p>
-<font color="#660099">טאג' מאהאל</font></p>
-<p>
-
-<img border="0" height="125" onclick="openLightbox(this.src)" src="../images/20011008_taj_mahal.jpg" title="לחץ להגדלה" width="179"/></p>
-<p>
-
-<img border="0" height="119" onclick="openLightbox(this.src)" src="../images/20011008_us_in_taj_mahal.jpg" title="לחץ להגדלה" width="178"/></p>
-<p>
-
-<img border="0" height="116" onclick="openLightbox(this.src)" src="../images/20011008_dutch_girls.jpg" title="לחץ להגדלה" width="175"/></p>
-<p>
-<font color="#660099">גונן עם ההולנדיות</font></p>
-<p>
-
-<img border="0" height="119" onclick="openLightbox(this.src)" src="../images/20011008_temp_1.jpg" title="לחץ להגדלה" width="177"/></p>
-<p>
-
-<img border="0" height="128" onclick="openLightbox(this.src)" src="../images/20011008_malik_in_mahal_area.jpg" title="לחץ להגדלה" width="178"/></p>
-<p>
-
-<img border="0" height="126" onclick="openLightbox(this.src)" src="../images/20011008_indian_people.jpg" title="לחץ להגדלה" width="178"/></p>
-<p>
-
-<img border="0" height="235" onclick="openLightbox(this.src)" src="../images/20011008_gonen&amp;cow.jpg" title="לחץ להגדלה" width="155"/></p>
-<p>
-<font color="#660099">השור הזועם</font></p>
-<p>
-     </p>
-</td>
-</tr>
-<tr>
-<td height="67" style="     " valign="top" width="314">
-
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button104.gif" title="לחץ להגדלה" width="59"/></td>
-<td height="67" style="     " valign="top" width="313">
-<p align="right">
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button106.gif" title="לחץ להגדלה" width="59"/></p></td>
-</tr>
-</table>
-<p align="center">
-<!--webbot bot="Navigation" S-Type="sequence" S-Orientation="horizontal" S-Rendering="html" S-Bar="Brackets" S-Btn-Nml="[&lt;A HREF=&quot;#URL#&quot; TARGET=&quot;#TARGET#&quot; STYLE=&quot;{text-decoration: none;}&quot;&gt;#LABEL#&lt;/A&gt;]" S-Btn-Sel="[#LABEL#]" S-Btn-Sep="&amp;nbsp;" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><nobr>[<a href="index.html" style="{text-decoration: none;}" target="">התחלה</a>]</nobr> <nobr>[<a href="200110052040.html" style="{text-decoration: none;}" target="">דנמרק</a>]</nobr> <nobr>[<a href="20011006.html" style="{text-decoration: none;}" target="">הודו</a>]</nobr> <nobr>[<a href="20011030.html" style="{text-decoration: none;}" target="">נפאל</a>]</nobr> <nobr>[<a href="20011115.html" style="{text-decoration: none;}" target="">טרק סובב אנאפורנה</a>]</nobr> <nobr>[<a href="20011210.html" style="{text-decoration: none;}" target="">תאילנד</a>]</nobr> <nobr>[<a href="20020108.html" style="{text-decoration: none;}" target="">לאוס</a>]</nobr> <nobr>[<a href="20020123.html" style="{text-decoration: none;}" target="">צפון תאילנד</a>]</nobr> <nobr>[<a href="20020203.html" style="{text-decoration: none;}" target="">אוסטרליה</a>]</nobr> <nobr>[<a href="20020210.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי דרומי</a>]</nobr> <nobr>[<a href="20020326.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי צפוני</a>]</nobr> <nobr>[<a href="20020506.html" style="{text-decoration: none;}" target="">פיליפינים</a>]</nobr> <nobr>[<a href="20020603.html" style="{text-decoration: none;}" target="">קמבודיה</a>]</nobr><!--webbot bot="Navigation" i-checksum="33824" endspan --></p>
-<p><i><small>This site was last updated
-<!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%m/%d/%y" startspan -->07/05/03<!--webbot bot="Timestamp" i-checksum="12682" endspan --> </small></i>
-</p>
-</body>
+    <div class="nav-links">
+      <a href="20011007.html">← הקודם</a>
+      <a href="20011009.html">הבא →</a>
     </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-text">
+      <div class="meta-line">
+        <span class="date-big">08</span>
+        <div>
+          <div class="date-details">אוקטובר 2001</div>
+          <span class="country-badge">הודו</span>
+        </div>
+      </div>
+      <h1 class="title">טאג' מאהאל, ההולנדיות</h1>
+      <div class="title-divider"></div>
+    </div>
+    <img class="hero-map" src="../images/India.gif" alt="הודו">
+  </div>
+
+  <div class="content">
+    <p>טאג' מאהאל, ההולנדיות</p>
+
+    <p>הסיור לטאג' מאהאל התחיל ב- 7:00. עקב כך קמנו ב- 6:15 - קשה מאד. עלותו 300 רופי האחד באוטובוס ממוזג. ידידנו, פראסאנה, חיכה לנו למטה.</p>
+
+    <p>יצאנו לאוטובוס, האוויר היה קריר.</p>
+
+    <p>שמו אותנו בספסל האחורי, הרגשנו קוליים. לידינו 2 בחורות בהירות שיער, יתר האוטובוס הודים. גונן איבד כל עניין בטיול ובאתרים הנפלאים שרצינו לראות (הטאג' מאהאל) והתחיל להתעניין בגופן של הנערות התמימות – "סתכל איך החזה זז להן בכל טלטול של האוטובוס". המחשבה לישון במחיצתו של גונן לא עשתה לי טוב. יציאות כמו "חיממת אותי" – כשהחלפנו מקומות והתחכחתי בו בגלל חוסר מקום הדאיגו אותי עוד יותר. חקרנו וגילינו שהנערות מהולנד והן בנות 18. גונן הציג את עצמו בפניהן "אני אריק" – "פרדריך ?" הן ענו. טוב שם טוב משמן טוב (בהמשך נראה כי זה לא נכון). נסענו 4 שעות (ו- 210 ק"מ).</p>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/17.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">טאג' מאהאל</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011008_taj_mahal.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011008_us_in_taj_mahal.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+    </div>
+
+    <p>האתר הראשון (מתוך 4 מתוכננים) היה אגרה פורט – חומה גבוהה קיבלה את פנינו. אולם בבואנו לקופות ראינו שעלינו לשלם 300 רופי כל אחד – לעומת 20 רופי עבור הודים – ממרמר – עקב כך לא נכנסנו והפקרנו את גופינו לקבצנים שעטו עלינו בהמוניהם כמו צלמים שעוטים על סלבריטי. פילסנו דרכינו לאוטובוס וחיכינו.</p>
+
+    <p>אח"כ הלכנו לאכול – אכלנו אורז – לגונן היה חריף. הבנות הצטרפו אלינו. אחת מהן אפילו הזמינה עוף.</p>
+
+    <p>אח"כ הלכנו ל<a onclick="openLightbox('../images/17.jpg')">טאג' מאהאל</a> – העקות הקבצנים הגיעו לשיאן. הן עטו עלינו כמו זבובים ביום חם במחנה נועם ביריחו והציעו לנו מכל טוב – גונן ניסה שוט על מליק והתרעם שלא נשארו סימנים וצלקות על גופו של מליק ממכת השוט והחליט לא לרכוש אותו.</p>
+
+    <p>הטאג' מאהאל:</p>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/20011008_dutch_girls.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">גונן עם ההולנדיות</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011008_temp_1.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011008_malik_in_mahal_area.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+    </div>
+
+    <p>גרסת מליק – מבנה מדהים בעל סימטריות מושלמות בצבע לבן ואפור. קשה להאמין שנבנה לפני 350 שנה – הוא כ"כ שמור – בפנים הוא מאכזב אבל בחוץ תאווה לעינים.</p>
+
+    <p>גרסת גונן – כמו בחורה בלונדינית – יפהפיה מבחוץ אך בפנים ריק – אין מוח אין כלום. גונן אמר שהיה יכול לחסל את כל המוסלמים יחד עם המסגד הזה.</p>
+
+    <p>הכניסה עלתה 750 רופי!!. להודים 20 רופי בלבד וזה ממרמר.</p>
+
+    <p>הצטלמנו וסיימנו פילם ראשון (כולל תמונות עם ההולנדיות) המשכנו למקדש Mathura – המקום שבו נולד הארי קרישנה. גונן שקל להחליף את שם משפחתו ל- "רישנה". בכל מסגד הורדנו נעליים – מליק עדיין לא הבין איך דבר כזה מסמל על כבוד ואיים שהאדם שיוריד נעליים אצלו בבית מסתכן בתגובה חמורה.</p>
+
+    <div class="photo-pair">
+      <div class="photo-item">
+        <img src="../images/20011008_indian_people.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011008_gonen&cow.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">השור הזועם</div>
+      </div>
+    </div>
+
+    <p>גונן עדיין מפחד על הסנדלים שלו אעפ"י שלרוב ההודים יש זוגות סנדלים יפות וחדשות יותר.</p>
+
+    <p>האתר האחרון שבו ביקרנו היה Brinbaran – כאן קרישנה גדל והטיף – סתם שכונה עם כל מיני מקדשים שכונתיים – אנחנו התמקדנו בנוף – <a onclick="openLightbox('../images/20011008_gonen&cow.jpg')">גונן הצטלם עם שור מרשים</a>, ראינו כמויות של שממיות מרוכזות על הקורות (די מגודלות). מליק רצה להצטלם עם איזו פרה, אבל היא הסתכלה עליו והוא ויתר (cow-ard צעק גונן).</p>
+
+    <p>אישה עם תינוקת זעירה בתת-תזונה הסתערה עלינו כשראתה שנתנו 20 אגורות ישראליות לאיזה מוכר מאינדונזיה. אסור לתת כסף לקבצנים – הם לא עוזבים אותך ואחרים רואים זאת ומצטרפים להתנפלות. גונן הועק, אך לא היה לו כסף ולכן ביקש ממליק לתת לה 10 רופי. מליק נלחץ, הוציא את הארנק אך לא מצא שטר של 10 רופי. הוא עמד באמצע הכביש, אופנים נכנסו בו, האישה עם התינוקת העיקה עליו ביותר וגונן כבר ישב באוטובוס, שומע מוזיקה ישראלית מרגיעה בדיסקמן. בכוחותיו האחרונים עלה מליק לאוטובוס, שבור נפשית ופיזית. ראינו הרבה קבצנים קטועי איברים, אך זה היה השיא. בסוף גונן נתן לה 10 רופי מפראסאנה, אך היא המשיכה להעיק דרך האוטובוס – אין סיפוק בלתת נדבות – הם פשוט מעיקים עליך יותר.</p>
+
+    <p>באמצע שינה טרופה עצרנו לאכול ארוחת-ערב באיזה מקום. הזמנו קפה וגונן רצה צ'יפס. האור כבה (הגנרטור) ואכלנו לאור נרות שהביאו מאות זבובונים. המקום כבר לא מצא-חן עינינו. הקפה היה טוב (ממכונת Nescafe), אך הצ'יפס שהגיע היה שרוף עם טעם של שמן מכונות (אמרתי לכם שטוב שמן טוב משם טוב) – נקווה שלא גרמנו לעצמנו נזק בלתי הפיך.</p>
+
+    <p>חזרנו ב- 24:30. נפרדנו בצורה מרגשת מפראסאנה, אם כי אולי נפגוש אותו מחר, נראה שהוא נהנה מחברתנו כי הוא רצה לדחות את הטיול שלו לרישיקאש בכדי לבלות איתנו ביום המחרת.</p>
+
+    <p>שכחנו להגיד שלום להולנדיות, אנחנו בטוחים שנראה אותן שוב, בחלומותינו. מחר בערב ניסע לדרמסאלה.</p>
+
+    <p>היום בזבזנו סכום אסטרונומי של 145 ₪ כל אחד. (75 מתוך זה – הטאג' מאהאל) אין צורך לציין שגונן בפאניקה. כבר בזבנו 100$ שנינו תוך 3 ימים. משרתו של מליק כאחראי כספים בסכנה.</p>
+
+    <p>גונן מטיל את כובד משקלו אך רוצה להדק את החגורה "אין יותר אוטובוסים ממוזגים, אין יותר ארוחות שחיתות..." רוחו של גונן מטילה על מליק אימה, "..אין יותר חדרים מפוארים עם טלוויזיה (יש לנו בחדר טלוויזיה שחור-לבן שלא קולטים בה כלום)" ממשיך גונן להרעים את קולו.</p>
+
+    <div class="supplements">
+      <h3>השלמות:</h3>
+      <ol>
+        <li>תפוצ'יפס – לפני שהביאו לנו את הצ'יפס המגעיל והמסוכן במסעדה בה אכלנו ארוחת-ערב, הביאו לנו שקית תפוצ'יפס על צלחת – אחרי שהזמנו צ'יפס – לא יאומן.</li>
+        <li>פראסאנה – אם אינכם יכולים לדמיין אותו – נראה כמו אייל גולן.</li>
+      </ol>
+    </div>
+
+  </div>
+
+  <div class="nav-cards">
+    <a href="20011009.html" class="nav-card">
+      <div class="label">הבא →</div>
+      <div class="card-title">(הנסיעה לדרמסאלה, (וכל הדרך ערפילים</div>
+    </a>
+    <a href="20011007.html" class="nav-card">
+      <div class="label">← הקודם</div>
+      <div class="card-title">החבר ההודי המלומד</div>
+    </a>
+  </div>
+
+  <div class="country-nav">
+    <a href="200110052040.html">דנמרק</a>
+    <a href="20011006.html">הודו</a>
+    <a href="20011030.html">נפאל</a>
+    <a href="20011115.html">טרק אנאפורנה</a>
+    <a href="20011210.html">תאילנד</a>
+    <a href="20020108.html">לאוס</a>
+    <a href="20020123.html">צפון תאילנד</a>
+    <a href="20020203.html">אוסטרליה</a>
+    <a href="20020210.html">ניו-זילנד, אי דרומי</a>
+    <a href="20020326.html">ניו-זילנד, אי צפוני</a>
+    <a href="20020506.html">פיליפינים</a>
+    <a href="20020603.html">קמבודיה</a>
   </div>
 
   <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
-    <img id="lightbox-img" src="" alt="Enlarged">
+    <img id="lightbox-img" src="" alt="">
   </div>
-
   <script>
     function openLightbox(src) {
       document.getElementById('lightbox-img').src = src;

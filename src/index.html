@@ -2,250 +2,310 @@
 <html lang="he" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <title>יומן מסע - עמוד ראשי</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>יומן מסע - 228 ימים מסביב לעולם</title>
   <style>
-    body { background: #f8fafc; font-family: 'Segoe UI', Arial, sans-serif; padding: 30px; color: #334155; }
-    .container { max-width: 800px; margin: 0 auto; background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
-    h1 { color: #0f172a; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; }
-    ul { list-style-type: none; padding: 0; }
-    li { margin: 8px 0; padding: 10px 14px; background: #f1f5f9; border-radius: 6px; }
-    a { color: #2563eb; text-decoration: none; font-weight: 600; font-size: 1.05rem; }
-    a:hover { text-decoration: underline; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      min-height: 100vh;
+      color: #e2e8f0;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 60px 20px 40px;
+      background: radial-gradient(ellipse at center, rgba(59,130,246,0.15) 0%, transparent 70%);
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      color: #f8fafc;
+      margin-bottom: 12px;
+      text-shadow: 0 2px 20px rgba(59,130,246,0.3);
+    }
+
+    .hero .subtitle {
+      font-size: 1.2rem;
+      color: #94a3b8;
+      margin-bottom: 8px;
+    }
+
+    .hero .dates {
+      font-size: 1rem;
+      color: #64748b;
+    }
+
+    .countries {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .country-card {
+      background: rgba(30, 41, 59, 0.8);
+      border: 1px solid rgba(148, 163, 184, 0.1);
+      border-radius: 16px;
+      padding: 24px;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .country-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(59, 130, 246, 0.4);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.3), 0 0 20px rgba(59,130,246,0.1);
+      background: rgba(30, 41, 59, 1);
+    }
+
+    .country-card img {
+      width: 70px;
+      height: 70px;
+      object-fit: contain;
+      flex-shrink: 0;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+    }
+
+    .country-info h2 {
+      font-size: 1.3rem;
+      color: #f1f5f9;
+      margin-bottom: 6px;
+    }
+
+    .country-info .meta {
+      font-size: 0.85rem;
+      color: #64748b;
+    }
+
+    .all-entries {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px 60px;
+    }
+
+    .all-entries h2 {
+      font-size: 1.6rem;
+      color: #f1f5f9;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+    }
+
+    .all-entries h2 + ul + h2 {
+      margin-top: 40px;
+    }
+
+    .entries-list {
+      list-style: none;
+      columns: 2;
+      column-gap: 24px;
+    }
+
+    @media (max-width: 600px) {
+      .entries-list { columns: 1; }
+      .countries { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 2rem; }
+    }
+
+    .entries-list li {
+      break-inside: avoid;
+      margin-bottom: 6px;
+    }
+
+    .entries-list a {
+      display: block;
+      padding: 8px 14px;
+      background: rgba(30, 41, 59, 0.6);
+      border-radius: 8px;
+      color: #93c5fd;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: background 0.2s;
+    }
+
+    .entries-list a:hover {
+      background: rgba(59, 130, 246, 0.15);
+      color: #bfdbfe;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #475569;
+      margin-top: 20px;
+      margin-bottom: 8px;
+      padding-right: 14px;
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>🌍 יומן מסע - תוכן עניינים (228 ימים)</h1>
-    <ul>
-      <li><a href="entries/200110051100.html">נמל התעופה, בן-גוריון</a></li>
-<li><a href="entries/200110052040.html">נמל התעופה, קופנהגן</a></li>
-<li><a href="entries/20011006.html">ניו דלהי ,main bazar</a></li>
-<li><a href="entries/20011007.html">my trip web site</a></li>
-<li><a href="entries/20011008.html">ניו-דלהי, הודו</a></li>
-<li><a href="entries/20011009.html">מקלוד-גאנג', צפון הודו</a></li>
-<li><a href="entries/20011010.html">מקלוד-גאנג', צפון הודו</a></li>
-<li><a href="entries/20011011.html">מקלוד-גאנג', צפון הודו</a></li>
-<li><a href="entries/20011012.html">מקלוד-גאנג', צפון הודו</a></li>
-<li><a href="entries/20011013.html">פסגת טריודס, 2830מ</a></li>
-<li><a href="entries/20011014.html">מקלוד-גאנג', צפון הודו</a></li>
-<li><a href="entries/20011015.html">צ'לאל, עמק פרבאטי, צפון הודו</a></li>
-<li><a href="entries/20011017.html">צ'לאל, עמק פרבאטי, צפון הודו</a></li>
-<li><a href="entries/20011018.html">מלאנה, עמק פרבאטי, צפון הודו</a></li>
-<li><a href="entries/20011019.html">צ'לאל, עמק פרבאטי, צפון הודו</a></li>
-<li><a href="entries/200110201030.html">צ'לאל, עמק פרבאטי, צפון הודו</a></li>
-<li><a href="entries/200110202120.html">צ'לאל, עמק פרבאטי, צפון הודו</a></li>
-<li><a href="entries/20011022.html">צ'לאל, עמק פרבאטי, צפון הודו</a></li>
-<li><a href="entries/20011024.html">רישיקאש, צפון הודו</a></li>
-<li><a href="entries/20011025.html">רישיקאש, צפון הודו</a></li>
-<li><a href="entries/20011026.html">רישיקאש, צפון הודו</a></li>
-<li><a href="entries/20011027.html">הארידוואר, צפון הודו</a></li>
-<li><a href="entries/20011028.html">הארידוואר, צפון הודו</a></li>
-<li><a href="entries/20011030.html">שמורת הטבע בארדייה, דרום נפאל</a></li>
-<li><a href="entries/20011031.html">שמורת הטבע בארדייה, דרום נפאל</a></li>
-<li><a href="entries/20011101.html">פוקארה, נפאל</a></li>
-<li><a href="entries/200111012140.html">פוקארה, נפאל</a></li>
-<li><a href="entries/200111020330.html">פוקארה, נפאל</a></li>
-<li><a href="entries/200111022140.html">פוקארה, נפאל</a></li>
-<li><a href="entries/20011104.html">בראפטינג, נהר הקאליקנטקי, נפאל</a></li>
-<li><a href="entries/20011107.html">פוקארה, נפאל</a></li>
-<li><a href="entries/20011108.html">פוקארה, נפאל</a></li>
-<li><a href="entries/20011110.html">פוקארה, נפאל</a></li>
-<li><a href="entries/20011111.html">פוקארה, נפאל</a></li>
-<li><a href="entries/20011113.html">דאמפוס, נפאל</a></li>
-<li><a href="entries/20011114.html">סרנקוט, נפאל</a></li>
-<li><a href="entries/20011115.html">בולבולה, נפאל</a></li>
-<li><a href="entries/20011117.html">טאל, נפאל</a></li>
-<li><a href="entries/20011118.html">צ'אמה, נפאל</a></li>
-<li><a href="entries/20011119.html">פיסאנג, 3180מ', נפאל</a></li>
-<li><a href="entries/20011120.html">מאנאנג, 3500מ', נפאל</a></li>
-<li><a href="entries/20011121.html">מאנאנג, 3500מ', נפאל</a></li>
-<li><a href="entries/20011123.html">מוקטינאט, 3700מ', נפאל</a></li>
-<li><a href="entries/20011124.html">מארפה, 2700מ', נפאל</a></li>
-<li><a href="entries/20011125.html">קלאפאני, 2500מ', נפאל</a></li>
-<li><a href="entries/20011127.html">טאטאפאני (המעיינות החמים), נפאל</a></li>
-<li><a href="entries/20011128.html">פוקארה, נפאל</a></li>
-<li><a href="entries/20011201.html">קטמנדו, נפאל</a></li>
-<li><a href="entries/20011203.html">קטמנדו, נפאל</a></li>
-<li><a href="entries/20011204.html">קטמנדו, נפאל</a></li>
-<li><a href="entries/200112070100.html">קטמנדו, נפאל</a></li>
-<li><a href="entries/200112072030.html">קטמנדו, נפאל</a></li>
-<li><a href="entries/20011209.html">קטמנדו, נפאל</a></li>
-<li><a href="entries/20011210.html">בנגקוק, תאילנד</a></li>
-<li><a href="entries/20011211.html">בנגקוק, תאילנד</a></li>
-<li><a href="entries/20011213.html">בנגקוק, תאילנד</a></li>
-<li><a href="entries/20011214.html">בנגקוק, תאילנד</a></li>
-<li><a href="entries/20011215.html">האי קו-סמוי, תאילנד</a></li>
-<li><a href="entries/20011216.html">האי קו-סמוי, תאילנד</a></li>
-<li><a href="entries/20011218.html">האי קו-סמוי, תאילנד</a></li>
-<li><a href="entries/20011220.html">האי קו-סמוי, תאילנד</a></li>
-<li><a href="entries/20011222.html">האי קו-סמוי, תאילנד</a></li>
-<li><a href="entries/20011223.html">האי קו-טאו, תאילנד</a></li>
-<li><a href="entries/20011224.html">האי קו-טאו, תאילנד</a></li>
-<li><a href="entries/20011226.html">האי קו-פנגאן, תאילנד</a></li>
-<li><a href="entries/20011230.html">האי קו-פנגאן, תאילנד</a></li>
-<li><a href="entries/20020101.html">האי קו-סמוי, תאילנד</a></li>
-<li><a href="entries/20020102.html">האי קו-סמוי, תאילנד</a></li>
-<li><a href="entries/20020104.html">בנגקוק, תאילנד</a></li>
-<li><a href="entries/20020107.html">בנגקוק, תאילנד</a></li>
-<li><a href="entries/20020108.html">ואנג-ויינג, לאוס</a></li>
-<li><a href="entries/20020109.html">ואנג-ויינג, לאוס</a></li>
-<li><a href="entries/20020110.html">ואנג-ויינג, לאוס</a></li>
-<li><a href="entries/20020111.html">ואנג-ויינג, לאוס</a></li>
-<li><a href="entries/20020112.html">ואנג-ויינג, לאוס</a></li>
-<li><a href="entries/20020113.html">לואנג פרבאנג, לאוס</a></li>
-<li><a href="entries/20020114.html">לואנג פרבאנג, לאוס</a></li>
-<li><a href="entries/20020115.html">מונג-נוי, לאוס</a></li>
-<li><a href="entries/20020116.html">מונג-נוי, לאוס</a></li>
-<li><a href="entries/20020118.html">מונג-נוי, לאוס</a></li>
-<li><a href="entries/20020119.html">אודום-קסאי, לאוס</a></li>
-<li><a href="entries/20020121.html">מאונט-סינג, לאוס</a></li>
-<li><a href="entries/20020122.html">היכן שהוא בדרך להוואי-קסאי, לאוס</a></li>
-<li><a href="entries/20020123.html">צ'אנג-מאי, צפון תאילנד</a></li>
-<li><a href="entries/20020126.html">צ'אנג-מאי, צפון תאילנד</a></li>
-<li><a href="entries/20020127.html">פאי, צפון תאילנד</a></li>
-<li><a href="entries/20020128.html">פאי, צפון תאילנד</a></li>
-<li><a href="entries/20020129.html">פאי, צפון תאילנד</a></li>
-<li><a href="entries/20020131.html">צ'אנג-מאי, צפון תאילנד</a></li>
-<li><a href="entries/20020202.html">נמל-תעופה, בנגקוק, תאילנד</a></li>
-<li><a href="entries/20020203.html">רח' נטינגייל 11, רובע קולפילד, מלבורן, אוסטרליה</a></li>
-<li><a href="entries/20020205.html">רח' נטינגייל 11, רובע קולפילד, מלבורן, אוסטרליה</a></li>
-<li><a href="entries/20020206.html">רח' נטינגייל 11, רובע קולפילד, מלבורן, אוסטרליה</a></li>
-<li><a href="entries/20020207.html">רח' גליינ-ארה 299, רובע קולפילד, מלבורן</a></li>
-<li><a href="entries/20020210.html">פינגווין בק פקר, דנידין, ניו-זילנד</a></li>
-<li><a href="entries/20020211.html">כיכר הקתדרלה, מרכז קרייסטצ'רץ, ניו-זילנד</a></li>
-<li><a href="entries/20020212.html">אצל ג'רמי ואריאנה, קרייסטצ'רץ, ניו-זילנד</a></li>
-<li><a href="entries/20020213.html">באוטו, מול הבית של אריאנה, קרייסטצ'רץ', ניו-זילנד</a></li>
-<li><a href="entries/20020215.html">אצל לינדה וכריסטיאנה, קרייסטצ'רץ, ניו-זילנד</a></li>
-<li><a href="entries/20020216.html">בק פקר אונוקו, אקארואה, ניו-זילנד</a></li>
-<li><a href="entries/20020218.html">באוטו, אקארואה, ניו-זילנד</a></li>
-<li><a href="entries/20020219.html">באוטו, מול הטלפונים במרכז אקארואה, ניו-זילנד</a></li>
-<li><a href="entries/20020220.html">באוטו בפארק, קרייסטצ'רץ, ניו-זילנד</a></li>
-<li><a href="entries/200202202030.html">הנמר ספרינגס, המעיינות החמים, ניו-זילנד</a></li>
-<li><a href="entries/20020221.html">אצל ניקי ונלסון אובריאן, אומארו, ניו-זילנד</a></li>
-<li><a href="entries/20020223.html">הגנים הבוטנים, דנידין, ניו-זילנד</a></li>
-<li><a href="entries/20020224.html">אצל סם בסלון, דנידין, ניו-זילנד</a></li>
-<li><a href="entries/20020226.html">בית משפחת וויט, איפשהו ליד אוואקה, ניו-זילנד</a></li>
-<li><a href="entries/20020227.html">חוף פורפויז, אזור הקטלינז, ניו-זילנד</a></li>
-<li><a href="entries/20020228.html">אצל אליזבת ווקר, וואלאסטאון, ניו-זילנד</a></li>
-<li><a href="entries/20020301.html">אצל אליזבת ווקר, וואלאסטאון, ניו-זילנד</a></li>
-<li><a href="entries/20020303.html">בחניון של מילפורד סאונדס, ניו-זילנד</a></li>
-<li><a href="entries/20020304.html">אצל ברוס המילטון, וואנאקה, ניו-זילנד</a></li>
-<li><a href="entries/20020306.html">בחניון של מילפורד סאונדס, ניו-זילנד</a></li>
-<li><a href="entries/20020308.html">אצל ברוס המילטון, וואנאקה, ניו-זילנד</a></li>
-<li><a href="entries/20020310.html">מול מלון הרמיטז, הר קוק, ניו-זילנד</a></li>
-<li><a href="entries/20020311.html">באוטו, אגם טקאפו, ניו-זילנד</a></li>
-<li><a href="entries/20020312.html">ליד כנסיית צ'אפל, ארתור פאס, ניו-זילנד</a></li>
-<li><a href="entries/20020315.html">משהו שנראה כמו פארק, גריימאוס, ניו-זילנד</a></li>
-<li><a href="entries/20020317.html">אצל משפחת קוק, מהאנה, 30 ק"מ מנלסון</a></li>
-<li><a href="entries/20020318.html">אצל אלן והלן קוק, מהאנה, ניו-זילנד</a></li>
-<li><a href="entries/20020320.html">אצל אלן והלן קוק, מהאנה, ניו-זילנד</a></li>
-<li><a href="entries/20020321.html">אצל אלן והלן קוק, מהאנה, ניו-זילנד</a></li>
-<li><a href="entries/20020322.html">אצל משפחת ניוטון, האי פאפין, קייבל ביי, ניו-זילנד</a></li>
-<li><a href="entries/20020323.html">אצל משפחת ניוטון, האי פאפין, קייבל ביי, ניו-זילנד</a></li>
-<li><a href="entries/20020324.html">אצל משפחת ניוטון, האי פאפין, קייבל ביי, ניו-זילנד</a></li>
-<li><a href="entries/20020326.html">באוטו, חניון ליד שפת הים, וולינגטון, ניו-זילנד</a></li>
-<li><a href="entries/200203280100.html">בבית אצל מאריה, וואנגאנוי, ניו-זילנד</a></li>
-<li><a href="entries/200203282130.html">אצל ביל וגלדיס סנאודאון, ניו-פלימות', ניו-זילנד</a></li>
-<li><a href="entries/20020330.html">אצל ביל וגלדיס סנאודאון, ניו-פלימות', ניו-זילנד</a></li>
-<li><a href="entries/20020331.html">הבית של ליסה, רוהוטו, ניו-זילנד</a></li>
-<li><a href="entries/20020402.html">אצל משפחת טופ, ליד טאומארונוי, ניו-זילנד</a></li>
-<li><a href="entries/20020403.html">חניון ליד אגם טאופו, ניו-זילנד</a></li>
-<li><a href="entries/20020405.html">חניון ליד בק-פקר, אגם טאופו, ניו-זילנד</a></li>
-<li><a href="entries/20020406.html">אצל מארק ורות ג'קסון, האסטינגס, ניו-זילנד</a></li>
-<li><a href="entries/20020408.html">באוטו, חניון בפארק לאומי אורווארה, ניו-זילנד</a></li>
-<li><a href="entries/200204082300.html">אצל מארגרט, גיזבורן, ניו-זילנד</a></li>
-<li><a href="entries/20020409.html">אצל מארגרט, גיזבורן, ניו-זילנד</a></li>
-<li><a href="entries/20020410.html">אצל מארגרט, גיזבורן, ניו-זילנד</a></li>
-<li><a href="entries/20020412.html">חניה מול מרכז התיירים, רוטורואה, ניו-זילנד</a></li>
-<li><a href="entries/20020413.html">מול השירותים הציבוריים, גני הממשלה, רוטורואה</a></li>
-<li><a href="entries/20020414.html">אצל פיטר ורוז, ויטיאנגה, אזור קורומנדל, ניו-זילנד</a></li>
-<li><a href="entries/20020416.html">אצל טריש, אוקלנד</a></li>
-<li><a href="entries/20020418.html">אצל טריש, אוקלנד</a></li>
-<li><a href="entries/20020420.html">שוק המכוניות הקטן, רח' ביטש, אוקלנד</a></li>
-<li><a href="entries/20020421.html">שוק המכוניות הגדול, אוקלנד</a></li>
-<li><a href="entries/20020423.html">בק פקר בפאהיה, באי אוף אילנדס, ניו-זילנד</a></li>
-<li><a href="entries/20020425.html">אצל משפחת טריסטצ'ר, אהיפרה, ניו-זילנד</a></li>
-<li><a href="entries/20020427.html">שוק המכוניות הקטן, רחוב ביטש, ניו-זילנד</a></li>
-<li><a href="entries/20020428.html">אצל טריש, אוקלנד, ניו-זילנד</a></li>
-<li><a href="entries/20020430.html">אצל טריש, אוקלנד, ניו-זילנד</a></li>
-<li><a href="entries/20020505.html">נמל תעופה, מלבורן, אוסטרליה</a></li>
-<li><a href="entries/200205050515.html">נמל תעופה, מלבורן, אוסטרליה</a></li>
-<li><a href="entries/20020506.html">בית ג'ונאר, מקסיקו אראיאט, האי לוזון, פיליפינים</a></li>
-<li><a href="entries/20020507.html">גסט האוס וירג'ין, מנילה, האי לוזון, פיליפינים</a></li>
-<li><a href="entries/20020508.html">שדה התעופה, מנילה, האי לוזון, פיליפינים</a></li>
-<li><a href="entries/20020510.html">חוף איילה, האי פונגאלו, האי בוהול, פיליפינים</a></li>
-<li><a href="entries/20020512.html">תחנה מרכזית דרומית, סיבו, האי סיבו, פיליפינים</a></li>
-<li><a href="entries/200205122100.html">מלון זול, בקולוד, האי נגרוס, פיליפינים</a></li>
-<li><a href="entries/20020513.html">בגסט האוס מסריח, האי בורוקאי, פיליפינים</a></li>
-<li><a href="entries/20020514.html">בגסט האוס מסריח, האי בורוקאי, פיליפינים</a></li>
-<li><a href="entries/20020515.html">בספינה, אי שם בין בורוקאי למנילה, פיליפינים</a></li>
-<li><a href="entries/20020516.html">רציף 12, מנילה, האי לוזון, פיליפינים</a></li>
-<li><a href="entries/20020517.html">בספינה, אי שם בין מנילה לאי פאלאוואן, פיליפינים</a></li>
-<li><a href="entries/20020518.html">פוארטו פרינססה, האי פאלאוואן, פיליפינים</a></li>
-<li><a href="entries/20020519.html">בלו במבו, אזור סאבאנג, אי פאלאוואן, פיליפינים</a></li>
-<li><a href="entries/20020520.html">בלו במבו, אזור סאבאנג, אי פאלאוואן, פיליפינים</a></li>
-<li><a href="entries/20020522.html">ברציף, פוארטו פרינססה, האי פאלאוואן, פיליפינים</a></li>
-<li><a href="entries/20020524.html">בספינה, קרובים (אני מקווה) למנילה</a></li>
-<li><a href="entries/20020526.html">טרמינל 2, שדה התעופה, מנילה, פיליפינים</a></li>
-<li><a href="entries/20020528.html">גסט האוס מפוקפק, קוואסאן, בנגקוק, תאילנד</a></li>
-<li><a href="entries/20020530.html">ג'ולי פרוג גסט האוס, קנצ'נאבורי, תאילנד</a></li>
-<li><a href="entries/200205300800.html">ג'ולי פרוג גסט האוס, קנצ'נאבורי, תאילנד</a></li>
-<li><a href="entries/200205310915.html">ג'ולי פרוג גסט האוס, קנצ'נאבורי, תאילנד</a></li>
-<li><a href="entries/200205312115.html">גסט האוס זול ביותר, קוואסאן, בנגקוק, תאילנד</a></li>
-<li><a href="entries/20020601.html">חדר יחיד, גסט האוס זול, קוואסאן, בנגקוק, תאילנד</a></li>
-<li><a href="entries/200206012100.html">חדר יחיד, גסט האוס זול, קוואסאן, בנגקוק, תאילנד</a></li>
-<li><a href="entries/20020603.html">מלון מפואר, סיאם ריפ, קמבודיה</a></li>
-<li><a href="entries/20020604.html">חדר מוזנח, סוויטי גסט האוס, קוואסאן, בנגקוק</a></li>
-<li><a href="entries/20020605.html">חדר מוזנח, סוויטי גסט האוס, קוואסאן, בנגקוק</a></li>
-<li><a href="entries/20020606.html">שדה התעופה הבינלאומי, בנגקוק, תאילנד</a></li>
-<li><a href="entries/email_20011006.html">Hi</a></li>
-<li><a href="entries/email_20011013.html">Hi</a></li>
-<li><a href="entries/email_20011101.html">Hi</a></li>
-<li><a href="entries/email_20011110.html">Hi</a></li>
-<li><a href="entries/email_20011129.html">Hi</a></li>
-<li><a href="entries/email_20011211.html">Hi</a></li>
-<li><a href="entries/email_20011213.html">Hi</a></li>
-<li><a href="entries/email_20011218.html">Hi</a></li>
-<li><a href="entries/email_20011228.html">Hi</a></li>
-<li><a href="entries/email_20020103.html">Hi</a></li>
-<li><a href="entries/email_20020106.html">Hi</a></li>
-<li><a href="entries/email_20020111.html">Hi</a></li>
-<li><a href="entries/email_20020126.html">Hi</a></li>
-<li><a href="entries/email_20020130.html">Hi</a></li>
-<li><a href="entries/email_20020209.html">Hi</a></li>
-<li><a href="entries/email_20020212.html">Hi</a></li>
-<li><a href="entries/email_20020218.html">Hi</a></li>
-<li><a href="entries/email_20020222.html">Hi</a></li>
-<li><a href="entries/email_20020305.html">Hi</a></li>
-<li><a href="entries/email_20020316.html">Hi</a></li>
-<li><a href="entries/email_20020325.html">Hi</a></li>
-<li><a href="entries/email_20020408.html">Hi</a></li>
-<li><a href="entries/email_20020415.html">Hi</a></li>
-<li><a href="entries/email_20020419.html">Hi</a></li>
-<li><a href="entries/email_20020501.html">Hi</a></li>
-<li><a href="entries/email_20020508.html">Hi</a></li>
-<li><a href="entries/email_20020515.html">Hi</a></li>
-<li><a href="entries/email_20020525.html">Hi</a></li>
-<li><a href="entries/gallery_2001101.html">Hi</a></li>
-<li><a href="entries/gallery_2001102.html">Hi</a></li>
-<li><a href="entries/gallery_2001103.html">Hi</a></li>
-<li><a href="entries/gallery_2001111.html">Hi</a></li>
-<li><a href="entries/gallery_2001112.html">Hi</a></li>
-<li><a href="entries/gallery_2001113.html">Hi</a></li>
-<li><a href="entries/gallery_2001121.html">Hi</a></li>
-<li><a href="entries/gallery_2001122.html">Hi</a></li>
-<li><a href="entries/gallery_2002011.html">Hi</a></li>
-<li><a href="entries/gallery_2002012.html">Hi</a></li>
-<li><a href="entries/gallery_2002021.html">Hi</a></li>
-<li><a href="entries/gallery_2002022.html">Hi</a></li>
-<li><a href="entries/gallery_2002031.html">Hi</a></li>
-<li><a href="entries/gallery_2002032.html">Hi</a></li>
-<li><a href="entries/gallery_2002033.html">Hi</a></li>
-<li><a href="entries/gallery_200204.html">Hi</a></li>
-<li><a href="entries/gallery_200205.html">Hi</a></li>
-<li><a href="entries/gallery_200206.html">Hi</a></li>
-<li><a href="entries/test_photo_gallery.html">Photo Gallery</a></li>
+  <div class="hero">
+    <h1>יומן מסע</h1>
+    <p class="subtitle">228 ימים מסביב לעולם</p>
+    <p class="dates">אוקטובר 2001 – יוני 2002</p>
+  </div>
 
+  <div class="countries">
+    <a href="entries/200110052040.html" class="country-card">
+      <img src="images/Denmark.gif" alt="דנמרק">
+      <div class="country-info">
+        <h2>דנמרק</h2>
+        <div class="meta">5 באוקטובר 2001</div>
+      </div>
+    </a>
+
+    <a href="entries/20011006.html" class="country-card">
+      <img src="images/India.gif" alt="הודו">
+      <div class="country-info">
+        <h2>הודו</h2>
+        <div class="meta">6 באוקטובר – 29 באוקטובר 2001</div>
+      </div>
+    </a>
+
+    <a href="entries/20011030.html" class="country-card">
+      <img src="images/Nepal.gif" alt="נפאל">
+      <div class="country-info">
+        <h2>נפאל</h2>
+        <div class="meta">30 באוקטובר – 9 בדצמבר 2001</div>
+      </div>
+    </a>
+
+    <a href="entries/20011115.html" class="country-card">
+      <img src="images/Nepal.gif" alt="טרק אנאפורנה">
+      <div class="country-info">
+        <h2>טרק סובב אנאפורנה</h2>
+        <div class="meta">15 בנובמבר – 28 בנובמבר 2001</div>
+      </div>
+    </a>
+
+    <a href="entries/20011210.html" class="country-card">
+      <img src="images/Thailand.gif" alt="תאילנד">
+      <div class="country-info">
+        <h2>תאילנד</h2>
+        <div class="meta">10 בדצמבר 2001 – 7 בינואר 2002</div>
+      </div>
+    </a>
+
+    <a href="entries/20020108.html" class="country-card">
+      <img src="images/Laos.gif" alt="לאוס">
+      <div class="country-info">
+        <h2>לאוס</h2>
+        <div class="meta">8 בינואר – 22 בינואר 2002</div>
+      </div>
+    </a>
+
+    <a href="entries/20020123.html" class="country-card">
+      <img src="images/Thailand.gif" alt="צפון תאילנד">
+      <div class="country-info">
+        <h2>צפון תאילנד</h2>
+        <div class="meta">23 בינואר – 2 בפברואר 2002</div>
+      </div>
+    </a>
+
+    <a href="entries/20020203.html" class="country-card">
+      <img src="images/Australia.gif" alt="אוסטרליה">
+      <div class="country-info">
+        <h2>אוסטרליה</h2>
+        <div class="meta">3 בפברואר – 9 בפברואר 2002</div>
+      </div>
+    </a>
+
+    <a href="entries/20020210.html" class="country-card">
+      <img src="images/New_Zealand_south_island.gif" alt="ניו-זילנד, אי דרומי">
+      <div class="country-info">
+        <h2>ניו-זילנד, אי דרומי</h2>
+        <div class="meta">10 בפברואר – 25 במרץ 2002</div>
+      </div>
+    </a>
+
+    <a href="entries/20020326.html" class="country-card">
+      <img src="images/New_Zealand_north_island.gif" alt="ניו-זילנד, אי צפוני">
+      <div class="country-info">
+        <h2>ניו-זילנד, אי צפוני</h2>
+        <div class="meta">26 במרץ – 5 במאי 2002</div>
+      </div>
+    </a>
+
+    <a href="entries/20020506.html" class="country-card">
+      <img src="images/Philippines.gif" alt="פיליפינים">
+      <div class="country-info">
+        <h2>פיליפינים</h2>
+        <div class="meta">6 במאי – 2 ביוני 2002</div>
+      </div>
+    </a>
+
+    <a href="entries/20020603.html" class="country-card">
+      <img src="images/Cambodia.gif" alt="קמבודיה">
+      <div class="country-info">
+        <h2>קמבודיה</h2>
+        <div class="meta">3 ביוני – 6 ביוני 2002</div>
+      </div>
+    </a>
+  </div>
+
+  <div class="all-entries">
+    <h2 id="galleries">גלריות תמונות</h2>
+    <ul class="entries-list">
+      <li><a href="entries/gallery_2001101.html">גלריה - אוקטובר 2001 (1)</a></li>
+      <li><a href="entries/gallery_2001102.html">גלריה - אוקטובר 2001 (2)</a></li>
+      <li><a href="entries/gallery_2001103.html">גלריה - אוקטובר 2001 (3)</a></li>
+      <li><a href="entries/gallery_2001111.html">גלריה - נובמבר 2001 (1)</a></li>
+      <li><a href="entries/gallery_2001112.html">גלריה - נובמבר 2001 (2)</a></li>
+      <li><a href="entries/gallery_2001113.html">גלריה - נובמבר 2001 (3)</a></li>
+      <li><a href="entries/gallery_2001121.html">גלריה - דצמבר 2001 (1)</a></li>
+      <li><a href="entries/gallery_2001122.html">גלריה - דצמבר 2001 (2)</a></li>
+      <li><a href="entries/gallery_2002011.html">גלריה - ינואר 2002 (1)</a></li>
+      <li><a href="entries/gallery_2002012.html">גלריה - ינואר 2002 (2)</a></li>
+      <li><a href="entries/gallery_2002021.html">גלריה - פברואר 2002 (1)</a></li>
+      <li><a href="entries/gallery_2002022.html">גלריה - פברואר 2002 (2)</a></li>
+      <li><a href="entries/gallery_2002031.html">גלריה - מרץ 2002 (1)</a></li>
+      <li><a href="entries/gallery_2002032.html">גלריה - מרץ 2002 (2)</a></li>
+      <li><a href="entries/gallery_2002033.html">גלריה - מרץ 2002 (3)</a></li>
+      <li><a href="entries/gallery_200204.html">גלריה - אפריל 2002</a></li>
+      <li><a href="entries/gallery_200205.html">גלריה - מאי 2002</a></li>
+      <li><a href="entries/gallery_200206.html">גלריה - יוני 2002</a></li>
+    </ul>
+
+    <h2 id="emails">אי-מיילים מהדרך</h2>
+    <ul class="entries-list">
+      <li><a href="entries/email_20011006.html">אי-מייל - 6 באוקטובר 2001</a></li>
+      <li><a href="entries/email_20011013.html">אי-מייל - 13 באוקטובר 2001</a></li>
+      <li><a href="entries/email_20011101.html">אי-מייל - 1 בנובמבר 2001</a></li>
+      <li><a href="entries/email_20011110.html">אי-מייל - 10 בנובמבר 2001</a></li>
+      <li><a href="entries/email_20011129.html">אי-מייל - 29 בנובמבר 2001</a></li>
+      <li><a href="entries/email_20011211.html">אי-מייל - 11 בדצמבר 2001</a></li>
+      <li><a href="entries/email_20011213.html">אי-מייל - 13 בדצמבר 2001</a></li>
+      <li><a href="entries/email_20011218.html">אי-מייל - 18 בדצמבר 2001</a></li>
+      <li><a href="entries/email_20011228.html">אי-מייל - 28 בדצמבר 2001</a></li>
+      <li><a href="entries/email_20020103.html">אי-מייל - 3 בינואר 2002</a></li>
+      <li><a href="entries/email_20020106.html">אי-מייל - 6 בינואר 2002</a></li>
+      <li><a href="entries/email_20020111.html">אי-מייל - 11 בינואר 2002</a></li>
+      <li><a href="entries/email_20020126.html">אי-מייל - 26 בינואר 2002</a></li>
+      <li><a href="entries/email_20020130.html">אי-מייל - 30 בינואר 2002</a></li>
+      <li><a href="entries/email_20020209.html">אי-מייל - 9 בפברואר 2002</a></li>
+      <li><a href="entries/email_20020212.html">אי-מייל - 12 בפברואר 2002</a></li>
+      <li><a href="entries/email_20020218.html">אי-מייל - 18 בפברואר 2002</a></li>
+      <li><a href="entries/email_20020222.html">אי-מייל - 22 בפברואר 2002</a></li>
+      <li><a href="entries/email_20020305.html">אי-מייל - 5 במרץ 2002</a></li>
+      <li><a href="entries/email_20020316.html">אי-מייל - 16 במרץ 2002</a></li>
+      <li><a href="entries/email_20020325.html">אי-מייל - 25 במרץ 2002</a></li>
+      <li><a href="entries/email_20020408.html">אי-מייל - 8 באפריל 2002</a></li>
+      <li><a href="entries/email_20020415.html">אי-מייל - 15 באפריל 2002</a></li>
+      <li><a href="entries/email_20020419.html">אי-מייל - 19 באפריל 2002</a></li>
+      <li><a href="entries/email_20020501.html">אי-מייל - 1 במאי 2002</a></li>
+      <li><a href="entries/email_20020508.html">אי-מייל - 8 במאי 2002</a></li>
+      <li><a href="entries/email_20020515.html">אי-מייל - 15 במאי 2002</a></li>
+      <li><a href="entries/email_20020525.html">אי-מייל - 25 במאי 2002</a></li>
     </ul>
   </div>
 </body>

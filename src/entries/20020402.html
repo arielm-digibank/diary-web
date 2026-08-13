@@ -3,182 +3,283 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>אצל משפחת טופ, ליד טאומארונוי, ניו-זילנד</title>
+  <title>גונן חולב</title>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap" rel="stylesheet">
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background-color: #f8fafc;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0; padding: 20px; color: #334155;
+      background: #ffffff;
+      font-family: 'Heebo', sans-serif;
+      color: #1a1a2e;
+      line-height: 1.9;
     }
-    .container {
-      max-width: 800px; margin: 0 auto; background: #ffffff;
-      padding: 35px; border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06); line-height: 1.8;
+    .top-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #eee;
+      padding: 12px 30px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.9rem;
     }
-    .header {
-      border-bottom: 2px solid #e2e8f0; padding-bottom: 15px;
-      margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center;
+    .top-nav a {
+      color: #1d4ed8; text-decoration: none; font-weight: 600;
     }
-    .header h1 { margin: 0; color: #0f172a; font-size: 1.8rem; }
-    .home-link { color: #2563eb; text-decoration: none; font-weight: 600; }
-    .content img {
-      float: right; margin: 0 0 15px 20px; max-width: 320px; height: auto;
-      border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      cursor: pointer; transition: transform 0.2s;
+    .top-nav a:hover { text-decoration: underline; }
+    .top-nav .nav-links { display: flex; gap: 20px; }
+    .hero {
+      max-width: 900px; margin: 0 auto;
+      padding: 50px 40px 30px;
+      display: flex; align-items: flex-start; gap: 30px;
     }
-    .content img:hover { transform: scale(1.02); }
-    .content::after { content: ""; clear: both; display: table; }
-    a { color: #2563eb; }
+    .hero-text { flex: 1; }
+    .hero-map {
+      width: 120px; height: auto; object-fit: contain;
+      flex-shrink: 0; opacity: 0.85;
+    }
+    .meta-line {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+    }
+    .date-big {
+      font-size: 3.5rem; font-weight: 900; color: #e5e7eb; line-height: 1;
+    }
+    .date-details { font-size: 0.9rem; color: #6b7280; }
+    .country-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      border-radius: 20px; padding: 4px 14px;
+      font-size: 0.8rem; color: #1d4ed8; font-weight: 600;
+    }
+    .title {
+      font-size: 2.2rem; font-weight: 900; color: #111827;
+      margin: 20px 0 8px; line-height: 1.3;
+    }
+    .date-subtitle {
+      font-size: 1.1rem; font-weight: 300; color: #4b5563;
+      margin-bottom: 16px;
+    }
+    .title-divider {
+      width: 60px; height: 4px; background: #1d4ed8; border-radius: 2px;
+    }
+    .content {
+      max-width: 900px; margin: 30px auto; padding: 0 40px; font-size: 1.05rem;
+    }
+    .content p { margin-bottom: 18px; }
+    .content a {
+      color: #1d4ed8; cursor: pointer;
+      text-decoration: underline;
+      text-decoration-color: rgba(29,78,216,0.3);
+    }
+    .photo-block {
+      margin: 30px 0; border-radius: 12px; overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    .photo-block img {
+      width: 100%; display: block; cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .photo-block img:hover { transform: scale(1.01); }
+    .photo-block .caption {
+      padding: 12px 16px; font-size: 0.85rem; color: #6b7280;
+      background: #f9fafb; border-top: 1px solid #f3f4f6;
+    }
+    .photo-pair {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 14px; margin: 30px 0;
+    }
+    .photo-pair .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-pair .photo-item img {
+      width: 100%; height: 200px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-pair .photo-item img:hover { transform: scale(1.03); }
+    .photo-pair .photo-item .caption {
+      padding: 8px 12px; font-size: 0.8rem; color: #6b7280; background: #f9fafb;
+    }
+    .photo-trio {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px; margin: 30px 0;
+    }
+    .photo-trio .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-trio .photo-item img {
+      width: 100%; height: 180px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-trio .photo-item img:hover { transform: scale(1.03); }
+    .photo-trio .photo-item .caption {
+      padding: 8px 10px; font-size: 0.78rem; color: #6b7280; background: #f9fafb;
+    }
+    .nav-cards {
+      max-width: 900px; margin: 50px auto 20px; padding: 0 40px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .nav-card {
+      padding: 20px 24px; border: 1px solid #e5e7eb; border-radius: 12px;
+      text-decoration: none; color: inherit; transition: all 0.2s;
+    }
+    .nav-card:hover {
+      border-color: #1d4ed8; box-shadow: 0 4px 12px rgba(29,78,216,0.1);
+    }
+    .nav-card .label { font-size: 0.8rem; color: #6b7280; margin-bottom: 4px; }
+    .nav-card .card-title { font-weight: 700; font-size: 1rem; color: #1d4ed8; }
+    .supplements {
+      margin-top: 35px; padding: 25px 30px;
+      background: #f9fafb; border-radius: 12px; border: 1px solid #e5e7eb;
+    }
+    .supplements h3 {
+      font-size: 1.1rem; font-weight: 700; margin-bottom: 14px; color: #374151;
+    }
+    .supplements ol { padding-right: 20px; }
+    .supplements li { margin-bottom: 10px; color: #4b5563; }
+    .country-nav {
+      max-width: 900px; margin: 20px auto 40px; padding: 0 40px;
+      display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+    }
+    .country-nav a {
+      padding: 6px 14px; border-radius: 20px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      color: #1d4ed8; text-decoration: none;
+      font-size: 0.82rem; font-weight: 600;
+      transition: all 0.2s;
+    }
+    .country-nav a:hover {
+      background: #1d4ed8; color: white; border-color: #1d4ed8;
+    }
     .lightbox {
       display: none; position: fixed; z-index: 9999;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.9); justify-content: center; align-items: center; cursor: pointer;
+      background: rgba(0,0,0,0.92);
+      justify-content: center; align-items: center; cursor: pointer;
     }
-    .lightbox img { max-width: 90%; max-height: 90%; border-radius: 8px; }
+    .lightbox img { max-width: 92%; max-height: 92%; border-radius: 8px; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h1>אצל משפחת טופ, ליד טאומארונוי, ניו-זילנד</h1>
-      <a href="../index.html" class="home-link">🏠 לעמוד הראשי</a>
+  <div class="top-nav">
+    <div class="nav-links">
+      <a href="../index.html">עמוד ראשי</a>
     </div>
-    <div class="content">
-      <body>
-<table cellpadding="0" cellspacing="0" height="80" width="954">
-<tr>
-<td align="center" height="80" width="277">
-<marquee style="font-size: 18pt; color: #800080">2.4.02 - 10:00</marquee></td>
-<td align="center" height="80" width="667">
-<!--webbot bot="Navigation" s-type="banner" s-rendering="graphics" S-Orientation B-Include-Home B-Include-Up U-Page S-Target startspan --><!--webbot bot="Navigation" i-checksum="28358" endspan --></td>
-<td align="center" height="80" width="10">
-<img border="0" height="2" onclick="openLightbox(this.src)" src="../images/20020322_fishermen.jpg" title="לחץ להגדלה" width="1"/><img border="0" height="161" onclick="openLightbox(this.src)" src="../images/New_Zealand_north_island.gif" title="לחץ להגדלה" width="163"/></td>
-</tr>
-<tr>
-<td colspan="3" height="1" style=" " width="954"></td>
-</tr>
-</table><table cellpadding="0" cellspacing="0" width="100%">
-<tr>
-<td align="right" style=" ">
-<h4>
-<marquee style="font-size: 24pt; color: #008080">גונן חולב</marquee></h4>
-<p> </p></td>
-</tr>
-</table>
-<table cellpadding="0" cellspacing="0" height="333" width="953">
-<tr>
-<td height="333" rowspan="2" style="       " valign="top" width="140"> <!--webbot bot="Navigation" S-Type="sequence" S-Orientation="vertical" S-Rendering="graphics" S-Theme="blocks 000" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><!--webbot bot="Navigation" i-checksum="23763" endspan --><p> </p>
-</td>
-<td height="333" rowspan="2" style="     " valign="top" width="1"></td>
-<td colspan="2" height="266" style="     " valign="top" width="735">
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">נסענו לראות סרט בוידיאו 
-    אצל חברה של ליסה, בית לבד. בחורה שמנה שגרה עם אמא שלה, החרשת וחבר שלה, רזה, 
-    גבוה ותמהוני.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">ראינו סרט מגוכח: "</span><span dir="LTR">Legaly 
-    blond</span><span lang="HE">".</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">חזרנו, ישנתי בסלון וגונן 
-    נכנס לחדרה של ליסה, לעניניו. התשלום: לקום ב- 4:00 בבוקר לחליבה. האמת, גונן 
-    התנדב לזה, אבל נראה לי שזה מסוג הדברים שגבר עושה בתחילת הכרות עם בחורה חדשה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">קמתי ב- 8:00, היתה נקישה 
-    חזקה בחלון וגונן וליסה חזרו מהרפת. גונן בסרבל עבודה שהיה מעט קטן עליו והוא 
-    נראה מגוכח. הוא היה הרוס מעייפות.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">לאחר ארוחת-בוקר – קורנפלקס 
-    עם חלב מורתח הישר מהפרות – ממש טעים, גונן פנה לשנת צהרים. התפלאתי שהוא לא 
-    התחיל לשלוח יציאות על הלילה שעבר. הם ישנו שעתיים וחצי ואחרי זה הוא אמר לי 
-    "בוא נזוז". חשתי שגם היא רצתה בזה. משום מה, לאחר ערב של סקס הוא היה שתקן.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בנסיעה הסתבר שהוא לא היה 
-    מבסוט ממנה במיטה ושהוא לא נהנה. הוא הסיק מסקנות שלא כדאי להיות עם מישהי 
-    צעירה מדי. הוא רק העריך את שירלי יותר והוא הרגיש בשל אולי לביצוע ה- </span>
-<span dir="LTR">switch</span><span lang="HE"> באומרו שיכול להיות שהוא עייף 
-    מסטוצים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">נסענו סביב טאראנאקי עד 
-    סטרטפורד, שם פנינו לכביש 43 לכיוון צפון מזרח.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">מזג האוויר מטורף. כל הבוקר 
-    היה גשם. גונן המסכן, לא רק קם לפני 4:00 בבוקר אלא גם עבד בגשם ופרה אחת כמעט 
-    חירבנה עליו אבל פספסה בחצי מטר. לפחות יצא לו להשתולל קצת עם הטרקטורון.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">היה ממש קר, הטמפרטורה ירדה 
-    ל- 10 מעלות ביום. ברדיו דיברו על תחילת החורף, ו<a href="images/pictures/new-zealand/mt_agmont.jpg" target="_blank">ההר, שהתחיל להחשף עכשיו, היה 
-    מושלג</a>. לכן בחרנו לנסוע בדרך הארוכה וניסינו להגיע להר. איך שיצאנו ביקשתי 
-    מגונן שיחבוש את כובעו כדי שהשמש תצא. גונן חבש, יצאנו, וכך גם השמש.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">עצרנו בגני </span>
-<span dir="LTR">Horroald</span><span lang="HE">, בדרך להר. 2 ילדים קטנים, בת 
-    6 ובן 10 מהחווה הסמוכה הובילו אותנו בשבילי הגן. צמחיה פראית מסביב. חוץ 
-    מאיתנו אין אף אחד.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אם יש משהו יותר גרוע מ- 2 
-    גברים בגן בוטני זה 2 גברים ו- 2 ילדים קטנים הולכים יחד בעובי הסבך. הוצאתי 
-    אנחת רווחה כשסיימנו עם הגן ולא נתפסנו, ואז גם גילינו שהיה צריך לשלם בכניסה, 
-    אבל זה היה מאוחר מדי.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הדרך להר היתה סגורה, כנראה 
-    בגלל השלג. כל ההר שנראה היטב, כי העננים התפזרו והשמש יצאה, היה מרשים כשכמעט 
-    כולו לבן. הטמפרטורות עלו אל מעל ל- 25 מעלות. רק לאחר הביקור בהר פנינו 
-    לסטרטפורד ולדרך מס' 43. נסענו 160 ק"מ בדרך יפהפיה ומפותלת. לקח 3 שעות. גונן 
-    נהג ונראה כמו זומבי.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הגענו לבית </span>
-<span dir="LTR">Hit</span><span lang="HE">, משפחה נחמדה ביותר. כבר בטלפון: 
-    "איך קוראים לך?" – "אריאל" – "כמו אריאל שרון?" – "לא, אריאל שרון לא מבקש 
-    רשות כשהוא רוצה להכנס לבית".</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">כשהגענו לשם, 15 ק"מ מהעיר, 
-    היו שם</span><span dir="LTR" lang="HE"> </span><span lang="HE">כבר 7 
-    ישראלים. המשפחה ג'ינג'ית. כל הישראלים היו בחורות חוץ מבחור אחד. למזלינו אף 
-    אחד מאלה שאנחנו מכירים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הסתכלנו בספר האורחים 
-    וזיהינו את אח של יוני הגבוה מהכדורסל, עופר. המשפחה זכרה אותו לטובה. הצטרפנו 
-    לארוחה שבישלו הבנות והיה מספיק לכולם.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">גונן היה עייף ורק התעורר 
-    כדי להעיר הערות בשיחה. "אמא שלי אמרה שצריך לסבול כדי להיות יפה" אמרה אחת 
-    הבנות. "נראה לי שלא סבלת מספיק" אמר גונן לקול צחוק כולם. אח"כ דיברו על בעיית 
-    הערבים וערפאת. עכשיו כל יום יש פיגוע, 5-6 ימים ברציפות. כרגע המצב הוא שערפאת 
-    לכוד בלישכתו. לי קצת נמאס מכל הויכוחים האלה. "כל הערבים עם הישראלים אנחנו 
-    רבים עם ישראלים על ערבים ישראלים" אמרתי, מנסה לשנות נושא.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אח"כ הלכנו ליחידת הדיור 
-    הנפרדת שם ישנים כולם. ישנו על הרצפה. גונן התמוטט לשינה. אני התעוררתי לריח 
-    גראס והצטרפתי לבנות לעישון. זכיתי לכמה שאיפות וסבלתי מרמה ירודה של דיבור 
-    וצחוקים. מסתבר שבנים יודעים להצחיק ובנות יודעות לצחוק, וכך כשהן שלטו בדיבור, 
-    הן צחקו בטירוף ואני רק רציתי להסתלק משם. הבן, דורי, הוא היחידי שבסדר. 
-    הסתלקתי לשינה. החומר עבד היטב וכשעצמתי את העיניים ראיתי כל מיני דמויות 
-    מצוירות רצות לי מול העיניים. ההרגשה היא שהן היו מוכרות לי מילדותי, אבל קשה 
-    לי להאמין.</span></b></p>
-<p class="MsoNormal" dir="RTL"><span lang="HE"> </span></p></td>
-<td align="center" height="333" rowspan="2" style="     " valign="top" width="187">
-
-<img border="0" height="240" onclick="openLightbox(this.src)" src="../images/mt_agmont_trek.jpg" title="לחץ להגדלה" width="155"/><p>
-
-<img border="0" height="118" onclick="openLightbox(this.src)" src="../images/20020401_taranaki_mountain.jpg" title="לחץ להגדלה" width="177"/></p>
-<p>
-<font color="#660099">הר אגמונט מושלג</font></p>
-<p>
-     </p>
-<p>
-
-<img border="0" height="114" onclick="openLightbox(this.src)" src="../images/20020401_topp_family.jpg" title="לחץ להגדלה" width="174"/></p>
-<p>
-<font color="#660099">משפחת טופ וכל הישראלים. כל הג'ינג'ים שייכים למשפחה. 
-    מאחור: אני, גונן ודורי</font></p>
-</td>
-</tr>
-<tr>
-<td height="67" style="     " valign="top" width="314">
-<b>
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button104.gif" title="לחץ להגדלה" width="59"/></b></td>
-<td height="67" style="     " valign="top" width="421">
-<p align="right"><b>
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button106.gif" title="לחץ להגדלה" width="59"/></b></p></td>
-</tr>
-</table>
-<p align="center">
-<!--webbot bot="Navigation" S-Type="sequence" S-Orientation="horizontal" S-Rendering="html" S-Bar="Brackets" S-Btn-Nml="[&lt;A HREF=&quot;#URL#&quot; TARGET=&quot;#TARGET#&quot; STYLE=&quot;{text-decoration: none;}&quot;&gt;#LABEL#&lt;/A&gt;]" S-Btn-Sel="[#LABEL#]" S-Btn-Sep="&amp;nbsp;" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><nobr>[<a href="index.html" style="{text-decoration: none;}" target="">התחלה</a>]</nobr> <nobr>[<a href="200110052040.html" style="{text-decoration: none;}" target="">דנמרק</a>]</nobr> <nobr>[<a href="20011006.html" style="{text-decoration: none;}" target="">הודו</a>]</nobr> <nobr>[<a href="20011030.html" style="{text-decoration: none;}" target="">נפאל</a>]</nobr> <nobr>[<a href="20011115.html" style="{text-decoration: none;}" target="">טרק סובב אנאפורנה</a>]</nobr> <nobr>[<a href="20011210.html" style="{text-decoration: none;}" target="">תאילנד</a>]</nobr> <nobr>[<a href="20020108.html" style="{text-decoration: none;}" target="">לאוס</a>]</nobr> <nobr>[<a href="20020123.html" style="{text-decoration: none;}" target="">צפון תאילנד</a>]</nobr> <nobr>[<a href="20020203.html" style="{text-decoration: none;}" target="">אוסטרליה</a>]</nobr> <nobr>[<a href="20020210.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי דרומי</a>]</nobr> <nobr>[<a href="20020326.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי צפוני</a>]</nobr> <nobr>[<a href="20020506.html" style="{text-decoration: none;}" target="">פיליפינים</a>]</nobr> <nobr>[<a href="20020603.html" style="{text-decoration: none;}" target="">קמבודיה</a>]</nobr><!--webbot bot="Navigation" i-checksum="33824" endspan --></p>
-<p><i><small>This site was last updated
-<!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%m/%d/%y" startspan -->07/17/03<!--webbot bot="Timestamp" i-checksum="12722" endspan --> </small></i>
-</p>
-</body>
+    <div class="nav-links">
+      <a href="20020331.html">← הקודם</a>
+      <a href="20020403.html">הבא →</a>
     </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-text">
+      <div class="meta-line">
+        <span class="date-big">02</span>
+        <div>
+          <div class="date-details">אפריל 2002</div>
+          <span class="country-badge">ניו-זילנד, אי צפוני</span>
+        </div>
+      </div>
+      <h1 class="title">גונן חולב</h1>
+      <div class="title-divider"></div>
+    </div>
+    <img class="hero-map" src="../images/New_Zealand_north_island.gif" alt="ניו-זילנד, אי צפוני">
+  </div>
+
+  <div class="content">
+    <p>גונן חולב</p>
+
+    <p>נסענו לראות סרט בוידיאו אצל חברה של ליסה, בית לבד. בחורה שמנה שגרה עם אמא שלה, החרשת וחבר שלה, רזה, גבוה ותמהוני.</p>
+
+    <p>ראינו סרט מגוכח: "Legaly blond".</p>
+
+    <p>חזרנו, ישנתי בסלון וגונן נכנס לחדרה של ליסה, לעניניו. התשלום: לקום ב- 4:00 בבוקר לחליבה. האמת, גונן התנדב לזה, אבל נראה לי שזה מסוג הדברים שגבר עושה בתחילת הכרות עם בחורה חדשה.</p>
+
+    <p>קמתי ב- 8:00, היתה נקישה חזקה בחלון וגונן וליסה חזרו מהרפת. גונן בסרבל עבודה שהיה מעט קטן עליו והוא נראה מגוכח. הוא היה הרוס מעייפות.</p>
+
+    <p>לאחר ארוחת-בוקר – קורנפלקס עם חלב מורתח הישר מהפרות – ממש טעים, גונן פנה לשנת צהרים. התפלאתי שהוא לא התחיל לשלוח יציאות על הלילה שעבר. הם ישנו שעתיים וחצי ואחרי זה הוא אמר לי "בוא נזוז". חשתי שגם היא רצתה בזה. משום מה, לאחר ערב של סקס הוא היה שתקן.</p>
+
+    <div class="photo-pair">
+      <div class="photo-item">
+        <img src="../images/20020322_fishermen.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/mt_agmont_trek.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+    </div>
+
+    <p>בנסיעה הסתבר שהוא לא היה מבסוט ממנה במיטה ושהוא לא נהנה. הוא הסיק מסקנות שלא כדאי להיות עם מישהי צעירה מדי. הוא רק העריך את שירלי יותר והוא הרגיש בשל אולי לביצוע ה- switch באומרו שיכול להיות שהוא עייף מסטוצים.</p>
+
+    <p>נסענו סביב טאראנאקי עד סטרטפורד, שם פנינו לכביש 43 לכיוון צפון מזרח.</p>
+
+    <p>מזג האוויר מטורף. כל הבוקר היה גשם. גונן המסכן, לא רק קם לפני 4:00 בבוקר אלא גם עבד בגשם ופרה אחת כמעט חירבנה עליו אבל פספסה בחצי מטר. לפחות יצא לו להשתולל קצת עם הטרקטורון.</p>
+
+    <p>היה ממש קר, הטמפרטורה ירדה ל- 10 מעלות ביום. ברדיו דיברו על תחילת החורף, ו<a onclick="openLightbox('../images/mt_agmont.jpg')">ההר, שהתחיל להחשף עכשיו, היה מושלג</a>. לכן בחרנו לנסוע בדרך הארוכה וניסינו להגיע להר. איך שיצאנו ביקשתי מגונן שיחבוש את כובעו כדי שהשמש תצא. גונן חבש, יצאנו, וכך גם השמש.</p>
+
+    <p>עצרנו בגני Horroald, בדרך להר. 2 ילדים קטנים, בת 6 ובן 10 מהחווה הסמוכה הובילו אותנו בשבילי הגן. צמחיה פראית מסביב. חוץ מאיתנו אין אף אחד.</p>
+
+    <p>אם יש משהו יותר גרוע מ- 2 גברים בגן בוטני זה 2 גברים ו- 2 ילדים קטנים הולכים יחד בעובי הסבך. הוצאתי אנחת רווחה כשסיימנו עם הגן ולא נתפסנו, ואז גם גילינו שהיה צריך לשלם בכניסה, אבל זה היה מאוחר מדי.</p>
+
+    <div class="photo-pair">
+      <div class="photo-item">
+        <img src="../images/20020401_taranaki_mountain.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">הר אגמונט מושלג</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020401_topp_family.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">משפחת טופ וכל הישראלים. כל הג'ינג'ים שייכים למשפחה. 
+    מאחור: אני, גונן ודורי</div>
+      </div>
+    </div>
+
+    <p>הדרך להר היתה סגורה, כנראה בגלל השלג. כל ההר שנראה היטב, כי העננים התפזרו והשמש יצאה, היה מרשים כשכמעט כולו לבן. הטמפרטורות עלו אל מעל ל- 25 מעלות. רק לאחר הביקור בהר פנינו לסטרטפורד ולדרך מס' 43. נסענו 160 ק"מ בדרך יפהפיה ומפותלת. לקח 3 שעות. גונן נהג ונראה כמו זומבי.</p>
+
+    <p>הגענו לבית Hit, משפחה נחמדה ביותר. כבר בטלפון: "איך קוראים לך?" – "אריאל" – "כמו אריאל שרון?" – "לא, אריאל שרון לא מבקש רשות כשהוא רוצה להכנס לבית".</p>
+
+    <p>כשהגענו לשם, 15 ק"מ מהעיר, היו שם כבר 7 ישראלים. המשפחה ג'ינג'ית. כל הישראלים היו בחורות חוץ מבחור אחד. למזלינו אף אחד מאלה שאנחנו מכירים.</p>
+
+    <p>הסתכלנו בספר האורחים וזיהינו את אח של יוני הגבוה מהכדורסל, עופר. המשפחה זכרה אותו לטובה. הצטרפנו לארוחה שבישלו הבנות והיה מספיק לכולם.</p>
+
+    <p>גונן היה עייף ורק התעורר כדי להעיר הערות בשיחה. "אמא שלי אמרה שצריך לסבול כדי להיות יפה" אמרה אחת הבנות. "נראה לי שלא סבלת מספיק" אמר גונן לקול צחוק כולם. אח"כ דיברו על בעיית הערבים וערפאת. עכשיו כל יום יש פיגוע, 5-6 ימים ברציפות. כרגע המצב הוא שערפאת לכוד בלישכתו. לי קצת נמאס מכל הויכוחים האלה. "כל הערבים עם הישראלים אנחנו רבים עם ישראלים על ערבים ישראלים" אמרתי, מנסה לשנות נושא.</p>
+
+    <p>אח"כ הלכנו ליחידת הדיור הנפרדת שם ישנים כולם. ישנו על הרצפה. גונן התמוטט לשינה. אני התעוררתי לריח גראס והצטרפתי לבנות לעישון. זכיתי לכמה שאיפות וסבלתי מרמה ירודה של דיבור וצחוקים. מסתבר שבנים יודעים להצחיק ובנות יודעות לצחוק, וכך כשהן שלטו בדיבור, הן צחקו בטירוף ואני רק רציתי להסתלק משם. הבן, דורי, הוא היחידי שבסדר. הסתלקתי לשינה. החומר עבד היטב וכשעצמתי את העיניים ראיתי כל מיני דמויות מצוירות רצות לי מול העיניים. ההרגשה היא שהן היו מוכרות לי מילדותי, אבל קשה לי להאמין.</p>
+
+    <p>משפחת טופ וכל הישראלים. כל הג'ינג'ים שייכים למשפחה. מאחור: אני, גונן ודורי</p>
+
+
+  </div>
+
+  <div class="nav-cards">
+    <a href="20020403.html" class="nav-card">
+      <div class="label">הבא →</div>
+      <div class="card-title">שוכב על שפת האגם</div>
+    </a>
+    <a href="20020331.html" class="nav-card">
+      <div class="label">← הקודם</div>
+      <div class="card-title">אנחנו חולבים</div>
+    </a>
+  </div>
+
+  <div class="country-nav">
+    <a href="200110052040.html">דנמרק</a>
+    <a href="20011006.html">הודו</a>
+    <a href="20011030.html">נפאל</a>
+    <a href="20011115.html">טרק אנאפורנה</a>
+    <a href="20011210.html">תאילנד</a>
+    <a href="20020108.html">לאוס</a>
+    <a href="20020123.html">צפון תאילנד</a>
+    <a href="20020203.html">אוסטרליה</a>
+    <a href="20020210.html">ניו-זילנד, אי דרומי</a>
+    <a href="20020326.html">ניו-זילנד, אי צפוני</a>
+    <a href="20020506.html">פיליפינים</a>
+    <a href="20020603.html">קמבודיה</a>
   </div>
 
   <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
-    <img id="lightbox-img" src="" alt="Enlarged">
+    <img id="lightbox-img" src="" alt="">
   </div>
-
   <script>
     function openLightbox(src) {
       document.getElementById('lightbox-img').src = src;

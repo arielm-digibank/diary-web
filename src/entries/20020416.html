@@ -3,199 +3,298 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>אצל טריש, אוקלנד</title>
+  <title>אין קניסה, תחילת הסוף</title>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap" rel="stylesheet">
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background-color: #f8fafc;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0; padding: 20px; color: #334155;
+      background: #ffffff;
+      font-family: 'Heebo', sans-serif;
+      color: #1a1a2e;
+      line-height: 1.9;
     }
-    .container {
-      max-width: 800px; margin: 0 auto; background: #ffffff;
-      padding: 35px; border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06); line-height: 1.8;
+    .top-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #eee;
+      padding: 12px 30px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.9rem;
     }
-    .header {
-      border-bottom: 2px solid #e2e8f0; padding-bottom: 15px;
-      margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center;
+    .top-nav a {
+      color: #1d4ed8; text-decoration: none; font-weight: 600;
     }
-    .header h1 { margin: 0; color: #0f172a; font-size: 1.8rem; }
-    .home-link { color: #2563eb; text-decoration: none; font-weight: 600; }
-    .content img {
-      float: right; margin: 0 0 15px 20px; max-width: 320px; height: auto;
-      border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      cursor: pointer; transition: transform 0.2s;
+    .top-nav a:hover { text-decoration: underline; }
+    .top-nav .nav-links { display: flex; gap: 20px; }
+    .hero {
+      max-width: 900px; margin: 0 auto;
+      padding: 50px 40px 30px;
+      display: flex; align-items: flex-start; gap: 30px;
     }
-    .content img:hover { transform: scale(1.02); }
-    .content::after { content: ""; clear: both; display: table; }
-    a { color: #2563eb; }
+    .hero-text { flex: 1; }
+    .hero-map {
+      width: 120px; height: auto; object-fit: contain;
+      flex-shrink: 0; opacity: 0.85;
+    }
+    .meta-line {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+    }
+    .date-big {
+      font-size: 3.5rem; font-weight: 900; color: #e5e7eb; line-height: 1;
+    }
+    .date-details { font-size: 0.9rem; color: #6b7280; }
+    .country-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      border-radius: 20px; padding: 4px 14px;
+      font-size: 0.8rem; color: #1d4ed8; font-weight: 600;
+    }
+    .title {
+      font-size: 2.2rem; font-weight: 900; color: #111827;
+      margin: 20px 0 8px; line-height: 1.3;
+    }
+    .date-subtitle {
+      font-size: 1.1rem; font-weight: 300; color: #4b5563;
+      margin-bottom: 16px;
+    }
+    .title-divider {
+      width: 60px; height: 4px; background: #1d4ed8; border-radius: 2px;
+    }
+    .content {
+      max-width: 900px; margin: 30px auto; padding: 0 40px; font-size: 1.05rem;
+    }
+    .content p { margin-bottom: 18px; }
+    .content a {
+      color: #1d4ed8; cursor: pointer;
+      text-decoration: underline;
+      text-decoration-color: rgba(29,78,216,0.3);
+    }
+    .photo-block {
+      margin: 30px 0; border-radius: 12px; overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    .photo-block img {
+      width: 100%; display: block; cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .photo-block img:hover { transform: scale(1.01); }
+    .photo-block .caption {
+      padding: 12px 16px; font-size: 0.85rem; color: #6b7280;
+      background: #f9fafb; border-top: 1px solid #f3f4f6;
+    }
+    .photo-pair {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 14px; margin: 30px 0;
+    }
+    .photo-pair .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-pair .photo-item img {
+      width: 100%; height: 200px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-pair .photo-item img:hover { transform: scale(1.03); }
+    .photo-pair .photo-item .caption {
+      padding: 8px 12px; font-size: 0.8rem; color: #6b7280; background: #f9fafb;
+    }
+    .photo-trio {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px; margin: 30px 0;
+    }
+    .photo-trio .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-trio .photo-item img {
+      width: 100%; height: 180px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-trio .photo-item img:hover { transform: scale(1.03); }
+    .photo-trio .photo-item .caption {
+      padding: 8px 10px; font-size: 0.78rem; color: #6b7280; background: #f9fafb;
+    }
+    .nav-cards {
+      max-width: 900px; margin: 50px auto 20px; padding: 0 40px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .nav-card {
+      padding: 20px 24px; border: 1px solid #e5e7eb; border-radius: 12px;
+      text-decoration: none; color: inherit; transition: all 0.2s;
+    }
+    .nav-card:hover {
+      border-color: #1d4ed8; box-shadow: 0 4px 12px rgba(29,78,216,0.1);
+    }
+    .nav-card .label { font-size: 0.8rem; color: #6b7280; margin-bottom: 4px; }
+    .nav-card .card-title { font-weight: 700; font-size: 1rem; color: #1d4ed8; }
+    .supplements {
+      margin-top: 35px; padding: 25px 30px;
+      background: #f9fafb; border-radius: 12px; border: 1px solid #e5e7eb;
+    }
+    .supplements h3 {
+      font-size: 1.1rem; font-weight: 700; margin-bottom: 14px; color: #374151;
+    }
+    .supplements ol { padding-right: 20px; }
+    .supplements li { margin-bottom: 10px; color: #4b5563; }
+    .country-nav {
+      max-width: 900px; margin: 20px auto 40px; padding: 0 40px;
+      display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+    }
+    .country-nav a {
+      padding: 6px 14px; border-radius: 20px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      color: #1d4ed8; text-decoration: none;
+      font-size: 0.82rem; font-weight: 600;
+      transition: all 0.2s;
+    }
+    .country-nav a:hover {
+      background: #1d4ed8; color: white; border-color: #1d4ed8;
+    }
     .lightbox {
       display: none; position: fixed; z-index: 9999;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.9); justify-content: center; align-items: center; cursor: pointer;
+      background: rgba(0,0,0,0.92);
+      justify-content: center; align-items: center; cursor: pointer;
     }
-    .lightbox img { max-width: 90%; max-height: 90%; border-radius: 8px; }
+    .lightbox img { max-width: 92%; max-height: 92%; border-radius: 8px; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h1>אצל טריש, אוקלנד</h1>
-      <a href="../index.html" class="home-link">🏠 לעמוד הראשי</a>
+  <div class="top-nav">
+    <div class="nav-links">
+      <a href="../index.html">עמוד ראשי</a>
     </div>
-    <div class="content">
-      <body>
-<table cellpadding="0" cellspacing="0" height="80" width="954">
-<tr>
-<td align="center" height="80" width="277">
-<marquee style="font-size: 18pt; color: #800080">16.4.02 - 20:00</marquee></td>
-<td align="center" height="80" width="667">
-<!--webbot bot="Navigation" s-type="banner" s-rendering="graphics" S-Orientation B-Include-Home B-Include-Up U-Page S-Target startspan --><!--webbot bot="Navigation" i-checksum="17352" endspan --></td>
-<td align="center" height="80" width="10">
-<img border="0" height="2" onclick="openLightbox(this.src)" src="../images/20020322_fishermen.jpg" title="לחץ להגדלה" width="1"/><img border="0" height="159" onclick="openLightbox(this.src)" src="../images/New_Zealand_north_island.gif" title="לחץ להגדלה" width="157"/></td>
-</tr>
-<tr>
-<td colspan="3" height="1" style=" " width="954"></td>
-</tr>
-</table><table cellpadding="0" cellspacing="0" width="100%">
-<tr>
-<td align="right" style=" ">
-<h4>
-<marquee style="font-size: 24pt; color: #008080">אין קניסה, תחילת הסוף</marquee></h4>
-<p> </p></td>
-</tr>
-</table>
-<table cellpadding="0" cellspacing="0" height="333" width="953">
-<tr>
-<td height="333" rowspan="2" style="       " valign="top" width="140"> <!--webbot bot="Navigation" S-Type="sequence" S-Orientation="vertical" S-Rendering="graphics" S-Theme="blocks 000" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><!--webbot bot="Navigation" i-checksum="23763" endspan --><p style="text-align: center">
-
-<img border="0" height="80" onclick="openLightbox(this.src)" src="../images/contract_highlighter_rolling_md_wht.gif" title="לחץ להגדלה" width="125"/></p>
-</td>
-<td height="333" rowspan="2" style="     " valign="top" width="1"></td>
-<td colspan="2" height="266" style="     " valign="top" width="735">
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> עכשיו אנחנו באוקלנד. ים 
-    סידורים לפנינו. אנחנו בדירה של מישהי נחמדה, אישה בשנות ה- 50 לחייה. יש לה 
-    בעיה. היא לא מסוגלת לאמר "לא" ולכן כל יום יש כאן 15-20 ישראלים. אין כאן מקום 
-    לכולם לישון ולכן ישנים בכל מקום אפשרי – על הרצפה ועל הספות. אווירת חברה, 
-    בקיצור, חארה כאן. כשנמכור את האוטו הכל ישתפר. מה שבטוח זה לא שיא הטיול.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">נחזור יומיים אחורה. אז 
-    היינו בבית ה- </span><span dir="LTR">Hit</span><span lang="HE"> הקודם.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">קמנו בבוקר ונפרדנו 
-    בחיבוקים. היה נחמד, אבל היה משעמם שם בטירוף. לא היינו יכולים להשאר עוד לילה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">נסענו. הפעם אני נהגתי. 
-    נסענו לאיזור הקורומנדל. עשינו סיבוב שם. בהתחלה היה ממש יפה, אח"כ סתמי. כ- 50 
-    ק"מ מזה זה דרכי עפר.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">לדורי יש בעיה חמורה – הוא 
-    חייב לנסוע עם חלון פתוח, גם כשקר. אנחנו סובלים מזה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">לאחר 160 ק"מ פיניתי את 
-    מקומי כנהג והתנצלתי על השעמום שהיה מנת חלקם. גונן עלה על ההגה והכל השתנה. 
-    לאחר 5 דקות הוא טעה. אייתתי לו את השם "</span><span dir="LTR">Auckland</span><span lang="HE">" 
-    כדי שיוכל לזהות שלטים בדרך. לאחר 5 דקות הבטתי בלוח השעונים וראיתי 130-140 
-    קמ"ש. ניידת משטרה באה ממול, עשתה פרסה וסימנה בעזרת האורות שלה (בלי צ'קלקה או 
-    רמקול) לעצור. לא אחת אמרתי לגונן להאיט ושאם הוא יקבל קנסות על מהירות אני לא 
-    אשלם. השוטר הגיע ושאל את גונן "יש סיבה מיוחדת שנסעת 130 קמ"ש?" – "לא" ענה 
-    גונן. "אתם לא מכאן, מאיפה אתם?". כשהוא גילה שאנחנו תיירים הוא ויתר לנו. הוא 
-    היה ממש נחמד וחייכני. חוץ מהמדים – שום דבר שמזכיר שוטר בארץ.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">2 שוטרים ב- 3 ימים. הספק 
-    יפה!</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">רק שתדעו. אנחנו שמים עכשיו 
-    חגורות בקביעות. מעולם לא שמנו לפני-כן. וכשאנחנו חוגרים אנחנו תמיד אומרים 
-    "לזכר השוטר".</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אז עכשיו גונן החליט לנהוג 
-    כשורה ובאיטיות בהתאם לחוק.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הגענו לאוקלנד וקיבלנו הלם. 
-    היה יותר גרוע ממה שחשבתי, עיר ממש ענקית עם כביש בעל אלף מסלולים ומחלפים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">במרכז העיר יש מגדל ענק, 
-    300 מטר גובהו, </span><span dir="LTR">Sky tower</span><span lang="HE">. 
-    <a href="images/pictures/new-zealand/20020417_auckland_sky_tower.jpg" target="_blank">בלילה הוא מואר בסגול
-    </a>וזה ממש יפה, כמו איזה חללית.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הכל כאן בסלון אצל טריש 
-    רועש ווולגרי. אני לא נהנה. אני יכול לכתוב יומן שעות עד שהמקלחת תתפנה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">כשהגענו לטריש ראינו את 
-    כמות הישראלים כאן, וזה היה עוד יום חלש, רק 15 ישראלים. במרכז כולם, האישה, 
-    טריש. אישה לא קטנה, יושבת באמצע כמו גורו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">כל הקירות מכוסים בתמונות 
-    של הישראלים שעברו כאן, מאות. הרבה נוחתים כאן בתחילת הטיול וכמעט כולם באים 
-    לכאן למכור את האוטו בסוף הטיול. אנחנו זיהינו את ליאור מגדל ואת אבישג וענבל 
-    ואת דני ויקירה שעזבו באותו בוקר כשהגענו, פספסנו אותם בקצת.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">דורי זיהה את הבנות שהוא 
-    נסע איתן. את הפחות אטרקטיבית הוא מכנה "קוביבה".</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">מקובל כאן שמישהו מהישראלים 
-    מבשל לכולם. הצטרפנו ולא עשינו כלום, נחמד, אבל לא משביע. לפני הארוחה אחזנו 
-    ידיים במעגל וטריש בירכה  ומישהו בירך בעברית. אני התמרמרתי וסירבתי לאחוז 
-    בידיו של גונן בייחוד אחרי שהוא לא התקלח ואנחנו לפני ארוחה. מהיום והלאה נתחמק 
-    מטקס זה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בלילה יצאנו ומצאנו מועדון 
-    חמוד – </span><span dir="LTR">Margaritas</span><span lang="HE">. לא היו שם 
-    מאורעות מיוחדים. עדיין, זה היה יום שני והיה די חלש.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">חזרנו וגונן ניסה לעשות 
-    צחוקים. היה כבר 2:00 וחלק צחקו וחלק התעצבנו, במיוחד בחורה ישראלית אחת והיא 
-    חטפה על זה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בבוקר קמנו וחיכיתי שעה עד 
-    שהתפנתה המקלחת כדי לצחצח שיניים. הלכנו למרכז העיר.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">קיבלנו כמה הצעות מחיר 
-    לתיקון האוטו. מחר נקום מוקדם ונבדוק אותן.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">חיפשנו חנייה. הכל עולה כאן 
-    כסף. חנייה זולה עולה 3$</span><span dir="LTR">NZ</span><span lang="HE"> 
-    לשעה, חנייה יקרה 6$</span><span dir="LTR">NZ</span><span lang="HE">. התרחקנו 
-    מהמרכז ומצאנו חנייה מאולתרת. הלכנו לקונסוליה האוסטרלית. לא היה שם תור וראינו 
-    שנוכל לקבל רק ויזת מעבר ונצטרך לקבוע תאריך טיסה מאוסטרליה לבנגקוק לצורך כך. 
-    אין כאן משרדים של </span><span dir="LTR">Phillipines airlines</span><span lang="HE">, 
-    נצטרך להתקשר לפיליפינים או לאוסטרליה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הכרזתי צום. כל היום אכלתי 
-    רק 2 גלידות קטנות של בורגר קינג. גונן טחן בורגרים. עלי להוריד את ה- 2-3 ק"ג 
-    המיותרים ונראה לי שהנושא טופל.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אח"כ הלכנו לראות סרט 
-    להעביר את הזמן כדי לא לחזור לארוחת הערב. ראינו את הסרט "</span><span dir="LTR">Showtime</span><span lang="HE">". 
-    סרט בסדר עם אדי מרפי ורוברט דה-נירו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">היינו באינטרנט זול מאד (2$</span><span dir="LTR">NZ</span><span lang="HE"> 
-    לשעה) וראינו את הכתבה שהתפרסמה עלינו במקומון של גיזבורן. יש שם הרבה משפטים 
-    שכל אחד אמר, לא תמיד קשורים למציאות. צחקנו בפה מלא.</span></b></p>
-<p class="MsoNormal" dir="RTL"> </p></td>
-<td align="center" height="333" rowspan="2" style="     " valign="top" width="187">
-
-<img border="0" height="240" onclick="openLightbox(this.src)" src="../images/20020415_gonen_depressed.jpg" title="לחץ להגדלה" width="159"/><p>
-<font color="#660099">גונן משועמם</font></p>
-<p>
-
-<img border="0" height="88" onclick="openLightbox(this.src)" src="../images/20020422_auckland.jpg" title="לחץ להגדלה" width="184"/></p>
-<p>
-<font color="#660099">אוקלנד, כולל המגדל הגבוה</font></p>
-<p> <p>
-
-<img border="0" height="272" onclick="openLightbox(this.src)" src="../images/20020417_auckland_sky_tower.jpg" title="לחץ להגדלה" width="175"/><p>
-<font color="#660099">המגדל הענק באור סגלגל בלילה. נראה כמו חללית</font><p>
-     <p>
-
-<img border="0" height="115" onclick="openLightbox(this.src)" src="../images/together001.jpg" title="לחץ להגדלה" width="173"/><p>
-<font color="#660099">אני, דורי, טריש וגונן</font><p>
-     </p></p></p></p></p></p></p></td>
-</tr>
-<tr>
-<td height="67" style="     " valign="top" width="314">
-<b>
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button104.gif" title="לחץ להגדלה" width="59"/></b></td>
-<td height="67" style="     " valign="top" width="421">
-<p align="right"><b>
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button106.gif" title="לחץ להגדלה" width="59"/></b></p></td>
-</tr>
-</table>
-<p align="center">
-<!--webbot bot="Navigation" S-Type="sequence" S-Orientation="horizontal" S-Rendering="html" S-Bar="Brackets" S-Btn-Nml="[&lt;A HREF=&quot;#URL#&quot; TARGET=&quot;#TARGET#&quot; STYLE=&quot;{text-decoration: none;}&quot;&gt;#LABEL#&lt;/A&gt;]" S-Btn-Sel="[#LABEL#]" S-Btn-Sep="&amp;nbsp;" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><nobr>[<a href="index.html" style="{text-decoration: none;}" target="">התחלה</a>]</nobr> <nobr>[<a href="200110052040.html" style="{text-decoration: none;}" target="">דנמרק</a>]</nobr> <nobr>[<a href="20011006.html" style="{text-decoration: none;}" target="">הודו</a>]</nobr> <nobr>[<a href="20011030.html" style="{text-decoration: none;}" target="">נפאל</a>]</nobr> <nobr>[<a href="20011115.html" style="{text-decoration: none;}" target="">טרק סובב אנאפורנה</a>]</nobr> <nobr>[<a href="20011210.html" style="{text-decoration: none;}" target="">תאילנד</a>]</nobr> <nobr>[<a href="20020108.html" style="{text-decoration: none;}" target="">לאוס</a>]</nobr> <nobr>[<a href="20020123.html" style="{text-decoration: none;}" target="">צפון תאילנד</a>]</nobr> <nobr>[<a href="20020203.html" style="{text-decoration: none;}" target="">אוסטרליה</a>]</nobr> <nobr>[<a href="20020210.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי דרומי</a>]</nobr> <nobr>[<a href="20020326.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי צפוני</a>]</nobr> <nobr>[<a href="20020506.html" style="{text-decoration: none;}" target="">פיליפינים</a>]</nobr> <nobr>[<a href="20020603.html" style="{text-decoration: none;}" target="">קמבודיה</a>]</nobr><!--webbot bot="Navigation" i-checksum="33824" endspan --></p>
-<p><i><small>This site was last updated
-<!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%m/%d/%y" startspan -->07/19/03<!--webbot bot="Timestamp" i-checksum="12754" endspan --> </small></i>
-</p>
-</body>
+    <div class="nav-links">
+      <a href="20020414.html">← הקודם</a>
+      <a href="20020418.html">הבא →</a>
     </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-text">
+      <div class="meta-line">
+        <span class="date-big">16</span>
+        <div>
+          <div class="date-details">אפריל 2002</div>
+          <span class="country-badge">ניו-זילנד, אי צפוני</span>
+        </div>
+      </div>
+      <h1 class="title">אין קניסה, תחילת הסוף</h1>
+      <div class="title-divider"></div>
+    </div>
+    <img class="hero-map" src="../images/New_Zealand_north_island.gif" alt="ניו-זילנד, אי צפוני">
+  </div>
+
+  <div class="content">
+    <p>אין קניסה, תחילת הסוף</p>
+
+    <p>עכשיו אנחנו באוקלנד. ים סידורים לפנינו. אנחנו בדירה של מישהי נחמדה, אישה בשנות ה- 50 לחייה. יש לה בעיה. היא לא מסוגלת לאמר "לא" ולכן כל יום יש כאן 15-20 ישראלים. אין כאן מקום לכולם לישון ולכן ישנים בכל מקום אפשרי – על הרצפה ועל הספות. אווירת חברה, בקיצור, חארה כאן. כשנמכור את האוטו הכל ישתפר. מה שבטוח זה לא שיא הטיול.</p>
+
+    <p>נחזור יומיים אחורה. אז היינו בבית ה- Hit הקודם.</p>
+
+    <p>קמנו בבוקר ונפרדנו בחיבוקים. היה נחמד, אבל היה משעמם שם בטירוף. לא היינו יכולים להשאר עוד לילה.</p>
+
+    <p>נסענו. הפעם אני נהגתי. נסענו לאיזור הקורומנדל. עשינו סיבוב שם. בהתחלה היה ממש יפה, אח"כ סתמי. כ- 50 ק"מ מזה זה דרכי עפר.</p>
+
+    <p>לדורי יש בעיה חמורה – הוא חייב לנסוע עם חלון פתוח, גם כשקר. אנחנו סובלים מזה.</p>
+
+    <p>לאחר 160 ק"מ פיניתי את מקומי כנהג והתנצלתי על השעמום שהיה מנת חלקם. גונן עלה על ההגה והכל השתנה. לאחר 5 דקות הוא טעה. אייתתי לו את השם "Auckland" כדי שיוכל לזהות שלטים בדרך. לאחר 5 דקות הבטתי בלוח השעונים וראיתי 130-140 קמ"ש. ניידת משטרה באה ממול, עשתה פרסה וסימנה בעזרת האורות שלה (בלי צ'קלקה או רמקול) לעצור. לא אחת אמרתי לגונן להאיט ושאם הוא יקבל קנסות על מהירות אני לא אשלם. השוטר הגיע ושאל את גונן "יש סיבה מיוחדת שנסעת 130 קמ"ש?" – "לא" ענה גונן. "אתם לא מכאן, מאיפה אתם?". כשהוא גילה שאנחנו תיירים הוא ויתר לנו. הוא היה ממש נחמד וחייכני. חוץ מהמדים – שום דבר שמזכיר שוטר בארץ.</p>
+
+    <p>2 שוטרים ב- 3 ימים. הספק יפה!</p>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/20020322_fishermen.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020415_gonen_depressed.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">גונן משועמם</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020422_auckland.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">אוקלנד, כולל המגדל הגבוה</div>
+      </div>
+    </div>
+
+    <p>רק שתדעו. אנחנו שמים עכשיו חגורות בקביעות. מעולם לא שמנו לפני-כן. וכשאנחנו חוגרים אנחנו תמיד אומרים "לזכר השוטר".</p>
+
+    <p>אז עכשיו גונן החליט לנהוג כשורה ובאיטיות בהתאם לחוק.</p>
+
+    <p>הגענו לאוקלנד וקיבלנו הלם. היה יותר גרוע ממה שחשבתי, עיר ממש ענקית עם כביש בעל אלף מסלולים ומחלפים.</p>
+
+    <p>במרכז העיר יש מגדל ענק, 300 מטר גובהו, Sky tower. <a onclick="openLightbox('../images/20020417_auckland_sky_tower.jpg')">בלילה הוא מואר בסגול </a>וזה ממש יפה, כמו איזה חללית.</p>
+
+    <p>הכל כאן בסלון אצל טריש רועש ווולגרי. אני לא נהנה. אני יכול לכתוב יומן שעות עד שהמקלחת תתפנה.</p>
+
+    <p>כשהגענו לטריש ראינו את כמות הישראלים כאן, וזה היה עוד יום חלש, רק 15 ישראלים. במרכז כולם, האישה, טריש. אישה לא קטנה, יושבת באמצע כמו גורו.</p>
+
+    <p>כל הקירות מכוסים בתמונות של הישראלים שעברו כאן, מאות. הרבה נוחתים כאן בתחילת הטיול וכמעט כולם באים לכאן למכור את האוטו בסוף הטיול. אנחנו זיהינו את ליאור מגדל ואת אבישג וענבל ואת דני ויקירה שעזבו באותו בוקר כשהגענו, פספסנו אותם בקצת.</p>
+
+    <p>דורי זיהה את הבנות שהוא נסע איתן. את הפחות אטרקטיבית הוא מכנה "קוביבה".</p>
+
+    <div class="photo-pair">
+      <div class="photo-item">
+        <img src="../images/20020417_auckland_sky_tower.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">המגדל הענק באור סגלגל בלילה. נראה כמו חללית</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/together001.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">אני, דורי, טריש וגונן</div>
+      </div>
+    </div>
+
+    <p>מקובל כאן שמישהו מהישראלים מבשל לכולם. הצטרפנו ולא עשינו כלום, נחמד, אבל לא משביע. לפני הארוחה אחזנו ידיים במעגל וטריש בירכה ומישהו בירך בעברית. אני התמרמרתי וסירבתי לאחוז בידיו של גונן בייחוד אחרי שהוא לא התקלח ואנחנו לפני ארוחה. מהיום והלאה נתחמק מטקס זה.</p>
+
+    <p>בלילה יצאנו ומצאנו מועדון חמוד – Margaritas. לא היו שם מאורעות מיוחדים. עדיין, זה היה יום שני והיה די חלש.</p>
+
+    <p>חזרנו וגונן ניסה לעשות צחוקים. היה כבר 2:00 וחלק צחקו וחלק התעצבנו, במיוחד בחורה ישראלית אחת והיא חטפה על זה.</p>
+
+    <p>בבוקר קמנו וחיכיתי שעה עד שהתפנתה המקלחת כדי לצחצח שיניים. הלכנו למרכז העיר.</p>
+
+    <p>קיבלנו כמה הצעות מחיר לתיקון האוטו. מחר נקום מוקדם ונבדוק אותן.</p>
+
+    <p>חיפשנו חנייה. הכל עולה כאן כסף. חנייה זולה עולה 3$NZ לשעה, חנייה יקרה 6$NZ. התרחקנו מהמרכז ומצאנו חנייה מאולתרת. הלכנו לקונסוליה האוסטרלית. לא היה שם תור וראינו שנוכל לקבל רק ויזת מעבר ונצטרך לקבוע תאריך טיסה מאוסטרליה לבנגקוק לצורך כך. אין כאן משרדים של Phillipines airlines, נצטרך להתקשר לפיליפינים או לאוסטרליה.</p>
+
+    <p>הכרזתי צום. כל היום אכלתי רק 2 גלידות קטנות של בורגר קינג. גונן טחן בורגרים. עלי להוריד את ה- 2-3 ק"ג המיותרים ונראה לי שהנושא טופל.</p>
+
+    <p>אח"כ הלכנו לראות סרט להעביר את הזמן כדי לא לחזור לארוחת הערב. ראינו את הסרט "Showtime". סרט בסדר עם אדי מרפי ורוברט דה-נירו.</p>
+
+    <p>היינו באינטרנט זול מאד (2$NZ לשעה) וראינו את הכתבה שהתפרסמה עלינו במקומון של גיזבורן. יש שם הרבה משפטים שכל אחד אמר, לא תמיד קשורים למציאות. צחקנו בפה מלא.</p>
+
+
+  </div>
+
+  <div class="nav-cards">
+    <a href="20020418.html" class="nav-card">
+      <div class="label">הבא →</div>
+      <div class="card-title">הפרידה מדורי</div>
+    </a>
+    <a href="20020414.html" class="nav-card">
+      <div class="label">← הקודם</div>
+      <div class="card-title">חוף המים החמים</div>
+    </a>
+  </div>
+
+  <div class="country-nav">
+    <a href="200110052040.html">דנמרק</a>
+    <a href="20011006.html">הודו</a>
+    <a href="20011030.html">נפאל</a>
+    <a href="20011115.html">טרק אנאפורנה</a>
+    <a href="20011210.html">תאילנד</a>
+    <a href="20020108.html">לאוס</a>
+    <a href="20020123.html">צפון תאילנד</a>
+    <a href="20020203.html">אוסטרליה</a>
+    <a href="20020210.html">ניו-זילנד, אי דרומי</a>
+    <a href="20020326.html">ניו-זילנד, אי צפוני</a>
+    <a href="20020506.html">פיליפינים</a>
+    <a href="20020603.html">קמבודיה</a>
   </div>
 
   <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
-    <img id="lightbox-img" src="" alt="Enlarged">
+    <img id="lightbox-img" src="" alt="">
   </div>
-
   <script>
     function openLightbox(src) {
       document.getElementById('lightbox-img').src = src;

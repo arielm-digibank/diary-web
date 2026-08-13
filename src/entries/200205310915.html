@@ -3,174 +3,287 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ג'ולי פרוג גסט האוס, קנצ'נאבורי, תאילנד</title>
+  <title>סיור בסביבה</title>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap" rel="stylesheet">
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background-color: #f8fafc;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0; padding: 20px; color: #334155;
+      background: #ffffff;
+      font-family: 'Heebo', sans-serif;
+      color: #1a1a2e;
+      line-height: 1.9;
     }
-    .container {
-      max-width: 800px; margin: 0 auto; background: #ffffff;
-      padding: 35px; border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06); line-height: 1.8;
+    .top-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #eee;
+      padding: 12px 30px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.9rem;
     }
-    .header {
-      border-bottom: 2px solid #e2e8f0; padding-bottom: 15px;
-      margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center;
+    .top-nav a {
+      color: #1d4ed8; text-decoration: none; font-weight: 600;
     }
-    .header h1 { margin: 0; color: #0f172a; font-size: 1.8rem; }
-    .home-link { color: #2563eb; text-decoration: none; font-weight: 600; }
-    .content img {
-      float: right; margin: 0 0 15px 20px; max-width: 320px; height: auto;
-      border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      cursor: pointer; transition: transform 0.2s;
+    .top-nav a:hover { text-decoration: underline; }
+    .top-nav .nav-links { display: flex; gap: 20px; }
+    .hero {
+      max-width: 900px; margin: 0 auto;
+      padding: 50px 40px 30px;
+      display: flex; align-items: flex-start; gap: 30px;
     }
-    .content img:hover { transform: scale(1.02); }
-    .content::after { content: ""; clear: both; display: table; }
-    a { color: #2563eb; }
+    .hero-text { flex: 1; }
+    .hero-map {
+      width: 120px; height: auto; object-fit: contain;
+      flex-shrink: 0; opacity: 0.85;
+    }
+    .meta-line {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+    }
+    .date-big {
+      font-size: 3.5rem; font-weight: 900; color: #e5e7eb; line-height: 1;
+    }
+    .date-details { font-size: 0.9rem; color: #6b7280; }
+    .country-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      border-radius: 20px; padding: 4px 14px;
+      font-size: 0.8rem; color: #1d4ed8; font-weight: 600;
+    }
+    .title {
+      font-size: 2.2rem; font-weight: 900; color: #111827;
+      margin: 20px 0 8px; line-height: 1.3;
+    }
+    .date-subtitle {
+      font-size: 1.1rem; font-weight: 300; color: #4b5563;
+      margin-bottom: 16px;
+    }
+    .title-divider {
+      width: 60px; height: 4px; background: #1d4ed8; border-radius: 2px;
+    }
+    .content {
+      max-width: 900px; margin: 30px auto; padding: 0 40px; font-size: 1.05rem;
+    }
+    .content p { margin-bottom: 18px; }
+    .content a {
+      color: #1d4ed8; cursor: pointer;
+      text-decoration: underline;
+      text-decoration-color: rgba(29,78,216,0.3);
+    }
+    .photo-block {
+      margin: 30px 0; border-radius: 12px; overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    .photo-block img {
+      width: 100%; display: block; cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .photo-block img:hover { transform: scale(1.01); }
+    .photo-block .caption {
+      padding: 12px 16px; font-size: 0.85rem; color: #6b7280;
+      background: #f9fafb; border-top: 1px solid #f3f4f6;
+    }
+    .photo-pair {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 14px; margin: 30px 0;
+    }
+    .photo-pair .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-pair .photo-item img {
+      width: 100%; height: 200px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-pair .photo-item img:hover { transform: scale(1.03); }
+    .photo-pair .photo-item .caption {
+      padding: 8px 12px; font-size: 0.8rem; color: #6b7280; background: #f9fafb;
+    }
+    .photo-trio {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px; margin: 30px 0;
+    }
+    .photo-trio .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-trio .photo-item img {
+      width: 100%; height: 180px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-trio .photo-item img:hover { transform: scale(1.03); }
+    .photo-trio .photo-item .caption {
+      padding: 8px 10px; font-size: 0.78rem; color: #6b7280; background: #f9fafb;
+    }
+    .nav-cards {
+      max-width: 900px; margin: 50px auto 20px; padding: 0 40px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .nav-card {
+      padding: 20px 24px; border: 1px solid #e5e7eb; border-radius: 12px;
+      text-decoration: none; color: inherit; transition: all 0.2s;
+    }
+    .nav-card:hover {
+      border-color: #1d4ed8; box-shadow: 0 4px 12px rgba(29,78,216,0.1);
+    }
+    .nav-card .label { font-size: 0.8rem; color: #6b7280; margin-bottom: 4px; }
+    .nav-card .card-title { font-weight: 700; font-size: 1rem; color: #1d4ed8; }
+    .supplements {
+      margin-top: 35px; padding: 25px 30px;
+      background: #f9fafb; border-radius: 12px; border: 1px solid #e5e7eb;
+    }
+    .supplements h3 {
+      font-size: 1.1rem; font-weight: 700; margin-bottom: 14px; color: #374151;
+    }
+    .supplements ol { padding-right: 20px; }
+    .supplements li { margin-bottom: 10px; color: #4b5563; }
+    .country-nav {
+      max-width: 900px; margin: 20px auto 40px; padding: 0 40px;
+      display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+    }
+    .country-nav a {
+      padding: 6px 14px; border-radius: 20px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      color: #1d4ed8; text-decoration: none;
+      font-size: 0.82rem; font-weight: 600;
+      transition: all 0.2s;
+    }
+    .country-nav a:hover {
+      background: #1d4ed8; color: white; border-color: #1d4ed8;
+    }
     .lightbox {
       display: none; position: fixed; z-index: 9999;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.9); justify-content: center; align-items: center; cursor: pointer;
+      background: rgba(0,0,0,0.92);
+      justify-content: center; align-items: center; cursor: pointer;
     }
-    .lightbox img { max-width: 90%; max-height: 90%; border-radius: 8px; }
+    .lightbox img { max-width: 92%; max-height: 92%; border-radius: 8px; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h1>ג'ולי פרוג גסט האוס, קנצ'נאבורי, תאילנד</h1>
-      <a href="../index.html" class="home-link">🏠 לעמוד הראשי</a>
+  <div class="top-nav">
+    <div class="nav-links">
+      <a href="../index.html">עמוד ראשי</a>
     </div>
-    <div class="content">
-      <body>
-<table cellpadding="0" cellspacing="0" height="80" width="954">
-<tr>
-<td align="center" height="80" width="277">
-<marquee style="font-size: 18pt; color: #800080">31.5.02 - 9:15</marquee></td>
-<td align="center" height="80" width="667">
-<!--webbot bot="Navigation" s-type="banner" s-rendering="graphics" S-Orientation B-Include-Home B-Include-Up U-Page S-Target startspan --><!--webbot bot="Navigation" i-checksum="34985" endspan --></td>
-<td align="center" height="80" width="10">
-<img border="0" height="2" onclick="openLightbox(this.src)" src="../images/20020322_fishermen.jpg" title="לחץ להגדלה" width="1"/><img border="0" height="173" onclick="openLightbox(this.src)" src="../images/Thailand.gif" title="לחץ להגדלה" width="174"/></td>
-</tr>
-<tr>
-<td colspan="3" height="1" style=" " width="954"></td>
-</tr>
-</table><table cellpadding="0" cellspacing="0" width="100%">
-<tr>
-<td align="right" style=" ">
-<h4>
-<marquee style="font-size: 24pt; color: #008080">סיור בסביבה</marquee></h4>
-<p> </p></td>
-</tr>
-</table>
-<table cellpadding="0" cellspacing="0" height="333" width="953">
-<tr>
-<td height="333" rowspan="2" style="       " valign="top" width="140"> <!--webbot bot="Navigation" S-Type="sequence" S-Orientation="vertical" S-Rendering="graphics" S-Theme="blocks 000" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><!--webbot bot="Navigation" i-checksum="23763" endspan --><p> </p>
-</td>
-<td height="333" rowspan="2" style="     " valign="top" width="1"></td>
-<td colspan="2" height="266" style="     " valign="top" width="735">
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">עבר כאן עוד יום ודעתי על 
-    המקום משתפרת. לאורך הנהר (קוואי) אפשר למצוא המון מקומות יפים ושקטים. הכביש 
-    המקביל לנהר, מעבר לגסט האוסים, מאוכלס בחנויות אינטרנט ובארים כמו בקו-סמוי. 
-    מעל לכל, ממש ממש זול כאן.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">על הבוקר לקחנו 
-    <a href="images/pictures/thailand/20020531_gonen_on_bike.jpg" target="_blank">אופנוע, 
-    קוואסאקי, 175</a>, אופנוע כביש מפואר. נוח להיות בו מורכב כי יש משענת גב. גונן 
-    נהג היטב ונסענו ל<a href="images/pictures/thailand/20020530_gonen_on_quai_river.jpg" target="_blank">גשר על נהר קוואי</a> (2 ק"מ, ניתן ללכת לשם גם ברגל). סתם גשר, 
-    אם כי יש עליו מסילת רכבת ומדי פעם, בהפגנתיות ככל הנראה ובסמליות, עוברת לאיטה 
-    הרכבת מצד לצד.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">המשכנו הלאה למפלים, 60 ק"מ 
-    משם. הדרך יפה, המון הרים מטורפים מזדקרים ברקע, והכל כרגיל ירוק. אם תאילנד לא 
-    היתה כ"כ תיירותית, היא היתה מדינה מטריפה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הכניסה למפלי </span>
-<span dir="LTR">Erawan</span><span lang="HE"> עלתה המון כסף (200 באט – כמו 
-    מסאז'), אז ויתרנו והמשכנו עוד 10 ק"מ, רובם בדרכי עפר למערת </span>
-<span dir="LTR">Phra that</span><span lang="HE">. עולה נורמלי (20 באט) אבל 
-    העליה ברגל לפתח המערה מעייפת (500 מטר). הייתי בלי חולצה כי הזעתי, והיו שם 
-    יתושים שקרעו אותי. הכניסה למערה עם מדריך. הפתח צר אך בפנים היא גדולה. אנחנו 
-    ותיקי מערות אז היה קשה לחדש לנו בגודל המערה, בצורות הנטיפים והזקיפים, אך 
-    ראינו שם 2 דברים חדשים: סלעים שקופים – כשאתה מאיר מצד אחד שלהם – יוצא אור 
-    מהצד השני, לא רע. וראינו גם המוני חרקים, נראים כמו צרצרים – אלפים על הרצפה 
-    ועל הסלעים – כמו בסרט איניאנה ג'ונס. לא לבעלי לב חלש.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">חזרנו משם. גונן נהג יפה 
-    וללא טעויות, כמו שנהג בפעם הקודמת בבוהול, פיליפינים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">החזרנו את האופנוע. המקומי 
-    שהשכיר אותו שמח לראות שהוא חזר בשלום והזמין אותנו לשחק </span>
-<span dir="LTR">pool</span><span lang="HE"> אצלו בחינם. שיחקנו. זה היה יותר 
-    כמו גולף כי השולחן היה עקום. הכנסתי את כל הכדורים למעט השחור וגונן הכניס רק 
-    2. אבל אז הכנסתי את הכדור הלבן – הפסדתי. גונן חגג. המשחק הבא היה צמוד אך 
-    גונן ניצח, לי נשאר כדור אחד. ניסיתי לעצור את החגיגות ואמרתי לו שאני כמו 
-    הפועל תל-אביב – משחק טוב נגד חברה טובים ממנו (גונן רכש נסיון ב- </span>
-<span dir="LTR">pool</span><span lang="HE"> במהלך הטיול. אני כמעט ולא 
-    שיחקתי), אך לא זוכה בגביע ולא באליפות, רק בסימפטיה. גונן שלל זאת וחגג את 
-    ניצחונו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אך כמו במקרים אחרים, גם 
-    הפעם הצחוק האחרון היה שלי.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בערב הלכנו לאיזה פאב/בית 
-    זונות/מסאז'. בחורה שם חמדה את גונן עוד כשעבר לפני-כן עם האופנוע. לקח קצת זמן 
-    להיות בטוחים שהיא באמת בחורה. גונן היה צריך לנגוע במקומות הנכונים. בכל מקרה, 
-    כדי להעביר את הזמן הם שיחקו </span><span dir="LTR">pool</span><span lang="HE">. 
-    הבחורה לא יודעת לשחק וגם לא ממש כיוונה. במשחק הראשון ביניהם גונן הכניס את 
-    הכדור השחור והפסיד. קורה. אני ראיתי טלוויזיה ולא ממש עקבתי אחרי זה. במשחק 
-    השני ראיתי אותו מכניס את כל הכדורים והבחורה הכניסה אולי אחד. אז יצא לי לראות 
-    את גונן מכניס את הכדור הלבן בנסיונו להכניס את הכדור השחור. הוא המשיך כאילו 
-    כלום לא קרה, והבחורה הרי היא סתם שיחקה ולא שמה לב. אמרתי לו "הפסדת" והוא אמר 
-    "לא הפסדתי, כאן יש חוקים אחרים" והמשיך לשחק!. אחרי אינסוף נסיונות להכניס את 
-    הכדור השחור הבחורה הכניסה איכשהו את כל הכדורים ואת השחור – 2 הפסדים מבישים 
-    במשחק אחד!!!.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">סיימנו את הערב במסאז' מפנק 
-    ב- 20 שקל לשעה ועשר דקות.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">ומה עם יעל? – קצת מפגרת, 
-    משועממת. אנחנו גסים בשבילה, אז היא לבד כאן. בערב ראינו אותה הולכת עם מישהו 
-    שנראה כמו בן ארצי, ואח"כ הוא הופיע בפאב לבד. חבל, כ"כ חבל, והיא אפילו לא 
-    נראית כ"כ טוב.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">היום בצהרים נחזור לבנגקוק 
-    ונראה שכל הסידורים בסדר. היינו מסטולים מכדורי הסימום והכל נראה כמו חלום והיו 
-    דברים חשובים שסידרנו – הזמנת כרטיסי טיסה להונג-קונג ולישראל וויזה לקמבודיה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בינתיים נשארה לנו עוד 
-    הזדמנות לאכול את הדג המושלם כאן – דג שלם ב- 7 שקל!. שום מנה לא עולה כאן יותר 
-    מ- 10 שקל, והכל מנות ענקיות ויפות.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אז בסה"כ שווה לבוא ולהרגע 
-    ב- </span><span dir="LTR">Kanchanaburi</span><span lang="HE">.</span></b></p>
-<p> </p></td>
-<td align="center" height="333" rowspan="2" style="     " valign="top" width="187">
-
-<img border="0" height="121" onclick="openLightbox(this.src)" src="../images/20020531_nice_view.jpg" title="לחץ להגדלה" width="183"/><p><img border="0" height="125" onclick="openLightbox(this.src)" src="../images/20020530_gonen_in_kanchanaburi.jpg" title="לחץ להגדלה" width="180"/></p>
-<p><img border="0" height="114" onclick="openLightbox(this.src)" src="../images/20020530_gonen_on_quai_river.jpg" title="לחץ להגדלה" width="179"/><img border="0" height="211" onclick="openLightbox(this.src)" src="../images/20020530_malik_on_quai_river.jpg" title="לחץ להגדלה" width="150"/></p>
-<p><font color="#660099">הגשר על נהר קוואי המפורסם</font></p>
-<p>
-
-<img border="0" height="208" onclick="openLightbox(this.src)" src="../images/20020531_gonen_on_bike.jpg" title="לחץ להגדלה" width="145"/></p>
-<p>
-
-<img border="0" height="192" onclick="openLightbox(this.src)" src="../images/20020531_nice_temple_in_kanchanaburi.jpg" title="לחץ להגדלה" width="147"/></p></td>
-</tr>
-<tr>
-<td height="67" style="     " valign="top" width="314">
-<b>
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button104.gif" title="לחץ להגדלה" width="59"/></b></td>
-<td height="67" style="     " valign="top" width="421">
-<p align="right"><b>
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button106.gif" title="לחץ להגדלה" width="59"/></b></p></td>
-</tr>
-</table>
-<p align="center">
-<!--webbot bot="Navigation" S-Type="sequence" S-Orientation="horizontal" S-Rendering="html" S-Bar="Brackets" S-Btn-Nml="[&lt;A HREF=&quot;#URL#&quot; TARGET=&quot;#TARGET#&quot; STYLE=&quot;{text-decoration: none;}&quot;&gt;#LABEL#&lt;/A&gt;]" S-Btn-Sel="[#LABEL#]" S-Btn-Sep="&amp;nbsp;" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><nobr>[<a href="index.html" style="{text-decoration: none;}" target="">התחלה</a>]</nobr> <nobr>[<a href="200110052040.html" style="{text-decoration: none;}" target="">דנמרק</a>]</nobr> <nobr>[<a href="20011006.html" style="{text-decoration: none;}" target="">הודו</a>]</nobr> <nobr>[<a href="20011030.html" style="{text-decoration: none;}" target="">נפאל</a>]</nobr> <nobr>[<a href="20011115.html" style="{text-decoration: none;}" target="">טרק סובב אנאפורנה</a>]</nobr> <nobr>[<a href="20011210.html" style="{text-decoration: none;}" target="">תאילנד</a>]</nobr> <nobr>[<a href="20020108.html" style="{text-decoration: none;}" target="">לאוס</a>]</nobr> <nobr>[<a href="20020123.html" style="{text-decoration: none;}" target="">צפון תאילנד</a>]</nobr> <nobr>[<a href="20020203.html" style="{text-decoration: none;}" target="">אוסטרליה</a>]</nobr> <nobr>[<a href="20020210.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי דרומי</a>]</nobr> <nobr>[<a href="20020326.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי צפוני</a>]</nobr> <nobr>[<a href="20020506.html" style="{text-decoration: none;}" target="">פיליפינים</a>]</nobr> <nobr>[<a href="20020603.html" style="{text-decoration: none;}" target="">קמבודיה</a>]</nobr><!--webbot bot="Navigation" i-checksum="33824" endspan --></p>
-<p><i><small>This site was last updated
-<!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%m/%d/%y" startspan -->08/02/03<!--webbot bot="Timestamp" i-checksum="12636" endspan --> </small></i>
-</p>
-</body>
+    <div class="nav-links">
+      <a href="200205300800.html">← הקודם</a>
+      <a href="200205312115.html">הבא →</a>
     </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-text">
+      <div class="meta-line">
+        <span class="date-big">31</span>
+        <div>
+          <div class="date-details">מאי 2002</div>
+          <span class="country-badge">תאילנד</span>
+        </div>
+      </div>
+      <h1 class="title">סיור בסביבה</h1>
+      <div class="title-divider"></div>
+    </div>
+    <img class="hero-map" src="../images/Thailand.gif" alt="תאילנד">
+  </div>
+
+  <div class="content">
+    <p>סיור בסביבה</p>
+
+    <p>עבר כאן עוד יום ודעתי על המקום משתפרת. לאורך הנהר (קוואי) אפשר למצוא המון מקומות יפים ושקטים. הכביש המקביל לנהר, מעבר לגסט האוסים, מאוכלס בחנויות אינטרנט ובארים כמו בקו-סמוי. מעל לכל, ממש ממש זול כאן.</p>
+
+    <p>על הבוקר לקחנו <a onclick="openLightbox('../images/20020531_gonen_on_bike.jpg')">אופנוע, קוואסאקי, 175</a>, אופנוע כביש מפואר. נוח להיות בו מורכב כי יש משענת גב. גונן נהג היטב ונסענו ל<a onclick="openLightbox('../images/20020530_gonen_on_quai_river.jpg')">גשר על נהר קוואי</a> (2 ק"מ, ניתן ללכת לשם גם ברגל). סתם גשר, אם כי יש עליו מסילת רכבת ומדי פעם, בהפגנתיות ככל הנראה ובסמליות, עוברת לאיטה הרכבת מצד לצד.</p>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/20020322_fishermen.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020531_nice_view.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020530_gonen_in_kanchanaburi.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+    </div>
+
+    <p>המשכנו הלאה למפלים, 60 ק"מ משם. הדרך יפה, המון הרים מטורפים מזדקרים ברקע, והכל כרגיל ירוק. אם תאילנד לא היתה כ"כ תיירותית, היא היתה מדינה מטריפה.</p>
+
+    <p>הכניסה למפלי Erawan עלתה המון כסף (200 באט – כמו מסאז'), אז ויתרנו והמשכנו עוד 10 ק"מ, רובם בדרכי עפר למערת Phra that. עולה נורמלי (20 באט) אבל העליה ברגל לפתח המערה מעייפת (500 מטר). הייתי בלי חולצה כי הזעתי, והיו שם יתושים שקרעו אותי. הכניסה למערה עם מדריך. הפתח צר אך בפנים היא גדולה. אנחנו ותיקי מערות אז היה קשה לחדש לנו בגודל המערה, בצורות הנטיפים והזקיפים, אך ראינו שם 2 דברים חדשים: סלעים שקופים – כשאתה מאיר מצד אחד שלהם – יוצא אור מהצד השני, לא רע. וראינו גם המוני חרקים, נראים כמו צרצרים – אלפים על הרצפה ועל הסלעים – כמו בסרט איניאנה ג'ונס. לא לבעלי לב חלש.</p>
+
+    <p>חזרנו משם. גונן נהג יפה וללא טעויות, כמו שנהג בפעם הקודמת בבוהול, פיליפינים.</p>
+
+    <div class="photo-pair">
+      <div class="photo-item">
+        <img src="../images/20020530_gonen_on_quai_river.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">הגשר על נהר קוואי המפורסם</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020530_malik_on_quai_river.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">הגשר על נהר קוואי המפורסם</div>
+      </div>
+    </div>
+
+    <p>החזרנו את האופנוע. המקומי שהשכיר אותו שמח לראות שהוא חזר בשלום והזמין אותנו לשחק pool אצלו בחינם. שיחקנו. זה היה יותר כמו גולף כי השולחן היה עקום. הכנסתי את כל הכדורים למעט השחור וגונן הכניס רק 2. אבל אז הכנסתי את הכדור הלבן – הפסדתי. גונן חגג. המשחק הבא היה צמוד אך גונן ניצח, לי נשאר כדור אחד. ניסיתי לעצור את החגיגות ואמרתי לו שאני כמו הפועל תל-אביב – משחק טוב נגד חברה טובים ממנו (גונן רכש נסיון ב- pool במהלך הטיול. אני כמעט ולא שיחקתי), אך לא זוכה בגביע ולא באליפות, רק בסימפטיה. גונן שלל זאת וחגג את ניצחונו.</p>
+
+    <p>אך כמו במקרים אחרים, גם הפעם הצחוק האחרון היה שלי.</p>
+
+    <p>בערב הלכנו לאיזה פאב/בית זונות/מסאז'. בחורה שם חמדה את גונן עוד כשעבר לפני-כן עם האופנוע. לקח קצת זמן להיות בטוחים שהיא באמת בחורה. גונן היה צריך לנגוע במקומות הנכונים. בכל מקרה, כדי להעביר את הזמן הם שיחקו pool. הבחורה לא יודעת לשחק וגם לא ממש כיוונה. במשחק הראשון ביניהם גונן הכניס את הכדור השחור והפסיד. קורה. אני ראיתי טלוויזיה ולא ממש עקבתי אחרי זה. במשחק השני ראיתי אותו מכניס את כל הכדורים והבחורה הכניסה אולי אחד. אז יצא לי לראות את גונן מכניס את הכדור הלבן בנסיונו להכניס את הכדור השחור. הוא המשיך כאילו כלום לא קרה, והבחורה הרי היא סתם שיחקה ולא שמה לב. אמרתי לו "הפסדת" והוא אמר "לא הפסדתי, כאן יש חוקים אחרים" והמשיך לשחק!. אחרי אינסוף נסיונות להכניס את הכדור השחור הבחורה הכניסה איכשהו את כל הכדורים ואת השחור – 2 הפסדים מבישים במשחק אחד!!!.</p>
+
+    <div class="photo-pair">
+      <div class="photo-item">
+        <img src="../images/20020531_gonen_on_bike.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020531_nice_temple_in_kanchanaburi.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+    </div>
+
+    <p>סיימנו את הערב במסאז' מפנק ב- 20 שקל לשעה ועשר דקות.</p>
+
+    <p>ומה עם יעל? – קצת מפגרת, משועממת. אנחנו גסים בשבילה, אז היא לבד כאן. בערב ראינו אותה הולכת עם מישהו שנראה כמו בן ארצי, ואח"כ הוא הופיע בפאב לבד. חבל, כ"כ חבל, והיא אפילו לא נראית כ"כ טוב.</p>
+
+    <p>היום בצהרים נחזור לבנגקוק ונראה שכל הסידורים בסדר. היינו מסטולים מכדורי הסימום והכל נראה כמו חלום והיו דברים חשובים שסידרנו – הזמנת כרטיסי טיסה להונג-קונג ולישראל וויזה לקמבודיה.</p>
+
+    <p>בינתיים נשארה לנו עוד הזדמנות לאכול את הדג המושלם כאן – דג שלם ב- 7 שקל!. שום מנה לא עולה כאן יותר מ- 10 שקל, והכל מנות ענקיות ויפות.</p>
+
+    <p>אז בסה"כ שווה לבוא ולהרגע ב- Kanchanaburi.</p>
+
+
+  </div>
+
+  <div class="nav-cards">
+    <a href="200205312115.html" class="nav-card">
+      <div class="label">הבא →</div>
+      <div class="card-title">השלמות וסיכומים</div>
+    </a>
+    <a href="200205300800.html" class="nav-card">
+      <div class="label">← הקודם</div>
+      <div class="card-title">סיכום הפיליפינים</div>
+    </a>
+  </div>
+
+  <div class="country-nav">
+    <a href="200110052040.html">דנמרק</a>
+    <a href="20011006.html">הודו</a>
+    <a href="20011030.html">נפאל</a>
+    <a href="20011115.html">טרק אנאפורנה</a>
+    <a href="20011210.html">תאילנד</a>
+    <a href="20020108.html">לאוס</a>
+    <a href="20020123.html">צפון תאילנד</a>
+    <a href="20020203.html">אוסטרליה</a>
+    <a href="20020210.html">ניו-זילנד, אי דרומי</a>
+    <a href="20020326.html">ניו-זילנד, אי צפוני</a>
+    <a href="20020506.html">פיליפינים</a>
+    <a href="20020603.html">קמבודיה</a>
   </div>
 
   <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
-    <img id="lightbox-img" src="" alt="Enlarged">
+    <img id="lightbox-img" src="" alt="">
   </div>
-
   <script>
     function openLightbox(src) {
       document.getElementById('lightbox-img').src = src;

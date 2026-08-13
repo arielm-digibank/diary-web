@@ -3,193 +3,300 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>חניה מול מרכז התיירים, רוטורואה, ניו-זילנד</title>
+  <title>הכרת העיר רוטורואה</title>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap" rel="stylesheet">
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background-color: #f8fafc;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0; padding: 20px; color: #334155;
+      background: #ffffff;
+      font-family: 'Heebo', sans-serif;
+      color: #1a1a2e;
+      line-height: 1.9;
     }
-    .container {
-      max-width: 800px; margin: 0 auto; background: #ffffff;
-      padding: 35px; border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06); line-height: 1.8;
+    .top-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #eee;
+      padding: 12px 30px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.9rem;
     }
-    .header {
-      border-bottom: 2px solid #e2e8f0; padding-bottom: 15px;
-      margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center;
+    .top-nav a {
+      color: #1d4ed8; text-decoration: none; font-weight: 600;
     }
-    .header h1 { margin: 0; color: #0f172a; font-size: 1.8rem; }
-    .home-link { color: #2563eb; text-decoration: none; font-weight: 600; }
-    .content img {
-      float: right; margin: 0 0 15px 20px; max-width: 320px; height: auto;
-      border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      cursor: pointer; transition: transform 0.2s;
+    .top-nav a:hover { text-decoration: underline; }
+    .top-nav .nav-links { display: flex; gap: 20px; }
+    .hero {
+      max-width: 900px; margin: 0 auto;
+      padding: 50px 40px 30px;
+      display: flex; align-items: flex-start; gap: 30px;
     }
-    .content img:hover { transform: scale(1.02); }
-    .content::after { content: ""; clear: both; display: table; }
-    a { color: #2563eb; }
+    .hero-text { flex: 1; }
+    .hero-map {
+      width: 120px; height: auto; object-fit: contain;
+      flex-shrink: 0; opacity: 0.85;
+    }
+    .meta-line {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+    }
+    .date-big {
+      font-size: 3.5rem; font-weight: 900; color: #e5e7eb; line-height: 1;
+    }
+    .date-details { font-size: 0.9rem; color: #6b7280; }
+    .country-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      border-radius: 20px; padding: 4px 14px;
+      font-size: 0.8rem; color: #1d4ed8; font-weight: 600;
+    }
+    .title {
+      font-size: 2.2rem; font-weight: 900; color: #111827;
+      margin: 20px 0 8px; line-height: 1.3;
+    }
+    .date-subtitle {
+      font-size: 1.1rem; font-weight: 300; color: #4b5563;
+      margin-bottom: 16px;
+    }
+    .title-divider {
+      width: 60px; height: 4px; background: #1d4ed8; border-radius: 2px;
+    }
+    .content {
+      max-width: 900px; margin: 30px auto; padding: 0 40px; font-size: 1.05rem;
+    }
+    .content p { margin-bottom: 18px; }
+    .content a {
+      color: #1d4ed8; cursor: pointer;
+      text-decoration: underline;
+      text-decoration-color: rgba(29,78,216,0.3);
+    }
+    .photo-block {
+      margin: 30px 0; border-radius: 12px; overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    .photo-block img {
+      width: 100%; display: block; cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .photo-block img:hover { transform: scale(1.01); }
+    .photo-block .caption {
+      padding: 12px 16px; font-size: 0.85rem; color: #6b7280;
+      background: #f9fafb; border-top: 1px solid #f3f4f6;
+    }
+    .photo-pair {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 14px; margin: 30px 0;
+    }
+    .photo-pair .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-pair .photo-item img {
+      width: 100%; height: 200px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-pair .photo-item img:hover { transform: scale(1.03); }
+    .photo-pair .photo-item .caption {
+      padding: 8px 12px; font-size: 0.8rem; color: #6b7280; background: #f9fafb;
+    }
+    .photo-trio {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px; margin: 30px 0;
+    }
+    .photo-trio .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-trio .photo-item img {
+      width: 100%; height: 180px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-trio .photo-item img:hover { transform: scale(1.03); }
+    .photo-trio .photo-item .caption {
+      padding: 8px 10px; font-size: 0.78rem; color: #6b7280; background: #f9fafb;
+    }
+    .nav-cards {
+      max-width: 900px; margin: 50px auto 20px; padding: 0 40px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .nav-card {
+      padding: 20px 24px; border: 1px solid #e5e7eb; border-radius: 12px;
+      text-decoration: none; color: inherit; transition: all 0.2s;
+    }
+    .nav-card:hover {
+      border-color: #1d4ed8; box-shadow: 0 4px 12px rgba(29,78,216,0.1);
+    }
+    .nav-card .label { font-size: 0.8rem; color: #6b7280; margin-bottom: 4px; }
+    .nav-card .card-title { font-weight: 700; font-size: 1rem; color: #1d4ed8; }
+    .supplements {
+      margin-top: 35px; padding: 25px 30px;
+      background: #f9fafb; border-radius: 12px; border: 1px solid #e5e7eb;
+    }
+    .supplements h3 {
+      font-size: 1.1rem; font-weight: 700; margin-bottom: 14px; color: #374151;
+    }
+    .supplements ol { padding-right: 20px; }
+    .supplements li { margin-bottom: 10px; color: #4b5563; }
+    .country-nav {
+      max-width: 900px; margin: 20px auto 40px; padding: 0 40px;
+      display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+    }
+    .country-nav a {
+      padding: 6px 14px; border-radius: 20px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      color: #1d4ed8; text-decoration: none;
+      font-size: 0.82rem; font-weight: 600;
+      transition: all 0.2s;
+    }
+    .country-nav a:hover {
+      background: #1d4ed8; color: white; border-color: #1d4ed8;
+    }
     .lightbox {
       display: none; position: fixed; z-index: 9999;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.9); justify-content: center; align-items: center; cursor: pointer;
+      background: rgba(0,0,0,0.92);
+      justify-content: center; align-items: center; cursor: pointer;
     }
-    .lightbox img { max-width: 90%; max-height: 90%; border-radius: 8px; }
+    .lightbox img { max-width: 92%; max-height: 92%; border-radius: 8px; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h1>חניה מול מרכז התיירים, רוטורואה, ניו-זילנד</h1>
-      <a href="../index.html" class="home-link">🏠 לעמוד הראשי</a>
+  <div class="top-nav">
+    <div class="nav-links">
+      <a href="../index.html">עמוד ראשי</a>
     </div>
-    <div class="content">
-      <body>
-<table cellpadding="0" cellspacing="0" height="80" width="954">
-<tr>
-<td align="center" height="80" width="277">
-<marquee style="font-size: 18pt; color: #800080">12.4.02 - 10:00</marquee></td>
-<td align="center" height="80" width="667">
-<!--webbot bot="Navigation" s-type="banner" s-rendering="graphics" S-Orientation B-Include-Home B-Include-Up U-Page S-Target startspan --><!--webbot bot="Navigation" i-checksum="42939" endspan --></td>
-<td align="center" height="80" width="10">
-<img border="0" height="2" onclick="openLightbox(this.src)" src="../images/20020322_fishermen.jpg" title="לחץ להגדלה" width="1"/><img border="0" height="159" onclick="openLightbox(this.src)" src="../images/New_Zealand_north_island.gif" title="לחץ להגדלה" width="159"/></td>
-</tr>
-<tr>
-<td colspan="3" height="1" style=" " width="954"></td>
-</tr>
-</table><table cellpadding="0" cellspacing="0" width="100%">
-<tr>
-<td align="right" style=" ">
-<h4>
-<marquee style="font-size: 24pt; color: #008080">הכרת העיר רוטורואה</marquee></h4>
-<p> </p></td>
-</tr>
-</table>
-<table cellpadding="0" cellspacing="0" height="333" width="953">
-<tr>
-<td height="333" rowspan="2" style="       " valign="top" width="140"> <!--webbot bot="Navigation" S-Type="sequence" S-Orientation="vertical" S-Rendering="graphics" S-Theme="blocks 000" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><!--webbot bot="Navigation" i-checksum="23763" endspan --><p> </p>
-</td>
-<td height="333" rowspan="2" style="     " valign="top" width="1"></td>
-<td colspan="2" height="266" style="     " valign="top" width="735">
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> דורי הולך לסידורים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">גונן במצב מחורבן, הוא 
-    בשירותים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הוא לא רצה לשלח ולהשתלח 
-    בשירותים הציבוריים ליד
-    <a href="images/pictures/new-zealand/20020411_government_gardens_1.jpg" target="_blank">
-    גני הממשלה</a> (</span><span dir="LTR">Government gardens</span><span lang="HE">).</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">כל כך הרבה שירותים 
-    ציבוריים חווינו בניו-זילנד, שאפשר לחלק אותם לקטגוריות, ואני לא מתכוון לפי 
-    הנקיון שלהם (כמעט כולם נקיים) או אם יש אסלות (בכולם יש) או נייר טואלט (בכולם 
-    יש).</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בשירותים הציבוריים ליד גני 
-    הממשלה יש תא בודד, גדול – זה נקרא חרבון בודד. זה טוב, אבל כשאני הייתי שם 
-    חיכה איזה זקן שאני אסיים וכך הוא זיהה בוודאות את האחראי לנזקים הסביבתיים 
-    שגרמתי. אי אפשר להתחמק מהזיהוי וזה חסרון גדול.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">גרוע מזה יש את חרבון הפאב, 
-    שם יש תא אחד ואין מנעול ואי אפשר לשמוע מבחוץ אם יש מישהו בפנים. אתה ממש לחוץ 
-    כשאתה בתא כזה. אני קורא לזה תא הנידונים. לא נהנים שם בכלל.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">יש את השירותים הנידחים 
-    הנמצאים במקומות שאף אחד לא מגיע אליהם. שם יש תא אחד לרוב ואתה יודע שאף אחד 
-    לא יגיע, אבל לרוב הם פחות נקיים, כי גם אנשי הנקיון בקושי מגיעים לשם.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">יש את שירותי החוליה 
-    הנפוצים – 2 עד 3 תאים. כשאתה לבד זה אחלה, אבל כשמגיע מישהו זה ממש מבאס אותך 
-    ואתה צריך לדאוג לא לצאת איתו ביחד או חס וחלילה להפגש ליד הברזים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">גונן בחר בשירותי תחנת 
-    הרכבת. אני קורא לחוויה הזו החרבון האנונימי – יש שם לפחות 10 תאים וכל הזמן 
-    נכנסים ויוצאים אנשים. זה מבטיח לך אנונימיות. אתה יכול להשתולל, אבל אין שום 
-    זכרון אישי, אינטימי משירותים אלו. אין ייחודיות.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">את הלילה האחרון עם מרגרט 
-    בילינו בלי לצאת. הלכנו לישון. קיבלנו ארוחת-ערב עם נקניקיות טעימות.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בבוקר מרגרט העירה אותנו. 
-    היא הלכה לעבוד.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">התקלחנו וירדנו להפרד ממנה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אין </span>
-<span dir="LTR">Hit</span> <span lang="HE">שניצלנו אותו יותר – אינטרנט כמעט 
-    כל ערב, ארוחות ערב שהיא מכינה לנו. ארוחת בוקר ממוצריה. כביסה, גם של הסק"שים. 
-    הסעות למוסך והראיון עם העיתונאית, שמתפרסם היום. אנחנו נראה את זה באינטרנט.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">נפרדנו בחיבוקים. מרגרט 
-    התרגשה, אנחנו רצינו ללכת משם, כי כבר לא היה נעים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">גונן הסיע שעות, קרוב ל- 
-    300 ק"מ, בדרך יפה, מ- </span><span dir="LTR">Gisborne</span><span lang="HE"> 
-    ל- </span><span dir="LTR">Opatiki</span><span lang="HE">.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אח"כ ראינו חופים יפהפיים, 
-    עם חול כמו בארץ, אבל הדרך נראתה יפה פי כמה. לא היו כמעט אנשים בחוף אעפ"י 
-    שהיה יום ממש יפה. היו כמה איים שנראו היטב מהחוף.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">כשהגענו ל- </span>
-<span dir="LTR">Rotorua</span><span lang="HE">, חשנו מיד בצחנת הביצים 
-    הסרוחות השורה בעיר. זו עיר שיושבת ממש על מעיינות חמים וגייזרים ועוד כל מיני 
-    פעילויות טרמיות טבעיות. זו עיר מאד תיירותית, כמו </span><span dir="LTR">
-    Queenstown</span><span lang="HE">. הכל כאן מתומחר היטב, לכן לא נראה לי שיצא 
-    לנו לראות משהו מזה. יש כאן כמה פארקים טרמיים וכמה מעיינות חמים, אבל אין משהו 
-    משולב שכולל את שניהם. המחיר נע בין 12$</span><span dir="LTR">NZ</span><span lang="HE"> 
-    ל- 18$</span><span dir="LTR">NZ</span><span lang="HE">.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בערב יצאנו ופגשנו כמה 
-    צעירים זרוקים בכיכרות העיר. שותים אלכוהול מבקבוקי קולה (להטעות את השוטרים) 
-    ומעשנים גראס, ובין לבין מתאמנים על סקייטבורד.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הרבה צעירים בניו-זילנד חסרי 
-    מוטיבציה לעשות משהו, מבלים את זמנם כך.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">החברה היו חמודים והציעו 
-    לנו להצטרף אליהם, אבל אנחנו רצינו לחפש מקום בילוי עם ריקודים, מועדון.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">נכשלנו, לא מצאנו, אולי כי 
-    זה עדיין לא סוף שבוע אלא רק יום חמישי. מצאנו </span><span dir="LTR">meat-pie</span><span lang="HE"> 
-    מאד זול, 1.15$</span><span dir="LTR">NZ</span><span lang="HE">. זה שיפר את 
-    מצב רוחנו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הלכנו לישון באוטו. מצב 
-    הרוח היה טוב. אז אנחנו לא מדברים עם דורי על האוטו ו- 200$</span><span dir="LTR">NZ</span><span lang="HE"> 
-    הנוספים שאנחנו רוצים ממנו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בבוקר קמתי והסתכלתי 
-    והתפעלתי מכמות הציפורים האדירה ליד האגם – המון שלדגים מכסים עצים וסלעים. 
-    שחפים בהמוניהם, אך לא מתערבבים עם השלדגים.
-    <a href="images/pictures/new-zealand/20020412_pukeko.jpg" target="_blank">
-    כמה פוקיקים חמודים מטיילים</a> בטריטוריה שלהם. הם מוזרים מאד – כרבולת אדומה, 
-    גחון  כחול וטלפיים ארוכות מאד.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">יש גם כמה ברבורים שחורים 
-    ויפים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">והמון יתושים.</span></b></p>
-<p class="MsoNormal" dir="RTL"> </p></td>
-<td align="center" height="333" rowspan="2" style="     " valign="top" width="187">
-
-<img border="0" height="116" onclick="openLightbox(this.src)" src="../images/20020411_government_gardens_1.jpg" title="לחץ להגדלה" width="180"/><p>
-<font color="#660099">גני הממשלה ברוטורואה</font></p>
-<p>
-
-<img border="0" height="195" onclick="openLightbox(this.src)" src="../images/20020411_government_gardens_2.jpg" title="לחץ להגדלה" width="177"/></p>
-<p><font color="#660099">פסלים יפים בגני הממשלה</font></p>
-<p>
-<img border="0" height="241" onclick="openLightbox(this.src)" src="../images/our_car.jpg" title="לחץ להגדלה" width="154"/></p>
-<p><font color="#660099">מתכוננים לאוכל בפארק ברוטורואה</font></p>
-<p>
-
-<img border="0" height="117" onclick="openLightbox(this.src)" src="../images/20020412_pukeko.jpg" title="לחץ להגדלה" width="178"/></p>
-<p><font color="#660099">פוקיקו חמוד הולך על הכביש</font></p></td>
-</tr>
-<tr>
-<td height="67" style="     " valign="top" width="314">
-<b>
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button104.gif" title="לחץ להגדלה" width="59"/></b></td>
-<td height="67" style="     " valign="top" width="421">
-<p align="right"><b>
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button106.gif" title="לחץ להגדלה" width="59"/></b></p></td>
-</tr>
-</table>
-<p align="center">
-<!--webbot bot="Navigation" S-Type="sequence" S-Orientation="horizontal" S-Rendering="html" S-Bar="Brackets" S-Btn-Nml="[&lt;A HREF=&quot;#URL#&quot; TARGET=&quot;#TARGET#&quot; STYLE=&quot;{text-decoration: none;}&quot;&gt;#LABEL#&lt;/A&gt;]" S-Btn-Sel="[#LABEL#]" S-Btn-Sep="&amp;nbsp;" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><nobr>[<a href="index.html" style="{text-decoration: none;}" target="">התחלה</a>]</nobr> <nobr>[<a href="200110052040.html" style="{text-decoration: none;}" target="">דנמרק</a>]</nobr> <nobr>[<a href="20011006.html" style="{text-decoration: none;}" target="">הודו</a>]</nobr> <nobr>[<a href="20011030.html" style="{text-decoration: none;}" target="">נפאל</a>]</nobr> <nobr>[<a href="20011115.html" style="{text-decoration: none;}" target="">טרק סובב אנאפורנה</a>]</nobr> <nobr>[<a href="20011210.html" style="{text-decoration: none;}" target="">תאילנד</a>]</nobr> <nobr>[<a href="20020108.html" style="{text-decoration: none;}" target="">לאוס</a>]</nobr> <nobr>[<a href="20020123.html" style="{text-decoration: none;}" target="">צפון תאילנד</a>]</nobr> <nobr>[<a href="20020203.html" style="{text-decoration: none;}" target="">אוסטרליה</a>]</nobr> <nobr>[<a href="20020210.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי דרומי</a>]</nobr> <nobr>[<a href="20020326.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי צפוני</a>]</nobr> <nobr>[<a href="20020506.html" style="{text-decoration: none;}" target="">פיליפינים</a>]</nobr> <nobr>[<a href="20020603.html" style="{text-decoration: none;}" target="">קמבודיה</a>]</nobr><!--webbot bot="Navigation" i-checksum="33824" endspan --></p>
-<p><i><small>This site was last updated
-<!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%m/%d/%y" startspan -->08/06/02<!--webbot bot="Timestamp" i-checksum="12572" endspan --> </small></i>
-</p>
-</body>
+    <div class="nav-links">
+      <a href="20020410.html">← הקודם</a>
+      <a href="20020413.html">הבא →</a>
     </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-text">
+      <div class="meta-line">
+        <span class="date-big">12</span>
+        <div>
+          <div class="date-details">אפריל 2002</div>
+          <span class="country-badge">ניו-זילנד, אי צפוני</span>
+        </div>
+      </div>
+      <h1 class="title">הכרת העיר רוטורואה</h1>
+      <div class="title-divider"></div>
+    </div>
+    <img class="hero-map" src="../images/New_Zealand_north_island.gif" alt="ניו-זילנד, אי צפוני">
+  </div>
+
+  <div class="content">
+    <p>הכרת העיר רוטורואה</p>
+
+    <p>דורי הולך לסידורים.</p>
+
+    <p>גונן במצב מחורבן, הוא בשירותים.</p>
+
+    <p>הוא לא רצה לשלח ולהשתלח בשירותים הציבוריים ליד <a onclick="openLightbox('../images/20020411_government_gardens_1.jpg')"> גני הממשלה</a> (Government gardens).</p>
+
+    <p>כל כך הרבה שירותים ציבוריים חווינו בניו-זילנד, שאפשר לחלק אותם לקטגוריות, ואני לא מתכוון לפי הנקיון שלהם (כמעט כולם נקיים) או אם יש אסלות (בכולם יש) או נייר טואלט (בכולם יש).</p>
+
+    <p>בשירותים הציבוריים ליד גני הממשלה יש תא בודד, גדול – זה נקרא חרבון בודד. זה טוב, אבל כשאני הייתי שם חיכה איזה זקן שאני אסיים וכך הוא זיהה בוודאות את האחראי לנזקים הסביבתיים שגרמתי. אי אפשר להתחמק מהזיהוי וזה חסרון גדול.</p>
+
+    <p>גרוע מזה יש את חרבון הפאב, שם יש תא אחד ואין מנעול ואי אפשר לשמוע מבחוץ אם יש מישהו בפנים. אתה ממש לחוץ כשאתה בתא כזה. אני קורא לזה תא הנידונים. לא נהנים שם בכלל.</p>
+
+    <p>יש את השירותים הנידחים הנמצאים במקומות שאף אחד לא מגיע אליהם. שם יש תא אחד לרוב ואתה יודע שאף אחד לא יגיע, אבל לרוב הם פחות נקיים, כי גם אנשי הנקיון בקושי מגיעים לשם.</p>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/20020322_fishermen.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020411_government_gardens_1.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">גני הממשלה ברוטורואה</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020411_government_gardens_2.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">פסלים יפים בגני הממשלה</div>
+      </div>
+    </div>
+
+    <p>יש את שירותי החוליה הנפוצים – 2 עד 3 תאים. כשאתה לבד זה אחלה, אבל כשמגיע מישהו זה ממש מבאס אותך ואתה צריך לדאוג לא לצאת איתו ביחד או חס וחלילה להפגש ליד הברזים.</p>
+
+    <p>גונן בחר בשירותי תחנת הרכבת. אני קורא לחוויה הזו החרבון האנונימי – יש שם לפחות 10 תאים וכל הזמן נכנסים ויוצאים אנשים. זה מבטיח לך אנונימיות. אתה יכול להשתולל, אבל אין שום זכרון אישי, אינטימי משירותים אלו. אין ייחודיות.</p>
+
+    <p>את הלילה האחרון עם מרגרט בילינו בלי לצאת. הלכנו לישון. קיבלנו ארוחת-ערב עם נקניקיות טעימות.</p>
+
+    <p>בבוקר מרגרט העירה אותנו. היא הלכה לעבוד.</p>
+
+    <p>התקלחנו וירדנו להפרד ממנה.</p>
+
+    <p>אין Hit שניצלנו אותו יותר – אינטרנט כמעט כל ערב, ארוחות ערב שהיא מכינה לנו. ארוחת בוקר ממוצריה. כביסה, גם של הסק"שים. הסעות למוסך והראיון עם העיתונאית, שמתפרסם היום. אנחנו נראה את זה באינטרנט.</p>
+
+    <p>נפרדנו בחיבוקים. מרגרט התרגשה, אנחנו רצינו ללכת משם, כי כבר לא היה נעים.</p>
+
+    <p>גונן הסיע שעות, קרוב ל- 300 ק"מ, בדרך יפה, מ- Gisborne ל- Opatiki.</p>
+
+    <div class="photo-pair">
+      <div class="photo-item">
+        <img src="../images/our_car.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">מתכוננים לאוכל בפארק ברוטורואה</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020412_pukeko.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">פוקיקו חמוד הולך על הכביש</div>
+      </div>
+    </div>
+
+    <p>אח"כ ראינו חופים יפהפיים, עם חול כמו בארץ, אבל הדרך נראתה יפה פי כמה. לא היו כמעט אנשים בחוף אעפ"י שהיה יום ממש יפה. היו כמה איים שנראו היטב מהחוף.</p>
+
+    <p>כשהגענו ל- Rotorua, חשנו מיד בצחנת הביצים הסרוחות השורה בעיר. זו עיר שיושבת ממש על מעיינות חמים וגייזרים ועוד כל מיני פעילויות טרמיות טבעיות. זו עיר מאד תיירותית, כמו Queenstown. הכל כאן מתומחר היטב, לכן לא נראה לי שיצא לנו לראות משהו מזה. יש כאן כמה פארקים טרמיים וכמה מעיינות חמים, אבל אין משהו משולב שכולל את שניהם. המחיר נע בין 12$NZ ל- 18$NZ.</p>
+
+    <p>בערב יצאנו ופגשנו כמה צעירים זרוקים בכיכרות העיר. שותים אלכוהול מבקבוקי קולה (להטעות את השוטרים) ומעשנים גראס, ובין לבין מתאמנים על סקייטבורד.</p>
+
+    <p>הרבה צעירים בניו-זילנד חסרי מוטיבציה לעשות משהו, מבלים את זמנם כך.</p>
+
+    <p>החברה היו חמודים והציעו לנו להצטרף אליהם, אבל אנחנו רצינו לחפש מקום בילוי עם ריקודים, מועדון.</p>
+
+    <p>נכשלנו, לא מצאנו, אולי כי זה עדיין לא סוף שבוע אלא רק יום חמישי. מצאנו meat-pie מאד זול, 1.15$NZ. זה שיפר את מצב רוחנו.</p>
+
+    <p>הלכנו לישון באוטו. מצב הרוח היה טוב. אז אנחנו לא מדברים עם דורי על האוטו ו- 200$NZ הנוספים שאנחנו רוצים ממנו.</p>
+
+    <p>בבוקר קמתי והסתכלתי והתפעלתי מכמות הציפורים האדירה ליד האגם – המון שלדגים מכסים עצים וסלעים. שחפים בהמוניהם, אך לא מתערבבים עם השלדגים. <a onclick="openLightbox('../images/20020412_pukeko.jpg')"> כמה פוקיקים חמודים מטיילים</a> בטריטוריה שלהם. הם מוזרים מאד – כרבולת אדומה, גחון כחול וטלפיים ארוכות מאד.</p>
+
+    <p>יש גם כמה ברבורים שחורים ויפים.</p>
+
+    <p>והמון יתושים.</p>
+
+
+  </div>
+
+  <div class="nav-cards">
+    <a href="20020413.html" class="nav-card">
+      <div class="label">הבא →</div>
+      <div class="card-title">בריכה לבטלה, מהדקים את החגורה</div>
+    </a>
+    <a href="20020410.html" class="nav-card">
+      <div class="label">← הקודם</div>
+      <div class="card-title">מסיבת עיתונאית</div>
+    </a>
+  </div>
+
+  <div class="country-nav">
+    <a href="200110052040.html">דנמרק</a>
+    <a href="20011006.html">הודו</a>
+    <a href="20011030.html">נפאל</a>
+    <a href="20011115.html">טרק אנאפורנה</a>
+    <a href="20011210.html">תאילנד</a>
+    <a href="20020108.html">לאוס</a>
+    <a href="20020123.html">צפון תאילנד</a>
+    <a href="20020203.html">אוסטרליה</a>
+    <a href="20020210.html">ניו-זילנד, אי דרומי</a>
+    <a href="20020326.html">ניו-זילנד, אי צפוני</a>
+    <a href="20020506.html">פיליפינים</a>
+    <a href="20020603.html">קמבודיה</a>
   </div>
 
   <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
-    <img id="lightbox-img" src="" alt="Enlarged">
+    <img id="lightbox-img" src="" alt="">
   </div>
-
   <script>
     function openLightbox(src) {
       document.getElementById('lightbox-img').src = src;

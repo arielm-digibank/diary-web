@@ -3,214 +3,302 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>כיכר הקתדרלה, מרכז קרייסטצ'רץ, ניו-זילנד</title>
+  <title>בעיות שינה</title>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap" rel="stylesheet">
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background-color: #f8fafc;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0; padding: 20px; color: #334155;
+      background: #ffffff;
+      font-family: 'Heebo', sans-serif;
+      color: #1a1a2e;
+      line-height: 1.9;
     }
-    .container {
-      max-width: 800px; margin: 0 auto; background: #ffffff;
-      padding: 35px; border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06); line-height: 1.8;
+    .top-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #eee;
+      padding: 12px 30px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.9rem;
     }
-    .header {
-      border-bottom: 2px solid #e2e8f0; padding-bottom: 15px;
-      margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center;
+    .top-nav a {
+      color: #1d4ed8; text-decoration: none; font-weight: 600;
     }
-    .header h1 { margin: 0; color: #0f172a; font-size: 1.8rem; }
-    .home-link { color: #2563eb; text-decoration: none; font-weight: 600; }
-    .content img {
-      float: right; margin: 0 0 15px 20px; max-width: 320px; height: auto;
-      border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      cursor: pointer; transition: transform 0.2s;
+    .top-nav a:hover { text-decoration: underline; }
+    .top-nav .nav-links { display: flex; gap: 20px; }
+    .hero {
+      max-width: 900px; margin: 0 auto;
+      padding: 50px 40px 30px;
+      display: flex; align-items: flex-start; gap: 30px;
     }
-    .content img:hover { transform: scale(1.02); }
-    .content::after { content: ""; clear: both; display: table; }
-    a { color: #2563eb; }
+    .hero-text { flex: 1; }
+    .hero-map {
+      width: 120px; height: auto; object-fit: contain;
+      flex-shrink: 0; opacity: 0.85;
+    }
+    .meta-line {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+    }
+    .date-big {
+      font-size: 3.5rem; font-weight: 900; color: #e5e7eb; line-height: 1;
+    }
+    .date-details { font-size: 0.9rem; color: #6b7280; }
+    .country-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      border-radius: 20px; padding: 4px 14px;
+      font-size: 0.8rem; color: #1d4ed8; font-weight: 600;
+    }
+    .title {
+      font-size: 2.2rem; font-weight: 900; color: #111827;
+      margin: 20px 0 8px; line-height: 1.3;
+    }
+    .date-subtitle {
+      font-size: 1.1rem; font-weight: 300; color: #4b5563;
+      margin-bottom: 16px;
+    }
+    .title-divider {
+      width: 60px; height: 4px; background: #1d4ed8; border-radius: 2px;
+    }
+    .content {
+      max-width: 900px; margin: 30px auto; padding: 0 40px; font-size: 1.05rem;
+    }
+    .content p { margin-bottom: 18px; }
+    .content a {
+      color: #1d4ed8; cursor: pointer;
+      text-decoration: underline;
+      text-decoration-color: rgba(29,78,216,0.3);
+    }
+    .photo-block {
+      margin: 30px 0; border-radius: 12px; overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    .photo-block img {
+      width: 100%; display: block; cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .photo-block img:hover { transform: scale(1.01); }
+    .photo-block .caption {
+      padding: 12px 16px; font-size: 0.85rem; color: #6b7280;
+      background: #f9fafb; border-top: 1px solid #f3f4f6;
+    }
+    .photo-pair {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 14px; margin: 30px 0;
+    }
+    .photo-pair .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-pair .photo-item img {
+      width: 100%; height: 200px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-pair .photo-item img:hover { transform: scale(1.03); }
+    .photo-pair .photo-item .caption {
+      padding: 8px 12px; font-size: 0.8rem; color: #6b7280; background: #f9fafb;
+    }
+    .photo-trio {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px; margin: 30px 0;
+    }
+    .photo-trio .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-trio .photo-item img {
+      width: 100%; height: 180px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-trio .photo-item img:hover { transform: scale(1.03); }
+    .photo-trio .photo-item .caption {
+      padding: 8px 10px; font-size: 0.78rem; color: #6b7280; background: #f9fafb;
+    }
+    .nav-cards {
+      max-width: 900px; margin: 50px auto 20px; padding: 0 40px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .nav-card {
+      padding: 20px 24px; border: 1px solid #e5e7eb; border-radius: 12px;
+      text-decoration: none; color: inherit; transition: all 0.2s;
+    }
+    .nav-card:hover {
+      border-color: #1d4ed8; box-shadow: 0 4px 12px rgba(29,78,216,0.1);
+    }
+    .nav-card .label { font-size: 0.8rem; color: #6b7280; margin-bottom: 4px; }
+    .nav-card .card-title { font-weight: 700; font-size: 1rem; color: #1d4ed8; }
+    .supplements {
+      margin-top: 35px; padding: 25px 30px;
+      background: #f9fafb; border-radius: 12px; border: 1px solid #e5e7eb;
+    }
+    .supplements h3 {
+      font-size: 1.1rem; font-weight: 700; margin-bottom: 14px; color: #374151;
+    }
+    .supplements ol { padding-right: 20px; }
+    .supplements li { margin-bottom: 10px; color: #4b5563; }
+    .country-nav {
+      max-width: 900px; margin: 20px auto 40px; padding: 0 40px;
+      display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+    }
+    .country-nav a {
+      padding: 6px 14px; border-radius: 20px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      color: #1d4ed8; text-decoration: none;
+      font-size: 0.82rem; font-weight: 600;
+      transition: all 0.2s;
+    }
+    .country-nav a:hover {
+      background: #1d4ed8; color: white; border-color: #1d4ed8;
+    }
     .lightbox {
       display: none; position: fixed; z-index: 9999;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.9); justify-content: center; align-items: center; cursor: pointer;
+      background: rgba(0,0,0,0.92);
+      justify-content: center; align-items: center; cursor: pointer;
     }
-    .lightbox img { max-width: 90%; max-height: 90%; border-radius: 8px; }
+    .lightbox img { max-width: 92%; max-height: 92%; border-radius: 8px; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h1>כיכר הקתדרלה, מרכז קרייסטצ'רץ, ניו-זילנד</h1>
-      <a href="../index.html" class="home-link">🏠 לעמוד הראשי</a>
+  <div class="top-nav">
+    <div class="nav-links">
+      <a href="../index.html">עמוד ראשי</a>
     </div>
-    <div class="content">
-      <body>
-<table cellpadding="0" cellspacing="0" height="80" width="954">
-<tr>
-<td align="center" height="80" width="277">
-<marquee style="font-size: 18pt; color: #800080">11.2.02 - 21:00</marquee></td>
-<td align="center" height="80" width="667">
-<!--webbot bot="Navigation" s-type="banner" s-rendering="graphics" S-Orientation B-Include-Home B-Include-Up U-Page S-Target startspan --><!--webbot bot="Navigation" i-checksum="35280" endspan --></td>
-<td align="center" height="80" width="10">
-
-<img border="0" height="165" onclick="openLightbox(this.src)" src="../images/New_Zealand_south_island.gif" title="לחץ להגדלה" width="170"/></td>
-</tr>
-<tr>
-<td colspan="3" height="1" style=" " width="954"></td>
-</tr>
-</table><table cellpadding="0" cellspacing="0" width="100%">
-<tr>
-<td align="right" style=" ">
-<h4>
-<marquee style="font-size: 24pt; color: #008080">בעיות שינה</marquee></h4>
-<p> </p></td>
-</tr>
-</table>
-<table cellpadding="0" cellspacing="0" height="333" width="953">
-<tr>
-<td height="333" rowspan="2" style="       " valign="top" width="140"> <!--webbot bot="Navigation" S-Type="sequence" S-Orientation="vertical" S-Rendering="graphics" S-Theme="blocks 000" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><!--webbot bot="Navigation" i-checksum="23763" endspan --><p> </p>
-</td>
-<td height="333" rowspan="2" style="     " valign="top" width="1"></td>
-<td colspan="2" height="266" style="     " valign="top" width="735">
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בקושי יש לנו איפה לישון 
-    היום.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אנחנו צריכים להתרגל לעבוד 
-    בשיטה המקומית, להזמין מקומות מראש. השיטה להגיע ולראות מה יקרה (אני קורא לה 
-    שיטת גונן) לא עובדת כאן. למשל עכשיו הכל מלא בעיר ואנחנו בכיכר המרכזית עם 
-    התיקים הענקיים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אתמול מצאנו מקום לישון 
-    בעזרת ה- </span><span dir="LTR">Tourist Information</span><span lang="HE">. 
-    הלכתי לבדוק מה יש והשארתי את גונן ללקק את פצעיו. בנוסף לסידורים הרגילים שלו 
-    – להסתרק, לשים ג'ל בשיער או הקרם המבהיר ועוד סידורים נשיים אחרים, יש לו לטפל 
-    בפצעיו שמתרפאים לאיטם. גם כשאני הולך איתו ליציאה הוא שם סנדלים וטרנינג כי 
-    הבד שלו נעים ולא מגרד את הפצעים שיש לו מעל הקרסול. כשזה כן מגרד הוא מפשיל את 
-    שרוולי הטרנינג ונראה מצחיק עד רע. כשהוא יכול, הוא מוריד את סנדליו לאוורר 
-    אותם ואת ציפורניו. היום הוא עשה את זה בהפסקה וראיתי שלוליות זיעה (אני מקווה) 
-    בסנדליו. זה מראה שאסור להחמיץ (זה נראה מספיק חמוץ גם ככה).</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">מצאנו מקום בבק-פקר קרוב 
-    למרכז. הבניין היה בסוף עליה תלולה והגענו תשושים עם התיקים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">וכך החל יומנו מאוחר שוב, 
-    אחרי 14:00.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הפעם הלכנו לראות את החוף, 
-    מרחק של 5 ק"מ. עברנו בדרך באזור מכירה של מכוניות חדשות ומשומשות וראינו 
-    שהמחירים כאן זה בערך חצי עד שליש מהארץ!, לכן לכולם יש מכוניות חדשות.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">עד שהגענו לחוף נהיה מעט 
-    מעונן. הלכנו על החוף כזוג אוהבים. גונן חש את המים עם סנדליו ואמר שהם קרים. 
-    לא היו הרבה אנשים על החוף. הוספנו שם קילומטראז' וחזרנו. גונן שמע רדיו ואמר 
-    לי שיש המון תחנות עם מוזיקה מגניבה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">חזרנו לחדרים, התקלחתי. 
-    גונן הפסיד פעמיים בפול, פעם איתי ובאשמתי ופעם בכוחות עצמו. אני התיישבתי עם 
-    המפה שקנינו ועם ההמלצות של עמית, איילה והבת של חדווה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הופתענו לגלות שהחברה 
-    הקיבוצניקים כאן, בלי ארנון, שקנה אוטו ונסע לדרכו – אפילו פגשנו אותו בדרך, 
-    השניים האחרים הופיעו פתאם בחדרנו. היינו מופתעים, הם פחות – כי הם זיהו את 
-    התיקים שלנו. הם חדי חושים, הם אפילו מכירים את עמית הגבוה שנתן לנו המלצות על 
-    ניו-זילנד, מהשירים שהקלטתי ממנו, במיוחד מההמנון "גבעת התחמושת".</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">גונן מתגעגע לארז. באמת 
-    השילוב ביניהם בשיאו הזכיר את השילוב בין גונן לזלוף. גונן הלווה ממנו את המונח 
-    "ינשופי סלעים" או בקיצור "ינשופים" ומשתמש בו בהצלחה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">גונן מתגעגע גם לשירלי, 
-    עדיין. גם לי יש געגועים וזה מתעורר בעיקר בנסיעות.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">היום בנסיעה לקרייסטצ'רצ' 
-    התחלנו לגלגל רעיונות בקשר להשארות בניו-זילנד ולעבוד. כמה אנשים אמרו לי שיש 
-    כאן דרישה לאנשי מחשבים שמשום מה עוזבים שם בעיקר לאוסטרליה או אנגליה. אבל מה 
-    שעורר את המחשבות זה המחירים הזולים של הבתים. אני לא רוצה לתת דוגמאות כי אולי 
-    המחירים שראינו היו בדולר ארה"ב ולא בדולר ניו-זילנדי. גם כך זה פחות מחצי 
-    מהארץ.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אני יושב ומאריך ביומן 
-    כי בסוף אתמול לא יצאנו לבלות. אני נסחפתי לסמן את כל האטרקציות הרבות על המפה. 
-    גונן החליט לתת מנוחה לרגליו והלך לישון ב- 24:00.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">היה קשה לגונן לקום ב- 
-    10:00, הוא טען שלא ישן כי המזרונים כאן רכים. הוא צדק – זו תופעה בכל המקומות 
-    באוסטרליה וניו-זילנד שהיינו בהם.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הלכנו רבות בשעתיים הפנויות 
-    שהיו לנו עד האוטובוס – רציתי ללכת לאכול ב- </span><span dir="LTR">fish&amp;chips</span><span lang="HE"> 
-    הרחוק והזול. לפחות ראינו עוד קצת מהגנים הבוטניים, את החממות, אז לא הלכנו 
-    סתם.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">עלינו לאוטובוס. נהג שמן 
-    וחביב, כמעט נסע בלי גונן. כל הנסיעה היה נוף יפהפה – גבעות ירוקות, המון 
-    כבשים, פרות, סוסים, איילים (כן!), אלפאקות ולאמות (כן, כן, כן!).</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">כשדיברנו עם אנשים על 
-    ניו-זילנד, כולם אמרו שמזג-האוויר שם לא  טוב. עמית אמר שמתוך חודשיים היו לו 5 
-    ימי שמש. אנחנו רק 4 ימים כאן, אבל יש לנו כבר 4 ימי שמש. מדי פעם נהיה מעונן, 
-    אבל לא יורד גשם. היום היה השיא והטמפרטורות הגיעו ל- 28 מעלות. הקיץ כאן זה 20 
-    מעלות, אז זה בהחלט יום חריג גם לעונה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">כמו שנאמר בשיר המפורסם: “</span><span dir="LTR">Everywhere 
-    you go take the weather with you</span><span lang="HE">”. אנחנו מאירים את 
-    השמים בכל מקום שאנחנו מגיעים אליו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הגענו לקרייסטצ'רצ'. העיר 
-    נראית יפה מאד. במרכז, 
-    <a href="images/pictures/new-zealand/20020211_christchurch_cathedral.jpg" target="_blank">הכנסיה הגדולה יפה</a>. ראינו עכשיו 
-    <a href="images/pictures/new-zealand/20020211_sunset_at_christchurch.jpg" target="_blank">שקיעה מדהימה</a>. השמים 
-    הוארו באדום והיו עננים יושבים די נמוך וזה נראה כמו החללית הענקית בסרט "היום 
-    השלישי" (כאן השקיעה זה ב- 21:00).</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">ירדנו מהאוטובוס. גונן 
-    התלהב מהנחמדות של הנהג – איך הוא מסביר על המקומות בעיר עם הרמקול ונותן את 
-    פרשנותו האישית.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">השארתי את גונן עם הדברים 
-    והרמתי טלפונים והלכתי לבק-פקרים כדי לגלות שהכל תפוס. התקשרתי לבית של הרכז של 
-    ה- </span><span dir="LTR">Hit</span><span lang="HE">, שזה שירות שנוצרים 
-    אדוקים נותנים לחברה מישראל – הם מארחים אותם בגלל האמונה שלהם. אני בהחלט 
-    ארחיב על כך בהמשך כשאפגוש אותם ואדע יותר בנושא. בקיצור, דיברתי איתם ואעפ"י 
-    שהם מלאים, ככל הנראה נישן עם האוהל בחצר ביתם. נועה, ישראלית שמתארחת שם, תיקח 
-    אותנו לשם. צריך רק לזהות אותה כאן כשתגיע ואנחנו מסודרים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">האופציה של שינה על הספסלים 
-    במרכז העיר לא נראית כ"כ טוב אעפ"י שמזרון רך לא יהיה כאן.</span></b></p>
-<p class="MsoNormal" dir="RTL"> </p></td>
-<td align="center" height="333" rowspan="2" style="     " valign="top" width="187">
-
-<img border="0" height="211" onclick="openLightbox(this.src)" src="../images/20020209_beautiful_flowers_in_dunidin.jpg" title="לחץ להגדלה" width="136"/><p>
-<font color="#660099">אי תנועה בדרך לים</font></p>
-<p> </p>
-<p>
-
-<img border="0" height="104" onclick="openLightbox(this.src)" src="../images/20020223_dunedin_train_station.jpg" title="לחץ להגדלה" width="178"/></p>
-<p>
-<font color="#660099"> תחנת הרכבת בדנידין, משם לקחנו את האוטובוס 
-    לקרייסטצ'רץ</font></p>
-<p>
-     </p>
-<p>
-
-<img border="0" height="227" onclick="openLightbox(this.src)" src="../images/20020210_christchurch_church.jpg" title="לחץ להגדלה" width="151"/></p>
-<p>
-
-<img border="0" height="235" onclick="openLightbox(this.src)" src="../images/20020211_christchurch_cathedral.jpg" title="לחץ להגדלה" width="151"/></p>
-<p>
-<font color="#660099">הקתדרלה המפורסמת בקרייסטצ'רץ</font></p>
-<p>
-
-<img border="0" height="258" onclick="openLightbox(this.src)" src="../images/20020211_christchurch_center.jpg" title="לחץ להגדלה" width="159"/></p>
-<p><font color="#660099">פסל נוסף בכיכר הקתדרלה</font><p>
-
-<img border="0" height="121" onclick="openLightbox(this.src)" src="../images/20020211_sunset_at_christchurch.jpg" title="לחץ להגדלה" width="178"/><p>
-<font color="#660099">לפחות שקיעה יפה היתה לנו בכיכר</font></p></p></p></td>
-</tr>
-<tr>
-<td height="67" style="     " valign="top" width="314">
-<b>
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button104.gif" title="לחץ להגדלה" width="59"/></b></td>
-<td height="67" style="     " valign="top" width="421">
-<p align="right"><b>
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button106.gif" title="לחץ להגדלה" width="59"/></b></p></td>
-</tr>
-</table>
-<p align="center">
-<!--webbot bot="Navigation" S-Type="sequence" S-Orientation="horizontal" S-Rendering="html" S-Bar="Brackets" S-Btn-Nml="[&lt;A HREF=&quot;#URL#&quot; TARGET=&quot;#TARGET#&quot; STYLE=&quot;{text-decoration: none;}&quot;&gt;#LABEL#&lt;/A&gt;]" S-Btn-Sel="[#LABEL#]" S-Btn-Sep="&amp;nbsp;" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><nobr>[<a href="index.html" style="{text-decoration: none;}" target="">התחלה</a>]</nobr> <nobr>[<a href="200110052040.html" style="{text-decoration: none;}" target="">דנמרק</a>]</nobr> <nobr>[<a href="20011006.html" style="{text-decoration: none;}" target="">הודו</a>]</nobr> <nobr>[<a href="20011030.html" style="{text-decoration: none;}" target="">נפאל</a>]</nobr> <nobr>[<a href="20011115.html" style="{text-decoration: none;}" target="">טרק סובב אנאפורנה</a>]</nobr> <nobr>[<a href="20011210.html" style="{text-decoration: none;}" target="">תאילנד</a>]</nobr> <nobr>[<a href="20020108.html" style="{text-decoration: none;}" target="">לאוס</a>]</nobr> <nobr>[<a href="20020123.html" style="{text-decoration: none;}" target="">צפון תאילנד</a>]</nobr> <nobr>[<a href="20020203.html" style="{text-decoration: none;}" target="">אוסטרליה</a>]</nobr> <nobr>[<a href="20020210.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי דרומי</a>]</nobr> <nobr>[<a href="20020326.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי צפוני</a>]</nobr> <nobr>[<a href="20020506.html" style="{text-decoration: none;}" target="">פיליפינים</a>]</nobr> <nobr>[<a href="20020603.html" style="{text-decoration: none;}" target="">קמבודיה</a>]</nobr><!--webbot bot="Navigation" i-checksum="33824" endspan --></p>
-<p><i><small>This site was last updated
-<!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%m/%d/%y" startspan -->07/15/03<!--webbot bot="Timestamp" i-checksum="12690" endspan --> </small></i>
-</p>
-</body>
+    <div class="nav-links">
+      <a href="20020210.html">← הקודם</a>
+      <a href="20020212.html">הבא →</a>
     </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-text">
+      <div class="meta-line">
+        <span class="date-big">11</span>
+        <div>
+          <div class="date-details">פברואר 2002</div>
+          <span class="country-badge">ניו-זילנד, אי דרומי</span>
+        </div>
+      </div>
+      <h1 class="title">בעיות שינה</h1>
+      <div class="title-divider"></div>
+    </div>
+    <img class="hero-map" src="../images/New_Zealand_south_island.gif" alt="ניו-זילנד, אי דרומי">
+  </div>
+
+  <div class="content">
+    <p>בעיות שינה</p>
+
+    <p>בקושי יש לנו איפה לישון היום.</p>
+
+    <p>אנחנו צריכים להתרגל לעבוד בשיטה המקומית, להזמין מקומות מראש. השיטה להגיע ולראות מה יקרה (אני קורא לה שיטת גונן) לא עובדת כאן. למשל עכשיו הכל מלא בעיר ואנחנו בכיכר המרכזית עם התיקים הענקיים.</p>
+
+    <p>אתמול מצאנו מקום לישון בעזרת ה- Tourist Information. הלכתי לבדוק מה יש והשארתי את גונן ללקק את פצעיו. בנוסף לסידורים הרגילים שלו – להסתרק, לשים ג'ל בשיער או הקרם המבהיר ועוד סידורים נשיים אחרים, יש לו לטפל בפצעיו שמתרפאים לאיטם. גם כשאני הולך איתו ליציאה הוא שם סנדלים וטרנינג כי הבד שלו נעים ולא מגרד את הפצעים שיש לו מעל הקרסול. כשזה כן מגרד הוא מפשיל את שרוולי הטרנינג ונראה מצחיק עד רע. כשהוא יכול, הוא מוריד את סנדליו לאוורר אותם ואת ציפורניו. היום הוא עשה את זה בהפסקה וראיתי שלוליות זיעה (אני מקווה) בסנדליו. זה מראה שאסור להחמיץ (זה נראה מספיק חמוץ גם ככה).</p>
+
+    <p>מצאנו מקום בבק-פקר קרוב למרכז. הבניין היה בסוף עליה תלולה והגענו תשושים עם התיקים.</p>
+
+    <p>וכך החל יומנו מאוחר שוב, אחרי 14:00.</p>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/20020209_beautiful_flowers_in_dunidin.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">אי תנועה בדרך לים</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020223_dunedin_train_station.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">תחנת הרכבת בדנידין, משם לקחנו את האוטובוס 
+    לקרייסטצ'רץ</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020210_christchurch_church.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+    </div>
+
+    <p>הפעם הלכנו לראות את החוף, מרחק של 5 ק"מ. עברנו בדרך באזור מכירה של מכוניות חדשות ומשומשות וראינו שהמחירים כאן זה בערך חצי עד שליש מהארץ!, לכן לכולם יש מכוניות חדשות.</p>
+
+    <p>עד שהגענו לחוף נהיה מעט מעונן. הלכנו על החוף כזוג אוהבים. גונן חש את המים עם סנדליו ואמר שהם קרים. לא היו הרבה אנשים על החוף. הוספנו שם קילומטראז' וחזרנו. גונן שמע רדיו ואמר לי שיש המון תחנות עם מוזיקה מגניבה.</p>
+
+    <p>חזרנו לחדרים, התקלחתי. גונן הפסיד פעמיים בפול, פעם איתי ובאשמתי ופעם בכוחות עצמו. אני התיישבתי עם המפה שקנינו ועם ההמלצות של עמית, איילה והבת של חדווה.</p>
+
+    <p>הופתענו לגלות שהחברה הקיבוצניקים כאן, בלי ארנון, שקנה אוטו ונסע לדרכו – אפילו פגשנו אותו בדרך, השניים האחרים הופיעו פתאם בחדרנו. היינו מופתעים, הם פחות – כי הם זיהו את התיקים שלנו. הם חדי חושים, הם אפילו מכירים את עמית הגבוה שנתן לנו המלצות על ניו-זילנד, מהשירים שהקלטתי ממנו, במיוחד מההמנון "גבעת התחמושת".</p>
+
+    <p>גונן מתגעגע לארז. באמת השילוב ביניהם בשיאו הזכיר את השילוב בין גונן לזלוף. גונן הלווה ממנו את המונח "ינשופי סלעים" או בקיצור "ינשופים" ומשתמש בו בהצלחה.</p>
+
+    <p>גונן מתגעגע גם לשירלי, עדיין. גם לי יש געגועים וזה מתעורר בעיקר בנסיעות.</p>
+
+    <div class="photo-pair">
+      <div class="photo-item">
+        <img src="../images/20020211_christchurch_cathedral.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">הקתדרלה המפורסמת בקרייסטצ'רץ</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020211_christchurch_center.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">פסל נוסף בכיכר הקתדרלה</div>
+      </div>
+    </div>
+
+    <p>היום בנסיעה לקרייסטצ'רצ' התחלנו לגלגל רעיונות בקשר להשארות בניו-זילנד ולעבוד. כמה אנשים אמרו לי שיש כאן דרישה לאנשי מחשבים שמשום מה עוזבים שם בעיקר לאוסטרליה או אנגליה. אבל מה שעורר את המחשבות זה המחירים הזולים של הבתים. אני לא רוצה לתת דוגמאות כי אולי המחירים שראינו היו בדולר ארה"ב ולא בדולר ניו-זילנדי. גם כך זה פחות מחצי מהארץ.</p>
+
+    <p>אני יושב ומאריך ביומן כי בסוף אתמול לא יצאנו לבלות. אני נסחפתי לסמן את כל האטרקציות הרבות על המפה. גונן החליט לתת מנוחה לרגליו והלך לישון ב- 24:00.</p>
+
+    <p>היה קשה לגונן לקום ב- 10:00, הוא טען שלא ישן כי המזרונים כאן רכים. הוא צדק – זו תופעה בכל המקומות באוסטרליה וניו-זילנד שהיינו בהם.</p>
+
+    <p>הלכנו רבות בשעתיים הפנויות שהיו לנו עד האוטובוס – רציתי ללכת לאכול ב- fish&chips הרחוק והזול. לפחות ראינו עוד קצת מהגנים הבוטניים, את החממות, אז לא הלכנו סתם.</p>
+
+    <p>עלינו לאוטובוס. נהג שמן וחביב, כמעט נסע בלי גונן. כל הנסיעה היה נוף יפהפה – גבעות ירוקות, המון כבשים, פרות, סוסים, איילים (כן!), אלפאקות ולאמות (כן, כן, כן!).</p>
+
+    <p>כשדיברנו עם אנשים על ניו-זילנד, כולם אמרו שמזג-האוויר שם לא טוב. עמית אמר שמתוך חודשיים היו לו 5 ימי שמש. אנחנו רק 4 ימים כאן, אבל יש לנו כבר 4 ימי שמש. מדי פעם נהיה מעונן, אבל לא יורד גשם. היום היה השיא והטמפרטורות הגיעו ל- 28 מעלות. הקיץ כאן זה 20 מעלות, אז זה בהחלט יום חריג גם לעונה.</p>
+
+    <div class="photo-block">
+      <img src="../images/20020211_sunset_at_christchurch.jpg" onclick="openLightbox(this.src)">
+      <div class="caption">לפחות שקיעה יפה היתה לנו בכיכר</div>
+    </div>
+
+    <p>כמו שנאמר בשיר המפורסם: “Everywhere you go take the weather with you”. אנחנו מאירים את השמים בכל מקום שאנחנו מגיעים אליו.</p>
+
+    <p>הגענו לקרייסטצ'רצ'. העיר נראית יפה מאד. במרכז, <a onclick="openLightbox('../images/20020211_christchurch_cathedral.jpg')">הכנסיה הגדולה יפה</a>. ראינו עכשיו <a onclick="openLightbox('../images/20020211_sunset_at_christchurch.jpg')">שקיעה מדהימה</a>. השמים הוארו באדום והיו עננים יושבים די נמוך וזה נראה כמו החללית הענקית בסרט "היום השלישי" (כאן השקיעה זה ב- 21:00).</p>
+
+    <p>ירדנו מהאוטובוס. גונן התלהב מהנחמדות של הנהג – איך הוא מסביר על המקומות בעיר עם הרמקול ונותן את פרשנותו האישית.</p>
+
+    <p>השארתי את גונן עם הדברים והרמתי טלפונים והלכתי לבק-פקרים כדי לגלות שהכל תפוס. התקשרתי לבית של הרכז של ה- Hit, שזה שירות שנוצרים אדוקים נותנים לחברה מישראל – הם מארחים אותם בגלל האמונה שלהם. אני בהחלט ארחיב על כך בהמשך כשאפגוש אותם ואדע יותר בנושא. בקיצור, דיברתי איתם ואעפ"י שהם מלאים, ככל הנראה נישן עם האוהל בחצר ביתם. נועה, ישראלית שמתארחת שם, תיקח אותנו לשם. צריך רק לזהות אותה כאן כשתגיע ואנחנו מסודרים.</p>
+
+    <p>האופציה של שינה על הספסלים במרכז העיר לא נראית כ"כ טוב אעפ"י שמזרון רך לא יהיה כאן.</p>
+
+    <p>תחנת הרכבת בדנידין, משם לקחנו את האוטובוס לקרייסטצ'רץ</p>
+
+
+  </div>
+
+  <div class="nav-cards">
+    <a href="20020212.html" class="nav-card">
+      <div class="label">הבא →</div>
+      <div class="card-title">יש לנו מכונית</div>
+    </a>
+    <a href="20020210.html" class="nav-card">
+      <div class="label">← הקודם</div>
+      <div class="card-title">מבוגרות ומסוכנות</div>
+    </a>
+  </div>
+
+  <div class="country-nav">
+    <a href="200110052040.html">דנמרק</a>
+    <a href="20011006.html">הודו</a>
+    <a href="20011030.html">נפאל</a>
+    <a href="20011115.html">טרק אנאפורנה</a>
+    <a href="20011210.html">תאילנד</a>
+    <a href="20020108.html">לאוס</a>
+    <a href="20020123.html">צפון תאילנד</a>
+    <a href="20020203.html">אוסטרליה</a>
+    <a href="20020210.html">ניו-זילנד, אי דרומי</a>
+    <a href="20020326.html">ניו-זילנד, אי צפוני</a>
+    <a href="20020506.html">פיליפינים</a>
+    <a href="20020603.html">קמבודיה</a>
   </div>
 
   <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
-    <img id="lightbox-img" src="" alt="Enlarged">
+    <img id="lightbox-img" src="" alt="">
   </div>
-
   <script>
     function openLightbox(src) {
       document.getElementById('lightbox-img').src = src;

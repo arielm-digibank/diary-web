@@ -3,247 +3,304 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>לואנג פרבאנג, לאוס</title>
+  <title>טיול אופנוע למפלים ולמערה</title>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap" rel="stylesheet">
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background-color: #f8fafc;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0; padding: 20px; color: #334155;
+      background: #ffffff;
+      font-family: 'Heebo', sans-serif;
+      color: #1a1a2e;
+      line-height: 1.9;
     }
-    .container {
-      max-width: 800px; margin: 0 auto; background: #ffffff;
-      padding: 35px; border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06); line-height: 1.8;
+    .top-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #eee;
+      padding: 12px 30px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.9rem;
     }
-    .header {
-      border-bottom: 2px solid #e2e8f0; padding-bottom: 15px;
-      margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center;
+    .top-nav a {
+      color: #1d4ed8; text-decoration: none; font-weight: 600;
     }
-    .header h1 { margin: 0; color: #0f172a; font-size: 1.8rem; }
-    .home-link { color: #2563eb; text-decoration: none; font-weight: 600; }
-    .content img {
-      float: right; margin: 0 0 15px 20px; max-width: 320px; height: auto;
-      border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      cursor: pointer; transition: transform 0.2s;
+    .top-nav a:hover { text-decoration: underline; }
+    .top-nav .nav-links { display: flex; gap: 20px; }
+    .hero {
+      max-width: 900px; margin: 0 auto;
+      padding: 50px 40px 30px;
+      display: flex; align-items: flex-start; gap: 30px;
     }
-    .content img:hover { transform: scale(1.02); }
-    .content::after { content: ""; clear: both; display: table; }
-    a { color: #2563eb; }
+    .hero-text { flex: 1; }
+    .hero-map {
+      width: 120px; height: auto; object-fit: contain;
+      flex-shrink: 0; opacity: 0.85;
+    }
+    .meta-line {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+    }
+    .date-big {
+      font-size: 3.5rem; font-weight: 900; color: #e5e7eb; line-height: 1;
+    }
+    .date-details { font-size: 0.9rem; color: #6b7280; }
+    .country-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      border-radius: 20px; padding: 4px 14px;
+      font-size: 0.8rem; color: #1d4ed8; font-weight: 600;
+    }
+    .title {
+      font-size: 2.2rem; font-weight: 900; color: #111827;
+      margin: 20px 0 8px; line-height: 1.3;
+    }
+    .date-subtitle {
+      font-size: 1.1rem; font-weight: 300; color: #4b5563;
+      margin-bottom: 16px;
+    }
+    .title-divider {
+      width: 60px; height: 4px; background: #1d4ed8; border-radius: 2px;
+    }
+    .content {
+      max-width: 900px; margin: 30px auto; padding: 0 40px; font-size: 1.05rem;
+    }
+    .content p { margin-bottom: 18px; }
+    .content a {
+      color: #1d4ed8; cursor: pointer;
+      text-decoration: underline;
+      text-decoration-color: rgba(29,78,216,0.3);
+    }
+    .photo-block {
+      margin: 30px 0; border-radius: 12px; overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    .photo-block img {
+      width: 100%; display: block; cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .photo-block img:hover { transform: scale(1.01); }
+    .photo-block .caption {
+      padding: 12px 16px; font-size: 0.85rem; color: #6b7280;
+      background: #f9fafb; border-top: 1px solid #f3f4f6;
+    }
+    .photo-pair {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 14px; margin: 30px 0;
+    }
+    .photo-pair .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-pair .photo-item img {
+      width: 100%; height: 200px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-pair .photo-item img:hover { transform: scale(1.03); }
+    .photo-pair .photo-item .caption {
+      padding: 8px 12px; font-size: 0.8rem; color: #6b7280; background: #f9fafb;
+    }
+    .photo-trio {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px; margin: 30px 0;
+    }
+    .photo-trio .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-trio .photo-item img {
+      width: 100%; height: 180px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-trio .photo-item img:hover { transform: scale(1.03); }
+    .photo-trio .photo-item .caption {
+      padding: 8px 10px; font-size: 0.78rem; color: #6b7280; background: #f9fafb;
+    }
+    .nav-cards {
+      max-width: 900px; margin: 50px auto 20px; padding: 0 40px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .nav-card {
+      padding: 20px 24px; border: 1px solid #e5e7eb; border-radius: 12px;
+      text-decoration: none; color: inherit; transition: all 0.2s;
+    }
+    .nav-card:hover {
+      border-color: #1d4ed8; box-shadow: 0 4px 12px rgba(29,78,216,0.1);
+    }
+    .nav-card .label { font-size: 0.8rem; color: #6b7280; margin-bottom: 4px; }
+    .nav-card .card-title { font-weight: 700; font-size: 1rem; color: #1d4ed8; }
+    .supplements {
+      margin-top: 35px; padding: 25px 30px;
+      background: #f9fafb; border-radius: 12px; border: 1px solid #e5e7eb;
+    }
+    .supplements h3 {
+      font-size: 1.1rem; font-weight: 700; margin-bottom: 14px; color: #374151;
+    }
+    .supplements ol { padding-right: 20px; }
+    .supplements li { margin-bottom: 10px; color: #4b5563; }
+    .country-nav {
+      max-width: 900px; margin: 20px auto 40px; padding: 0 40px;
+      display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+    }
+    .country-nav a {
+      padding: 6px 14px; border-radius: 20px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      color: #1d4ed8; text-decoration: none;
+      font-size: 0.82rem; font-weight: 600;
+      transition: all 0.2s;
+    }
+    .country-nav a:hover {
+      background: #1d4ed8; color: white; border-color: #1d4ed8;
+    }
     .lightbox {
       display: none; position: fixed; z-index: 9999;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.9); justify-content: center; align-items: center; cursor: pointer;
+      background: rgba(0,0,0,0.92);
+      justify-content: center; align-items: center; cursor: pointer;
     }
-    .lightbox img { max-width: 90%; max-height: 90%; border-radius: 8px; }
+    .lightbox img { max-width: 92%; max-height: 92%; border-radius: 8px; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h1>לואנג פרבאנג, לאוס</h1>
-      <a href="../index.html" class="home-link">🏠 לעמוד הראשי</a>
+  <div class="top-nav">
+    <div class="nav-links">
+      <a href="../index.html">עמוד ראשי</a>
     </div>
-    <div class="content">
-      <body>
-<table cellpadding="0" cellspacing="0" height="80" width="954">
-<tr>
-<td align="center" height="80" width="277">
-<marquee style="font-size: 18pt; color: #800080">14.1.02 - 23:45</marquee></td>
-<td align="center" height="80" width="667">
-<!--webbot bot="Navigation" s-type="banner" s-rendering="graphics" S-Orientation B-Include-Home B-Include-Up U-Page S-Target startspan --><!--webbot bot="Navigation" i-checksum="38433" endspan --></td>
-<td align="center" height="80" width="10">
-
-<img border="0" height="161" onclick="openLightbox(this.src)" src="../images/Laos.gif" title="לחץ להגדלה" width="163"/></td>
-</tr>
-<tr>
-<td colspan="3" height="1" style=" " width="954"></td>
-</tr>
-</table><table cellpadding="0" cellspacing="0" width="100%">
-<tr>
-<td align="right" style=" ">
-<h4>
-<marquee style="font-size: 24pt; color: #008080">טיול אופנוע למפלים ולמערה</marquee></h4>
-<p> </p></td>
-</tr>
-</table>
-<table cellpadding="0" cellspacing="0" height="333" width="953">
-<tr>
-<td height="333" rowspan="2" style="       " valign="top" width="140"> <!--webbot bot="Navigation" S-Type="sequence" S-Orientation="vertical" S-Rendering="graphics" S-Theme="blocks 000" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><!--webbot bot="Navigation" i-checksum="23763" endspan --><p> </p>
-</td>
-<td height="333" rowspan="2" style="     " valign="top" width="1"></td>
-<td colspan="2" height="266" style="     " valign="top" width="735">
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> אתמול בערב יצאנו לחפש 
-    כדורגל אנגלי. ראינו תייר בגסט האוס שלנו, חשבנו שהוא אנגלי ושאלנו אותו אולי 
-    הוא יכול לעזור לנו למצוא מקום שמקרינים בו כדורגל אנגלי. בתפריט: 
-    מנצ'סטר-סאותהמפטון וארסנל-ליברפול. הבחור היה צרפתי. הוא דיבר צרפתית עם בעל 
-    הגסט-האוס שלנו. נדהמתי. הוא אמר לי שלאוס היתה קולוניה צרפתית. התביישתי שלא 
-    ידעתי את זה, אבל לפחות זה מסביר את העובדה שהמקומי ידע צרפתית וגם את העובדה 
-    שנוסעים כאן בצד ימין של הכביש ואפילו העובדה שיש כאן בגטים טעימים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הברנש הצרפתי, שחי בעבר 
-    שנתיים באנגליה, הוא חובב כדורגל אנגלי בעצמו. הוא הצטרף אלינו בחיפוש אחר מקום 
-    שמקרין כדורגל אנגלי.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הלכנו ברחוב המסעדות (אם כי 
-    זה לא רחוב המסעדות הראשי שהוא ליד הנהר) עד שגונן ראה מלון וברוב חוצפתו הלך 
-    לשאול אם אפשר לראות שם כדורגל אנגלי. הצרפתי היה המום/נבוך, אבל הלאוסים 
-    החמודים ניגשו וחיפשו את התחנה (</span><span dir="LTR">espn</span><span lang="HE">) 
-    בטלוויזיה ומצאו. מכיוון שלא היה שם אוכל הלכנו ואכלנו במסעדה ממול וחזרנו 
-    לשתות במלון בירה ולראות 2 מחציות האחת המחצית השניה של מנצ'סטר-סאות'המפטון 
-    (1:3, משחק גדול) והשניה מחצית ראשונה של ארסנל-ליברפול (0:0 במחצית, משחק 
-    גרוע) עד שנשברנו והלכנו לישון.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הצרפתי סיפר שהוא כבר 3 
-    ימים בלואנג-פראבנג, אבל לא עשה כלום עדיין כי כל הזמן יורד גשם. אמרתי לו 
-    בבטחון שעלינו לא יורד גשם, כך שמחר יהיה יבש.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">קמנו למחרת לבוקר מעונן. 
-    העננים ישבו נמוך, כ- 200 מטר מעלינו, פחות מפסגות ההרים. לא ידענו מה לעשות, 
-    תכננו לקחת אופנוע, אבל אם ירד גשם הכל יהרס. אמרתי לגונן שהוא יחליט. גונן 
-    החליט לשכור אופנוע. לקח שעה של הסתובבות עד שהאופנוע נשכר. נסענו קודם למפלים, 
-    מרחק של 30 ק"מ.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אני שונא להיות מורכב על 
-    אופנוע. זה קשה לי, אין בטחון בנהיגה על אופנוע וגם בלהיות מורכב. אבל, 
-    להפתעתי, גונן נהג בצורה שחשתי בבטחון. האופנוע היה יציב. וכך לאט לאט הרפיתי 
-    את אחיזתי במשען האופנוע מאחורה (כמובן שלא החזקתי בגונן והשתדלתי גם לא לשבת 
-    צמוד אליו במושב). גונן נוהג במהירות אך בבטחון וכל הדרך עקפנו מקומיים. אחרי 5 
-    ק"מ הדרך נהייתה שביל עפר, אך נראה שנעשתה הכנה לכביש כי השביל היה רחב, ברוחב 
-    של 2 מסלולים וכמעט ללא בורות. גונן, בכל מקרה, נהג מהר גם שם.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">ילדים מקומיים נפנפו לנו 
-    לשלום וניסו להחליק ידיים תוך כדי נסיעה. גונן החליק לכמה, בגלל המהירות כאב לו 
-    ביד, אני מניח שלילדים זה כאב לפחות אותו דבר. בכלל, הנוהג של הילדים לצעוק 
-    שלום (בשפתם זה "סבאדי") הוא נוהג נפוץ במזרח וזה נחמד. במקומות ש"נפגעו" 
-    מתיירים הילדים דורשים ממתקים או עטים (לא יודע למה עטים, אבל ככה זה), במקומות 
-    שעדיין לא נפגעו, הם שמחים גם מאמירת שלום.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הגענו למפלים, שילמנו 1000 
-    קיפ לחניה ו- 8000 לכניסה ונכנסנו. היה שביל רחב, משני צידי השביל היו חנויות 
-    של מזכרות ומסעדות. המקום מאד מתוייר.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הגענו למפלים. 
-    <a href="images/pictures/laos/20020114_luang_prabang_waterfalls.jpg" target="_blank">הם כ- 20 מ' 
-    גובה, רחבים, יורדים על הסלעים והמים נהיים קצפיים, בצבע לבן</a>. מתחת למפלים בנו 
-    גשרים וספסלים. מאד מושקע. נראה כי יד אירופאית התערבה כאן, מאד יפה. צילמנו. 
-    אח"כ עלינו למפלים. בערך באמצע הגובה חצינו את המפלים ברגל. שכחתי שהתיק עלי 
-    והרטבתי אותו וגם את צד המכנס ששם היה כל הכסף המקומי שלי. המשכנו לצד השני 
-    וירדנו. בדרך למטה פגשנו 3 נשים בריטיות, כבנות 35, שהיו איתנו באוטובוס 
-    ובנסיעה הן צחקו בקול ועישנו גראס. ציחקקנו איתן והמשכנו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אכלנו באחת המסעדות, שזאת 
-    בעצם אישה לאוסית שהבעירה אש מעצים והכינה לנו אורז ונודלס מעולים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">המשכנו למערה. זה אומר 
-    לחזור את ה- 30 ק"מ בחזרה ללואנג פראבנג ולנסוע לצד השני 35 ק"מ. המערה והמפלים 
-    אלו 2 המקומות המפורסמים כאן. נסענו למערה. כאן לאורך 25 ק"מ יש כביש. גונן 
-    הרביץ מהירות שיא. פרגית עמדה לחצות. גונן צפצף לה, אך היא, במקום לחזור רצה 
-    במהירות ישר מתחת לגלגלים של האופנוע. בקשר למה שקרה הדעות חלוקות. גונן היה 
-    בטוח שדרס אותה. אני ראיתי אותה נכנסת מתחת לגלגלים אבל לא שמעתי מכה ולא 
-    הרגשנו שעלינו על משהו. גונן התבאס כי אמרתי לו שהוא כמו עוף דורס.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בסוף הגענו למערה, לא לפני 
-    שנגמר הכביש והתחילה דרך עפר, אבל גונן המשיך לנסוע מהר וכך באחד הסיבובים 
-    החדים מצאנו עצמנו עם גלגל אחורי בתעלה בצד הדרך ואני עם הסנדלים בבוץ. לא 
-    נפלתי, אבל הייתי צריך לעזור לגונן להרים את האופנוע, כדי שהגלגל יצא מהתעלה 
-    ונחזור לכביש. לא עשיתי מזה עניין כי עדיין הנסיעה של גונן השרתה עלי בטחון. יש 
-    איזשהו סקס-אפיל בנסיעה על אופנוע ואני בהחלט אמרתי לגונן שאני מחזיק ממנו יותר 
-    (אבל בשום פנים ואופן לא מחזיק בו יותר). אני מאמין שזה עובד טוב על בחורות.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הגענו למערה והתאכזבנו 
-    קשות. צריך לקחת סירה ולחצות את הנהר בכדי להגיע למערה (5000 קיפ). הכל בנוי 
-    מסביב למערה כולל מדרגות למערה. בתוך המערה המון פסלי בודהה בחוסר טעם. המערה 
-    לא מרשימה ויחסית למערות בוואנג-ויינג היא ממש עלובה. הכל תיירותי שם, ילדים 
-    מחזיקים ציפורים בכלוב שאתה צריך לשלם להם כדי שישחררו את הציפור (ואז בטח 
-    ילכדו ציפור חדשה), בקיצור לא טוב.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">חזרנו עם האופנוע בדרך 
-    אחרת, קצרה יותר, עד הכביש הראשי, שם עצרנו ל<a href="images/pictures/laos/20020114_sunset.jpg" target="_blank">צלם שקיעה מדהימה</a>, המשכנו עד 
-    שראינו מקדש. עלינו, היתה תצפית חמודה. פגשנו אמריקאי מבוגר שהסביר את דעתו על 
-    דתות ומלחמת וייטנאם ועל האזור. דברים בטוב-טעם. היינו נשארים יותר, אבל מיהרנו 
-    להחזיר את האופנוע. השעה היתה 17:30 והיה לנו חצי שעה להחזיר את האופנוע. כל 
-    איחור משמעו קנס.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">החזרנו בדיוק בזמן. "קרענו 
-    לך את האופנוע" אמר לה גונן כשנכנס לחנות. הוא צדק, כ- 150 ק"מ, משקל של כמעט 
-    200 ק"ג על האופנוע, הרבה קפיצות שהרסו את הקפיצים והרבה קולות של הצמיג מתחכך 
-    במגן הגלגל, מפאת כובד משקלי. "</span><span dir="LTR">what?</span><span lang="HE">" 
-    המוכרת שאלה. "</span><span dir="LTR">very good bike</span><span lang="HE">" 
-    הרגעתי אותה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אחרי זה עוד עלינו 330 
-    מדרגות למקדש שיש ממנו תצפית יפה על העיר, אבל נהיה כבר חושך, אז פחות התלהבנו. 
-    ניתן היה לראות משם שהעיר די גדולה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">ירדנו והסתובבנו. היינו 
-    רעבים בטירוף.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">לפתע קפץ עלינו פרצוף מוכר 
-    ומחוייך – וי!!!. לא יאומן, תמיד הוא צץ במקומות שאתה הכי פחות מצפה להם. כך 
-    היה בקטמנדו וכך גם כאן. כשציפינו לפגוש אותו בקו-פנגן, לא פגשנו אותו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">ישר התחבקנו והחלפנו 
-    חוויות. גונן העיר לו כרגיל על התספורת "מה עשית בשיער, אתה נראה כמו קליף 
-    ריצ'רדס". הוא נעלב קצת "דווקא אמרו לי שאני נראה כמו ג'ים מוריסון".</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">י<a href="images/pictures/laos/20020115_us&amp;vy_in_restaurant.jpg" target="_blank">שבנו איתו ואכלנו במסעדה 
-    הודית</a> שהוא סחב אותנו אליה. זאת היתה רק מנה ראשונה (מרק וסלט). אח"כ הוא הצטרף 
-    אלינו עם הבחורה שאיתה הוא מטייל, אמריקאית בת 24, ואכלנו במקום ליד המלון 
-    שלהם.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הם היו עייפים, אנחנו 
-    המשכנו למרכז העיר ל- </span><span dir="LTR">Email</span><span lang="HE">. שם 
-    ראיתי שבאמת ליאור לא ברשימה. בטעות הכנסתי את ליאור הטייס (מנפאל) במקומו. 
-    ליאור הטייס התלהב וענה לנו, אבל ליאור שלנו (מגדל) לא קיבל אף </span>
-<span dir="LTR">Email</span><span lang="HE">. תיקנתי זאת.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">קיבלתי גם </span>
-<span dir="LTR">Email</span><span lang="HE"> שאמור שמלודי עוזבת לקנדה ב- 17 
-    לחודש. גונן קיבל </span><span dir="LTR">Email</span><span lang="HE"> משירלי 
-    ונתקף געגועים. משום מה הרגשתי מחובר אליו, כנראה שזה קשור למלודי. עכשיו שהיא 
-    נוסעת אני רגוע יותר, אבל זה בעצם מציף רגשות שאולי הדחקתי או נלחמתי בהם. בכל 
-    מקרה אני שמח בשבילי ובשבילה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">התחלנו לחזור לגסט האוס. 
-    שמענו מוזיקה חזקה. נכנסנו לבדוק. זה היה יומהולדת של לאוסים, אז עזבנו כדי לא 
-    להפריע. בדרך הלכנו לאט ו- 2 לאוסים עקפו אותנו. הם היו בעצם </span>
-<span dir="LTR">Ladyboys</span><span lang="HE"> נוסח לאוס. נדיר כאן. הם 
-    התחילו איתנו, כשאחד נצמד אלי ואחד לגונן. היינו בדרכנו לגסט האוס שלנו, אז 
-    חשבתי שנעביר את הזמן בצחוק, אבל כשהברנש אמר לי שהוא חושב שאני נאה נלחצתי 
-    ואמרתי לו שגונן מאד יפה ולא אני. הוא אמר ששנינו יפים. רציתי לברוח משם. חברתי 
-    לגונן. הם ניסו לפתות אותנו לבוא אליהם ולעשן, אבל אמרנו שאנחנו ילדים טובים 
-    וצריכים לקום מוקדם מחר והסתלקנו משם.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">באמת אנחנו צריכים לקום 
-    מוקדם מחר, ב- 6:30. אנחנו נוסעים למונג-נוי. זה אמור להיות מקום יפה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">מצחיק, את תאילנד הצלחנו 
-    לעבור בשלום ללא תקרית עם </span><span dir="LTR">Ladyboys</span><span lang="HE"> 
-    ודווקא כאן אנחנו כמעט נופלים!!.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אם מחר יהיו פחות מאורעות 
-    אני אוכל לספר איך גונן סיפר לי שהוא גילה את נושא הלחיים. אני בעסקי הלחיים כ- 
-    25 שנה. לא יכלתי להיות שמח יותר מלראות את חברי הטוב מגלה עניין בנושא ואפילו 
-    מביע דעות דומות לשלי.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">על כך ארחיב בהזדמנות.</span></b></p>
-<p> </p></td>
-<td align="center" height="333" rowspan="2" style="     " valign="top" width="187">
-
-<img border="0" height="123" onclick="openLightbox(this.src)" src="../images/20020114_luang_prabang_waterfalls.jpg" title="לחץ להגדלה" width="180"/><p>
-<font color="#660099">המפלים המפורסמים של לואנג פראבנג</font></p>
-<p>
-
-<img border="0" height="313" onclick="openLightbox(this.src)" src="../images/20020114_gonen&amp;giant_leaf.jpg" title="לחץ להגדלה" width="147"/></p>
-<p><font color="#660099">גונן מתחבא מאחורי עלה ענק. מליק פישל בצילום</font></p>
-<p>
-
-<img border="0" height="129" onclick="openLightbox(this.src)" src="../images/20020114_gonen_near_river.jpg" title="לחץ להגדלה" width="181"/></p>
-<p>
-<img border="0" height="113" onclick="openLightbox(this.src)" src="../images/20020114_sunset.jpg" title="לחץ להגדלה" width="181"/></p>
-<p><font color="#660099">שקיעה מהדרך</font></p>
-<p>
-
-<img border="0" height="125" onclick="openLightbox(this.src)" src="../images/20020115_us&amp;vy_in_restaurant.jpg" title="לחץ להגדלה" width="177"/></p>
-<p><font color="#660099">פתאום פגשנו את וי</font></p></td>
-</tr>
-<tr>
-<td height="67" style="     " valign="top" width="314">
-
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button104.gif" title="לחץ להגדלה" width="59"/></td>
-<td height="67" style="     " valign="top" width="421">
-<p align="right">
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button106.gif" title="לחץ להגדלה" width="59"/></p></td>
-</tr>
-</table>
-<p align="center">
-<!--webbot bot="Navigation" S-Type="sequence" S-Orientation="horizontal" S-Rendering="html" S-Bar="Brackets" S-Btn-Nml="[&lt;A HREF=&quot;#URL#&quot; TARGET=&quot;#TARGET#&quot; STYLE=&quot;{text-decoration: none;}&quot;&gt;#LABEL#&lt;/A&gt;]" S-Btn-Sel="[#LABEL#]" S-Btn-Sep="&amp;nbsp;" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><nobr>[<a href="index.html" style="{text-decoration: none;}" target="">התחלה</a>]</nobr> <nobr>[<a href="200110052040.html" style="{text-decoration: none;}" target="">דנמרק</a>]</nobr> <nobr>[<a href="20011006.html" style="{text-decoration: none;}" target="">הודו</a>]</nobr> <nobr>[<a href="20011030.html" style="{text-decoration: none;}" target="">נפאל</a>]</nobr> <nobr>[<a href="20011115.html" style="{text-decoration: none;}" target="">טרק סובב אנאפורנה</a>]</nobr> <nobr>[<a href="20011210.html" style="{text-decoration: none;}" target="">תאילנד</a>]</nobr> <nobr>[<a href="20020108.html" style="{text-decoration: none;}" target="">לאוס</a>]</nobr> <nobr>[<a href="20020123.html" style="{text-decoration: none;}" target="">צפון תאילנד</a>]</nobr> <nobr>[<a href="20020203.html" style="{text-decoration: none;}" target="">אוסטרליה</a>]</nobr> <nobr>[<a href="20020210.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי דרומי</a>]</nobr> <nobr>[<a href="20020326.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי צפוני</a>]</nobr> <nobr>[<a href="20020506.html" style="{text-decoration: none;}" target="">פיליפינים</a>]</nobr> <nobr>[<a href="20020603.html" style="{text-decoration: none;}" target="">קמבודיה</a>]</nobr><!--webbot bot="Navigation" i-checksum="33824" endspan --></p>
-<p><i><small>This site was last updated
-<!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%m/%d/%y" startspan -->07/15/03<!--webbot bot="Timestamp" i-checksum="12690" endspan --> </small></i>
-</p>
-</body>
+    <div class="nav-links">
+      <a href="20020113.html">← הקודם</a>
+      <a href="20020115.html">הבא →</a>
     </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-text">
+      <div class="meta-line">
+        <span class="date-big">14</span>
+        <div>
+          <div class="date-details">ינואר 2002</div>
+          <span class="country-badge">לאוס</span>
+        </div>
+      </div>
+      <h1 class="title">טיול אופנוע למפלים ולמערה</h1>
+      <div class="title-divider"></div>
+    </div>
+    <img class="hero-map" src="../images/Laos.gif" alt="לאוס">
+  </div>
+
+  <div class="content">
+    <p>טיול אופנוע למפלים ולמערה</p>
+
+    <p>אתמול בערב יצאנו לחפש כדורגל אנגלי. ראינו תייר בגסט האוס שלנו, חשבנו שהוא אנגלי ושאלנו אותו אולי הוא יכול לעזור לנו למצוא מקום שמקרינים בו כדורגל אנגלי. בתפריט: מנצ'סטר-סאותהמפטון וארסנל-ליברפול. הבחור היה צרפתי. הוא דיבר צרפתית עם בעל הגסט-האוס שלנו. נדהמתי. הוא אמר לי שלאוס היתה קולוניה צרפתית. התביישתי שלא ידעתי את זה, אבל לפחות זה מסביר את העובדה שהמקומי ידע צרפתית וגם את העובדה שנוסעים כאן בצד ימין של הכביש ואפילו העובדה שיש כאן בגטים טעימים.</p>
+
+    <p>הברנש הצרפתי, שחי בעבר שנתיים באנגליה, הוא חובב כדורגל אנגלי בעצמו. הוא הצטרף אלינו בחיפוש אחר מקום שמקרין כדורגל אנגלי.</p>
+
+    <p>הלכנו ברחוב המסעדות (אם כי זה לא רחוב המסעדות הראשי שהוא ליד הנהר) עד שגונן ראה מלון וברוב חוצפתו הלך לשאול אם אפשר לראות שם כדורגל אנגלי. הצרפתי היה המום/נבוך, אבל הלאוסים החמודים ניגשו וחיפשו את התחנה (espn) בטלוויזיה ומצאו. מכיוון שלא היה שם אוכל הלכנו ואכלנו במסעדה ממול וחזרנו לשתות במלון בירה ולראות 2 מחציות האחת המחצית השניה של מנצ'סטר-סאות'המפטון (1:3, משחק גדול) והשניה מחצית ראשונה של ארסנל-ליברפול (0:0 במחצית, משחק גרוע) עד שנשברנו והלכנו לישון.</p>
+
+    <p>הצרפתי סיפר שהוא כבר 3 ימים בלואנג-פראבנג, אבל לא עשה כלום עדיין כי כל הזמן יורד גשם. אמרתי לו בבטחון שעלינו לא יורד גשם, כך שמחר יהיה יבש.</p>
+
+    <p>קמנו למחרת לבוקר מעונן. העננים ישבו נמוך, כ- 200 מטר מעלינו, פחות מפסגות ההרים. לא ידענו מה לעשות, תכננו לקחת אופנוע, אבל אם ירד גשם הכל יהרס. אמרתי לגונן שהוא יחליט. גונן החליט לשכור אופנוע. לקח שעה של הסתובבות עד שהאופנוע נשכר. נסענו קודם למפלים, מרחק של 30 ק"מ.</p>
+
+    <p>אני שונא להיות מורכב על אופנוע. זה קשה לי, אין בטחון בנהיגה על אופנוע וגם בלהיות מורכב. אבל, להפתעתי, גונן נהג בצורה שחשתי בבטחון. האופנוע היה יציב. וכך לאט לאט הרפיתי את אחיזתי במשען האופנוע מאחורה (כמובן שלא החזקתי בגונן והשתדלתי גם לא לשבת צמוד אליו במושב). גונן נוהג במהירות אך בבטחון וכל הדרך עקפנו מקומיים. אחרי 5 ק"מ הדרך נהייתה שביל עפר, אך נראה שנעשתה הכנה לכביש כי השביל היה רחב, ברוחב של 2 מסלולים וכמעט ללא בורות. גונן, בכל מקרה, נהג מהר גם שם.</p>
+
+    <p>ילדים מקומיים נפנפו לנו לשלום וניסו להחליק ידיים תוך כדי נסיעה. גונן החליק לכמה, בגלל המהירות כאב לו ביד, אני מניח שלילדים זה כאב לפחות אותו דבר. בכלל, הנוהג של הילדים לצעוק שלום (בשפתם זה "סבאדי") הוא נוהג נפוץ במזרח וזה נחמד. במקומות ש"נפגעו" מתיירים הילדים דורשים ממתקים או עטים (לא יודע למה עטים, אבל ככה זה), במקומות שעדיין לא נפגעו, הם שמחים גם מאמירת שלום.</p>
+
+    <p>הגענו למפלים, שילמנו 1000 קיפ לחניה ו- 8000 לכניסה ונכנסנו. היה שביל רחב, משני צידי השביל היו חנויות של מזכרות ומסעדות. המקום מאד מתוייר.</p>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/20020114_luang_prabang_waterfalls.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">המפלים המפורסמים של לואנג פראבנג</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020114_gonen&giant_leaf.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">גונן מתחבא מאחורי עלה ענק. מליק פישל בצילום</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020114_gonen_near_river.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+    </div>
+
+    <p>הגענו למפלים. <a onclick="openLightbox('../images/20020114_luang_prabang_waterfalls.jpg')">הם כ- 20 מ' גובה, רחבים, יורדים על הסלעים והמים נהיים קצפיים, בצבע לבן</a>. מתחת למפלים בנו גשרים וספסלים. מאד מושקע. נראה כי יד אירופאית התערבה כאן, מאד יפה. צילמנו. אח"כ עלינו למפלים. בערך באמצע הגובה חצינו את המפלים ברגל. שכחתי שהתיק עלי והרטבתי אותו וגם את צד המכנס ששם היה כל הכסף המקומי שלי. המשכנו לצד השני וירדנו. בדרך למטה פגשנו 3 נשים בריטיות, כבנות 35, שהיו איתנו באוטובוס ובנסיעה הן צחקו בקול ועישנו גראס. ציחקקנו איתן והמשכנו.</p>
+
+    <p>אכלנו באחת המסעדות, שזאת בעצם אישה לאוסית שהבעירה אש מעצים והכינה לנו אורז ונודלס מעולים.</p>
+
+    <p>המשכנו למערה. זה אומר לחזור את ה- 30 ק"מ בחזרה ללואנג פראבנג ולנסוע לצד השני 35 ק"מ. המערה והמפלים אלו 2 המקומות המפורסמים כאן. נסענו למערה. כאן לאורך 25 ק"מ יש כביש. גונן הרביץ מהירות שיא. פרגית עמדה לחצות. גונן צפצף לה, אך היא, במקום לחזור רצה במהירות ישר מתחת לגלגלים של האופנוע. בקשר למה שקרה הדעות חלוקות. גונן היה בטוח שדרס אותה. אני ראיתי אותה נכנסת מתחת לגלגלים אבל לא שמעתי מכה ולא הרגשנו שעלינו על משהו. גונן התבאס כי אמרתי לו שהוא כמו עוף דורס.</p>
+
+    <p>בסוף הגענו למערה, לא לפני שנגמר הכביש והתחילה דרך עפר, אבל גונן המשיך לנסוע מהר וכך באחד הסיבובים החדים מצאנו עצמנו עם גלגל אחורי בתעלה בצד הדרך ואני עם הסנדלים בבוץ. לא נפלתי, אבל הייתי צריך לעזור לגונן להרים את האופנוע, כדי שהגלגל יצא מהתעלה ונחזור לכביש. לא עשיתי מזה עניין כי עדיין הנסיעה של גונן השרתה עלי בטחון. יש איזשהו סקס-אפיל בנסיעה על אופנוע ואני בהחלט אמרתי לגונן שאני מחזיק ממנו יותר (אבל בשום פנים ואופן לא מחזיק בו יותר). אני מאמין שזה עובד טוב על בחורות.</p>
+
+    <p>הגענו למערה והתאכזבנו קשות. צריך לקחת סירה ולחצות את הנהר בכדי להגיע למערה (5000 קיפ). הכל בנוי מסביב למערה כולל מדרגות למערה. בתוך המערה המון פסלי בודהה בחוסר טעם. המערה לא מרשימה ויחסית למערות בוואנג-ויינג היא ממש עלובה. הכל תיירותי שם, ילדים מחזיקים ציפורים בכלוב שאתה צריך לשלם להם כדי שישחררו את הציפור (ואז בטח ילכדו ציפור חדשה), בקיצור לא טוב.</p>
+
+    <p>חזרנו עם האופנוע בדרך אחרת, קצרה יותר, עד הכביש הראשי, שם עצרנו ל<a onclick="openLightbox('../images/20020114_sunset.jpg')">צלם שקיעה מדהימה</a>, המשכנו עד שראינו מקדש. עלינו, היתה תצפית חמודה. פגשנו אמריקאי מבוגר שהסביר את דעתו על דתות ומלחמת וייטנאם ועל האזור. דברים בטוב-טעם. היינו נשארים יותר, אבל מיהרנו להחזיר את האופנוע. השעה היתה 17:30 והיה לנו חצי שעה להחזיר את האופנוע. כל איחור משמעו קנס.</p>
+
+    <p>החזרנו בדיוק בזמן. "קרענו לך את האופנוע" אמר לה גונן כשנכנס לחנות. הוא צדק, כ- 150 ק"מ, משקל של כמעט 200 ק"ג על האופנוע, הרבה קפיצות שהרסו את הקפיצים והרבה קולות של הצמיג מתחכך במגן הגלגל, מפאת כובד משקלי. "what?" המוכרת שאלה. "very good bike" הרגעתי אותה.</p>
+
+    <p>אחרי זה עוד עלינו 330 מדרגות למקדש שיש ממנו תצפית יפה על העיר, אבל נהיה כבר חושך, אז פחות התלהבנו. ניתן היה לראות משם שהעיר די גדולה.</p>
+
+    <p>ירדנו והסתובבנו. היינו רעבים בטירוף.</p>
+
+    <div class="photo-pair">
+      <div class="photo-item">
+        <img src="../images/20020114_sunset.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">שקיעה מהדרך</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020115_us&vy_in_restaurant.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">פתאום פגשנו את וי</div>
+      </div>
+    </div>
+
+    <p>לפתע קפץ עלינו פרצוף מוכר ומחוייך – וי!!!. לא יאומן, תמיד הוא צץ במקומות שאתה הכי פחות מצפה להם. כך היה בקטמנדו וכך גם כאן. כשציפינו לפגוש אותו בקו-פנגן, לא פגשנו אותו.</p>
+
+    <p>ישר התחבקנו והחלפנו חוויות. גונן העיר לו כרגיל על התספורת "מה עשית בשיער, אתה נראה כמו קליף ריצ'רדס". הוא נעלב קצת "דווקא אמרו לי שאני נראה כמו ג'ים מוריסון".</p>
+
+    <p>י<a onclick="openLightbox('../images/20020115_us&vy_in_restaurant.jpg')">שבנו איתו ואכלנו במסעדה הודית</a> שהוא סחב אותנו אליה. זאת היתה רק מנה ראשונה (מרק וסלט). אח"כ הוא הצטרף אלינו עם הבחורה שאיתה הוא מטייל, אמריקאית בת 24, ואכלנו במקום ליד המלון שלהם.</p>
+
+    <p>הם היו עייפים, אנחנו המשכנו למרכז העיר ל- Email. שם ראיתי שבאמת ליאור לא ברשימה. בטעות הכנסתי את ליאור הטייס (מנפאל) במקומו. ליאור הטייס התלהב וענה לנו, אבל ליאור שלנו (מגדל) לא קיבל אף Email. תיקנתי זאת.</p>
+
+    <p>קיבלתי גם Email שאמור שמלודי עוזבת לקנדה ב- 17 לחודש. גונן קיבל Email משירלי ונתקף געגועים. משום מה הרגשתי מחובר אליו, כנראה שזה קשור למלודי. עכשיו שהיא נוסעת אני רגוע יותר, אבל זה בעצם מציף רגשות שאולי הדחקתי או נלחמתי בהם. בכל מקרה אני שמח בשבילי ובשבילה.</p>
+
+    <p>התחלנו לחזור לגסט האוס. שמענו מוזיקה חזקה. נכנסנו לבדוק. זה היה יומהולדת של לאוסים, אז עזבנו כדי לא להפריע. בדרך הלכנו לאט ו- 2 לאוסים עקפו אותנו. הם היו בעצם Ladyboys נוסח לאוס. נדיר כאן. הם התחילו איתנו, כשאחד נצמד אלי ואחד לגונן. היינו בדרכנו לגסט האוס שלנו, אז חשבתי שנעביר את הזמן בצחוק, אבל כשהברנש אמר לי שהוא חושב שאני נאה נלחצתי ואמרתי לו שגונן מאד יפה ולא אני. הוא אמר ששנינו יפים. רציתי לברוח משם. חברתי לגונן. הם ניסו לפתות אותנו לבוא אליהם ולעשן, אבל אמרנו שאנחנו ילדים טובים וצריכים לקום מוקדם מחר והסתלקנו משם.</p>
+
+    <p>באמת אנחנו צריכים לקום מוקדם מחר, ב- 6:30. אנחנו נוסעים למונג-נוי. זה אמור להיות מקום יפה.</p>
+
+    <p>מצחיק, את תאילנד הצלחנו לעבור בשלום ללא תקרית עם Ladyboys ודווקא כאן אנחנו כמעט נופלים!!.</p>
+
+    <p>אם מחר יהיו פחות מאורעות אני אוכל לספר איך גונן סיפר לי שהוא גילה את נושא הלחיים. אני בעסקי הלחיים כ- 25 שנה. לא יכלתי להיות שמח יותר מלראות את חברי הטוב מגלה עניין בנושא ואפילו מביע דעות דומות לשלי.</p>
+
+    <p>על כך ארחיב בהזדמנות.</p>
+
+
+  </div>
+
+  <div class="nav-cards">
+    <a href="20020115.html" class="nav-card">
+      <div class="label">הבא →</div>
+      <div class="card-title">הנסיעה למונג-נוי</div>
+    </a>
+    <a href="20020113.html" class="nav-card">
+      <div class="label">← הקודם</div>
+      <div class="card-title">הנסיעה ללואנג פרבאנג</div>
+    </a>
+  </div>
+
+  <div class="country-nav">
+    <a href="200110052040.html">דנמרק</a>
+    <a href="20011006.html">הודו</a>
+    <a href="20011030.html">נפאל</a>
+    <a href="20011115.html">טרק אנאפורנה</a>
+    <a href="20011210.html">תאילנד</a>
+    <a href="20020108.html">לאוס</a>
+    <a href="20020123.html">צפון תאילנד</a>
+    <a href="20020203.html">אוסטרליה</a>
+    <a href="20020210.html">ניו-זילנד, אי דרומי</a>
+    <a href="20020326.html">ניו-זילנד, אי צפוני</a>
+    <a href="20020506.html">פיליפינים</a>
+    <a href="20020603.html">קמבודיה</a>
   </div>
 
   <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
-    <img id="lightbox-img" src="" alt="Enlarged">
+    <img id="lightbox-img" src="" alt="">
   </div>
-
   <script>
     function openLightbox(src) {
       document.getElementById('lightbox-img').src = src;

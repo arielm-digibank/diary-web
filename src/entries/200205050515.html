@@ -3,284 +3,354 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>נמל תעופה, מלבורן, אוסטרליה</title>
+  <title>ההיט-עלקות האחרונה, מבצע קואלה</title>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap" rel="stylesheet">
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background-color: #f8fafc;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0; padding: 20px; color: #334155;
+      background: #ffffff;
+      font-family: 'Heebo', sans-serif;
+      color: #1a1a2e;
+      line-height: 1.9;
     }
-    .container {
-      max-width: 800px; margin: 0 auto; background: #ffffff;
-      padding: 35px; border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06); line-height: 1.8;
+    .top-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #eee;
+      padding: 12px 30px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.9rem;
     }
-    .header {
-      border-bottom: 2px solid #e2e8f0; padding-bottom: 15px;
-      margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center;
+    .top-nav a {
+      color: #1d4ed8; text-decoration: none; font-weight: 600;
     }
-    .header h1 { margin: 0; color: #0f172a; font-size: 1.8rem; }
-    .home-link { color: #2563eb; text-decoration: none; font-weight: 600; }
-    .content img {
-      float: right; margin: 0 0 15px 20px; max-width: 320px; height: auto;
-      border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      cursor: pointer; transition: transform 0.2s;
+    .top-nav a:hover { text-decoration: underline; }
+    .top-nav .nav-links { display: flex; gap: 20px; }
+    .hero {
+      max-width: 900px; margin: 0 auto;
+      padding: 50px 40px 30px;
+      display: flex; align-items: flex-start; gap: 30px;
     }
-    .content img:hover { transform: scale(1.02); }
-    .content::after { content: ""; clear: both; display: table; }
-    a { color: #2563eb; }
+    .hero-text { flex: 1; }
+    .hero-map {
+      width: 120px; height: auto; object-fit: contain;
+      flex-shrink: 0; opacity: 0.85;
+    }
+    .meta-line {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+    }
+    .date-big {
+      font-size: 3.5rem; font-weight: 900; color: #e5e7eb; line-height: 1;
+    }
+    .date-details { font-size: 0.9rem; color: #6b7280; }
+    .country-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      border-radius: 20px; padding: 4px 14px;
+      font-size: 0.8rem; color: #1d4ed8; font-weight: 600;
+    }
+    .title {
+      font-size: 2.2rem; font-weight: 900; color: #111827;
+      margin: 20px 0 8px; line-height: 1.3;
+    }
+    .date-subtitle {
+      font-size: 1.1rem; font-weight: 300; color: #4b5563;
+      margin-bottom: 16px;
+    }
+    .title-divider {
+      width: 60px; height: 4px; background: #1d4ed8; border-radius: 2px;
+    }
+    .content {
+      max-width: 900px; margin: 30px auto; padding: 0 40px; font-size: 1.05rem;
+    }
+    .content p { margin-bottom: 18px; }
+    .content a {
+      color: #1d4ed8; cursor: pointer;
+      text-decoration: underline;
+      text-decoration-color: rgba(29,78,216,0.3);
+    }
+    .photo-block {
+      margin: 30px 0; border-radius: 12px; overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    .photo-block img {
+      width: 100%; display: block; cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .photo-block img:hover { transform: scale(1.01); }
+    .photo-block .caption {
+      padding: 12px 16px; font-size: 0.85rem; color: #6b7280;
+      background: #f9fafb; border-top: 1px solid #f3f4f6;
+    }
+    .photo-pair {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 14px; margin: 30px 0;
+    }
+    .photo-pair .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-pair .photo-item img {
+      width: 100%; height: 200px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-pair .photo-item img:hover { transform: scale(1.03); }
+    .photo-pair .photo-item .caption {
+      padding: 8px 12px; font-size: 0.8rem; color: #6b7280; background: #f9fafb;
+    }
+    .photo-trio {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px; margin: 30px 0;
+    }
+    .photo-trio .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-trio .photo-item img {
+      width: 100%; height: 180px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-trio .photo-item img:hover { transform: scale(1.03); }
+    .photo-trio .photo-item .caption {
+      padding: 8px 10px; font-size: 0.78rem; color: #6b7280; background: #f9fafb;
+    }
+    .nav-cards {
+      max-width: 900px; margin: 50px auto 20px; padding: 0 40px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .nav-card {
+      padding: 20px 24px; border: 1px solid #e5e7eb; border-radius: 12px;
+      text-decoration: none; color: inherit; transition: all 0.2s;
+    }
+    .nav-card:hover {
+      border-color: #1d4ed8; box-shadow: 0 4px 12px rgba(29,78,216,0.1);
+    }
+    .nav-card .label { font-size: 0.8rem; color: #6b7280; margin-bottom: 4px; }
+    .nav-card .card-title { font-weight: 700; font-size: 1rem; color: #1d4ed8; }
+    .supplements {
+      margin-top: 35px; padding: 25px 30px;
+      background: #f9fafb; border-radius: 12px; border: 1px solid #e5e7eb;
+    }
+    .supplements h3 {
+      font-size: 1.1rem; font-weight: 700; margin-bottom: 14px; color: #374151;
+    }
+    .supplements ol { padding-right: 20px; }
+    .supplements li { margin-bottom: 10px; color: #4b5563; }
+    .country-nav {
+      max-width: 900px; margin: 20px auto 40px; padding: 0 40px;
+      display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+    }
+    .country-nav a {
+      padding: 6px 14px; border-radius: 20px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      color: #1d4ed8; text-decoration: none;
+      font-size: 0.82rem; font-weight: 600;
+      transition: all 0.2s;
+    }
+    .country-nav a:hover {
+      background: #1d4ed8; color: white; border-color: #1d4ed8;
+    }
     .lightbox {
       display: none; position: fixed; z-index: 9999;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.9); justify-content: center; align-items: center; cursor: pointer;
+      background: rgba(0,0,0,0.92);
+      justify-content: center; align-items: center; cursor: pointer;
     }
-    .lightbox img { max-width: 90%; max-height: 90%; border-radius: 8px; }
+    .lightbox img { max-width: 92%; max-height: 92%; border-radius: 8px; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h1>נמל תעופה, מלבורן, אוסטרליה</h1>
-      <a href="../index.html" class="home-link">🏠 לעמוד הראשי</a>
+  <div class="top-nav">
+    <div class="nav-links">
+      <a href="../index.html">עמוד ראשי</a>
     </div>
-    <div class="content">
-      <body>
-<table cellpadding="0" cellspacing="0" height="80" width="954">
-<tr>
-<td align="center" height="80" width="277">
-<marquee style="font-size: 18pt; color: #800080">5.5.02 - 5:15</marquee></td>
-<td align="center" height="80" width="667">
-<!--webbot bot="Navigation" s-type="banner" s-rendering="graphics" S-Orientation B-Include-Home B-Include-Up U-Page S-Target startspan --><!--webbot bot="Navigation" i-checksum="64356" endspan --></td>
-<td align="center" height="80" width="10">
-<img border="0" height="2" onclick="openLightbox(this.src)" src="../images/20020322_fishermen.jpg" title="לחץ להגדלה" width="1"/><img border="0" height="174" onclick="openLightbox(this.src)" src="../images/Australia.gif" title="לחץ להגדלה" width="185"/></td>
-</tr>
-<tr>
-<td colspan="3" height="1" style=" " width="954"></td>
-</tr>
-</table><table cellpadding="0" cellspacing="0" width="100%">
-<tr>
-<td align="right" style=" ">
-<h4>
-<marquee style="font-size: 24pt; color: #008080">ההיט-עלקות האחרונה, מבצע קואלה</marquee></h4>
-<p> </p></td>
-</tr>
-</table>
-<table cellpadding="0" cellspacing="0" height="333" width="953">
-<tr>
-<td height="333" rowspan="2" style="       " valign="top" width="140"> <!--webbot bot="Navigation" S-Type="sequence" S-Orientation="vertical" S-Rendering="graphics" S-Theme="blocks 000" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><!--webbot bot="Navigation" i-checksum="23763" endspan --><p style="text-align: center">
-
-<img border="0" height="80" onclick="openLightbox(this.src)" src="../images/contract_highlighter_rolling_md_wht.gif" title="לחץ להגדלה" width="125"/></p>
-</td>
-<td height="333" rowspan="2" style="     " valign="top" width="1"></td>
-<td colspan="2" height="266" style="     " valign="top" width="735">
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> עבר המון זמן מאז הפעם 
-    האחרונה שכתבתי וזה בגלל שרציתי לשמור הכל לשדה התעופה, שם חשבתי שיהיה המון 
-    זמן. עלי גם לעשות סיכום לניו-זילנד, אבל דברים לא הסתדרו כמו שחשבתי.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">יהיה לי קשה לכתוב 
-    כרונולוגית על 4 ימים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">ב- 1-3 למאי היינו אצל 
-    טריש. בהתחלה היו שמועות שהיא כועסת עלינו (לא רק על גונן ועלי אלא על החבורה 
-    המורחבת), כי אנחנו לא מציעים לה עזרה בעבודות הבית. הרגשתי לא נעים. זה היה 
-    נכון. נטינו להתחמק ממנה וכמובן מהעבודות. הייתי עיוור וחשבתי שהיא לא שמה לב. 
-    אז באנו אליה והצענו את עזרתנו. סידרנו לה את הגראז'. מצאנו שם המון ציוד 
-    שהשאירו. גונן אימץ לעצמו תיק קטן ואיכותי (הוא אמר שזה פיצוי על התיק שנגנב לו 
-    לפני שנה מהאוטו של זלוף). אני אימצתי 2 רמקולים קטנים, אבל אני מתכוון לשלוח 
-    אי-מייל לטריש על זה ושאם מישהו יחפש אותם אז אני אחזיר לו אותם בארץ.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">יום אח"כ יצא לנו לשבת עם 
-    טריש ולצחוק. היא מתה עלינו וקוראת לנו ה- "</span><span dir="LTR">body guards</span><span lang="HE">" 
-    – שומרי הראש. היא אוהבת גם את סיימון, במיוחד את הצחוק שלו, שנשמע כמו הצחוק 
-    של בועז שרעבי. ניסיתי להצחיק אותו לבקשתה. הוא היחידי שהעיניים שלו בתמונות הן 
-    כמו במציאות – אדומות. בקיצור הוא מלך. "מלך הגראז'". נראה שהוא הולך להתנחל 
-    אצל טריש כמו אסף שנמצא שם כבר למעלה מחודש. בדומה לאסף, מתחיל ככל הנראה 
-    סיימון לעבוד, נראה לי במכירת תמונות. אסף זכה לכינוי "נשיא הגראז'" מפאת 
-    הוותק. החמאתי לו פעם על הפליז האדום והיפה שלו ומאז הוא חושד בי בחיבת גברים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אמרתי לסיימון שכשהוא יסתדר 
-    כאן הוא יוכל להתחיל ב- </span><span dir="LTR">shit</span> <span lang="HE">–
-    </span><span dir="LTR">Simon Hosting Israeli Travelers</span><span lang="HE">. 
-    הוא ישקול את זה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">גונן מבלה איתנו ביום ועם 
-    דיאן בלילה. היא הביאה לו שרשרת עם השם דיאן. כשהוא עונד אותה הוא נראה כמו 
-    הומו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בערב כשהוא הלך לדיאן שאלה 
-    אותי טריש "לאן אריק הלך?" – "</span><span dir="LTR">to his-Dian</span><span lang="HE">" 
-    עניתי לה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אז יצאנו פעם אחת בערב ל-
-    </span><span dir="LTR">acb</span><span lang="HE"> והיה גרוע, ערב קריוקי. ערב 
-    אחד בילינו אני, אסף וסיימון במועדון המלא תמיד – מרגריטה. היה נחמד, אבל גונן 
-    היה חסר לי בשביל הקטעים. בחורה בלונדינית באה אלי ואמרה לי "בוא נרקוד", וכך 
-    עשינו, ופתאם היא אומרת לי "הבחור בפינה זה החבר שלי לשעבר, אני רוצה לגרום לו 
-    לקנא". אני כחבר במועדון המין הגברי לא שיתפתי פעולה. משם הלכנו למועדון אחר,
-    </span><span dir="LTR">Jones</span><span lang="HE">. בכניסה פסלו את כולנו על 
-    תלבושת. שיחקתי אותה חמוד ואמרתי לשומר "תן לפחות להציץ כדי שהבחורות תדענה מה 
-    הן מפסידות". הוא חייך ונתן לנו להכנס. המועדון מסוגנן מאד. מוזיקת </span>
-<span dir="LTR">house</span><span lang="HE"> מעולה, כמו בפטיש. חצי מלא. אסף 
-    אמר לי שיש תור להסנפות בשירותים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">והיה יום אחד שלא יצאנו 
-    כלל.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">גונן היה חוזר כל לילה עם 
-    סיפורים. אך מה שמעניין בלילה הראשון לא כ"כ מעניין בלילות אח"כ. אחרי שהיא 
-    הביאה לו את השרשרת הוא התאפס סוף סוף על השם שלה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">לקראת הפרידה דיאן הזילה 
-    דמעות. גונן אמר שלצערו הוא שבר את ליבה. אני יודע שזה כי גונן לא משחק לפי 
-    הכללים של המין הגברי. כל הקטע הרגשי צריך לבוא עד הקטע המיני אח"כ או להסתלק 
-    או לשמור על ריחוק. כל דבר אחר מוביל לקשר רומנטי, וזה טוב רק לקשר ארוך. גונן 
-    אוהב להצחיק ולהשקיע הרבה זמן עם בחורותיו וכך יוצא שהוא שובר את ליבן. אני 
-    חושב שהוא יודע את זה. הוא פשוט סוחט אותן גם רגשית ולא רק גופנית.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">כשהגיע הזמן לעזוב. גונן 
-    סחט את דיאן גם כנהגת. את זמן האיכות האחרון עם גונן היא עשתה בלהסיע אותנו 
-    למכבסה ולחכות עד שהכל יהיה מוכן ואח"כ להסיע אותנו לאינטרנט לשלוח תמונות שלנו 
-    שטריש פיתחה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">היה כיף אצל טריש, שבועיים 
-    ימים ולילות. בילינו היטב שם.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הפרידה מטריש היתה מרגשת. 
-    שברנו גם לה את הלב, אבל ככה זה כשאתה מארח אנשים – אתה נקשר אליהם, ואז הם 
-    עוזבים. היא הזילה דמעה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">נסענו למרכז אוקלנד עם 
-    התיקים הגדולים – עלי 30 ק"ג, על גונן – 25. היה קשה אבל ההרגשה היתה מוכרת 
-    וטובה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">לקחנו את האוטובוס האחרון 
-    להמילטון (16:00, 20$</span><span dir="LTR">NZ</span><span lang="HE">). הגענו 
-    להמילטון ב- 19:00. התחנה המרכזית נסגרה לנו מול העיניים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">התקשרתי להזמין </span>
-<span dir="LTR">shuttle</span><span lang="HE"> לשדה התעופה. הטיסה אמנם ב- 
-    6:30 בבוקר, אך חשבתי להעביר את הזמן בשדה התעופה וגם לכתוב יומן. בטלפון אמרו 
-    לי שנמל התעופה נסגר בלילה וייפתח רק למחרת בבוקר, ואין הסעות עד אז.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">מה נעשה? היכן נישן?. העיר 
-    נראתה די מוזנחת כבר ב- 19:00. התקשרתי ל- </span><span dir="LTR">hit</span><span lang="HE"> 
-    בהמילטון, יש זוג שמארח. אף אחד לא ענה לי. נראה שנחפש מקום סגור להעביר בו את 
-    הלילה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">דלתות מסתובבות.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">החלטנו ל-</span><span dir="LTR">hit</span><span lang="HE">-עלק, 
-    וכך התקשרנו למשפחת </span><span dir="LTR">hit</span><span lang="HE"> שרק 
-    מארחת לארוחת ליל שישי. אותו יום, ה- 3.5 היה יום שישי. התקשרנו לשם ומסתבר שהם 
-    היו באמצע ארוחה. הזוג המארח, שהתקשרתי אליהם קודם, היו שם – ג'ף ושירלי. ג'ף 
-    התנדב לבוא ולאסוף אותנו לשם לאכול ואח"כ אליו לשינה. איזה כיף, לא רציתי לנצל 
-    אותם, אך ליתר בטחון לא התקשרתי להזמין </span><span dir="LTR">shuttle</span><span lang="HE"> 
-    לשדה תעופה על הבוקר, מקסימום...</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בארוחה היו 18 איש לבביים. 
-    כולם זקנים וצעירה אחת (שלצערינו לא יצא לנו לדבר איתה). הם כבר סיימו לאכול 
-    ונתנו לנו צלחות אותן מילאנו בכל טוב. העמסתי על צלחתי מהכל וגונן ראה והתבייש. 
-    יצא לנו לדבר עם רבים מהם, במיוחד על המצב הבטחוני ומה לדעתינו יקרה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אח"כ הגיע הזמן לראות 
-    וידיאו על ירושלים. היה ארוך (שעה). מוזר אך מעניין. הכל ברוח משיחית.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הם העניקו לנו תמונות וספר 
-    על יהודי שהפך להיות נוצרי משיחי, שקראתי כבר באחד ההיטים. נפטרתי כבר מהספר, 
-    אך בצורה תרבותית. השארתי אותו בבק פקר במלבורן בצורה מסיונרית.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הלכנו לישון ב- 23:00. ג'ף 
-    העיר אותנו ב- 4:00, כדי לקחת אותנו לשדה התעופה (טוב שלא הזמנו </span>
-<span dir="LTR">shuttle</span><span lang="HE">). הם נשארו איתנו גם אחרי 
-    <a href="images/pictures/new-zealand/20020504_in_the_airport.jpg" target="_blank">שנפרדנו מהם בחיבוקים</a> (כבר התרגלנו). הם הסביר שהן רגילים להשאר בשדה התעופה עד 
-    שהמטוס ממריא...</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">איזו סיומת מעולה ליום שיכל 
-    להיות גרוע.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">ורק איילת שולץ מחיפה מעיבה 
-    על הכל – אותה בחורה התארחה אצל הזוג בעבר וסיפרה שהיא קצינת תותחנים. אין דבר 
-    כזה!!, ואני אגש לברר זאת במלואים הקרובים. הבטחתי לזוג תשובה מאומתת.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">טסנו 4 שעות למלבורן. 
-    נחתנו. היה לנו 24 שעות בנמל. גונן החליט ליזום מבצע של מציאת קואלה וצילומה. 
-    התגייסתי למבצע בהתלהבות ויצאתי לבדוק עלויות.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">נחתנו ב- 8:30. הטיסה שלנו 
-    למחרת ב- 7:20.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">המחירים כאן באוסטרליה 
-    גבוהים – 21$</span><span dir="LTR">AU</span><span lang="HE"> אוטובוס הלוך 
-    וחזור לעיר. 5$</span><span dir="LTR">AU</span><span lang="HE"> הלוך וחזור ב-
-    </span><span dir="LTR">tram</span><span lang="HE"> עד לגן החיות. 15$</span><span dir="LTR">AU</span><span lang="HE"> 
-    כניסה לגן-חיות ומה עם שמירת התיקים הגדולים: 10$</span><span dir="LTR">AU</span><span lang="HE"> 
-    לתיק גדול. 1$</span><span dir="LTR">AU</span><span lang="HE"> זה בערך 2.5 שקל. 
-    סה"כ 51$</span><span dir="LTR">AU</span><span lang="he">,</span><span lang="HE"> 
-    בערך 130 שקל. מה עם 
-    אוכל? ועדיין נישן בשדה התעופה. עלויות מעט מעבר לתכנון, אפילו בשביל מטרה נעלה 
-    וחמודה כמו קואלה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">דלתות מסתובבות.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הכרנו בחורה ישראלית שעובדת 
-    בשדה-התעופה לשכנע ולהזמין לתיירים מקום בבק פקרים. היא ארגנה לנו חבילה יפה 
-    שלקחנו אותה בכיף: 16$</span><span dir="LTR">AU</span><span lang="HE"> הסעה 
-    לעיר כולל לינה בק פקר, 10$</span><span dir="LTR">AU</span><span lang="HE"> 
-    הסעה חזור לשדה תעופה. 15$</span><span dir="LTR">AU</span><span lang="HE"> 
-    כניסה לגן-חיות – סה"כ 41$</span><span dir="LTR">AU</span><span lang="HE"> 
-    כולל שינה ומקלחת.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">נסענו לשם, שמנו את התיקים 
-    שלנו בחדר (קומה אחרונה בלי מעלית, איזה חוסר התחשבות), והלכנו ברגל לגן-חיות. 
-    הטלתי מגבלת תקציב על אוכל כי לא הוצאנו מספיק כסף. גונן נהיה רעב ועצבני 
-    והאשים אותי בקמצנות – העלה התלמיד על רבו?</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בגן-חיות רצנו לקואלה. היא 
-    ישנה, מוסתרת מאחורי עלים. החלטנו לחזור אליה אח"כ. כך שוטטנו בכל גן החיות 
-    ומדי פעם חזרנו לקואלה עד שגונן 
-    <a href="images/pictures/australia/20020504_the_koala.jpg" target="_blank">זכה לצילום המיוחל</a>. חוץ מהקואלה הביקור היה 
-    שווה ביותר. גן-חיות גדול ויפה, היפה ביותר עד כה (והיינו כבר באיזה 5 גני חיות 
-    בטיול). יש חיות אקזוטיות, נמצאות רק באוסטרליה והן ממש מיוחדות, לא כמו 
-    ניו-זילנד, שחוץ מהקיווי אין חיה ממש מיוחדת. כאן ראינו את ה<a href="images/pictures/australia/20020504_kipodan.jpg" target="_blank">קיפודן</a> – דומה 
-    לקיפוד, מזכיר את הקיווי בתכונותיו – אדיש, הולך מצחיק ומחפש נמלים. יש לו 
-    ציפורנים ארוכות ברגלים האחוריות – חמוד בטירוף, הברקה. יש את ה<a href="images/pictures/australia/20020504_wombat.jpg" target="_blank">וומבט</a> – חיה 
-    מוזרה ומלהיבה, חיה במחילות. יש עוד ציפורים מוזרות, יש את הברווזן המוזר.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">החי באוסטרליה באמת מיוחד.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">גן החיות גם בנוי ברובו 
-    בצורה יפה – הרבה מרווח לחיות והרבה עמדות תצפית למבקרים, בחלקן בנו חלון 
-    ראווה. החיות מרגישות בנוח.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">חדר הפרפרים הוא גם הברקה. 
-    אתה הולך בחדר והמון פרפרים, מאות ואולי אלפים, ענקיים וצבעוניים, מסביבך במרחק 
-    נגיעה וצילום תקריב.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">חזרנו לבק-פקר והתקשרנו. 
-    מרכז העיר מלבורן יפהפיה, מעין מדרחוב עם נגנים וחנויות מדליקות. היינו גם 
-    בכנסית </span><span dir="LTR">St. Patrick</span><span lang="HE"> היפה ובגנים 
-    ליד.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">התפתח אצלי כאב ראש, שמהדהד 
-    בראשי עד עכשיו, אולי התייבשות.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">חלק מהכתיבה הנוכחית עשיתי 
-    בשירותים בנמל – נחמד שאתה יודע שהשארת מעצמך בהרבה מקומות בעולם – איך שגלל 
-    מסתובב לו...</span></b></p>
-<p> </p></td>
-<td align="center" height="333" rowspan="2" style="     " valign="top" width="187">
-
-<img border="0" height="120" onclick="openLightbox(this.src)" src="../images/20020504_in_the_airport.jpg" title="לחץ להגדלה" width="175"/><p>
-<font color="#660099">ג'ף ושירלי נפרדים מאיתנו בשדה התעופה</font><p>
-     <p>
-
-<img border="0" height="130" onclick="openLightbox(this.src)" src="../images/20020504_kipodan.jpg" title="לחץ להגדלה" width="178"/><p>
-<font color="#660099">הקיפודן החמוד והמוזר</font><p>
-
-<img border="0" height="124" onclick="openLightbox(this.src)" src="../images/20020504_lion.jpg" title="לחץ להגדלה" width="180"/><p>
-
-<img border="0" height="244" onclick="openLightbox(this.src)" src="../images/20020504_arie.jpg" title="לחץ להגדלה" width="151"/><p>
-<font color="#660099">גונן, אריה</font><p>
-
-<img border="0" height="241" onclick="openLightbox(this.src)" src="../images/20020504_the_koala.jpg" title="לחץ להגדלה" width="151"/><p>
-<font color="#660099">מבצע קואלה הושלם בהצלחה</font><p>
-
-<img border="0" height="146" onclick="openLightbox(this.src)" src="../images/20020504_wombat.jpg" title="לחץ להגדלה" width="179"/><p>
-<font color="#660099">וומבט</font><p>
-
-<img border="0" height="129" onclick="openLightbox(this.src)" src="../images/20020504_american_buffalo.jpg" title="לחץ להגדלה" width="179"/><p>
-<font color="#660099">ביזון אמריקאי</font><p>
-
-<img border="0" height="125" onclick="openLightbox(this.src)" src="../images/20020504_cute_white_monkey.jpg" title="לחץ להגדלה" width="181"/><p>
-
-<img border="0" height="122" onclick="openLightbox(this.src)" src="../images/20020504_garbezan.jpg" title="לחץ להגדלה" width="183"/></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></td>
-</tr>
-<tr>
-<td height="67" style="     " valign="top" width="314">
-<b>
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button104.gif" title="לחץ להגדלה" width="59"/></b></td>
-<td height="67" style="     " valign="top" width="421">
-<p align="right"><b>
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button106.gif" title="לחץ להגדלה" width="59"/></b></p></td>
-</tr>
-</table>
-<p align="center">
-<!--webbot bot="Navigation" S-Type="sequence" S-Orientation="horizontal" S-Rendering="html" S-Bar="Brackets" S-Btn-Nml="[&lt;A HREF=&quot;#URL#&quot; TARGET=&quot;#TARGET#&quot; STYLE=&quot;{text-decoration: none;}&quot;&gt;#LABEL#&lt;/A&gt;]" S-Btn-Sel="[#LABEL#]" S-Btn-Sep="&amp;nbsp;" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><nobr>[<a href="index.html" style="{text-decoration: none;}" target="">התחלה</a>]</nobr> <nobr>[<a href="200110052040.html" style="{text-decoration: none;}" target="">דנמרק</a>]</nobr> <nobr>[<a href="20011006.html" style="{text-decoration: none;}" target="">הודו</a>]</nobr> <nobr>[<a href="20011030.html" style="{text-decoration: none;}" target="">נפאל</a>]</nobr> <nobr>[<a href="20011115.html" style="{text-decoration: none;}" target="">טרק סובב אנאפורנה</a>]</nobr> <nobr>[<a href="20011210.html" style="{text-decoration: none;}" target="">תאילנד</a>]</nobr> <nobr>[<a href="20020108.html" style="{text-decoration: none;}" target="">לאוס</a>]</nobr> <nobr>[<a href="20020123.html" style="{text-decoration: none;}" target="">צפון תאילנד</a>]</nobr> <nobr>[<a href="20020203.html" style="{text-decoration: none;}" target="">אוסטרליה</a>]</nobr> <nobr>[<a href="20020210.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי דרומי</a>]</nobr> <nobr>[<a href="20020326.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי צפוני</a>]</nobr> <nobr>[<a href="20020506.html" style="{text-decoration: none;}" target="">פיליפינים</a>]</nobr> <nobr>[<a href="20020603.html" style="{text-decoration: none;}" target="">קמבודיה</a>]</nobr><!--webbot bot="Navigation" i-checksum="33824" endspan --></p>
-<p><i><small>This site was last updated
-<!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%m/%d/%y" startspan -->08/02/03<!--webbot bot="Timestamp" i-checksum="12636" endspan --> </small></i>
-</p>
-</body>
+    <div class="nav-links">
+      <a href="20020505.html">← הקודם</a>
+      <a href="20020506.html">הבא →</a>
     </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-text">
+      <div class="meta-line">
+        <span class="date-big">05</span>
+        <div>
+          <div class="date-details">מאי 2002</div>
+          <span class="country-badge">אוסטרליה</span>
+        </div>
+      </div>
+      <h1 class="title">ההיט-עלקות האחרונה, מבצע קואלה</h1>
+      <div class="title-divider"></div>
+    </div>
+    <img class="hero-map" src="../images/Australia.gif" alt="אוסטרליה">
+  </div>
+
+  <div class="content">
+    <p>ההיט-עלקות האחרונה, מבצע קואלה</p>
+
+    <p>עבר המון זמן מאז הפעם האחרונה שכתבתי וזה בגלל שרציתי לשמור הכל לשדה התעופה, שם חשבתי שיהיה המון זמן. עלי גם לעשות סיכום לניו-זילנד, אבל דברים לא הסתדרו כמו שחשבתי.</p>
+
+    <p>יהיה לי קשה לכתוב כרונולוגית על 4 ימים.</p>
+
+    <p>ב- 1-3 למאי היינו אצל טריש. בהתחלה היו שמועות שהיא כועסת עלינו (לא רק על גונן ועלי אלא על החבורה המורחבת), כי אנחנו לא מציעים לה עזרה בעבודות הבית. הרגשתי לא נעים. זה היה נכון. נטינו להתחמק ממנה וכמובן מהעבודות. הייתי עיוור וחשבתי שהיא לא שמה לב. אז באנו אליה והצענו את עזרתנו. סידרנו לה את הגראז'. מצאנו שם המון ציוד שהשאירו. גונן אימץ לעצמו תיק קטן ואיכותי (הוא אמר שזה פיצוי על התיק שנגנב לו לפני שנה מהאוטו של זלוף). אני אימצתי 2 רמקולים קטנים, אבל אני מתכוון לשלוח אי-מייל לטריש על זה ושאם מישהו יחפש אותם אז אני אחזיר לו אותם בארץ.</p>
+
+    <p>יום אח"כ יצא לנו לשבת עם טריש ולצחוק. היא מתה עלינו וקוראת לנו ה- "body guards" – שומרי הראש. היא אוהבת גם את סיימון, במיוחד את הצחוק שלו, שנשמע כמו הצחוק של בועז שרעבי. ניסיתי להצחיק אותו לבקשתה. הוא היחידי שהעיניים שלו בתמונות הן כמו במציאות – אדומות. בקיצור הוא מלך. "מלך הגראז'". נראה שהוא הולך להתנחל אצל טריש כמו אסף שנמצא שם כבר למעלה מחודש. בדומה לאסף, מתחיל ככל הנראה סיימון לעבוד, נראה לי במכירת תמונות. אסף זכה לכינוי "נשיא הגראז'" מפאת הוותק. החמאתי לו פעם על הפליז האדום והיפה שלו ומאז הוא חושד בי בחיבת גברים.</p>
+
+    <p>אמרתי לסיימון שכשהוא יסתדר כאן הוא יוכל להתחיל ב- shit – Simon Hosting Israeli Travelers. הוא ישקול את זה.</p>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/20020322_fishermen.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020504_in_the_airport.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">ג'ף ושירלי נפרדים מאיתנו בשדה התעופה</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020504_kipodan.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">הקיפודן החמוד והמוזר</div>
+      </div>
+    </div>
+
+    <p>גונן מבלה איתנו ביום ועם דיאן בלילה. היא הביאה לו שרשרת עם השם דיאן. כשהוא עונד אותה הוא נראה כמו הומו.</p>
+
+    <p>בערב כשהוא הלך לדיאן שאלה אותי טריש "לאן אריק הלך?" – "to his-Dian" עניתי לה.</p>
+
+    <p>אז יצאנו פעם אחת בערב ל- acb והיה גרוע, ערב קריוקי. ערב אחד בילינו אני, אסף וסיימון במועדון המלא תמיד – מרגריטה. היה נחמד, אבל גונן היה חסר לי בשביל הקטעים. בחורה בלונדינית באה אלי ואמרה לי "בוא נרקוד", וכך עשינו, ופתאם היא אומרת לי "הבחור בפינה זה החבר שלי לשעבר, אני רוצה לגרום לו לקנא". אני כחבר במועדון המין הגברי לא שיתפתי פעולה. משם הלכנו למועדון אחר, Jones. בכניסה פסלו את כולנו על תלבושת. שיחקתי אותה חמוד ואמרתי לשומר "תן לפחות להציץ כדי שהבחורות תדענה מה הן מפסידות". הוא חייך ונתן לנו להכנס. המועדון מסוגנן מאד. מוזיקת house מעולה, כמו בפטיש. חצי מלא. אסף אמר לי שיש תור להסנפות בשירותים.</p>
+
+    <p>והיה יום אחד שלא יצאנו כלל.</p>
+
+    <p>גונן היה חוזר כל לילה עם סיפורים. אך מה שמעניין בלילה הראשון לא כ"כ מעניין בלילות אח"כ. אחרי שהיא הביאה לו את השרשרת הוא התאפס סוף סוף על השם שלה.</p>
+
+    <p>לקראת הפרידה דיאן הזילה דמעות. גונן אמר שלצערו הוא שבר את ליבה. אני יודע שזה כי גונן לא משחק לפי הכללים של המין הגברי. כל הקטע הרגשי צריך לבוא עד הקטע המיני אח"כ או להסתלק או לשמור על ריחוק. כל דבר אחר מוביל לקשר רומנטי, וזה טוב רק לקשר ארוך. גונן אוהב להצחיק ולהשקיע הרבה זמן עם בחורותיו וכך יוצא שהוא שובר את ליבן. אני חושב שהוא יודע את זה. הוא פשוט סוחט אותן גם רגשית ולא רק גופנית.</p>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/20020504_lion.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020504_arie.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">גונן, אריה</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020504_the_koala.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">מבצע קואלה הושלם בהצלחה</div>
+      </div>
+    </div>
+
+    <p>כשהגיע הזמן לעזוב. גונן סחט את דיאן גם כנהגת. את זמן האיכות האחרון עם גונן היא עשתה בלהסיע אותנו למכבסה ולחכות עד שהכל יהיה מוכן ואח"כ להסיע אותנו לאינטרנט לשלוח תמונות שלנו שטריש פיתחה.</p>
+
+    <p>היה כיף אצל טריש, שבועיים ימים ולילות. בילינו היטב שם.</p>
+
+    <p>הפרידה מטריש היתה מרגשת. שברנו גם לה את הלב, אבל ככה זה כשאתה מארח אנשים – אתה נקשר אליהם, ואז הם עוזבים. היא הזילה דמעה.</p>
+
+    <p>נסענו למרכז אוקלנד עם התיקים הגדולים – עלי 30 ק"ג, על גונן – 25. היה קשה אבל ההרגשה היתה מוכרת וטובה.</p>
+
+    <p>לקחנו את האוטובוס האחרון להמילטון (16:00, 20$NZ). הגענו להמילטון ב- 19:00. התחנה המרכזית נסגרה לנו מול העיניים.</p>
+
+    <p>התקשרתי להזמין shuttle לשדה התעופה. הטיסה אמנם ב- 6:30 בבוקר, אך חשבתי להעביר את הזמן בשדה התעופה וגם לכתוב יומן. בטלפון אמרו לי שנמל התעופה נסגר בלילה וייפתח רק למחרת בבוקר, ואין הסעות עד אז.</p>
+
+    <div class="photo-pair">
+      <div class="photo-item">
+        <img src="../images/20020504_wombat.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">וומבט</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020504_american_buffalo.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">ביזון אמריקאי</div>
+      </div>
+    </div>
+
+    <p>מה נעשה? היכן נישן?. העיר נראתה די מוזנחת כבר ב- 19:00. התקשרתי ל- hit בהמילטון, יש זוג שמארח. אף אחד לא ענה לי. נראה שנחפש מקום סגור להעביר בו את הלילה.</p>
+
+    <p>דלתות מסתובבות.</p>
+
+    <p>החלטנו ל-hit-עלק, וכך התקשרנו למשפחת hit שרק מארחת לארוחת ליל שישי. אותו יום, ה- 3.5 היה יום שישי. התקשרנו לשם ומסתבר שהם היו באמצע ארוחה. הזוג המארח, שהתקשרתי אליהם קודם, היו שם – ג'ף ושירלי. ג'ף התנדב לבוא ולאסוף אותנו לשם לאכול ואח"כ אליו לשינה. איזה כיף, לא רציתי לנצל אותם, אך ליתר בטחון לא התקשרתי להזמין shuttle לשדה תעופה על הבוקר, מקסימום...</p>
+
+    <p>בארוחה היו 18 איש לבביים. כולם זקנים וצעירה אחת (שלצערינו לא יצא לנו לדבר איתה). הם כבר סיימו לאכול ונתנו לנו צלחות אותן מילאנו בכל טוב. העמסתי על צלחתי מהכל וגונן ראה והתבייש. יצא לנו לדבר עם רבים מהם, במיוחד על המצב הבטחוני ומה לדעתינו יקרה.</p>
+
+    <p>אח"כ הגיע הזמן לראות וידיאו על ירושלים. היה ארוך (שעה). מוזר אך מעניין. הכל ברוח משיחית.</p>
+
+    <p>הם העניקו לנו תמונות וספר על יהודי שהפך להיות נוצרי משיחי, שקראתי כבר באחד ההיטים. נפטרתי כבר מהספר, אך בצורה תרבותית. השארתי אותו בבק פקר במלבורן בצורה מסיונרית.</p>
+
+    <div class="photo-pair">
+      <div class="photo-item">
+        <img src="../images/20020504_cute_white_monkey.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020504_garbezan.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+    </div>
+
+    <p>הלכנו לישון ב- 23:00. ג'ף העיר אותנו ב- 4:00, כדי לקחת אותנו לשדה התעופה (טוב שלא הזמנו shuttle). הם נשארו איתנו גם אחרי <a onclick="openLightbox('../images/20020504_in_the_airport.jpg')">שנפרדנו מהם בחיבוקים</a> (כבר התרגלנו). הם הסביר שהן רגילים להשאר בשדה התעופה עד שהמטוס ממריא...</p>
+
+    <p>איזו סיומת מעולה ליום שיכל להיות גרוע.</p>
+
+    <p>ורק איילת שולץ מחיפה מעיבה על הכל – אותה בחורה התארחה אצל הזוג בעבר וסיפרה שהיא קצינת תותחנים. אין דבר כזה!!, ואני אגש לברר זאת במלואים הקרובים. הבטחתי לזוג תשובה מאומתת.</p>
+
+    <p>טסנו 4 שעות למלבורן. נחתנו. היה לנו 24 שעות בנמל. גונן החליט ליזום מבצע של מציאת קואלה וצילומה. התגייסתי למבצע בהתלהבות ויצאתי לבדוק עלויות.</p>
+
+    <p>נחתנו ב- 8:30. הטיסה שלנו למחרת ב- 7:20.</p>
+
+    <p>המחירים כאן באוסטרליה גבוהים – 21$AU אוטובוס הלוך וחזור לעיר. 5$AU הלוך וחזור ב- tram עד לגן החיות. 15$AU כניסה לגן-חיות ומה עם שמירת התיקים הגדולים: 10$AU לתיק גדול. 1$AU זה בערך 2.5 שקל. סה"כ 51$AU, בערך 130 שקל. מה עם אוכל? ועדיין נישן בשדה התעופה. עלויות מעט מעבר לתכנון, אפילו בשביל מטרה נעלה וחמודה כמו קואלה.</p>
+
+    <p>דלתות מסתובבות.</p>
+
+    <p>הכרנו בחורה ישראלית שעובדת בשדה-התעופה לשכנע ולהזמין לתיירים מקום בבק פקרים. היא ארגנה לנו חבילה יפה שלקחנו אותה בכיף: 16$AU הסעה לעיר כולל לינה בק פקר, 10$AU הסעה חזור לשדה תעופה. 15$AU כניסה לגן-חיות – סה"כ 41$AU כולל שינה ומקלחת.</p>
+
+    <p>נסענו לשם, שמנו את התיקים שלנו בחדר (קומה אחרונה בלי מעלית, איזה חוסר התחשבות), והלכנו ברגל לגן-חיות. הטלתי מגבלת תקציב על אוכל כי לא הוצאנו מספיק כסף. גונן נהיה רעב ועצבני והאשים אותי בקמצנות – העלה התלמיד על רבו?</p>
+
+    <p>בגן-חיות רצנו לקואלה. היא ישנה, מוסתרת מאחורי עלים. החלטנו לחזור אליה אח"כ. כך שוטטנו בכל גן החיות ומדי פעם חזרנו לקואלה עד שגונן <a onclick="openLightbox('../images/20020504_the_koala.jpg')">זכה לצילום המיוחל</a>. חוץ מהקואלה הביקור היה שווה ביותר. גן-חיות גדול ויפה, היפה ביותר עד כה (והיינו כבר באיזה 5 גני חיות בטיול). יש חיות אקזוטיות, נמצאות רק באוסטרליה והן ממש מיוחדות, לא כמו ניו-זילנד, שחוץ מהקיווי אין חיה ממש מיוחדת. כאן ראינו את ה<a onclick="openLightbox('../images/20020504_kipodan.jpg')">קיפודן</a> – דומה לקיפוד, מזכיר את הקיווי בתכונותיו – אדיש, הולך מצחיק ומחפש נמלים. יש לו ציפורנים ארוכות ברגלים האחוריות – חמוד בטירוף, הברקה. יש את ה<a onclick="openLightbox('../images/20020504_wombat.jpg')">וומבט</a> – חיה מוזרה ומלהיבה, חיה במחילות. יש עוד ציפורים מוזרות, יש את הברווזן המוזר.</p>
+
+    <p>החי באוסטרליה באמת מיוחד.</p>
+
+    <p>גן החיות גם בנוי ברובו בצורה יפה – הרבה מרווח לחיות והרבה עמדות תצפית למבקרים, בחלקן בנו חלון ראווה. החיות מרגישות בנוח.</p>
+
+    <p>חדר הפרפרים הוא גם הברקה. אתה הולך בחדר והמון פרפרים, מאות ואולי אלפים, ענקיים וצבעוניים, מסביבך במרחק נגיעה וצילום תקריב.</p>
+
+    <p>חזרנו לבק-פקר והתקשרנו. מרכז העיר מלבורן יפהפיה, מעין מדרחוב עם נגנים וחנויות מדליקות. היינו גם בכנסית St. Patrick היפה ובגנים ליד.</p>
+
+    <p>התפתח אצלי כאב ראש, שמהדהד בראשי עד עכשיו, אולי התייבשות.</p>
+
+    <p>חלק מהכתיבה הנוכחית עשיתי בשירותים בנמל – נחמד שאתה יודע שהשארת מעצמך בהרבה מקומות בעולם – איך שגלל מסתובב לו...</p>
+
+
+  </div>
+
+  <div class="nav-cards">
+    <a href="20020506.html" class="nav-card">
+      <div class="label">הבא →</div>
+      <div class="card-title">ביקור משפחתי</div>
+    </a>
+    <a href="20020505.html" class="nav-card">
+      <div class="label">← הקודם</div>
+      <div class="card-title">סיכום ניו-זילנד</div>
+    </a>
+  </div>
+
+  <div class="country-nav">
+    <a href="200110052040.html">דנמרק</a>
+    <a href="20011006.html">הודו</a>
+    <a href="20011030.html">נפאל</a>
+    <a href="20011115.html">טרק אנאפורנה</a>
+    <a href="20011210.html">תאילנד</a>
+    <a href="20020108.html">לאוס</a>
+    <a href="20020123.html">צפון תאילנד</a>
+    <a href="20020203.html">אוסטרליה</a>
+    <a href="20020210.html">ניו-זילנד, אי דרומי</a>
+    <a href="20020326.html">ניו-זילנד, אי צפוני</a>
+    <a href="20020506.html">פיליפינים</a>
+    <a href="20020603.html">קמבודיה</a>
   </div>
 
   <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
-    <img id="lightbox-img" src="" alt="Enlarged">
+    <img id="lightbox-img" src="" alt="">
   </div>
-
   <script>
     function openLightbox(src) {
       document.getElementById('lightbox-img').src = src;

@@ -3,207 +3,298 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ואנג-ויינג, לאוס</title>
+  <title>הטיול הרגלי ללגונה</title>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap" rel="stylesheet">
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background-color: #f8fafc;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0; padding: 20px; color: #334155;
+      background: #ffffff;
+      font-family: 'Heebo', sans-serif;
+      color: #1a1a2e;
+      line-height: 1.9;
     }
-    .container {
-      max-width: 800px; margin: 0 auto; background: #ffffff;
-      padding: 35px; border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06); line-height: 1.8;
+    .top-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #eee;
+      padding: 12px 30px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.9rem;
     }
-    .header {
-      border-bottom: 2px solid #e2e8f0; padding-bottom: 15px;
-      margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center;
+    .top-nav a {
+      color: #1d4ed8; text-decoration: none; font-weight: 600;
     }
-    .header h1 { margin: 0; color: #0f172a; font-size: 1.8rem; }
-    .home-link { color: #2563eb; text-decoration: none; font-weight: 600; }
-    .content img {
-      float: right; margin: 0 0 15px 20px; max-width: 320px; height: auto;
-      border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      cursor: pointer; transition: transform 0.2s;
+    .top-nav a:hover { text-decoration: underline; }
+    .top-nav .nav-links { display: flex; gap: 20px; }
+    .hero {
+      max-width: 900px; margin: 0 auto;
+      padding: 50px 40px 30px;
+      display: flex; align-items: flex-start; gap: 30px;
     }
-    .content img:hover { transform: scale(1.02); }
-    .content::after { content: ""; clear: both; display: table; }
-    a { color: #2563eb; }
+    .hero-text { flex: 1; }
+    .hero-map {
+      width: 120px; height: auto; object-fit: contain;
+      flex-shrink: 0; opacity: 0.85;
+    }
+    .meta-line {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+    }
+    .date-big {
+      font-size: 3.5rem; font-weight: 900; color: #e5e7eb; line-height: 1;
+    }
+    .date-details { font-size: 0.9rem; color: #6b7280; }
+    .country-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      border-radius: 20px; padding: 4px 14px;
+      font-size: 0.8rem; color: #1d4ed8; font-weight: 600;
+    }
+    .title {
+      font-size: 2.2rem; font-weight: 900; color: #111827;
+      margin: 20px 0 8px; line-height: 1.3;
+    }
+    .date-subtitle {
+      font-size: 1.1rem; font-weight: 300; color: #4b5563;
+      margin-bottom: 16px;
+    }
+    .title-divider {
+      width: 60px; height: 4px; background: #1d4ed8; border-radius: 2px;
+    }
+    .content {
+      max-width: 900px; margin: 30px auto; padding: 0 40px; font-size: 1.05rem;
+    }
+    .content p { margin-bottom: 18px; }
+    .content a {
+      color: #1d4ed8; cursor: pointer;
+      text-decoration: underline;
+      text-decoration-color: rgba(29,78,216,0.3);
+    }
+    .photo-block {
+      margin: 30px 0; border-radius: 12px; overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    .photo-block img {
+      width: 100%; display: block; cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .photo-block img:hover { transform: scale(1.01); }
+    .photo-block .caption {
+      padding: 12px 16px; font-size: 0.85rem; color: #6b7280;
+      background: #f9fafb; border-top: 1px solid #f3f4f6;
+    }
+    .photo-pair {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 14px; margin: 30px 0;
+    }
+    .photo-pair .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-pair .photo-item img {
+      width: 100%; height: 200px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-pair .photo-item img:hover { transform: scale(1.03); }
+    .photo-pair .photo-item .caption {
+      padding: 8px 12px; font-size: 0.8rem; color: #6b7280; background: #f9fafb;
+    }
+    .photo-trio {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px; margin: 30px 0;
+    }
+    .photo-trio .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-trio .photo-item img {
+      width: 100%; height: 180px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-trio .photo-item img:hover { transform: scale(1.03); }
+    .photo-trio .photo-item .caption {
+      padding: 8px 10px; font-size: 0.78rem; color: #6b7280; background: #f9fafb;
+    }
+    .nav-cards {
+      max-width: 900px; margin: 50px auto 20px; padding: 0 40px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .nav-card {
+      padding: 20px 24px; border: 1px solid #e5e7eb; border-radius: 12px;
+      text-decoration: none; color: inherit; transition: all 0.2s;
+    }
+    .nav-card:hover {
+      border-color: #1d4ed8; box-shadow: 0 4px 12px rgba(29,78,216,0.1);
+    }
+    .nav-card .label { font-size: 0.8rem; color: #6b7280; margin-bottom: 4px; }
+    .nav-card .card-title { font-weight: 700; font-size: 1rem; color: #1d4ed8; }
+    .supplements {
+      margin-top: 35px; padding: 25px 30px;
+      background: #f9fafb; border-radius: 12px; border: 1px solid #e5e7eb;
+    }
+    .supplements h3 {
+      font-size: 1.1rem; font-weight: 700; margin-bottom: 14px; color: #374151;
+    }
+    .supplements ol { padding-right: 20px; }
+    .supplements li { margin-bottom: 10px; color: #4b5563; }
+    .country-nav {
+      max-width: 900px; margin: 20px auto 40px; padding: 0 40px;
+      display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+    }
+    .country-nav a {
+      padding: 6px 14px; border-radius: 20px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      color: #1d4ed8; text-decoration: none;
+      font-size: 0.82rem; font-weight: 600;
+      transition: all 0.2s;
+    }
+    .country-nav a:hover {
+      background: #1d4ed8; color: white; border-color: #1d4ed8;
+    }
     .lightbox {
       display: none; position: fixed; z-index: 9999;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.9); justify-content: center; align-items: center; cursor: pointer;
+      background: rgba(0,0,0,0.92);
+      justify-content: center; align-items: center; cursor: pointer;
     }
-    .lightbox img { max-width: 90%; max-height: 90%; border-radius: 8px; }
+    .lightbox img { max-width: 92%; max-height: 92%; border-radius: 8px; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h1>ואנג-ויינג, לאוס</h1>
-      <a href="../index.html" class="home-link">🏠 לעמוד הראשי</a>
+  <div class="top-nav">
+    <div class="nav-links">
+      <a href="../index.html">עמוד ראשי</a>
     </div>
-    <div class="content">
-      <body>
-<table cellpadding="0" cellspacing="0" height="80" width="954">
-<tr>
-<td align="center" height="80" width="277">
-<marquee style="font-size: 18pt; color: #800080">12.1.02 - 19:00</marquee></td>
-<td align="center" height="80" width="667">
-<!--webbot bot="Navigation" s-type="banner" s-rendering="graphics" S-Orientation B-Include-Home B-Include-Up U-Page S-Target startspan --><!--webbot bot="Navigation" i-checksum="23515" endspan --></td>
-<td align="center" height="80" width="10">
-
-<img border="0" height="161" onclick="openLightbox(this.src)" src="../images/Laos.gif" title="לחץ להגדלה" width="161"/></td>
-</tr>
-<tr>
-<td colspan="3" height="1" style=" " width="954"></td>
-</tr>
-</table><table cellpadding="0" cellspacing="0" width="100%">
-<tr>
-<td align="right" style=" ">
-<h4>
-<marquee style="font-size: 24pt; color: #008080">הטיול הרגלי ללגונה</marquee></h4>
-<p> </p></td>
-</tr>
-</table>
-<table cellpadding="0" cellspacing="0" height="333" width="953">
-<tr>
-<td height="333" rowspan="2" style="       " valign="top" width="140"> <!--webbot bot="Navigation" S-Type="sequence" S-Orientation="vertical" S-Rendering="graphics" S-Theme="blocks 000" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><!--webbot bot="Navigation" i-checksum="23763" endspan --><p> </p>
-</td>
-<td height="333" rowspan="2" style="     " valign="top" width="1"></td>
-<td colspan="2" height="266" style="     " valign="top" width="735">
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> רעמים וברקים, ברקים 
-    ורעמים</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">דווקא בעונה היבשה, חזינו 
-    עכשיו, בשעה האחרונה בברקים מדהימים, כתומים ואדומים שהאירו את כל השמים. חזרנו 
-    רק עתה מעוד טרק שארגנו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הגענו למסקנה משותפת שהיה 
-    זה עוד יום מוצלח.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אבל הוא לא התחיל ככה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אבל קודם אשלים בקצרה את 
-    מאורעות האתמול:</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הלכנו לראות את הסרט 
-    "האלמנט החמישי". זה לא הפעם הראשונה של אף אחד מאיתנו, אבל עדיין נהננו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אח"כ הלכנו בעיירה לחפש את 
-    ארליך ויובל.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">שניהם חברה חמודים, יובל 
-    תימני וארליך נראה אשכנזי, קירח. שניהם בני 22, אבל להבדיל מהרבה חברה בגילם, 
-    הם חמודים. הדינמיקה ביניהם מזכירה את הדינמיקה ביני לבין גונן, הם שונים 
-    ויודעים זאת אך מסתדרים מצויין.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בכל מקרה, עברנו בכל העיירה 
-    ולא מצאנו אותם. מצאנו כמה חברה ישראלים מעצבנים ב"בית של פיסטוק", אז המשכנו. 
-    היינו מבסוטים כי קודם קיבלנו טיפים טובים על אוסטרליה וניו-זילנד.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">דרך אגב, מליאור לא שמענו 
-    מזמן ואני מפחד ששכחתי להכניס אותו לרשימת האנשים שמקבלים אי-מיילים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אז עברנו בכל העיירה ולא 
-    מצאנו את ארליך ויובל, גם לא בחדרם. עצרנו באינטרנט וגונן השתפך בעוד אי-מייל 
-    מרגש לשירלי.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">חזרנו לפיסטוק וראינו את 
-    ארליך. הוא הצטרף אלינו והחלפנו חוויות. מסתבר שהוא ישן כשביקרנו אותם ויובל 
-    הלך לאכול ועכשיו הם התחלפו. זה היה ערב יום-הולדתו ה- 22 והוא חגג זאת בקניית 
-    אופיום.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">ישבנו איתו, אחרי זה הצטרפו 
-    עוד 2 ישראלים נחמדים שפגשנו בנפאל (אח"כ גם בבנגקוק). אחד יתחתן כשיחזור לארץ. 
-    החלפנו חוויות ואכזבות הדדיות מבחורות ישראליות.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הלכנו אח"כ לארליך לגסט 
-    האוס וישבנו אצלו במרפסת ועישנו ג'וינט ענק (טילון) רק גונן ואני. זה הספיק כדי 
-    למחוק אותי. ארליך הוריד 5 ראשים בבאנג ודיבר כמו קטר על הכל. הנהנתי בראש 
-    ורציתי רק להרוויח זמן כדי שאוכל לחזור בכוחות עצמי לגסט האוס.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בבוקר קמנו מוקדם ב- 8:15 
-    היו לנו כמה אופציות ותוך שעתיים נפלו כולן:</span></b></p>
-<p dir="rtl"><b><span lang="HE">לנסוע ללואנג פראבנג. האופציה הזו עוד נפלה 
-    אתמול כשהחלטנו להשאר כאן עוד יום, גם כדי שארליך, לבד או עם יובל, יצטרפו 
-    אלינו.</span></b></p>
-<p dir="rtl"><b><span lang="HE">ללכת עם ארליך ויובל לעשות קיאקים – נפל כי 
-    היה יקר מדי – 8$ לחצי יום, וזה גם טיול מאורגן ולא רצינו שיגידו לנו לאן לחתור 
-    ומתי.</span></b></p>
-<p dir="rtl"><b><span lang="HE">ללכת לאי </span><span dir="LTR">nan ngun</span>
-<span lang="HE">– נפל בגלל שנהיה מאוחר עד שבדקנו הנושא וגם הנסיעה לשם לוקחת 
-    3 שעות ורצינו לחזור באותו יום.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">וכך, ב- 11:00 כשישבנו 
-    בפיסטוק וסיימנו את ארוחת-הבוקר המצויינת (במיוחד סלט הקיסר עם עוף שגיליתי), 
-    נראה כי יהיה זה יום נפל ומיותר.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">החלטנו ללכת למערה שלא 
-    הגענו אליה אתמול וללגונה לידה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הלכנו ברגל כי נהיה מאוחר 
-    וגם כי שרירי הירך והתחת כאבו לנו עוד מהאופנים אמש.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הלכנו לנו, ציחקקנו. כך כ- 
-    6 ק"מ עד שהגענו. גם הפעם קנינו סוכריות וחילקנו לילדים החמודים בצד הדרך.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הגענו ללגונה וראינו נחל עם 
-    מים עמוקים בצבע טורקיז. המים מלאים דגים גדולים. ממש יפה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">החלטנו לטפס למערה ואח"כ 
-    להכנס למי הלגונה. טיפסנו למערה. מהפתח רואים מערה ענקית עם חדר בגודל 40</span><span dir="LTR">X</span><span lang="HE">40 
-    מ' בערך. באמצע מישהו שם פסל של בודהה שוכב. הרבה סלעים גדולים מלאו את החדר כך 
-    שהיה צריך למצוא דרך מסביב. גונן השתמש בפנס שלו. אני הלכתי עם נר.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">המשכנו מעט לעומק המערה, שם 
-    גונן גילה ירידה מעט תלולה והחליט לרדת אותה, בלי לדעת אם נוכל לחזור, מעט 
-    פזיז. ירדתי איתו וגילינו עוד חדר קטן יותר ופחות יפה. גונן גילה צוהר קטנטן 
-    שאתה בקושי משתחל לתוכו. הצצנו וראינו שהוא מוביל לעוד חדרים גדולים, אבל לא 
-    נכנסנו – מסוכן מדי וגם הנר התחיל להגמר.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">חזרנו בקושי, אבל הצלחנו. 
-    יצאנו מהמערה וירדנו ללגונה. 
-    <a href="images/pictures/laos/20020112_gonen_jumps_to_water.jpg" target="_blank">קפצנו למים בעזרת חבל תלוי מענף עץ</a>. היה ממש כיף 
-    ומרענן אחרי כל הפודרה מהדרך והזיעה מהטיפוס למערה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">כשיצאנו מהמים פגשנו כמה 
-    חברה ישראלים – בחורה בשם מיכל שהתעקשה שהיא מכירה אותי אעפ"י שהיא בת 25 וכבר 
-    5 שנים גרה בארה"ב. חברתה, גלית, נכנסה למים בלי חלק עליון, זה היה (מ)חזה יפה. 
-    גלית מגולחת שיער, היא בת 29, כבר 9 שנים בארה"ב, נהגת סמיטריילר. כל זה יחד 
-    מחשיד אותה בלסביות וכמעט החשדתי אותה בזאת בפניה, אבל מסיפוריה, סיפורי 
-    הטיולים הרבים בעולם שעשתה, נראה שהיא בסדר, אולי דו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הצלע השלישית בחבורה זה 
-    בחור בן 22 בשם רונן. הוא מטייל איתן במקרה, פגש אותן בבנגקוק. מזכיר את הסיפור 
-    של <a href="20011113.htm#itai&amp;girls">איתי עם אבישג וענבל</a>. הוא בכל מקרה מזכיר את איתי.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">חזרנו איתם חזרה. בתכנית 
-    היתה עוד מערה שראינו שלט אליה בדרך הלוך ללגונה. מערת הנמר (</span><span dir="LTR">Tiger 
-    cave</span><span lang="HE">). הלכנו לשם, ק"מ מהשביל הראשי.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הגענו עד לטיפוס למערה ואז 
-    מיכל נשברה ופחדה שכבר מחשיך ושעוקצים אותה דברים ושהיא מוותרת. גלית הצטרפה 
-    אליה חזרה. אנחנו המשכנו למערה, וטוב שכך, המערה היפה עד עכשיו, לפחות מבחינת 
-    המראות של הסלעים בפנים. סלעים דמויי אלמוגים (שפוררתי כל הזמן כי הייתי בלי 
-    פנס וגונן לא האיר לי), המון זקיפים ונטיפים שהתחברו, בגובה של 3-6 מ'!. המשכנו 
-    עם מדריך מקומי פנימה עד שהגענו למקום עם המון עמודים דמויי זקיפים, היה סלע 
-    ענק שמתחתי</span>ו<span lang="HE"> יכלנו להכנס, חצי מטר גובה והיו שם המון זקיפים, כמו מצבות 
-    בבית-קברות. נכנסנו וראינו שזה מוביל לעוד חדרים – מדהים. היו שם תצורות טבע 
-    יפהפיות, הוצאנו מפינו הרבה קריאות התפעלות. רונן היה לחוץ לחזור כי כבר החשיך. 
-    השעה היתה 17:30. חזרנו, בדרך השמים, מלאי עננים, הובזקו באור הברקים. הם היו 
-    אדומים, אח"כ הגיעו רעמים עמומים מרחוק.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">איך שהגענו לגסט האוס שלנו 
-    התחילו טיפות, ממש איך שנכנסנו לחדר, עייפים אך מרוצים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">עכשיו גונן מדווח לי שיש 
-    גשם שוטף בחוץ. זה לא ישטוף את תוכניותינו לאכול.</span></b></p>
-<p> </p></td>
-<td align="center" height="333" rowspan="2" style="     " valign="top" width="187">
-
-<img border="0" height="129" onclick="openLightbox(this.src)" src="../images/20020112_gonen_jumps_to_water.jpg" title="לחץ להגדלה" width="180"/><p>
-<font color="#660099">גונן קופץ ללגונה מחבל תלוי על עץ</font></p>
-<p> </p>
-<p> </p></td>
-</tr>
-<tr>
-<td height="67" style="     " valign="top" width="314">
-
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button104.gif" title="לחץ להגדלה" width="59"/></td>
-<td height="67" style="     " valign="top" width="421">
-<p align="right">
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button106.gif" title="לחץ להגדלה" width="59"/></p></td>
-</tr>
-</table>
-<p align="center">
-<!--webbot bot="Navigation" S-Type="sequence" S-Orientation="horizontal" S-Rendering="html" S-Bar="Brackets" S-Btn-Nml="[&lt;A HREF=&quot;#URL#&quot; TARGET=&quot;#TARGET#&quot; STYLE=&quot;{text-decoration: none;}&quot;&gt;#LABEL#&lt;/A&gt;]" S-Btn-Sel="[#LABEL#]" S-Btn-Sep="&amp;nbsp;" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><nobr>[<a href="index.html" style="{text-decoration: none;}" target="">התחלה</a>]</nobr> <nobr>[<a href="200110052040.html" style="{text-decoration: none;}" target="">דנמרק</a>]</nobr> <nobr>[<a href="20011006.html" style="{text-decoration: none;}" target="">הודו</a>]</nobr> <nobr>[<a href="20011030.html" style="{text-decoration: none;}" target="">נפאל</a>]</nobr> <nobr>[<a href="20011115.html" style="{text-decoration: none;}" target="">טרק סובב אנאפורנה</a>]</nobr> <nobr>[<a href="20011210.html" style="{text-decoration: none;}" target="">תאילנד</a>]</nobr> <nobr>[<a href="20020108.html" style="{text-decoration: none;}" target="">לאוס</a>]</nobr> <nobr>[<a href="20020123.html" style="{text-decoration: none;}" target="">צפון תאילנד</a>]</nobr> <nobr>[<a href="20020203.html" style="{text-decoration: none;}" target="">אוסטרליה</a>]</nobr> <nobr>[<a href="20020210.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי דרומי</a>]</nobr> <nobr>[<a href="20020326.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי צפוני</a>]</nobr> <nobr>[<a href="20020506.html" style="{text-decoration: none;}" target="">פיליפינים</a>]</nobr> <nobr>[<a href="20020603.html" style="{text-decoration: none;}" target="">קמבודיה</a>]</nobr><!--webbot bot="Navigation" i-checksum="33824" endspan --></p>
-<p><i><small>This site was last updated
-<!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%m/%d/%y" startspan -->07/15/03<!--webbot bot="Timestamp" i-checksum="12690" endspan --> </small></i>
-</p>
-</body>
+    <div class="nav-links">
+      <a href="20020111.html">← הקודם</a>
+      <a href="20020113.html">הבא →</a>
     </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-text">
+      <div class="meta-line">
+        <span class="date-big">12</span>
+        <div>
+          <div class="date-details">ינואר 2002</div>
+          <span class="country-badge">לאוס</span>
+        </div>
+      </div>
+      <h1 class="title">הטיול הרגלי ללגונה</h1>
+      <div class="title-divider"></div>
+    </div>
+    <img class="hero-map" src="../images/Laos.gif" alt="לאוס">
+  </div>
+
+  <div class="content">
+    <p>הטיול הרגלי ללגונה</p>
+
+    <p>רעמים וברקים, ברקים ורעמים</p>
+
+    <p>דווקא בעונה היבשה, חזינו עכשיו, בשעה האחרונה בברקים מדהימים, כתומים ואדומים שהאירו את כל השמים. חזרנו רק עתה מעוד טרק שארגנו.</p>
+
+    <p>הגענו למסקנה משותפת שהיה זה עוד יום מוצלח.</p>
+
+    <p>אבל הוא לא התחיל ככה.</p>
+
+    <p>אבל קודם אשלים בקצרה את מאורעות האתמול:</p>
+
+    <p>הלכנו לראות את הסרט "האלמנט החמישי". זה לא הפעם הראשונה של אף אחד מאיתנו, אבל עדיין נהננו.</p>
+
+    <p>אח"כ הלכנו בעיירה לחפש את ארליך ויובל.</p>
+
+    <p>שניהם חברה חמודים, יובל תימני וארליך נראה אשכנזי, קירח. שניהם בני 22, אבל להבדיל מהרבה חברה בגילם, הם חמודים. הדינמיקה ביניהם מזכירה את הדינמיקה ביני לבין גונן, הם שונים ויודעים זאת אך מסתדרים מצויין.</p>
+
+    <p>בכל מקרה, עברנו בכל העיירה ולא מצאנו אותם. מצאנו כמה חברה ישראלים מעצבנים ב"בית של פיסטוק", אז המשכנו. היינו מבסוטים כי קודם קיבלנו טיפים טובים על אוסטרליה וניו-זילנד.</p>
+
+    <p>דרך אגב, מליאור לא שמענו מזמן ואני מפחד ששכחתי להכניס אותו לרשימת האנשים שמקבלים אי-מיילים.</p>
+
+    <p>אז עברנו בכל העיירה ולא מצאנו את ארליך ויובל, גם לא בחדרם. עצרנו באינטרנט וגונן השתפך בעוד אי-מייל מרגש לשירלי.</p>
+
+    <p>חזרנו לפיסטוק וראינו את ארליך. הוא הצטרף אלינו והחלפנו חוויות. מסתבר שהוא ישן כשביקרנו אותם ויובל הלך לאכול ועכשיו הם התחלפו. זה היה ערב יום-הולדתו ה- 22 והוא חגג זאת בקניית אופיום.</p>
+
+    <p>ישבנו איתו, אחרי זה הצטרפו עוד 2 ישראלים נחמדים שפגשנו בנפאל (אח"כ גם בבנגקוק). אחד יתחתן כשיחזור לארץ. החלפנו חוויות ואכזבות הדדיות מבחורות ישראליות.</p>
+
+    <p>הלכנו אח"כ לארליך לגסט האוס וישבנו אצלו במרפסת ועישנו ג'וינט ענק (טילון) רק גונן ואני. זה הספיק כדי למחוק אותי. ארליך הוריד 5 ראשים בבאנג ודיבר כמו קטר על הכל. הנהנתי בראש ורציתי רק להרוויח זמן כדי שאוכל לחזור בכוחות עצמי לגסט האוס.</p>
+
+    <p>בבוקר קמנו מוקדם ב- 8:15 היו לנו כמה אופציות ותוך שעתיים נפלו כולן:</p>
+
+    <p>לנסוע ללואנג פראבנג. האופציה הזו עוד נפלה אתמול כשהחלטנו להשאר כאן עוד יום, גם כדי שארליך, לבד או עם יובל, יצטרפו אלינו.</p>
+
+    <p>ללכת עם ארליך ויובל לעשות קיאקים – נפל כי היה יקר מדי – 8$ לחצי יום, וזה גם טיול מאורגן ולא רצינו שיגידו לנו לאן לחתור ומתי.</p>
+
+    <p>ללכת לאי nan ngun – נפל בגלל שנהיה מאוחר עד שבדקנו הנושא וגם הנסיעה לשם לוקחת 3 שעות ורצינו לחזור באותו יום.</p>
+
+    <p>וכך, ב- 11:00 כשישבנו בפיסטוק וסיימנו את ארוחת-הבוקר המצויינת (במיוחד סלט הקיסר עם עוף שגיליתי), נראה כי יהיה זה יום נפל ומיותר.</p>
+
+    <p>החלטנו ללכת למערה שלא הגענו אליה אתמול וללגונה לידה.</p>
+
+    <p>הלכנו ברגל כי נהיה מאוחר וגם כי שרירי הירך והתחת כאבו לנו עוד מהאופנים אמש.</p>
+
+    <p>הלכנו לנו, ציחקקנו. כך כ- 6 ק"מ עד שהגענו. גם הפעם קנינו סוכריות וחילקנו לילדים החמודים בצד הדרך.</p>
+
+    <p>הגענו ללגונה וראינו נחל עם מים עמוקים בצבע טורקיז. המים מלאים דגים גדולים. ממש יפה.</p>
+
+    <p>החלטנו לטפס למערה ואח"כ להכנס למי הלגונה. טיפסנו למערה. מהפתח רואים מערה ענקית עם חדר בגודל 40X40 מ' בערך. באמצע מישהו שם פסל של בודהה שוכב. הרבה סלעים גדולים מלאו את החדר כך שהיה צריך למצוא דרך מסביב. גונן השתמש בפנס שלו. אני הלכתי עם נר.</p>
+
+    <p>המשכנו מעט לעומק המערה, שם גונן גילה ירידה מעט תלולה והחליט לרדת אותה, בלי לדעת אם נוכל לחזור, מעט פזיז. ירדתי איתו וגילינו עוד חדר קטן יותר ופחות יפה. גונן גילה צוהר קטנטן שאתה בקושי משתחל לתוכו. הצצנו וראינו שהוא מוביל לעוד חדרים גדולים, אבל לא נכנסנו – מסוכן מדי וגם הנר התחיל להגמר.</p>
+
+    <p>חזרנו בקושי, אבל הצלחנו. יצאנו מהמערה וירדנו ללגונה. <a onclick="openLightbox('../images/20020112_gonen_jumps_to_water.jpg')">קפצנו למים בעזרת חבל תלוי מענף עץ</a>. היה ממש כיף ומרענן אחרי כל הפודרה מהדרך והזיעה מהטיפוס למערה.</p>
+
+    <p>כשיצאנו מהמים פגשנו כמה חברה ישראלים – בחורה בשם מיכל שהתעקשה שהיא מכירה אותי אעפ"י שהיא בת 25 וכבר 5 שנים גרה בארה"ב. חברתה, גלית, נכנסה למים בלי חלק עליון, זה היה (מ)חזה יפה. גלית מגולחת שיער, היא בת 29, כבר 9 שנים בארה"ב, נהגת סמיטריילר. כל זה יחד מחשיד אותה בלסביות וכמעט החשדתי אותה בזאת בפניה, אבל מסיפוריה, סיפורי הטיולים הרבים בעולם שעשתה, נראה שהיא בסדר, אולי דו.</p>
+
+    <p>הצלע השלישית בחבורה זה בחור בן 22 בשם רונן. הוא מטייל איתן במקרה, פגש אותן בבנגקוק. מזכיר את הסיפור של <a href="20011113.htm#itai&girls">איתי עם אבישג וענבל</a>. הוא בכל מקרה מזכיר את איתי.</p>
+
+    <p>חזרנו איתם חזרה. בתכנית היתה עוד מערה שראינו שלט אליה בדרך הלוך ללגונה. מערת הנמר (Tiger cave). הלכנו לשם, ק"מ מהשביל הראשי.</p>
+
+    <p>הגענו עד לטיפוס למערה ואז מיכל נשברה ופחדה שכבר מחשיך ושעוקצים אותה דברים ושהיא מוותרת. גלית הצטרפה אליה חזרה. אנחנו המשכנו למערה, וטוב שכך, המערה היפה עד עכשיו, לפחות מבחינת המראות של הסלעים בפנים. סלעים דמויי אלמוגים (שפוררתי כל הזמן כי הייתי בלי פנס וגונן לא האיר לי), המון זקיפים ונטיפים שהתחברו, בגובה של 3-6 מ'!. המשכנו עם מדריך מקומי פנימה עד שהגענו למקום עם המון עמודים דמויי זקיפים, היה סלע ענק שמתחתיו יכלנו להכנס, חצי מטר גובה והיו שם המון זקיפים, כמו מצבות בבית-קברות. נכנסנו וראינו שזה מוביל לעוד חדרים – מדהים. היו שם תצורות טבע יפהפיות, הוצאנו מפינו הרבה קריאות התפעלות. רונן היה לחוץ לחזור כי כבר החשיך. השעה היתה 17:30. חזרנו, בדרך השמים, מלאי עננים, הובזקו באור הברקים. הם היו אדומים, אח"כ הגיעו רעמים עמומים מרחוק.</p>
+
+    <p>איך שהגענו לגסט האוס שלנו התחילו טיפות, ממש איך שנכנסנו לחדר, עייפים אך מרוצים.</p>
+
+    <p>עכשיו גונן מדווח לי שיש גשם שוטף בחוץ. זה לא ישטוף את תוכניותינו לאכול.</p>
+
+    <div class="photo-block">
+      <img src="../images/20020112_gonen_jumps_to_water.jpg" onclick="openLightbox(this.src)">
+      <div class="caption">גונן קופץ ללגונה מחבל תלוי על עץ</div>
+    </div>
+
+    <div class="photo-block">
+      <img src="../images/20020112_gonen_jumps_to_water.jpg" onclick="openLightbox(this.src)">
+      <div class="caption">גונן קופץ ללגונה מחבל תלוי על עץ</div>
+    </div>
+
+
+  </div>
+
+  <div class="nav-cards">
+    <a href="20020113.html" class="nav-card">
+      <div class="label">הבא →</div>
+      <div class="card-title">הנסיעה ללואנג פרבאנג</div>
+    </a>
+    <a href="20020111.html" class="nav-card">
+      <div class="label">← הקודם</div>
+      <div class="card-title">טיול האופנים</div>
+    </a>
+  </div>
+
+  <div class="country-nav">
+    <a href="200110052040.html">דנמרק</a>
+    <a href="20011006.html">הודו</a>
+    <a href="20011030.html">נפאל</a>
+    <a href="20011115.html">טרק אנאפורנה</a>
+    <a href="20011210.html">תאילנד</a>
+    <a href="20020108.html">לאוס</a>
+    <a href="20020123.html">צפון תאילנד</a>
+    <a href="20020203.html">אוסטרליה</a>
+    <a href="20020210.html">ניו-זילנד, אי דרומי</a>
+    <a href="20020326.html">ניו-זילנד, אי צפוני</a>
+    <a href="20020506.html">פיליפינים</a>
+    <a href="20020603.html">קמבודיה</a>
   </div>
 
   <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
-    <img id="lightbox-img" src="" alt="Enlarged">
+    <img id="lightbox-img" src="" alt="">
   </div>
-
   <script>
     function openLightbox(src) {
       document.getElementById('lightbox-img').src = src;

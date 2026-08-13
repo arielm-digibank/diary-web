@@ -3,251 +3,318 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>מונג-נוי, לאוס</title>
+  <title>הטרק המאכזב</title>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap" rel="stylesheet">
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background-color: #f8fafc;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0; padding: 20px; color: #334155;
+      background: #ffffff;
+      font-family: 'Heebo', sans-serif;
+      color: #1a1a2e;
+      line-height: 1.9;
     }
-    .container {
-      max-width: 800px; margin: 0 auto; background: #ffffff;
-      padding: 35px; border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06); line-height: 1.8;
+    .top-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #eee;
+      padding: 12px 30px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.9rem;
     }
-    .header {
-      border-bottom: 2px solid #e2e8f0; padding-bottom: 15px;
-      margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center;
+    .top-nav a {
+      color: #1d4ed8; text-decoration: none; font-weight: 600;
     }
-    .header h1 { margin: 0; color: #0f172a; font-size: 1.8rem; }
-    .home-link { color: #2563eb; text-decoration: none; font-weight: 600; }
-    .content img {
-      float: right; margin: 0 0 15px 20px; max-width: 320px; height: auto;
-      border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      cursor: pointer; transition: transform 0.2s;
+    .top-nav a:hover { text-decoration: underline; }
+    .top-nav .nav-links { display: flex; gap: 20px; }
+    .hero {
+      max-width: 900px; margin: 0 auto;
+      padding: 50px 40px 30px;
+      display: flex; align-items: flex-start; gap: 30px;
     }
-    .content img:hover { transform: scale(1.02); }
-    .content::after { content: ""; clear: both; display: table; }
-    a { color: #2563eb; }
+    .hero-text { flex: 1; }
+    .hero-map {
+      width: 120px; height: auto; object-fit: contain;
+      flex-shrink: 0; opacity: 0.85;
+    }
+    .meta-line {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+    }
+    .date-big {
+      font-size: 3.5rem; font-weight: 900; color: #e5e7eb; line-height: 1;
+    }
+    .date-details { font-size: 0.9rem; color: #6b7280; }
+    .country-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      border-radius: 20px; padding: 4px 14px;
+      font-size: 0.8rem; color: #1d4ed8; font-weight: 600;
+    }
+    .title {
+      font-size: 2.2rem; font-weight: 900; color: #111827;
+      margin: 20px 0 8px; line-height: 1.3;
+    }
+    .date-subtitle {
+      font-size: 1.1rem; font-weight: 300; color: #4b5563;
+      margin-bottom: 16px;
+    }
+    .title-divider {
+      width: 60px; height: 4px; background: #1d4ed8; border-radius: 2px;
+    }
+    .content {
+      max-width: 900px; margin: 30px auto; padding: 0 40px; font-size: 1.05rem;
+    }
+    .content p { margin-bottom: 18px; }
+    .content a {
+      color: #1d4ed8; cursor: pointer;
+      text-decoration: underline;
+      text-decoration-color: rgba(29,78,216,0.3);
+    }
+    .photo-block {
+      margin: 30px 0; border-radius: 12px; overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    .photo-block img {
+      width: 100%; display: block; cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .photo-block img:hover { transform: scale(1.01); }
+    .photo-block .caption {
+      padding: 12px 16px; font-size: 0.85rem; color: #6b7280;
+      background: #f9fafb; border-top: 1px solid #f3f4f6;
+    }
+    .photo-pair {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 14px; margin: 30px 0;
+    }
+    .photo-pair .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-pair .photo-item img {
+      width: 100%; height: 200px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-pair .photo-item img:hover { transform: scale(1.03); }
+    .photo-pair .photo-item .caption {
+      padding: 8px 12px; font-size: 0.8rem; color: #6b7280; background: #f9fafb;
+    }
+    .photo-trio {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px; margin: 30px 0;
+    }
+    .photo-trio .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-trio .photo-item img {
+      width: 100%; height: 180px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-trio .photo-item img:hover { transform: scale(1.03); }
+    .photo-trio .photo-item .caption {
+      padding: 8px 10px; font-size: 0.78rem; color: #6b7280; background: #f9fafb;
+    }
+    .nav-cards {
+      max-width: 900px; margin: 50px auto 20px; padding: 0 40px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .nav-card {
+      padding: 20px 24px; border: 1px solid #e5e7eb; border-radius: 12px;
+      text-decoration: none; color: inherit; transition: all 0.2s;
+    }
+    .nav-card:hover {
+      border-color: #1d4ed8; box-shadow: 0 4px 12px rgba(29,78,216,0.1);
+    }
+    .nav-card .label { font-size: 0.8rem; color: #6b7280; margin-bottom: 4px; }
+    .nav-card .card-title { font-weight: 700; font-size: 1rem; color: #1d4ed8; }
+    .supplements {
+      margin-top: 35px; padding: 25px 30px;
+      background: #f9fafb; border-radius: 12px; border: 1px solid #e5e7eb;
+    }
+    .supplements h3 {
+      font-size: 1.1rem; font-weight: 700; margin-bottom: 14px; color: #374151;
+    }
+    .supplements ol { padding-right: 20px; }
+    .supplements li { margin-bottom: 10px; color: #4b5563; }
+    .country-nav {
+      max-width: 900px; margin: 20px auto 40px; padding: 0 40px;
+      display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+    }
+    .country-nav a {
+      padding: 6px 14px; border-radius: 20px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      color: #1d4ed8; text-decoration: none;
+      font-size: 0.82rem; font-weight: 600;
+      transition: all 0.2s;
+    }
+    .country-nav a:hover {
+      background: #1d4ed8; color: white; border-color: #1d4ed8;
+    }
     .lightbox {
       display: none; position: fixed; z-index: 9999;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.9); justify-content: center; align-items: center; cursor: pointer;
+      background: rgba(0,0,0,0.92);
+      justify-content: center; align-items: center; cursor: pointer;
     }
-    .lightbox img { max-width: 90%; max-height: 90%; border-radius: 8px; }
+    .lightbox img { max-width: 92%; max-height: 92%; border-radius: 8px; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h1>מונג-נוי, לאוס</h1>
-      <a href="../index.html" class="home-link">🏠 לעמוד הראשי</a>
+  <div class="top-nav">
+    <div class="nav-links">
+      <a href="../index.html">עמוד ראשי</a>
     </div>
-    <div class="content">
-      <body>
-<table cellpadding="0" cellspacing="0" height="80" width="954">
-<tr>
-<td align="center" height="80" width="277">
-<marquee style="font-size: 18pt; color: #800080">18.1.02 - 17:30</marquee></td>
-<td align="center" height="80" width="667">
-<!--webbot bot="Navigation" s-type="banner" s-rendering="graphics" S-Orientation B-Include-Home B-Include-Up U-Page S-Target startspan --><!--webbot bot="Navigation" i-checksum="52751" endspan --></td>
-<td align="center" height="80" width="10">
-
-<img border="0" height="164" onclick="openLightbox(this.src)" src="../images/Laos.gif" title="לחץ להגדלה" width="162"/></td>
-</tr>
-<tr>
-<td colspan="3" height="1" style=" " width="954"></td>
-</tr>
-</table><table cellpadding="0" cellspacing="0" width="100%">
-<tr>
-<td align="right" style=" ">
-<h4>
-<marquee style="font-size: 24pt; color: #008080">הטרק המאכזב</marquee></h4>
-<p> </p></td>
-</tr>
-</table>
-<table cellpadding="0" cellspacing="0" height="333" width="953">
-<tr>
-<td height="333" rowspan="2" style="       " valign="top" width="140"> <!--webbot bot="Navigation" S-Type="sequence" S-Orientation="vertical" S-Rendering="graphics" S-Theme="blocks 000" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><!--webbot bot="Navigation" i-checksum="23763" endspan --><p> </p>
-</td>
-<td height="333" rowspan="2" style="     " valign="top" width="1"></td>
-<td colspan="2" height="266" style="     " valign="top" width="735">
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">עוד מעט נקבל אוכל נורמלי 
-    במסעדה הקבועה שלנו כאן במונג-נוי. חזרנו מיומיים של טרק בכפרים בהרים. להגיד 
-    שהיה כיף לא אגיד, או כמו שגונן סיכם: סה"כ 3 מ- 10. מסלול: 5 מ- 10, אוכל 
-    ולינה 5 מ- 10, חברה 2 מ- 10, מדריך 0 מ- 10, עלות/תועלת 0 מ- 10.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אבל יש לנו עוד מה להשלים 
-    על שלשום בלילה:</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">16/1</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הלכנו למסעדה הרגילה שלנו. 
-    כבר היה די מאוחר, המקומיים ישבו איתנו ודיברו איתנו. אחד בשם פייר, בן 42 
-    דיבר/העיק עלינו יותר מכולם. הזמנו את הויסקי המקומי, הלאו לאו (2.5 שקל לבקבוק 
-    650 מ"ל שיכול להפיל 2 אנשים). שתינו ובירכנו "טופצ'וק" (לחיים). הבחור סיפר 
-    כיצד הפציצו כאן האמריקאים ב- 68' כשהוא היה ילד והם ברחו להרים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">כשעשינו הכרה באופן רשמי 
-    הוא שאל לשמנו, "אריאל" אמרתי. "אגליאל" חזר אחרי פייר וגונן התפקע מצחוק. 
-    למקומיים יש בעייה בהגיית ריש, לפייר יש עוד כמה בעיות. בסוף הוא החליט 
-    "אדריאן" אני הרמתי ידיים (לא עליו כמובן).</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אח"כ הוא לקח אותנו למסיבה 
-    של מקומיים לרגל הנחת אבן פינה לבית חדש. היה מאכזב. שתינו עוד קצת ואכלנו 
-    גרעינים. לנסות לתקשר איתם מעייף, הם ממש לא יודעים אנגלית. בסוף יוצא שאתה 
-    צריך לזכור עוד ועוד שמות.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">פייר עוד ליווה אותנו לגסט 
-    האוס ובקושי נפטרנו ממנו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בבוקר קמתי ב- 7:00. כרגיל 
-    עננים שרו מעלינו נמוך. הם מתפזרים בערך ב- 11:00.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הלכנו למקום המפגש. דויד, 
-    האיטלקי, אמר שהוא חולה ופרש. המדריך שלנו, שהוא תאב בצע, במקום לשאול לשלומו, 
-    אמר לנו שנצטרך לשלם יותר כי יש אחד פחות.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">כך יצאנו עם מדריך תאב בצע 
-    שאף אחד לא אוהב, פשוט לא מצאנו אחר, עם זוג מבוגרים בני 54 מנורבגיה, נחמדים 
-    ומיטיבי לכת, אבל אין לנו מה לדבר איתם, יורגן ההולנדי שהוא די חנון והאמריקאית 
-    בת ה- 35 שאתמול עוד דמיינו פצצה קליפורנית וקיבלנו נגמ"ש עם פצעונים ופרצוף 
-    תשעה באב, שגם עיכבה אותנו לאורך כל הטרק.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">כרגע ילדים מקומיים שיחקו 
-    כאן על השביל הראשי בכפר, משחק שבו הם זורקים כפכף ומנסים לפגוע בקלפים מונחים 
-    על השביל. גונן פוצץ את המשחק כשהוא זרק חזיז והבהיל את כולם. "ראית את זה 
-    אגליאל?" שאל אותי גונן.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אז עם הנבחרת המנצחת הזו 
-    יצאנו ואיך שיצאנו, כבר בצעד הראשון, אחרי שהמדריך סחט אותנו כספית ודויד פרש, 
-    כבר לא היה לנו חשק לצאת וגונן רצה ברצינות לחזור.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הנבחרת המנצחת שלנו נראתה 
-    יותר כמו מסדר חולים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אני לקחתי איתי את המוזיקה 
-    וזה שיפר קצת כי לא היה לנו כח כ"כ לדבר איתם. הם כאלה יבשים וענייניים. את כל 
-    המנהגים המקומיים הם לומדים מה- </span><span dir="LTR">lonely planet</span><span lang="HE">, 
-    ומשאלות למדריך במקום לנסות ולחוות בעצמם.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">וכך הלכנו, הנוף לא היה 
-    משהו. גונן היה עצוב והלך עם הראש בקרקע. כך הוא הלך עד שעצר מול נדל ענק, אבל 
-    לא מהשטוחים, אלא מהקמורים. הוא היה מת או ישן, 25 ס"מ אורכו כשהוא רפוי. גונן 
-    הרים אותו עם מקל ושם אותו בנהר. אם הוא רק ישן, אז הוא כבר לא יתעורר. "אמרת 
-    שאין כאן חיות" אמר גונן. "אין כאן חיים" אמרתי. באמת, נסחפתי. אבל אין כאן 
-    כמעט זבובים ובלילה אין יתושים. נראה לי שזה בגלל העונה. אלה החודשים הכי קרים: 
-    דצמבר וינואר, 15-28. בחודשים החמים, מאי-ספטמבר, הטמפרטורה היא 25-35 ויורד 
-    גשם, אז זה בטח סיוט כאן.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">המשכנו ללכת, המדריך יזם 
-    עצירות, הוא לא בכושר. אנחנו לא סובלים אותו, החל מהמבטא הבריטי המעושה ועד 
-    הכפכפים הורודים שהוא נועל.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">המשכנו ללכת, היינו 
-    הראשונים והספקנו עוד לראות נחש קטן (אך נראה מסוכן), דומה ל<a href="20011013.htm#poison_snake">נחש שראינו בצפון 
-    הודו</a>, חומק לשיחים. הנחש לא היה לחוץ וחיכה לא עמוק בשיחים, כך שראינו אותו ממש 
-    טוב. אורכו כ- 40 ס"מ והוא ממש דק.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">חבורה אחרת עברה אותנו, זה 
-    3 הנערים הדנים שיצא לנו לראות אותם וקצת לדבר איתם לפני-כן, ובחור ישראלי שגם 
-    איתו יצא לנו לדבר. הם הלכו בקצב טוב, וגם עלה להם פחות (85,000 קיפ, לנו 
-    100,000). הסתכלנו עליהם בעינים כמהות. כ"כ רצינו לערוק.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">המשכנו ללכת ובערך ב- 16:00 
-    הגענו לכפר עם השבטים ה"פראים". כפר מאכזב.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">עשינו סיבוב בכפר במשך 10 
-    דקות. הרבה בקתות קש בנויות היטב. 
-    <a href="images/pictures/laos/20020117_the_children_approach.jpg" target="_blank">ילדים יצאו החוצה והסתכלו בנו</a>. חזירים, כלבים 
-    ותרנגולות התרוצצו בחוסר סדר. באמת לא היה מה לראות. איזה שתי ילדות התחילו 
-    לצרוח באימה כשראו אותי. הלוואי והיה לי ראי והייתי יודע למה. אמא שלהם אספה 
-    אותם והכניסה אותם במהירות הביתה. הלכנו חזרה לבית בו נישן וישבנו במרפסת בחוסר 
-    מעש. הסתכלנו איך התרנגולים רבים ביניהם על תרנגולת. גונן היה משועמם. לי היה 
-    ספר.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הנורבגים ישבו בכפר 
-    והתבוננו במקומיים ובמעשיהם. אנחנו לא אוהבים את זה, חליק, מה המקומיים לא 
-    רואים אותם?. אם מישהו ישב אצלכם בסלון, הייתם ממשיכים להתנהג בטבעיות?</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אח"כ ישבנו כולם במרפסת. הם 
-    דיברו, אני קראתי, גונן סבל. מקומי מבוגר בא לשבת איתנו. "הוא תמיד בא לשבת עם 
-    תיירים" אמר המדריך. אחרי 10 דקות הוא הלך, כנראה היה משועמם, הבנו אותו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אכלנו ארוחת ערב, מה 
-    בתפריט?, כמו בכל 4 הארוחות שאכלנו: אורז, ביצה ושעועית. בצהרים אכלנו אורז 
-    דביק (</span><span dir="LTR">sti<span lang="en-us">c</span>ky rice</span><span lang="HE">) שזה די מגעיל 
-    אך שימושי, קל לסחוב את זה ולאחסן את זה. אחרי שראינו את המקומית שבישלה מקנחת 
-    את האף בידה ומורחת את הנזלת בקש, הסברתי לחבורה איך מכינים אורז דביק.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">התבאסנו שאין תה או קפה 
-    ואפילו גראס או ג'ראס אין (לפחות כך אמר המדריך). הוא הביא משקה מקומי (תשלום 
-    לחוד של 2000 קיפ כ"א) שנראה כמו עציץ עם אדמה ו- 2 ענפים יבשים ששימשו כקשים. 
-    כשינקנו מהקשים היה משקה עם טעם של יין, עם מעט אלכוהול. המשקה נקרא "לאו-היי". 
-    הלכנו לישון כולם על המזרונים בחדר הגדול. אני וגונן דמיינו איך אנחנו יושבים 
-    במסעדה הרגילה שלנו במונג-נוי, אוכלים ושותים בכיף. בעצם זה מה שאנחנו עושים 
-    עכשיו. את זה דמיינו אתמול.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">נרדמתי מהר וקמתי לקול 
-    התרנגולים שקראו את קריאת הגבר. יש כאן כ"כ הרבה תרנגולים ששמעתי אותם קוראים 
-    אחד אחרי השני בלי הפסקה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">איך שחזרתי לנמנם גונן 
-    הסתובב ותקע את הברך שלו בעצם הזנב שלי. אם היינו לבד הייתי צועק, אבל החנקתי 
-    את הצעקה באקט של התחשבות.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אחרי שכולם קמו התחיל סבב 
-    שאלות "איך ישנת?". שכבתי וראיתי איך כל אחד שואל את השני ועונה בעצמו. אני 
-    הייתי צריך לענות גם כמה פעמים ומפעם לפעם קיצרתי בתשובתי. כשגונן שאל אותי 
-    בהקנטה לא עניתי כלל.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">האחרים הלכו להסתובב בכפר, 
-    אני וגונן ישבנו במרפסת ושמענו לד-זפלין. מה כבר יכול להתחדש כאן?. מקומי בא 
-    לשבת איתנו, הוא עישן גראס. במהרה עישנו איתו והוא אפילו הכין לנו 2 סיגריות. 
-    הרבה ילדים באו סביבנו. התחלנו להנות.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">המשכנו ללכת לכפר נוסף 
-    <a href="images/pictures/laos/20020117_special_dresses_tribe.jpg" target="_blank">שם 
-    יש תלבושות מיוחדות</a>, שעה וחצי הליכה. כשהגענו ראינו כפר משופר. היה נוף מהכפר, 
-    הוא היה קטן יותר והיו באמת כמה נשים עם לבוש מיוחד. הכי מיוחד היה הכובע. 
-    מקומי ניגן לנו במה שנראה ונשמע כמו חמת חלילים. התחלנו להנות.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">חזרנו כל הדרך חזרה לכפר 
-    הקודם לאכול ארוחת צהרים. מה בתפריט? – אותו דבר: אורז, ביצים ושעועית. לי עוד 
-    נשאר בגט עם גבינה מותכת ממונג-נוי וזה שיפר את הארוחה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">חזרנו באותה דרך למטה אל 
-    מונג-נוי. כך הלכנו 3 שעות. גונן עצר שוב בבהלה, הוא כמעט מעך עם הסנדל נדל. 
-    הפעם הרגיל, השטוח. גדול, 15 ס"מ – כזה ראיתי בקו-טאו עם ליאור. הנדל היה מת, 
-    מכוסה בנמלים קטנות, אבל היה מרשים. גונן חד-העין, יום לפני-כן הוא איתר חרק עם 
-    צבעים זוהרים, מיוחד. הוא גם איתר עכביש שטווה את קוריו בצורה מיוחדת כמו מחילה 
-    ששם הוא נח/מסתתר.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">סיימנו הטיול עם השקיעה, עם 
-    אהוד בנאי במיני-דיסק וחזרנו מרוצים, בעיקר מרוצים לחזור.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">"תמליצו עלי לתיירים אחרים" 
-    נפרד מאיתנו המדריך. כן, בטח.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">נפרדנו מהאחרים. "שכחנו 
-    לאמר להם שנהננו" אמרתי לגונן. "רוצה לחזור?". גונן רק הגביר את צעדיו למכולת 
-    המקומית במונג-נוי לקנות פחית קולה.</span></b></p>
-<p> </p></td>
-<td align="center" height="333" rowspan="2" style="     " valign="top" width="187">
-
-<img border="0" height="126" onclick="openLightbox(this.src)" src="../images/20020117_the_children_approach.jpg" title="לחץ להגדלה" width="183"/><p>
-<font color="#660099">ילדים בכפר יוצאים להסתכל עלינו</font></p>
-<p>
-
-<img border="0" height="126" onclick="openLightbox(this.src)" src="../images/20020117_us&amp;native_children.jpg" title="לחץ להגדלה" width="182"/></p>
-<p>
-
-<img border="0" height="125" onclick="openLightbox(this.src)" src="../images/20020117_first_village.jpg" title="לחץ להגדלה" width="180"/></p>
-<p><font color="#660099">בכפר האותנטי הראשון</font></p>
-<p> </p>
-<p>
-
-<img border="0" height="125" onclick="openLightbox(this.src)" src="../images/20020117_inside_the_hut.jpg" title="לחץ להגדלה" width="181"/></p>
-<p>
-
-<img border="0" height="125" onclick="openLightbox(this.src)" src="../images/20020117_special_dresses_tribe.jpg" title="לחץ להגדלה" width="180"/></p>
-<p><font color="#660099">הכפר עם התלבושות המיוחדות</font></p>
-<p> </p></td>
-</tr>
-<tr>
-<td height="67" style="     " valign="top" width="314">
-
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button104.gif" title="לחץ להגדלה" width="59"/></td>
-<td height="67" style="     " valign="top" width="421">
-<p align="right">
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button106.gif" title="לחץ להגדלה" width="59"/></p></td>
-</tr>
-</table>
-<p align="center">
-<!--webbot bot="Navigation" S-Type="sequence" S-Orientation="horizontal" S-Rendering="html" S-Bar="Brackets" S-Btn-Nml="[&lt;A HREF=&quot;#URL#&quot; TARGET=&quot;#TARGET#&quot; STYLE=&quot;{text-decoration: none;}&quot;&gt;#LABEL#&lt;/A&gt;]" S-Btn-Sel="[#LABEL#]" S-Btn-Sep="&amp;nbsp;" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><nobr>[<a href="index.html" style="{text-decoration: none;}" target="">התחלה</a>]</nobr> <nobr>[<a href="200110052040.html" style="{text-decoration: none;}" target="">דנמרק</a>]</nobr> <nobr>[<a href="20011006.html" style="{text-decoration: none;}" target="">הודו</a>]</nobr> <nobr>[<a href="20011030.html" style="{text-decoration: none;}" target="">נפאל</a>]</nobr> <nobr>[<a href="20011115.html" style="{text-decoration: none;}" target="">טרק סובב אנאפורנה</a>]</nobr> <nobr>[<a href="20011210.html" style="{text-decoration: none;}" target="">תאילנד</a>]</nobr> <nobr>[<a href="20020108.html" style="{text-decoration: none;}" target="">לאוס</a>]</nobr> <nobr>[<a href="20020123.html" style="{text-decoration: none;}" target="">צפון תאילנד</a>]</nobr> <nobr>[<a href="20020203.html" style="{text-decoration: none;}" target="">אוסטרליה</a>]</nobr> <nobr>[<a href="20020210.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי דרומי</a>]</nobr> <nobr>[<a href="20020326.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי צפוני</a>]</nobr> <nobr>[<a href="20020506.html" style="{text-decoration: none;}" target="">פיליפינים</a>]</nobr> <nobr>[<a href="20020603.html" style="{text-decoration: none;}" target="">קמבודיה</a>]</nobr><!--webbot bot="Navigation" i-checksum="33824" endspan --></p>
-<p><i><small>This site was last updated
-<!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%m/%d/%y" startspan -->07/15/03<!--webbot bot="Timestamp" i-checksum="12690" endspan --> </small></i>
-</p>
-</body>
+    <div class="nav-links">
+      <a href="20020116.html">← הקודם</a>
+      <a href="20020119.html">הבא →</a>
     </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-text">
+      <div class="meta-line">
+        <span class="date-big">18</span>
+        <div>
+          <div class="date-details">ינואר 2002</div>
+          <span class="country-badge">לאוס</span>
+        </div>
+      </div>
+      <h1 class="title">הטרק המאכזב</h1>
+      <div class="title-divider"></div>
+    </div>
+    <img class="hero-map" src="../images/Laos.gif" alt="לאוס">
+  </div>
+
+  <div class="content">
+    <p>הטרק המאכזב</p>
+
+    <p>עוד מעט נקבל אוכל נורמלי במסעדה הקבועה שלנו כאן במונג-נוי. חזרנו מיומיים של טרק בכפרים בהרים. להגיד שהיה כיף לא אגיד, או כמו שגונן סיכם: סה"כ 3 מ- 10. מסלול: 5 מ- 10, אוכל ולינה 5 מ- 10, חברה 2 מ- 10, מדריך 0 מ- 10, עלות/תועלת 0 מ- 10.</p>
+
+    <p>אבל יש לנו עוד מה להשלים על שלשום בלילה:</p>
+
+    <p>16/1</p>
+
+    <p>הלכנו למסעדה הרגילה שלנו. כבר היה די מאוחר, המקומיים ישבו איתנו ודיברו איתנו. אחד בשם פייר, בן 42 דיבר/העיק עלינו יותר מכולם. הזמנו את הויסקי המקומי, הלאו לאו (2.5 שקל לבקבוק 650 מ"ל שיכול להפיל 2 אנשים). שתינו ובירכנו "טופצ'וק" (לחיים). הבחור סיפר כיצד הפציצו כאן האמריקאים ב- 68' כשהוא היה ילד והם ברחו להרים.</p>
+
+    <p>כשעשינו הכרה באופן רשמי הוא שאל לשמנו, "אריאל" אמרתי. "אגליאל" חזר אחרי פייר וגונן התפקע מצחוק. למקומיים יש בעייה בהגיית ריש, לפייר יש עוד כמה בעיות. בסוף הוא החליט "אדריאן" אני הרמתי ידיים (לא עליו כמובן).</p>
+
+    <p>אח"כ הוא לקח אותנו למסיבה של מקומיים לרגל הנחת אבן פינה לבית חדש. היה מאכזב. שתינו עוד קצת ואכלנו גרעינים. לנסות לתקשר איתם מעייף, הם ממש לא יודעים אנגלית. בסוף יוצא שאתה צריך לזכור עוד ועוד שמות.</p>
+
+    <p>פייר עוד ליווה אותנו לגסט האוס ובקושי נפטרנו ממנו.</p>
+
+    <p>בבוקר קמתי ב- 7:00. כרגיל עננים שרו מעלינו נמוך. הם מתפזרים בערך ב- 11:00.</p>
+
+    <p>הלכנו למקום המפגש. דויד, האיטלקי, אמר שהוא חולה ופרש. המדריך שלנו, שהוא תאב בצע, במקום לשאול לשלומו, אמר לנו שנצטרך לשלם יותר כי יש אחד פחות.</p>
+
+    <p>כך יצאנו עם מדריך תאב בצע שאף אחד לא אוהב, פשוט לא מצאנו אחר, עם זוג מבוגרים בני 54 מנורבגיה, נחמדים ומיטיבי לכת, אבל אין לנו מה לדבר איתם, יורגן ההולנדי שהוא די חנון והאמריקאית בת ה- 35 שאתמול עוד דמיינו פצצה קליפורנית וקיבלנו נגמ"ש עם פצעונים ופרצוף תשעה באב, שגם עיכבה אותנו לאורך כל הטרק.</p>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/20020117_the_children_approach.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">ילדים בכפר יוצאים להסתכל עלינו</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020117_us&native_children.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020117_first_village.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">בכפר האותנטי הראשון</div>
+      </div>
+    </div>
+
+    <p>כרגע ילדים מקומיים שיחקו כאן על השביל הראשי בכפר, משחק שבו הם זורקים כפכף ומנסים לפגוע בקלפים מונחים על השביל. גונן פוצץ את המשחק כשהוא זרק חזיז והבהיל את כולם. "ראית את זה אגליאל?" שאל אותי גונן.</p>
+
+    <p>אז עם הנבחרת המנצחת הזו יצאנו ואיך שיצאנו, כבר בצעד הראשון, אחרי שהמדריך סחט אותנו כספית ודויד פרש, כבר לא היה לנו חשק לצאת וגונן רצה ברצינות לחזור.</p>
+
+    <p>הנבחרת המנצחת שלנו נראתה יותר כמו מסדר חולים.</p>
+
+    <p>אני לקחתי איתי את המוזיקה וזה שיפר קצת כי לא היה לנו כח כ"כ לדבר איתם. הם כאלה יבשים וענייניים. את כל המנהגים המקומיים הם לומדים מה- lonely planet, ומשאלות למדריך במקום לנסות ולחוות בעצמם.</p>
+
+    <p>וכך הלכנו, הנוף לא היה משהו. גונן היה עצוב והלך עם הראש בקרקע. כך הוא הלך עד שעצר מול נדל ענק, אבל לא מהשטוחים, אלא מהקמורים. הוא היה מת או ישן, 25 ס"מ אורכו כשהוא רפוי. גונן הרים אותו עם מקל ושם אותו בנהר. אם הוא רק ישן, אז הוא כבר לא יתעורר. "אמרת שאין כאן חיות" אמר גונן. "אין כאן חיים" אמרתי. באמת, נסחפתי. אבל אין כאן כמעט זבובים ובלילה אין יתושים. נראה לי שזה בגלל העונה. אלה החודשים הכי קרים: דצמבר וינואר, 15-28. בחודשים החמים, מאי-ספטמבר, הטמפרטורה היא 25-35 ויורד גשם, אז זה בטח סיוט כאן.</p>
+
+    <p>המשכנו ללכת, המדריך יזם עצירות, הוא לא בכושר. אנחנו לא סובלים אותו, החל מהמבטא הבריטי המעושה ועד הכפכפים הורודים שהוא נועל.</p>
+
+    <p>המשכנו ללכת, היינו הראשונים והספקנו עוד לראות נחש קטן (אך נראה מסוכן), דומה ל<a href="20011013.htm#poison_snake">נחש שראינו בצפון הודו</a>, חומק לשיחים. הנחש לא היה לחוץ וחיכה לא עמוק בשיחים, כך שראינו אותו ממש טוב. אורכו כ- 40 ס"מ והוא ממש דק.</p>
+
+    <p>חבורה אחרת עברה אותנו, זה 3 הנערים הדנים שיצא לנו לראות אותם וקצת לדבר איתם לפני-כן, ובחור ישראלי שגם איתו יצא לנו לדבר. הם הלכו בקצב טוב, וגם עלה להם פחות (85,000 קיפ, לנו 100,000). הסתכלנו עליהם בעינים כמהות. כ"כ רצינו לערוק.</p>
+
+    <p>המשכנו ללכת ובערך ב- 16:00 הגענו לכפר עם השבטים ה"פראים". כפר מאכזב.</p>
+
+    <p>עשינו סיבוב בכפר במשך 10 דקות. הרבה בקתות קש בנויות היטב. <a onclick="openLightbox('../images/20020117_the_children_approach.jpg')">ילדים יצאו החוצה והסתכלו בנו</a>. חזירים, כלבים ותרנגולות התרוצצו בחוסר סדר. באמת לא היה מה לראות. איזה שתי ילדות התחילו לצרוח באימה כשראו אותי. הלוואי והיה לי ראי והייתי יודע למה. אמא שלהם אספה אותם והכניסה אותם במהירות הביתה. הלכנו חזרה לבית בו נישן וישבנו במרפסת בחוסר מעש. הסתכלנו איך התרנגולים רבים ביניהם על תרנגולת. גונן היה משועמם. לי היה ספר.</p>
+
+    <p>הנורבגים ישבו בכפר והתבוננו במקומיים ובמעשיהם. אנחנו לא אוהבים את זה, חליק, מה המקומיים לא רואים אותם?. אם מישהו ישב אצלכם בסלון, הייתם ממשיכים להתנהג בטבעיות?</p>
+
+    <div class="photo-pair">
+      <div class="photo-item">
+        <img src="../images/20020117_inside_the_hut.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020117_special_dresses_tribe.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">הכפר עם התלבושות המיוחדות</div>
+      </div>
+    </div>
+
+    <p>אח"כ ישבנו כולם במרפסת. הם דיברו, אני קראתי, גונן סבל. מקומי מבוגר בא לשבת איתנו. "הוא תמיד בא לשבת עם תיירים" אמר המדריך. אחרי 10 דקות הוא הלך, כנראה היה משועמם, הבנו אותו.</p>
+
+    <p>אכלנו ארוחת ערב, מה בתפריט?, כמו בכל 4 הארוחות שאכלנו: אורז, ביצה ושעועית. בצהרים אכלנו אורז דביק (sticky rice) שזה די מגעיל אך שימושי, קל לסחוב את זה ולאחסן את זה. אחרי שראינו את המקומית שבישלה מקנחת את האף בידה ומורחת את הנזלת בקש, הסברתי לחבורה איך מכינים אורז דביק.</p>
+
+    <p>התבאסנו שאין תה או קפה ואפילו גראס או ג'ראס אין (לפחות כך אמר המדריך). הוא הביא משקה מקומי (תשלום לחוד של 2000 קיפ כ"א) שנראה כמו עציץ עם אדמה ו- 2 ענפים יבשים ששימשו כקשים. כשינקנו מהקשים היה משקה עם טעם של יין, עם מעט אלכוהול. המשקה נקרא "לאו-היי". הלכנו לישון כולם על המזרונים בחדר הגדול. אני וגונן דמיינו איך אנחנו יושבים במסעדה הרגילה שלנו במונג-נוי, אוכלים ושותים בכיף. בעצם זה מה שאנחנו עושים עכשיו. את זה דמיינו אתמול.</p>
+
+    <p>נרדמתי מהר וקמתי לקול התרנגולים שקראו את קריאת הגבר. יש כאן כ"כ הרבה תרנגולים ששמעתי אותם קוראים אחד אחרי השני בלי הפסקה.</p>
+
+    <p>איך שחזרתי לנמנם גונן הסתובב ותקע את הברך שלו בעצם הזנב שלי. אם היינו לבד הייתי צועק, אבל החנקתי את הצעקה באקט של התחשבות.</p>
+
+    <p>אחרי שכולם קמו התחיל סבב שאלות "איך ישנת?". שכבתי וראיתי איך כל אחד שואל את השני ועונה בעצמו. אני הייתי צריך לענות גם כמה פעמים ומפעם לפעם קיצרתי בתשובתי. כשגונן שאל אותי בהקנטה לא עניתי כלל.</p>
+
+    <p>האחרים הלכו להסתובב בכפר, אני וגונן ישבנו במרפסת ושמענו לד-זפלין. מה כבר יכול להתחדש כאן?. מקומי בא לשבת איתנו, הוא עישן גראס. במהרה עישנו איתו והוא אפילו הכין לנו 2 סיגריות. הרבה ילדים באו סביבנו. התחלנו להנות.</p>
+
+    <p>המשכנו ללכת לכפר נוסף <a onclick="openLightbox('../images/20020117_special_dresses_tribe.jpg')">שם יש תלבושות מיוחדות</a>, שעה וחצי הליכה. כשהגענו ראינו כפר משופר. היה נוף מהכפר, הוא היה קטן יותר והיו באמת כמה נשים עם לבוש מיוחד. הכי מיוחד היה הכובע. מקומי ניגן לנו במה שנראה ונשמע כמו חמת חלילים. התחלנו להנות.</p>
+
+    <p>חזרנו כל הדרך חזרה לכפר הקודם לאכול ארוחת צהרים. מה בתפריט? – אותו דבר: אורז, ביצים ושעועית. לי עוד נשאר בגט עם גבינה מותכת ממונג-נוי וזה שיפר את הארוחה.</p>
+
+    <p>חזרנו באותה דרך למטה אל מונג-נוי. כך הלכנו 3 שעות. גונן עצר שוב בבהלה, הוא כמעט מעך עם הסנדל נדל. הפעם הרגיל, השטוח. גדול, 15 ס"מ – כזה ראיתי בקו-טאו עם ליאור. הנדל היה מת, מכוסה בנמלים קטנות, אבל היה מרשים. גונן חד-העין, יום לפני-כן הוא איתר חרק עם צבעים זוהרים, מיוחד. הוא גם איתר עכביש שטווה את קוריו בצורה מיוחדת כמו מחילה ששם הוא נח/מסתתר.</p>
+
+    <p>סיימנו הטיול עם השקיעה, עם אהוד בנאי במיני-דיסק וחזרנו מרוצים, בעיקר מרוצים לחזור.</p>
+
+    <p>"תמליצו עלי לתיירים אחרים" נפרד מאיתנו המדריך. כן, בטח.</p>
+
+    <p>נפרדנו מהאחרים. "שכחנו לאמר להם שנהננו" אמרתי לגונן. "רוצה לחזור?". גונן רק הגביר את צעדיו למכולת המקומית במונג-נוי לקנות פחית קולה.</p>
+
+
+  </div>
+
+  <div class="nav-cards">
+    <a href="20020119.html" class="nav-card">
+      <div class="label">הבא →</div>
+      <div class="card-title">בדרך למאונט-סינג</div>
+    </a>
+    <a href="20020116.html" class="nav-card">
+      <div class="label">← הקודם</div>
+      <div class="card-title">הנסיעה בסירה למפל ולמערה</div>
+    </a>
+  </div>
+
+  <div class="country-nav">
+    <a href="200110052040.html">דנמרק</a>
+    <a href="20011006.html">הודו</a>
+    <a href="20011030.html">נפאל</a>
+    <a href="20011115.html">טרק אנאפורנה</a>
+    <a href="20011210.html">תאילנד</a>
+    <a href="20020108.html">לאוס</a>
+    <a href="20020123.html">צפון תאילנד</a>
+    <a href="20020203.html">אוסטרליה</a>
+    <a href="20020210.html">ניו-זילנד, אי דרומי</a>
+    <a href="20020326.html">ניו-זילנד, אי צפוני</a>
+    <a href="20020506.html">פיליפינים</a>
+    <a href="20020603.html">קמבודיה</a>
   </div>
 
   <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
-    <img id="lightbox-img" src="" alt="Enlarged">
+    <img id="lightbox-img" src="" alt="">
   </div>
-
   <script>
     function openLightbox(src) {
       document.getElementById('lightbox-img').src = src;

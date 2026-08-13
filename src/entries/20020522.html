@@ -3,271 +3,365 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ברציף, פוארטו פרינססה, האי פאלאוואן, פיליפינים</title>
+  <title>והספינה לא שטה</title>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap" rel="stylesheet">
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background-color: #f8fafc;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0; padding: 20px; color: #334155;
+      background: #ffffff;
+      font-family: 'Heebo', sans-serif;
+      color: #1a1a2e;
+      line-height: 1.9;
     }
-    .container {
-      max-width: 800px; margin: 0 auto; background: #ffffff;
-      padding: 35px; border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06); line-height: 1.8;
+    .top-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #eee;
+      padding: 12px 30px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.9rem;
     }
-    .header {
-      border-bottom: 2px solid #e2e8f0; padding-bottom: 15px;
-      margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center;
+    .top-nav a {
+      color: #1d4ed8; text-decoration: none; font-weight: 600;
     }
-    .header h1 { margin: 0; color: #0f172a; font-size: 1.8rem; }
-    .home-link { color: #2563eb; text-decoration: none; font-weight: 600; }
-    .content img {
-      float: right; margin: 0 0 15px 20px; max-width: 320px; height: auto;
-      border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      cursor: pointer; transition: transform 0.2s;
+    .top-nav a:hover { text-decoration: underline; }
+    .top-nav .nav-links { display: flex; gap: 20px; }
+    .hero {
+      max-width: 900px; margin: 0 auto;
+      padding: 50px 40px 30px;
+      display: flex; align-items: flex-start; gap: 30px;
     }
-    .content img:hover { transform: scale(1.02); }
-    .content::after { content: ""; clear: both; display: table; }
-    a { color: #2563eb; }
+    .hero-text { flex: 1; }
+    .hero-map {
+      width: 120px; height: auto; object-fit: contain;
+      flex-shrink: 0; opacity: 0.85;
+    }
+    .meta-line {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+    }
+    .date-big {
+      font-size: 3.5rem; font-weight: 900; color: #e5e7eb; line-height: 1;
+    }
+    .date-details { font-size: 0.9rem; color: #6b7280; }
+    .country-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      border-radius: 20px; padding: 4px 14px;
+      font-size: 0.8rem; color: #1d4ed8; font-weight: 600;
+    }
+    .title {
+      font-size: 2.2rem; font-weight: 900; color: #111827;
+      margin: 20px 0 8px; line-height: 1.3;
+    }
+    .date-subtitle {
+      font-size: 1.1rem; font-weight: 300; color: #4b5563;
+      margin-bottom: 16px;
+    }
+    .title-divider {
+      width: 60px; height: 4px; background: #1d4ed8; border-radius: 2px;
+    }
+    .content {
+      max-width: 900px; margin: 30px auto; padding: 0 40px; font-size: 1.05rem;
+    }
+    .content p { margin-bottom: 18px; }
+    .content a {
+      color: #1d4ed8; cursor: pointer;
+      text-decoration: underline;
+      text-decoration-color: rgba(29,78,216,0.3);
+    }
+    .photo-block {
+      margin: 30px 0; border-radius: 12px; overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    .photo-block img {
+      width: 100%; display: block; cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .photo-block img:hover { transform: scale(1.01); }
+    .photo-block .caption {
+      padding: 12px 16px; font-size: 0.85rem; color: #6b7280;
+      background: #f9fafb; border-top: 1px solid #f3f4f6;
+    }
+    .photo-pair {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 14px; margin: 30px 0;
+    }
+    .photo-pair .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-pair .photo-item img {
+      width: 100%; height: 200px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-pair .photo-item img:hover { transform: scale(1.03); }
+    .photo-pair .photo-item .caption {
+      padding: 8px 12px; font-size: 0.8rem; color: #6b7280; background: #f9fafb;
+    }
+    .photo-trio {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px; margin: 30px 0;
+    }
+    .photo-trio .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-trio .photo-item img {
+      width: 100%; height: 180px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-trio .photo-item img:hover { transform: scale(1.03); }
+    .photo-trio .photo-item .caption {
+      padding: 8px 10px; font-size: 0.78rem; color: #6b7280; background: #f9fafb;
+    }
+    .nav-cards {
+      max-width: 900px; margin: 50px auto 20px; padding: 0 40px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .nav-card {
+      padding: 20px 24px; border: 1px solid #e5e7eb; border-radius: 12px;
+      text-decoration: none; color: inherit; transition: all 0.2s;
+    }
+    .nav-card:hover {
+      border-color: #1d4ed8; box-shadow: 0 4px 12px rgba(29,78,216,0.1);
+    }
+    .nav-card .label { font-size: 0.8rem; color: #6b7280; margin-bottom: 4px; }
+    .nav-card .card-title { font-weight: 700; font-size: 1rem; color: #1d4ed8; }
+    .supplements {
+      margin-top: 35px; padding: 25px 30px;
+      background: #f9fafb; border-radius: 12px; border: 1px solid #e5e7eb;
+    }
+    .supplements h3 {
+      font-size: 1.1rem; font-weight: 700; margin-bottom: 14px; color: #374151;
+    }
+    .supplements ol { padding-right: 20px; }
+    .supplements li { margin-bottom: 10px; color: #4b5563; }
+    .country-nav {
+      max-width: 900px; margin: 20px auto 40px; padding: 0 40px;
+      display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+    }
+    .country-nav a {
+      padding: 6px 14px; border-radius: 20px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      color: #1d4ed8; text-decoration: none;
+      font-size: 0.82rem; font-weight: 600;
+      transition: all 0.2s;
+    }
+    .country-nav a:hover {
+      background: #1d4ed8; color: white; border-color: #1d4ed8;
+    }
     .lightbox {
       display: none; position: fixed; z-index: 9999;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.9); justify-content: center; align-items: center; cursor: pointer;
+      background: rgba(0,0,0,0.92);
+      justify-content: center; align-items: center; cursor: pointer;
     }
-    .lightbox img { max-width: 90%; max-height: 90%; border-radius: 8px; }
+    .lightbox img { max-width: 92%; max-height: 92%; border-radius: 8px; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h1>ברציף, פוארטו פרינססה, האי פאלאוואן, פיליפינים</h1>
-      <a href="../index.html" class="home-link">🏠 לעמוד הראשי</a>
+  <div class="top-nav">
+    <div class="nav-links">
+      <a href="../index.html">עמוד ראשי</a>
     </div>
-    <div class="content">
-      <body>
-<table cellpadding="0" cellspacing="0" height="80" width="954">
-<tr>
-<td align="center" height="80" width="277">
-<marquee style="font-size: 18pt; color: #800080">22.5.02 - 18:00</marquee></td>
-<td align="center" height="80" width="667">
-<!--webbot bot="Navigation" s-type="banner" s-rendering="graphics" S-Orientation B-Include-Home B-Include-Up U-Page S-Target startspan --><!--webbot bot="Navigation" i-checksum="26834" endspan --></td>
-<td align="center" height="80" width="10">
-<img border="0" height="2" onclick="openLightbox(this.src)" src="../images/20020322_fishermen.jpg" title="לחץ להגדלה" width="1"/><img border="0" height="154" onclick="openLightbox(this.src)" src="../images/Philippines.gif" title="לחץ להגדלה" width="154"/></td>
-</tr>
-<tr>
-<td colspan="3" height="1" style=" " width="954"></td>
-</tr>
-</table><table cellpadding="0" cellspacing="0" width="100%">
-<tr>
-<td align="right" style=" ">
-<h4>
-<marquee style="font-size: 24pt; color: #008080">והספינה לא שטה</marquee></h4>
-<p> </p></td>
-</tr>
-</table>
-<table cellpadding="0" cellspacing="0" height="333" width="953">
-<tr>
-<td height="333" rowspan="2" style="       " valign="top" width="140"> <!--webbot bot="Navigation" S-Type="sequence" S-Orientation="vertical" S-Rendering="graphics" S-Theme="blocks 000" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><!--webbot bot="Navigation" i-checksum="23763" endspan --><p> </p>
-</td>
-<td height="333" rowspan="2" style="     " valign="top" width="1"></td>
-<td colspan="2" height="266" style="     " valign="top" width="735">
-<p class="MsoNormal" dir="RTL"><span lang="HE"> </span><b><span dir="LTR">Sulpicio 
-    lines</span> <span lang="HE">– כל שיוט – סיוט. חברת ספנות שבמקום לשוט בים 
-    היא מיבשת. עיכוב של יום ביציאה – במקום אתמול בחצות, היום בלילה. משמעות 
-    מרחיקה לכת. לא יודע איך נספיק לראות את טרסות האורז בצפון האי לוזון, אחד מ- 8 
-    פלאי עולם (כך כתוב, אבל זה חשוד, כי שבעה פלאים ידועים לכולם וכל אחד יכול 
-    להכריז על עצמו כשמיני). להפסיד את זה זה כמו לנסוע לפאריס ולא לראות את האייפל 
-    או לבקר בישראל בלי להיות בירושלים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">והספינה לא שטה</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">השארנו מרווח בטחון של 15 
-    שעות!!. היינו אמורים להגיע ביום חמישי לפנות בוקר ולתפוס את האוטובוס של 22:00 
-    לבאנאווי (טרסות האורז). מי האמין שיהיה איחור כ"כ גדול שככל הנראה נפסיד את 
-    האוטובוס הזה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">והספינה לא שטה</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">באמת חשוב לי להיות שם ולכן 
-    אני עצבני אעפ"י שאת הלילה הנוסף שקיבלנו כאן, בפוארטו פרינססה, העברנו 
-    בנעימים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">היומיים האחרונים חופנים 
-    בתוכם רומן זעיר עם אן-מארי הקטנטנה. אני עדיין תומך בגרסתי שאמרתי בעבר שהדרך 
-    האמיתית להתקרב למקומיים זה להכיר משפחות, לאכול אצלהם או לשתות ברנדי איתם. 
-    רומן עם מקומית הוא מזויף בדיוק כמו מכנסי הג'ינס החדשים של גונן.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בלילנו השני ב- </span>
-<span dir="LTR">Sabang</span><span lang="HE"> בילינו ללא שתיה. מארי-אן חזרה 
-    לפוארטו ואן-מארי נשארה. לא חשבתי להעביר איתה את הערב, אבל אז היא הגיעה 
-    והתחלנו לדבר, אז חשבתי למה לא?</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">פתאם אן-מארי מגיעה, באמצע 
-    הכתיבה ביומן. אני מדבר איתה. היא באה להפרד, חמודה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">נחזור למאורעות השלשום:</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">דיברנו ושמענו מוזיקה 
-    במיני-דיסק. אח"כ עברנו למרפסת בחדרה ואח"כ למיטה. אן-מארי יפה, קטנטנה, חלקה. 
-    יש לה חזה די גדול וטוסיק מושלם. היא בת קרוב ל- 22.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בבוקר ב- 5:30 היא העירה 
-    אותי לחזור לגונן כדי ש "דוד יאן" לא יחשוד.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">חזרתי. גונן בדיוק קם לסדרת 
-    צילומי זריחה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אח"כ חזרנו לישון. גונן קם 
-    לפני. הוא התעצבן כי כל הזמן, כשהם רואים אותנו הם שואלים "רוצה ארוחת בוקר?", 
-    או ארוחת צהרים. כך, ללא טאקט.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אני הרגשתי מחויב, אז אכלתי 
-    שם. גונן הלך לשוטט ולשחות בחוף אחר.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">כשהוא חזר, הוא חזר עמוס 
-    חוויות וכוסות ברנדי שהציעו לו המקומיים, כך לאור-יום, בשתיית טרום צהריים קלה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">היינו צריכים ללכת. נפרדנו 
-    מכולם. החמאתי ליאן על עיצוב המקום. פתח הבקתות תמיד לים, לשקיעה. גם במקלחת 
-    אתה יכול לראות את כל הנוף.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">תעלומת הילד הנרצח נשארה 
-    תעלומה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הלכנו למרכז. הפעם העמידו 
-    לרשותינו אוטובוס לנסיעה לפואטרו פרינססה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אנחנו יושבים באוטובוס. מי 
-    מגיעה בריצה? – אן-מארי הקטנטנה. היא תצטרף אלינו. למחרת היא אמורה לחזור בחזרה 
-    לכאן. מאהבת מרדכי היא שינתה התכניות?. לא הייתי בטוח. הייתי שמח אך חשדן.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">האוטובוס נראה ריק עד דקה 
-    לפני שנסענו ואז הוא התמלא לעייפה. גונן הושיב ילד על ברכיו ואפילו נהנה מזה 
-    (וגם הילד).</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">כשהגענו לפוארטו פרינססה 
-    אנה-מארי עזרה לנו למצוא מקום. עזרה? – אני לא בטוח. הסגנון שלנו זה ללכת בכל 
-    העיר ולהשוות מחירים עד שמגיעים למקום נורמלי. הסטייל שלה ושל מארי-אן שהצטרפה 
-    אלינו, זה לקחת תלת-אופן ולא ללכת מטר ולנסוע למקומות שהן מכירות. החשדות 
-    הרקיעו. לפחות גילינו שהמחיר הסטנדרטי זה 5 פזו לראש לנסיעה בתוך העיר.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">יש כאן דפוס של לוחמה 
-    פסיכולוגית. אנחנו רוצים לשכב איתן. הן רוצות לבלות איתנו ושאנו נשלם עליהן. מה 
-    המחיר המקובל על כולם? לזה אני קורא זנות בחינם, והיא גם עולה כסף.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">המורכבות מתחילה כבר 
-    מההתחלה – אני רציתי חדר לחוד מגונן כי רציתי שאן-מארי תישן איתי. גונן כנ"ל עם 
-    מארי-אן. הן לא בטוחות ולא יודעות מה יקרה. זה הצהרת כוונות. חשדות הרקיעו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">שם המקום בו ישנו הוא 
-    "בנואה". מקום מיוחד, זול ומקושט אומנותי, כלומר די מושקע. מצאנו חדר קטן 
-    ליחיד. 150 פזו כל אחד כי אנחנו בחדרים נפרדים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">זה יותר טוב מאשר לישון עם 
-    האוסטרי המבוגר שפגשנו בסאבאנג ועכשיו גם כאן בפוארטו. בלונדיני ענק עם שפם 
-    ודיבור גס. מטייל כבר 3 שנים, רוב הזמן בדרום אמריקה. ראינו אותו בעיר בגסט 
-    האוס הקודם שבדקנו. הוא התגלח בתחתוניו בלבד. הוא שמח לראותינו ודרש בשלומינו. 
-    הוא היה אחרי מקלחת. אני רציתי לשאול אותו איך המים במקלחות כאן, אבל אז חשבתי 
-    שאם אבותיו שיקרו באותו נושא, אז למה שאני אאמין לו עכשיו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">נסענו לאכול. כולם רצו 
-    פיצה, אני לא, אבל הצטרפתי בהכנעה. הן לקחו אותנו למקום יוקרתי ביותר, </span>
-<span dir="LTR">club 54</span><span lang="HE">. מחירים שהזכירו את הארץ, 50 
-    שקל לפיצה משפחתית. אמרתי בצורה תרבותית לאן-מארי "אני רוצה להזמין אותך 
-    לארוחת-ערב. במחירים האלה אני לא יכול". חשדנות.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">לגונן ולי יש מספיק טאקט 
-    כדי שהחשדות לא יראו לעין, כך שכל הזמן צחוקים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אני שב ומזכיר שכל הערב 
-    והלילה אורגן בחסות חברת הספנות </span><span dir="LTR">sulpicio lines</span><span lang="HE">, 
-    שבמקום לעלות על ספינה בחצות יום שלישי, דחתה ההפלגה ליום רביעי, 16:30 (זה מה 
-    שאמרו אז, בפועל אנו מחכים יותר).</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הלכנו למסעדה נורמלית. 
-    הבנות לא השתוללו בהזמנות. אני הזמנתי קולה גדולה. מאחר שלא ידעתי כמה זה
-    </span><span dir="LTR">oz</span><span lang="HE">, הזמנתי 55 </span>
-<span dir="LTR">oz</span><span lang="HE"> וקיבלתי קנקן של 1.1-1.2 ליטר.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">לאחר הארוחה הבנות רצו 
-    לחזור לביתן להחליף בגדים (למה הן לא הזמינו אותנו לבוא איתן או לישון שם?). הן 
-    התעקשו שנחזור לגסט האוס שלנו ונחכה להן. תשוש נפשית וגם עייף מלילה מעוט שינה 
-    אמרתי לגונן "עדיף כבר שיבריזו לנו ונוכל ללכת לישון בכיף". גונן הנהן בהסכמה, 
-    אעפ"י שהוא היה לאחר 100 גרם אגוזי קשיו, שהוא טוען שגרמו לקשיו של ...</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">באמת נרדמתי. הגסט האוס 
-    סגור והן התדפקו על השער חצי שעה. יצאנו אליהן, התנצלנו והלכנו לדיסקו, תוהים 
-    מה יעלה בגורלינו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">יש האומרים "אין בחורה שלא 
-    נותנת, יש גבר שלא יודע לקחת" אני אומר "ביציאות הבחורה היא הבמאי ואתה השחקן. 
-    אם תהיה שחקן טוב, יגדילו לך את התפקיד. אבל רק הבמאי יודע איך יסתיים הסרט".</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">המועדון עם הופעה חיה, עולה 
-    כסף. נכנסנו, הזמנו משקה יקר יחסית (10 שקל לוויט ראשן). אח"כ גם רקדנו קצת. רק 
-    כששילמנו וראיתי ששילמנו רק על עצמנו, חזר הצבע ללחיי וכל החשדנות נעלמה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">חזרנו לגסט האוס והתפזרנו 
-    לחדרים. מארי-אן ילדה טובה ואמרה שלא היתה מעולם עם זר. גונן זכה איתה למזמוז 
-    ועיסוי. אני עשיתי את שלי עם אן-מארי.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">ב- 4:00 הן הלכו לבתיהן, 
-    צריכות לקום מוקדם.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אני חשבתי שבטיול הזה, 
-    באופן כללי, לא היה סקס טוב. כמה סטוצים – סקס מהיר עם זכרון קצר ואינטרסים 
-    וצרכים – מעט מאד זכרון אישי או חום כלשהו. המסר שנקלט זה לא "אני רוצה אותך" 
-    אלא "אני צריכה אותך", והסיבות שונות. אתה לוקח איתך זכרון ללא משמעות.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">והספינה לא שטה</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">עכשיו אנחנו על הספינה והיא 
-    עדיין עוגנת. אני כותב בהפסקות. עכשיו 20:00</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">כשעלינו ראינו עשן סמיך 
-    ושחור יוצא מהארובה ואז גונן אמר בפסקנות "המנוע גמור"</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">עכשיו המצב בכי-רע.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">עכשיו בטוח נפסיד את 
-    האוטובוס שיוצא לבאנאווי ביום חמישי בערב. לפחות אולי נגיע ביום שישי בבוקר 
-    למנילה ונרוויח לילה כאן.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">גונן קנה ג'ינס </span>
-<span dir="LTR">Lee</span><span lang="HE">, ב- 61 שקל בלבד. אני מדדתי בטירוף 
-    למעלה מ- 10 זוגות באותה חנות ולא היה קליק, אז ויתרתי. מידה 46 גדול עלי, 44 
-    צמוד עלי. אני שוקל 86 ק"ג, גונן 84.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">ביומיים האחרונים לא יצא לי 
-    לישון עם גונן, אבל אל דאגה. חשבון פשוט, אך מדאיג, מראה שהאדם שישנתי איתו הכי 
-    הרבה לילות בחיי זה גונן (כ- 250 לילות, 200 מתוכם בטיול). את יתר המקומות 
-    אחריו תופסות בחורות, אבל זה נראה רע מאד.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">למה זה דומה? אם ישאלו 
-    אותנו "באיזה מקום הייתם הכי הרבה בביקורכם בפיליפינים?", התשובה תהיה – על 
-    הספינה של </span><span dir="LTR">sulpicio lines</span><span lang="HE">.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">כמעט שכחתי, יצא לנו 
-    להתפרפר בפוארטו – הלכנו לגן הפרפרים – חדר גדול עם הרבה פרפרים גדולים. פחות 
-    יפה מחדר הפרפרים בגן החיות במלבורן, אבל נחמד. היו שם גם חיפושיות ענק 
-    מלהיבות. יש באיזור גם פארק תנינים, אך לא היה לנו זמן לבקר שם, מיהרנו לספינה</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אבל חבל, הספינה לא שטה.</span></b></p>
-<p class="MsoNormal" dir="RTL"> </p></td>
-<td align="center" height="333" rowspan="2" style="     " valign="top" width="187">
-
-<img border="0" height="203" onclick="openLightbox(this.src)" src="../images/20020521_sunset_meditation.jpg" title="לחץ להגדלה" width="140"/><p>
-
-<img border="0" height="123" onclick="openLightbox(this.src)" src="../images/20020521_sunset_in_palawan.jpg" title="לחץ להגדלה" width="182"/></p>
-<p><font color="#660099">גונן בסדרת צילומי זריחה</font></p>
-<p> </p>
-<p>
-
-<img border="0" height="123" onclick="openLightbox(this.src)" src="../images/20020521_malik&amp;an_marry.jpg" title="לחץ להגדלה" width="182"/></p>
-<p><font color="#660099">אני ואן מארי</font></p>
-<p>
-
-<img border="0" height="217" onclick="openLightbox(this.src)" src="../images/20020522_gonen&amp;marry_an.jpg" title="לחץ להגדלה" width="135"/></p>
-<p><font color="#660099">גונן ומארי אן</font></p>
-<p> </p>
-<p>
-
-<img border="0" height="119" onclick="openLightbox(this.src)" src="../images/20020521_view_in_sabang.jpg" title="לחץ להגדלה" width="181"/></p>
-<p>
-
-<img border="0" height="127" onclick="openLightbox(this.src)" src="../images/20020521_gonen_in_sabang.jpg" title="לחץ להגדלה" width="183"/></p>
-<p><font color="#660099">תמונות מטיולון שעשינו באזור</font></p>
-<p> </p>
-<p>
-
-<img border="0" height="127" onclick="openLightbox(this.src)" src="../images/20020523_gonen&amp;huge_butterfly.jpg" title="לחץ להגדלה" width="181"/></p>
-<p><font color="#660099">בחדר הפרפרים. פרפר ענק פתאום התישב לגונן על קצה 
-    התלתל</font></p>
-<p>
-
-<img border="0" height="126" onclick="openLightbox(this.src)" src="../images/20020523_flower_in_palawan.jpg" title="לחץ להגדלה" width="180"/></p></td>
-</tr>
-<tr>
-<td height="67" style="     " valign="top" width="314">
-<b>
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button104.gif" title="לחץ להגדלה" width="59"/></b></td>
-<td height="67" style="     " valign="top" width="421">
-<p align="right"><b>
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button106.gif" title="לחץ להגדלה" width="59"/></b></p></td>
-</tr>
-</table>
-<p align="center">
-<!--webbot bot="Navigation" S-Type="sequence" S-Orientation="horizontal" S-Rendering="html" S-Bar="Brackets" S-Btn-Nml="[&lt;A HREF=&quot;#URL#&quot; TARGET=&quot;#TARGET#&quot; STYLE=&quot;{text-decoration: none;}&quot;&gt;#LABEL#&lt;/A&gt;]" S-Btn-Sel="[#LABEL#]" S-Btn-Sep="&amp;nbsp;" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><nobr>[<a href="index.html" style="{text-decoration: none;}" target="">התחלה</a>]</nobr> <nobr>[<a href="200110052040.html" style="{text-decoration: none;}" target="">דנמרק</a>]</nobr> <nobr>[<a href="20011006.html" style="{text-decoration: none;}" target="">הודו</a>]</nobr> <nobr>[<a href="20011030.html" style="{text-decoration: none;}" target="">נפאל</a>]</nobr> <nobr>[<a href="20011115.html" style="{text-decoration: none;}" target="">טרק סובב אנאפורנה</a>]</nobr> <nobr>[<a href="20011210.html" style="{text-decoration: none;}" target="">תאילנד</a>]</nobr> <nobr>[<a href="20020108.html" style="{text-decoration: none;}" target="">לאוס</a>]</nobr> <nobr>[<a href="20020123.html" style="{text-decoration: none;}" target="">צפון תאילנד</a>]</nobr> <nobr>[<a href="20020203.html" style="{text-decoration: none;}" target="">אוסטרליה</a>]</nobr> <nobr>[<a href="20020210.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי דרומי</a>]</nobr> <nobr>[<a href="20020326.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי צפוני</a>]</nobr> <nobr>[<a href="20020506.html" style="{text-decoration: none;}" target="">פיליפינים</a>]</nobr> <nobr>[<a href="20020603.html" style="{text-decoration: none;}" target="">קמבודיה</a>]</nobr><!--webbot bot="Navigation" i-checksum="33824" endspan --></p>
-<p><i><small>This site was last updated
-<!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%m/%d/%y" startspan -->08/02/03<!--webbot bot="Timestamp" i-checksum="12636" endspan --> </small></i>
-</p>
-</body>
+    <div class="nav-links">
+      <a href="20020520.html">← הקודם</a>
+      <a href="20020524.html">הבא →</a>
     </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-text">
+      <div class="meta-line">
+        <span class="date-big">22</span>
+        <div>
+          <div class="date-details">מאי 2002</div>
+          <span class="country-badge">פיליפינים</span>
+        </div>
+      </div>
+      <h1 class="title">והספינה לא שטה</h1>
+      <div class="title-divider"></div>
+    </div>
+    <img class="hero-map" src="../images/Philippines.gif" alt="פיליפינים">
+  </div>
+
+  <div class="content">
+    <p>והספינה לא שטה</p>
+
+    <p>Sulpicio lines – כל שיוט – סיוט. חברת ספנות שבמקום לשוט בים היא מיבשת. עיכוב של יום ביציאה – במקום אתמול בחצות, היום בלילה. משמעות מרחיקה לכת. לא יודע איך נספיק לראות את טרסות האורז בצפון האי לוזון, אחד מ- 8 פלאי עולם (כך כתוב, אבל זה חשוד, כי שבעה פלאים ידועים לכולם וכל אחד יכול להכריז על עצמו כשמיני). להפסיד את זה זה כמו לנסוע לפאריס ולא לראות את האייפל או לבקר בישראל בלי להיות בירושלים.</p>
+
+    <p>והספינה לא שטה</p>
+
+    <p>השארנו מרווח בטחון של 15 שעות!!. היינו אמורים להגיע ביום חמישי לפנות בוקר ולתפוס את האוטובוס של 22:00 לבאנאווי (טרסות האורז). מי האמין שיהיה איחור כ"כ גדול שככל הנראה נפסיד את האוטובוס הזה.</p>
+
+    <p>והספינה לא שטה</p>
+
+    <p>באמת חשוב לי להיות שם ולכן אני עצבני אעפ"י שאת הלילה הנוסף שקיבלנו כאן, בפוארטו פרינססה, העברנו בנעימים.</p>
+
+    <p>היומיים האחרונים חופנים בתוכם רומן זעיר עם אן-מארי הקטנטנה. אני עדיין תומך בגרסתי שאמרתי בעבר שהדרך האמיתית להתקרב למקומיים זה להכיר משפחות, לאכול אצלהם או לשתות ברנדי איתם. רומן עם מקומית הוא מזויף בדיוק כמו מכנסי הג'ינס החדשים של גונן.</p>
+
+    <p>בלילנו השני ב- Sabang בילינו ללא שתיה. מארי-אן חזרה לפוארטו ואן-מארי נשארה. לא חשבתי להעביר איתה את הערב, אבל אז היא הגיעה והתחלנו לדבר, אז חשבתי למה לא?</p>
+
+    <p>פתאם אן-מארי מגיעה, באמצע הכתיבה ביומן. אני מדבר איתה. היא באה להפרד, חמודה.</p>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/20020322_fishermen.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020521_sunset_meditation.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020521_sunset_in_palawan.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">גונן בסדרת צילומי זריחה</div>
+      </div>
+    </div>
+
+    <p>נחזור למאורעות השלשום:</p>
+
+    <p>דיברנו ושמענו מוזיקה במיני-דיסק. אח"כ עברנו למרפסת בחדרה ואח"כ למיטה. אן-מארי יפה, קטנטנה, חלקה. יש לה חזה די גדול וטוסיק מושלם. היא בת קרוב ל- 22.</p>
+
+    <p>בבוקר ב- 5:30 היא העירה אותי לחזור לגונן כדי ש "דוד יאן" לא יחשוד.</p>
+
+    <p>חזרתי. גונן בדיוק קם לסדרת צילומי זריחה.</p>
+
+    <p>אח"כ חזרנו לישון. גונן קם לפני. הוא התעצבן כי כל הזמן, כשהם רואים אותנו הם שואלים "רוצה ארוחת בוקר?", או ארוחת צהרים. כך, ללא טאקט.</p>
+
+    <p>אני הרגשתי מחויב, אז אכלתי שם. גונן הלך לשוטט ולשחות בחוף אחר.</p>
+
+    <p>כשהוא חזר, הוא חזר עמוס חוויות וכוסות ברנדי שהציעו לו המקומיים, כך לאור-יום, בשתיית טרום צהריים קלה.</p>
+
+    <p>היינו צריכים ללכת. נפרדנו מכולם. החמאתי ליאן על עיצוב המקום. פתח הבקתות תמיד לים, לשקיעה. גם במקלחת אתה יכול לראות את כל הנוף.</p>
+
+    <p>תעלומת הילד הנרצח נשארה תעלומה.</p>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/20020521_malik&an_marry.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">אני ואן מארי</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020522_gonen&marry_an.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">גונן ומארי אן</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020521_view_in_sabang.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+    </div>
+
+    <p>הלכנו למרכז. הפעם העמידו לרשותינו אוטובוס לנסיעה לפואטרו פרינססה.</p>
+
+    <p>אנחנו יושבים באוטובוס. מי מגיעה בריצה? – אן-מארי הקטנטנה. היא תצטרף אלינו. למחרת היא אמורה לחזור בחזרה לכאן. מאהבת מרדכי היא שינתה התכניות?. לא הייתי בטוח. הייתי שמח אך חשדן.</p>
+
+    <p>האוטובוס נראה ריק עד דקה לפני שנסענו ואז הוא התמלא לעייפה. גונן הושיב ילד על ברכיו ואפילו נהנה מזה (וגם הילד).</p>
+
+    <p>כשהגענו לפוארטו פרינססה אנה-מארי עזרה לנו למצוא מקום. עזרה? – אני לא בטוח. הסגנון שלנו זה ללכת בכל העיר ולהשוות מחירים עד שמגיעים למקום נורמלי. הסטייל שלה ושל מארי-אן שהצטרפה אלינו, זה לקחת תלת-אופן ולא ללכת מטר ולנסוע למקומות שהן מכירות. החשדות הרקיעו. לפחות גילינו שהמחיר הסטנדרטי זה 5 פזו לראש לנסיעה בתוך העיר.</p>
+
+    <p>יש כאן דפוס של לוחמה פסיכולוגית. אנחנו רוצים לשכב איתן. הן רוצות לבלות איתנו ושאנו נשלם עליהן. מה המחיר המקובל על כולם? לזה אני קורא זנות בחינם, והיא גם עולה כסף.</p>
+
+    <p>המורכבות מתחילה כבר מההתחלה – אני רציתי חדר לחוד מגונן כי רציתי שאן-מארי תישן איתי. גונן כנ"ל עם מארי-אן. הן לא בטוחות ולא יודעות מה יקרה. זה הצהרת כוונות. חשדות הרקיעו.</p>
+
+    <p>שם המקום בו ישנו הוא "בנואה". מקום מיוחד, זול ומקושט אומנותי, כלומר די מושקע. מצאנו חדר קטן ליחיד. 150 פזו כל אחד כי אנחנו בחדרים נפרדים.</p>
+
+    <p>זה יותר טוב מאשר לישון עם האוסטרי המבוגר שפגשנו בסאבאנג ועכשיו גם כאן בפוארטו. בלונדיני ענק עם שפם ודיבור גס. מטייל כבר 3 שנים, רוב הזמן בדרום אמריקה. ראינו אותו בעיר בגסט האוס הקודם שבדקנו. הוא התגלח בתחתוניו בלבד. הוא שמח לראותינו ודרש בשלומינו. הוא היה אחרי מקלחת. אני רציתי לשאול אותו איך המים במקלחות כאן, אבל אז חשבתי שאם אבותיו שיקרו באותו נושא, אז למה שאני אאמין לו עכשיו.</p>
+
+    <p>נסענו לאכול. כולם רצו פיצה, אני לא, אבל הצטרפתי בהכנעה. הן לקחו אותנו למקום יוקרתי ביותר, club 54. מחירים שהזכירו את הארץ, 50 שקל לפיצה משפחתית. אמרתי בצורה תרבותית לאן-מארי "אני רוצה להזמין אותך לארוחת-ערב. במחירים האלה אני לא יכול". חשדנות.</p>
+
+    <div class="photo-pair">
+      <div class="photo-item">
+        <img src="../images/20020521_gonen_in_sabang.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">תמונות מטיולון שעשינו באזור</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020523_gonen&huge_butterfly.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">בחדר הפרפרים. פרפר ענק פתאום התישב לגונן על קצה 
+    התלתל</div>
+      </div>
+    </div>
+
+    <p>לגונן ולי יש מספיק טאקט כדי שהחשדות לא יראו לעין, כך שכל הזמן צחוקים.</p>
+
+    <p>אני שב ומזכיר שכל הערב והלילה אורגן בחסות חברת הספנות sulpicio lines, שבמקום לעלות על ספינה בחצות יום שלישי, דחתה ההפלגה ליום רביעי, 16:30 (זה מה שאמרו אז, בפועל אנו מחכים יותר).</p>
+
+    <p>הלכנו למסעדה נורמלית. הבנות לא השתוללו בהזמנות. אני הזמנתי קולה גדולה. מאחר שלא ידעתי כמה זה oz, הזמנתי 55 oz וקיבלתי קנקן של 1.1-1.2 ליטר.</p>
+
+    <p>לאחר הארוחה הבנות רצו לחזור לביתן להחליף בגדים (למה הן לא הזמינו אותנו לבוא איתן או לישון שם?). הן התעקשו שנחזור לגסט האוס שלנו ונחכה להן. תשוש נפשית וגם עייף מלילה מעוט שינה אמרתי לגונן "עדיף כבר שיבריזו לנו ונוכל ללכת לישון בכיף". גונן הנהן בהסכמה, אעפ"י שהוא היה לאחר 100 גרם אגוזי קשיו, שהוא טוען שגרמו לקשיו של ...</p>
+
+    <p>באמת נרדמתי. הגסט האוס סגור והן התדפקו על השער חצי שעה. יצאנו אליהן, התנצלנו והלכנו לדיסקו, תוהים מה יעלה בגורלינו.</p>
+
+    <p>יש האומרים "אין בחורה שלא נותנת, יש גבר שלא יודע לקחת" אני אומר "ביציאות הבחורה היא הבמאי ואתה השחקן. אם תהיה שחקן טוב, יגדילו לך את התפקיד. אבל רק הבמאי יודע איך יסתיים הסרט".</p>
+
+    <p>המועדון עם הופעה חיה, עולה כסף. נכנסנו, הזמנו משקה יקר יחסית (10 שקל לוויט ראשן). אח"כ גם רקדנו קצת. רק כששילמנו וראיתי ששילמנו רק על עצמנו, חזר הצבע ללחיי וכל החשדנות נעלמה.</p>
+
+    <p>חזרנו לגסט האוס והתפזרנו לחדרים. מארי-אן ילדה טובה ואמרה שלא היתה מעולם עם זר. גונן זכה איתה למזמוז ועיסוי. אני עשיתי את שלי עם אן-מארי.</p>
+
+    <p>ב- 4:00 הן הלכו לבתיהן, צריכות לקום מוקדם.</p>
+
+    <div class="photo-block">
+      <img src="../images/20020523_flower_in_palawan.jpg" onclick="openLightbox(this.src)">
+      
+    </div>
+
+    <p>אני חשבתי שבטיול הזה, באופן כללי, לא היה סקס טוב. כמה סטוצים – סקס מהיר עם זכרון קצר ואינטרסים וצרכים – מעט מאד זכרון אישי או חום כלשהו. המסר שנקלט זה לא "אני רוצה אותך" אלא "אני צריכה אותך", והסיבות שונות. אתה לוקח איתך זכרון ללא משמעות.</p>
+
+    <p>והספינה לא שטה</p>
+
+    <p>עכשיו אנחנו על הספינה והיא עדיין עוגנת. אני כותב בהפסקות. עכשיו 20:00</p>
+
+    <p>כשעלינו ראינו עשן סמיך ושחור יוצא מהארובה ואז גונן אמר בפסקנות "המנוע גמור"</p>
+
+    <p>עכשיו המצב בכי-רע.</p>
+
+    <p>עכשיו בטוח נפסיד את האוטובוס שיוצא לבאנאווי ביום חמישי בערב. לפחות אולי נגיע ביום שישי בבוקר למנילה ונרוויח לילה כאן.</p>
+
+    <p>גונן קנה ג'ינס Lee, ב- 61 שקל בלבד. אני מדדתי בטירוף למעלה מ- 10 זוגות באותה חנות ולא היה קליק, אז ויתרתי. מידה 46 גדול עלי, 44 צמוד עלי. אני שוקל 86 ק"ג, גונן 84.</p>
+
+    <p>ביומיים האחרונים לא יצא לי לישון עם גונן, אבל אל דאגה. חשבון פשוט, אך מדאיג, מראה שהאדם שישנתי איתו הכי הרבה לילות בחיי זה גונן (כ- 250 לילות, 200 מתוכם בטיול). את יתר המקומות אחריו תופסות בחורות, אבל זה נראה רע מאד.</p>
+
+    <p>למה זה דומה? אם ישאלו אותנו "באיזה מקום הייתם הכי הרבה בביקורכם בפיליפינים?", התשובה תהיה – על הספינה של sulpicio lines.</p>
+
+    <p>כמעט שכחתי, יצא לנו להתפרפר בפוארטו – הלכנו לגן הפרפרים – חדר גדול עם הרבה פרפרים גדולים. פחות יפה מחדר הפרפרים בגן החיות במלבורן, אבל נחמד. היו שם גם חיפושיות ענק מלהיבות. יש באיזור גם פארק תנינים, אך לא היה לנו זמן לבקר שם, מיהרנו לספינה</p>
+
+    <p>אבל חבל, הספינה לא שטה.</p>
+
+    <p>בחדר הפרפרים. פרפר ענק פתאום התישב לגונן על קצה התלתל</p>
+
+
+  </div>
+
+  <div class="nav-cards">
+    <a href="20020524.html" class="nav-card">
+      <div class="label">הבא →</div>
+      <div class="card-title">והספינה שטה</div>
+    </a>
+    <a href="20020520.html" class="nav-card">
+      <div class="label">← הקודם</div>
+      <div class="card-title">זרמים תת-קרקעיים</div>
+    </a>
+  </div>
+
+  <div class="country-nav">
+    <a href="200110052040.html">דנמרק</a>
+    <a href="20011006.html">הודו</a>
+    <a href="20011030.html">נפאל</a>
+    <a href="20011115.html">טרק אנאפורנה</a>
+    <a href="20011210.html">תאילנד</a>
+    <a href="20020108.html">לאוס</a>
+    <a href="20020123.html">צפון תאילנד</a>
+    <a href="20020203.html">אוסטרליה</a>
+    <a href="20020210.html">ניו-זילנד, אי דרומי</a>
+    <a href="20020326.html">ניו-זילנד, אי צפוני</a>
+    <a href="20020506.html">פיליפינים</a>
+    <a href="20020603.html">קמבודיה</a>
   </div>
 
   <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
-    <img id="lightbox-img" src="" alt="Enlarged">
+    <img id="lightbox-img" src="" alt="">
   </div>
-
   <script>
     function openLightbox(src) {
       document.getElementById('lightbox-img').src = src;

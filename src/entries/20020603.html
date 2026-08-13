@@ -3,353 +3,436 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>מלון מפואר, סיאם ריפ, קמבודיה</title>
+  <title>come-bodia</title>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap" rel="stylesheet">
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background-color: #f8fafc;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0; padding: 20px; color: #334155;
+      background: #ffffff;
+      font-family: 'Heebo', sans-serif;
+      color: #1a1a2e;
+      line-height: 1.9;
     }
-    .container {
-      max-width: 800px; margin: 0 auto; background: #ffffff;
-      padding: 35px; border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06); line-height: 1.8;
+    .top-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #eee;
+      padding: 12px 30px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.9rem;
     }
-    .header {
-      border-bottom: 2px solid #e2e8f0; padding-bottom: 15px;
-      margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center;
+    .top-nav a {
+      color: #1d4ed8; text-decoration: none; font-weight: 600;
     }
-    .header h1 { margin: 0; color: #0f172a; font-size: 1.8rem; }
-    .home-link { color: #2563eb; text-decoration: none; font-weight: 600; }
-    .content img {
-      float: right; margin: 0 0 15px 20px; max-width: 320px; height: auto;
-      border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      cursor: pointer; transition: transform 0.2s;
+    .top-nav a:hover { text-decoration: underline; }
+    .top-nav .nav-links { display: flex; gap: 20px; }
+    .hero {
+      max-width: 900px; margin: 0 auto;
+      padding: 50px 40px 30px;
+      display: flex; align-items: flex-start; gap: 30px;
     }
-    .content img:hover { transform: scale(1.02); }
-    .content::after { content: ""; clear: both; display: table; }
-    a { color: #2563eb; }
+    .hero-text { flex: 1; }
+    .hero-map {
+      width: 120px; height: auto; object-fit: contain;
+      flex-shrink: 0; opacity: 0.85;
+    }
+    .meta-line {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+    }
+    .date-big {
+      font-size: 3.5rem; font-weight: 900; color: #e5e7eb; line-height: 1;
+    }
+    .date-details { font-size: 0.9rem; color: #6b7280; }
+    .country-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      border-radius: 20px; padding: 4px 14px;
+      font-size: 0.8rem; color: #1d4ed8; font-weight: 600;
+    }
+    .title {
+      font-size: 2.2rem; font-weight: 900; color: #111827;
+      margin: 20px 0 8px; line-height: 1.3;
+    }
+    .date-subtitle {
+      font-size: 1.1rem; font-weight: 300; color: #4b5563;
+      margin-bottom: 16px;
+    }
+    .title-divider {
+      width: 60px; height: 4px; background: #1d4ed8; border-radius: 2px;
+    }
+    .content {
+      max-width: 900px; margin: 30px auto; padding: 0 40px; font-size: 1.05rem;
+    }
+    .content p { margin-bottom: 18px; }
+    .content a {
+      color: #1d4ed8; cursor: pointer;
+      text-decoration: underline;
+      text-decoration-color: rgba(29,78,216,0.3);
+    }
+    .photo-block {
+      margin: 30px 0; border-radius: 12px; overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    .photo-block img {
+      width: 100%; display: block; cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .photo-block img:hover { transform: scale(1.01); }
+    .photo-block .caption {
+      padding: 12px 16px; font-size: 0.85rem; color: #6b7280;
+      background: #f9fafb; border-top: 1px solid #f3f4f6;
+    }
+    .photo-pair {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 14px; margin: 30px 0;
+    }
+    .photo-pair .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-pair .photo-item img {
+      width: 100%; height: 200px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-pair .photo-item img:hover { transform: scale(1.03); }
+    .photo-pair .photo-item .caption {
+      padding: 8px 12px; font-size: 0.8rem; color: #6b7280; background: #f9fafb;
+    }
+    .photo-trio {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px; margin: 30px 0;
+    }
+    .photo-trio .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-trio .photo-item img {
+      width: 100%; height: 180px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-trio .photo-item img:hover { transform: scale(1.03); }
+    .photo-trio .photo-item .caption {
+      padding: 8px 10px; font-size: 0.78rem; color: #6b7280; background: #f9fafb;
+    }
+    .nav-cards {
+      max-width: 900px; margin: 50px auto 20px; padding: 0 40px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .nav-card {
+      padding: 20px 24px; border: 1px solid #e5e7eb; border-radius: 12px;
+      text-decoration: none; color: inherit; transition: all 0.2s;
+    }
+    .nav-card:hover {
+      border-color: #1d4ed8; box-shadow: 0 4px 12px rgba(29,78,216,0.1);
+    }
+    .nav-card .label { font-size: 0.8rem; color: #6b7280; margin-bottom: 4px; }
+    .nav-card .card-title { font-weight: 700; font-size: 1rem; color: #1d4ed8; }
+    .supplements {
+      margin-top: 35px; padding: 25px 30px;
+      background: #f9fafb; border-radius: 12px; border: 1px solid #e5e7eb;
+    }
+    .supplements h3 {
+      font-size: 1.1rem; font-weight: 700; margin-bottom: 14px; color: #374151;
+    }
+    .supplements ol { padding-right: 20px; }
+    .supplements li { margin-bottom: 10px; color: #4b5563; }
+    .country-nav {
+      max-width: 900px; margin: 20px auto 40px; padding: 0 40px;
+      display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+    }
+    .country-nav a {
+      padding: 6px 14px; border-radius: 20px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      color: #1d4ed8; text-decoration: none;
+      font-size: 0.82rem; font-weight: 600;
+      transition: all 0.2s;
+    }
+    .country-nav a:hover {
+      background: #1d4ed8; color: white; border-color: #1d4ed8;
+    }
     .lightbox {
       display: none; position: fixed; z-index: 9999;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.9); justify-content: center; align-items: center; cursor: pointer;
+      background: rgba(0,0,0,0.92);
+      justify-content: center; align-items: center; cursor: pointer;
     }
-    .lightbox img { max-width: 90%; max-height: 90%; border-radius: 8px; }
+    .lightbox img { max-width: 92%; max-height: 92%; border-radius: 8px; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h1>מלון מפואר, סיאם ריפ, קמבודיה</h1>
-      <a href="../index.html" class="home-link">🏠 לעמוד הראשי</a>
+  <div class="top-nav">
+    <div class="nav-links">
+      <a href="../index.html">עמוד ראשי</a>
     </div>
-    <div class="content">
-      <body>
-<table cellpadding="0" cellspacing="0" height="80" width="954">
-<tr>
-<td align="center" height="80" width="277">
-<marquee style="font-size: 18pt; color: #800080">3.6.02 - 11:00</marquee></td>
-<td align="center" height="80" width="667">
-<!--webbot bot="Navigation" s-type="banner" s-rendering="graphics" S-Orientation B-Include-Home B-Include-Up U-Page S-Target startspan --><!--webbot bot="Navigation" i-checksum="22827" endspan --></td>
-<td align="center" height="80" width="10">
-<img border="0" height="2" onclick="openLightbox(this.src)" src="../images/20020322_fishermen.jpg" title="לחץ להגדלה" width="1"/><img border="0" height="159" onclick="openLightbox(this.src)" src="../images/Cambodia.gif" title="לחץ להגדלה" width="161"/></td>
-</tr>
-<tr>
-<td colspan="3" height="1" style=" " width="954"></td>
-</tr>
-</table><table cellpadding="0" cellspacing="0" width="100%">
-<tr>
-<td align="right" style=" ">
-<h4>
-<marquee style="font-size: 24pt; color: #008080">come-bodia</marquee></h4>
-<p> </p></td>
-</tr>
-</table>
-<table cellpadding="0" cellspacing="0" height="333" width="953">
-<tr>
-<td height="333" rowspan="2" style="       " valign="top" width="140"> <!--webbot bot="Navigation" S-Type="sequence" S-Orientation="vertical" S-Rendering="graphics" S-Theme="blocks 000" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><!--webbot bot="Navigation" i-checksum="44075" endspan --><p style="text-align: center">
-<img border="0" height="150" onclick="openLightbox(this.src)" src="../images/20020603_gate.jpg" title="לחץ להגדלה" width="125"/></p>
-<p style="text-align: center"><font color="#660099">שער עתיק</font></p>
-<p style="text-align: center">
-<img border="0" height="103" onclick="openLightbox(this.src)" src="../images/20020603_bayon.jpg" title="לחץ להגדלה" width="149"/></p>
-<p style="text-align: center"><font color="#660099">מקדש באיון הפראי</font></p>
-<p style="text-align: center">
+    <div class="nav-links">
+      <a href="200206012100.html">← הקודם</a>
+      <a href="20020604.html">הבא →</a>
+    </div>
+  </div>
 
-<img border="0" height="190" onclick="openLightbox(this.src)" src="../images/20020603_bayon_faces.jpg" title="לחץ להגדלה" width="130"/></p>
-<p style="text-align: center"><font color="#660099">הפרצופים המפורסמים</font></p>
-<p style="text-align: center">
+  <div class="hero">
+    <div class="hero-text">
+      <div class="meta-line">
+        <span class="date-big">03</span>
+        <div>
+          <div class="date-details">יוני 2002</div>
+          <span class="country-badge">קמבודיה</span>
+        </div>
+      </div>
+      <h1 class="title">come-bodia</h1>
+      <div class="title-divider"></div>
+    </div>
+    <img class="hero-map" src="../images/Cambodia.gif" alt="קמבודיה">
+  </div>
 
-<img border="0" height="188" onclick="openLightbox(this.src)" src="../images/20020603_bayon_1_face.jpg" title="לחץ להגדלה" width="128"/></p>
-<p style="text-align: center"><font color="#660099">תקריב על פרצוף. גובהו כ- 4 מטר</font></p>
-<p style="text-align: center">
+  <div class="content">
+    <p>come-bodia</p>
 
-<img border="0" height="131" onclick="openLightbox(this.src)" src="../images/20020603_temple_with_trees.jpg" title="לחץ להגדלה" width="149"/></p>
-<p><font color="#660099">עצים גודלים מתוך המקדש</font></p>
-<p style="text-align: center">
+    <p>קמתי אתמול מוקדם בבנגקוק – 6:00. לא ישנתי טוב, לא יודע למה. לא התרגשות, לא געגועים, אולי מודעות, שכן אני צריך לדאוג להכל לבד ומשום מה אני לחוץ יותר שמשהו יקרה בסוף הטיול ויקלקל את הכל.</p>
 
-<img border="0" height="109" onclick="openLightbox(this.src)" src="../images/20020603_snadal_anak.jpg" title="לחץ להגדלה" width="152"/></p>
-<p style="text-align: center"><font color="#660099">ס-נדל ענק. קרוב ל- 20 ס"מ</font></p>
-<p style="text-align: center">
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/20020322_fishermen.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020603_gate.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">שער עתיק</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020603_bayon.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">מקדש באיון הפראי</div>
+      </div>
+    </div>
 
-<img border="0" height="150" onclick="openLightbox(this.src)" src="../images/20020603_passport_photo.jpg" title="לחץ להגדלה" width="132"/></p>
-<p style="text-align: center"><font color="#660099">בדיקת דרכונים</font></p>
-<p>
+    <p>כשחיכיתי לאוטובוס לקמבודיה פגשתי ברנש מניו-זילנד, איכותי, חרובי כזה. הוא בילה חודש במדיטציה בצ'אנג-מאי, צפון תאילנד. תאילנד כמקום רוחני? קשה לחשוב עליה כך. הכל ניתן להשיג כאן תמורת כסף, ולא הרבה כסף – כולל סקס כמובן. הכל נראה ומרגיש מזויף – כולל סקס כמובן. גם המקדשים הרבים, היפים עם העיצוב המיוחד, השפיצי והמוזהבים נראים כנ"ל – זולים, מזויפים ומצועצעים. אבל ברנדון (מוולינגטון) אמר לי שיש חיים רוחניים. האמת, ניתן לראות אותם גם בקוואסאן אם אתה משכים קום. היום השכמתי וראיתי בפעם השניה (לא זוכר מתי היתה הפעם הראשונה שראיתי את זה) את הנזירים מגיעים, חסרי כל, לבושים בגלימה צהובה/כתומה ויחפים. בעלי העסקים עומדים מחוץ לחנות, מעמידים שולחן עם שקיות ובתוכן אוכל. כשהנזירים מגיעים, מגולחי שיער, המוכרים קדים להם ומגישים להם שקית. זוהי רוחניות אמיתית – הרחק מרכוש ומין, כך צריך להיות איש דת אמיתי.</p>
 
-<img border="0" height="105" onclick="openLightbox(this.src)" src="../images/20020603_a_temple_1.jpg" title="לחץ להגדלה" width="152"/></p>
-<p style="text-align: center"><font color="#660099">אני בתוך מקדש</font></p>
-<p style="text-align: center">
+    <p>הייתי יכול להמשיך ולכתוב על דעתי על דתות, אבל אני רוצה להגיע לנושא אחר לגמרי – המקדשים.</p>
 
-<img border="0" height="105" onclick="openLightbox(this.src)" src="../images/20020603_suor_proat.jpg" title="לחץ להגדלה" width="153"/></p>
-<p style="text-align: center"><font color="#660099">המקדש סור פרואט</font></p>
-<p style="text-align: center">
-<img border="0" height="110" onclick="openLightbox(this.src)" src="../images/20020603_ta_kev.jpg" title="לחץ להגדלה" width="152"/></p>
-<p style="text-align: center"><font color="#660099">מקדש טא-קאו</font></p>
-<p>
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/20020603_bayon_faces.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">הפרצופים המפורסמים</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020603_bayon_1_face.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">תקריב על פרצוף. גובהו כ- 4 מטר</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020603_temple_with_trees.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">עצים גודלים מתוך המקדש</div>
+      </div>
+    </div>
 
-<img border="0" height="111" onclick="openLightbox(this.src)" src="../images/20020603_ta_prohm_1.jpg" title="לחץ להגדלה" width="153"/></p>
-<p style="text-align: center"><font color="#660099">מקדש טא-פרוהם הפראי</font></p>
-<p style="text-align: center">
+    <p>נסענו כ- 12 חברה באוטובוס ממוזג, מתאים לפחות ל- 50 איש, 2 קומות. כיצד נסיעה כה ארוכה ב- 2 מדינות עולה רק 100 באט? (11.5 שקל). בהמשך צצו בראשי אפשרויות.</p>
 
-<img border="0" height="193" onclick="openLightbox(this.src)" src="../images/20020603_ta_prohm_2.jpg" title="לחץ להגדלה" width="127"/></p>
-<p style="text-align: center"><font color="#660099">טא-פרוהם הפראי. זוית נוספת</font></p>
-</td>
-<td height="333" rowspan="2" style="     " valign="top" width="1"></td>
-<td colspan="2" height="266" style="     " valign="top" width="735">
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">קמתי אתמול מוקדם בבנגקוק – 
-    6:00. לא ישנתי טוב, לא יודע למה. לא התרגשות, לא געגועים, אולי מודעות, שכן 
-    אני צריך לדאוג להכל לבד ומשום מה אני לחוץ יותר שמשהו יקרה בסוף הטיול ויקלקל 
-    את הכל.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">כשחיכיתי לאוטובוס לקמבודיה 
-    פגשתי ברנש מניו-זילנד, איכותי, חרובי כזה. הוא בילה חודש במדיטציה בצ'אנג-מאי, 
-    צפון תאילנד. תאילנד כמקום רוחני? קשה לחשוב עליה כך. הכל ניתן להשיג כאן תמורת 
-    כסף, ולא הרבה כסף – כולל סקס כמובן. הכל נראה ומרגיש מזויף – כולל סקס כמובן. 
-    גם המקדשים הרבים, היפים עם העיצוב המיוחד, השפיצי והמוזהבים נראים כנ"ל – 
-    זולים, מזויפים ומצועצעים. אבל ברנדון (מוולינגטון) אמר לי שיש חיים רוחניים. 
-    האמת, ניתן לראות אותם גם בקוואסאן אם אתה משכים קום. היום השכמתי וראיתי בפעם 
-    השניה (לא זוכר מתי היתה הפעם הראשונה שראיתי את זה) את הנזירים מגיעים, חסרי 
-    כל, לבושים בגלימה צהובה/כתומה ויחפים. בעלי העסקים עומדים מחוץ לחנות, מעמידים 
-    שולחן עם שקיות ובתוכן אוכל. כשהנזירים מגיעים, מגולחי שיער, המוכרים קדים להם 
-    ומגישים להם שקית. זוהי רוחניות אמיתית – הרחק מרכוש ומין, כך צריך להיות איש 
-    דת אמיתי.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הייתי יכול להמשיך ולכתוב 
-    על דעתי על דתות, אבל אני רוצה להגיע לנושא אחר לגמרי – המקדשים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">נסענו כ- 12 חברה באוטובוס 
-    ממוזג, מתאים לפחות ל- 50 איש, 2 קומות. כיצד נסיעה כה ארוכה ב- 2 מדינות עולה 
-    רק 100 באט? (11.5 שקל). בהמשך צצו בראשי אפשרויות.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הדרך בתאילנד עברה חלק. 
-    קיוויתי לישון, אבל לא קרה כלום.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הגענו ב- 12:00 לגבול. בדרך 
-    היו עצירות לאכול ולעשות ויזה (למי שלא היכן מראש – 1100 באט בעצירה, 950 באט 
-    בגבול, 1050 באט עלה לי אצל מיני טורס).</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">התעכבנו בגבול כשעתיים, אבל 
-    לא בתורים, אלא לחכות לאוטובוס.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">התמונה בצד הקמבודי של 
-    ה<a href="images/pictures/cambodia/20020604_cambodia_thailand_border.jpg" target="_blank">גבול</a> שונה לגמרי. העוני בולט לעין, קבצנים וילדים מבקשי נדבות, עגלות עץ 
-    נסחבות ע"י אנשים, המוני דוכנים – הודו סטייל והמוני אדם שמסתכלים על תייר 
-    ורואים דולרים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">המטבע המקומי נקרא ריאל (1$ 
-    = 3900 ריאל), אבל האנשים כאן רוצים באטים או דולרים אמריקאים. גם המחירים 
-    מוצגים במטבעות אלה ולא במטבע המקומי.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הקבוצה שלנו גדלה מעט ל- 18 
-    איש. הביאו בשביל זה 3 מיניבוסים. כל מיניבוס יכול להכיל 15-20 איש. אנחנו 
-    מפרנסים תעשיה שלמה.</span></b></p>
-<p align="right" class="MsoNormal" style="text-align:right;direction:ltr;
-unicode-bidi:embed"><b><span dir="RTL" lang="HE">כשחיכינו למיניבוסים ראיתי כמה 
-    המקום הזה תלוש בזמן. הייתה פרסומת לסיגריות, שלט ענק, סיגריות אלן-דילון – טעם 
-    של צרפת. איפה הם תקועים? אנשים בצרפת שכחו מי זה אלן דילון.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">כשהתחלנו לנסוע, ב- 14:00 
-    התברר לנו ש<a href="images/pictures/cambodia/20020602_the_road_2_siam_rip.jpg" target="_blank">הדרך קשה, לא סלולה</a>, מגורענת וגבשושית. מורכבת מאדמה קשה ואבנים וכך 
-    כל הזמן קפצנו. לא היה נורא, כסאות מרופדים ומהירות ממוצעת של 30 קמ"ש. 
-    <a href="20011101.htm#hard_drive">אני 
-    זוכר נסיעה קשה יותר בנפאל</a>, בדרך לפוקארה, אבל זו הדרך הגרועה ביותר שראיתי.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">מחוץ לחלון אני רואה שדות 
-    מוזנחים, פרות, מעט אנשים חיים בבקתות עץ. כמה ילדים נוסעים באופנים גדולים 
-    מכפי מידתם. עוני שראיתי רק במקומות היותר קשים בהודו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">ההסטוריה של קמבודיה 
-    מעניינת ביותר וחופנת בתוכה טרגדיה נוראית.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">כשארה"ב יצאה מוויטנאם, ב- 
-    1975, מיד השתלט הקומוניזם על קמבודיה. השליט דאז החליט להרוג את כל 
-    האינטלקטואלים – תיירים, יודעי שפות זרות או חובשי משקפים – כך, ללא אבחנה. הוא 
-    גם החליט להפוך את המדינה לאימפריה של אורז (נשמע מפגר ביותר) והתחיל להעביר 
-    אנשים מהערים אל הכפרים. מליוני אנשים מתו תוך כדי עבודה בשדות, זה נקרא </span>
-<span dir="LTR">the killing fields</span><span lang="HE">, כמו שם של סרט 
-    מפורסם בנושא. בצר להם, ביקשו הקמבודים עזרה מוייטנאם. היא נכנסה וכבשה ושחררה 
-    את קמבודיה מהסבל. מלחמה שהצילה חיים – נשמע די מוזר.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">גם כך מתו 2 מליון איש מתוך 
-    ה- 8 דאז (כיום 12 מליון). </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בדרך עוברים גשרים רעועים. 
-    האוטובוס עובר על גשר ברזל חלוד במהירות שיורדת ל- 5 קמ"ש. זה הדאיג אותי עוד 
-    לפני שראיתי את הגשר מתמוטט.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">ובאמת, ב- 17:45 הגענו ל<a href="images/pictures/cambodia/20020602_broken_bridge_1.jpg" target="_blank">גשר 
-    ועליו משאית קטנה, הגשר שבור</a>, לוח ברזל יצא ממנו והמשאית תקועה עם לפחות גלגל 
-    אחד פנימה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">יצאנו, צילמנו. חזרתי 
-    לאוטובוס וניסיתי לנמנם כי סוף סוף לא היו קפיצות. פתאם האוטובוס התחיל לנסוע 
-    כשרק אני והנהג עליו, מנסה לעבור את הגשר. כנראה תיקנו את הגשר כלומר החזירו את 
-    הלוחית למקומה כי לא היו חברה ממע"ץ שם. כל התיירים בקבוצה הסתכלו עלי כאילו 
-    אני משוגע שנשארתי על המיניבוס והחזיקו לי אצבעות. אני החזקתי בכל דבר שיש 
-    ורציתי לצעוק "<a href="20011022.htm#we are israelis">תעצרו את האוטובוס, אני ישראלי</a>" (סתם, ראו צפון הודו), לרווחתי 
-    המיניבוס עבר.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בסוף הגענו לסיאם ריפ. 
-    כחצי-שעה לפני-כן פתאם דרך סלולה וכשהעיר נגלתה ראיתי אורות, מסעדות תיירים 
-    ומקומות אינטרנט. הקידמה חזרה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הגענו ב- 20:30, יצאנו ב- 
-    7:00 – 13.5 שעות נסיעה. היו הפסקות. היו עיכובים, אבל אם הכביש מהגבול לסיאם 
-    ריפ היה סלול, היינו חוסכים 4 שעות. הכביש ישר ומישורי לגמרי.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">כואב לי שאני נוסע כ"כ 
-    תיירותי – אוטובוס ממוזג, עצירות קבועות ומקומות לינה קבועים מראש, פשוט אני 
-    לחוץ בזמן.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">דווקא המקום הזה מעולה – 
-    נראה כמו מלון, ותמורת 3$ קיבלתי חדר מפואר ומרווח עם מיטה זוגית, שירותים, 
-    מקלחת, סבון, מגבת, נייר טואלט ומתלה לבגדים. העיסקה הכי משתלמת בכל הטיול.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">האוכל עולה כמו בתאילנד, 
-    אולי מעט יותר.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">ראיתי סרט דוקומנטרי על 
-    המקדשים וקיבלתי קצת מושג מה קורה שם. ישבתי עם כל החברה מהמיניבוס בחוץ, אבל 
-    הם יבשים, כולל השבדיות שבמיניבוס, כשלא הסתכלתי דרך החלון, הסתכלתי איך 
-    מהמורות הדרך הולמות את (ב)חזה הגדול.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בחוץ, במרפסת המלון, יש 
-    מגוון חיות הכולל שממיות (רגיל), צפרדעים, שמשום מה באות לאור וצרצרים שקופצים 
-    על כולם. אני פחדתי שייכנסו לי למרק. אמרו לי שאין לי מה לחשוש כי אפשר גם 
-    לאכול אותם...</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">קבעתי עם נער קטן שייקח 
-    אותי על הבוקר לראות זריחה במקדשים. ככה זה כאן, אתה קובע עם נהג קטנוע (ה-
-    </span><span dir="LTR">Honda dream</span><span lang="HE"> הזכור מהאיים), הוא 
-    לוקח אותך לעיר המקדשים, </span><span dir="LTR">Angkor</span><span lang="HE">, 
-    כ- 7 ק"מ מסיאם ריפ, ומסיע אותך גם בתוך העיר ממקדש למקדש, כי השטח של העיר עצום 
-    (יותר מ- 10</span><span dir="LTR">X</span><span lang="HE">10 ק"מ).</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">על עיר המקדשים אני לא 
-    ארחיב, כי יש כ"כ הרבה ספרים בנושא. זהו אחד מ- 7 פלאי עולם ואם זה לא היה כ"כ 
-    מתויר הייתי אומר שזה המקום הכי מרשים בכל הטיול. יש שם מקדשים בני 900 עד 
-    למעלה מ- 1000 שנה!.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">ב- 5:00 בבוקר יצאנו לראות 
-    זריחה במקדש המפורסם </span><span dir="LTR">Angkor vat</span><span lang="HE">. 
-    הזריחה לא משהו, אבל המקדש כן. שטחו עצום, בערך 1</span><span dir="LTR">X</span><span lang="HE">1 
-    ק"מ, מוקף בתעלת מים. מפורסם בזכות צריחי הלוטוס המזכירים פרח לוטוס סגור. יש 
-    שם גם 
-    <a href="images/pictures/cambodia/20020603_angkor_vat_inside_2.jpg" target="_blank">המון תבליטים</a> והמקום כ"כ עצום בשטחו שאתה יכול לדמיין שאתה נמצא בבית 
-    המקדש.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אחריו נסענו ל<a href="images/pictures/cambodia/20020603_bayon.jpg" target="_blank">מקדש המפורסם
+    <p>הדרך בתאילנד עברה חלק. קיוויתי לישון, אבל לא קרה כלום.</p>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/20020603_snadal_anak.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">ס-נדל ענק. קרוב ל- 20 ס"מ</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020603_passport_photo.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">בדיקת דרכונים</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020603_a_temple_1.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">אני בתוך מקדש</div>
+      </div>
+    </div>
+
+    <p>הגענו ב- 12:00 לגבול. בדרך היו עצירות לאכול ולעשות ויזה (למי שלא היכן מראש – 1100 באט בעצירה, 950 באט בגבול, 1050 באט עלה לי אצל מיני טורס).</p>
+
+    <p>התעכבנו בגבול כשעתיים, אבל לא בתורים, אלא לחכות לאוטובוס.</p>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/20020603_suor_proat.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">המקדש סור פרואט</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020603_ta_kev.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">מקדש טא-קאו</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020603_ta_prohm_1.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">מקדש טא-פרוהם הפראי</div>
+      </div>
+    </div>
+
+    <p>התמונה בצד הקמבודי של ה<a onclick="openLightbox('../images/20020604_cambodia_thailand_border.jpg')">גבול</a> שונה לגמרי. העוני בולט לעין, קבצנים וילדים מבקשי נדבות, עגלות עץ נסחבות ע"י אנשים, המוני דוכנים – הודו סטייל והמוני אדם שמסתכלים על תייר ורואים דולרים.</p>
+
+    <p>המטבע המקומי נקרא ריאל (1$ = 3900 ריאל), אבל האנשים כאן רוצים באטים או דולרים אמריקאים. גם המחירים מוצגים במטבעות אלה ולא במטבע המקומי.</p>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/20020603_ta_prohm_2.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">טא-פרוהם הפראי. זוית נוספת</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020604_cambodia_thailand_border.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">הגבול בין תאילנד לקמבודיה</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020602_the_road_2_siam_rip.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">הדרך לסיאם ריפ. שביל עפר ואבנים. מסביב די שומם</div>
+      </div>
+    </div>
+
+    <p>הקבוצה שלנו גדלה מעט ל- 18 איש. הביאו בשביל זה 3 מיניבוסים. כל מיניבוס יכול להכיל 15-20 איש. אנחנו מפרנסים תעשיה שלמה.</p>
+
+    <p>כשחיכינו למיניבוסים ראיתי כמה המקום הזה תלוש בזמן. הייתה פרסומת לסיגריות, שלט ענק, סיגריות אלן-דילון – טעם של צרפת. איפה הם תקועים? אנשים בצרפת שכחו מי זה אלן דילון.</p>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/20020602_broken_bridge_2.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">הגשר השבור</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020602_broken_bridge_1.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">הגשר השבור</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020602_sunset.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">נסיון לצלם שקיעה עם מצלמה חד פעמית</div>
+      </div>
+    </div>
+
+    <p>כשהתחלנו לנסוע, ב- 14:00 התברר לנו ש<a onclick="openLightbox('../images/20020602_the_road_2_siam_rip.jpg')">הדרך קשה, לא סלולה</a>, מגורענת וגבשושית. מורכבת מאדמה קשה ואבנים וכך כל הזמן קפצנו. לא היה נורא, כסאות מרופדים ומהירות ממוצעת של 30 קמ"ש. <a href="20011101.htm#hard_drive">אני זוכר נסיעה קשה יותר בנפאל</a>, בדרך לפוקארה, אבל זו הדרך הגרועה ביותר שראיתי.</p>
+
+    <p>מחוץ לחלון אני רואה שדות מוזנחים, פרות, מעט אנשים חיים בבקתות עץ. כמה ילדים נוסעים באופנים גדולים מכפי מידתם. עוני שראיתי רק במקומות היותר קשים בהודו.</p>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/20020603_angkor_vat_sunrise_1.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">תחילת הזריחה באנגקור ואט</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020603_angkor_vat_sunrise_2.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">סוף הזריחה באנגקור ואט</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020603_angkor_vat.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">אנגקור ואט - מבט נוסף</div>
+      </div>
+    </div>
+
+    <p>ההסטוריה של קמבודיה מעניינת ביותר וחופנת בתוכה טרגדיה נוראית.</p>
+
+    <p>כשארה"ב יצאה מוויטנאם, ב- 1975, מיד השתלט הקומוניזם על קמבודיה. השליט דאז החליט להרוג את כל האינטלקטואלים – תיירים, יודעי שפות זרות או חובשי משקפים – כך, ללא אבחנה. הוא גם החליט להפוך את המדינה לאימפריה של אורז (נשמע מפגר ביותר) והתחיל להעביר אנשים מהערים אל הכפרים. מליוני אנשים מתו תוך כדי עבודה בשדות, זה נקרא the killing fields, כמו שם של סרט מפורסם בנושא. בצר להם, ביקשו הקמבודים עזרה מוייטנאם. היא נכנסה וכבשה ושחררה את קמבודיה מהסבל. מלחמה שהצילה חיים – נשמע די מוזר.</p>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/20020603_angkor_vat_inside.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">אנגקור ואט - מבט מבפנים</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020603_angkor_vat_2.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">אנגקור ואט - מבט מאחור</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020603_angkor_vat_inside_2.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">תבליט על אחד הקירות</div>
+      </div>
+    </div>
+
+    <p>גם כך מתו 2 מליון איש מתוך ה- 8 דאז (כיום 12 מליון).</p>
+
+    <p>בדרך עוברים גשרים רעועים. האוטובוס עובר על גשר ברזל חלוד במהירות שיורדת ל- 5 קמ"ש. זה הדאיג אותי עוד לפני שראיתי את הגשר מתמוטט.</p>
+
+    <div class="photo-pair">
+      <div class="photo-item">
+        <img src="../images/20020603_angkor_vat_outside.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">השביל שמוביל למקדש</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020603_angkor_vat_overlook.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">אנגקור ואט - מבט כללי</div>
+      </div>
+    </div>
+
+    <p>ובאמת, ב- 17:45 הגענו ל<a onclick="openLightbox('../images/20020602_broken_bridge_1.jpg')">גשר ועליו משאית קטנה, הגשר שבור</a>, לוח ברזל יצא ממנו והמשאית תקועה עם לפחות גלגל אחד פנימה.</p>
+
+    <p>יצאנו, צילמנו. חזרתי לאוטובוס וניסיתי לנמנם כי סוף סוף לא היו קפיצות. פתאם האוטובוס התחיל לנסוע כשרק אני והנהג עליו, מנסה לעבור את הגשר. כנראה תיקנו את הגשר כלומר החזירו את הלוחית למקומה כי לא היו חברה ממע"ץ שם. כל התיירים בקבוצה הסתכלו עלי כאילו אני משוגע שנשארתי על המיניבוס והחזיקו לי אצבעות. אני החזקתי בכל דבר שיש ורציתי לצעוק "<a href="20011022.htm#we are israelis">תעצרו את האוטובוס, אני ישראלי</a>" (סתם, ראו צפון הודו), לרווחתי המיניבוס עבר.</p>
+
+    <div class="photo-block">
+      <img src="../images/20020603_statue.jpg" onclick="openLightbox(this.src)">
+      <div class="caption">תבליט בטא-פרוהם</div>
+    </div>
+
+    <p>בסוף הגענו לסיאם ריפ. כחצי-שעה לפני-כן פתאם דרך סלולה וכשהעיר נגלתה ראיתי אורות, מסעדות תיירים ומקומות אינטרנט. הקידמה חזרה.</p>
+
+    <p>הגענו ב- 20:30, יצאנו ב- 7:00 – 13.5 שעות נסיעה. היו הפסקות. היו עיכובים, אבל אם הכביש מהגבול לסיאם ריפ היה סלול, היינו חוסכים 4 שעות. הכביש ישר ומישורי לגמרי.</p>
+
+    <p>כואב לי שאני נוסע כ"כ תיירותי – אוטובוס ממוזג, עצירות קבועות ומקומות לינה קבועים מראש, פשוט אני לחוץ בזמן.</p>
+
+    <p>דווקא המקום הזה מעולה – נראה כמו מלון, ותמורת 3$ קיבלתי חדר מפואר ומרווח עם מיטה זוגית, שירותים, מקלחת, סבון, מגבת, נייר טואלט ומתלה לבגדים. העיסקה הכי משתלמת בכל הטיול.</p>
+
+    <p>האוכל עולה כמו בתאילנד, אולי מעט יותר.</p>
+
+    <p>ראיתי סרט דוקומנטרי על המקדשים וקיבלתי קצת מושג מה קורה שם. ישבתי עם כל החברה מהמיניבוס בחוץ, אבל הם יבשים, כולל השבדיות שבמיניבוס, כשלא הסתכלתי דרך החלון, הסתכלתי איך מהמורות הדרך הולמות את (ב)חזה הגדול.</p>
+
+    <p>בחוץ, במרפסת המלון, יש מגוון חיות הכולל שממיות (רגיל), צפרדעים, שמשום מה באות לאור וצרצרים שקופצים על כולם. אני פחדתי שייכנסו לי למרק. אמרו לי שאין לי מה לחשוש כי אפשר גם לאכול אותם...</p>
+
+    <p>קבעתי עם נער קטן שייקח אותי על הבוקר לראות זריחה במקדשים. ככה זה כאן, אתה קובע עם נהג קטנוע (ה- Honda dream הזכור מהאיים), הוא לוקח אותך לעיר המקדשים, Angkor, כ- 7 ק"מ מסיאם ריפ, ומסיע אותך גם בתוך העיר ממקדש למקדש, כי השטח של העיר עצום (יותר מ- 10X10 ק"מ).</p>
+
+    <p>על עיר המקדשים אני לא ארחיב, כי יש כ"כ הרבה ספרים בנושא. זהו אחד מ- 7 פלאי עולם ואם זה לא היה כ"כ מתויר הייתי אומר שזה המקום הכי מרשים בכל הטיול. יש שם מקדשים בני 900 עד למעלה מ- 1000 שנה!.</p>
+
+    <p>ב- 5:00 בבוקר יצאנו לראות זריחה במקדש המפורסם Angkor vat. הזריחה לא משהו, אבל המקדש כן. שטחו עצום, בערך 1X1 ק"מ, מוקף בתעלת מים. מפורסם בזכות צריחי הלוטוס המזכירים פרח לוטוס סגור. יש שם גם <a onclick="openLightbox('../images/20020603_angkor_vat_inside_2.jpg')">המון תבליטים</a> והמקום כ"כ עצום בשטחו שאתה יכול לדמיין שאתה נמצא בבית המקדש.</p>
+
+    <p>אחריו נסענו ל<a onclick="openLightbox('../images/20020603_bayon.jpg')">מקדש המפורסם </a> <a onclick="openLightbox('../images/20020603_bayon.jpg')">Bayon</a> המרשים והפראי עם <a onclick="openLightbox('../images/20020603_bayon_faces.jpg')">פסלי הפרצופים המפורסמים</a>. למעלה מ- 200 פרצופים, כולם דומים ומשקפים את פרצופו של שליט הממלכה דאז.</p>
+
+    <p>משם המשכנו למקדש Baphuen ששרוי בשחזורים ושיפוצים. בסביבתו יש ג'ונגל עם עוד כל מיני מקדשים שבהם נגעו פחות. הג'ונגל יותר חי כאן.</p>
+
+    <p>נהייתי כמו גונן, עיני חדה וקולטת חיים. איתרתי פרפר מת (אך יפה) וכ- 4 <a onclick="openLightbox('../images/20020603_snadal_anak.jpg')">נדלי ענק</a>.</p>
+
+    <p><a onclick="openLightbox('../images/20020603_temple_with_trees.jpg')">עצים ענקיים גדלים מתוך המקדשים</a>.</p>
+
+    <p>ניתן לטפס על המקדשים. מדרגות צרות, 10 ס"מ וגבוהות, 30 ס"מ. אתה ממש מטפס עם הידיים והרגליים יחד.</p>
+
+    <p>מקומיים מנסים למכור לך באגרסיביות למחצה הכל – מזכרות, מים, אוכל, פילמים. אני מתנהג כמו אירופאי, מנסה להמנע מלהתעניין או להכיר מקומיים כי תמיד הם יאכזבו אותך ויירצו כסף. ילדים עטים עליך וצועקים "Buy, Buy" ואני מנפנף להם ל- "Bye Bye".</p>
+
+    <p>בגלל שאני מבסוט אז לפעמים אני כן מתבדח איתם. ילדה אחת אמרה לי שהם שונאים את התאילנדים (גם הלאוסים אמרו את זה), מפחדים שהתאילנדים רוצים לכבוש אותם. "אתה יודע מה נערות עושות בתאילנד בשביל כסף?" שאלה אותי הילדה, "כן" אמרתי לה. אבל כאן רוצים ממך רק כסף. אז היא מעדיפה להיות בת בקמבודיה אבל היא רוצה באט מתאילנד.</p>
+
+    <p>עוד מקדשים יפים: <a onclick="openLightbox('../images/20020603_ta_kev.jpg')">Ta Kev</a> וגם <a onclick="openLightbox('../images/20020603_ta_prohm_1.jpg')">Ta Prohm הפראי ששם רואים עצי ענק צומחים מתוך שרידי המקדשים</a>.</p>
+
+    <p>חזרתי לגסט האוס ב- 10:30. הלכתי קילומטרים ולא אכלתי ושתיתי, מפוקס, כמו שאני רגיל. גם בנסיעות אני כך – ניתן להשאיר אותי באוטובוס או במטוס בלי אוכל ושתיה ושירותים וטלוויזיה, רק מיזוג טוב ומושב ואני כבר אחלום לי ואחשוב. להערכתי אני יכול להשאר כך עד 24 שעות.</p>
+
+
+  </div>
+
+  <div class="nav-cards">
+    <a href="20020604.html" class="nav-card">
+      <div class="label">הבא →</div>
+      <div class="card-title">השיבה מקמבודיה</div>
     </a>
-</span><span dir="LTR">
-<a href="images/pictures/cambodia/20020603_bayon.jpg" target="_blank">Bayon</a></span><span lang="HE"> המרשים והפראי עם 
-    <a href="images/pictures/cambodia/20020603_bayon_faces.jpg" target="_blank">פסלי 
-    הפרצופים המפורסמים</a>. למעלה מ- 200 פרצופים, כולם דומים ומשקפים את פרצופו של 
-    שליט הממלכה דאז.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">משם המשכנו למקדש </span>
-<span dir="LTR">Baphuen</span><span lang="HE"> ששרוי בשחזורים ושיפוצים. 
-    בסביבתו יש ג'ונגל עם עוד כל מיני מקדשים שבהם נגעו פחות. הג'ונגל יותר חי כאן.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">נהייתי כמו גונן, עיני חדה 
-    וקולטת חיים. איתרתי פרפר מת (אך יפה) וכ- 4 
-    <a href="images/pictures/cambodia/20020603_snadal_anak.jpg" target="_blank">נדלי ענק</a>.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">
-<a href="images/pictures/cambodia/20020603_temple_with_trees.jpg" target="_blank">עצים ענקיים גדלים מתוך 
-    המקדשים</a>.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">ניתן לטפס על המקדשים. 
-    מדרגות צרות, 10 ס"מ וגבוהות, 30 ס"מ. אתה ממש מטפס עם הידיים והרגליים יחד.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">מקומיים מנסים למכור לך 
-    באגרסיביות למחצה הכל – מזכרות, מים, אוכל, פילמים. אני מתנהג כמו אירופאי, 
-    מנסה להמנע מלהתעניין או להכיר מקומיים כי תמיד הם יאכזבו אותך ויירצו כסף. 
-    ילדים עטים עליך וצועקים "</span><span dir="LTR">Buy, Buy</span><span lang="HE">" 
-    ואני מנפנף להם ל- "</span><span dir="LTR">Bye Bye</span><span lang="HE">".</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בגלל שאני מבסוט אז לפעמים 
-    אני כן מתבדח איתם. ילדה אחת אמרה לי שהם שונאים את התאילנדים (גם הלאוסים אמרו 
-    את זה), מפחדים שהתאילנדים רוצים לכבוש אותם. "אתה יודע מה נערות עושות בתאילנד 
-    בשביל כסף?" שאלה אותי הילדה, "כן" אמרתי לה. אבל כאן רוצים ממך רק כסף. אז היא 
-    מעדיפה להיות בת בקמבודיה אבל היא רוצה באט מתאילנד.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">עוד מקדשים יפים: </span>
-<span dir="LTR">
-<a href="images/pictures/cambodia/20020603_ta_kev.jpg" target="_blank">Ta Kev</a></span><span lang="HE"> וגם </span>
-<a href="images/pictures/cambodia/20020603_ta_prohm_1.jpg" target="_blank"><span dir="LTR">Ta 
-    Prohm</span><span lang="HE"> הפראי ששם רואים עצי ענק צומחים מתוך שרידי 
-    המקדשים</span></a><span lang="HE">.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">חזרתי לגסט האוס ב- 10:30. 
-    הלכתי קילומטרים ולא אכלתי ושתיתי, מפוקס, כמו שאני רגיל. גם בנסיעות אני כך – 
-    ניתן להשאיר אותי באוטובוס או במטוס בלי אוכל ושתיה ושירותים וטלוויזיה, רק 
-    מיזוג טוב ומושב ואני כבר אחלום לי ואחשוב. להערכתי אני יכול להשאר כך עד 24 
-    שעות.</span></b></p>
-<p class="MsoNormal" dir="RTL"> </p>
-</td>
-<td align="center" height="333" rowspan="2" style="     " valign="top" width="187">
+    <a href="200206012100.html" class="nav-card">
+      <div class="label">← הקודם</div>
+      <div class="card-title">מידע שימושי על הקוואסאן</div>
+    </a>
+  </div>
 
-<img border="0" height="118" onclick="openLightbox(this.src)" src="../images/20020604_cambodia_thailand_border.jpg" title="לחץ להגדלה" width="171"/><p>
-<font color="#660099">הגבול בין תאילנד לקמבודיה</font></p>
-<p>
-
-<img border="0" height="122" onclick="openLightbox(this.src)" src="../images/20020602_the_road_2_siam_rip.jpg" title="לחץ להגדלה" width="176"/></p>
-<p>
-<font color="#660099">הדרך לסיאם ריפ. שביל עפר ואבנים. מסביב די שומם</font></p>
-<p>
-
-<img border="0" height="248" onclick="openLightbox(this.src)" src="../images/20020602_broken_bridge_2.jpg" title="לחץ להגדלה" width="162"/></p>
-<p><font color="#660099">הגשר השבור</font></p>
-<p>
-
-<img border="0" height="118" onclick="openLightbox(this.src)" src="../images/20020602_broken_bridge_1.jpg" title="לחץ להגדלה" width="177"/></p>
-<p><font color="#660099">הגשר השבור</font></p>
-<p>
-<img border="0" height="130" onclick="openLightbox(this.src)" src="../images/20020602_sunset.jpg" title="לחץ להגדלה" width="176"/></p>
-<p><font color="#660099">נסיון לצלם שקיעה עם מצלמה חד פעמית</font></p>
-<p>
-
-<img border="0" height="122" onclick="openLightbox(this.src)" src="../images/20020603_angkor_vat_sunrise_1.jpg" title="לחץ להגדלה" width="179"/></p>
-<p><font color="#660099">תחילת הזריחה באנגקור ואט</font></p>
-<p>
-
-<img border="0" height="125" onclick="openLightbox(this.src)" src="../images/20020603_angkor_vat_sunrise_2.jpg" title="לחץ להגדלה" width="179"/></p>
-<p><font color="#660099">סוף הזריחה באנגקור ואט</font></p>
-<p>
-
-<img border="0" height="122" onclick="openLightbox(this.src)" src="../images/20020603_angkor_vat.jpg" title="לחץ להגדלה" width="178"/></p>
-<p><font color="#660099">אנגקור ואט - מבט נוסף</font></p>
-<p>
-
-<img border="0" height="185" onclick="openLightbox(this.src)" src="../images/20020603_angkor_vat_inside.jpg" title="לחץ להגדלה" width="123"/></p>
-<p><font color="#660099">אנגקור ואט - מבט מבפנים</font></p>
-<p>
-
-<img border="0" height="132" onclick="openLightbox(this.src)" src="../images/20020603_angkor_vat_2.jpg" title="לחץ להגדלה" width="177"/></p>
-<p><font color="#660099">אנגקור ואט - מבט מאחור</font></p>
-<p>
-
-<img border="0" height="123" onclick="openLightbox(this.src)" src="../images/20020603_angkor_vat_inside_2.jpg" title="לחץ להגדלה" width="177"/></p>
-<p><font color="#660099">תבליט על אחד הקירות</font></p>
-<p>
-
-<img border="0" height="123" onclick="openLightbox(this.src)" src="../images/20020603_angkor_vat_outside.jpg" title="לחץ להגדלה" width="176"/></p>
-<p><font color="#660099">השביל שמוביל למקדש</font></p>
-<p>
-
-<img border="0" height="124" onclick="openLightbox(this.src)" src="../images/20020603_angkor_vat_overlook.jpg" title="לחץ להגדלה" width="178"/></p>
-<p><font color="#660099">אנגקור ואט - מבט כללי</font></p>
-<p>
-<img border="0" height="158" onclick="openLightbox(this.src)" src="../images/20020603_statue.jpg" title="לחץ להגדלה" width="122"/></p>
-<p><font color="#660099">תבליט בטא-פרוהם</font></p></td>
-</tr>
-<tr>
-<td height="67" style="     " valign="top" width="314">
-<b>
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button104.gif" title="לחץ להגדלה" width="59"/></b></td>
-<td height="67" style="     " valign="top" width="421">
-<p align="right"><b>
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button106.gif" title="לחץ להגדלה" width="59"/></b></p></td>
-</tr>
-</table>
-<p align="center">
-<!--webbot bot="Navigation" S-Type="sequence" S-Orientation="horizontal" S-Rendering="html" S-Bar="Brackets" S-Btn-Nml="[&lt;A HREF=&quot;#URL#&quot; TARGET=&quot;#TARGET#&quot; STYLE=&quot;{text-decoration: none;}&quot;&gt;#LABEL#&lt;/A&gt;]" S-Btn-Sel="[#LABEL#]" S-Btn-Sep="&amp;nbsp;" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><nobr>[<a href="index.html" style="{text-decoration: none;}" target="">התחלה</a>]</nobr> <nobr>[<a href="200110052040.html" style="{text-decoration: none;}" target="">דנמרק</a>]</nobr> <nobr>[<a href="20011006.html" style="{text-decoration: none;}" target="">הודו</a>]</nobr> <nobr>[<a href="20011030.html" style="{text-decoration: none;}" target="">נפאל</a>]</nobr> <nobr>[<a href="20011115.html" style="{text-decoration: none;}" target="">טרק סובב אנאפורנה</a>]</nobr> <nobr>[<a href="20011210.html" style="{text-decoration: none;}" target="">תאילנד</a>]</nobr> <nobr>[<a href="20020108.html" style="{text-decoration: none;}" target="">לאוס</a>]</nobr> <nobr>[<a href="20020123.html" style="{text-decoration: none;}" target="">צפון תאילנד</a>]</nobr> <nobr>[<a href="20020203.html" style="{text-decoration: none;}" target="">אוסטרליה</a>]</nobr> <nobr>[<a href="20020210.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי דרומי</a>]</nobr> <nobr>[<a href="20020326.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי צפוני</a>]</nobr> <nobr>[<a href="20020506.html" style="{text-decoration: none;}" target="">פיליפינים</a>]</nobr> <nobr>[קמבודיה]</nobr><!--webbot bot="Navigation" i-checksum="4532" endspan --></p>
-<p><i><small>This site was last updated
-<!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%m/%d/%y" startspan -->08/02/03<!--webbot bot="Timestamp" i-checksum="12636" endspan --> </small></i>
-</p>
-</body>
-    </div>
+  <div class="country-nav">
+    <a href="200110052040.html">דנמרק</a>
+    <a href="20011006.html">הודו</a>
+    <a href="20011030.html">נפאל</a>
+    <a href="20011115.html">טרק אנאפורנה</a>
+    <a href="20011210.html">תאילנד</a>
+    <a href="20020108.html">לאוס</a>
+    <a href="20020123.html">צפון תאילנד</a>
+    <a href="20020203.html">אוסטרליה</a>
+    <a href="20020210.html">ניו-זילנד, אי דרומי</a>
+    <a href="20020326.html">ניו-זילנד, אי צפוני</a>
+    <a href="20020506.html">פיליפינים</a>
+    <a href="20020603.html">קמבודיה</a>
   </div>
 
   <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
-    <img id="lightbox-img" src="" alt="Enlarged">
+    <img id="lightbox-img" src="" alt="">
   </div>
-
   <script>
     function openLightbox(src) {
       document.getElementById('lightbox-img').src = src;

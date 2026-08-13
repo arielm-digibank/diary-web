@@ -3,181 +3,272 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>נמל-תעופה, בנגקוק, תאילנד</title>
+  <title>נפרדים מתאילנד</title>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap" rel="stylesheet">
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background-color: #f8fafc;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0; padding: 20px; color: #334155;
+      background: #ffffff;
+      font-family: 'Heebo', sans-serif;
+      color: #1a1a2e;
+      line-height: 1.9;
     }
-    .container {
-      max-width: 800px; margin: 0 auto; background: #ffffff;
-      padding: 35px; border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06); line-height: 1.8;
+    .top-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #eee;
+      padding: 12px 30px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.9rem;
     }
-    .header {
-      border-bottom: 2px solid #e2e8f0; padding-bottom: 15px;
-      margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center;
+    .top-nav a {
+      color: #1d4ed8; text-decoration: none; font-weight: 600;
     }
-    .header h1 { margin: 0; color: #0f172a; font-size: 1.8rem; }
-    .home-link { color: #2563eb; text-decoration: none; font-weight: 600; }
-    .content img {
-      float: right; margin: 0 0 15px 20px; max-width: 320px; height: auto;
-      border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      cursor: pointer; transition: transform 0.2s;
+    .top-nav a:hover { text-decoration: underline; }
+    .top-nav .nav-links { display: flex; gap: 20px; }
+    .hero {
+      max-width: 900px; margin: 0 auto;
+      padding: 50px 40px 30px;
+      display: flex; align-items: flex-start; gap: 30px;
     }
-    .content img:hover { transform: scale(1.02); }
-    .content::after { content: ""; clear: both; display: table; }
-    a { color: #2563eb; }
+    .hero-text { flex: 1; }
+    .hero-map {
+      width: 120px; height: auto; object-fit: contain;
+      flex-shrink: 0; opacity: 0.85;
+    }
+    .meta-line {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+    }
+    .date-big {
+      font-size: 3.5rem; font-weight: 900; color: #e5e7eb; line-height: 1;
+    }
+    .date-details { font-size: 0.9rem; color: #6b7280; }
+    .country-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      border-radius: 20px; padding: 4px 14px;
+      font-size: 0.8rem; color: #1d4ed8; font-weight: 600;
+    }
+    .title {
+      font-size: 2.2rem; font-weight: 900; color: #111827;
+      margin: 20px 0 8px; line-height: 1.3;
+    }
+    .date-subtitle {
+      font-size: 1.1rem; font-weight: 300; color: #4b5563;
+      margin-bottom: 16px;
+    }
+    .title-divider {
+      width: 60px; height: 4px; background: #1d4ed8; border-radius: 2px;
+    }
+    .content {
+      max-width: 900px; margin: 30px auto; padding: 0 40px; font-size: 1.05rem;
+    }
+    .content p { margin-bottom: 18px; }
+    .content a {
+      color: #1d4ed8; cursor: pointer;
+      text-decoration: underline;
+      text-decoration-color: rgba(29,78,216,0.3);
+    }
+    .photo-block {
+      margin: 30px 0; border-radius: 12px; overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    .photo-block img {
+      width: 100%; display: block; cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .photo-block img:hover { transform: scale(1.01); }
+    .photo-block .caption {
+      padding: 12px 16px; font-size: 0.85rem; color: #6b7280;
+      background: #f9fafb; border-top: 1px solid #f3f4f6;
+    }
+    .photo-pair {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 14px; margin: 30px 0;
+    }
+    .photo-pair .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-pair .photo-item img {
+      width: 100%; height: 200px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-pair .photo-item img:hover { transform: scale(1.03); }
+    .photo-pair .photo-item .caption {
+      padding: 8px 12px; font-size: 0.8rem; color: #6b7280; background: #f9fafb;
+    }
+    .photo-trio {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px; margin: 30px 0;
+    }
+    .photo-trio .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-trio .photo-item img {
+      width: 100%; height: 180px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-trio .photo-item img:hover { transform: scale(1.03); }
+    .photo-trio .photo-item .caption {
+      padding: 8px 10px; font-size: 0.78rem; color: #6b7280; background: #f9fafb;
+    }
+    .nav-cards {
+      max-width: 900px; margin: 50px auto 20px; padding: 0 40px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .nav-card {
+      padding: 20px 24px; border: 1px solid #e5e7eb; border-radius: 12px;
+      text-decoration: none; color: inherit; transition: all 0.2s;
+    }
+    .nav-card:hover {
+      border-color: #1d4ed8; box-shadow: 0 4px 12px rgba(29,78,216,0.1);
+    }
+    .nav-card .label { font-size: 0.8rem; color: #6b7280; margin-bottom: 4px; }
+    .nav-card .card-title { font-weight: 700; font-size: 1rem; color: #1d4ed8; }
+    .supplements {
+      margin-top: 35px; padding: 25px 30px;
+      background: #f9fafb; border-radius: 12px; border: 1px solid #e5e7eb;
+    }
+    .supplements h3 {
+      font-size: 1.1rem; font-weight: 700; margin-bottom: 14px; color: #374151;
+    }
+    .supplements ol { padding-right: 20px; }
+    .supplements li { margin-bottom: 10px; color: #4b5563; }
+    .country-nav {
+      max-width: 900px; margin: 20px auto 40px; padding: 0 40px;
+      display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+    }
+    .country-nav a {
+      padding: 6px 14px; border-radius: 20px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      color: #1d4ed8; text-decoration: none;
+      font-size: 0.82rem; font-weight: 600;
+      transition: all 0.2s;
+    }
+    .country-nav a:hover {
+      background: #1d4ed8; color: white; border-color: #1d4ed8;
+    }
     .lightbox {
       display: none; position: fixed; z-index: 9999;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.9); justify-content: center; align-items: center; cursor: pointer;
+      background: rgba(0,0,0,0.92);
+      justify-content: center; align-items: center; cursor: pointer;
     }
-    .lightbox img { max-width: 90%; max-height: 90%; border-radius: 8px; }
+    .lightbox img { max-width: 92%; max-height: 92%; border-radius: 8px; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h1>נמל-תעופה, בנגקוק, תאילנד</h1>
-      <a href="../index.html" class="home-link">🏠 לעמוד הראשי</a>
+  <div class="top-nav">
+    <div class="nav-links">
+      <a href="../index.html">עמוד ראשי</a>
     </div>
-    <div class="content">
-      <body>
-<table cellpadding="0" cellspacing="0" height="80" width="954">
-<tr>
-<td align="center" height="80" width="277">
-<marquee style="font-size: 18pt; color: #800080">2.2.02 - 10:00</marquee></td>
-<td align="center" height="80" width="667">
-<!--webbot bot="Navigation" s-type="banner" s-rendering="graphics" S-Orientation B-Include-Home B-Include-Up U-Page S-Target startspan --><!--webbot bot="Navigation" i-checksum="31503" endspan --></td>
-<td align="center" height="80" width="10">
-
-<img border="0" height="148" onclick="openLightbox(this.src)" src="../images/Thailand.gif" title="לחץ להגדלה" width="151"/></td>
-</tr>
-<tr>
-<td colspan="3" height="1" style=" " width="954"></td>
-</tr>
-</table><table cellpadding="0" cellspacing="0" width="100%">
-<tr>
-<td align="right" style=" ">
-<h4>
-<marquee style="font-size: 24pt; color: #008080">נפרדים מתאילנד</marquee></h4>
-<p> </p></td>
-</tr>
-</table>
-<table cellpadding="0" cellspacing="0" height="333" width="953">
-<tr>
-<td height="333" rowspan="2" style="       " valign="top" width="140"> <!--webbot bot="Navigation" S-Type="sequence" S-Orientation="vertical" S-Rendering="graphics" S-Theme="blocks 000" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><!--webbot bot="Navigation" i-checksum="23763" endspan --><p> </p>
-</td>
-<td height="333" rowspan="2" style="     " valign="top" width="1"></td>
-<td colspan="2" height="266" style="     " valign="top" width="735">
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">נסענו לבנגקוק. אוטובוס 
-    חמוד עם ארוחה (3 סופגניות קטנות). בבוקר קיבלנו קפה. ישנו מעט ושמענו מוזיקה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">כשהגענו לבנגקוק הצטרף 
-    אלינו ארז, תימני מחדרה. חקיין (ברפרטואר: שושנה דמארי ובועז שרעבי ועוד..), בן 
-    23, עדיין איתנו בטיסתנו לאוסטרליה. הוא קנה כרטיס ברגע האחרון.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">כשהגענו לבנגקוק לא מצאנו 
-    מקום לישון. התנועה לתוך בנגקוק ומחוצה לה היא אדירה – לפנות בוקר כל הגסט 
-    האוסים מלאים וב- 11:00 תמיד יש מקומות.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">ישבנו בקשר הישראלי וחיכינו 
-    שהזמן יעבור.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">מה שהתחוור לנו ביומיים 
-    האחרונים זה שלא הבנו את תנאי הויזה שקיבלנו משגרירות אוסטרליה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בויזה יש 2 תקופות של 6 
-    חודשים:</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בתקופה הראשונה (אצלנו 19 
-    ספטמבר – 19 מרץ) ניתן להכנס ולצאת מאוסטרליה ללא מגבלה ובכל פעם לקבל ויזה 
-    חדשה ל- 6 חודשים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">התקופה השניה – החל מהכניסה 
-    האחרונה לאוסטרליה, (החל מה- 19 למרץ אצלנו) – אם עוזבים את אוסטרליה לא ניתן 
-    לחזור אליה, ואת זה לא ידענו. חשבנו שניתן לצאת ולהכנס חופשי בכל 6 חודשי הויזה 
-    שאתה מקבל.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">כשהתחוור לנו העניין ראינו 
-    שנקלענו לבעיות חמורות. ניתן להיות בניו-זילנד עד ה- 19 למרץ בלבד ולא עד 3 
-    למאי כמו בכרטיס הטיסה שלנו. בכל זאת נראה לי שניסע, אעפ"י שהודענו לכולם שנשאר 
-    באוסטרליה 6 חודשים מלאים. בגלל מצב הביש הזה אנחנו משנים את דעתינו כל כמה 
-    שעות.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">מה שמכריע כרגע זה כשנסיים 
-    את הויזה לאוסטרליה (2 אוגוסט) זה שיא החורף בניו-זילנד, כך שלא נוכל עדיין 
-    לטייל שם. אם ניסע עכשיו לניו-זילנד, לאי הדרומי ונחזור ב- 19 למרץ, גם נראה את 
-    רוב ניו-זילנד וגם תהיה לנו ויזה עד מועד מאוחר יותר.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בקצור, היינו מוטרדים, גם 
-    נשאר לנו פחות כסף מקומי ממה שחשבנו ולא נוכל ממש להשתולל. זכרנו שיש תשלום של 
-    500 באט מסי נמל-תעופה ושמנו בצד.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">מצאנו גסט האוס די זול, 200 
-    באט. די מגעיל, אבל בסדר.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הלכנו להסתובב. גונן רצה 
-    לאכול שניצל אצל שושנה. שמענו שזה טוב. היינו צריכים להוציא את התיקים הגדולים 
-    משמירת חפצים בזולה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">נתתי לגונן לנווט והוא 
-    הוביל אותי במעגלים – תחילה לזולה, אבל לא כדי לקחת את התיקים, רק לבדוק כמה 
-    יעלה, דבר שיכלנו לחשב לבד. אח"כ הוא הלך לחפש את המקום של שושנה, אבל לא היו 
-    ישראלים לשאול ומצאנו עצמנו בחזרה בגסט האוס. אמרתי לו שיכלנו כבר לקחת את 
-    התיקים, אז חזרנו לזולה ולקחנו את התיקים וחזרנו לגסט האוס. אח"כ המשכתי ללכת 
-    אחריו והוא המשיך ללכת סחור סחור עד שהגענו בסוף לשם. בדרך ראיתי שתמונה שלנו 
-    מופיעה בזולה. כמה ארסים צילמו את עצמם ואנחנו מופיעים גם, בכבוד.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הלכנו לקשר הישראלי להתקשר. 
-    יצא לנו לדבר עם הבית. פגשנו שם בחורה ישראלית שנראית טוב עד סוסה, בשם דגנית 
-    מקיבוץ חצור. כל הזמן שואלים אותנו אם אנחנו בטיול אחרי צבא ואנחנו עונים 
-    שאנחנו טיול לפני צוואה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">גונן, עוד בארץ, ששאלו אותו 
-    אם הוא נוסע לטיול כדי לחפש את עצמו היה עונה שהוא הולך לטיול כדי לאבד את 
-    עצמו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">גונן מטפל בפצעי התאונה 
-    ודואג להראות לי כל התפתחות (בעיקר לרעה ובעיקר כשאנחנו אוכלים). בהתחלה זו 
-    היתה הבוהן ברגל השמאלית, הפצע היה מגעיל. זה כבר מחלים ומשום מה השיפשופים 
-    הקלים ברגל שלו מעל הקרסול קיבלו צבע בורדו של שטף דם פנימי. תוסיפו לזה עקיצות 
-    שהוא דואג לגרד ותקבלו תמונה מחרידה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">כן, בנוסף למכת העקיצות 
-    שתקפה אותנו ביומיים האחרונים, גילינו עקיצות פשפשים, כנראה מהשמיכה הנוספת 
-    שקיבלנו בפאי.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">כך, חבולים ועקוצים אנחנו 
-    עכשיו מקווים להבריא באוסטרליה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אז הלכנו עם דגנית וישבנו 
-    ודיברנו. היא מטיילת לבד כבר שנה וארבעה חודשים, בדיוק שנה יותר מאיתנו – היתה 
-    באוסטרליה וניו-זילנד. להפתעתינו היא היתה ממש חמודה, להבדיל מישראליות 
-    שהיכרנו. אין לי משהו רע להגיד עליה – גם מקשיבה ולא רק מדברת וגם לא נצלנית 
-    וגם יודעת לחסוך ולחיות בתנאים פחות טובים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">היא דיברה איתנו עד 2:00. 
-    נראה שהיתה מעוניינת, אבל לא יודע במי. בכל מקרה היתה לנו טיסה לתפוס.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">קמנו בבוקר והתקלחנו. הגענו 
-    להסעה. פגשנו שם 2 ישראליות מתחת לכל ביקורת, כמעין קונטרה לדגנית וגם נראות 
-    "כמו מלכה וציפי מאלכס חולה אהבה" (גונן). עבדנו עליהן והן עלינו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">ארז הצטרף אלינו לטיסה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">פגשנו עכשיו בשדה איזו 
-    פיליפינית מבוגרת שגרה במלבורן, פרודה מאוסטרלי שהיתה נשואה לו במשך 13 שנה. 
-    היא סיפרה לנו איך הוא בגד בה בתאילנד כשאמר לה שהוא בטיול עסקים ואיך זיין 
-    נערת ליווי לידה והיא התעצבנה. בקיצור, העבירה לנו את הזמן בצורה יפה.</span></b></p>
-<p> </p></td>
-<td align="center" height="333" rowspan="2" style="     " valign="top" width="187">
-     </td>
-</tr>
-<tr>
-<td height="67" style="     " valign="top" width="314">
-
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button104.gif" title="לחץ להגדלה" width="59"/></td>
-<td height="67" style="     " valign="top" width="421">
-<p align="right">
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button106.gif" title="לחץ להגדלה" width="59"/></p></td>
-</tr>
-</table>
-<p align="center">
-<!--webbot bot="Navigation" S-Type="sequence" S-Orientation="horizontal" S-Rendering="html" S-Bar="Brackets" S-Btn-Nml="[&lt;A HREF=&quot;#URL#&quot; TARGET=&quot;#TARGET#&quot; STYLE=&quot;{text-decoration: none;}&quot;&gt;#LABEL#&lt;/A&gt;]" S-Btn-Sel="[#LABEL#]" S-Btn-Sep="&amp;nbsp;" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><nobr>[<a href="index.html" style="{text-decoration: none;}" target="">התחלה</a>]</nobr> <nobr>[<a href="200110052040.html" style="{text-decoration: none;}" target="">דנמרק</a>]</nobr> <nobr>[<a href="20011006.html" style="{text-decoration: none;}" target="">הודו</a>]</nobr> <nobr>[<a href="20011030.html" style="{text-decoration: none;}" target="">נפאל</a>]</nobr> <nobr>[<a href="20011115.html" style="{text-decoration: none;}" target="">טרק סובב אנאפורנה</a>]</nobr> <nobr>[<a href="20011210.html" style="{text-decoration: none;}" target="">תאילנד</a>]</nobr> <nobr>[<a href="20020108.html" style="{text-decoration: none;}" target="">לאוס</a>]</nobr> <nobr>[<a href="20020123.html" style="{text-decoration: none;}" target="">צפון תאילנד</a>]</nobr> <nobr>[<a href="20020203.html" style="{text-decoration: none;}" target="">אוסטרליה</a>]</nobr> <nobr>[<a href="20020210.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי דרומי</a>]</nobr> <nobr>[<a href="20020326.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי צפוני</a>]</nobr> <nobr>[<a href="20020506.html" style="{text-decoration: none;}" target="">פיליפינים</a>]</nobr> <nobr>[<a href="20020603.html" style="{text-decoration: none;}" target="">קמבודיה</a>]</nobr><!--webbot bot="Navigation" i-checksum="33824" endspan --></p>
-<p><i><small>This site was last updated
-<!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%m/%d/%y" startspan -->08/05/02<!--webbot bot="Timestamp" i-checksum="12556" endspan --> </small></i>
-</p>
-</body>
+    <div class="nav-links">
+      <a href="20020131.html">← הקודם</a>
+      <a href="20020203.html">הבא →</a>
     </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-text">
+      <div class="meta-line">
+        <span class="date-big">02</span>
+        <div>
+          <div class="date-details">פברואר 2002</div>
+          <span class="country-badge">תאילנד</span>
+        </div>
+      </div>
+      <h1 class="title">נפרדים מתאילנד</h1>
+      <div class="title-divider"></div>
+    </div>
+    <img class="hero-map" src="../images/Thailand.gif" alt="תאילנד">
+  </div>
+
+  <div class="content">
+    <p>נפרדים מתאילנד</p>
+
+    <p>נסענו לבנגקוק. אוטובוס חמוד עם ארוחה (3 סופגניות קטנות). בבוקר קיבלנו קפה. ישנו מעט ושמענו מוזיקה.</p>
+
+    <p>כשהגענו לבנגקוק הצטרף אלינו ארז, תימני מחדרה. חקיין (ברפרטואר: שושנה דמארי ובועז שרעבי ועוד..), בן 23, עדיין איתנו בטיסתנו לאוסטרליה. הוא קנה כרטיס ברגע האחרון.</p>
+
+    <p>כשהגענו לבנגקוק לא מצאנו מקום לישון. התנועה לתוך בנגקוק ומחוצה לה היא אדירה – לפנות בוקר כל הגסט האוסים מלאים וב- 11:00 תמיד יש מקומות.</p>
+
+    <p>ישבנו בקשר הישראלי וחיכינו שהזמן יעבור.</p>
+
+    <p>מה שהתחוור לנו ביומיים האחרונים זה שלא הבנו את תנאי הויזה שקיבלנו משגרירות אוסטרליה.</p>
+
+    <p>בויזה יש 2 תקופות של 6 חודשים:</p>
+
+    <p>בתקופה הראשונה (אצלנו 19 ספטמבר – 19 מרץ) ניתן להכנס ולצאת מאוסטרליה ללא מגבלה ובכל פעם לקבל ויזה חדשה ל- 6 חודשים.</p>
+
+    <p>התקופה השניה – החל מהכניסה האחרונה לאוסטרליה, (החל מה- 19 למרץ אצלנו) – אם עוזבים את אוסטרליה לא ניתן לחזור אליה, ואת זה לא ידענו. חשבנו שניתן לצאת ולהכנס חופשי בכל 6 חודשי הויזה שאתה מקבל.</p>
+
+    <p>כשהתחוור לנו העניין ראינו שנקלענו לבעיות חמורות. ניתן להיות בניו-זילנד עד ה- 19 למרץ בלבד ולא עד 3 למאי כמו בכרטיס הטיסה שלנו. בכל זאת נראה לי שניסע, אעפ"י שהודענו לכולם שנשאר באוסטרליה 6 חודשים מלאים. בגלל מצב הביש הזה אנחנו משנים את דעתינו כל כמה שעות.</p>
+
+    <p>מה שמכריע כרגע זה כשנסיים את הויזה לאוסטרליה (2 אוגוסט) זה שיא החורף בניו-זילנד, כך שלא נוכל עדיין לטייל שם. אם ניסע עכשיו לניו-זילנד, לאי הדרומי ונחזור ב- 19 למרץ, גם נראה את רוב ניו-זילנד וגם תהיה לנו ויזה עד מועד מאוחר יותר.</p>
+
+    <p>בקצור, היינו מוטרדים, גם נשאר לנו פחות כסף מקומי ממה שחשבנו ולא נוכל ממש להשתולל. זכרנו שיש תשלום של 500 באט מסי נמל-תעופה ושמנו בצד.</p>
+
+    <p>מצאנו גסט האוס די זול, 200 באט. די מגעיל, אבל בסדר.</p>
+
+    <p>הלכנו להסתובב. גונן רצה לאכול שניצל אצל שושנה. שמענו שזה טוב. היינו צריכים להוציא את התיקים הגדולים משמירת חפצים בזולה.</p>
+
+    <p>נתתי לגונן לנווט והוא הוביל אותי במעגלים – תחילה לזולה, אבל לא כדי לקחת את התיקים, רק לבדוק כמה יעלה, דבר שיכלנו לחשב לבד. אח"כ הוא הלך לחפש את המקום של שושנה, אבל לא היו ישראלים לשאול ומצאנו עצמנו בחזרה בגסט האוס. אמרתי לו שיכלנו כבר לקחת את התיקים, אז חזרנו לזולה ולקחנו את התיקים וחזרנו לגסט האוס. אח"כ המשכתי ללכת אחריו והוא המשיך ללכת סחור סחור עד שהגענו בסוף לשם. בדרך ראיתי שתמונה שלנו מופיעה בזולה. כמה ארסים צילמו את עצמם ואנחנו מופיעים גם, בכבוד.</p>
+
+    <p>הלכנו לקשר הישראלי להתקשר. יצא לנו לדבר עם הבית. פגשנו שם בחורה ישראלית שנראית טוב עד סוסה, בשם דגנית מקיבוץ חצור. כל הזמן שואלים אותנו אם אנחנו בטיול אחרי צבא ואנחנו עונים שאנחנו טיול לפני צוואה.</p>
+
+    <p>גונן, עוד בארץ, ששאלו אותו אם הוא נוסע לטיול כדי לחפש את עצמו היה עונה שהוא הולך לטיול כדי לאבד את עצמו.</p>
+
+    <p>גונן מטפל בפצעי התאונה ודואג להראות לי כל התפתחות (בעיקר לרעה ובעיקר כשאנחנו אוכלים). בהתחלה זו היתה הבוהן ברגל השמאלית, הפצע היה מגעיל. זה כבר מחלים ומשום מה השיפשופים הקלים ברגל שלו מעל הקרסול קיבלו צבע בורדו של שטף דם פנימי. תוסיפו לזה עקיצות שהוא דואג לגרד ותקבלו תמונה מחרידה.</p>
+
+    <p>כן, בנוסף למכת העקיצות שתקפה אותנו ביומיים האחרונים, גילינו עקיצות פשפשים, כנראה מהשמיכה הנוספת שקיבלנו בפאי.</p>
+
+    <p>כך, חבולים ועקוצים אנחנו עכשיו מקווים להבריא באוסטרליה.</p>
+
+    <p>אז הלכנו עם דגנית וישבנו ודיברנו. היא מטיילת לבד כבר שנה וארבעה חודשים, בדיוק שנה יותר מאיתנו – היתה באוסטרליה וניו-זילנד. להפתעתינו היא היתה ממש חמודה, להבדיל מישראליות שהיכרנו. אין לי משהו רע להגיד עליה – גם מקשיבה ולא רק מדברת וגם לא נצלנית וגם יודעת לחסוך ולחיות בתנאים פחות טובים.</p>
+
+    <p>היא דיברה איתנו עד 2:00. נראה שהיתה מעוניינת, אבל לא יודע במי. בכל מקרה היתה לנו טיסה לתפוס.</p>
+
+    <p>קמנו בבוקר והתקלחנו. הגענו להסעה. פגשנו שם 2 ישראליות מתחת לכל ביקורת, כמעין קונטרה לדגנית וגם נראות "כמו מלכה וציפי מאלכס חולה אהבה" (גונן). עבדנו עליהן והן עלינו.</p>
+
+    <p>ארז הצטרף אלינו לטיסה.</p>
+
+    <p>פגשנו עכשיו בשדה איזו פיליפינית מבוגרת שגרה במלבורן, פרודה מאוסטרלי שהיתה נשואה לו במשך 13 שנה. היא סיפרה לנו איך הוא בגד בה בתאילנד כשאמר לה שהוא בטיול עסקים ואיך זיין נערת ליווי לידה והיא התעצבנה. בקיצור, העבירה לנו את הזמן בצורה יפה.</p>
+
+
+  </div>
+
+  <div class="nav-cards">
+    <a href="20020203.html" class="nav-card">
+      <div class="label">הבא →</div>
+      <div class="card-title">אוסטרליה היקרה</div>
+    </a>
+    <a href="20020131.html" class="nav-card">
+      <div class="label">← הקודם</div>
+      <div class="card-title">הכרטיס</div>
+    </a>
+  </div>
+
+  <div class="country-nav">
+    <a href="200110052040.html">דנמרק</a>
+    <a href="20011006.html">הודו</a>
+    <a href="20011030.html">נפאל</a>
+    <a href="20011115.html">טרק אנאפורנה</a>
+    <a href="20011210.html">תאילנד</a>
+    <a href="20020108.html">לאוס</a>
+    <a href="20020123.html">צפון תאילנד</a>
+    <a href="20020203.html">אוסטרליה</a>
+    <a href="20020210.html">ניו-זילנד, אי דרומי</a>
+    <a href="20020326.html">ניו-זילנד, אי צפוני</a>
+    <a href="20020506.html">פיליפינים</a>
+    <a href="20020603.html">קמבודיה</a>
   </div>
 
   <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
-    <img id="lightbox-img" src="" alt="Enlarged">
+    <img id="lightbox-img" src="" alt="">
   </div>
-
   <script>
     function openLightbox(src) {
       document.getElementById('lightbox-img').src = src;

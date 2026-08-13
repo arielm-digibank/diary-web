@@ -3,297 +3,345 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>בלו במבו, אזור סאבאנג, אי פאלאוואן, פיליפינים</title>
+  <title>זרמים תת-קרקעיים</title>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap" rel="stylesheet">
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background-color: #f8fafc;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0; padding: 20px; color: #334155;
+      background: #ffffff;
+      font-family: 'Heebo', sans-serif;
+      color: #1a1a2e;
+      line-height: 1.9;
     }
-    .container {
-      max-width: 800px; margin: 0 auto; background: #ffffff;
-      padding: 35px; border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06); line-height: 1.8;
+    .top-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #eee;
+      padding: 12px 30px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.9rem;
     }
-    .header {
-      border-bottom: 2px solid #e2e8f0; padding-bottom: 15px;
-      margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center;
+    .top-nav a {
+      color: #1d4ed8; text-decoration: none; font-weight: 600;
     }
-    .header h1 { margin: 0; color: #0f172a; font-size: 1.8rem; }
-    .home-link { color: #2563eb; text-decoration: none; font-weight: 600; }
-    .content img {
-      float: right; margin: 0 0 15px 20px; max-width: 320px; height: auto;
-      border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      cursor: pointer; transition: transform 0.2s;
+    .top-nav a:hover { text-decoration: underline; }
+    .top-nav .nav-links { display: flex; gap: 20px; }
+    .hero {
+      max-width: 900px; margin: 0 auto;
+      padding: 50px 40px 30px;
+      display: flex; align-items: flex-start; gap: 30px;
     }
-    .content img:hover { transform: scale(1.02); }
-    .content::after { content: ""; clear: both; display: table; }
-    a { color: #2563eb; }
+    .hero-text { flex: 1; }
+    .hero-map {
+      width: 120px; height: auto; object-fit: contain;
+      flex-shrink: 0; opacity: 0.85;
+    }
+    .meta-line {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+    }
+    .date-big {
+      font-size: 3.5rem; font-weight: 900; color: #e5e7eb; line-height: 1;
+    }
+    .date-details { font-size: 0.9rem; color: #6b7280; }
+    .country-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      border-radius: 20px; padding: 4px 14px;
+      font-size: 0.8rem; color: #1d4ed8; font-weight: 600;
+    }
+    .title {
+      font-size: 2.2rem; font-weight: 900; color: #111827;
+      margin: 20px 0 8px; line-height: 1.3;
+    }
+    .date-subtitle {
+      font-size: 1.1rem; font-weight: 300; color: #4b5563;
+      margin-bottom: 16px;
+    }
+    .title-divider {
+      width: 60px; height: 4px; background: #1d4ed8; border-radius: 2px;
+    }
+    .content {
+      max-width: 900px; margin: 30px auto; padding: 0 40px; font-size: 1.05rem;
+    }
+    .content p { margin-bottom: 18px; }
+    .content a {
+      color: #1d4ed8; cursor: pointer;
+      text-decoration: underline;
+      text-decoration-color: rgba(29,78,216,0.3);
+    }
+    .photo-block {
+      margin: 30px 0; border-radius: 12px; overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    .photo-block img {
+      width: 100%; display: block; cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .photo-block img:hover { transform: scale(1.01); }
+    .photo-block .caption {
+      padding: 12px 16px; font-size: 0.85rem; color: #6b7280;
+      background: #f9fafb; border-top: 1px solid #f3f4f6;
+    }
+    .photo-pair {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 14px; margin: 30px 0;
+    }
+    .photo-pair .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-pair .photo-item img {
+      width: 100%; height: 200px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-pair .photo-item img:hover { transform: scale(1.03); }
+    .photo-pair .photo-item .caption {
+      padding: 8px 12px; font-size: 0.8rem; color: #6b7280; background: #f9fafb;
+    }
+    .photo-trio {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px; margin: 30px 0;
+    }
+    .photo-trio .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-trio .photo-item img {
+      width: 100%; height: 180px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-trio .photo-item img:hover { transform: scale(1.03); }
+    .photo-trio .photo-item .caption {
+      padding: 8px 10px; font-size: 0.78rem; color: #6b7280; background: #f9fafb;
+    }
+    .nav-cards {
+      max-width: 900px; margin: 50px auto 20px; padding: 0 40px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .nav-card {
+      padding: 20px 24px; border: 1px solid #e5e7eb; border-radius: 12px;
+      text-decoration: none; color: inherit; transition: all 0.2s;
+    }
+    .nav-card:hover {
+      border-color: #1d4ed8; box-shadow: 0 4px 12px rgba(29,78,216,0.1);
+    }
+    .nav-card .label { font-size: 0.8rem; color: #6b7280; margin-bottom: 4px; }
+    .nav-card .card-title { font-weight: 700; font-size: 1rem; color: #1d4ed8; }
+    .supplements {
+      margin-top: 35px; padding: 25px 30px;
+      background: #f9fafb; border-radius: 12px; border: 1px solid #e5e7eb;
+    }
+    .supplements h3 {
+      font-size: 1.1rem; font-weight: 700; margin-bottom: 14px; color: #374151;
+    }
+    .supplements ol { padding-right: 20px; }
+    .supplements li { margin-bottom: 10px; color: #4b5563; }
+    .country-nav {
+      max-width: 900px; margin: 20px auto 40px; padding: 0 40px;
+      display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+    }
+    .country-nav a {
+      padding: 6px 14px; border-radius: 20px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      color: #1d4ed8; text-decoration: none;
+      font-size: 0.82rem; font-weight: 600;
+      transition: all 0.2s;
+    }
+    .country-nav a:hover {
+      background: #1d4ed8; color: white; border-color: #1d4ed8;
+    }
     .lightbox {
       display: none; position: fixed; z-index: 9999;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.9); justify-content: center; align-items: center; cursor: pointer;
+      background: rgba(0,0,0,0.92);
+      justify-content: center; align-items: center; cursor: pointer;
     }
-    .lightbox img { max-width: 90%; max-height: 90%; border-radius: 8px; }
+    .lightbox img { max-width: 92%; max-height: 92%; border-radius: 8px; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h1>בלו במבו, אזור סאבאנג, אי פאלאוואן, פיליפינים</h1>
-      <a href="../index.html" class="home-link">🏠 לעמוד הראשי</a>
+  <div class="top-nav">
+    <div class="nav-links">
+      <a href="../index.html">עמוד ראשי</a>
     </div>
-    <div class="content">
-      <body>
-<table cellpadding="0" cellspacing="0" height="80" width="954">
-<tr>
-<td align="center" height="80" width="277">
-<marquee style="font-size: 18pt; color: #800080">20.5.02 - 15:00</marquee></td>
-<td align="center" height="80" width="667">
-<!--webbot bot="Navigation" s-type="banner" s-rendering="graphics" S-Orientation B-Include-Home B-Include-Up U-Page S-Target startspan --><!--webbot bot="Navigation" i-checksum="30136" endspan --></td>
-<td align="center" height="80" width="10">
-<img border="0" height="2" onclick="openLightbox(this.src)" src="../images/20020322_fishermen.jpg" title="לחץ להגדלה" width="1"/><img border="0" height="174" onclick="openLightbox(this.src)" src="../images/Philippines.gif" title="לחץ להגדלה" width="176"/></td>
-</tr>
-<tr>
-<td colspan="3" height="1" style=" " width="954"></td>
-</tr>
-</table><table cellpadding="0" cellspacing="0" width="100%">
-<tr>
-<td align="right" style=" ">
-<h4>
-<marquee style="font-size: 24pt; color: #008080">זרמים תת-קרקעיים</marquee></h4>
-<p> </p></td>
-</tr>
-</table>
-<table cellpadding="0" cellspacing="0" height="333" width="953">
-<tr>
-<td height="333" rowspan="2" style="       " valign="top" width="140"> <!--webbot bot="Navigation" S-Type="sequence" S-Orientation="vertical" S-Rendering="graphics" S-Theme="blocks 000" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><!--webbot bot="Navigation" i-checksum="23763" endspan --><p> </p>
-</td>
-<td height="333" rowspan="2" style="     " valign="top" width="1"></td>
-<td colspan="2" height="266" style="     " valign="top" width="735">
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">עדיין נהנים, עדיין באותו 
-    מקום.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הכל יפה, האנשים נחמדים, 
-    מקום קטן ואיכותי.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אמרתי לגונן: תפאורה מושלמת 
-    לרצח שלא מפוענח, מזכיר את טווין פיקס, אפיזודות מרצח במשיכת קולמוס, אגתה 
-    כריסטי ואי הביקיני.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">מנהל את </span>
-<span dir="LTR">Blue Bamboo</span><span lang="HE"> יאן משוויץ, הוא נשוי 
-    לפיליפינית בשם לורנה, 32, שמנהלת את המקום בפועל. אחייניתה, אן-מארי, באה לכמה 
-    ימים לעזור.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">גונן ואני יושבים 
-    ומסתלבטים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">לורנה ניגשת אלינו עם תמונה 
-    ממוסגרת של ילד קטן, כבן 5. זה הילד שלה והוא מת לפני חודש פתאם, תוך 3 ימים 
-    הוא נהיה חולה ומת. הסיפור מסתבך, היא סיפרה שהילד חש ברע ויאן בעצמו נתן לו 
-    כדור, תוך 10 דקות יצא קצף לבן מהפה של הילד. הוא הוחש לבית-חולים, בעיר 
-    הגדולה, </span><span dir="LTR">Puerto Princesa</span><span lang="HE">,  </span>
-    מרחק <span lang="HE">3 
-    שעות נסיעה, ומת שם, והוא עוד לא בן 6.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">נרעשים כשהיינו, גמלנו 
-    בליבנו החלטה לרדת לעומקו של הנושא. גונן גייס את כל חושיו הבלשיים לגלות מה המשמעות 
-    של הכדור שניתן לילד. הוא חיטט וגילה אצל יאן כמויות של כדורים וחפיסה חשודה 
-    הכתובה בגרמנית. לורנה סיפרה שהבחור שעבד עם יאן, העד היחידי למעשה, פוטר 
-    ושוחרר לביתו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">היא לא עזבה, היא נשארה 
-    כאן. הוריו של יאן הגיעו משוויץ לביקור, אולי לרחרח. אן מארי, קרובתה, באה 
-    לעזור לה. זרמים תת-קרקעיים חזקים זורמים מתחת לנוף השליו הזה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בערב הצטיידנו בבקבוק ברנדי 
-    (7 שקל, לא הזול ביותר) וקבענו עם אן-מארי ומארי-אן לערב של שתייה משותפת. 
-    הלכנו למרכז </span><span dir="LTR">Sabang</span><span lang="HE"> וחיפשנו
-    </span><span dir="LTR">ice tea</span><span lang="HE">, לבקשת אן-מארי. במרכז, 
-    שזה מעט צפונית מאיפה שאנו נמצאים אכלנו אורז עם עוף טוב ושתינו קצת רום עם 
-    מקומיים. המשכנו מעט הלאה. זעקות כאב החרידו את חשכת הערב, לא אנושיות, אך 
-    משדרות סבל בל יתואר. בהתחלה התעלמנו. אח"כ הסתקרנו וגם היינו בכיוון. כשהגענו 
-    ראינו מחזה קשה. חזיר היה שכוב על השולחן, מוחזק חזק ברגליו. דם נזל מצווארו 
-    לתוך דלי, סכין מגואלת בדם היתה מונחת על השולחן. החזיר נראה כמקיא, התנגדותו 
-    היתה כבר חלשה, כשנוזל החיים עוזב את גופו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הפיליפינים הם אנשים כ"כ 
-    נחמדים, אבל זו היתה שחיטה אכזרית, בייסורים, לא כמו אצלנו. אני לא זוכר לאיזו 
-    פיליפינית סיפרנו את זה, עדיין נרעשים מהמחזה, והיא צחקה, והסתכלה עלינו במבט 
-    שמשמעו "אתם צוחקים עלי, איפה הקאטץ'?, מה מיוחד בסיפור הזה?".</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">גונן התחיל לחשוש שהמוות 
-    אופף את המקום היפהפה והלכאורה שליו הזה. "ננסה לשרוד את הלילה" אמרתי לו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אן מארי סיפרה לנו שהילד מת 
-    מדלקת ריאות. "הוא כל הזמן הלך לשחות בים, גם בלילה". "הדוד יאן", כך היא קוראת 
-    לו, "לא אשם, ולא קשור לזה". (דרך אגב הילד לא ממנו).</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">היום מישהו מקומי שמכיר את 
-    לורנה אמר שהילד מת ממלריה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אמרתי לגונן – מה שבטוח שיש 
-    כאן ילד מת, יש גופה. אבל הכל הולך ומסתבך.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בערב ישבנו לנו בחוף עם 
-    לורנה והבנות ועוד איזה מישהי שעובדת כאן אבל אפשר להתעלם ממנה. שתינו ועשינו 
-    צחוקים. נכנסנו לראש, אבל בתכלס לא יצא כלום עם הבחורות. כל מה שמעניין את 
-    הבחורות כאן זה לצאת מהארץ הזו. הן צריכות תייר שיעניק להן חיים טובים יותר. 
-    רואים את זה במבט שלהן, קשה להן להסתיר את זה. אתה, ככל גבר, מפשיט אותה 
-    במבטיך, והיא מלבישה אותך במבטה – בחליפות ואותה בשמלה ובית יפה וכך מבטה 
-    חולמני וראשה הרחק מכאן, בארץ אחרת.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בקיצור, בתכנית שלהן לארגן 
-    רומן מהיר עמוס ברגשות ותכניות. הרבה שאלות על יחסים שהיו לך בעבר ואם אהבת וכל 
-    השטויות האלה שאתה חוטא גם לעצמך אם אתה עונה עליהן ברצינות לבחורה שכוונותיך 
-    אינן ארוכות טווח כלפיה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">ישנו בבונגלו שלנו, 10 מטר 
-    מהחוף, דלת פתוחה. בלילה היה גשם סוחף. המגבות והסנדלים נרטבו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">קמנו ב- 6:00. קרני השמש 
-    ליטפו את הים החלק כסדין. בעצם הרבה יותר.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">גונן הלך לחרבן ואני לא 
-    עשיתי כלום, נגעתי בשיער ונרגעתי. גונן חזר וכרגיל סיפר לי על הצלחותיו או חוסר 
-    הצלחותיו בנושא. "מעניין את התחת שלי" אמרתי לו כי חשתי שאני בספירות גבוהות 
-    יותר. בדיעבד, תשובה לא הכי טובה. צריך לזכור שהיא גם לא שימושית כשרוצים להפטר 
-    מאיזה הומו שמציק.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אכלנו בוקר ויצאנו רק ב- 
-    8:00 אל הזרמים התת-קרקעיים האמיתיים – הנהר התת-קרקעי.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הלכנו לאורך החוף כ- 2 ק"מ 
-    עד לכניסה לשמורה. זה מקום מסודר. יד אירופאית פיקחה כאן על הכל. יש צורך 
-    באישור כניסה (</span><span dir="LTR">permit</span><span lang="HE">) שעולה 
-    200 פזו. אנו הצטיידנו מבעוד מועד.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בהמשך יש 2 דרכים אפשריות. 
-    בחרנו ב- </span><span dir="LTR">jungle trail</span><span lang="HE">. הלכנו 
-    במעבה צמחיית ג'ונגל. השמש לא שלטה בשמים, היה מעונן. החום: 30 וקצת מעלות. 
-    הלחות לפחות 100%. הלכנו בלי חולצה וטוב שהשמש לא יצאה, אבל היינו רטובים 
-    מזיעה, אפילו מכנסינו היו רטובות. גונן פחד שאני אשתה הרבה מים אז הוא הוריד את 
-    הפתק מבקבוק המים שלו ואמר "סימנתי את הבקבוק שלי".</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">שביל דק, זבובונים קטנים 
-    (נראה לי שגם עוקצים) מסביב וקורי עכביש דקים, בלתי נראים, קורים אטומים, שאתה 
-    קורע בעוברך והם נדבקים אליך וזה מגעיל ומעצבן. הדרך מטפסת ויורדת. באמצע הדרך 
-    היו כמה סלעי ענק. המון נקיקים בתוך הסלעים, כמו מערות, והן נמשכות ומתארכות 
-    לעומק הסלע. יפה, אך זו לא מטרת הטרק, אז לא התעכבנו. סרטנים אוהבי יבשה 
-    בהמוניהם. סרטני נזיר (אם כי לא נראה לי שהמין-זר להם) הולכים ומתכנסים בעוברך. 
-    צווחות (של קופים?) ברקע. אווירת ג'ונגל אמיתית.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">לבסוף הגענו לנהר 
-    התת-קרקעי. 
-    <a href="images/pictures/philippines/20020520_cave_opening.jpg" target="_blank">פתח המערה, דרכה הוא נשפך לים, לא מרשים</a>. סירה (כלול במחיר ה-
-    </span><span dir="LTR">permit</span><span lang="HE">) מכניסה אותך פנימה 
-    לקילומטר הראשון (מבין 8.2 קילומטר תת-קרקעיים של נהר!). נאמר שזה הנהר 
-    התת-קרקעי הארוך בעולם.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">נכנסנו לסירה. תיירים 
-    מקומיים מילאו אותה. היינו 9 כולל הנהג ומחזיק פנס העוצמה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">המערה גדולה מאד. דווקא 
-    הפתח שלה לא מנבא את גודלה. רוחבה כ- 10 מטר, גובהה כ- 20, אך מגיע גם ל- 65 
-    מטר!. עשרות ציפורים מתעופפות וצווחות, קולות סונאר, שכן אי-אפשר לראות בפנים. 
-    יש זרימת אוויר טובה גם בעומק המערה. סלעים בצורות יפות. אין הרבה נטיפים 
-    וזקיפים, אך המון צורות סלע בדמויות אנשים. זה מדהים כי זה כ"כ ברור. המדריך 
-    אומר ואתה ישר רואה את זה – פרצוף של ישו, 3 אנשים, משפחה, כלב ועוד, כמו פסל 
-    מוכשר. מאות עטלפים ישנים, תלויים מהתקרה. ריח חזק של הצואה שלהם (זה מה-
-    </span><span dir="LTR">bat room</span><span lang="HE"> המדריך מתבדח).</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הרבה חדרים במערה, בעלי 
-    שמות כמו הקתדרלה (דמויות מרים וישו בנה מופיעות בבירור בסלע) או ה- </span>
-<span dir="LTR">highway</span><span lang="HE"> (קטע סלע ישר כאילו חצוב בידי 
-    אדם). אחרי קילומטר הדרך עוד המשיכה, הסתובבנו וחזרנו. סה"כ שטנו למעלה מחצי 
-    שעה בתוך המערה. הגודל והיופי מדהימים. כדי להכנס עמוק יותר במערה צריך אישור 
-    מיוחד למחקר, וצריך גם כלי שיט קטן יותר כמו קיאק כי יש מקומות מסויימים חסומים 
-    ע"י סלעים וצריך לעבור אותם ברגל. לחקור את כל המערה זה ימים שלמים. יש גם 
-    לחקור חדרים צדדיים שלא נכנסנו אליהם ובל נשכח שיש עוד פתח בסוף.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אמרתי לגונן – מטרת הטיול 
-    שלנו הראשונה במעלה זה טבע במיטבו, כמו כאן. הוספתי ואמרתי שלפני הטיול, 
-    כשתכננו אותו, לא דיברנו על מערות. והנה הן הופיעו מספר פעמים בטיול והסבו לנו 
-    עונג רב. "כן, אתה צודק" אמר לי גונן, מהורהר, חושב על מערות קטנות יותר שהסבו 
-    לו עונג.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בשבילי ללכת בטבע ולטרק זה 
-    הכי טוב. גם עם הלחות הנוראה הלכנו וצחקנו. בדרך הלוך צחקנו על זה שזלוף מתכחש 
-    לזה שהוא שומע זוהר ארגוב ויודע את כל המילים בעל-פה. ג'וניור שלח לנו את 
-    הכחשתו באי-מייל. גם ג'וניור נצפה חוטא בצעד תימני בחתונות ונהנה מזה ואח"כ הוא 
-    מספר לנו שיש לו כרטיסים למתי כספי. "וגם אתה שמבקש עוד סחוג ועוד פלפל חריף 
-    וחולם בעצם על ממליגה" מוסיף גונן.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">כשיצאנו מהמנהרה הטבע המשיך 
-    להכות בנו. באיזור הפיקניק עם השולחנות היו המון קופים ולטאות ענק, לטאת 
-    המוניטור שחיה בפיליפינים. 
-    <a href="images/pictures/philippines/20020521_giant_lizard.jpg" target="_blank">לטאות ענק באורך 2 מטר הולכות לאיטן</a>, שולחות לשון 
-    ארוכה ומפוצלת ותרות אחרי אוכל. מדהים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">ההליכה עם גונן בטבע היא 
-    חוויה. עינו החדה צדה נחשים, סרטנים ופרפרים, דברים שאדם רגיל מפספס.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">
-<a href="images/pictures/philippines/20020521_gonen&amp;giant_lizard.jpg" target="_blank">גונן הצטלם עם לטאה</a>, 
-    <a href="images/pictures/philippines/20020521_malik_on_shore.jpg" target="_blank">אני עם 
-    הנוף</a>. גונן השאיר את התיק מאחוריו ובא לצלם אותי. קוף חצוף ירד לתיק וכבר שלח 
-    ידו לבפנים כשפתחתי בצעקות. רצנו והנסנו אותו משם. מה היה לנו שם? חגורת כסף 
-    (גונן), ארנק ומיני-דיסק(אני), כל החיים שלנו בטיול הזה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בדרך חזרה בחרנו במסלול הקל 
-    יותר, </span><span dir="LTR">monkey trail</span><span lang="HE">, שרובו על 
-    יד הים. היו באמת כמה קופים בדרך.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">קישקשנו. אמרתי לגונן: 
-    "בקרוב יבוא איזה יום שאיזה בחורה תקרא לו היום המאושר בחייה, שבו אני אגיד 
-    'יאללה בסדר, בואי נתחתן ונגמור עם החיים המסריחים האלה'. צריך להתכונן ליום 
-    הזה"</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">התחלתי לרשום מצרכים:</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">1. כורסת שינה – הפרט הכי 
-    חשוב לאחר נישואין. בכורסה זו אתה רואה טלוויזיה ונרדם וכך מעביר את לילותיך. 
-    חייבת להיות נוחה. לפני הקנייה חייבים לישון עליה. שווה אפילו להעביר את הלילה 
-    בחנות בשביל זה. זו השקעה לטווח ארוך. בצד אחד, במשענת היד – מקום לשים כוס, 
-    מקום לשלטים ומאפרה לשים קליפות של גרעינים. בצד השני, מגש נשלף כמו במטוס 
-    לארוחות. משענת גב שהולכת אחורה, תומך רגלים שמתרומם תוך כדי (כמו בכורסא של 
-    זקהיים) וארגז מצעים שנחשף תוך כדי כך בשביל לשלוף שמיכה או סדין.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">2. חדר או ארון אטום לקול – 
-    בו תוכל להכנס, לסגור אחריך את הדלת ולצעוק ולקלל בלי שאף אחד ישמע – כשמודיעים 
-    לך על שמחות משפחתיות או כשסתם נמאס לך מהחיים, מבלי להפריע לשלוות החיים של 
-    בני המשפחה האחרים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">3. פריז'ידר שקוף שניתן 
-    לראות מה יש לאכול במבט, בלי לקום.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">4. טלוויזיה ואפילו טלפון 
-    בשירותים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">5. שלט לזרוע הטלוויזיה 
-    להנמכה, להגבהה ולסיבוב ימינה ושמאלה. הכי טוב זה זרוע עם 2 טלוויזיות, מוצבות 
-    עם הגב אחת לשניה. כך אתה יכול לארח אורחים או משפחה סביב שולחן ולהוריד את 
-    הטלוויזיות מלמעלה ולראות משחק ולדבר פנים מול פנים ולאכול יחדיו מבלי שצריך 
-    לקום מהמקום לקחת את האוכל ואולי להפסיד גול.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">זו רק ההתחלה, אבל זה נראה 
-    מבטיח. אפילו ניתן להעביר ככה חצי חיים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">חזרנו עייפים וצמאים. לאחר 
-    10 קילומטר לא קלים, הורדתי ליטר קולה בשלוק. מקומיים התפלאו. אני לא שותה פחות 
-    מליטר כשאני צמא. זיעה הגרתי היום הרבה יותר.</span></b></p>
-<p> </p></td>
-<td align="center" height="333" rowspan="2" style="     " valign="top" width="187">
-
-<img border="0" height="114" onclick="openLightbox(this.src)" src="../images/20020520_cave_opening.jpg" title="לחץ להגדלה" width="182"/><p>
-<font color="#660099">פתח המערה לא מרמז על גודלה</font></p>
-<p> </p>
-<p>
-
-<img border="0" height="115" onclick="openLightbox(this.src)" src="../images/20020521_malik_on_shore.jpg" title="לחץ להגדלה" width="182"/></p>
-<p>
-
-<img border="0" height="125" onclick="openLightbox(this.src)" src="../images/20020521_beach_in_sabang_1.jpg" title="לחץ להגדלה" width="181"/></p>
-<p>
-
-<img border="0" height="132" onclick="openLightbox(this.src)" src="../images/20020521_beach_in_sabang_2.jpg" title="לחץ להגדלה" width="180"/></p>
-<p><font color="#660099">על החוף ליד המערה</font></p>
-<p> </p>
-<p>
-
-<img border="0" height="104" onclick="openLightbox(this.src)" src="../images/20020521_giant_lizard.jpg" title="לחץ להגדלה" width="179"/></p>
-<p>
-
-<img border="0" height="125" onclick="openLightbox(this.src)" src="../images/20020521_gonen&amp;giant_lizard.jpg" title="לחץ להגדלה" width="181"/></p>
-<p><font color="#660099">לטאות המוניטור הפזורות גם באיזור ליד המערה</font></p></td>
-</tr>
-<tr>
-<td height="67" style="     " valign="top" width="314">
-<b>
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button104.gif" title="לחץ להגדלה" width="59"/></b></td>
-<td height="67" style="     " valign="top" width="421">
-<p align="right"><b>
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button106.gif" title="לחץ להגדלה" width="59"/></b></p></td>
-</tr>
-</table>
-<p align="center">
-<!--webbot bot="Navigation" S-Type="sequence" S-Orientation="horizontal" S-Rendering="html" S-Bar="Brackets" S-Btn-Nml="[&lt;A HREF=&quot;#URL#&quot; TARGET=&quot;#TARGET#&quot; STYLE=&quot;{text-decoration: none;}&quot;&gt;#LABEL#&lt;/A&gt;]" S-Btn-Sel="[#LABEL#]" S-Btn-Sep="&amp;nbsp;" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><nobr>[<a href="index.html" style="{text-decoration: none;}" target="">התחלה</a>]</nobr> <nobr>[<a href="200110052040.html" style="{text-decoration: none;}" target="">דנמרק</a>]</nobr> <nobr>[<a href="20011006.html" style="{text-decoration: none;}" target="">הודו</a>]</nobr> <nobr>[<a href="20011030.html" style="{text-decoration: none;}" target="">נפאל</a>]</nobr> <nobr>[<a href="20011115.html" style="{text-decoration: none;}" target="">טרק סובב אנאפורנה</a>]</nobr> <nobr>[<a href="20011210.html" style="{text-decoration: none;}" target="">תאילנד</a>]</nobr> <nobr>[<a href="20020108.html" style="{text-decoration: none;}" target="">לאוס</a>]</nobr> <nobr>[<a href="20020123.html" style="{text-decoration: none;}" target="">צפון תאילנד</a>]</nobr> <nobr>[<a href="20020203.html" style="{text-decoration: none;}" target="">אוסטרליה</a>]</nobr> <nobr>[<a href="20020210.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי דרומי</a>]</nobr> <nobr>[<a href="20020326.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי צפוני</a>]</nobr> <nobr>[<a href="20020506.html" style="{text-decoration: none;}" target="">פיליפינים</a>]</nobr> <nobr>[<a href="20020603.html" style="{text-decoration: none;}" target="">קמבודיה</a>]</nobr><!--webbot bot="Navigation" i-checksum="33824" endspan --></p>
-<p><i><small>This site was last updated
-<!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%m/%d/%y" startspan -->08/02/03<!--webbot bot="Timestamp" i-checksum="12636" endspan --> </small></i>
-</p>
-</body>
+    <div class="nav-links">
+      <a href="20020519.html">← הקודם</a>
+      <a href="20020522.html">הבא →</a>
     </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-text">
+      <div class="meta-line">
+        <span class="date-big">20</span>
+        <div>
+          <div class="date-details">מאי 2002</div>
+          <span class="country-badge">פיליפינים</span>
+        </div>
+      </div>
+      <h1 class="title">זרמים תת-קרקעיים</h1>
+      <div class="title-divider"></div>
+    </div>
+    <img class="hero-map" src="../images/Philippines.gif" alt="פיליפינים">
+  </div>
+
+  <div class="content">
+    <p>זרמים תת-קרקעיים</p>
+
+    <p>עדיין נהנים, עדיין באותו מקום.</p>
+
+    <p>הכל יפה, האנשים נחמדים, מקום קטן ואיכותי.</p>
+
+    <p>אמרתי לגונן: תפאורה מושלמת לרצח שלא מפוענח, מזכיר את טווין פיקס, אפיזודות מרצח במשיכת קולמוס, אגתה כריסטי ואי הביקיני.</p>
+
+    <p>מנהל את Blue Bamboo יאן משוויץ, הוא נשוי לפיליפינית בשם לורנה, 32, שמנהלת את המקום בפועל. אחייניתה, אן-מארי, באה לכמה ימים לעזור.</p>
+
+    <p>גונן ואני יושבים ומסתלבטים.</p>
+
+    <p>לורנה ניגשת אלינו עם תמונה ממוסגרת של ילד קטן, כבן 5. זה הילד שלה והוא מת לפני חודש פתאם, תוך 3 ימים הוא נהיה חולה ומת. הסיפור מסתבך, היא סיפרה שהילד חש ברע ויאן בעצמו נתן לו כדור, תוך 10 דקות יצא קצף לבן מהפה של הילד. הוא הוחש לבית-חולים, בעיר הגדולה, Puerto Princesa, מרחק 3 שעות נסיעה, ומת שם, והוא עוד לא בן 6.</p>
+
+    <p>נרעשים כשהיינו, גמלנו בליבנו החלטה לרדת לעומקו של הנושא. גונן גייס את כל חושיו הבלשיים לגלות מה המשמעות של הכדור שניתן לילד. הוא חיטט וגילה אצל יאן כמויות של כדורים וחפיסה חשודה הכתובה בגרמנית. לורנה סיפרה שהבחור שעבד עם יאן, העד היחידי למעשה, פוטר ושוחרר לביתו.</p>
+
+    <p>היא לא עזבה, היא נשארה כאן. הוריו של יאן הגיעו משוויץ לביקור, אולי לרחרח. אן מארי, קרובתה, באה לעזור לה. זרמים תת-קרקעיים חזקים זורמים מתחת לנוף השליו הזה.</p>
+
+    <p>בערב הצטיידנו בבקבוק ברנדי (7 שקל, לא הזול ביותר) וקבענו עם אן-מארי ומארי-אן לערב של שתייה משותפת. הלכנו למרכז Sabang וחיפשנו ice tea, לבקשת אן-מארי. במרכז, שזה מעט צפונית מאיפה שאנו נמצאים אכלנו אורז עם עוף טוב ושתינו קצת רום עם מקומיים. המשכנו מעט הלאה. זעקות כאב החרידו את חשכת הערב, לא אנושיות, אך משדרות סבל בל יתואר. בהתחלה התעלמנו. אח"כ הסתקרנו וגם היינו בכיוון. כשהגענו ראינו מחזה קשה. חזיר היה שכוב על השולחן, מוחזק חזק ברגליו. דם נזל מצווארו לתוך דלי, סכין מגואלת בדם היתה מונחת על השולחן. החזיר נראה כמקיא, התנגדותו היתה כבר חלשה, כשנוזל החיים עוזב את גופו.</p>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/20020322_fishermen.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020520_cave_opening.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">פתח המערה לא מרמז על גודלה</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020521_malik_on_shore.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+    </div>
+
+    <p>הפיליפינים הם אנשים כ"כ נחמדים, אבל זו היתה שחיטה אכזרית, בייסורים, לא כמו אצלנו. אני לא זוכר לאיזו פיליפינית סיפרנו את זה, עדיין נרעשים מהמחזה, והיא צחקה, והסתכלה עלינו במבט שמשמעו "אתם צוחקים עלי, איפה הקאטץ'?, מה מיוחד בסיפור הזה?".</p>
+
+    <p>גונן התחיל לחשוש שהמוות אופף את המקום היפהפה והלכאורה שליו הזה. "ננסה לשרוד את הלילה" אמרתי לו.</p>
+
+    <p>אן מארי סיפרה לנו שהילד מת מדלקת ריאות. "הוא כל הזמן הלך לשחות בים, גם בלילה". "הדוד יאן", כך היא קוראת לו, "לא אשם, ולא קשור לזה". (דרך אגב הילד לא ממנו).</p>
+
+    <p>היום מישהו מקומי שמכיר את לורנה אמר שהילד מת ממלריה.</p>
+
+    <p>אמרתי לגונן – מה שבטוח שיש כאן ילד מת, יש גופה. אבל הכל הולך ומסתבך.</p>
+
+    <p>בערב ישבנו לנו בחוף עם לורנה והבנות ועוד איזה מישהי שעובדת כאן אבל אפשר להתעלם ממנה. שתינו ועשינו צחוקים. נכנסנו לראש, אבל בתכלס לא יצא כלום עם הבחורות. כל מה שמעניין את הבחורות כאן זה לצאת מהארץ הזו. הן צריכות תייר שיעניק להן חיים טובים יותר. רואים את זה במבט שלהן, קשה להן להסתיר את זה. אתה, ככל גבר, מפשיט אותה במבטיך, והיא מלבישה אותך במבטה – בחליפות ואותה בשמלה ובית יפה וכך מבטה חולמני וראשה הרחק מכאן, בארץ אחרת.</p>
+
+    <p>בקיצור, בתכנית שלהן לארגן רומן מהיר עמוס ברגשות ותכניות. הרבה שאלות על יחסים שהיו לך בעבר ואם אהבת וכל השטויות האלה שאתה חוטא גם לעצמך אם אתה עונה עליהן ברצינות לבחורה שכוונותיך אינן ארוכות טווח כלפיה.</p>
+
+    <p>ישנו בבונגלו שלנו, 10 מטר מהחוף, דלת פתוחה. בלילה היה גשם סוחף. המגבות והסנדלים נרטבו.</p>
+
+    <p>קמנו ב- 6:00. קרני השמש ליטפו את הים החלק כסדין. בעצם הרבה יותר.</p>
+
+    <p>גונן הלך לחרבן ואני לא עשיתי כלום, נגעתי בשיער ונרגעתי. גונן חזר וכרגיל סיפר לי על הצלחותיו או חוסר הצלחותיו בנושא. "מעניין את התחת שלי" אמרתי לו כי חשתי שאני בספירות גבוהות יותר. בדיעבד, תשובה לא הכי טובה. צריך לזכור שהיא גם לא שימושית כשרוצים להפטר מאיזה הומו שמציק.</p>
+
+    <div class="photo-pair">
+      <div class="photo-item">
+        <img src="../images/20020521_beach_in_sabang_1.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020521_beach_in_sabang_2.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">על החוף ליד המערה</div>
+      </div>
+    </div>
+
+    <p>אכלנו בוקר ויצאנו רק ב- 8:00 אל הזרמים התת-קרקעיים האמיתיים – הנהר התת-קרקעי.</p>
+
+    <p>הלכנו לאורך החוף כ- 2 ק"מ עד לכניסה לשמורה. זה מקום מסודר. יד אירופאית פיקחה כאן על הכל. יש צורך באישור כניסה (permit) שעולה 200 פזו. אנו הצטיידנו מבעוד מועד.</p>
+
+    <p>בהמשך יש 2 דרכים אפשריות. בחרנו ב- jungle trail. הלכנו במעבה צמחיית ג'ונגל. השמש לא שלטה בשמים, היה מעונן. החום: 30 וקצת מעלות. הלחות לפחות 100%. הלכנו בלי חולצה וטוב שהשמש לא יצאה, אבל היינו רטובים מזיעה, אפילו מכנסינו היו רטובות. גונן פחד שאני אשתה הרבה מים אז הוא הוריד את הפתק מבקבוק המים שלו ואמר "סימנתי את הבקבוק שלי".</p>
+
+    <p>שביל דק, זבובונים קטנים (נראה לי שגם עוקצים) מסביב וקורי עכביש דקים, בלתי נראים, קורים אטומים, שאתה קורע בעוברך והם נדבקים אליך וזה מגעיל ומעצבן. הדרך מטפסת ויורדת. באמצע הדרך היו כמה סלעי ענק. המון נקיקים בתוך הסלעים, כמו מערות, והן נמשכות ומתארכות לעומק הסלע. יפה, אך זו לא מטרת הטרק, אז לא התעכבנו. סרטנים אוהבי יבשה בהמוניהם. סרטני נזיר (אם כי לא נראה לי שהמין-זר להם) הולכים ומתכנסים בעוברך. צווחות (של קופים?) ברקע. אווירת ג'ונגל אמיתית.</p>
+
+    <p>לבסוף הגענו לנהר התת-קרקעי. <a onclick="openLightbox('../images/20020520_cave_opening.jpg')">פתח המערה, דרכה הוא נשפך לים, לא מרשים</a>. סירה (כלול במחיר ה- permit) מכניסה אותך פנימה לקילומטר הראשון (מבין 8.2 קילומטר תת-קרקעיים של נהר!). נאמר שזה הנהר התת-קרקעי הארוך בעולם.</p>
+
+    <p>נכנסנו לסירה. תיירים מקומיים מילאו אותה. היינו 9 כולל הנהג ומחזיק פנס העוצמה.</p>
+
+    <p>המערה גדולה מאד. דווקא הפתח שלה לא מנבא את גודלה. רוחבה כ- 10 מטר, גובהה כ- 20, אך מגיע גם ל- 65 מטר!. עשרות ציפורים מתעופפות וצווחות, קולות סונאר, שכן אי-אפשר לראות בפנים. יש זרימת אוויר טובה גם בעומק המערה. סלעים בצורות יפות. אין הרבה נטיפים וזקיפים, אך המון צורות סלע בדמויות אנשים. זה מדהים כי זה כ"כ ברור. המדריך אומר ואתה ישר רואה את זה – פרצוף של ישו, 3 אנשים, משפחה, כלב ועוד, כמו פסל מוכשר. מאות עטלפים ישנים, תלויים מהתקרה. ריח חזק של הצואה שלהם (זה מה- bat room המדריך מתבדח).</p>
+
+    <p>הרבה חדרים במערה, בעלי שמות כמו הקתדרלה (דמויות מרים וישו בנה מופיעות בבירור בסלע) או ה- highway (קטע סלע ישר כאילו חצוב בידי אדם). אחרי קילומטר הדרך עוד המשיכה, הסתובבנו וחזרנו. סה"כ שטנו למעלה מחצי שעה בתוך המערה. הגודל והיופי מדהימים. כדי להכנס עמוק יותר במערה צריך אישור מיוחד למחקר, וצריך גם כלי שיט קטן יותר כמו קיאק כי יש מקומות מסויימים חסומים ע"י סלעים וצריך לעבור אותם ברגל. לחקור את כל המערה זה ימים שלמים. יש גם לחקור חדרים צדדיים שלא נכנסנו אליהם ובל נשכח שיש עוד פתח בסוף.</p>
+
+    <p>אמרתי לגונן – מטרת הטיול שלנו הראשונה במעלה זה טבע במיטבו, כמו כאן. הוספתי ואמרתי שלפני הטיול, כשתכננו אותו, לא דיברנו על מערות. והנה הן הופיעו מספר פעמים בטיול והסבו לנו עונג רב. "כן, אתה צודק" אמר לי גונן, מהורהר, חושב על מערות קטנות יותר שהסבו לו עונג.</p>
+
+    <p>בשבילי ללכת בטבע ולטרק זה הכי טוב. גם עם הלחות הנוראה הלכנו וצחקנו. בדרך הלוך צחקנו על זה שזלוף מתכחש לזה שהוא שומע זוהר ארגוב ויודע את כל המילים בעל-פה. ג'וניור שלח לנו את הכחשתו באי-מייל. גם ג'וניור נצפה חוטא בצעד תימני בחתונות ונהנה מזה ואח"כ הוא מספר לנו שיש לו כרטיסים למתי כספי. "וגם אתה שמבקש עוד סחוג ועוד פלפל חריף וחולם בעצם על ממליגה" מוסיף גונן.</p>
+
+    <div class="photo-pair">
+      <div class="photo-item">
+        <img src="../images/20020521_giant_lizard.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020521_gonen&giant_lizard.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">לטאות המוניטור הפזורות גם באיזור ליד המערה</div>
+      </div>
+    </div>
+
+    <p>כשיצאנו מהמנהרה הטבע המשיך להכות בנו. באיזור הפיקניק עם השולחנות היו המון קופים ולטאות ענק, לטאת המוניטור שחיה בפיליפינים. <a onclick="openLightbox('../images/20020521_giant_lizard.jpg')">לטאות ענק באורך 2 מטר הולכות לאיטן</a>, שולחות לשון ארוכה ומפוצלת ותרות אחרי אוכל. מדהים.</p>
+
+    <p>ההליכה עם גונן בטבע היא חוויה. עינו החדה צדה נחשים, סרטנים ופרפרים, דברים שאדם רגיל מפספס.</p>
+
+    <p><a onclick="openLightbox('../images/20020521_gonen&giant_lizard.jpg')">גונן הצטלם עם לטאה</a>, <a onclick="openLightbox('../images/20020521_malik_on_shore.jpg')">אני עם הנוף</a>. גונן השאיר את התיק מאחוריו ובא לצלם אותי. קוף חצוף ירד לתיק וכבר שלח ידו לבפנים כשפתחתי בצעקות. רצנו והנסנו אותו משם. מה היה לנו שם? חגורת כסף (גונן), ארנק ומיני-דיסק(אני), כל החיים שלנו בטיול הזה.</p>
+
+    <p>בדרך חזרה בחרנו במסלול הקל יותר, monkey trail, שרובו על יד הים. היו באמת כמה קופים בדרך.</p>
+
+    <p>קישקשנו. אמרתי לגונן: "בקרוב יבוא איזה יום שאיזה בחורה תקרא לו היום המאושר בחייה, שבו אני אגיד 'יאללה בסדר, בואי נתחתן ונגמור עם החיים המסריחים האלה'. צריך להתכונן ליום הזה"</p>
+
+    <p>התחלתי לרשום מצרכים:</p>
+
+    <p>1. כורסת שינה – הפרט הכי חשוב לאחר נישואין. בכורסה זו אתה רואה טלוויזיה ונרדם וכך מעביר את לילותיך. חייבת להיות נוחה. לפני הקנייה חייבים לישון עליה. שווה אפילו להעביר את הלילה בחנות בשביל זה. זו השקעה לטווח ארוך. בצד אחד, במשענת היד – מקום לשים כוס, מקום לשלטים ומאפרה לשים קליפות של גרעינים. בצד השני, מגש נשלף כמו במטוס לארוחות. משענת גב שהולכת אחורה, תומך רגלים שמתרומם תוך כדי (כמו בכורסא של זקהיים) וארגז מצעים שנחשף תוך כדי כך בשביל לשלוף שמיכה או סדין.</p>
+
+    <p>2. חדר או ארון אטום לקול – בו תוכל להכנס, לסגור אחריך את הדלת ולצעוק ולקלל בלי שאף אחד ישמע – כשמודיעים לך על שמחות משפחתיות או כשסתם נמאס לך מהחיים, מבלי להפריע לשלוות החיים של בני המשפחה האחרים.</p>
+
+    <p>3. פריז'ידר שקוף שניתן לראות מה יש לאכול במבט, בלי לקום.</p>
+
+    <p>4. טלוויזיה ואפילו טלפון בשירותים.</p>
+
+    <p>5. שלט לזרוע הטלוויזיה להנמכה, להגבהה ולסיבוב ימינה ושמאלה. הכי טוב זה זרוע עם 2 טלוויזיות, מוצבות עם הגב אחת לשניה. כך אתה יכול לארח אורחים או משפחה סביב שולחן ולהוריד את הטלוויזיות מלמעלה ולראות משחק ולדבר פנים מול פנים ולאכול יחדיו מבלי שצריך לקום מהמקום לקחת את האוכל ואולי להפסיד גול.</p>
+
+    <p>זו רק ההתחלה, אבל זה נראה מבטיח. אפילו ניתן להעביר ככה חצי חיים.</p>
+
+    <p>חזרנו עייפים וצמאים. לאחר 10 קילומטר לא קלים, הורדתי ליטר קולה בשלוק. מקומיים התפלאו. אני לא שותה פחות מליטר כשאני צמא. זיעה הגרתי היום הרבה יותר.</p>
+
+
+  </div>
+
+  <div class="nav-cards">
+    <a href="20020522.html" class="nav-card">
+      <div class="label">הבא →</div>
+      <div class="card-title">והספינה לא שטה</div>
+    </a>
+    <a href="20020519.html" class="nav-card">
+      <div class="label">← הקודם</div>
+      <div class="card-title">אי של שקט</div>
+    </a>
+  </div>
+
+  <div class="country-nav">
+    <a href="200110052040.html">דנמרק</a>
+    <a href="20011006.html">הודו</a>
+    <a href="20011030.html">נפאל</a>
+    <a href="20011115.html">טרק אנאפורנה</a>
+    <a href="20011210.html">תאילנד</a>
+    <a href="20020108.html">לאוס</a>
+    <a href="20020123.html">צפון תאילנד</a>
+    <a href="20020203.html">אוסטרליה</a>
+    <a href="20020210.html">ניו-זילנד, אי דרומי</a>
+    <a href="20020326.html">ניו-זילנד, אי צפוני</a>
+    <a href="20020506.html">פיליפינים</a>
+    <a href="20020603.html">קמבודיה</a>
   </div>
 
   <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
-    <img id="lightbox-img" src="" alt="Enlarged">
+    <img id="lightbox-img" src="" alt="">
   </div>
-
   <script>
     function openLightbox(src) {
       document.getElementById('lightbox-img').src = src;

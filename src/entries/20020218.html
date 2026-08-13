@@ -3,228 +3,311 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>באוטו, אקארואה, ניו-זילנד</title>
+  <title>טרק האוטו הראשון</title>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap" rel="stylesheet">
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background-color: #f8fafc;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0; padding: 20px; color: #334155;
+      background: #ffffff;
+      font-family: 'Heebo', sans-serif;
+      color: #1a1a2e;
+      line-height: 1.9;
     }
-    .container {
-      max-width: 800px; margin: 0 auto; background: #ffffff;
-      padding: 35px; border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06); line-height: 1.8;
+    .top-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #eee;
+      padding: 12px 30px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.9rem;
     }
-    .header {
-      border-bottom: 2px solid #e2e8f0; padding-bottom: 15px;
-      margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center;
+    .top-nav a {
+      color: #1d4ed8; text-decoration: none; font-weight: 600;
     }
-    .header h1 { margin: 0; color: #0f172a; font-size: 1.8rem; }
-    .home-link { color: #2563eb; text-decoration: none; font-weight: 600; }
-    .content img {
-      float: right; margin: 0 0 15px 20px; max-width: 320px; height: auto;
-      border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      cursor: pointer; transition: transform 0.2s;
+    .top-nav a:hover { text-decoration: underline; }
+    .top-nav .nav-links { display: flex; gap: 20px; }
+    .hero {
+      max-width: 900px; margin: 0 auto;
+      padding: 50px 40px 30px;
+      display: flex; align-items: flex-start; gap: 30px;
     }
-    .content img:hover { transform: scale(1.02); }
-    .content::after { content: ""; clear: both; display: table; }
-    a { color: #2563eb; }
+    .hero-text { flex: 1; }
+    .hero-map {
+      width: 120px; height: auto; object-fit: contain;
+      flex-shrink: 0; opacity: 0.85;
+    }
+    .meta-line {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+    }
+    .date-big {
+      font-size: 3.5rem; font-weight: 900; color: #e5e7eb; line-height: 1;
+    }
+    .date-details { font-size: 0.9rem; color: #6b7280; }
+    .country-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      border-radius: 20px; padding: 4px 14px;
+      font-size: 0.8rem; color: #1d4ed8; font-weight: 600;
+    }
+    .title {
+      font-size: 2.2rem; font-weight: 900; color: #111827;
+      margin: 20px 0 8px; line-height: 1.3;
+    }
+    .date-subtitle {
+      font-size: 1.1rem; font-weight: 300; color: #4b5563;
+      margin-bottom: 16px;
+    }
+    .title-divider {
+      width: 60px; height: 4px; background: #1d4ed8; border-radius: 2px;
+    }
+    .content {
+      max-width: 900px; margin: 30px auto; padding: 0 40px; font-size: 1.05rem;
+    }
+    .content p { margin-bottom: 18px; }
+    .content a {
+      color: #1d4ed8; cursor: pointer;
+      text-decoration: underline;
+      text-decoration-color: rgba(29,78,216,0.3);
+    }
+    .photo-block {
+      margin: 30px 0; border-radius: 12px; overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    .photo-block img {
+      width: 100%; display: block; cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .photo-block img:hover { transform: scale(1.01); }
+    .photo-block .caption {
+      padding: 12px 16px; font-size: 0.85rem; color: #6b7280;
+      background: #f9fafb; border-top: 1px solid #f3f4f6;
+    }
+    .photo-pair {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 14px; margin: 30px 0;
+    }
+    .photo-pair .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-pair .photo-item img {
+      width: 100%; height: 200px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-pair .photo-item img:hover { transform: scale(1.03); }
+    .photo-pair .photo-item .caption {
+      padding: 8px 12px; font-size: 0.8rem; color: #6b7280; background: #f9fafb;
+    }
+    .photo-trio {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px; margin: 30px 0;
+    }
+    .photo-trio .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-trio .photo-item img {
+      width: 100%; height: 180px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-trio .photo-item img:hover { transform: scale(1.03); }
+    .photo-trio .photo-item .caption {
+      padding: 8px 10px; font-size: 0.78rem; color: #6b7280; background: #f9fafb;
+    }
+    .nav-cards {
+      max-width: 900px; margin: 50px auto 20px; padding: 0 40px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .nav-card {
+      padding: 20px 24px; border: 1px solid #e5e7eb; border-radius: 12px;
+      text-decoration: none; color: inherit; transition: all 0.2s;
+    }
+    .nav-card:hover {
+      border-color: #1d4ed8; box-shadow: 0 4px 12px rgba(29,78,216,0.1);
+    }
+    .nav-card .label { font-size: 0.8rem; color: #6b7280; margin-bottom: 4px; }
+    .nav-card .card-title { font-weight: 700; font-size: 1rem; color: #1d4ed8; }
+    .supplements {
+      margin-top: 35px; padding: 25px 30px;
+      background: #f9fafb; border-radius: 12px; border: 1px solid #e5e7eb;
+    }
+    .supplements h3 {
+      font-size: 1.1rem; font-weight: 700; margin-bottom: 14px; color: #374151;
+    }
+    .supplements ol { padding-right: 20px; }
+    .supplements li { margin-bottom: 10px; color: #4b5563; }
+    .country-nav {
+      max-width: 900px; margin: 20px auto 40px; padding: 0 40px;
+      display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+    }
+    .country-nav a {
+      padding: 6px 14px; border-radius: 20px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      color: #1d4ed8; text-decoration: none;
+      font-size: 0.82rem; font-weight: 600;
+      transition: all 0.2s;
+    }
+    .country-nav a:hover {
+      background: #1d4ed8; color: white; border-color: #1d4ed8;
+    }
     .lightbox {
       display: none; position: fixed; z-index: 9999;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.9); justify-content: center; align-items: center; cursor: pointer;
+      background: rgba(0,0,0,0.92);
+      justify-content: center; align-items: center; cursor: pointer;
     }
-    .lightbox img { max-width: 90%; max-height: 90%; border-radius: 8px; }
+    .lightbox img { max-width: 92%; max-height: 92%; border-radius: 8px; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h1>באוטו, אקארואה, ניו-זילנד</h1>
-      <a href="../index.html" class="home-link">🏠 לעמוד הראשי</a>
+  <div class="top-nav">
+    <div class="nav-links">
+      <a href="../index.html">עמוד ראשי</a>
     </div>
-    <div class="content">
-      <body>
-<table cellpadding="0" cellspacing="0" height="80" width="954">
-<tr>
-<td align="center" height="80" width="277">
-<marquee style="font-size: 18pt; color: #800080">18.2.02 - 9:30</marquee></td>
-<td align="center" height="80" width="667">
-<!--webbot bot="Navigation" s-type="banner" s-rendering="graphics" S-Orientation B-Include-Home B-Include-Up U-Page S-Target startspan --><!--webbot bot="Navigation" i-checksum="41284" endspan --></td>
-<td align="center" height="80" width="10">
-
-<img border="0" height="156" onclick="openLightbox(this.src)" src="../images/New_Zealand_south_island.gif" title="לחץ להגדלה" width="159"/></td>
-</tr>
-<tr>
-<td colspan="3" height="1" style=" " width="954"></td>
-</tr>
-</table><table cellpadding="0" cellspacing="0" width="100%">
-<tr>
-<td align="right" style=" ">
-<h4>
-<marquee style="font-size: 24pt; color: #008080">טרק האוטו הראשון</marquee></h4>
-<p> </p></td>
-</tr>
-</table>
-<table cellpadding="0" cellspacing="0" height="333" width="953">
-<tr>
-<td height="333" rowspan="2" style="       " valign="top" width="140"> <!--webbot bot="Navigation" S-Type="sequence" S-Orientation="vertical" S-Rendering="graphics" S-Theme="blocks 000" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><!--webbot bot="Navigation" i-checksum="23763" endspan --><p> </p>
-</td>
-<td height="333" rowspan="2" style="     " valign="top" width="1"></td>
-<td colspan="2" height="266" style="     " valign="top" width="735">
-<p class="MsoNormal" dir="RTL"><span lang="HE"><b>יומיים יפים במקום יפה. 
-    אנחנו מחוץ לעיר בחיק הטבע, האם יש חיק טוב מזה ?</b></span></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">נסיים ונספר על מה שעברנו 
-    ביומיים האחרונים:</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">ה- 16.2 בערב היה אחד מאותם 
-    ימים שקורים אחת ל- 3 שבועות לערך. אנחנו לא עושים כלום בערב.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">כשהגענו לגסט האוס החמוד, 
-    אנוקו, גונן רצה לישון ערב ואח"כ לצאת. ידעתי שזו שטות, אך משום מה הייתי גם 
-    עייף. ישנו וקמתי כששמעתי קולות דיבור מהסלון של הגסט האוס. קמתי והצטרפתי. איך 
-    שהגעתי כולם נפרדו לשינה. מסתבר שהשעה היתה כבר 22:30. יכול להיות שזאת היתה 
-    טעות לישון בערב.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">טוב, אז התקשרתי לארץ וחוץ 
-    מיעל, תפסתי את כולם והם איחלו לי מזל-טוב.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">סיימנו את הערב בקריאת 
-    עיתון – מבט אל לוח הדרושים. גונן קורא </span><span dir="LTR">National 
-    Geographic</span><span lang="HE">.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בבוקר העיר אותנו האחראי ב- 
-    8:00. צריך לצאת לשיט קיאקים ויש יום יפה. כולם חיכו לנו אז אני הייתי מוכן תוך 
-    5 דקות. הבטתי בקרקע מבושה כשכולם חיכו לגונן עוד רבע שעה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">ירדנו עד למפרץ ונכנסנו 
-    לקיאקים. היה נחמד, אך זה היה טיול מודרך, אז לא ממש השתוללנו. איתנו היו 2 
-    גרמנים צעירים, מדריך יפני חמוד ומדריכה מאירופה שנראית כבת 40 ובעלת חזות לא 
-    נשית (ללא חזה, שיער קצר ומשקפי ג'ון לנון). המטרה היתה חיפוש דולפינים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">כשהגיעה הסירה שמביאה 
-    תיירים לשחות עם דולפינים (וזה עולה 75$</span><span dir="LTR">NZ</span><span lang="HE"> 
-    במקום 20$</span><span dir="LTR">NZ</span><span lang="HE"> כמו שעולה לנו) 
-    התקרבנו אליה ואז שלושה דולפינים הקיפו אותי וסימנתי לכולם שיבואו. הדולפינים 
-    קטנים, בצבע אפור/כחול. הם הסתובבו בינינו וליד הסירה הגדולה כ- 10 דקות 
-    ונעלמו. את יתר השעתיים העברנו סתם בחתירה. אני וגונן רבנו מי תופס בקיאק של מי 
-    והמדריכה העירה לנו על כך, שלא נתהפך. סיימנו וחזרנו לחוף.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"><a name="happy birthday">
-</a>גונן חייך אלי ואמר "מי 
-    נולד היום ?". עניתי לו את כל מי שזכרתי – "מייקל ג'ורדן ומיקי ברקוביץ', כל מי 
-    שנולד ב- 17.2". "אההה, היום לא ה- 16.2 ?" שאל גונן בחוסר אמון. מסתבר שהוא 
-    הסתכל במצלמה ושם היה כתוב 16.2. אני לא יודע מי כיוון את התאריך במצלמה (אולי 
-    זה היה עוד בישראל, 11 שעות אחורה).</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">חזרנו לגסט האוס ואמרנו להם 
-    שאנחנו עוזבים. הם לא אהבו את זה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אכלנו </span>
-<span dir="LTR">Fish&amp;Chips</span><span lang="HE"> וקיבלנו דוח על חנייה. 
-    חנינו במקום של אוטובוס. ראיתי את זה לפני-כן, אך בגלל היום היפה והעובדה שיום 
-    ראשון היום וכל החניות תפוסות, החלטתי לחנות כאן בכל זאת. הדוח הוא על 60$</span><span dir="LTR">NZ</span><span lang="HE">, 
-    אבל אנחנו לא מתכוננים לשלם אותו. גונן נלחץ. הזהרתי אותו והזכרתי לו שבפעם 
-    האחרונה שהוא נלחץ, <a href="20020128.htm#before_accident">זה היה עם האופנוע ואח"כ הוא עשה 
-    תאונה</a>, אז שירגע.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בכלל, להבדיל מנהיגתו הטובה 
-    באופנוע, גונן נוהג גרוע במכונית – בכביש מהיר הוא נוסע לאט, שוכח להחליף 
-    מאורות גבוהים לנמוכים או מכבה אותם במקום להעביר לנמוכים. כשהוא נוסע לאט כולם 
-    עוקפים אותו או נתקעים מאחורינו ונצמדים אלינו. אתמול גם טיילנו עם האוטו 
-    בגבעות וכשחזרנו למלא דלק, המוכרת העירה לנו ששרפנו את הברקסים ואלה היו רק 
-    גבעות, לא הרים תלולים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אז אחרי שעזבנו את הבק-פקר, 
-    הלכנו לעשות טרק רגלי באיזור. גונן אמר שהיום יום יפה אז עדיף לנסוע עם האוטו. 
-    אני אמרתי לו "כן, כן, אז ביום גשם עדיף ללכת ?". דברי היו דברי טעם, אך אחרי 
-    20 דקות הליכה חשתי שהוא צודק. אז חזרנו לאוטו ועלינו בכבישים הצדדיים, שנהפכו 
-    לשבילי עפר. הכביש משך למעלה, אל הגבעות, ומשם ראינו נוף מדהים של המפרץ, מפרץ 
-    אקארואה. גונן צילם כמה תמונות בהתרגשות. עצרנו לפיקניק – לחמניות, אבוקדו, 
-    גבינה צהובה ומלפפון.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">המשכנו בדרכינו, עברנו את 
-    הגבעות וראינו את המפרצים בצד השני – את </span><span dir="LTR">paua bay</span><span lang="HE">. 
-    היה שם סלע מזדקר וגונן אמר שזה מזכיר לו את חוף הסלע בבת-ים. הוא נהג אז הוא 
-    לא קיבל סטירה. אמרתי לו שזה כמו לקחת את רני למלון פאר והוא יגיד שזה מזכיר לו 
-    את התא שלו בכלא.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">המשכנו והמשכנו ומצדדינו 
-    כבשים ופרות חמודים. לא היו שם כמעט מכוניות אז הם הסתכלו עלינו בפליאה. מלמעלה 
-    חגו הרבה שחפים, אך גם כמה עיטים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">לא היה לנו הרבה דלק אז 
-    חזרנו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">ניסיתי לראות במפה את השביל 
-    מתחבר לכביש או שנצטרך לחזור כלעומת שבאנו וכמעט דפקתי את הראש בחלון. "לא 
-    רציתי לעלות על אבן" הצטדק גונן. "אני כמעט עליתי ל- </span><span dir="LTR">
-    heaven</span><span lang="HE">" עניתי לו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בסוף חזרנו כלעומת שבאנו. 
-    הגענו למטה, לאקרואה, מלאנו דלק וחשבנו מה עושים הלאה. פתאם הופיע הראש של יעל, 
-    חברה של אפרת. הן קנו אוטו טיפה ביוקר (1300$</span><span dir="LTR">NZ</span><span lang="HE"> 
-    + 250$</span><span dir="LTR">NZ</span><span lang="HE"> תיקונים). איתן היתה 
-    בחורה ג'ינג'ית בשם הילה שגונן הסב את תשומת ליבי שיש לה תחת מושלם.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הן המשיכו בדרכן. אנחנו 
-    נהננו מטרק המכונית והמשכנו. החלטנו לנסוע ל- </span><span dir="LTR">Lyttelton</span><span lang="HE">. 
-    התחלנו לנסוע עד שהתחוור לי שזה ליד קרייסטצ'רץ', כ- 50 ק"מ נסיעה ואח"כ עוד 
-    צריך לחזור.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אז לקחנו את הכביש המקביל,
-    </span><span dir="LTR">Summit road</span><span lang="HE">. הגענו למפרץ בצד 
-    השני בשם </span><span dir="LTR">Pigeon bay</span><span lang="HE"> ואח"כ 
-    נסענו בשבילים לעיירה </span><span dir="LTR">Port Levi</span> <span lang="HE">
-    – זה מקום יפהפה, קלאסי לבית קיץ. היו שם אילים וזה היה יפה מאד. נתקענו עם 
-    האוטו שלא הניע איזה שעה וחצי וראינו את השקיעה. בפוקס האוטו הניע לבסוף אז 
-    חזרנו לאקארואה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">כל הדרך קפצו לנו ארנבונים 
-    מול המכונית הם כולם מפגרים כי כשברחו מאיתנו זה היה תמיד על השביל ולא לצדדים, 
-    לשיחים. אחד מהם ברח כך 2 ק"מ וראינו שהוא מתעייף ועוצר להפסקות על השביל, 
-    עדיין הוא לא פנה לשיחים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">חזרנו, הורדנו את הכסאות 
-    באוטו וישנו בנוחיות ולבד. חנינו ליד השירותים הציבוריים. היה כיף לחרבן שם 
-    מוקדם בבוקר כשאף אחד עוד לא בא.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">גונן רצה להוציא כסף אך 
-    הסתבך עם המספר שלו ונכנס לסניף להוציא כסף.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אפרת ויעל הגיעו בלי 
-    הג'ינג'ית ואנחנו מתכוונים לצאת איתן לטרק.</span></b></p>
-<p> </p></td>
-<td align="center" height="333" rowspan="2" style="     " valign="top" width="187">
-
-<img border="0" height="121" onclick="openLightbox(this.src)" src="../images/20020216_akaroa_marina.jpg" title="לחץ להגדלה" width="176"/><p><font color="#660099">מפרץ אקארואה מקרוב - נראה כמו מרינה</font></p>
-<p> </p>
-<p>
-
-<img border="0" height="136" onclick="openLightbox(this.src)" src="../images/20020217_dolphins.jpg" title="לחץ להגדלה" width="179"/></p>
-<p>
-<font color="#660099">דולפינים באקארואה</font></p>
-<p>
-     </p>
-<p>
-
-<img border="0" height="126" onclick="openLightbox(this.src)" src="../images/20020217_male_seagull.jpg" title="לחץ להגדלה" width="180"/></p>
-<p><font color="#660099">שחף זכר</font></p>
-<p>
-
-<img border="0" height="136" onclick="openLightbox(this.src)" src="../images/20020217_female_seagull.jpg" title="לחץ להגדלה" width="175"/></p>
-<p><font color="#660099">שחף נקבה</font></p>
-<p> <p>
-
-<img border="0" height="126" onclick="openLightbox(this.src)" src="../images/20020216_akaroa_other_side.jpg" title="לחץ להגדלה" width="180"/><p>
-
-<img border="0" height="121" onclick="openLightbox(this.src)" src="../images/20020216_gonen_eizen.jpg" title="לחץ להגדלה" width="181"/><p>
-
-<img border="0" height="126" onclick="openLightbox(this.src)" src="../images/20020216_malik_hakaroa.jpg" title="לחץ להגדלה" width="181"/><p>
-<font color="#660099">המפרצים בצד השני של אקרואה</font></p></p></p></p></p></td>
-</tr>
-<tr>
-<td height="67" style="     " valign="top" width="314">
-<b>
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button104.gif" title="לחץ להגדלה" width="59"/></b></td>
-<td height="67" style="     " valign="top" width="421">
-<p align="right"><b>
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button106.gif" title="לחץ להגדלה" width="59"/></b></p></td>
-</tr>
-</table>
-<p align="center">
-<!--webbot bot="Navigation" S-Type="sequence" S-Orientation="horizontal" S-Rendering="html" S-Bar="Brackets" S-Btn-Nml="[&lt;A HREF=&quot;#URL#&quot; TARGET=&quot;#TARGET#&quot; STYLE=&quot;{text-decoration: none;}&quot;&gt;#LABEL#&lt;/A&gt;]" S-Btn-Sel="[#LABEL#]" S-Btn-Sep="&amp;nbsp;" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><nobr>[<a href="index.html" style="{text-decoration: none;}" target="">התחלה</a>]</nobr> <nobr>[<a href="200110052040.html" style="{text-decoration: none;}" target="">דנמרק</a>]</nobr> <nobr>[<a href="20011006.html" style="{text-decoration: none;}" target="">הודו</a>]</nobr> <nobr>[<a href="20011030.html" style="{text-decoration: none;}" target="">נפאל</a>]</nobr> <nobr>[<a href="20011115.html" style="{text-decoration: none;}" target="">טרק סובב אנאפורנה</a>]</nobr> <nobr>[<a href="20011210.html" style="{text-decoration: none;}" target="">תאילנד</a>]</nobr> <nobr>[<a href="20020108.html" style="{text-decoration: none;}" target="">לאוס</a>]</nobr> <nobr>[<a href="20020123.html" style="{text-decoration: none;}" target="">צפון תאילנד</a>]</nobr> <nobr>[<a href="20020203.html" style="{text-decoration: none;}" target="">אוסטרליה</a>]</nobr> <nobr>[<a href="20020210.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי דרומי</a>]</nobr> <nobr>[<a href="20020326.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי צפוני</a>]</nobr> <nobr>[<a href="20020506.html" style="{text-decoration: none;}" target="">פיליפינים</a>]</nobr> <nobr>[<a href="20020603.html" style="{text-decoration: none;}" target="">קמבודיה</a>]</nobr><!--webbot bot="Navigation" i-checksum="33824" endspan --></p>
-<p><i><small>This site was last updated
-<!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%m/%d/%y" startspan -->07/15/03<!--webbot bot="Timestamp" i-checksum="12690" endspan --> </small></i>
-</p>
-</body>
+    <div class="nav-links">
+      <a href="20020216.html">← הקודם</a>
+      <a href="20020219.html">הבא →</a>
     </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-text">
+      <div class="meta-line">
+        <span class="date-big">18</span>
+        <div>
+          <div class="date-details">פברואר 2002</div>
+          <span class="country-badge">ניו-זילנד, אי דרומי</span>
+        </div>
+      </div>
+      <h1 class="title">טרק האוטו הראשון</h1>
+      <div class="title-divider"></div>
+    </div>
+    <img class="hero-map" src="../images/New_Zealand_south_island.gif" alt="ניו-זילנד, אי דרומי">
+  </div>
+
+  <div class="content">
+    <p>טרק האוטו הראשון</p>
+
+    <p>יומיים יפים במקום יפה. אנחנו מחוץ לעיר בחיק הטבע, האם יש חיק טוב מזה ?</p>
+
+    <p>נסיים ונספר על מה שעברנו ביומיים האחרונים:</p>
+
+    <p>ה- 16.2 בערב היה אחד מאותם ימים שקורים אחת ל- 3 שבועות לערך. אנחנו לא עושים כלום בערב.</p>
+
+    <p>כשהגענו לגסט האוס החמוד, אנוקו, גונן רצה לישון ערב ואח"כ לצאת. ידעתי שזו שטות, אך משום מה הייתי גם עייף. ישנו וקמתי כששמעתי קולות דיבור מהסלון של הגסט האוס. קמתי והצטרפתי. איך שהגעתי כולם נפרדו לשינה. מסתבר שהשעה היתה כבר 22:30. יכול להיות שזאת היתה טעות לישון בערב.</p>
+
+    <p>טוב, אז התקשרתי לארץ וחוץ מיעל, תפסתי את כולם והם איחלו לי מזל-טוב.</p>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/20020216_akaroa_marina.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">מפרץ אקארואה מקרוב - נראה כמו מרינה</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020217_dolphins.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">דולפינים באקארואה</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020217_male_seagull.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">שחף זכר</div>
+      </div>
+    </div>
+
+    <p>סיימנו את הערב בקריאת עיתון – מבט אל לוח הדרושים. גונן קורא National Geographic.</p>
+
+    <p>בבוקר העיר אותנו האחראי ב- 8:00. צריך לצאת לשיט קיאקים ויש יום יפה. כולם חיכו לנו אז אני הייתי מוכן תוך 5 דקות. הבטתי בקרקע מבושה כשכולם חיכו לגונן עוד רבע שעה.</p>
+
+    <p>ירדנו עד למפרץ ונכנסנו לקיאקים. היה נחמד, אך זה היה טיול מודרך, אז לא ממש השתוללנו. איתנו היו 2 גרמנים צעירים, מדריך יפני חמוד ומדריכה מאירופה שנראית כבת 40 ובעלת חזות לא נשית (ללא חזה, שיער קצר ומשקפי ג'ון לנון). המטרה היתה חיפוש דולפינים.</p>
+
+    <p>כשהגיעה הסירה שמביאה תיירים לשחות עם דולפינים (וזה עולה 75$NZ במקום 20$NZ כמו שעולה לנו) התקרבנו אליה ואז שלושה דולפינים הקיפו אותי וסימנתי לכולם שיבואו. הדולפינים קטנים, בצבע אפור/כחול. הם הסתובבו בינינו וליד הסירה הגדולה כ- 10 דקות ונעלמו. את יתר השעתיים העברנו סתם בחתירה. אני וגונן רבנו מי תופס בקיאק של מי והמדריכה העירה לנו על כך, שלא נתהפך. סיימנו וחזרנו לחוף.</p>
+
+    <p>גונן חייך אלי ואמר "מי נולד היום ?". עניתי לו את כל מי שזכרתי – "מייקל ג'ורדן ומיקי ברקוביץ', כל מי שנולד ב- 17.2". "אההה, היום לא ה- 16.2 ?" שאל גונן בחוסר אמון. מסתבר שהוא הסתכל במצלמה ושם היה כתוב 16.2. אני לא יודע מי כיוון את התאריך במצלמה (אולי זה היה עוד בישראל, 11 שעות אחורה).</p>
+
+    <p>חזרנו לגסט האוס ואמרנו להם שאנחנו עוזבים. הם לא אהבו את זה.</p>
+
+    <div class="photo-pair">
+      <div class="photo-item">
+        <img src="../images/20020217_female_seagull.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">שחף נקבה</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020216_akaroa_other_side.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+    </div>
+
+    <p>אכלנו Fish&Chips וקיבלנו דוח על חנייה. חנינו במקום של אוטובוס. ראיתי את זה לפני-כן, אך בגלל היום היפה והעובדה שיום ראשון היום וכל החניות תפוסות, החלטתי לחנות כאן בכל זאת. הדוח הוא על 60$NZ, אבל אנחנו לא מתכוננים לשלם אותו. גונן נלחץ. הזהרתי אותו והזכרתי לו שבפעם האחרונה שהוא נלחץ, <a href="20020128.htm#before_accident">זה היה עם האופנוע ואח"כ הוא עשה תאונה</a>, אז שירגע.</p>
+
+    <p>בכלל, להבדיל מנהיגתו הטובה באופנוע, גונן נוהג גרוע במכונית – בכביש מהיר הוא נוסע לאט, שוכח להחליף מאורות גבוהים לנמוכים או מכבה אותם במקום להעביר לנמוכים. כשהוא נוסע לאט כולם עוקפים אותו או נתקעים מאחורינו ונצמדים אלינו. אתמול גם טיילנו עם האוטו בגבעות וכשחזרנו למלא דלק, המוכרת העירה לנו ששרפנו את הברקסים ואלה היו רק גבעות, לא הרים תלולים.</p>
+
+    <p>אז אחרי שעזבנו את הבק-פקר, הלכנו לעשות טרק רגלי באיזור. גונן אמר שהיום יום יפה אז עדיף לנסוע עם האוטו. אני אמרתי לו "כן, כן, אז ביום גשם עדיף ללכת ?". דברי היו דברי טעם, אך אחרי 20 דקות הליכה חשתי שהוא צודק. אז חזרנו לאוטו ועלינו בכבישים הצדדיים, שנהפכו לשבילי עפר. הכביש משך למעלה, אל הגבעות, ומשם ראינו נוף מדהים של המפרץ, מפרץ אקארואה. גונן צילם כמה תמונות בהתרגשות. עצרנו לפיקניק – לחמניות, אבוקדו, גבינה צהובה ומלפפון.</p>
+
+    <p>המשכנו בדרכינו, עברנו את הגבעות וראינו את המפרצים בצד השני – את paua bay. היה שם סלע מזדקר וגונן אמר שזה מזכיר לו את חוף הסלע בבת-ים. הוא נהג אז הוא לא קיבל סטירה. אמרתי לו שזה כמו לקחת את רני למלון פאר והוא יגיד שזה מזכיר לו את התא שלו בכלא.</p>
+
+    <p>המשכנו והמשכנו ומצדדינו כבשים ופרות חמודים. לא היו שם כמעט מכוניות אז הם הסתכלו עלינו בפליאה. מלמעלה חגו הרבה שחפים, אך גם כמה עיטים.</p>
+
+    <p>לא היה לנו הרבה דלק אז חזרנו.</p>
+
+    <div class="photo-pair">
+      <div class="photo-item">
+        <img src="../images/20020216_gonen_eizen.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020216_malik_hakaroa.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">המפרצים בצד השני של אקרואה</div>
+      </div>
+    </div>
+
+    <p>ניסיתי לראות במפה את השביל מתחבר לכביש או שנצטרך לחזור כלעומת שבאנו וכמעט דפקתי את הראש בחלון. "לא רציתי לעלות על אבן" הצטדק גונן. "אני כמעט עליתי ל- heaven" עניתי לו.</p>
+
+    <p>בסוף חזרנו כלעומת שבאנו. הגענו למטה, לאקרואה, מלאנו דלק וחשבנו מה עושים הלאה. פתאם הופיע הראש של יעל, חברה של אפרת. הן קנו אוטו טיפה ביוקר (1300$NZ + 250$NZ תיקונים). איתן היתה בחורה ג'ינג'ית בשם הילה שגונן הסב את תשומת ליבי שיש לה תחת מושלם.</p>
+
+    <p>הן המשיכו בדרכן. אנחנו נהננו מטרק המכונית והמשכנו. החלטנו לנסוע ל- Lyttelton. התחלנו לנסוע עד שהתחוור לי שזה ליד קרייסטצ'רץ', כ- 50 ק"מ נסיעה ואח"כ עוד צריך לחזור.</p>
+
+    <p>אז לקחנו את הכביש המקביל, Summit road. הגענו למפרץ בצד השני בשם Pigeon bay ואח"כ נסענו בשבילים לעיירה Port Levi – זה מקום יפהפה, קלאסי לבית קיץ. היו שם אילים וזה היה יפה מאד. נתקענו עם האוטו שלא הניע איזה שעה וחצי וראינו את השקיעה. בפוקס האוטו הניע לבסוף אז חזרנו לאקארואה.</p>
+
+    <p>כל הדרך קפצו לנו ארנבונים מול המכונית הם כולם מפגרים כי כשברחו מאיתנו זה היה תמיד על השביל ולא לצדדים, לשיחים. אחד מהם ברח כך 2 ק"מ וראינו שהוא מתעייף ועוצר להפסקות על השביל, עדיין הוא לא פנה לשיחים.</p>
+
+    <p>חזרנו, הורדנו את הכסאות באוטו וישנו בנוחיות ולבד. חנינו ליד השירותים הציבוריים. היה כיף לחרבן שם מוקדם בבוקר כשאף אחד עוד לא בא.</p>
+
+    <p>גונן רצה להוציא כסף אך הסתבך עם המספר שלו ונכנס לסניף להוציא כסף.</p>
+
+    <p>אפרת ויעל הגיעו בלי הג'ינג'ית ואנחנו מתכוונים לצאת איתן לטרק.</p>
+
+
+  </div>
+
+  <div class="nav-cards">
+    <a href="20020219.html" class="nav-card">
+      <div class="label">הבא →</div>
+      <div class="card-title">חוף הנשואין</div>
+    </a>
+    <a href="20020216.html" class="nav-card">
+      <div class="label">← הקודם</div>
+      <div class="card-title">פסטיבל הפרחים</div>
+    </a>
+  </div>
+
+  <div class="country-nav">
+    <a href="200110052040.html">דנמרק</a>
+    <a href="20011006.html">הודו</a>
+    <a href="20011030.html">נפאל</a>
+    <a href="20011115.html">טרק אנאפורנה</a>
+    <a href="20011210.html">תאילנד</a>
+    <a href="20020108.html">לאוס</a>
+    <a href="20020123.html">צפון תאילנד</a>
+    <a href="20020203.html">אוסטרליה</a>
+    <a href="20020210.html">ניו-זילנד, אי דרומי</a>
+    <a href="20020326.html">ניו-זילנד, אי צפוני</a>
+    <a href="20020506.html">פיליפינים</a>
+    <a href="20020603.html">קמבודיה</a>
   </div>
 
   <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
-    <img id="lightbox-img" src="" alt="Enlarged">
+    <img id="lightbox-img" src="" alt="">
   </div>
-
   <script>
     function openLightbox(src) {
       document.getElementById('lightbox-img').src = src;

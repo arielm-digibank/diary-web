@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Magazine V2: Photos as Full-Width Blocks</title>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #ffffff;
+      font-family: 'Heebo', sans-serif;
+      color: #1a1a2e;
+      line-height: 1.9;
+    }
+
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #eee;
+      padding: 12px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.9rem;
+    }
+
+    .top-nav a {
+      color: #1d4ed8;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .top-nav a:hover { text-decoration: underline; }
+    .top-nav .nav-links { display: flex; gap: 20px; }
+
+    .hero {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 50px 40px 30px;
+      display: flex;
+      align-items: flex-start;
+      gap: 30px;
+    }
+
+    .hero-text { flex: 1; }
+
+    .hero-map {
+      width: 120px;
+      height: auto;
+      object-fit: contain;
+      flex-shrink: 0;
+      opacity: 0.85;
+    }
+
+    .meta-line {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .date-big {
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: #e5e7eb;
+      line-height: 1;
+    }
+
+    .date-details {
+      font-size: 0.9rem;
+      color: #6b7280;
+      font-weight: 400;
+    }
+
+    .country-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #f0f9ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 0.8rem;
+      color: #1d4ed8;
+      font-weight: 600;
+    }
+
+    .title {
+      font-size: 2.4rem;
+      font-weight: 900;
+      color: #111827;
+      margin: 20px 0 12px;
+      line-height: 1.3;
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: #4b5563;
+      padding-bottom: 24px;
+      border-bottom: 4px solid #1d4ed8;
+    }
+
+    .content {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 0 40px;
+      font-size: 1.05rem;
+    }
+
+    .content p { margin-bottom: 18px; }
+
+    .content a {
+      color: #1d4ed8;
+      cursor: pointer;
+      text-decoration: underline;
+      text-decoration-color: rgba(29,78,216,0.3);
+    }
+
+    .photo-block {
+      margin: 30px 0;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+
+    .photo-block img {
+      width: 100%;
+      display: block;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .photo-block img:hover { transform: scale(1.01); }
+
+    .photo-block .caption {
+      padding: 12px 16px;
+      font-size: 0.85rem;
+      color: #6b7280;
+      background: #f9fafb;
+      border-top: 1px solid #f3f4f6;
+    }
+
+    .photo-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin: 30px 0;
+    }
+
+    .photo-pair .photo-item {
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+
+    .photo-pair .photo-item img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .photo-pair .photo-item img:hover { transform: scale(1.03); }
+
+    .photo-pair .photo-item .caption {
+      padding: 8px 12px;
+      font-size: 0.8rem;
+      color: #6b7280;
+      background: #f9fafb;
+    }
+
+    .photo-trio {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+      margin: 30px 0;
+    }
+
+    .photo-trio .photo-item {
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+
+    .photo-trio .photo-item img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .photo-trio .photo-item img:hover { transform: scale(1.03); }
+
+    .photo-trio .photo-item .caption {
+      padding: 8px 10px;
+      font-size: 0.78rem;
+      color: #6b7280;
+      background: #f9fafb;
+    }
+
+    .supplements {
+      margin-top: 35px;
+      padding: 25px 30px;
+      background: #f9fafb;
+      border-radius: 12px;
+      border: 1px solid #e5e7eb;
+    }
+
+    .supplements h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+      color: #374151;
+    }
+
+    .supplements ol { padding-right: 20px; }
+    .supplements li { margin-bottom: 10px; color: #4b5563; }
+
+    .nav-cards {
+      max-width: 900px;
+      margin: 50px auto 40px;
+      padding: 0 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .nav-card {
+      padding: 20px 24px;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.2s;
+    }
+
+    .nav-card:hover {
+      border-color: #1d4ed8;
+      box-shadow: 0 4px 12px rgba(29,78,216,0.1);
+    }
+
+    .nav-card .label { font-size: 0.8rem; color: #6b7280; margin-bottom: 4px; }
+    .nav-card .card-title { font-weight: 700; font-size: 1rem; color: #1d4ed8; }
+
+    .lightbox {
+      display: none; position: fixed; z-index: 9999;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.92); justify-content: center; align-items: center; cursor: pointer;
+    }
+    .lightbox img { max-width: 92%; max-height: 92%; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <div class="top-nav">
+    <div class="nav-links">
+      <a href="../index.html">עמוד ראשי</a>
+    </div>
+    <div class="nav-links">
+      <a href="20011006.html">← הקודם</a>
+      <a href="20011008.html">הבא →</a>
+    </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-text">
+      <div class="meta-line">
+        <span class="date-big">07</span>
+        <div>
+          <div class="date-details">אוקטובר 2001</div>
+          <span class="country-badge">הודו • ניו דלהי</span>
+        </div>
+      </div>
+      <h1 class="title">החבר ההודי המלומד</h1>
+      <div class="subtitle">טיול הכרות מאורגן בניו דלהי עם פראסאנה, מורה לפילוסופיה מבנגלור</div>
+    </div>
+    <img class="hero-map" src="../images/India.gif" alt="מפת הודו">
+  </div>
+
+  <div class="content">
+    <p>קמנו מוקדם בבוקר, 8:30 כדי לצאת לטיול הכרות בעיר, טיול מאורגן שנמשך כל היום: 9:30 – 18:00 ועולה 100 רופי.</p>
+
+    <p>מליק, שראה את נעלי הטרק שלו מתפרקים איך שהוא נחת בהודו יום לפני-כן (נעלי דרק לדברי גונן), השתמש בנעלי ההתעמלות שלו. גונן נעל סנדלים – מליק עדיין לא בשל לחשיפה שכזו.</p>
+
+    <p>תוך כדי ההגעה לאוטובוס התחלנו לדבר עם צעיר הודי בעל מבט נבון שהצטרף לטיול המאורגן (כולם היו הודים חוץ מאתנו). הבחור הצעיר, פראסאנה, בן 30, הוא מלמד פילוסופיה הודית (מתמחה בבודהה) בעיר בשם בנגלור בדרום הודו. הוא עכשיו מסיים טיול בן 3 חודשים ברחבי הודו.</p>
+
+    <div class="photo-block">
+      <img src="../images/20011007_red_fortress.jpg" onclick="openLightbox(this.src)">
+      <div class="caption">המבצר האדום – היה סגור. "אדום יורד" גונן מוסיף באקט נדיר.</div>
+    </div>
+
+    <p>נסענו לראות את המבצר האדום, המפורסם באתרי דלהי. הוא היה סגור. זה לא כ"כ נעים לראות שער נעול, "אדום יורד" גונן מוסיף באקט נדיר. אההה, בסוף נסענו באוטובוס ממוזג עבור 150 רופי.</p>
+
+    <p>אתרים בולטים:</p>
+
+    <div class="photo-pair">
+      <div class="photo-item">
+        <img src="../images/20011007_gandy_grave.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">קבר גנדי</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011006_malik_near_gandy_grave.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">מליק ליד קבר גנדי</div>
+      </div>
+    </div>
+
+    <p><a onclick="openLightbox('../images/20011007_gandy_grave.jpg')">מקום הכתרתו של גנדי</a> – לכל שליט יש כיכר הכתרה באיזה פארק – הכיכר של גנדי נחמדה, יתר הכיכרות פארש.</p>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/20011007_parlament_house.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">בניין הפרלמנט</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011007_parlament_house_3.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">בנייני הממשל</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011007_parlament_house_2.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">בניין הפרלמנט 2</div>
+      </div>
+    </div>
+
+    <div class="photo-block">
+      <img src="../images/20011006_malik&parlament_houses.jpg" onclick="openLightbox(this.src)">
+      <div class="caption">מליק ליד בניין הפרלמנט – יפהפיים או בשמם הרשמי: ראשטראפאטי בהאראן</div>
+    </div>
+
+    <p>הארמון ובניין הפרלמנט – יפהפיים או בשמם הרשמי: ראשטראפאטי בהאראן (משכנו של נשיא הודו) ובנייני הסקטרייט (בנייני הממשל הבריטי).</p>
+
+    <p>2 ילדים הפצירו בנו להצטלם עם נחשי קוברה ונחש פיתון מגודל. נעתרנו והצטלמנו. משום מה גונן נלחץ אעפ"י שלנחשים הוציאו את הארס. גונן סינן "מליק, יא מלוכלך, צלם כבר" מיוזע ורועד כולו. הסברתי לו שקוברה בלי ארס זה כמו זינו בלי ידיים – אותו דיבור מאיים אך ללא כיסוי.</p>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/20011007_malik_with_cobra_2.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">מליק עם קוברה</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011007_malik_with_cobra_1.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">מליק עם קוברה 2</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011007_gonen_with_cobra.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">גונן קצת נלחץ</div>
+      </div>
+    </div>
+
+    <div class="photo-block">
+      <img src="../images/20011007_victory_gate.jpg" onclick="openLightbox(this.src)">
+      <div class="caption">שער הודו – מקום מאד יפה</div>
+    </div>
+
+    <p>הגענו לשער הודו (מקום מאד יפה), שוב העיקו עלינו ההודים כמו בכל אתר תיירות. משום מה כולם ניגשו לגונן. הוא חשב שזה התיק, אבל גם כשאני סחבתי אותו כולם ניגשו אליו.</p>
+
+    <p>לאורך כל הדרך חברינו ההודי, פראסאנה, ליווה אותנו והסביר ברצון על סודות כת ההינדו.</p>
+
+    <p>המדריך שאל את גונן אם הוא מגרמניה וגונן שמח מאד, עובדה, הוא רץ לספר לי בחיוך מאוזן לאוזן – גונן או שמא גו נטר נקרא לבחור, הרהרתי.</p>
+
+    <div class="photo-pair">
+      <div class="photo-item">
+        <img src="../images/20011007_bahaim_temple.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">מקדש הבאהיים – בצורת לוטוס</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011007_bahaim_temple_2.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">מקדש הבאהיים 2</div>
+      </div>
+    </div>
+
+    <p>מקדש הבאהיים – בצורת לוטוס – מאד יפה</p>
+
+    <p>מקום גרוע – המוזיאון לזכר אינדירה גנדי – אישה לא יפה במיוחד ששלטה בהודו עד 1984, אז היא נרצחה ע"י הסיקים. They must be sick people to do that אמרתי לפראסאנה.</p>
+
+    <p>מקדש לאקשמי נאריאן – מאד יפה, הפעם העיקו על חברנו ההודי – כנראה שהוא נראה הודי חנון. זהו מקדש לאלה הודית עם 4 ידיים. גונן אמר לי מה היא יכולה לעשות לו עם 4 הידיים. טוב שזה היה בעברית, חברנו המלומד לא היה אוהב את מה ששמעתי.</p>
+
+    <p>שאלתי את פראסאנה למה לא הורגים את הפרות – "כי הפרה מסמלת את האמא שלך ואינך יכול להרוג את אמא שלך" הוא אמר. "אני מסוגל להרוג את מי שקורא לאמא שלי פרה" אמרתי לו והוא נדם.</p>
+
+    <div class="photo-pair">
+      <div class="photo-item">
+        <img src="../images/20011007_we&prasana.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">אנחנו עם פראסאנה</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011007_victory_gate_2.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">שער הודו – מבט נוסף</div>
+      </div>
+    </div>
+
+    <div class="photo-block">
+      <img src="../images/20011007_gonen_praying.jpg" onclick="openLightbox(this.src)">
+      <div class="caption">גונן</div>
+    </div>
+
+    <p>היום הוצאנו 40-45 שקל כל אחד. כשבאנו לנתח את הסיבות לעלייה בהוצאות ראינו:</p>
+    <p>1. מליק אוכל יותר בעוד שנינו משלמים שווה בשווה – גונן אמר שהוא יתקזז במסג'ים בתאילנד.</p>
+    <p>2. גונן נוטה להכנע לילדים תועים ולתת להם נדבות – רק היום כ- 20 רופי.</p>
+
+    <p>בערב היינו שוב באינטרנט ואכלנו שוב ב<a onclick="openLightbox('../images/20011007_hari_rama.jpg')">הארי-רמה</a> עם חברנו ההודי. הזיווה היתה מעולה כרגיל אך החומוס גרוע ביותר ולקחו לנו שקל עבור כל פיתה נוספת.</p>
+
+    <p>מחר נחבור שוב לחברנו בדרך לטאג' מאהאל, אגרה.</p>
+
+    <div class="supplements">
+      <h3>השלמות:</h3>
+      <ol>
+        <li>3 פעמים נאלצנו להוריד נעלים – למליק זה לקח כמובן הרבה יותר זמן.</li>
+        <li>ניסו להעיק עלינו להצטלם עם קופים – I don't do monkey business מליק אמר ולהפתעתו זה עבד.</li>
+        <li>גונן התאכזב, הוא רצה להצטלם עם 2 קופים ולקרוא לתמונה "The 3 monkeys".</li>
+        <li>ניגשו אלינו למכור תמונות, סרבנו לתמונות הקמא-סוטרא בתואנה שדתינו לא מרשה לנו דברים כאלה, זה דווקא לא עבד.</li>
+        <li>אחרי ארוחת צהרים דשנה מליק קם ורצה לחזור לאוטובוס, אך אבוי, היכן התיק ? – עירנותו של גונן וטוב ליבם של העובדים במסעדה מנעו אסון – המצלמה, היומן ועוד – כל זה שכן בתיק.</li>
+        <li>בעל זבוב – או יותר נכון בלע זבוב – גונן והפה הגדול שלו. זבוב תמים ליווה אותנו בטיול זה וסייר להנאתו על החלון עד שגונן פער את פיו. קשה בלי(ע)הזבוב אמר מליק.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="nav-cards">
+    <a href="20011008.html" class="nav-card">
+      <div class="label">הבא →</div>
+      <div class="card-title">אגרה, טאג' מאהאל</div>
+    </a>
+    <a href="20011006.html" class="nav-card">
+      <div class="label">← הקודם</div>
+      <div class="card-title">ניו דלהי, main bazar</div>
+    </a>
+  </div>
+
+  <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
+    <img id="lightbox-img" src="" alt="">
+  </div>
+  <script>
+    function openLightbox(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox').style.display = 'flex';
+    }
+  </script>
+</body>
+</html>

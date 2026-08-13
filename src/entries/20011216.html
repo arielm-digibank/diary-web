@@ -3,218 +3,286 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>האי קו-סמוי, תאילנד</title>
+  <title>dark moon מסיבת</title>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap" rel="stylesheet">
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background-color: #f8fafc;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0; padding: 20px; color: #334155;
+      background: #ffffff;
+      font-family: 'Heebo', sans-serif;
+      color: #1a1a2e;
+      line-height: 1.9;
     }
-    .container {
-      max-width: 800px; margin: 0 auto; background: #ffffff;
-      padding: 35px; border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06); line-height: 1.8;
+    .top-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #eee;
+      padding: 12px 30px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.9rem;
     }
-    .header {
-      border-bottom: 2px solid #e2e8f0; padding-bottom: 15px;
-      margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center;
+    .top-nav a {
+      color: #1d4ed8; text-decoration: none; font-weight: 600;
     }
-    .header h1 { margin: 0; color: #0f172a; font-size: 1.8rem; }
-    .home-link { color: #2563eb; text-decoration: none; font-weight: 600; }
-    .content img {
-      float: right; margin: 0 0 15px 20px; max-width: 320px; height: auto;
-      border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      cursor: pointer; transition: transform 0.2s;
+    .top-nav a:hover { text-decoration: underline; }
+    .top-nav .nav-links { display: flex; gap: 20px; }
+    .hero {
+      max-width: 900px; margin: 0 auto;
+      padding: 50px 40px 30px;
+      display: flex; align-items: flex-start; gap: 30px;
     }
-    .content img:hover { transform: scale(1.02); }
-    .content::after { content: ""; clear: both; display: table; }
-    a { color: #2563eb; }
+    .hero-text { flex: 1; }
+    .hero-map {
+      width: 120px; height: auto; object-fit: contain;
+      flex-shrink: 0; opacity: 0.85;
+    }
+    .meta-line {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+    }
+    .date-big {
+      font-size: 3.5rem; font-weight: 900; color: #e5e7eb; line-height: 1;
+    }
+    .date-details { font-size: 0.9rem; color: #6b7280; }
+    .country-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      border-radius: 20px; padding: 4px 14px;
+      font-size: 0.8rem; color: #1d4ed8; font-weight: 600;
+    }
+    .title {
+      font-size: 2.2rem; font-weight: 900; color: #111827;
+      margin: 20px 0 8px; line-height: 1.3;
+    }
+    .date-subtitle {
+      font-size: 1.1rem; font-weight: 300; color: #4b5563;
+      margin-bottom: 16px;
+    }
+    .title-divider {
+      width: 60px; height: 4px; background: #1d4ed8; border-radius: 2px;
+    }
+    .content {
+      max-width: 900px; margin: 30px auto; padding: 0 40px; font-size: 1.05rem;
+    }
+    .content p { margin-bottom: 18px; }
+    .content a {
+      color: #1d4ed8; cursor: pointer;
+      text-decoration: underline;
+      text-decoration-color: rgba(29,78,216,0.3);
+    }
+    .photo-block {
+      margin: 30px 0; border-radius: 12px; overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    .photo-block img {
+      width: 100%; display: block; cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .photo-block img:hover { transform: scale(1.01); }
+    .photo-block .caption {
+      padding: 12px 16px; font-size: 0.85rem; color: #6b7280;
+      background: #f9fafb; border-top: 1px solid #f3f4f6;
+    }
+    .photo-pair {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 14px; margin: 30px 0;
+    }
+    .photo-pair .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-pair .photo-item img {
+      width: 100%; height: 200px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-pair .photo-item img:hover { transform: scale(1.03); }
+    .photo-pair .photo-item .caption {
+      padding: 8px 12px; font-size: 0.8rem; color: #6b7280; background: #f9fafb;
+    }
+    .photo-trio {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px; margin: 30px 0;
+    }
+    .photo-trio .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-trio .photo-item img {
+      width: 100%; height: 180px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-trio .photo-item img:hover { transform: scale(1.03); }
+    .photo-trio .photo-item .caption {
+      padding: 8px 10px; font-size: 0.78rem; color: #6b7280; background: #f9fafb;
+    }
+    .nav-cards {
+      max-width: 900px; margin: 50px auto 20px; padding: 0 40px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .nav-card {
+      padding: 20px 24px; border: 1px solid #e5e7eb; border-radius: 12px;
+      text-decoration: none; color: inherit; transition: all 0.2s;
+    }
+    .nav-card:hover {
+      border-color: #1d4ed8; box-shadow: 0 4px 12px rgba(29,78,216,0.1);
+    }
+    .nav-card .label { font-size: 0.8rem; color: #6b7280; margin-bottom: 4px; }
+    .nav-card .card-title { font-weight: 700; font-size: 1rem; color: #1d4ed8; }
+    .supplements {
+      margin-top: 35px; padding: 25px 30px;
+      background: #f9fafb; border-radius: 12px; border: 1px solid #e5e7eb;
+    }
+    .supplements h3 {
+      font-size: 1.1rem; font-weight: 700; margin-bottom: 14px; color: #374151;
+    }
+    .supplements ol { padding-right: 20px; }
+    .supplements li { margin-bottom: 10px; color: #4b5563; }
+    .country-nav {
+      max-width: 900px; margin: 20px auto 40px; padding: 0 40px;
+      display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+    }
+    .country-nav a {
+      padding: 6px 14px; border-radius: 20px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      color: #1d4ed8; text-decoration: none;
+      font-size: 0.82rem; font-weight: 600;
+      transition: all 0.2s;
+    }
+    .country-nav a:hover {
+      background: #1d4ed8; color: white; border-color: #1d4ed8;
+    }
     .lightbox {
       display: none; position: fixed; z-index: 9999;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.9); justify-content: center; align-items: center; cursor: pointer;
+      background: rgba(0,0,0,0.92);
+      justify-content: center; align-items: center; cursor: pointer;
     }
-    .lightbox img { max-width: 90%; max-height: 90%; border-radius: 8px; }
+    .lightbox img { max-width: 92%; max-height: 92%; border-radius: 8px; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h1>האי קו-סמוי, תאילנד</h1>
-      <a href="../index.html" class="home-link">🏠 לעמוד הראשי</a>
+  <div class="top-nav">
+    <div class="nav-links">
+      <a href="../index.html">עמוד ראשי</a>
     </div>
-    <div class="content">
-      <body>
-<table cellpadding="0" cellspacing="0" height="80" width="954">
-<tr>
-<td align="center" height="80" width="277">
-<marquee style="font-size: 18pt; color: #800080">16.12.01 - 23:00</marquee></td>
-<td align="center" height="80" width="667">
-<!--webbot bot="Navigation" s-type="banner" s-rendering="graphics" S-Orientation B-Include-Home B-Include-Up U-Page S-Target startspan --><!--webbot bot="Navigation" i-checksum="59483" endspan --></td>
-<td align="center" height="80" width="10">
-
-<img border="0" height="145" onclick="openLightbox(this.src)" src="../images/Thailand.gif" title="לחץ להגדלה" width="145"/></td>
-</tr>
-<tr>
-<td colspan="3" height="1" style=" " width="954"></td>
-</tr>
-</table><table cellpadding="0" cellspacing="0" width="100%">
-<tr>
-<td align="right" style=" ">
-<h4>
-<marquee style="font-size: 24pt; color: #008080">dark moon מסיבת</marquee></h4>
-<p> </p></td>
-</tr>
-</table>
-<table cellpadding="0" cellspacing="0" height="333" width="953">
-<tr>
-<td height="333" rowspan="2" style="       " valign="top" width="140"> <!--webbot bot="Navigation" S-Type="sequence" S-Orientation="vertical" S-Rendering="graphics" S-Theme="blocks 000" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><!--webbot bot="Navigation" i-checksum="23763" endspan --><p> </p>
-</td>
-<td height="333" rowspan="2" style="     " valign="top" width="1"></td>
-<td colspan="2" height="266" style="     " valign="top" width="735">
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> היום היה כל הזמן מעונן 
-    וגשום. יום מיותר?. ככל הנראה כן, אבל אחרי הלילה המטורף שעברנו, זה לא קלקל 
-    לנו את תחושת ההנאה שאנו חשים עד עכשיו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אתמול הלכנו לאכול. את ארז 
-    ורותם השארנו, גם ככה הם כבר בקו-פנגן, כך שהם לא ממש מהחבורה. ארז חם על רותם 
-    וזה לפי דעתנו שיבש את דעתו, וכך הוא רוצה להיות איתה כל הזמן, כדי שתהיה לו 
-    הזדמנות לשכב איתה, ואז הוא לא יוצא ומפסיד צחוקים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הלכנו ארבעתנו: גונן, 
-    שירלי, ליאור ואני לאכול במסעדת דגים על החוף לידינו. האנשים בגסט האוס שלנו 
-    עיצבנו את גונן כשרצו שהוא ישלם מראש על החדר.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אכלתי דג שנקרא באנגלית
-    </span><span dir="LTR">red snapper</span><span lang="HE"> ושילמתי 18 שקל. 
-    אח"כ לקחתי גם 200 גרם כריש, שהיה רך מאד. הייתי מאד רעב לאחר המטקות עם ליאור 
-    והריצה על החוף.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אח"כ הלכנו להסתובב במרכז. 
-    יש כאן כביש סובב סביב האי, באיזור שלנו (</span><span dir="LTR">Chawang</span><span lang="HE">) 
-    מרוכזת שם כל פעילות הלילה. שירלי היתה עייפה ונשארה בחדר. אותי זה ממש שימח כי 
-    קיבלתי את גונן הרווק.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הלכנו במרכז. גם בשעה 
-    המאוחרת (23:00) הרבה חנויות היו פתוחות. ממש גן-עדן לשופינג. הרבה מותגים (בטח 
-    זיופים של מותגים).</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">המשכנו ללכת, בכל הבארים 
-    עובדות תאילנדיות והן מנסות לפתות אותך להכנס בריקודים ובקריאות, היו גם איזה 2 
-    בארים של ליידי-בויס. גונן הראה עניין וזה הפתיע אותי, גם אותו כי הוא מעד 
-    מהמדרגה לצחוקם הרם. הוא התבאס וניסה להשתמש בשיטת זלוף, כלומר למעוד שוב ושוב, 
-    כדי להפחית מהאפקט הראשוני, אך הערתי לו על כך.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">רצינו ללכת למסיבת טראנס על 
-    החוף שקיבלנו אליה הזמנות. הרבה מכוניות פרסמו את המסיבה ועברו ברחוב לקחת 
-    אנשים למסיבה תמורת כסף. אנחנו החלטנו ללכת ברגל. עם כל החנויות החדשות 
-    שגילינו, זה היה ממש כיף.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">גונן עצר באיזה פאב מלא 
-    בליידי-בויס, רקדו שם רקדניות על עמוד. הן לבשו שמלה צמודה ותו לא, כך שמדי פעם 
-    ברח איזה שד או נחשף איזה שת (אינני אוהב להשתמש בגסויות, כך שאני מקווה שזאת 
-    המילה הנכונה לכוס). גונן התבונן קסום. אני גם קצת התחממתי אך כעסתי על עצמי. 
-    לפי כמויות הליידי בויס בבאר, אני יכול להניח שגם הרקדניות הן ליידי בויס. לא 
-    רציתי להתחמם מלראות גוף של גבר (אפילו אם עבר שיפוצים) נחשף בפני. לגונן לא 
-    היה מנגנון בקרה עצמית כזו והייתי מודאג בפעם השנייה. גררנו אותו משם והמשכנו 
-    ללכת.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">לאחר שהלכנו כשעה, הגענו 
-    למה שנראה כסוף החניוות/מסעדות/בארים. היה שם באר ריק עם 3 מקומיות, שקראו לנו 
-    להכנס כמובן. משום מה החלטנו להכנס.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אפוף בפחדים, 2 מתוך ה- 3 
-    נחשדו על ידי כליידי בויס. אני הלכתי לדבר עם השלישית, שאולי היה לה פרצוף 
-    הפחות יפה (אם כי הגוף היותר יפה) אך לפחות הנשי.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הן הזמינו אותנו לשתות איזה 
-    משקה כחול. אני חושב שהן קראו לו "קמיקזה". הבחורות: נואנג, זו שאני דיברתי 
-    איתה, קיי – בחורה עם מראה אקזוטי, פרצוף מאד יפה, אך מחשיד בגבריות ופון, 
-    הפחות יפה וגם מעט נערית.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">דיברנו איתן וצחקנו. ליאור 
-    העיר הערות, הוא בעל הנסיון עם התאילנדיות, הוא שכב עם 5 תאילנדיות בתחילת 
-    הטיול שלו, ואמר שזה דבר פשוט.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">גונן עשה צחוקים, הוא איבד 
-    רסן.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">שתינו איתם. הסכמנו להזמין 
-    וייט ראשן ב- 100 באט תמורת הסעה למסיבה אח"כ. צחקנו איתם ונוצר מצב שאני הייתי 
-    ליד נואנג, ליאור היה ליד קיי וגונן עשה צחוקים. הגיעו עוד אנשים. אחד נראה 
-    ישראלי מבוגר עם שיער לבן ועוד תאילנדית שאמרה שיש לה חבר אבל פתאום היא הראתה 
-    לנו את התחת שלה. האמת, אני לא ראיתי, אבל החשדתי גם אותה בנערות ולכן לא 
-    הרגשתי מקופח.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">העניינים עם נואנג התחממו, 
-    אבל היא כל הזמן דיברה על זה שנקנה עוד משקה וזה ממש עצבן אותי. היא גם כל הזמן 
-    נעלמה וחזרה ודיברה בטלפון – קטע מטורף. פעם היא קמה והלכה ואמרה שתחזור תוך 5 
-    דקות ולא חזרה. אני התעצבנתי עליה ולא חיכיתי לה. ישבתי עם החברה. ליאור התחרמן 
-    עם קיי וניסה לגעת במבושיה כדי לוודא שהיא לא ליידי בוי ולהתחיל להנות. גונן 
-    עשה צחוקים ועבר להעיק על זוג תיירים מאנגליה שנכנסו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הבחורות אמרו שהן יקחו 
-    אותנו למסיבה, אבל לנו לא היה כח לחכות, אז חברנו לאנגלים והתחלנו ללכת ברגל 
-    למסיבה. המוניות שעצרו לנו בדרך רצו 50 באט מכל אחד, אנחנו הגדרנו את המחיר 
-    שלנו כ- 20 באט לאחד מקסימום. הלכנו עד שעצרה לנו מונית שהסכימה למחיר.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אני דיברתי עם הזוג האנגלי. 
-    הבחורה הלהיבה אותי במבטא הבריטי הנקי שלה ואמרתי לה שהיא ברמה אחרת מהבחורות 
-    המקומיות. הבחור היה חמוד, הוא התלהב לקראת המסיבה וראו שהוא כבר שיכור.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הגענו למסיבה, ראינו מאות 
-    אנשים, חלקם רוקדים והרבה יושבים ליד הים. היו חברה קרועים ששכבו על הרצפה, היו 
-    מטורפים שנכנסו לים. אנחנו לא רצינו לקנות כלום כי המחירים שם היו באמת בשמים, 
-    אבל הסתובבנו שם ודיברנו עם מי שיכולנו. להפתעתינו, כמעט שלא ראינו ישראלים. 
-    גונן דיבר עם איזו תאילנדית מכוערת ולא הבנתי למה. כשהתיישבנו היא התיישבה איתו 
-    והוא נכנס למצב של התגופפות. לבקשתו היא קראה לחברה שלה, בחורה חמודה וחייכנית. 
-    היא התיישבה מיד ונשענה עלי, בין רגלי. אין לי מושג איך קוראים לה והאמת שלא 
-    דיברנו הרבה. כשהיא הרגישה שאני מתחמם, היא הכניסה גם יד כדי לוודא זאת. ליאור 
-    הלך לחפש את קיי שהייתה אמורה גם להגיע למסיבה. נראה לי שזוג הומואים שהתגופפו 
-    לידינו הטריד את מנוחתו. אחד מקומי, די מגודל וחם והשני כנראה אירופאי, נראה 
-    כמו ישראלי, בטוח לא נראה הומו. הם התגופפו ומדי פעם רבו ופעם אחת עף אחד מהם 
-    על ליאור וליאור התעצבן. אני גם התעצבנתי כי כל פעם שדיברתי עם ליאור הייתי 
-    צריך לראות אותם מאחוריו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בקיצור ליאור הלך לעשות 
-    סיבוב. אני וגונן מתמזמזים עם 2 בחורות, אך יודעים שלסגור עניין יהיה קשה. אף 
-    אחד לא הביא קונדומים, לגונן יש את שירלי בחדר. אני צריך להסתדר עם ליאור בחדר 
-    שלי.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">השעון כבר הראה 5:00 בבוקר 
-    ואנחנו לא זוכרים את השם של הגסט האוס שלנו ויודעים רק בערך איפה הוא צריך 
-    להיות.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">רציתי לראות את הזריחה 
-    שהתמהמהה בינתיים. לפתע החלה רוח חזקה ומבול. כולנו נדחקנו לסככות, איפה שמכרו 
-    שתיה. גונן החל למכור לאיזה תייר משקה וכמעט לקח ממנו כסף עד שהודה שהוא לא 
-    המוכר. בכלל הוא היה במצב רוח מרומם (תרתי משמע) והתלהב משד שראה לאיזה ליידי 
-    בוי והדאיג אותי בפעם השלישית.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">כל הזמן אמרתי לליאור שגונן 
-    מנפק את הסחורה שאני מצפה ממנו, אבל כשהוא עם שירלי, חמודה ככל שתהיה, אני לא 
-    מקבל תמורה ויוצא ממורמר.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הגשם לא עשה סימנים שהוא 
-    הולך להפסק והחלטנו לרוץ למוניות ולהבריז לבחורות, היה כבר 6:00 בבוקר. שכחתי 
-    להגיד, אבל ליאור מצא את קיי ודווקא היה מבסוט ממנה. הוא כבר היה בטוח בנשיותה, 
-    אבל החלטנו להבריז, אז ברחנו מהם ורצנו למונית. הנהג העמיס חברה על האוטו והחל 
-    ליסוע. יצא שגונן ישב ליד 2 ליידי בויס. משום מה הוא יזם איתם שיחה והדאיג אותי 
-    בפעם הרביעית באותו יום !!!</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אז כך חזרנו, אחרי לילה 
-    מטורף, הכל היה גשום והלכנו לישון. התעוררתי ב- 14:00, נשארתי ער וגלגלתי 
-    המאורעות בראש. כששאלתי את ליאור לשעה  והוא אמר לי "14:45" לא האמנתי. יצאתי 
-    החוצה וגיליתי מזג-אוויר חורפי.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">שיחקתי מטקות עם ליאור 
-    כחצי-שעה עד ששוב החל גשם ואח"כ חברנו לגונן ושירלי והלכנו למרכז, שם אכלנו 
-    וגונן גם קנה איזה דבר או שניים. בירכנו על מזלנו הטוב, זה באמת גן-עדן כאן, 
-    אבל הכסף זורם כאן, להערכתי לפחות 800$ לחודש.</span></b></p>
-<p class="MsoNormal" dir="RTL"><span lang="HE"> </span></p></td>
-<td align="center" height="333" rowspan="2" style="     " valign="top" width="187">
-
-<img border="0" height="126" onclick="openLightbox(this.src)" src="../images/20011216_chawang_beach.jpg" title="לחץ להגדלה" width="176"/><p>
-<font color="#660099">קטע חוף בצ'אוואנג</font></p></td>
-</tr>
-<tr>
-<td height="67" style="     " valign="top" width="314">
-
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button104.gif" title="לחץ להגדלה" width="59"/></td>
-<td height="67" style="     " valign="top" width="421">
-<p align="right">
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button106.gif" title="לחץ להגדלה" width="59"/></p></td>
-</tr>
-</table>
-<p align="center">
-<!--webbot bot="Navigation" S-Type="sequence" S-Orientation="horizontal" S-Rendering="html" S-Bar="Brackets" S-Btn-Nml="[&lt;A HREF=&quot;#URL#&quot; TARGET=&quot;#TARGET#&quot; STYLE=&quot;{text-decoration: none;}&quot;&gt;#LABEL#&lt;/A&gt;]" S-Btn-Sel="[#LABEL#]" S-Btn-Sep="&amp;nbsp;" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><nobr>[<a href="index.html" style="{text-decoration: none;}" target="">התחלה</a>]</nobr> <nobr>[<a href="200110052040.html" style="{text-decoration: none;}" target="">דנמרק</a>]</nobr> <nobr>[<a href="20011006.html" style="{text-decoration: none;}" target="">הודו</a>]</nobr> <nobr>[<a href="20011030.html" style="{text-decoration: none;}" target="">נפאל</a>]</nobr> <nobr>[<a href="20011115.html" style="{text-decoration: none;}" target="">טרק סובב אנאפורנה</a>]</nobr> <nobr>[<a href="20011210.html" style="{text-decoration: none;}" target="">תאילנד</a>]</nobr> <nobr>[<a href="20020108.html" style="{text-decoration: none;}" target="">לאוס</a>]</nobr> <nobr>[<a href="20020123.html" style="{text-decoration: none;}" target="">צפון תאילנד</a>]</nobr> <nobr>[<a href="20020203.html" style="{text-decoration: none;}" target="">אוסטרליה</a>]</nobr> <nobr>[<a href="20020210.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי דרומי</a>]</nobr> <nobr>[<a href="20020326.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי צפוני</a>]</nobr> <nobr>[<a href="20020506.html" style="{text-decoration: none;}" target="">פיליפינים</a>]</nobr> <nobr>[<a href="20020603.html" style="{text-decoration: none;}" target="">קמבודיה</a>]</nobr><!--webbot bot="Navigation" i-checksum="33824" endspan --></p>
-<p><i><small>This site was last updated
-<!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%m/%d/%y" startspan -->07/11/03<!--webbot bot="Timestamp" i-checksum="12626" endspan --> </small></i>
-</p>
-</body>
+    <div class="nav-links">
+      <a href="20011215.html">← הקודם</a>
+      <a href="20011218.html">הבא →</a>
     </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-text">
+      <div class="meta-line">
+        <span class="date-big">16</span>
+        <div>
+          <div class="date-details">דצמבר 2001</div>
+          <span class="country-badge">תאילנד</span>
+        </div>
+      </div>
+      <h1 class="title">dark moon מסיבת</h1>
+      <div class="title-divider"></div>
+    </div>
+    <img class="hero-map" src="../images/Thailand.gif" alt="תאילנד">
+  </div>
+
+  <div class="content">
+    <p>dark moon מסיבת</p>
+
+    <p>היום היה כל הזמן מעונן וגשום. יום מיותר?. ככל הנראה כן, אבל אחרי הלילה המטורף שעברנו, זה לא קלקל לנו את תחושת ההנאה שאנו חשים עד עכשיו.</p>
+
+    <p>אתמול הלכנו לאכול. את ארז ורותם השארנו, גם ככה הם כבר בקו-פנגן, כך שהם לא ממש מהחבורה. ארז חם על רותם וזה לפי דעתנו שיבש את דעתו, וכך הוא רוצה להיות איתה כל הזמן, כדי שתהיה לו הזדמנות לשכב איתה, ואז הוא לא יוצא ומפסיד צחוקים.</p>
+
+    <p>הלכנו ארבעתנו: גונן, שירלי, ליאור ואני לאכול במסעדת דגים על החוף לידינו. האנשים בגסט האוס שלנו עיצבנו את גונן כשרצו שהוא ישלם מראש על החדר.</p>
+
+    <p>אכלתי דג שנקרא באנגלית red snapper ושילמתי 18 שקל. אח"כ לקחתי גם 200 גרם כריש, שהיה רך מאד. הייתי מאד רעב לאחר המטקות עם ליאור והריצה על החוף.</p>
+
+    <p>אח"כ הלכנו להסתובב במרכז. יש כאן כביש סובב סביב האי, באיזור שלנו (Chawang) מרוכזת שם כל פעילות הלילה. שירלי היתה עייפה ונשארה בחדר. אותי זה ממש שימח כי קיבלתי את גונן הרווק.</p>
+
+    <p>הלכנו במרכז. גם בשעה המאוחרת (23:00) הרבה חנויות היו פתוחות. ממש גן-עדן לשופינג. הרבה מותגים (בטח זיופים של מותגים).</p>
+
+    <p>המשכנו ללכת, בכל הבארים עובדות תאילנדיות והן מנסות לפתות אותך להכנס בריקודים ובקריאות, היו גם איזה 2 בארים של ליידי-בויס. גונן הראה עניין וזה הפתיע אותי, גם אותו כי הוא מעד מהמדרגה לצחוקם הרם. הוא התבאס וניסה להשתמש בשיטת זלוף, כלומר למעוד שוב ושוב, כדי להפחית מהאפקט הראשוני, אך הערתי לו על כך.</p>
+
+    <p>רצינו ללכת למסיבת טראנס על החוף שקיבלנו אליה הזמנות. הרבה מכוניות פרסמו את המסיבה ועברו ברחוב לקחת אנשים למסיבה תמורת כסף. אנחנו החלטנו ללכת ברגל. עם כל החנויות החדשות שגילינו, זה היה ממש כיף.</p>
+
+    <p>גונן עצר באיזה פאב מלא בליידי-בויס, רקדו שם רקדניות על עמוד. הן לבשו שמלה צמודה ותו לא, כך שמדי פעם ברח איזה שד או נחשף איזה שת (אינני אוהב להשתמש בגסויות, כך שאני מקווה שזאת המילה הנכונה לכוס). גונן התבונן קסום. אני גם קצת התחממתי אך כעסתי על עצמי. לפי כמויות הליידי בויס בבאר, אני יכול להניח שגם הרקדניות הן ליידי בויס. לא רציתי להתחמם מלראות גוף של גבר (אפילו אם עבר שיפוצים) נחשף בפני. לגונן לא היה מנגנון בקרה עצמית כזו והייתי מודאג בפעם השנייה. גררנו אותו משם והמשכנו ללכת.</p>
+
+    <p>לאחר שהלכנו כשעה, הגענו למה שנראה כסוף החניוות/מסעדות/בארים. היה שם באר ריק עם 3 מקומיות, שקראו לנו להכנס כמובן. משום מה החלטנו להכנס.</p>
+
+    <p>אפוף בפחדים, 2 מתוך ה- 3 נחשדו על ידי כליידי בויס. אני הלכתי לדבר עם השלישית, שאולי היה לה פרצוף הפחות יפה (אם כי הגוף היותר יפה) אך לפחות הנשי.</p>
+
+    <p>הן הזמינו אותנו לשתות איזה משקה כחול. אני חושב שהן קראו לו "קמיקזה". הבחורות: נואנג, זו שאני דיברתי איתה, קיי – בחורה עם מראה אקזוטי, פרצוף מאד יפה, אך מחשיד בגבריות ופון, הפחות יפה וגם מעט נערית.</p>
+
+    <p>דיברנו איתן וצחקנו. ליאור העיר הערות, הוא בעל הנסיון עם התאילנדיות, הוא שכב עם 5 תאילנדיות בתחילת הטיול שלו, ואמר שזה דבר פשוט.</p>
+
+    <p>גונן עשה צחוקים, הוא איבד רסן.</p>
+
+    <p>שתינו איתם. הסכמנו להזמין וייט ראשן ב- 100 באט תמורת הסעה למסיבה אח"כ. צחקנו איתם ונוצר מצב שאני הייתי ליד נואנג, ליאור היה ליד קיי וגונן עשה צחוקים. הגיעו עוד אנשים. אחד נראה ישראלי מבוגר עם שיער לבן ועוד תאילנדית שאמרה שיש לה חבר אבל פתאום היא הראתה לנו את התחת שלה. האמת, אני לא ראיתי, אבל החשדתי גם אותה בנערות ולכן לא הרגשתי מקופח.</p>
+
+    <p>העניינים עם נואנג התחממו, אבל היא כל הזמן דיברה על זה שנקנה עוד משקה וזה ממש עצבן אותי. היא גם כל הזמן נעלמה וחזרה ודיברה בטלפון – קטע מטורף. פעם היא קמה והלכה ואמרה שתחזור תוך 5 דקות ולא חזרה. אני התעצבנתי עליה ולא חיכיתי לה. ישבתי עם החברה. ליאור התחרמן עם קיי וניסה לגעת במבושיה כדי לוודא שהיא לא ליידי בוי ולהתחיל להנות. גונן עשה צחוקים ועבר להעיק על זוג תיירים מאנגליה שנכנסו.</p>
+
+    <p>הבחורות אמרו שהן יקחו אותנו למסיבה, אבל לנו לא היה כח לחכות, אז חברנו לאנגלים והתחלנו ללכת ברגל למסיבה. המוניות שעצרו לנו בדרך רצו 50 באט מכל אחד, אנחנו הגדרנו את המחיר שלנו כ- 20 באט לאחד מקסימום. הלכנו עד שעצרה לנו מונית שהסכימה למחיר.</p>
+
+    <p>אני דיברתי עם הזוג האנגלי. הבחורה הלהיבה אותי במבטא הבריטי הנקי שלה ואמרתי לה שהיא ברמה אחרת מהבחורות המקומיות. הבחור היה חמוד, הוא התלהב לקראת המסיבה וראו שהוא כבר שיכור.</p>
+
+    <p>הגענו למסיבה, ראינו מאות אנשים, חלקם רוקדים והרבה יושבים ליד הים. היו חברה קרועים ששכבו על הרצפה, היו מטורפים שנכנסו לים. אנחנו לא רצינו לקנות כלום כי המחירים שם היו באמת בשמים, אבל הסתובבנו שם ודיברנו עם מי שיכולנו. להפתעתינו, כמעט שלא ראינו ישראלים. גונן דיבר עם איזו תאילנדית מכוערת ולא הבנתי למה. כשהתיישבנו היא התיישבה איתו והוא נכנס למצב של התגופפות. לבקשתו היא קראה לחברה שלה, בחורה חמודה וחייכנית. היא התיישבה מיד ונשענה עלי, בין רגלי. אין לי מושג איך קוראים לה והאמת שלא דיברנו הרבה. כשהיא הרגישה שאני מתחמם, היא הכניסה גם יד כדי לוודא זאת. ליאור הלך לחפש את קיי שהייתה אמורה גם להגיע למסיבה. נראה לי שזוג הומואים שהתגופפו לידינו הטריד את מנוחתו. אחד מקומי, די מגודל וחם והשני כנראה אירופאי, נראה כמו ישראלי, בטוח לא נראה הומו. הם התגופפו ומדי פעם רבו ופעם אחת עף אחד מהם על ליאור וליאור התעצבן. אני גם התעצבנתי כי כל פעם שדיברתי עם ליאור הייתי צריך לראות אותם מאחוריו.</p>
+
+    <p>בקיצור ליאור הלך לעשות סיבוב. אני וגונן מתמזמזים עם 2 בחורות, אך יודעים שלסגור עניין יהיה קשה. אף אחד לא הביא קונדומים, לגונן יש את שירלי בחדר. אני צריך להסתדר עם ליאור בחדר שלי.</p>
+
+    <p>השעון כבר הראה 5:00 בבוקר ואנחנו לא זוכרים את השם של הגסט האוס שלנו ויודעים רק בערך איפה הוא צריך להיות.</p>
+
+    <p>רציתי לראות את הזריחה שהתמהמהה בינתיים. לפתע החלה רוח חזקה ומבול. כולנו נדחקנו לסככות, איפה שמכרו שתיה. גונן החל למכור לאיזה תייר משקה וכמעט לקח ממנו כסף עד שהודה שהוא לא המוכר. בכלל הוא היה במצב רוח מרומם (תרתי משמע) והתלהב משד שראה לאיזה ליידי בוי והדאיג אותי בפעם השלישית.</p>
+
+    <p>כל הזמן אמרתי לליאור שגונן מנפק את הסחורה שאני מצפה ממנו, אבל כשהוא עם שירלי, חמודה ככל שתהיה, אני לא מקבל תמורה ויוצא ממורמר.</p>
+
+    <p>הגשם לא עשה סימנים שהוא הולך להפסק והחלטנו לרוץ למוניות ולהבריז לבחורות, היה כבר 6:00 בבוקר. שכחתי להגיד, אבל ליאור מצא את קיי ודווקא היה מבסוט ממנה. הוא כבר היה בטוח בנשיותה, אבל החלטנו להבריז, אז ברחנו מהם ורצנו למונית. הנהג העמיס חברה על האוטו והחל ליסוע. יצא שגונן ישב ליד 2 ליידי בויס. משום מה הוא יזם איתם שיחה והדאיג אותי בפעם הרביעית באותו יום !!!</p>
+
+    <p>אז כך חזרנו, אחרי לילה מטורף, הכל היה גשום והלכנו לישון. התעוררתי ב- 14:00, נשארתי ער וגלגלתי המאורעות בראש. כששאלתי את ליאור לשעה והוא אמר לי "14:45" לא האמנתי. יצאתי החוצה וגיליתי מזג-אוויר חורפי.</p>
+
+    <p>שיחקתי מטקות עם ליאור כחצי-שעה עד ששוב החל גשם ואח"כ חברנו לגונן ושירלי והלכנו למרכז, שם אכלנו וגונן גם קנה איזה דבר או שניים. בירכנו על מזלנו הטוב, זה באמת גן-עדן כאן, אבל הכסף זורם כאן, להערכתי לפחות 800$ לחודש.</p>
+
+    <div class="photo-block">
+      <img src="../images/20011216_chawang_beach.jpg" onclick="openLightbox(this.src)">
+      <div class="caption">קטע חוף בצ'אוואנג</div>
+    </div>
+
+    <div class="photo-block">
+      <img src="../images/20011216_chawang_beach.jpg" onclick="openLightbox(this.src)">
+      <div class="caption">קטע חוף בצ'אוואנג</div>
+    </div>
+
+
+  </div>
+
+  <div class="nav-cards">
+    <a href="20011218.html" class="nav-card">
+      <div class="label">הבא →</div>
+      <div class="card-title">האופנועים, ריפוי בריסוק</div>
+    </a>
+    <a href="20011215.html" class="nav-card">
+      <div class="label">← הקודם</div>
+      <div class="card-title">נוסע סמוי</div>
+    </a>
+  </div>
+
+  <div class="country-nav">
+    <a href="200110052040.html">דנמרק</a>
+    <a href="20011006.html">הודו</a>
+    <a href="20011030.html">נפאל</a>
+    <a href="20011115.html">טרק אנאפורנה</a>
+    <a href="20011210.html">תאילנד</a>
+    <a href="20020108.html">לאוס</a>
+    <a href="20020123.html">צפון תאילנד</a>
+    <a href="20020203.html">אוסטרליה</a>
+    <a href="20020210.html">ניו-זילנד, אי דרומי</a>
+    <a href="20020326.html">ניו-זילנד, אי צפוני</a>
+    <a href="20020506.html">פיליפינים</a>
+    <a href="20020603.html">קמבודיה</a>
   </div>
 
   <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
-    <img id="lightbox-img" src="" alt="Enlarged">
+    <img id="lightbox-img" src="" alt="">
   </div>
-
   <script>
     function openLightbox(src) {
       document.getElementById('lightbox-img').src = src;

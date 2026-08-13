@@ -3,221 +3,317 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>צ'אמה, נפאל</title>
+  <title>סובב אנאפורנה - יום 4</title>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap" rel="stylesheet">
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background-color: #f8fafc;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0; padding: 20px; color: #334155;
+      background: #ffffff;
+      font-family: 'Heebo', sans-serif;
+      color: #1a1a2e;
+      line-height: 1.9;
     }
-    .container {
-      max-width: 800px; margin: 0 auto; background: #ffffff;
-      padding: 35px; border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06); line-height: 1.8;
+    .top-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #eee;
+      padding: 12px 30px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.9rem;
     }
-    .header {
-      border-bottom: 2px solid #e2e8f0; padding-bottom: 15px;
-      margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center;
+    .top-nav a {
+      color: #1d4ed8; text-decoration: none; font-weight: 600;
     }
-    .header h1 { margin: 0; color: #0f172a; font-size: 1.8rem; }
-    .home-link { color: #2563eb; text-decoration: none; font-weight: 600; }
-    .content img {
-      float: right; margin: 0 0 15px 20px; max-width: 320px; height: auto;
-      border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      cursor: pointer; transition: transform 0.2s;
+    .top-nav a:hover { text-decoration: underline; }
+    .top-nav .nav-links { display: flex; gap: 20px; }
+    .hero {
+      max-width: 900px; margin: 0 auto;
+      padding: 50px 40px 30px;
+      display: flex; align-items: flex-start; gap: 30px;
     }
-    .content img:hover { transform: scale(1.02); }
-    .content::after { content: ""; clear: both; display: table; }
-    a { color: #2563eb; }
+    .hero-text { flex: 1; }
+    .hero-map {
+      width: 120px; height: auto; object-fit: contain;
+      flex-shrink: 0; opacity: 0.85;
+    }
+    .meta-line {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+    }
+    .date-big {
+      font-size: 3.5rem; font-weight: 900; color: #e5e7eb; line-height: 1;
+    }
+    .date-details { font-size: 0.9rem; color: #6b7280; }
+    .country-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      border-radius: 20px; padding: 4px 14px;
+      font-size: 0.8rem; color: #1d4ed8; font-weight: 600;
+    }
+    .title {
+      font-size: 2.2rem; font-weight: 900; color: #111827;
+      margin: 20px 0 8px; line-height: 1.3;
+    }
+    .date-subtitle {
+      font-size: 1.1rem; font-weight: 300; color: #4b5563;
+      margin-bottom: 16px;
+    }
+    .title-divider {
+      width: 60px; height: 4px; background: #1d4ed8; border-radius: 2px;
+    }
+    .content {
+      max-width: 900px; margin: 30px auto; padding: 0 40px; font-size: 1.05rem;
+    }
+    .content p { margin-bottom: 18px; }
+    .content a {
+      color: #1d4ed8; cursor: pointer;
+      text-decoration: underline;
+      text-decoration-color: rgba(29,78,216,0.3);
+    }
+    .photo-block {
+      margin: 30px 0; border-radius: 12px; overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    .photo-block img {
+      width: 100%; display: block; cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .photo-block img:hover { transform: scale(1.01); }
+    .photo-block .caption {
+      padding: 12px 16px; font-size: 0.85rem; color: #6b7280;
+      background: #f9fafb; border-top: 1px solid #f3f4f6;
+    }
+    .photo-pair {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 14px; margin: 30px 0;
+    }
+    .photo-pair .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-pair .photo-item img {
+      width: 100%; height: 200px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-pair .photo-item img:hover { transform: scale(1.03); }
+    .photo-pair .photo-item .caption {
+      padding: 8px 12px; font-size: 0.8rem; color: #6b7280; background: #f9fafb;
+    }
+    .photo-trio {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px; margin: 30px 0;
+    }
+    .photo-trio .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-trio .photo-item img {
+      width: 100%; height: 180px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-trio .photo-item img:hover { transform: scale(1.03); }
+    .photo-trio .photo-item .caption {
+      padding: 8px 10px; font-size: 0.78rem; color: #6b7280; background: #f9fafb;
+    }
+    .nav-cards {
+      max-width: 900px; margin: 50px auto 20px; padding: 0 40px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .nav-card {
+      padding: 20px 24px; border: 1px solid #e5e7eb; border-radius: 12px;
+      text-decoration: none; color: inherit; transition: all 0.2s;
+    }
+    .nav-card:hover {
+      border-color: #1d4ed8; box-shadow: 0 4px 12px rgba(29,78,216,0.1);
+    }
+    .nav-card .label { font-size: 0.8rem; color: #6b7280; margin-bottom: 4px; }
+    .nav-card .card-title { font-weight: 700; font-size: 1rem; color: #1d4ed8; }
+    .supplements {
+      margin-top: 35px; padding: 25px 30px;
+      background: #f9fafb; border-radius: 12px; border: 1px solid #e5e7eb;
+    }
+    .supplements h3 {
+      font-size: 1.1rem; font-weight: 700; margin-bottom: 14px; color: #374151;
+    }
+    .supplements ol { padding-right: 20px; }
+    .supplements li { margin-bottom: 10px; color: #4b5563; }
+    .country-nav {
+      max-width: 900px; margin: 20px auto 40px; padding: 0 40px;
+      display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+    }
+    .country-nav a {
+      padding: 6px 14px; border-radius: 20px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      color: #1d4ed8; text-decoration: none;
+      font-size: 0.82rem; font-weight: 600;
+      transition: all 0.2s;
+    }
+    .country-nav a:hover {
+      background: #1d4ed8; color: white; border-color: #1d4ed8;
+    }
     .lightbox {
       display: none; position: fixed; z-index: 9999;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.9); justify-content: center; align-items: center; cursor: pointer;
+      background: rgba(0,0,0,0.92);
+      justify-content: center; align-items: center; cursor: pointer;
     }
-    .lightbox img { max-width: 90%; max-height: 90%; border-radius: 8px; }
+    .lightbox img { max-width: 92%; max-height: 92%; border-radius: 8px; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h1>צ'אמה, נפאל</h1>
-      <a href="../index.html" class="home-link">🏠 לעמוד הראשי</a>
+  <div class="top-nav">
+    <div class="nav-links">
+      <a href="../index.html">עמוד ראשי</a>
     </div>
-    <div class="content">
-      <body>
-<table cellpadding="0" cellspacing="0" height="80" width="954">
-<tr>
-<td align="center" height="80" width="277">
-<marquee style="font-size: 18pt; color: #800080">18.11.01</marquee></td>
-<td align="center" height="80" width="667">
-<!--webbot bot="Navigation" s-type="banner" s-rendering="graphics" S-Orientation B-Include-Home B-Include-Up U-Page S-Target startspan --><!--webbot bot="Navigation" i-checksum="26291" endspan --></td>
-<td align="center" height="80" width="10">
-
-<img border="0" height="160" onclick="openLightbox(this.src)" src="../images/Nepal.gif" title="לחץ להגדלה" width="158"/></td>
-</tr>
-<tr>
-<td colspan="3" height="1" style=" " width="954"></td>
-</tr>
-</table><table cellpadding="0" cellspacing="0" width="100%">
-<tr>
-<td align="right" style=" ">
-<h4>
-<marquee style="font-size: 24pt; color: #008080">סובב אנאפורנה - יום 4</marquee></h4>
-<p> </p></td>
-</tr>
-</table>
-<table cellpadding="0" cellspacing="0" height="333" width="953">
-<tr>
-<td height="333" rowspan="2" style="       " valign="top" width="140"> <!--webbot bot="Navigation" S-Type="sequence" S-Orientation="vertical" S-Rendering="graphics" S-Theme="blocks 000" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><!--webbot bot="Navigation" i-checksum="23763" endspan --><p>
-
-<img border="0" height="211" onclick="openLightbox(this.src)" src="../images/20011118_malik_on_the_road.jpg" title="לחץ להגדלה" width="139"/></p>
-<p>
-<img border="0" height="215" onclick="openLightbox(this.src)" src="../images/20011117_yak.jpg" title="לחץ להגדלה" width="141"/></p>
-<p style="text-align: center"><font color="#660099">יאק</font></p>
-<p>
-
-<img border="0" height="217" onclick="openLightbox(this.src)" src="../images/20011118_gonen_on_the_path.jpg" title="לחץ להגדלה" width="144"/></p>
-<p>
-
-<img border="0" height="98" onclick="openLightbox(this.src)" src="../images/20011118_gonen_porter.jpg" title="לחץ להגדלה" width="143"/></p>
-<p> </p>
-</td>
-<td height="333" rowspan="2" style="     " valign="top" width="1"></td>
-<td colspan="2" height="266" style="     " valign="top" width="735">
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אתמול אחרי הפסקת הצהרים 
-    הלכנו לנו בכיף. הדרך התיישרה וממש נהנינו. השמש הוסתרה והיה קריר, ממש כיף.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">רק בסוף היתה עליה. הלכתי 
-    כל הדרך עם גונן. הרים מושלגים נחשפו לעינינו והעננים נראו מאד נמוכים. נראה לי 
-    שנגיע אליהם תוך 3 ימים ו- 1000-1500 מ' גובה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בערב עוד הספקתי למקלחת 
-    הקרה שלי, היתר התקלחו עם דלי של מים חמים (</span><span dir="LTR">Hot bucket</span><span lang="HE">) 
-    למעט עוז ואיתנזזזזז (זה השם שנתן לו גונן ולהפתעתי הוא ממש תופס וכיפי 
-    להגייה).</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בערב לא עשינו הרבה. היינו 
-    בגסט האוס שהומלץ לנו בצהרים ע"י הברנש שעצרנו אצלו. זאת היתה אחותו בעלת הגסט 
-    האוס. היו שם 3-4 נפאליות חמודות ולא נשואות (כלומר בנות פחות מ- 20) אולם הן 
-    היו ביישניות ולא התיישבו איתנו. הפעם הלכנו לישון עוד יותר מוקדם – 19:30.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">ביקשתי מגונן שישכים אותנו 
-    ב- 6:00. הוא התעקש לא לשים שעון מעורר כי יש לו יקיצה טבעית ב- 6:00. לא ישנתי 
-    טוב בלילה, המזרון היה כ"כ דק שהרגשתי את הקרש מתחתיו, במיוחד כשהייתי על הצד. 
-    לפתע אמר גונן "עכשיו 6:00". מיהרתי להסתכל וראיתי שהשעה היא 5:55. מדהים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">עד שיצאנו כבר היה 7:30. 
-    היום יום כמו אתמול אולי אפילו קל יותר.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הלכתי עם איתי. חיכינו 
-    לאיתן באיזו התפצלות ואז הלכתי אחריו. איתן סיפר שסלע ענק התדרדר 5 מ' מאחוריו 
-    והוא ניצל במזל.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">איתי הכתיב קצב בלתי אפשרי. 
-    יש לו כושר מטורף, הוא לא עוצר בעליות, אפילו לא מאיט.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בהפסקת הצהרים עוז רב עם 
-    בעלת המסעדה כי היא לא נתנה לו תוספת שלישית של אורז בדאל-באט. התוספת של האורז 
-    צריכה להיות חופשית. עוז התעצבן ובצדק. לא נראה עליו שהוא אוכל יותר מדי. אח"כ 
-    הוא מחרבן כמויות אדירות. הבוקר הוא עשה חרבון על השביל והוא הראה לנו אח"כ, 
-    כשעברנו משם. מגעיל ביותר ובכמויות שיאק לא היה מתבייש בהן, ואפילו באותה צורת 
-    עוגה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הפעם נהיה ממש קר, בהפסקות 
-    הוצאתי את הפליז ולא הסתפקתי בחולצה קצרה. אני לא יודע אם אני מוכן מבחינת 
-    בגדים חמים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">את החלק השני של היום עשיתי 
-    עם עוז ואיתי. יש לשניהם כושר מעולה, אבל נשארתי איתם עד ל- </span>
-<span dir="LTR">check point</span><span lang="HE"> של ה- </span>
-<span dir="LTR">permit</span><span lang="HE">. הם המשיכו כשאיתן וגונן הגיעו. 
-    אני המשכתי עם גונן ואיתן והלכנו לאיטנו חצי שעה עד הכפר הנ"ל.</span></b></p>
-<p class="MsoNormal" dir="RTL"> </p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">כבר ניתן לראות בטרק את 
-    אישיותו והיכולת של כל אחד מהמשתתפים:</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><u><span lang="HE">איתי</span></u><span lang="HE"> 
-    - החייל, יש לו כושר אדיר, לא מאיט בעליות, עוקף את כל המקומיים. ניסיתי להצמד 
-    אליו היום והיה לי ממש קשה ואני יודע שהוא לא הפעיל מבערים. הוא אחלה גבר, תמיד 
-    מוכן לעזור, במיוחד לאיתן. אנחנו לא משתמשים בו, אך נראה לי שכשיהיה קשה, הוא 
-    נקודת האור שלנו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><u><span lang="HE">עוז</span></u><span lang="HE"> 
-    – יש לו כושר טוב מאד, לא עוצר בעליות, הוא קולני – גרפצים, פלוצים וסתם 
-    דיבורים עם תיירים או מקומיים – קידוחים בשפה המקומית שלנו. הוא אחראי על הקטע 
-    החברתי – מגלגל ג'וינטים, מוצא מקומות לישון ומתמקח איתם – ממש המנהיג של 
-    החבורה. הבעיה היחידה היא שלפעמים הוא רציני מדי ומדבר ומתווכח הרבה, זה יכול 
-    להיות לנו לרועץ.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><u><span lang="HE">איתן</span></u><span lang="HE"> 
-    הגדול, אמור להיות נקודת החולשה שלנו, ממש קשה לו ללכת. אבל יש לו רצון ברזל, 
-    לא, אפילו פלדה. גם כשנוטשים אותו לבד, בסוף הוא מגיע. אנחנו לא נותנים לו כמעט 
-    הנחות – הוא סוחב את הציוד שלו, לא תמיד מחכים לו, לפעמים רק באמצע הדרך. הוא 
-    נח פחות מכולם ומתאמץ יותר מכולם, אבל לא מתלונן. בינתיים לא התלונן אפילו פעם 
-    אחת, גם כשלא חיכו לו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">סה"כ חבורה מלוכדת וחזקה. 
-    נקווה שכולנו נעבור את ה- </span><span dir="LTR">Pass</span><span lang="HE"> 
-    יחד.</span></b></p>
-<p style="text-align: right">
-     </p></td>
-<td align="center" height="333" rowspan="2" style="     " valign="top" width="187">
-<p>
-
-<img border="0" height="134" onclick="openLightbox(this.src)" src="../images/chame_entrance.jpg" title="לחץ להגדלה" width="175"/></p>
-<p>
-<font color="#660099">גונן ואני בכניסה לצ'אמה</font></p>
-<p>
-
-<img border="0" height="113" onclick="openLightbox(this.src)" src="../images/20011118_chame.jpg" title="לחץ להגדלה" width="177"/></p>
-<p>
-<font color="#660099"> העיירה צ'אמה</font></p>
-<p>
-
-<img border="0" height="119" onclick="openLightbox(this.src)" src="../images/20011118_our_guesthouse.jpg" title="לחץ להגדלה" width="178"/></p>
-<p>
-<font color="#660099"> הגסט האוס שלנו בצ'אמה, מבט מבחוץ</font></p>
-<p>
-
-<img border="0" height="108" onclick="openLightbox(this.src)" src="../images/eating_dinner_1.jpg" title="לחץ להגדלה" width="173"/></p>
-<p>
-<font color="#660099">הגסט האוס שלנו בצ'אמה, מבט מבפנים</font></p>
-<p>
-
-<img border="0" height="110" onclick="openLightbox(this.src)" src="../images/eating_dinner_2.jpg" title="לחץ להגדלה" width="179"/></p>
-<p>
-<font color="#660099">מחכים לארוחת-הערב</font></p>
-<p>
-
-<img border="0" height="111" onclick="openLightbox(this.src)" src="../images/ugly_boy.jpg" title="לחץ להגדלה" width="181"/></p>
-<p>
-<font color="#660099">התינוק המגעיל שסילק את כולנו לישון</font></p>
-<p>
-
-<img border="0" height="125" onclick="openLightbox(this.src)" src="../images/20011118_gonen&amp;eitanzzz&amp;full_moon.jpg" title="לחץ להגדלה" width="177"/></p>
-<p>
-<font color="#660099">פוזות לפני השינה</font></p>
-<p>
-
-<img border="0" height="122" onclick="openLightbox(this.src)" src="../images/20011117_gonen_with_yaks.jpg" title="לחץ להגדלה" width="177"/></p>
-<p>
-<font color="#660099">גונן ויאקים</font></p>
-<p>
-     </p>
-</td>
-</tr>
-<tr>
-<td height="67" style="     " valign="top" width="314">
-
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button104.gif" title="לחץ להגדלה" width="59"/></td>
-<td height="67" style="     " valign="top" width="421">
-<p align="right">
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button106.gif" title="לחץ להגדלה" width="59"/></p></td>
-</tr>
-</table>
-<p align="center">
-<!--webbot bot="Navigation" S-Type="sequence" S-Orientation="horizontal" S-Rendering="html" S-Bar="Brackets" S-Btn-Nml="[&lt;A HREF=&quot;#URL#&quot; TARGET=&quot;#TARGET#&quot; STYLE=&quot;{text-decoration: none;}&quot;&gt;#LABEL#&lt;/A&gt;]" S-Btn-Sel="[#LABEL#]" S-Btn-Sep="&amp;nbsp;" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><nobr>[<a href="index.html" style="{text-decoration: none;}" target="">התחלה</a>]</nobr> <nobr>[<a href="200110052040.html" style="{text-decoration: none;}" target="">דנמרק</a>]</nobr> <nobr>[<a href="20011006.html" style="{text-decoration: none;}" target="">הודו</a>]</nobr> <nobr>[<a href="20011030.html" style="{text-decoration: none;}" target="">נפאל</a>]</nobr> <nobr>[<a href="20011115.html" style="{text-decoration: none;}" target="">טרק סובב אנאפורנה</a>]</nobr> <nobr>[<a href="20011210.html" style="{text-decoration: none;}" target="">תאילנד</a>]</nobr> <nobr>[<a href="20020108.html" style="{text-decoration: none;}" target="">לאוס</a>]</nobr> <nobr>[<a href="20020123.html" style="{text-decoration: none;}" target="">צפון תאילנד</a>]</nobr> <nobr>[<a href="20020203.html" style="{text-decoration: none;}" target="">אוסטרליה</a>]</nobr> <nobr>[<a href="20020210.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי דרומי</a>]</nobr> <nobr>[<a href="20020326.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי צפוני</a>]</nobr> <nobr>[<a href="20020506.html" style="{text-decoration: none;}" target="">פיליפינים</a>]</nobr> <nobr>[<a href="20020603.html" style="{text-decoration: none;}" target="">קמבודיה</a>]</nobr><!--webbot bot="Navigation" i-checksum="33824" endspan --></p>
-<p><i><small>This site was last updated
-<!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%m/%d/%y" startspan -->07/09/03<!--webbot bot="Timestamp" i-checksum="12746" endspan --> </small></i>
-</p>
-</body>
+    <div class="nav-links">
+      <a href="20011117.html">← הקודם</a>
+      <a href="20011119.html">הבא →</a>
     </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-text">
+      <div class="meta-line">
+        <span class="date-big">18</span>
+        <div>
+          <div class="date-details">נובמבר 2001</div>
+          <span class="country-badge">נפאל</span>
+        </div>
+      </div>
+      <h1 class="title">סובב אנאפורנה - יום 4</h1>
+      <div class="title-divider"></div>
+    </div>
+    <img class="hero-map" src="../images/Nepal.gif" alt="נפאל">
+  </div>
+
+  <div class="content">
+    <p>סובב אנאפורנה - יום 4</p>
+
+    <p>אתמול אחרי הפסקת הצהרים הלכנו לנו בכיף. הדרך התיישרה וממש נהנינו. השמש הוסתרה והיה קריר, ממש כיף.</p>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/20011118_malik_on_the_road.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011117_yak.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">יאק</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011118_gonen_on_the_path.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+    </div>
+
+    <p>רק בסוף היתה עליה. הלכתי כל הדרך עם גונן. הרים מושלגים נחשפו לעינינו והעננים נראו מאד נמוכים. נראה לי שנגיע אליהם תוך 3 ימים ו- 1000-1500 מ' גובה.</p>
+
+    <p>בערב עוד הספקתי למקלחת הקרה שלי, היתר התקלחו עם דלי של מים חמים (Hot bucket) למעט עוז ואיתנזזזזז (זה השם שנתן לו גונן ולהפתעתי הוא ממש תופס וכיפי להגייה).</p>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/20011118_gonen_porter.jpg" onclick="openLightbox(this.src)">
+        
+      </div>
+      <div class="photo-item">
+        <img src="../images/chame_entrance.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">גונן ואני בכניסה לצ'אמה</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011118_chame.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">העיירה צ'אמה</div>
+      </div>
+    </div>
+
+    <p>בערב לא עשינו הרבה. היינו בגסט האוס שהומלץ לנו בצהרים ע"י הברנש שעצרנו אצלו. זאת היתה אחותו בעלת הגסט האוס. היו שם 3-4 נפאליות חמודות ולא נשואות (כלומר בנות פחות מ- 20) אולם הן היו ביישניות ולא התיישבו איתנו. הפעם הלכנו לישון עוד יותר מוקדם – 19:30.</p>
+
+    <p>ביקשתי מגונן שישכים אותנו ב- 6:00. הוא התעקש לא לשים שעון מעורר כי יש לו יקיצה טבעית ב- 6:00. לא ישנתי טוב בלילה, המזרון היה כ"כ דק שהרגשתי את הקרש מתחתיו, במיוחד כשהייתי על הצד. לפתע אמר גונן "עכשיו 6:00". מיהרתי להסתכל וראיתי שהשעה היא 5:55. מדהים.</p>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/20011118_our_guesthouse.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">הגסט האוס שלנו בצ'אמה, מבט מבחוץ</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/eating_dinner_1.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">הגסט האוס שלנו בצ'אמה, מבט מבפנים</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/eating_dinner_2.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">מחכים לארוחת-הערב</div>
+      </div>
+    </div>
+
+    <p>עד שיצאנו כבר היה 7:30. היום יום כמו אתמול אולי אפילו קל יותר.</p>
+
+    <p>הלכתי עם איתי. חיכינו לאיתן באיזו התפצלות ואז הלכתי אחריו. איתן סיפר שסלע ענק התדרדר 5 מ' מאחוריו והוא ניצל במזל.</p>
+
+    <div class="photo-pair">
+      <div class="photo-item">
+        <img src="../images/ugly_boy.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">התינוק המגעיל שסילק את כולנו לישון</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20011118_gonen&eitanzzz&full_moon.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">פוזות לפני השינה</div>
+      </div>
+    </div>
+
+    <p>איתי הכתיב קצב בלתי אפשרי. יש לו כושר מטורף, הוא לא עוצר בעליות, אפילו לא מאיט.</p>
+
+    <p>בהפסקת הצהרים עוז רב עם בעלת המסעדה כי היא לא נתנה לו תוספת שלישית של אורז בדאל-באט. התוספת של האורז צריכה להיות חופשית. עוז התעצבן ובצדק. לא נראה עליו שהוא אוכל יותר מדי. אח"כ הוא מחרבן כמויות אדירות. הבוקר הוא עשה חרבון על השביל והוא הראה לנו אח"כ, כשעברנו משם. מגעיל ביותר ובכמויות שיאק לא היה מתבייש בהן, ואפילו באותה צורת עוגה.</p>
+
+    <div class="photo-block">
+      <img src="../images/20011117_gonen_with_yaks.jpg" onclick="openLightbox(this.src)">
+      <div class="caption">גונן ויאקים</div>
+    </div>
+
+    <p>הפעם נהיה ממש קר, בהפסקות הוצאתי את הפליז ולא הסתפקתי בחולצה קצרה. אני לא יודע אם אני מוכן מבחינת בגדים חמים.</p>
+
+    <p>את החלק השני של היום עשיתי עם עוז ואיתי. יש לשניהם כושר מעולה, אבל נשארתי איתם עד ל- check point של ה- permit. הם המשיכו כשאיתן וגונן הגיעו. אני המשכתי עם גונן ואיתן והלכנו לאיטנו חצי שעה עד הכפר הנ"ל.</p>
+
+    <p>כבר ניתן לראות בטרק את אישיותו והיכולת של כל אחד מהמשתתפים:</p>
+
+    <p>איתי - החייל, יש לו כושר אדיר, לא מאיט בעליות, עוקף את כל המקומיים. ניסיתי להצמד אליו היום והיה לי ממש קשה ואני יודע שהוא לא הפעיל מבערים. הוא אחלה גבר, תמיד מוכן לעזור, במיוחד לאיתן. אנחנו לא משתמשים בו, אך נראה לי שכשיהיה קשה, הוא נקודת האור שלנו.</p>
+
+    <p>עוז – יש לו כושר טוב מאד, לא עוצר בעליות, הוא קולני – גרפצים, פלוצים וסתם דיבורים עם תיירים או מקומיים – קידוחים בשפה המקומית שלנו. הוא אחראי על הקטע החברתי – מגלגל ג'וינטים, מוצא מקומות לישון ומתמקח איתם – ממש המנהיג של החבורה. הבעיה היחידה היא שלפעמים הוא רציני מדי ומדבר ומתווכח הרבה, זה יכול להיות לנו לרועץ.</p>
+
+    <p>איתן הגדול, אמור להיות נקודת החולשה שלנו, ממש קשה לו ללכת. אבל יש לו רצון ברזל, לא, אפילו פלדה. גם כשנוטשים אותו לבד, בסוף הוא מגיע. אנחנו לא נותנים לו כמעט הנחות – הוא סוחב את הציוד שלו, לא תמיד מחכים לו, לפעמים רק באמצע הדרך. הוא נח פחות מכולם ומתאמץ יותר מכולם, אבל לא מתלונן. בינתיים לא התלונן אפילו פעם אחת, גם כשלא חיכו לו.</p>
+
+    <p>סה"כ חבורה מלוכדת וחזקה. נקווה שכולנו נעבור את ה- Pass יחד.</p>
+
+
+  </div>
+
+  <div class="nav-cards">
+    <a href="20011119.html" class="nav-card">
+      <div class="label">הבא →</div>
+      <div class="card-title">סובב אנאפורנה, יום 5</div>
+    </a>
+    <a href="20011117.html" class="nav-card">
+      <div class="label">← הקודם</div>
+      <div class="card-title">סובב אנאפורנה, יום 3</div>
+    </a>
+  </div>
+
+  <div class="country-nav">
+    <a href="200110052040.html">דנמרק</a>
+    <a href="20011006.html">הודו</a>
+    <a href="20011030.html">נפאל</a>
+    <a href="20011115.html">טרק אנאפורנה</a>
+    <a href="20011210.html">תאילנד</a>
+    <a href="20020108.html">לאוס</a>
+    <a href="20020123.html">צפון תאילנד</a>
+    <a href="20020203.html">אוסטרליה</a>
+    <a href="20020210.html">ניו-זילנד, אי דרומי</a>
+    <a href="20020326.html">ניו-זילנד, אי צפוני</a>
+    <a href="20020506.html">פיליפינים</a>
+    <a href="20020603.html">קמבודיה</a>
   </div>
 
   <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
-    <img id="lightbox-img" src="" alt="Enlarged">
+    <img id="lightbox-img" src="" alt="">
   </div>
-
   <script>
     function openLightbox(src) {
       document.getElementById('lightbox-img').src = src;

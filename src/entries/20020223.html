@@ -3,274 +3,332 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>הגנים הבוטנים, דנידין, ניו-זילנד</title>
+  <title>לילה מטורף בדנידין</title>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap" rel="stylesheet">
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background-color: #f8fafc;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0; padding: 20px; color: #334155;
+      background: #ffffff;
+      font-family: 'Heebo', sans-serif;
+      color: #1a1a2e;
+      line-height: 1.9;
     }
-    .container {
-      max-width: 800px; margin: 0 auto; background: #ffffff;
-      padding: 35px; border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06); line-height: 1.8;
+    .top-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #eee;
+      padding: 12px 30px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.9rem;
     }
-    .header {
-      border-bottom: 2px solid #e2e8f0; padding-bottom: 15px;
-      margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center;
+    .top-nav a {
+      color: #1d4ed8; text-decoration: none; font-weight: 600;
     }
-    .header h1 { margin: 0; color: #0f172a; font-size: 1.8rem; }
-    .home-link { color: #2563eb; text-decoration: none; font-weight: 600; }
-    .content img {
-      float: right; margin: 0 0 15px 20px; max-width: 320px; height: auto;
-      border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      cursor: pointer; transition: transform 0.2s;
+    .top-nav a:hover { text-decoration: underline; }
+    .top-nav .nav-links { display: flex; gap: 20px; }
+    .hero {
+      max-width: 900px; margin: 0 auto;
+      padding: 50px 40px 30px;
+      display: flex; align-items: flex-start; gap: 30px;
     }
-    .content img:hover { transform: scale(1.02); }
-    .content::after { content: ""; clear: both; display: table; }
-    a { color: #2563eb; }
+    .hero-text { flex: 1; }
+    .hero-map {
+      width: 120px; height: auto; object-fit: contain;
+      flex-shrink: 0; opacity: 0.85;
+    }
+    .meta-line {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+    }
+    .date-big {
+      font-size: 3.5rem; font-weight: 900; color: #e5e7eb; line-height: 1;
+    }
+    .date-details { font-size: 0.9rem; color: #6b7280; }
+    .country-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      border-radius: 20px; padding: 4px 14px;
+      font-size: 0.8rem; color: #1d4ed8; font-weight: 600;
+    }
+    .title {
+      font-size: 2.2rem; font-weight: 900; color: #111827;
+      margin: 20px 0 8px; line-height: 1.3;
+    }
+    .date-subtitle {
+      font-size: 1.1rem; font-weight: 300; color: #4b5563;
+      margin-bottom: 16px;
+    }
+    .title-divider {
+      width: 60px; height: 4px; background: #1d4ed8; border-radius: 2px;
+    }
+    .content {
+      max-width: 900px; margin: 30px auto; padding: 0 40px; font-size: 1.05rem;
+    }
+    .content p { margin-bottom: 18px; }
+    .content a {
+      color: #1d4ed8; cursor: pointer;
+      text-decoration: underline;
+      text-decoration-color: rgba(29,78,216,0.3);
+    }
+    .photo-block {
+      margin: 30px 0; border-radius: 12px; overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    .photo-block img {
+      width: 100%; display: block; cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .photo-block img:hover { transform: scale(1.01); }
+    .photo-block .caption {
+      padding: 12px 16px; font-size: 0.85rem; color: #6b7280;
+      background: #f9fafb; border-top: 1px solid #f3f4f6;
+    }
+    .photo-pair {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 14px; margin: 30px 0;
+    }
+    .photo-pair .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-pair .photo-item img {
+      width: 100%; height: 200px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-pair .photo-item img:hover { transform: scale(1.03); }
+    .photo-pair .photo-item .caption {
+      padding: 8px 12px; font-size: 0.8rem; color: #6b7280; background: #f9fafb;
+    }
+    .photo-trio {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px; margin: 30px 0;
+    }
+    .photo-trio .photo-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+    .photo-trio .photo-item img {
+      width: 100%; height: 180px; object-fit: cover;
+      display: block; cursor: pointer; transition: transform 0.2s;
+    }
+    .photo-trio .photo-item img:hover { transform: scale(1.03); }
+    .photo-trio .photo-item .caption {
+      padding: 8px 10px; font-size: 0.78rem; color: #6b7280; background: #f9fafb;
+    }
+    .nav-cards {
+      max-width: 900px; margin: 50px auto 20px; padding: 0 40px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .nav-card {
+      padding: 20px 24px; border: 1px solid #e5e7eb; border-radius: 12px;
+      text-decoration: none; color: inherit; transition: all 0.2s;
+    }
+    .nav-card:hover {
+      border-color: #1d4ed8; box-shadow: 0 4px 12px rgba(29,78,216,0.1);
+    }
+    .nav-card .label { font-size: 0.8rem; color: #6b7280; margin-bottom: 4px; }
+    .nav-card .card-title { font-weight: 700; font-size: 1rem; color: #1d4ed8; }
+    .supplements {
+      margin-top: 35px; padding: 25px 30px;
+      background: #f9fafb; border-radius: 12px; border: 1px solid #e5e7eb;
+    }
+    .supplements h3 {
+      font-size: 1.1rem; font-weight: 700; margin-bottom: 14px; color: #374151;
+    }
+    .supplements ol { padding-right: 20px; }
+    .supplements li { margin-bottom: 10px; color: #4b5563; }
+    .country-nav {
+      max-width: 900px; margin: 20px auto 40px; padding: 0 40px;
+      display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+    }
+    .country-nav a {
+      padding: 6px 14px; border-radius: 20px;
+      background: #f0f9ff; border: 1px solid #bfdbfe;
+      color: #1d4ed8; text-decoration: none;
+      font-size: 0.82rem; font-weight: 600;
+      transition: all 0.2s;
+    }
+    .country-nav a:hover {
+      background: #1d4ed8; color: white; border-color: #1d4ed8;
+    }
     .lightbox {
       display: none; position: fixed; z-index: 9999;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.9); justify-content: center; align-items: center; cursor: pointer;
+      background: rgba(0,0,0,0.92);
+      justify-content: center; align-items: center; cursor: pointer;
     }
-    .lightbox img { max-width: 90%; max-height: 90%; border-radius: 8px; }
+    .lightbox img { max-width: 92%; max-height: 92%; border-radius: 8px; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h1>הגנים הבוטנים, דנידין, ניו-זילנד</h1>
-      <a href="../index.html" class="home-link">🏠 לעמוד הראשי</a>
+  <div class="top-nav">
+    <div class="nav-links">
+      <a href="../index.html">עמוד ראשי</a>
     </div>
-    <div class="content">
-      <body>
-<table cellpadding="0" cellspacing="0" height="80" width="954">
-<tr>
-<td align="center" height="80" width="277">
-<marquee style="font-size: 18pt; color: #800080">23.2.02 - 15:30</marquee></td>
-<td align="center" height="80" width="667">
-<!--webbot bot="Navigation" s-type="banner" s-rendering="graphics" S-Orientation B-Include-Home B-Include-Up U-Page S-Target startspan --><!--webbot bot="Navigation" i-checksum="41886" endspan --></td>
-<td align="center" height="80" width="10">
-
-<img border="0" height="160" onclick="openLightbox(this.src)" src="../images/New_Zealand_south_island.gif" title="לחץ להגדלה" width="163"/></td>
-</tr>
-<tr>
-<td colspan="3" height="1" style=" " width="954"></td>
-</tr>
-</table><table cellpadding="0" cellspacing="0" width="100%">
-<tr>
-<td align="right" style=" ">
-<h4>
-<marquee style="font-size: 24pt; color: #008080">לילה מטורף בדנידין</marquee></h4>
-<p> </p></td>
-</tr>
-</table>
-<table cellpadding="0" cellspacing="0" height="333" width="953">
-<tr>
-<td height="333" rowspan="2" style="       " valign="top" width="140"> <!--webbot bot="Navigation" S-Type="sequence" S-Orientation="vertical" S-Rendering="graphics" S-Theme="blocks 000" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><!--webbot bot="Navigation" i-checksum="23763" endspan --><p style="text-align: center">
-
-<img border="0" height="80" onclick="openLightbox(this.src)" src="../images/contract_highlighter_rolling_md_wht.gif" title="לחץ להגדלה" width="125"/></p>
-</td>
-<td height="333" rowspan="2" style="     " valign="top" width="1"></td>
-<td colspan="2" height="266" style="     " valign="top" width="735">
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">פעם שלישית שאני כאן בגנים 
-    הבוטנים בדנידין, אבל היש מקום טוב יותר לכתוב בו יומן ביום שטוף שמש?</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אם היה לנו כח היינו 
-    משייטים לנו במכוניתנו לאורך החוף – חוף </span><span dir="LTR">Otago</span><span lang="HE"> 
-    בחיפוש אחר בעלי-חיים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אבל ליל אמש היה מטורף, 
-    באמת משהו מיוחד, וכן, לאחר כחודש זה כולל גם סקס.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE"> </span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אבל בפעם האחרונה היינו ב-
-    </span><span dir="LTR">Omaru</span><span lang="HE">, אצל </span>
-<span dir="LTR">Nikky&amp;Nelson</span><span lang="HE"> ומשם נמשיך בסיפורינו:</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">קמתי בבוקר, היה יום יפה 
-    בחוץ, אבל גונן והילה עדיין ישנו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">לאחר כשעה דפיקה בדלת. ניקי 
-    בפתח. היא אומרת שכבר 12:30 ושהיא צריכה ללכת. היא השאירה לנו מפתח וגם 
-    ארוחת-בוקר. זה כזה כיף להתארח אצל משפחות ה- </span><span dir="LTR">Hit</span><span lang="HE">.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">סיימנו את עניינינו ושמנו 
-    פעמינו לעיר. למרכז העיר יש מעט הסטוריה ויש שם כ- 20 בניינים עתיקים, נבנו ב- 
-    1830-1860 והם שמורים היטב. טיילנו באוטו, עלינו לתצפית והלכנו למקום משם ניתן 
-    לראות פינגווינים בערב. להפתעתינו ראינו
-    <a href="images/pictures/new-zealand/20020222_penguins_in_love.jpg" target="_blank">
-    2 פינגווינים ממש קרוב לגדר</a>. הגדר מרוחקת כ- 50 מטר מהחוף וכ- 20 מטר גבוהה 
-    מהחוף ואין לי מושג כיצד הפינגווינים הגיעו לשם. זה היה זוג רומנטי והם התנשקו 
-    עם המקורים וניקו אחד את השני. זה פינגווין צהוב העין. יש להם ראש צהוב וכרבולת 
-    צהובה – ממש יפים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">חזרנו והלכנו לגנים הבוטנים 
-    של </span><span dir="LTR">Omaru</span><span lang="HE">. הגנים יפהפיים. נראה 
-    שיש כאן מסורת שבכל עיר יהיו גנים בוטנים והכניסה אליהם תהיה חופשית. זה לא 
-    אומר שהגנים מוזנחים או מלוכלכים חלילה, להיפך.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הפעם שמחתי שהילה הולכת 
-    איתנו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">מהגנים יש שביל חצי נסתר 
-    למעין פינת חי. אתה נכנס למקום מגודר ו-
-    <a href="images/pictures/new-zealand/20020222_alpakot.jpg" target="_blank">2 
-    אלפאקות</a> נמצאים שם לידך, מעט חוששות. בחצר הבאה היו 2
-    <a href="images/pictures/new-zealand/20020222_waleby.jpg" target="_blank">
-    וולבי</a>.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">חזרנו, אכלנו והלכנו חזרה 
-    לפינגווינים. ב- 18:00 הם אמורים 
-    <a href="images/pictures/new-zealand/20020222_yellow_eyed_pinguin_walk.jpg" target="_blank">לעלות מהים</a>. ישבנו שם כמעט שעתיים וראינו רק 3 
-    פינגווינים עולים מהים. די התייבשנו שם, אבל לראות פינגווין עולה מהים עם 
-    ההליכה המוזרה והמצחיקה שלו זה שווה הכל, גם אם אתה מרוחק 50 מטר. ניתן לקחת 
-    טיול מודרך ולהגיע קרוב יותר עם איזה תחמן תמורת 7$</span><span dir="LTR">NZ</span><span lang="HE">.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">סיימנו זאת, שבנו לאכול 
-    והלכנו לראות את ה<a href="images/pictures/new-zealand/20020222_blue_penguin.jpg" target="_blank">פינגווינים הכחולים</a>. הזן הקטן ביותר של פינגווין. הם עולים 
-    מהים במסלול שנעשה במיוחד בשבילם וכך כולם עוברים לידך ואתה יושב על ספסלים 
-    ומסתכל יחד עם עוד 200 תיירים מהיציע. חמוד, אבל כמות כזו של תיירים הורסת את 
-    הרגשת הטבע. זה עולה 8$</span><span dir="LTR">NZ</span><span lang="HE">. 
-    ראינו סה"כ כ- 20 פינגווינים. הולכים, עוצרים ואז שוב הולכים ופתאם מעט רצים. 
-    ממש חמודים וגם קטנטנים, כ- 30-40 ס"מ גובה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">משם נסענו כשעה ורבע 
-    לדנידין. גונן כמעט קיפד את חיינו כשראה קיפוד על הכביש וירד לשוליים בלמעלה מ- 
-    100 קמ"ש. אני לא הייתי רגוע כל הנסיעה וכך גם הילה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הגענו לקראת 24:00. החנינו 
-    ליד </span><span dir="LTR">Outback</span><span lang="HE">, הפאב/מועדון הידוע 
-    שלנו כאן ונכנסנו. היה עמוס, זהו סוף השבוע האחרון לפני הלימודים, המון צעירים. 
-    אנחנו תידלקנו עם 2 כוסות וודקה עם פאנטה עוד באוטו והוספנו עוד ג'אג בירה (כ- 
-    1.1 ליטר) בפאב.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">רקדנו, גונן התחיל עם כמה 
-    בחורות בהצלחה מועטה. ברור לי שאנחנו לא משאירים רושם על אוכלוסיה צעירה זו.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">עם הילה ניסו להתחיל 
-    פעמיים-שלוש. היא נצמדה אלי ואמרה שאני החבר שלה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">כשנגמר הבילוי שם, גונן רצה 
-    שנלך למקום ליד, מתחת לאיפה שישנו בלילינו הראשון בדנידין, שם יש מבוגרים. 
-    נכנסנו ואמנם החגיגה היתה בעיצומה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">היתה הרגשה טובה להיות צעיר 
-    בין מבוגרים, שכן משכנו מבטים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">לאחר כמה דקות באה מישהי 
-    מבוגרת אלי והרימה לי את החולצה וככל הנראה אהבה את מה שראתה. אני שמרתי על 
-    ארשת פנים אדישה, אך זה היה סימן לבאות. כחצי שעה אח"כ באה אלי אחת אחרת, חברה 
-    של המבוגרת, והתחילה לרקוד איתי. היא חבשה כובע אדום של בוקרים ואמרה לי שזו 
-    חגיגת יום ההולדת שלה. היא בת 27. די מהר התנשקנו והיא הודיעה לי שהיא רוצה 
-    שנבלה ביחד את הלילה. הסכמתי במיוחד כי עבר חודש מאז הפעם הקודמת והמצב הכללי 
-    שלי היה חם ממה שאני רגיל להיות. היה לה פרצוף יפה, בלונדינית, אבל מעט מלאה. 
-    חקירה נוספת העלתה שיש לה 2 ילדות – אחת בת 4 וחצי והשניה תינוקת בת 3 חודשים. 
-    היא גרושה טרייה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">כששם נגמרה המסיבה, היא 
-    ועוד כ- 10 מחבריה שבאו לחגוג איתה שם, רצו ללכת למקום אחר. הילה רצתה ללכת 
-    לישון באוטו ולחכות לנו. אמרתי לגונן שאולי אני לא חוזר. גונן רצה להצטרף 
-    לחבורה החוגגת. רובם היו שיכורים ושתו כמויות, גונן במובן הזה השתלב היטב.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הלכנו ברחובות דנידין 
-    הראשיים. אני עם חולצה קצרה לגופי ובחוץ קר. גונן הכיר שם חברה של שרה, כלת 
-    היום-הולדת, מישהי שקוראים לה סם. גם היא מעט מלאה. הוא הלך איתה מחובק והצחיק 
-    אותה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">בערך במרכז העיר פתאם 
-    התחילו ללכת מכות. אחד מהחבורה שלנו עם 3 אחרים, כששניים דואגים שאף אחד לא 
-    יתערב או יפריד, שיהיה קרב הוגן של בעיטות ואגרופים. אני ניזהרתי לא להתערב אם 
-    כי אם הקרב לא היה פייר הייתי מתערב להפריד. בסוף המשטרה הגיעה ופחדתי שאני 
-    וגונן נקלע וחס וחלילה נסולק מהמדינה המשגעת הזו. אבל המשטרה לא עשתה כלום ואף 
-    אחד לא נעצר. מעין מטפלת יותר ממשטרה.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">המשכנו למקום היחידי שהיה 
-    פתוח בעיר. לא זוכר את שמו, אבל היתה מוזיקה טובה, מוזיקה שחורה. השעה כבר היתה 
-    אחרי 5:00. אני התחלתי להתעייף. לא הבנתי למה מחכים ורציתי להגיע למיטה חמה. 
-    מסתבר ששרה חשבה שלי יש איפה לישון. בביתה היו הילדים שלה ואמא שלה ששמרה על 
-    התינוקת.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">במועדון המבוגרת, חברה של 
-    שרה עוד נגעה בי כמה פעמים, פעם אפילו חפנה את אברי בבוטות.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">גונן קצת רקד, אבל את רוב 
-    זמנו בילה בחרבון ובלהשיג נייר טואלט כי הוא אזל משירותי הגברים. הוא גם עישן 
-    גראס עם כמה חברה בדרכו לשירותים.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">כששם נגמרה המסיבה האור כבר 
-    עלה. היה כבר קרוב ל- 7:00.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">ניפרדתי מגונן – הוא נסע 
-    במונית עם סם לביתה. אני נסעתי במונית עם שרה לביתה. איך שניכנסנו לביתה קידמה 
-    אותנו אימא שלה והבת שלה, סישה בת ה- 4 וחצי. הרגשתי מאד נבוך. הם פינו את חדר 
-    השינה ונתנו לנו להכנס. זה היה קטע מוזר – להכיר את משפחתה של בחורה שאני בקושי 
-    מכיר. לי לא כ"כ אכפת כי אני אוהב צחוקים כאלה וגם היתה לי כאן כוונה מוצהרת 
-    שהיא לאו דווקא סקס.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">שרה התפשטה לגמרי ונכנסה 
-    למיטה, כך, בלי משחקים מוקדמים. עירומה לגמרי למעט החזיה, שכן שדיה היו מלאי 
-    חלב והם נזלו. אני כבר מזמן רציתי לטעום את זה, לסגור מעגל. טעמתי, הטעם היה 
-    כמו של חלב קוקוס. הזרם מילא את פי. נראה לי כי הפטמה מלאת חורים מכל הכיוונים 
-    ולא חור אחד בקצה כמו שחשבתי.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">את הלילה ביליתי עם שרה ועם 
-    התינוקת שישנה איתנו באותה המיטה. שרה גם הניקה לידי וזה היה עוד מראה של טבע 
-    מהמם.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הדלת לא היתה נעולה וכך 
-    בבוקר, כשהיינו באמצע אקט ולא מכוסים, ראיתי את הילדה מציצה. מוזר.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">לקראת הצהרים כשאני לחוץ מה 
-    עם הילה ואם היא כועסת עלינו שלא חזרנו, גונן מצלצל מסם, מבסוט. נסעתי עם שרה 
-    לסם ושם גיליתי את גונן וסם שכובים במיטה. חדרה מגניב, מלא בפרסים שזכתה בהם 
-    בתחרויות של קפיצות עם סוסים. החדר גם מלא בבובות חמודות.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">אחיה של סם נכנס לחדר וראה 
-    את גונן שוכב במטה עם אחותו ומחייך. הוא הציג עצמו בחביבות. הוא גר עם סם. מוזר 
-    ביותר. גונן גם סיפר שכשהוא ראה אותו לראשונה הוא הציע להביא לו מגבת למקלחת. 
-    מוזר ביותר.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">הוקפצנו למרכז העיר ע"י סם, 
-    לאוטו שלנו. ראינו סדרה שלמה של פתקים שהשאירה הילה, בכל פעם מעדכנת אותנו איפה 
-    היא נמצאת.</span></b></p>
-<p class="MsoNormal" dir="RTL"><b><span lang="HE">כתבנו פתק משלנו והלכנו 
-    לאינטרנט. פגשנו שם את הילה והיא להפתעתי לא היתה עצבנית אלא פשוט דאגה לנו 
-    ולשלומינו. תגובתה קנתה אותי ושמה אותה בחזית הבחורות הישראליות שטיילנו איתן.</span></b></p>
-<p class="MsoNormal" dir="RTL"> </p></td>
-<td align="center" height="333" rowspan="2" style="     " valign="top" width="187">
-<p>
-
-<img border="0" height="137" onclick="openLightbox(this.src)" src="../images/20020222_penguins_in_love.jpg" title="לחץ להגדלה" width="183"/></p>
-<p><font color="#660099">זוג פינגווינים מאוהב שראינו ליד הגדר</font></p>
-<p>
-
-<img border="0" height="159" onclick="openLightbox(this.src)" src="../images/20020222_yellow_eyed_pinguin_walk.jpg" title="לחץ להגדלה" width="170"/></p>
-<p><font color="#660099"> פינגווין צהוב עין עולה על החוף</font></p>
-<p> </p>
-<p>
-
-<img border="0" height="126" onclick="openLightbox(this.src)" src="../images/20020221_three_some.jpg" title="לחץ להגדלה" width="180"/></p>
-<p><font color="#660099">גונן, הילה ואני</font></p>
-<p>
-     </p>
-<p>
-
-<img border="0" height="123" onclick="openLightbox(this.src)" src="../images/20020222_alpakot.jpg" title="לחץ להגדלה" width="181"/></p>
-<p><font color="#660099">אלפאקות שראינו בפינת החי באומארו, ליד הגנים הבוטנים 
-    שם</font></p>
-<p>
-
-<img border="0" height="224" onclick="openLightbox(this.src)" src="../images/20020222_waleby.jpg" title="לחץ להגדלה" width="157"/></p>
-<p><font color="#660099">גם וולבי היו שם, חופשיים</font></p>
-<p>
-     </p>
-<p>
-
-<img border="0" height="121" onclick="openLightbox(this.src)" src="../images/20020222_blue_penguin.jpg" title="לחץ להגדלה" width="174"/></p>
-<p><font color="#660099">פינגווינים כחולים חמודים עולים לחוף</font></p>
-<p>
-     </p>
-<p>
-
-<img border="0" height="118" onclick="openLightbox(this.src)" src="../images/20020223_dunedin_botanic_gardens.jpg" title="לחץ להגדלה" width="174"/></p>
-<p><font color="#660099">הגנים הבוטנים בדנידין</font></p>
-<p> </p>
-<p> </p>
-<p> </p>
-<p> </p></td>
-</tr>
-<tr>
-<td height="67" style="     " valign="top" width="314">
-<b>
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button104.gif" title="לחץ להגדלה" width="59"/></b></td>
-<td height="67" style="     " valign="top" width="421">
-<p align="right"><b>
-<img border="0" height="59" onclick="openLightbox(this.src)" src="../images/button106.gif" title="לחץ להגדלה" width="59"/></b></p></td>
-</tr>
-</table>
-<p align="center">
-<!--webbot bot="Navigation" S-Type="sequence" S-Orientation="horizontal" S-Rendering="html" S-Bar="Brackets" S-Btn-Nml="[&lt;A HREF=&quot;#URL#&quot; TARGET=&quot;#TARGET#&quot; STYLE=&quot;{text-decoration: none;}&quot;&gt;#LABEL#&lt;/A&gt;]" S-Btn-Sel="[#LABEL#]" S-Btn-Sep="&amp;nbsp;" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page="sid:1013" startspan --><nobr>[<a href="index.html" style="{text-decoration: none;}" target="">התחלה</a>]</nobr> <nobr>[<a href="200110052040.html" style="{text-decoration: none;}" target="">דנמרק</a>]</nobr> <nobr>[<a href="20011006.html" style="{text-decoration: none;}" target="">הודו</a>]</nobr> <nobr>[<a href="20011030.html" style="{text-decoration: none;}" target="">נפאל</a>]</nobr> <nobr>[<a href="20011115.html" style="{text-decoration: none;}" target="">טרק סובב אנאפורנה</a>]</nobr> <nobr>[<a href="20011210.html" style="{text-decoration: none;}" target="">תאילנד</a>]</nobr> <nobr>[<a href="20020108.html" style="{text-decoration: none;}" target="">לאוס</a>]</nobr> <nobr>[<a href="20020123.html" style="{text-decoration: none;}" target="">צפון תאילנד</a>]</nobr> <nobr>[<a href="20020203.html" style="{text-decoration: none;}" target="">אוסטרליה</a>]</nobr> <nobr>[<a href="20020210.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי דרומי</a>]</nobr> <nobr>[<a href="20020326.html" style="{text-decoration: none;}" target="">ניו-זילנד, אי צפוני</a>]</nobr> <nobr>[<a href="20020506.html" style="{text-decoration: none;}" target="">פיליפינים</a>]</nobr> <nobr>[<a href="20020603.html" style="{text-decoration: none;}" target="">קמבודיה</a>]</nobr><!--webbot bot="Navigation" i-checksum="33824" endspan --></p>
-<p><i><small>This site was last updated
-<!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%m/%d/%y" startspan -->07/19/03<!--webbot bot="Timestamp" i-checksum="12754" endspan --> </small></i>
-</p>
-</body>
+    <div class="nav-links">
+      <a href="20020221.html">← הקודם</a>
+      <a href="20020224.html">הבא →</a>
     </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-text">
+      <div class="meta-line">
+        <span class="date-big">23</span>
+        <div>
+          <div class="date-details">פברואר 2002</div>
+          <span class="country-badge">ניו-זילנד, אי דרומי</span>
+        </div>
+      </div>
+      <h1 class="title">לילה מטורף בדנידין</h1>
+      <div class="title-divider"></div>
+    </div>
+    <img class="hero-map" src="../images/New_Zealand_south_island.gif" alt="ניו-זילנד, אי דרומי">
+  </div>
+
+  <div class="content">
+    <p>לילה מטורף בדנידין</p>
+
+    <p>פעם שלישית שאני כאן בגנים הבוטנים בדנידין, אבל היש מקום טוב יותר לכתוב בו יומן ביום שטוף שמש?</p>
+
+    <p>אם היה לנו כח היינו משייטים לנו במכוניתנו לאורך החוף – חוף Otago בחיפוש אחר בעלי-חיים.</p>
+
+    <p>אבל ליל אמש היה מטורף, באמת משהו מיוחד, וכן, לאחר כחודש זה כולל גם סקס.</p>
+
+    <p>אבל בפעם האחרונה היינו ב- Omaru, אצל Nikky&Nelson ומשם נמשיך בסיפורינו:</p>
+
+    <p>קמתי בבוקר, היה יום יפה בחוץ, אבל גונן והילה עדיין ישנו.</p>
+
+    <p>לאחר כשעה דפיקה בדלת. ניקי בפתח. היא אומרת שכבר 12:30 ושהיא צריכה ללכת. היא השאירה לנו מפתח וגם ארוחת-בוקר. זה כזה כיף להתארח אצל משפחות ה- Hit.</p>
+
+    <p>סיימנו את עניינינו ושמנו פעמינו לעיר. למרכז העיר יש מעט הסטוריה ויש שם כ- 20 בניינים עתיקים, נבנו ב- 1830-1860 והם שמורים היטב. טיילנו באוטו, עלינו לתצפית והלכנו למקום משם ניתן לראות פינגווינים בערב. להפתעתינו ראינו <a onclick="openLightbox('../images/20020222_penguins_in_love.jpg')"> 2 פינגווינים ממש קרוב לגדר</a>. הגדר מרוחקת כ- 50 מטר מהחוף וכ- 20 מטר גבוהה מהחוף ואין לי מושג כיצד הפינגווינים הגיעו לשם. זה היה זוג רומנטי והם התנשקו עם המקורים וניקו אחד את השני. זה פינגווין צהוב העין. יש להם ראש צהוב וכרבולת צהובה – ממש יפים.</p>
+
+    <p>חזרנו והלכנו לגנים הבוטנים של Omaru. הגנים יפהפיים. נראה שיש כאן מסורת שבכל עיר יהיו גנים בוטנים והכניסה אליהם תהיה חופשית. זה לא אומר שהגנים מוזנחים או מלוכלכים חלילה, להיפך.</p>
+
+    <div class="photo-trio">
+      <div class="photo-item">
+        <img src="../images/20020222_penguins_in_love.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">זוג פינגווינים מאוהב שראינו ליד הגדר</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020222_yellow_eyed_pinguin_walk.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">פינגווין צהוב עין עולה על החוף</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020221_three_some.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">גונן, הילה ואני</div>
+      </div>
+    </div>
+
+    <p>הפעם שמחתי שהילה הולכת איתנו.</p>
+
+    <p>מהגנים יש שביל חצי נסתר למעין פינת חי. אתה נכנס למקום מגודר ו- <a onclick="openLightbox('../images/20020222_alpakot.jpg')">2 אלפאקות</a> נמצאים שם לידך, מעט חוששות. בחצר הבאה היו 2 <a onclick="openLightbox('../images/20020222_waleby.jpg')"> וולבי</a>.</p>
+
+    <p>חזרנו, אכלנו והלכנו חזרה לפינגווינים. ב- 18:00 הם אמורים <a onclick="openLightbox('../images/20020222_yellow_eyed_pinguin_walk.jpg')">לעלות מהים</a>. ישבנו שם כמעט שעתיים וראינו רק 3 פינגווינים עולים מהים. די התייבשנו שם, אבל לראות פינגווין עולה מהים עם ההליכה המוזרה והמצחיקה שלו זה שווה הכל, גם אם אתה מרוחק 50 מטר. ניתן לקחת טיול מודרך ולהגיע קרוב יותר עם איזה תחמן תמורת 7$NZ.</p>
+
+    <p>סיימנו זאת, שבנו לאכול והלכנו לראות את ה<a onclick="openLightbox('../images/20020222_blue_penguin.jpg')">פינגווינים הכחולים</a>. הזן הקטן ביותר של פינגווין. הם עולים מהים במסלול שנעשה במיוחד בשבילם וכך כולם עוברים לידך ואתה יושב על ספסלים ומסתכל יחד עם עוד 200 תיירים מהיציע. חמוד, אבל כמות כזו של תיירים הורסת את הרגשת הטבע. זה עולה 8$NZ. ראינו סה"כ כ- 20 פינגווינים. הולכים, עוצרים ואז שוב הולכים ופתאם מעט רצים. ממש חמודים וגם קטנטנים, כ- 30-40 ס"מ גובה.</p>
+
+    <p>משם נסענו כשעה ורבע לדנידין. גונן כמעט קיפד את חיינו כשראה קיפוד על הכביש וירד לשוליים בלמעלה מ- 100 קמ"ש. אני לא הייתי רגוע כל הנסיעה וכך גם הילה.</p>
+
+    <p>הגענו לקראת 24:00. החנינו ליד Outback, הפאב/מועדון הידוע שלנו כאן ונכנסנו. היה עמוס, זהו סוף השבוע האחרון לפני הלימודים, המון צעירים. אנחנו תידלקנו עם 2 כוסות וודקה עם פאנטה עוד באוטו והוספנו עוד ג'אג בירה (כ- 1.1 ליטר) בפאב.</p>
+
+    <p>רקדנו, גונן התחיל עם כמה בחורות בהצלחה מועטה. ברור לי שאנחנו לא משאירים רושם על אוכלוסיה צעירה זו.</p>
+
+    <p>עם הילה ניסו להתחיל פעמיים-שלוש. היא נצמדה אלי ואמרה שאני החבר שלה.</p>
+
+    <p>כשנגמר הבילוי שם, גונן רצה שנלך למקום ליד, מתחת לאיפה שישנו בלילינו הראשון בדנידין, שם יש מבוגרים. נכנסנו ואמנם החגיגה היתה בעיצומה.</p>
+
+    <div class="photo-pair">
+      <div class="photo-item">
+        <img src="../images/20020222_alpakot.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">אלפאקות שראינו בפינת החי באומארו, ליד הגנים הבוטנים 
+    שם</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020222_waleby.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">גם וולבי היו שם, חופשיים</div>
+      </div>
+    </div>
+
+    <p>היתה הרגשה טובה להיות צעיר בין מבוגרים, שכן משכנו מבטים.</p>
+
+    <p>לאחר כמה דקות באה מישהי מבוגרת אלי והרימה לי את החולצה וככל הנראה אהבה את מה שראתה. אני שמרתי על ארשת פנים אדישה, אך זה היה סימן לבאות. כחצי שעה אח"כ באה אלי אחת אחרת, חברה של המבוגרת, והתחילה לרקוד איתי. היא חבשה כובע אדום של בוקרים ואמרה לי שזו חגיגת יום ההולדת שלה. היא בת 27. די מהר התנשקנו והיא הודיעה לי שהיא רוצה שנבלה ביחד את הלילה. הסכמתי במיוחד כי עבר חודש מאז הפעם הקודמת והמצב הכללי שלי היה חם ממה שאני רגיל להיות. היה לה פרצוף יפה, בלונדינית, אבל מעט מלאה. חקירה נוספת העלתה שיש לה 2 ילדות – אחת בת 4 וחצי והשניה תינוקת בת 3 חודשים. היא גרושה טרייה.</p>
+
+    <p>כששם נגמרה המסיבה, היא ועוד כ- 10 מחבריה שבאו לחגוג איתה שם, רצו ללכת למקום אחר. הילה רצתה ללכת לישון באוטו ולחכות לנו. אמרתי לגונן שאולי אני לא חוזר. גונן רצה להצטרף לחבורה החוגגת. רובם היו שיכורים ושתו כמויות, גונן במובן הזה השתלב היטב.</p>
+
+    <p>הלכנו ברחובות דנידין הראשיים. אני עם חולצה קצרה לגופי ובחוץ קר. גונן הכיר שם חברה של שרה, כלת היום-הולדת, מישהי שקוראים לה סם. גם היא מעט מלאה. הוא הלך איתה מחובק והצחיק אותה.</p>
+
+    <p>בערך במרכז העיר פתאם התחילו ללכת מכות. אחד מהחבורה שלנו עם 3 אחרים, כששניים דואגים שאף אחד לא יתערב או יפריד, שיהיה קרב הוגן של בעיטות ואגרופים. אני ניזהרתי לא להתערב אם כי אם הקרב לא היה פייר הייתי מתערב להפריד. בסוף המשטרה הגיעה ופחדתי שאני וגונן נקלע וחס וחלילה נסולק מהמדינה המשגעת הזו. אבל המשטרה לא עשתה כלום ואף אחד לא נעצר. מעין מטפלת יותר ממשטרה.</p>
+
+    <p>המשכנו למקום היחידי שהיה פתוח בעיר. לא זוכר את שמו, אבל היתה מוזיקה טובה, מוזיקה שחורה. השעה כבר היתה אחרי 5:00. אני התחלתי להתעייף. לא הבנתי למה מחכים ורציתי להגיע למיטה חמה. מסתבר ששרה חשבה שלי יש איפה לישון. בביתה היו הילדים שלה ואמא שלה ששמרה על התינוקת.</p>
+
+    <p>במועדון המבוגרת, חברה של שרה עוד נגעה בי כמה פעמים, פעם אפילו חפנה את אברי בבוטות.</p>
+
+    <p>גונן קצת רקד, אבל את רוב זמנו בילה בחרבון ובלהשיג נייר טואלט כי הוא אזל משירותי הגברים. הוא גם עישן גראס עם כמה חברה בדרכו לשירותים.</p>
+
+    <p>כששם נגמרה המסיבה האור כבר עלה. היה כבר קרוב ל- 7:00.</p>
+
+    <div class="photo-pair">
+      <div class="photo-item">
+        <img src="../images/20020222_blue_penguin.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">פינגווינים כחולים חמודים עולים לחוף</div>
+      </div>
+      <div class="photo-item">
+        <img src="../images/20020223_dunedin_botanic_gardens.jpg" onclick="openLightbox(this.src)">
+        <div class="caption">הגנים הבוטנים בדנידין</div>
+      </div>
+    </div>
+
+    <p>ניפרדתי מגונן – הוא נסע במונית עם סם לביתה. אני נסעתי במונית עם שרה לביתה. איך שניכנסנו לביתה קידמה אותנו אימא שלה והבת שלה, סישה בת ה- 4 וחצי. הרגשתי מאד נבוך. הם פינו את חדר השינה ונתנו לנו להכנס. זה היה קטע מוזר – להכיר את משפחתה של בחורה שאני בקושי מכיר. לי לא כ"כ אכפת כי אני אוהב צחוקים כאלה וגם היתה לי כאן כוונה מוצהרת שהיא לאו דווקא סקס.</p>
+
+    <p>שרה התפשטה לגמרי ונכנסה למיטה, כך, בלי משחקים מוקדמים. עירומה לגמרי למעט החזיה, שכן שדיה היו מלאי חלב והם נזלו. אני כבר מזמן רציתי לטעום את זה, לסגור מעגל. טעמתי, הטעם היה כמו של חלב קוקוס. הזרם מילא את פי. נראה לי כי הפטמה מלאת חורים מכל הכיוונים ולא חור אחד בקצה כמו שחשבתי.</p>
+
+    <p>את הלילה ביליתי עם שרה ועם התינוקת שישנה איתנו באותה המיטה. שרה גם הניקה לידי וזה היה עוד מראה של טבע מהמם.</p>
+
+    <p>הדלת לא היתה נעולה וכך בבוקר, כשהיינו באמצע אקט ולא מכוסים, ראיתי את הילדה מציצה. מוזר.</p>
+
+    <p>לקראת הצהרים כשאני לחוץ מה עם הילה ואם היא כועסת עלינו שלא חזרנו, גונן מצלצל מסם, מבסוט. נסעתי עם שרה לסם ושם גיליתי את גונן וסם שכובים במיטה. חדרה מגניב, מלא בפרסים שזכתה בהם בתחרויות של קפיצות עם סוסים. החדר גם מלא בבובות חמודות.</p>
+
+    <p>אחיה של סם נכנס לחדר וראה את גונן שוכב במטה עם אחותו ומחייך. הוא הציג עצמו בחביבות. הוא גר עם סם. מוזר ביותר. גונן גם סיפר שכשהוא ראה אותו לראשונה הוא הציע להביא לו מגבת למקלחת. מוזר ביותר.</p>
+
+    <p>הוקפצנו למרכז העיר ע"י סם, לאוטו שלנו. ראינו סדרה שלמה של פתקים שהשאירה הילה, בכל פעם מעדכנת אותנו איפה היא נמצאת.</p>
+
+    <p>כתבנו פתק משלנו והלכנו לאינטרנט. פגשנו שם את הילה והיא להפתעתי לא היתה עצבנית אלא פשוט דאגה לנו ולשלומינו. תגובתה קנתה אותי ושמה אותה בחזית הבחורות הישראליות שטיילנו איתן.</p>
+
+    <p>אלפאקות שראינו בפינת החי באומארו, ליד הגנים הבוטנים שם</p>
+
+
+  </div>
+
+  <div class="nav-cards">
+    <a href="20020224.html" class="nav-card">
+      <div class="label">הבא →</div>
+      <div class="card-title">עייפים, עייפים</div>
+    </a>
+    <a href="20020221.html" class="nav-card">
+      <div class="label">← הקודם</div>
+      <div class="card-title">שיט ליוויתנים, הילה מצטרפת</div>
+    </a>
+  </div>
+
+  <div class="country-nav">
+    <a href="200110052040.html">דנמרק</a>
+    <a href="20011006.html">הודו</a>
+    <a href="20011030.html">נפאל</a>
+    <a href="20011115.html">טרק אנאפורנה</a>
+    <a href="20011210.html">תאילנד</a>
+    <a href="20020108.html">לאוס</a>
+    <a href="20020123.html">צפון תאילנד</a>
+    <a href="20020203.html">אוסטרליה</a>
+    <a href="20020210.html">ניו-זילנד, אי דרומי</a>
+    <a href="20020326.html">ניו-זילנד, אי צפוני</a>
+    <a href="20020506.html">פיליפינים</a>
+    <a href="20020603.html">קמבודיה</a>
   </div>
 
   <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
-    <img id="lightbox-img" src="" alt="Enlarged">
+    <img id="lightbox-img" src="" alt="">
   </div>
-
   <script>
     function openLightbox(src) {
       document.getElementById('lightbox-img').src = src;
