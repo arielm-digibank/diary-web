@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Photo Gallery</title>
+  <style>
+    body {
+      background-color: #f8fafc;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0; padding: 20px; color: #334155;
+    }
+    .container {
+      max-width: 800px; margin: 0 auto; background: #ffffff;
+      padding: 35px; border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06); line-height: 1.8;
+    }
+    .header {
+      border-bottom: 2px solid #e2e8f0; padding-bottom: 15px;
+      margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center;
+    }
+    .header h1 { margin: 0; color: #0f172a; font-size: 1.8rem; }
+    .home-link { color: #2563eb; text-decoration: none; font-weight: 600; }
+    .content img {
+      float: right; margin: 0 0 15px 20px; max-width: 320px; height: auto;
+      border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      cursor: pointer; transition: transform 0.2s;
+    }
+    .content img:hover { transform: scale(1.02); }
+    .content::after { content: ""; clear: both; display: table; }
+    a { color: #2563eb; }
+    .lightbox {
+      display: none; position: fixed; z-index: 9999;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.9); justify-content: center; align-items: center; cursor: pointer;
+    }
+    .lightbox img { max-width: 90%; max-height: 90%; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Photo Gallery</h1>
+      <a href="../index.html" class="home-link">🏠 לעמוד הראשי</a>
+    </div>
+    <div class="content">
+      <body alink="#000066" background="_themes/blueprnt/blutextb.gif" bgcolor="#FFFFFF" link="#3366FF" text="#003399" vlink="#9900FF"><!--mstheme--><font face="Century Gothic, Arial, Helvetica">
+<h2 align="left"><!--mstheme--><font color="#660066">Photo Gallery<!--mstheme--></font></h2>
+<p>
+<!--webbot bot="PurpleText" preview="To create your own photo gallery, double-click the group 
+of photos below.&nbsp; Use the dialog box to add your own photos or graphics, 
+captions, and descriptions, and pick a layout style.&nbsp; Finally, replace this 
+text with an introduction to your own photos." --></p>
+<!--msthemeseparator--><p align="center"><img height="10" onclick="openLightbox(this.src)" src="../images/bluhorsa.gif" title="לחץ להגדלה" width="600"/></p>
+<p> </p>
+<!--webbot bot="PhotoAlbum" u-include="photogallery/photo16469/real.htm" clientside tag="BODY" startspan -->
+<picture file-href="photogallery/photo16469/real_p.htm"></picture>
+<picture file-href="photogallery/photo16469/real_x.htm"></picture>
+<div align="center">
+<center>
+<layer visibility="hide">
+<div id="fpGalleryCaptions_9893" style="display:none;">
+<div></div><div></div><div></div><div></div><div></div></div>
+<div id="fpGalleryDescriptions_9893" style="display:none;">
+<div></div><div></div><div></div><div></div><div></div></div>
+</layer>
+
+<table cellpadding="5" cellspacing="0" width="700">
+<tr>
+<td align="center" nowrap="">
+<layer visibility="hide">
+</layer>
+
+<img align="absmiddle" border="0" height="56" hspace="10" id="fpphoto_7298" lowsrc="images/pictures/thailand/20020404_tongariro_crossing_1.jpg" name="fpphoto_7298" onclick="openLightbox(this.src)" src="../images/20020404_tongariro_crossing_1.jpg" title="לחץ להגדלה" vspace="5" width="100"/>
+<img align="absmiddle" border="0" height="100" hspace="10" id="fpphoto_7204" lowsrc="images/pictures/thailand/20020404_tongariro_crossing_2.jpg" name="fpphoto_7204" onclick="openLightbox(this.src)" src="../images/20020404_tongariro_crossing_2.jpg" title="לחץ להגדלה" vspace="5" width="61"/>
+<img align="absmiddle" border="0" height="62" hspace="10" id="fpphoto_586" lowsrc="images/pictures/thailand/20020404_tongariro_crossing_3.jpg" name="fpphoto_586" onclick="openLightbox(this.src)" src="../images/20020404_tongariro_crossing_3.jpg" title="לחץ להגדלה" vspace="5" width="100"/>
+<img align="absmiddle" border="0" height="100" hspace="10" id="fpphoto_3334" lowsrc="images/pictures/thailand/20020404_tongariro_crossing_4.jpg" name="fpphoto_3334" onclick="openLightbox(this.src)" src="../images/20020404_tongariro_crossing_4.jpg" title="לחץ להגדלה" vspace="5" width="64"/>
+<img align="absmiddle" border="0" height="66" hspace="10" id="fpphoto_7182" lowsrc="images/pictures/thailand/20020404_tongariro_crossing_5.jpg" name="fpphoto_7182" onclick="openLightbox(this.src)" src="../images/20020404_tongariro_crossing_5.jpg" title="לחץ להגדלה" vspace="5" width="100"/>
+<span style="width:0;height:100;visibility:hidden">.</span>
+
+<layer visibility="hide">
+
+
+</layer>
+<!--msthemeseparator--><p align="center"><img height="10" onclick="openLightbox(this.src)" src="../images/bluhorsa.gif" title="לחץ להגדלה" width="600"/></p>
+</td>
+</tr>
+</table>
+<img height="655" id="fpGalleryMainImg_9893" name="fpGalleryMainImg_9893" onclick="openLightbox(this.src)" src="../images/20020404_tongariro_crossing_1.jpg" title="לחץ להגדלה" width="1162">
+<layer visibility="hide">
+<div id="fpGalleryCaptionCell_9893">
+</div>
+<div id="fpGalleryDescCell_9893">
+</div>
+</layer>
+</img></center>
+</div>
+<!--webbot bot="PhotoAlbum" i-checksum="23350" endspan -->
+<!--mstheme--></font></body>
+    </div>
+  </div>
+
+  <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
+    <img id="lightbox-img" src="" alt="Enlarged">
+  </div>
+
+  <script>
+    function openLightbox(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox').style.display = 'flex';
+    }
+  </script>
+</body>
+</html>

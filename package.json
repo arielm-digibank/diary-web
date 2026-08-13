@@ -1,0 +1,17 @@
+{
+  "name": "diary-web",
+  "version": "1.0.0",
+  "description": "Personal travel diary site (2001-2002) - modernized static site",
+  "scripts": {
+    "start": "npx @11ty/eleventy --serve",
+    "build": "npx @11ty/eleventy",
+    "preview": "npx @11ty/eleventy --serve --port 8080"
+  },
+  "keywords": ["diary", "travel", "static-site", "eleventy"],
+  "author": "Ariel Malik",
+  "license": "UNLICENSED",
+  "private": true,
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0"
+  }
+}

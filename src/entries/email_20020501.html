@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hi</title>
+  <style>
+    body {
+      background-color: #f8fafc;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0; padding: 20px; color: #334155;
+    }
+    .container {
+      max-width: 800px; margin: 0 auto; background: #ffffff;
+      padding: 35px; border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06); line-height: 1.8;
+    }
+    .header {
+      border-bottom: 2px solid #e2e8f0; padding-bottom: 15px;
+      margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center;
+    }
+    .header h1 { margin: 0; color: #0f172a; font-size: 1.8rem; }
+    .home-link { color: #2563eb; text-decoration: none; font-weight: 600; }
+    .content img {
+      float: right; margin: 0 0 15px 20px; max-width: 320px; height: auto;
+      border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      cursor: pointer; transition: transform 0.2s;
+    }
+    .content img:hover { transform: scale(1.02); }
+    .content::after { content: ""; clear: both; display: table; }
+    a { color: #2563eb; }
+    .lightbox {
+      display: none; position: fixed; z-index: 9999;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.9); justify-content: center; align-items: center; cursor: pointer;
+    }
+    .lightbox img { max-width: 90%; max-height: 90%; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Hi</h1>
+      <a href="../index.html" class="home-link">🏠 לעמוד הראשי</a>
+    </div>
+    <div class="content">
+      <body alink="#336600" background="_themes/my-trip/967.jpg" bgcolor="#CCCC99" link="#996600" text="#000000" vlink="#666666"><!--mstheme--><font face="Times New Roman, Times">
+<div align="center">
+<center>
+<!--mstheme--></center></div></font><table width="80%">
+<tr>
+<td align="center" colspan="2"><!--mstheme--><font face="Times New Roman, Times"><span style="font-family: Century Gothic">
+<font size="5">Last Email from NZ</font></span><!--mstheme--></font></td>
+</tr>
+<tr>
+<td colspan="2"><!--mstheme--><font face="Times New Roman, Times"><!--mstheme--></font></td>
+</tr>
+<tr>
+<td colspan="2"><!--mstheme--><font face="Times New Roman, Times"><span style="font-family: Century Gothic"><font size="4">
+      Wed, 1 May 2002 19:36:55 -0700 (PDT)</font></span><!--mstheme--></font></td>
+</tr>
+<tr>
+<td width="5%"><!--mstheme--><font face="Times New Roman, Times"><!--mstheme--></font></td>
+<td width="60%"><!--mstheme--><font face="Times New Roman, Times">
+<span style="font-size: 10.0pt; font-family: Century Gothic; font-weight: 700">
+      Hello our dear fellows</span><p>
+<span style="font-size: 10.0pt; font-family: Century Gothic; font-weight: 700">
+      We are finishing NZ part of the trip.</span></p>
+<p>
+<span style="font-size: 10.0pt; font-family: Century Gothic; font-weight: 700">
+      On Saturday we fly to Melbourne, Australia for 1 day to see a Koala.</span></p>
+<p><b><span style="font-size: 10.0pt; font-family: Century Gothic">Day 
+      after that we'll fly to the Philippines for 3 weeks.</span></b></p>
+<p>
+<span style="font-size: 10.0pt; font-family: Century Gothic; font-weight: 700">
+      So, we don't know when we'll be able to write more Emails in that time.</span></p>
+<p><b><span style="font-size: 10.0pt; font-family: Century Gothic">In the 
+      last 2 weeks we've been in Auckland, except for 3 days in the north. It 
+      was raining all the time we've been to the north. It was good for the big 
+      waves we saw at the cape, the northern point, where 2 seas colides.</span></b></p>
+<p>
+<span style="font-size: 10.0pt; font-family: Century Gothic; font-weight: 700">
+      In Auckland we did a lot of arrangements. We saw several movies, so we're 
+      updated on that.</span></p>
+<p>
+<span style="font-size: 10.0pt; font-family: Century Gothic; font-weight: 700">
+      We tasted from the night life here and it was good, especially at the 
+      weekends.</span></p>
+<p>
+<span style="font-size: 10.0pt; font-family: Century Gothic; font-weight: 700">
+      Yesterday we've been to Faithless concert. It was great.</span></p>
+<p>
+<span style="font-size: 10.0pt; font-family: Century Gothic; font-weight: 700">
+      we sold the car to a pakistanian people. They invited us for lunch in 
+      their house. It was nice, a taste of the far east again. Now we're 
+      experiencing buses again, and it's miserable.</span></p>
+<p>
+<span style="font-size: 10.0pt; font-family: Century Gothic; font-weight: 700">
+<br/>
+      See you in Asia !!!</span></p>
+<p>
+<span style="font-size: 10.0pt; font-family: Century Gothic; font-weight: 700">
+      Kiwi Gonen</span></p>
+<p>
+<span style="font-size: 10.0pt; font-family: Century Gothic; font-weight: 700">
+      Pukeko Malik</span></p>
+<p> <!--mstheme--></p></font></td>
+</tr>
+</table><!--mstheme--><font face="Times New Roman, Times">
+
+
+<!--mstheme--></font></body>
+    </div>
+  </div>
+
+  <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
+    <img id="lightbox-img" src="" alt="Enlarged">
+  </div>
+
+  <script>
+    function openLightbox(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox').style.display = 'flex';
+    }
+  </script>
+</body>
+</html>

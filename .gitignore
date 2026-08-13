@@ -1,0 +1,24 @@
+# Dependencies
+node_modules/
+
+# Build output
+_site/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Original site (reference only, not tracked)
+trip/
+trip.zip
+clean_diary_site_bundle_v4.zip
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+*.swp
+*.swo
