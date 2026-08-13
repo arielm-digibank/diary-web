@@ -137,6 +137,59 @@
       color: #bfdbfe;
     }
 
+    .ask-section {
+      max-width: 1000px;
+      margin: 60px auto 40px;
+      padding: 0 20px;
+      text-align: center;
+    }
+
+    .ask-card {
+      background: linear-gradient(135deg, rgba(59,130,246,0.1) 0%, rgba(13,148,136,0.1) 100%);
+      border: 1px solid rgba(59,130,246,0.2);
+      border-radius: 16px;
+      padding: 40px 30px;
+    }
+
+    .ask-card h2 {
+      font-size: 1.6rem;
+      color: #f1f5f9;
+      margin-bottom: 12px;
+    }
+
+    .ask-card p {
+      color: #94a3b8;
+      font-size: 1rem;
+      margin-bottom: 24px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .ask-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 28px;
+      background: linear-gradient(135deg, #3b82f6, #0d9488);
+      color: white;
+      text-decoration: none;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border-radius: 12px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(59,130,246,0.3);
+    }
+
+    .ask-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(59,130,246,0.4);
+    }
+
+    .ask-btn .icon {
+      font-size: 1.4rem;
+    }
+
     .section-label {
       font-size: 0.75rem;
       text-transform: uppercase;
@@ -307,6 +360,17 @@
       <li><a href="entries/email_20020515.html">אי-מייל - 15 במאי 2002</a></li>
       <li><a href="entries/email_20020525.html">אי-מייל - 25 במאי 2002</a></li>
     </ul>
+  </div>
+
+  <div class="ask-section">
+    <div class="ask-card">
+      <h2>שאלו אותי על המסע</h2>
+      <p>רוצים לדעת מה קרה ביום מסוים? איפה אכלנו הכי טוב? מתי גונן נלחץ? שאלו את ה-AI שקרא את כל היומן.</p>
+      <a href="https://notebooklm.google.com/notebook/b2e0ffb5-3260-484f-b67b-3d1937238fbc" target="_blank" class="ask-btn">
+        <span class="icon">💬</span>
+        שאלו את NotebookLM
+      </a>
+    </div>
   </div>
 </body>
 </html>

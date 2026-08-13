@@ -33,6 +33,42 @@
       display: flex; align-items: flex-start; gap: 30px;
     }
     .hero-text { flex: 1; }
+
+    .hero-map-wrap {
+      position: relative; flex-shrink: 0; cursor: pointer;
+    }
+    .hero-map-wrap:hover .hero-map { opacity: 1; }
+    .place-popup {
+      display: none;
+      position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+      background: white; border: 1px solid #e5e7eb;
+      border-radius: 12px; padding: 16px 20px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+      min-width: 220px; z-index: 200; text-align: center;
+    }
+    .place-popup.show { display: block; }
+    .place-popup h4 {
+      font-size: 0.95rem; color: #1a1a2e; margin-bottom: 12px;
+      font-weight: 700;
+    }
+    .place-popup .place-links {
+      display: flex; gap: 10px; justify-content: center;
+    }
+    .place-popup .place-links a {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 8px 14px; border-radius: 8px;
+      font-size: 0.85rem; font-weight: 600;
+      text-decoration: none; transition: background 0.2s;
+    }
+    .place-popup .link-maps {
+      background: #dcfce7; color: #166534;
+    }
+    .place-popup .link-maps:hover { background: #bbf7d0; }
+    .place-popup .link-wiki {
+      background: #e0f2fe; color: #075985;
+    }
+    .place-popup .link-wiki:hover { background: #bae6fd; }
+
     .hero-map {
       width: 120px; height: auto; object-fit: contain;
       flex-shrink: 0; opacity: 0.85;
@@ -183,7 +219,16 @@
       <h1 class="title">לא קיבלנו הלם תרבות</h1>
       <div class="title-divider"></div>
     </div>
+    <div class="hero-map-wrap">
     <img class="hero-map" src="../images/India.gif" alt="הודו">
+    <div class="place-popup">
+      <h4>ניו דלהי, הודו</h4>
+      <div class="place-links">
+        <a href="https://www.google.com/maps/search/?api=1&query=New+Delhi" target="_blank" class="link-maps">📍 Google Maps</a>
+        <a href="https://he.wikipedia.org/wiki/%D7%A0%D7%99%D7%95_%D7%93%D7%9C%D7%94%D7%99" target="_blank" class="link-wiki">📖 Wikipedia</a>
+      </div>
+    </div>
+  </div>
   </div>
 
   <div class="content">
@@ -214,12 +259,6 @@
     <p>מצאנו מקום לישון ב- 250 רופי וקיבלנו חדר קטן עם מיזוג מים (כמו בדירה באילת), שירותים ומקלחת (אחד על השני).</p>
 
     <p>המסעדה בהארי רמה למעלה, על המרפסת. ניתן לראות כאן את עוז (לפני שהכרנו אותו) וברקע את איתן (לפני שעוז הכיר אותו). נדיר</p>
-
-    <div class="photo-block">
-      <img src="../images/20011007_hari_rama.jpg" onclick="openLightbox(this.src)">
-      <div class="caption">המסעדה בהארי רמה למעלה, על המרפסת. ניתן לראות כאן 
-    את עוז (לפני שהכרנו אותו) וברקע את איתן (לפני שעוז הכיר אותו). נדיר</div>
-    </div>
 
     <div class="photo-block">
       <img src="../images/20011007_hari_rama.jpg" onclick="openLightbox(this.src)">
@@ -265,5 +304,21 @@
       document.getElementById('lightbox').style.display = 'flex';
     }
   </script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var wrap = document.querySelector('.hero-map-wrap');
+  var popup = document.querySelector('.place-popup');
+  if (!wrap || !popup) return;
+  wrap.addEventListener('click', function(e) {
+    e.stopPropagation();
+    popup.classList.toggle('show');
+  });
+  document.addEventListener('click', function() {
+    popup.classList.remove('show');
+  });
+});
+</script>
+
 </body>
 </html>

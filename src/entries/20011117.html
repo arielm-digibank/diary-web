@@ -33,6 +33,42 @@
       display: flex; align-items: flex-start; gap: 30px;
     }
     .hero-text { flex: 1; }
+
+    .hero-map-wrap {
+      position: relative; flex-shrink: 0; cursor: pointer;
+    }
+    .hero-map-wrap:hover .hero-map { opacity: 1; }
+    .place-popup {
+      display: none;
+      position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+      background: white; border: 1px solid #e5e7eb;
+      border-radius: 12px; padding: 16px 20px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+      min-width: 220px; z-index: 200; text-align: center;
+    }
+    .place-popup.show { display: block; }
+    .place-popup h4 {
+      font-size: 0.95rem; color: #1a1a2e; margin-bottom: 12px;
+      font-weight: 700;
+    }
+    .place-popup .place-links {
+      display: flex; gap: 10px; justify-content: center;
+    }
+    .place-popup .place-links a {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 8px 14px; border-radius: 8px;
+      font-size: 0.85rem; font-weight: 600;
+      text-decoration: none; transition: background 0.2s;
+    }
+    .place-popup .link-maps {
+      background: #dcfce7; color: #166534;
+    }
+    .place-popup .link-maps:hover { background: #bbf7d0; }
+    .place-popup .link-wiki {
+      background: #e0f2fe; color: #075985;
+    }
+    .place-popup .link-wiki:hover { background: #bae6fd; }
+
     .hero-map {
       width: 120px; height: auto; object-fit: contain;
       flex-shrink: 0; opacity: 0.85;
@@ -183,7 +219,16 @@
       <h1 class="title">סובב אנאפורנה, יום 3</h1>
       <div class="title-divider"></div>
     </div>
+    <div class="hero-map-wrap">
     <img class="hero-map" src="../images/Nepal.gif" alt="נפאל">
+    <div class="place-popup">
+      <h4>טאל (סבב אנאפורנה), נפאל</h4>
+      <div class="place-links">
+        <a href="https://www.google.com/maps/search/?api=1&query=Tal,+Nepal" target="_blank" class="link-maps">📍 Google Maps</a>
+        <a href="https://he.wikipedia.org/wiki/%D7%A1%D7%91%D7%91_%D7%90%D7%A0%D7%90%D7%A4%D7%95%D7%A8%D7%A0%D7%94" target="_blank" class="link-wiki">📖 Wikipedia</a>
+      </div>
+    </div>
+  </div>
   </div>
 
   <div class="content">
@@ -208,77 +253,6 @@
     </div>
 
     <p>הגענו להפסקת הצהריים ביישוב יפהפה בשם טאל. גובה – כ- 1800 מ'. זהו עמק ישר לאחר עליה גדולה. העמק נפרס לפניך ונהר עובר דרכו. ממש יפה.</p>
-
-    <div class="photo-trio">
-      <div class="photo-item">
-        <img src="../images/20011115_stopping_at_a_waterfall.jpg" onclick="openLightbox(this.src)">
-        <div class="caption">עצרנו לטבילה באגם</div>
-      </div>
-      <div class="photo-item">
-        <img src="../images/20011116_determined_climbers.jpg" onclick="openLightbox(this.src)">
-        <div class="caption">ברית מטפסים</div>
-      </div>
-      <div class="photo-item">
-        <img src="../images/20011116_gonen_above_the_river.jpg" onclick="openLightbox(this.src)">
-        
-      </div>
-    </div>
-
-    <div class="photo-trio">
-      <div class="photo-item">
-        <img src="../images/20011116_malik_on_the_way.jpg" onclick="openLightbox(this.src)">
-        
-      </div>
-      <div class="photo-item">
-        <img src="../images/crossing_the_river.jpg" onclick="openLightbox(this.src)">
-        <div class="caption">מקומיים עוברים את הנהר ברגל</div>
-      </div>
-      <div class="photo-item">
-        <img src="../images/20011115_fearless_gonen.jpg" onclick="openLightbox(this.src)">
-        <div class="caption">אריק פורטר</div>
-      </div>
-    </div>
-
-    <div class="photo-trio">
-      <div class="photo-item">
-        <img src="../images/20011115_gonen_ready_to_start.jpg" onclick="openLightbox(this.src)">
-        
-      </div>
-      <div class="photo-item">
-        <img src="../images/20011115_malik&waterfall.jpg" onclick="openLightbox(this.src)">
-        
-      </div>
-      <div class="photo-item">
-        <img src="../images/20011116_malik_near_river.jpg" onclick="openLightbox(this.src)">
-        <div class="caption">כל אחד ארגן לעצמו מקל הליכה</div>
-      </div>
-    </div>
-
-    <div class="photo-trio">
-      <div class="photo-item">
-        <img src="../images/20011115_malik_smoking.jpg" onclick="openLightbox(this.src)">
-        <div class="caption">מליק נרגע באחת ההפסקות</div>
-      </div>
-      <div class="photo-item">
-        <img src="../images/20011116_before_big_climb.jpg" onclick="openLightbox(this.src)">
-        <div class="caption">גונן מתכונן לעוד עליה קשה</div>
-      </div>
-      <div class="photo-item">
-        <img src="../images/20011116_big_waterfall_1.jpg" onclick="openLightbox(this.src)">
-        
-      </div>
-    </div>
-
-    <div class="photo-pair">
-      <div class="photo-item">
-        <img src="../images/20011116_big_waterfall_2.jpg" onclick="openLightbox(this.src)">
-        
-      </div>
-      <div class="photo-item">
-        <img src="../images/20011116_malik&tall_waterfall.jpg" onclick="openLightbox(this.src)">
-        <div class="caption">לאורך כל הדרך ראינו מפלים מרשימים</div>
-      </div>
-    </div>
 
     <div class="photo-trio">
       <div class="photo-item">
@@ -416,5 +390,21 @@
       document.getElementById('lightbox').style.display = 'flex';
     }
   </script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var wrap = document.querySelector('.hero-map-wrap');
+  var popup = document.querySelector('.place-popup');
+  if (!wrap || !popup) return;
+  wrap.addEventListener('click', function(e) {
+    e.stopPropagation();
+    popup.classList.toggle('show');
+  });
+  document.addEventListener('click', function() {
+    popup.classList.remove('show');
+  });
+});
+</script>
+
 </body>
 </html>

@@ -1,0 +1,587 @@
+{
+  "200110051100": {
+    "name": "נמל התעופה בן גוריון (טיסה)",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Ben+Gurion+Airport",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A0%D7%9E%D7%9C_%D7%94%D7%AA%D7%A2%D7%95%D7%A4%D7%94_%D7%91%D7%9F-%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%9F"
+  },
+  "200110052040": {
+    "name": "קופנהגן, דנמרק",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Copenhagen",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A7%D7%95%D7%A4%D7%A0%D7%94%D7%92%D7%9F"
+  },
+  "20011006": {
+    "name": "ניו דלהי, הודו",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=New+Delhi",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A0%D7%99%D7%95_%D7%93%D7%9C%D7%94%D7%99"
+  },
+  "20011007": {
+    "name": "ניו דלהי, הודו",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=New+Delhi",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A0%D7%99%D7%95_%D7%93%D7%9C%D7%94%D7%99"
+  },
+  "20011008": {
+    "name": "אגרה (טאג' מהאל), הודו",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Taj+Mahal",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%98%D7%90%D7%92%27_%D7%9E%D7%94%D7%90%D7%9C"
+  },
+  "20011009": {
+    "name": "דרמסאלה (בדרך), הודו",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Dharamshala",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%93%D7%A8%D7%9E%D7%A1%D7%90%D7%9C%D7%94"
+  },
+  "20011010": {
+    "name": "מקלאוד גאנג', הודו",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=McLeod+Ganj",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%9E%D7%A7%D7%9C%D7%90%D7%95%D7%93_%D7%92%D7%90%D7%A0%D7%92%27"
+  },
+  "20011011": {
+    "name": "מקלאוד גאנג' (המפל), הודו",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=McLeod+Ganj+Waterfall",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%9E%D7%A7%D7%9C%D7%90%D7%95%D7%93_%D7%92%D7%90%D7%A0%D7%92%27"
+  },
+  "20011012": {
+    "name": "דרמקוט, הודו",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Dharamkot",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%93%D7%A8%D7%9E%D7%A1%D7%90%D7%9C%D7%94"
+  },
+  "20011013": {
+    "name": "פסגת טריאונד, הודו",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Triund+Hill",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%98%D7%A8%D7%99%D7%90%D7%95%D7%A0%D7%93"
+  },
+  "20011014": {
+    "name": "גני נורבלינקה, הודו",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Norbulingka+Institute",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A0%D7%95%D7%A8%D7%91%D7%95%D7%9C%D7%99%D7%A0%D7%92%D7%A7%D7%94"
+  },
+  "20011015": {
+    "name": "מקלאוד גאנג', הודו",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=McLeod+Ganj",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%9E%D7%A7%D7%9C%D7%90%D7%95%D7%93_%D7%92%D7%90%D7%A0%D7%92%27"
+  },
+  "20011017": {
+    "name": "צ'לאל, הודו",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Chalal",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A2%D7%9E%D7%A7_%D7%A4%D7%A8%D7%95%D7%95%D7%90%D7%98%D7%99"
+  },
+  "20011018": {
+    "name": "מאלאנה, הודו",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Malana",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%9E%D7%9C%D7%90%D7%A0%D7%94"
+  },
+  "20011019": {
+    "name": "ראשול וצ'לאל, הודו",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Rashol",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A2%D7%9E%D7%A7_%D7%A4%D7%A8%D7%95%D7%95%D7%90%D7%98%D7%99"
+  },
+  "200110201030": {
+    "name": "צ'לאל, הודו",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Chalal",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A2%D7%9E%D7%A7_%D7%A4%D7%A8%D7%95%D7%95%D7%90%D7%98%D7%99"
+  },
+  "200110202120": {
+    "name": "מאניקאראן, הודו",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Manikaran",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%9E%D7%A0%D7%99%D7%A7%D7%A8%D7%90%D7%9F"
+  },
+  "20011022": {
+    "name": "קירגנגה, הודו",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Kheerganga",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A7%D7%99%D7%A8%D7%92%D7%A0%D7%92%D7%94"
+  },
+  "20011024": {
+    "name": "רישיקש, הודו",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Rishikesh",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A5%D7%99%D7%A9%D7%99%D7%A7%D7%A9"
+  },
+  "20011025": {
+    "name": "רישיקש (מפלים), הודו",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Rishikesh+Waterfalls",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A5%D7%99%D7%A9%D7%99%D7%A7%D7%A9"
+  },
+  "20011026": {
+    "name": "רישיקש, הודו",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Rishikesh",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A5%D7%99%D7%A9%D7%99%D7%A7%D7%A9"
+  },
+  "20011027": {
+    "name": "הארידוואר, הודו",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Haridwar",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%94%D7%90%D7%A8%D7%99%D7%93%D7%95%D7%95%D7%90%D7%A8"
+  },
+  "20011028": {
+    "name": "הארידוואר, הודו",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Haridwar",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%94%D7%90%D7%A8%D7%99%D7%93%D7%95%D7%95%D7%90%D7%A8"
+  },
+  "20011030": {
+    "name": "שמורת בארדיה, נפאל",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Bardia+National+Park",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A4%D7%90%D7%A8%D7%A7_%D7%94%D7%9C%D7%90%D7%95%D7%9E%D7%99_%D7%91%D7%90%D7%A8%D7%93%D7%99%D7%94"
+  },
+  "20011031": {
+    "name": "שמורת בארדיה, נפאל",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Bardia+National+Park",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A4%D7%90%D7%A8%D7%A7_%D7%94%D7%9C%D7%90%D7%95%D7%9E%D7%99_%D7%91%D7%90%D7%A8%D7%93%D7%99%D7%94"
+  },
+  "20011101": {
+    "name": "שמורת בארדיה / פוקהרה, נפאל",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Pokhara",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A4%D7%95%D7%A7%D7%94%D7%A8%D7%94"
+  },
+  "200111012140": {
+    "name": "פוקהרה, נפאל",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Pokhara",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A4%D7%95%D7%A7%D7%94%D7%A8%D7%94"
+  },
+  "200111020330": {
+    "name": "פוקהרה, נפאל",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Pokhara",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A4%D7%95%D7%A7%D7%94%D7%A8%D7%94"
+  },
+  "20011104": {
+    "name": "נהר קאלי גנדקי (ראפטינג), נפאל",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Kali+Gandaki+River",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A7%D7%90%D7%9C%D7%99_%D7%92%D7%A0%D7%93%D7%A7%D7%99"
+  },
+  "20011107": {
+    "name": "פוקהרה, נפאל",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Pokhara",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A4%D7%95%D7%A7%D7%94%D7%A8%D7%94"
+  },
+  "20011108": {
+    "name": "פוקהרה, נפאל",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Pokhara",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A4%D7%95%D7%A7%D7%94%D7%A8%D7%94"
+  },
+  "20011110": {
+    "name": "פוקהרה, נפאל",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Pokhara",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A4%D7%95%D7%A7%D7%94%D7%A8%D7%94"
+  },
+  "20011111": {
+    "name": "פוקהרה, נפאל",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Pokhara",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A4%D7%95%D7%A7%D7%94%D7%A8%D7%94"
+  },
+  "20011113": {
+    "name": "דאמפוס, נפאל",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Dhampus",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A4%D7%95%D7%A7%D7%94%D7%A8%D7%94"
+  },
+  "20011114": {
+    "name": "סרנקוט, נפאל",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Sarangkot",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A1%D7%A8%D7%A0%D7%A7%D7%95%D7%98"
+  },
+  "20011115": {
+    "name": "בולבולה (סבב אנאפורנה), נפאל",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Bhulbhule",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A1%D7%91%D7%91_%D7%90%D7%A0%D7%90%D7%A4%D7%95%D7%A8%D7%A0%D7%94"
+  },
+  "20011117": {
+    "name": "טאל (סבב אנאפורנה), נפאל",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Tal,+Nepal",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A1%D7%91%D7%91_%D7%90%D7%A0%D7%90%D7%A4%D7%95%D7%A8%D7%A0%D7%94"
+  },
+  "20011118": {
+    "name": "צ'אמה (סבב אנאפורנה), נפאל",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Chame,+Nepal",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A1%D7%91%D7%91_%D7%90%D7%A0%D7%90%D7%A4%D7%95%D7%A8%D7%A0%D7%94"
+  },
+  "20011119": {
+    "name": "פיסאנג (סבב אנאפורנה), נפאל",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Pisang",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A1%D7%91%D7%91_%D7%90%D7%A0%D7%90%D7%A4%D7%95%D7%A8%D7%A0%D7%94"
+  },
+  "20011120": {
+    "name": "מאנאנג (סבב אנאפורנה), נפאל",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Manang",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A1%D7%91%D7%91_%D7%90%D7%A0%D7%90%D7%A4%D7%95%D7%A8%D7%A0%D7%94"
+  },
+  "20011121": {
+    "name": "מאנאנג (מנוחה), נפאל",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Manang",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A1%D7%91%D7%91_%D7%90%D7%A0%D7%90%D7%A4%D7%95%D7%A8%D7%A0%D7%94"
+  },
+  "20011123": {
+    "name": "מוקטינאת (סבב אנאפורנה), נפאל",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Muktinath",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%9E%D7%95%D7%A7%D7%95%D7%98%D7%99%D7%A0%D7%90%D7%AA"
+  },
+  "20011124": {
+    "name": "מארפה (סבב אנאפורנה), נפאל",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Marpha",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A1%D7%91%D7%91_%D7%90%D7%A0%D7%90%D7%A4%D7%95%D7%A8%D7%A0%D7%94"
+  },
+  "20011125": {
+    "name": "קאלאפאני (סבב אנאפורנה), נפאל",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Kalapani,+Nepal",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A1%D7%91%D7%91_%D7%90%D7%A0%D7%90%D7%A4%D7%95%D7%A8%D7%A0%D7%94"
+  },
+  "20011127": {
+    "name": "טאטופאני (סבב אנאפורנה), נפאל",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Tatopani,+Nepal",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A1%D7%91%D7%91_%D7%90%D7%A0%D7%90%D7%A4%D7%95%D7%A8%D7%A0%D7%94"
+  },
+  "20011128": {
+    "name": "פוקהרה / בני, נפאל",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Beni,+Nepal",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A4%D7%95%D7%A7%D7%94%D7%A8%D7%94"
+  },
+  "20011201": {
+    "name": "קטמנדו, נפאל",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Kathmandu",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A7%D7%90%D7%98%D7%9E%D7%A0%D7%93%D7%95"
+  },
+  "20011203": {
+    "name": "קטמנדו, נפאל",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Kathmandu",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A7%D7%90%D7%98%D7%9E%D7%A0%D7%93%D7%95"
+  },
+  "20011204": {
+    "name": "קטמנדו, נפאל",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Kathmandu",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A7%D7%90%D7%98%D7%9E%D7%A0%D7%93%D7%95"
+  },
+  "200112070100": {
+    "name": "קטמנדו (מקדש הקופים), נפאל",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Swayambhunath",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A1%D7%95%D7%95%D7%99%D7%90%D7%9E%D7%91%D7%94%D7%95%D7%A0%D7%90%D7%AA"
+  },
+  "200112072030": {
+    "name": "קטמנדו, נפאל",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Kathmandu",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A7%D7%90%D7%98%D7%9E%D7%A0%D7%93%D7%95"
+  },
+  "20011209": {
+    "name": "קטמנדו (פשופטינאת), נפאל",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Pashupatinath+Temple",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A4%D7%A9%D7%95%D7%A4%D7%90%D7%98%D7%99%D7%A0%D7%AA"
+  },
+  "20011210": {
+    "name": "בנגקוק, תאילנד",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Bangkok",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%91%D7%A0%D7%92%D7%A7%D7%95%D7%A7"
+  },
+  "20011211": {
+    "name": "בנגקוק, תאילנד",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Bangkok",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%91%D7%A0%D7%92%D7%A7%D7%95%D7%A7"
+  },
+  "20011213": {
+    "name": "בנגקוק (פאטפונג), תאילנד",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Patpong",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A4%D7%90%D7%98%D7%A4%D7%95%D7%A0%D7%92"
+  },
+  "20011214": {
+    "name": "בנגקוק, תאילנד",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Khao+San+Road",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%91%D7%A0%D7%92%D7%A7%D7%95%D7%A7"
+  },
+  "20011215": {
+    "name": "קו סמוי, תאילנד",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Ko+Samui",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A7%D7%95_%D7%A1%D7%9E%D7%95%D7%99"
+  },
+  "20011216": {
+    "name": "קו סמוי, תאילנד",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Ko+Samui",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A7%D7%95_%D7%A1%D7%9E%D7%95%D7%99"
+  },
+  "20011218": {
+    "name": "קו סמוי (צ'אוונג), תאילנד",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Chaweng+Beach",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A7%D7%95_%D7%A1%D7%9E%D7%95%D7%99"
+  },
+  "20011220": {
+    "name": "קו סמוי (חוף לאמאי), תאילנד",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Lamai+Beach",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A7%D7%95_%D7%A1%D7%9E%D7%95%D7%99"
+  },
+  "20011222": {
+    "name": "קו סמוי / קו טאו, תאילנד",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Ko+Tao",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A7%D7%95_%D7%98%D7%90%D7%95"
+  },
+  "20011223": {
+    "name": "קו טאו, תאילנד",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Ko+Tao",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A7%D7%95_%D7%98%D7%90%D7%95"
+  },
+  "20011224": {
+    "name": "קו טאו, תאילנד",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Ko+Tao",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A7%D7%95_%D7%98%D7%90%D7%95"
+  },
+  "20011226": {
+    "name": "קו פנגן, תאילנד",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Ko+Pha-ngan",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A7%D7%95_%D7%A4%D7%A0%D7%92%D7%95%D7%9F"
+  },
+  "20011230": {
+    "name": "קו פנגן (האד רין), תאילנד",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Haad+Rin",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A7%D7%95_%D7%A4%D7%A0%D7%92%D7%95%D7%9F"
+  },
+  "20020101": {
+    "name": "קו סמוי, תאילנד",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Ko+Samui",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A7%D7%95_%D7%A1%D7%9E%D7%95%D7%99"
+  },
+  "20020102": {
+    "name": "קו סמוי (אי קומסום), תאילנד",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Koh+Som",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A7%D7%95_%D7%A1%D7%9E%D7%95%D7%99"
+  },
+  "20020104": {
+    "name": "בנגקוק, תאילנד",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Bangkok",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%91%D7%A0%D7%92%D7%A7%D7%95%D7%A7"
+  },
+  "20020107": {
+    "name": "בנגקוק, תאילנד",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Bangkok",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%91%D7%A0%D7%92%D7%A7%D7%95%D7%A7"
+  },
+  "20020108": {
+    "name": "ואנג ויאנג, לאוס",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Vang+Vieng",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%95%D7%90%D7%A0%D7%92_%D7%95%D7%99%D7%90%D7%A0%D7%92"
+  },
+  "20020109": {
+    "name": "ואנג ויאנג (אבובים), לאוס",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Vang+Vieng",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%95%D7%90%D7%A0%D7%92_%D7%95%D7%99%D7%90%D7%A0%D7%92"
+  },
+  "20020110": {
+    "name": "ואנג ויאנג (מערות), לאוס",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Vang+Vieng",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%95%D7%90%D7%A0%D7%92_%D7%95%D7%99%D7%90%D7%A0%D7%92"
+  },
+  "20020111": {
+    "name": "ואנג ויאנג (אופניים), לאוס",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Vang+Vieng",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%95%D7%90%D7%A0%D7%92_%D7%95%D7%99%D7%90%D7%A0%D7%92"
+  },
+  "20020112": {
+    "name": "ואנג ויאנג (הלגונה הכחולה), לאוס",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Tham+Phu+Kham",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%95%D7%90%D7%A0%D7%92_%D7%95%D7%99%D7%90%D7%A0%D7%92"
+  },
+  "20020113": {
+    "name": "לואנג פראבאנג, לאוס",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Luang+Prabang",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%9C%D7%95%D7%90%D7%A0%D7%92_%D7%A4%D7%A8%D7%90%D7%91%D7%90%D7%A0%D7%92"
+  },
+  "20020114": {
+    "name": "לואנג פראבאנג (מפלי קואנג סי), לאוס",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Kuang+Si+Falls",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%9C%D7%95%D7%90%D7%A0%D7%92_%D7%A4%D7%A8%D7%90%D7%91%D7%90%D7%A0%D7%92"
+  },
+  "20020115": {
+    "name": "מואנג נוי, לאוס",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Muang+Ngoi+Neua",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%9C%D7%95%D7%90%D7%A0%D7%92_%D7%A4%D7%A8%D7%90%D7%91%D7%90%D7%A0%D7%92"
+  },
+  "20020116": {
+    "name": "מואנג נוי, לאוס",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Muang+Ngoi+Neua",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%9C%D7%95%D7%90%D7%A0%D7%92_%D7%A4%D7%A8%D7%90%D7%91%D7%90%D7%A0%D7%92"
+  },
+  "20020118": {
+    "name": "מואנג נוי (טרק), לאוס",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Muang+Ngoi+Neua",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%9C%D7%95%D7%90%D7%A0%D7%92_%D7%A4%D7%A8%D7%90%D7%91%D7%90%D7%A0%D7%92"
+  },
+  "20020119": {
+    "name": "אודומסאי, לאוס",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Oudomxay",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%9C%D7%95%D7%90%D7%A0%D7%92_%D7%A4%D7%A8%D7%90%D7%91%D7%90%D7%A0%D7%92"
+  },
+  "20020121": {
+    "name": "מואנג סינג, לאוס",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Muang+Sing",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%9C%D7%95%D7%90%D7%A0%D7%92_%D7%A4%D7%A8%D7%90%D7%91%D7%90%D7%A0%D7%92"
+  },
+  "20020122": {
+    "name": "הואה קסאי, לאוס",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Houayxay",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%9C%D7%95%D7%90%D7%A0%D7%92_%D7%A4%D7%A8%D7%90%D7%91%D7%90%D7%A0%D7%92"
+  },
+  "20020123": {
+    "name": "צ'יאנג מאי, תאילנד",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Chiang+Mai",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A6%D7%99%D7%90%D7%A0%D7%92_%D7%9E%D7%90%D7%99"
+  },
+  "20020126": {
+    "name": "צ'יאנג מאי (טרק), תאילנד",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Chiang+Mai",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A6%D7%99%D7%90%D7%A0%D7%92_%D7%9E%D7%90%D7%99"
+  },
+  "20020127": {
+    "name": "פאי, תאילנד",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Pai,+Thailand",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A4%D7%90%D7%99"
+  },
+  "20020128": {
+    "name": "פאי, תאילנד",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Pai,+Thailand",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A4%D7%90%D7%99"
+  },
+  "20020129": {
+    "name": "מערת לוד, תאילנד",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Tham+Lod+Cave",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A4%D7%90%D7%99"
+  },
+  "20020131": {
+    "name": "צ'יאנג מאי, תאילנד",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Chiang+Mai",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A6%D7%99%D7%90%D7%A0%D7%92_%D7%9E%D7%90%D7%99"
+  },
+  "20020202": {
+    "name": "בנגקוק (שדה התעופה), תאילנד",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Suvarnabhumi+Airport",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%91%D7%A0%D7%92%D7%A7%D7%95%D7%A7"
+  },
+  "20020203": {
+    "name": "מלבורן, אוסטרליה",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Melbourne",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%9E%D7%9C%D7%91%D7%95%D7%A8%D7%9F"
+  },
+  "20020205": {
+    "name": "מלבורן, אוסטרליה",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Melbourne",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%9E%D7%9C%D7%91%D7%95%D7%A8%D7%9F"
+  },
+  "20020206": {
+    "name": "מלבורן, אוסטרליה",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Melbourne",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%9E%D7%9C%D7%91%D7%95%D7%A8%D7%9F"
+  },
+  "20020207": {
+    "name": "מלבורן, אוסטרליה",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Melbourne",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%9E%D7%9C%D7%91%D7%95%D7%A8%D7%9F"
+  },
+  "20020210": {
+    "name": "דנידין, ניו זילנד",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Dunedin",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%93%D7%A0%D7%99%D7%93%D7%99%D7%9F"
+  },
+  "20020211": {
+    "name": "קרייסטצ'רץ', ניו זילנד",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Christchurch",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A7%D7%A8%D7%99%D7%99%D7%A1%D7%98%D7%A6%27%D7%A8%D7%AA%27"
+  },
+  "20020212": {
+    "name": "קרייסטצ'רץ', ניו זילנד",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Christchurch",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A7%D7%A8%D7%99%D7%99%D7%A1%D7%98%D7%A6%27%D7%A8%D7%AA%27"
+  },
+  "20020213": {
+    "name": "קרייסטצ'רץ', ניו זילנד",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Christchurch",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A7%D7%A8%D7%99%D7%99%D7%A1%D7%98%D7%A6%27%D7%A8%D7%AA%27"
+  },
+  "20020215": {
+    "name": "קרייסטצ'רץ', ניו זילנד",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Christchurch",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A7%D7%A8%D7%99%D7%99%D7%A1%D7%98%D7%A6%27%D7%A8%D7%AA%27"
+  },
+  "20020216": {
+    "name": "אקארואה, ניו זילנד",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Akaroa",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%90%D7%A7%D7%90%D7%A8%D7%95%D7%90%D7%94"
+  },
+  "20020218": {
+    "name": "אקארואה, ניו זילנד",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Akaroa",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%90%D7%A7%D7%90%D7%A8%D7%95%D7%90%D7%94"
+  },
+  "20020221": {
+    "name": "אואמרו, ניו זילנד",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Oamaru",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%90%D7%95%D7%90%D7%9E%D7%A8%D7%95"
+  },
+  "20020224": {
+    "name": "דנידין, ניו זילנד",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Dunedin",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%93%D7%A0%D7%99%D7%93%D7%99%D7%9F"
+  },
+  "20020226": {
+    "name": "אובאקה, ניו זילנד",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Owaka",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A7%D7%90%D7%92%D7%9C%D7%99%D7%A0%D7%96"
+  },
+  "20020227": {
+    "name": "פורפוס ביי, ניו זילנד",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Porpoise+Bay",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A7%D7%90%D7%92%D7%9C%D7%99%D7%A0%D7%96"
+  },
+  "20020228": {
+    "name": "וולאסטאון, ניו זילנד",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Wallacetown,+New+Zealand",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%90%D7%99%D7%A0%D7%95%D7%95%D7%A8%D7%A7%D7%A1%D7%99%D7%9C"
+  },
+  "20020301": {
+    "name": "וולאסטאון, ניו זילנד",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Wallacetown,+New+Zealand",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%90%D7%99%D7%A0%D7%95%D7%95%D7%A8%D7%A7%D7%A1%D7%99%D7%9C"
+  },
+  "20020303": {
+    "name": "מילפורד סאונד, ניו זילנד",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Milford+Sound",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%9E%D7%99%D7%9C%D7%A4%D7%95%D7%A8%D7%93_%D7%A1%D7%90%D7%95%D7%A0%D7%93"
+  },
+  "20020304": {
+    "name": "ואנקה, ניו זילנד",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Wanaka",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%95%D7%90%D7%A0%D7%A7%D7%94"
+  },
+  "20020306": {
+    "name": "מילפורד סאונד, ניו זילנד",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Milford+Sound",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%9E%D7%99%D7%9C%D7%A4%D7%95%D7%A8%D7%93_%D7%A1%D7%90%D7%95%D7%A0%D7%93"
+  },
+  "20020308": {
+    "name": "ואנקה, ניו זילנד",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Wanaka",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%95%D7%90%D7%A0%D7%A7%D7%94"
+  },
+  "20020310": {
+    "name": "מאונט קוק, ניו זילנד",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Mount+Cook",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%94%D7%A8_%D7%A7%D7%95%D7%A7"
+  },
+  "20020311": {
+    "name": "אגם טקאפו, ניו זילנד",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Lake+Tekapo",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%90%D7%92%D7%9D_%D7%98%D7%A7%D7%90%D7%A4%D7%95"
+  },
+  "20020312": {
+    "name": "אברס פאס, ניו זילנד",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Arthur's+Pass",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%90%D7%A8%D7%AA%D7%95%D7%A8%27%D7%A1_%D7%A4%D7%90%D7%A1"
+  },
+  "20020326": {
+    "name": "וולינגטון, ניו זילנד",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Wellington",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%95%D7%95%D7%9C%D7%99%D7%A0%D7%92%D7%98%D7%95%D7%9F"
+  },
+  "200203280100": {
+    "name": "וונגנואי, ניו זילנד",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Whanganui",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%95%D7%95%D7%A0%D7%92%D7%A0%D7%95%D7%90%D7%99"
+  },
+  "20020331": {
+    "name": "רוהוטו (ליד רוטורואה), ניו זילנד",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Rotorua",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%A8%D7%95%D7%95%D7%98%D7%95%D7%A8%D7%95%D7%90%D7%94"
+  },
+  "20020402": {
+    "name": "טאומארונואי, ניו זילנד",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Taumarunui",
+    "wiki_url": "https://he.wikipedia.org/wiki/%D7%98%D7%90%D7%95%D7%9E%D7%90%D7%A8%D7%95%D7%A0%D7%95%D7%90%D7%99"
+  }
+}

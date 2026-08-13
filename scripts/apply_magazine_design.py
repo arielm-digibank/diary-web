@@ -445,10 +445,12 @@ def build_page(page_name, date_text, subtitle, page_title, map_file, country_nam
             for idx, count in photo_pos_map[i + 1]:
                 content_html += generate_photo_html(images, idx, count) + "\n"
 
-    # Add any remaining photos at end of main content
-    if total_paras in photo_pos_map:
-        for idx, count in photo_pos_map[total_paras]:
-            content_html += generate_photo_html(images, idx, count) + "\n"
+    # Add any remaining photos that weren't covered by the loop
+    # (only positions beyond total_paras, which the loop doesn't reach)
+    for pos in photo_pos_map:
+        if pos > total_paras:
+            for idx, count in photo_pos_map[pos]:
+                content_html += generate_photo_html(images, idx, count) + "\n"
 
     # Add supplements section if present
     if supplements:
