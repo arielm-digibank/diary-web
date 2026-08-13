@@ -68,6 +68,11 @@
       background: #e0f2fe; color: #075985;
     }
     .place-popup .link-wiki:hover { background: #bae6fd; }
+    .place-popup .link-enlarge {
+      background: #fef3c7; color: #92400e;
+    }
+    .place-popup .link-enlarge:hover { background: #fde68a; }
+
 
     .hero-map {
       width: 120px; height: auto; object-fit: contain;
@@ -226,6 +231,7 @@
       <div class="place-links">
         <a href="https://www.google.com/maps/search/?api=1&query=Wellington" target="_blank" class="link-maps">📍 Google Maps</a>
         <a href="https://he.wikipedia.org/wiki/%D7%95%D7%95%D7%9C%D7%99%D7%A0%D7%92%D7%98%D7%95%D7%9F" target="_blank" class="link-wiki">📖 Wikipedia</a>
+        <a href="#" class="link-enlarge" onclick="event.preventDefault();document.querySelector('.place-popup').classList.remove('show');openLightbox('../images/New_Zealand_north_island.gif');return false;">🔍 הגדל מפה</a>
       </div>
     </div>
   </div>

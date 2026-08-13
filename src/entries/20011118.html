@@ -68,6 +68,11 @@
       background: #e0f2fe; color: #075985;
     }
     .place-popup .link-wiki:hover { background: #bae6fd; }
+    .place-popup .link-enlarge {
+      background: #fef3c7; color: #92400e;
+    }
+    .place-popup .link-enlarge:hover { background: #fde68a; }
+
 
     .hero-map {
       width: 120px; height: auto; object-fit: contain;
@@ -220,12 +225,13 @@
       <div class="title-divider"></div>
     </div>
     <div class="hero-map-wrap">
-    <img class="hero-map" src="../images/Nepal.gif" alt="נפאל">
+    <img class="hero-map" src="../images/anaporna_day_4.jpg" alt="נפאל">
     <div class="place-popup">
       <h4>צ'אמה (סבב אנאפורנה), נפאל</h4>
       <div class="place-links">
         <a href="https://www.google.com/maps/search/?api=1&query=Chame,+Nepal" target="_blank" class="link-maps">📍 Google Maps</a>
         <a href="https://he.wikipedia.org/wiki/%D7%A1%D7%91%D7%91_%D7%90%D7%A0%D7%90%D7%A4%D7%95%D7%A8%D7%A0%D7%94" target="_blank" class="link-wiki">📖 Wikipedia</a>
+        <a href="#" class="link-enlarge" onclick="event.preventDefault();document.querySelector('.place-popup').classList.remove('show');openLightbox('../images/anaporna_day_4.jpg');return false;">🔍 הגדל מפה</a>
       </div>
     </div>
   </div>
