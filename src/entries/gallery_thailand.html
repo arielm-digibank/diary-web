@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="../favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="../favicon-32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>גלריה - תאילנד</title>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #ffffff;
+      font-family: 'Heebo', sans-serif;
+      color: #1a1a2e;
+      line-height: 1.8;
+    }
+    .top-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #eee;
+      padding: 12px 30px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.9rem;
+    }
+    .top-nav a { color: #1d4ed8; text-decoration: none; font-weight: 600; }
+    .top-nav a:hover { text-decoration: underline; }
+    .top-nav .nav-links { display: flex; gap: 20px; }
+    .hero {
+      max-width: 1000px; margin: 0 auto;
+      padding: 40px 30px 10px; text-align: center;
+    }
+    .hero h1 { font-size: 2.2rem; font-weight: 900; color: #111827; }
+    .hero .dates { font-size: 1rem; font-weight: 300; color: #4b5563; margin-top: 8px; }
+    .story-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      margin-top: 18px; padding: 10px 22px;
+      background: linear-gradient(135deg, #3b82f6, #0d9488);
+      color: #fff; border-radius: 12px; text-decoration: none;
+      font-weight: 700; font-size: 0.95rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 16px rgba(59,130,246,0.3);
+    }
+    .story-link:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(59,130,246,0.4); }
+    .gallery {
+      max-width: 1000px; margin: 20px auto; padding: 0 30px 60px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 12px;
+    }
+    .gallery img {
+      width: 100%; height: 180px; object-fit: cover;
+      border-radius: 10px; cursor: pointer;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .gallery img:hover { transform: scale(1.03); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+    .lightbox {
+      display: none; position: fixed; z-index: 9999;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.92);
+      justify-content: center; align-items: center; cursor: pointer;
+    }
+    .lightbox img { max-width: 92%; max-height: 92%; border-radius: 8px; }
+    @media (max-width: 600px) {
+      .gallery { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
+      .gallery img { height: 130px; }
+      .hero h1 { font-size: 1.7rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-nav">
+    <div class="nav-links">
+      <a href="../index.html">עמוד ראשי</a>
+    </div>
+    <div class="nav-links">
+      <a href="../index.html#galleries">כל הגלריות</a>
+    </div>
+  </div>
+
+  <div class="hero">
+    <h1>תאילנד</h1>
+    <p class="dates">10 בדצמבר 2001 – 7 בינואר 2002</p>
+    <a class="story-link" href="20011210.html">📖 לסיפור המלא</a>
+  </div>
+
+  <div class="gallery">
+    <img src="../images/20011210_bangkok_big_temple.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011210_bell_like_temple.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011210_democratic_circus.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011210_gonen&amp;shirley_near_democracy_circus.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011210_kings_garden.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011210_malik_in_bangkok.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011211_bangkok_cannel_boats.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011211_fish_come_to_eat.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011211_golden_budhaa.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011212_bangkok_kings_palace.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011212_nice_temple.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011213_kings_garden.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011216_chawang_beach.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011217_gonen_on_motorcycle_1.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011218_lamai_beach.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011219_at_lamai_beach.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011219_at_lamai_beach_2.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011220_gonen_on_cross_motorcycle.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011220_kosamoi_big_waterfall.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011220_lamai_beach.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011220_sunset_from_lamai_beach_2.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011223_lior&amp;malik.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011224_gonen_on_beach.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011224_gonen_resting.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011224_kotao_sunset_2.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011224_malik&amp;snake.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011224_me_and_golden_budha.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011224_singing_in_the_rain.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011224_snake_on_bush_2.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011225_view_of_kotao_2.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011227_malik_on_the_beach.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011229_malik_ready_for_full_moon.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011229_preparin_to_party_1.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011229_sailing_to_full_moon_party.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011231_silvester_1.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20020101_kosamoi_huge_statues_2.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20020102_malik_and_his_islands.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20020102_resting_at_kosamoi.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20020104_monsters.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20020105_bangkok_temple.jpg" onclick="openLightbox(this.src)" alt="">
+  </div>
+
+  <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
+    <img id="lightbox-img" src="" alt="">
+  </div>
+  <script>
+    function openLightbox(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox').style.display = 'flex';
+    }
+  </script>
+</body>
+</html>

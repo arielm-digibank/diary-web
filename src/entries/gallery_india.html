@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="../favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="../favicon-32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>גלריה - הודו</title>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #ffffff;
+      font-family: 'Heebo', sans-serif;
+      color: #1a1a2e;
+      line-height: 1.8;
+    }
+    .top-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #eee;
+      padding: 12px 30px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.9rem;
+    }
+    .top-nav a { color: #1d4ed8; text-decoration: none; font-weight: 600; }
+    .top-nav a:hover { text-decoration: underline; }
+    .top-nav .nav-links { display: flex; gap: 20px; }
+    .hero {
+      max-width: 1000px; margin: 0 auto;
+      padding: 40px 30px 10px; text-align: center;
+    }
+    .hero h1 { font-size: 2.2rem; font-weight: 900; color: #111827; }
+    .hero .dates { font-size: 1rem; font-weight: 300; color: #4b5563; margin-top: 8px; }
+    .story-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      margin-top: 18px; padding: 10px 22px;
+      background: linear-gradient(135deg, #3b82f6, #0d9488);
+      color: #fff; border-radius: 12px; text-decoration: none;
+      font-weight: 700; font-size: 0.95rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 16px rgba(59,130,246,0.3);
+    }
+    .story-link:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(59,130,246,0.4); }
+    .gallery {
+      max-width: 1000px; margin: 20px auto; padding: 0 30px 60px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 12px;
+    }
+    .gallery img {
+      width: 100%; height: 180px; object-fit: cover;
+      border-radius: 10px; cursor: pointer;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .gallery img:hover { transform: scale(1.03); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+    .lightbox {
+      display: none; position: fixed; z-index: 9999;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.92);
+      justify-content: center; align-items: center; cursor: pointer;
+    }
+    .lightbox img { max-width: 92%; max-height: 92%; border-radius: 8px; }
+    @media (max-width: 600px) {
+      .gallery { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
+      .gallery img { height: 130px; }
+      .hero h1 { font-size: 1.7rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-nav">
+    <div class="nav-links">
+      <a href="../index.html">עמוד ראשי</a>
+    </div>
+    <div class="nav-links">
+      <a href="../index.html#galleries">כל הגלריות</a>
+    </div>
+  </div>
+
+  <div class="hero">
+    <h1>הודו</h1>
+    <p class="dates">6 באוקטובר – 29 באוקטובר 2001</p>
+    <a class="story-link" href="20011006.html">📖 לסיפור המלא</a>
+  </div>
+
+  <div class="gallery">
+    <img src="../images/20011006_malik&amp;parlament_houses1.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011007_gonen_with_cobra1.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011007_malik&amp;bahaim_temple1.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011007_malik_with_cobra_2.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011007_parlament_house_3.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011007_red_fortress1.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011007_victory_gate_3.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011008_gonen&amp;cow1.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011008_indian_people1.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011008_taj_mahal1.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011008_temp_1.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011009_red_fortress1.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011009_us&amp;prasana1.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011010_mcclod_ganj.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011011_monkey.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011011_waterfall_gang.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011011_waterfall_swim.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011012_gonen&amp;vy.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011012_israelis_at_beit_habad.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011012_spiritual_gonen_at_a_stupa.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011013_arik_sharon.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011013_hard_climb.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011013_malik&amp;sheep.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011013_malik_resting.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011013_malik_resting_2.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011013_seranity_now.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011013_ship_delivers.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011013_the_end_of_climb.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011014_authentic_family.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011014_bowing.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011014_gonen_in_the_riksha.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011016_tibetian_monks.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011017_gonen_on_the_porch.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011017_on_the_bridge.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011017_parvati_valley.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011017_smoking_with_the_baba.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011017_the_way_to_chalal.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011018_baba_and_melani.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011018_huge_spider.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011018_melana_guest_house.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011018_melana_village_2.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011018_smoked.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011020_parvati_valley_1.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011021_kiriganga_hot_water.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011021_oz_baba_trek.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011022_north_india.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011024_fooja_ceremony.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011024_rishikash_gonen&amp;baba.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011024_rishikash_ram_jula.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011024_rishikash_ram_jula_2.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011024_yosi&amp;eitan.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011025_gangas.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011025_gonen_in_waterfall.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011025_gonen_on_the_river.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011025_malik_in_waterfall_2.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011026_burning_of_the_huge_doll.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011026_chotiwala&amp;eitan.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011026_parade_in_rishikash.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011027_haridwar.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011027_haridwar_gonen&amp;shiva.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011027_haridwar_river.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011027_haridwar_river_2.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011027_poor_boy.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011028_haridwar_gangas_bank.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011028_haridwar_monkey.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011028_mansa_devi_temple.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011028_on_top_of_the_bus.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/20011029_a_temple_near_nepal.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/aboy.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/bicycles.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/busy_street.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/heavy_load.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/holy_begger.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/holy_elephant.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/indian_dentist.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/indian_resting.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/monkey_type_2.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/parade.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/selling_carpets.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/selling_knives.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/street_cows.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/street_shaving.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/toilet.jpg" onclick="openLightbox(this.src)" alt="">
+    <img src="../images/took_took.jpg" onclick="openLightbox(this.src)" alt="">
+  </div>
+
+  <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
+    <img id="lightbox-img" src="" alt="">
+  </div>
+  <script>
+    function openLightbox(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox').style.display = 'flex';
+    }
+  </script>
+</body>
+</html>
