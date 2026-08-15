@@ -1,29 +1,35 @@
 <!DOCTYPE html>
-<html lang="he" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8">
   <link rel="icon" href="../favicon.ico" sizes="any">
   <link rel="icon" type="image/png" href="../favicon-32.png" sizes="32x32">
   <link rel="apple-touch-icon" href="../apple-touch-icon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>אי-מייל - 1 בנובמבר 2001</title>
+  <title>מייל מהדרך</title>
   <style>
     body {
       background-color: #f8fafc;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0; padding: 20px; color: #334155;
+      margin: 0; padding: 0; color: #334155;
     }
     .container {
-      max-width: 800px; margin: 0 auto; background: #ffffff;
+      max-width: 800px; margin: 30px auto; background: #ffffff;
       padding: 35px; border-radius: 12px;
       box-shadow: 0 4px 20px rgba(0,0,0,0.06); line-height: 1.8;
     }
-    .header {
-      border-bottom: 2px solid #e2e8f0; padding-bottom: 15px;
-      margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center;
+    .top-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #eee;
+      padding: 12px 30px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.9rem;
     }
-    .header h1 { margin: 0; color: #0f172a; font-size: 1.8rem; }
-    .home-link { color: #2563eb; text-decoration: none; font-weight: 600; }
+    .top-nav a { color: #1d4ed8; text-decoration: none; font-weight: 600; }
+    .top-nav a:hover { text-decoration: underline; }
+    .top-nav .nav-links { display: flex; gap: 20px; }
     .content img {
       float: right; margin: 0 0 15px 20px; max-width: 320px; height: auto;
       border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
@@ -41,11 +47,16 @@
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h1>אי-מייל - 1 בנובמבר 2001</h1>
-      <a href="../index.html" class="home-link">🏠 לעמוד הראשי</a>
+  <div class="top-nav">
+    <div class="nav-links">
+      <a href="../index.html">עמוד ראשי</a>
     </div>
+    <div class="nav-links">
+      <a href="../index.html#emails">כל האימיילים</a>
+    </div>
+  </div>
+
+  <div class="container">
     <div class="content">
       <body alink="#336600" background="_themes/my-trip/967.jpg" bgcolor="#CCCC99" link="#996600" text="#000000" vlink="#666666"><!--mstheme--><font face="Times New Roman, Times">
 <div align="center">
